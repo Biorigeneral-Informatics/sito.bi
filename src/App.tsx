@@ -1,11 +1,13 @@
-// src/App.tsx - Da modificare
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+// src/App.tsx
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
-import Services from './pages/Services';
+import Products from './pages/Products';
+import SoftwarePMI from './pages/SoftwarePMI';
 import AIAgents from './pages/AIAgents';
 import Chatbots from './pages/Chatbots';
+import GrowthPlans from './pages/GrowthPlans';
 import Developers from './pages/Developers';
 import Contact from './pages/Contact';
 import Footer from './components/Footer';
@@ -32,11 +34,26 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/services" element={<Services />} />
+            <Route path="/products" element={<Products />} />
+            
+            {/* Percorsi principali */}
+            <Route path="/software-pmi" element={<SoftwarePMI />} />
             <Route path="/ai-agents" element={<AIAgents />} />
             <Route path="/chatbots" element={<Chatbots />} />
+            <Route path="/growth-plans" element={<GrowthPlans />} />
             <Route path="/developers" element={<Developers />} />
             <Route path="/contact" element={<Contact />} />
+            
+            {/* Reindirizzamenti per compatibilità con percorsi /services/ */}
+            <Route path="/services/software-pmi" element={<Navigate to="/software-pmi" replace />} />
+            <Route path="/services/ai-agents" element={<Navigate to="/ai-agents" replace />} />
+            <Route path="/services/chatbots" element={<Navigate to="/chatbots" replace />} />
+            <Route path="/services/growth-plans" element={<Navigate to="/growth-plans" replace />} />
+            <Route path="/services/developers" element={<Navigate to="/developers" replace />} />
+            <Route path="/services" element={<Navigate to="/software-pmi" replace />} />
+            
+            {/* Fallback per percorsi non trovati */}
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
         <Footer />

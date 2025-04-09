@@ -59,13 +59,13 @@ const Home = () => {
                 transition={{ duration: 0.7 }}
               >
                 <h1 className="text-5xl md:text-7xl font-bold mb-8 hero-element">
-                  <span className="block">Innovazione</span>
-                  <span className="text-gradient">Digitale</span>
-                  <span className="block">per il Futuro</span>
+                  <span className="block">Oltre il codice,</span>
+                  <span className="text-gradient">verso l'intelligenza</span>
+                  <span className="block">che crea valore.</span>
                 </h1>
                 
                 <p className="text-xl text-foreground/80 mb-10 max-w-xl hero-element leading-relaxed">
-                  Trasformiamo idee in soluzioni tecnologiche all'avanguardia che spingono il tuo business verso il futuro
+                  AI Agency e Software Engineering, forniamo soluzioni IT avanzate alle aziende Italiane.
                 </p>
                 
                 <div className="flex flex-wrap gap-5 hero-element">
@@ -100,12 +100,12 @@ const Home = () => {
                 <div className="hero-element relative z-10 glass rounded-2xl p-8 shadow-xl transform -rotate-3 -translate-y-12 translate-x-24">
                   <Bot className="w-16 h-16 text-violet-400 mb-4" />
                   <h3 className="text-2xl font-bold mb-2">Intelligenza Artificiale</h3>
-                  <p className="text-foreground/70">Automatizzazione e insights avanzati</p>
+                  <p className="text-foreground/70">Agenti, Chatbot e Consulenza</p>
                 </div>
                 
                 <div className="hero-element relative z-10 glass rounded-2xl p-8 shadow-xl transform rotate-6 translate-y-16 -translate-x-20">
                   <Globe className="w-16 h-16 text-cyan-400 mb-4" />
-                  <h3 className="text-2xl font-bold mb-2">Cloud Solutions</h3>
+                  <h3 className="text-2xl font-bold mb-2">Asset Digitali</h3>
                   <p className="text-foreground/70">Infrastrutture scalabili e sicure</p>
                 </div>
               </div>

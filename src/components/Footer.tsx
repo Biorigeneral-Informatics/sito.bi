@@ -9,8 +9,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           <div>
             <Link to="/" className="flex items-center space-x-2 mb-6">
-              <img src="/logo.svg" alt="Biorigeneral" className="w-10 h-10" />
-              <span className="font-bold text-xl">Biorigeneral</span>
+              <img src="https://i.imgur.com/UoihSYZ.png" alt="Biorigeneral" className="w-10 h-10" />
+              <span className="font-bold text-xl">Bi</span>
             </Link>
             <p className="text-foreground/70 mb-4">
               Innovazione tecnologica e soluzioni software all'avanguardia per le PMI italiane.
@@ -88,7 +88,7 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-center space-x-3">
                 <Mail size={18} className="text-primary" />
-                <span className="text-foreground/70">contact@biorigeneral.com</span>
+                <span className="text-foreground/70">biorigeneralinformatics@gmail.com</span>
               </li>
               <li className="flex items-center space-x-3">
                 <Phone size={18} className="text-primary" />
@@ -97,8 +97,8 @@ const Footer = () => {
               <li className="flex items-start space-x-3">
                 <MapPin size={18} className="text-primary mt-1" />
                 <span className="text-foreground/70">
-                  Via dell'Innovazione 42<br />
-                  20100 Milano, Italia
+                  Via Salara 2/A,<br />
+                  64026 Roseto degli Abruzzi (TE), Italia
                 </span>
               </li>
             </ul>

@@ -57,7 +57,7 @@ const Contact = () => {
               <div>
                 <h3 className="font-bold">Email</h3>
                 <a href="mailto:contact@biorigeneral.com" className="text-foreground/80 hover:text-primary transition-colors">
-                  contact@biorigeneral.com
+                  biorigeneralinformatics@gmail.com
                 </a>
               </div>
             </div>
@@ -81,8 +81,8 @@ const Contact = () => {
               <div>
                 <h3 className="font-bold">Indirizzo</h3>
                 <p className="text-foreground/80">
-                  Via dell'Innovazione 42<br />
-                  20100 Milano, Italia
+                Via Salara 2/A,<br />
+                64026 Roseto degli Abruzzi (TE), Italia
                 </p>
               </div>
             </div>
@@ -295,7 +295,7 @@ const Contact = () => {
           <MapPin className="w-12 h-12 text-primary/70 mx-auto mb-4" />
           <h3 className="text-xl font-bold mb-2">Mappa dell'ufficio</h3>
           <p className="text-foreground/70">
-            Via dell'Innovazione 42, 20100 Milano, Italia
+          Via Salara 2/A, 64026 Roseto degli Abruzzi (TE), Italia
           </p>
         </div>
         {/* In a real application, you would integrate Google Maps or another map provider here */}

@@ -6,6 +6,7 @@ import { ArrowRight, Code, Cpu, Bot, Shield, Globe, Database, Layers, ChevronRig
 import ParallaxEffect from '../components/ParallaxEffect';
 import ScrollAnimation from '../components/ScrollAnimation';
 import ScrollGradient from '../components/ScrollGradient';
+import HeroAnimation from '../components/HeroAnimation';
 
 const Home = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -50,64 +51,43 @@ const Home = () => {
 
       {/* Hero Section - con più spazio ai lati */}
       <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden pt-20 pb-24">
-        <div className="container mx-auto px-6 lg:px-12 z-10 relative">
+        <div className="container mx-auto px-6 lg:px-12 z-10">
           <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div>
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7 }}
-              >
-                <h1 className="text-5xl md:text-7xl font-bold mb-8 hero-element">
-                  <span className="block">Oltre il codice,</span>
-                  <span className="text-gradient">verso l'intelligenza</span>
-                  <span className="block">che crea valore.</span>
-                </h1>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+            >
+              <h1 className="text-5xl md:text-7xl font-bold mb-8 hero-element">
+                <span className="block">Oltre il codice,</span>
+                <span className="text-gradient">verso l'innovazione</span>
+              </h1>
+              
+              <p className="text-xl text-foreground/80 mb-10 hero-element leading-relaxed">
+                AI Agency e Software Engineering. Soluzioni digitali innovative per il tuo business.
+              </p>
+              
+              <div className="flex flex-wrap gap-5 hero-element">
+                <Link
+                  to="/contact"
+                  className="px-8 py-4 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all hover:translate-y-[-2px] shadow-lg"
+                >
+                  Inizia Ora <ArrowRight className="inline ml-2" />
+                </Link>
                 
-                <p className="text-xl text-foreground/80 mb-10 max-w-xl hero-element leading-relaxed">
-                  AI Agency e Software Engineering, forniamo soluzioni IT avanzate alle aziende Italiane.
-                </p>
-                
-                <div className="flex flex-wrap gap-5 hero-element">
-                  <Link
-                    to="/contact"
-                    className="px-8 py-4 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all hover:translate-y-[-2px] shadow-lg hover:shadow-primary/30"
-                  >
-                    Inizia Ora <ArrowRight className="inline ml-2" />
-                  </Link>
-                  
-                  <Link
-                    to="/services"
-                    className="px-8 py-4 border border-primary/40 text-foreground hover:bg-primary/10 rounded-lg transition-all"
-                  >
-                    Esplora Soluzioni
-                  </Link>
-                </div>
-              </motion.div>
-            </div>
+                <Link
+                  to="/services"
+                  className="px-8 py-4 border border-primary/30 text-foreground hover:bg-primary/10 rounded-lg transition-all"
+                >
+                  Esplora Soluzioni
+                </Link>
+              </div>
+            </motion.div>
             
             <ParallaxEffect speed={0.1} direction="down">
               <div className="relative hero-visual flex justify-center">
-                <div className="hero-element absolute w-72 h-72 rounded-full bg-indigo-500/30 filter blur-3xl top-10 -left-10 animate-pulse"></div>
-                <div className="hero-element absolute w-96 h-96 rounded-full bg-violet-500/30 filter blur-3xl bottom-0 right-0 animate-pulse" style={{ animationDelay: '1s' }}></div>
-                
-                <div className="hero-element relative z-10 glass rounded-2xl p-8 shadow-xl transform rotate-3">
-                  <Code className="w-16 h-16 text-blue-400 mb-4" />
-                  <h3 className="text-2xl font-bold mb-2">Sviluppo Software</h3>
-                  <p className="text-foreground/70">Soluzioni personalizzate per le tue esigenze</p>
-                </div>
-                
-                <div className="hero-element relative z-10 glass rounded-2xl p-8 shadow-xl transform -rotate-3 -translate-y-12 translate-x-24">
-                  <Bot className="w-16 h-16 text-violet-400 mb-4" />
-                  <h3 className="text-2xl font-bold mb-2">Intelligenza Artificiale</h3>
-                  <p className="text-foreground/70">Agenti, Chatbot e Consulenza</p>
-                </div>
-                
-                <div className="hero-element relative z-10 glass rounded-2xl p-8 shadow-xl transform rotate-6 translate-y-16 -translate-x-20">
-                  <Globe className="w-16 h-16 text-cyan-400 mb-4" />
-                  <h3 className="text-2xl font-bold mb-2">Asset Digitali</h3>
-                  <p className="text-foreground/70">Infrastrutture scalabili e sicure</p>
-                </div>
+                {/* Sostituiamo i riquadri originali con la nostra nuova animazione */}
+                <HeroAnimation />
               </div>
             </ParallaxEffect>
           </div>
@@ -200,7 +180,7 @@ const Home = () => {
           <div className="w-full h-full rounded-full bg-indigo-500/20 filter blur-3xl"></div>
         </ParallaxEffect>
         
-        <div className="container mx-auto px-6 lg:px-12 relative z-10">
+        <div className="container mx-auto px-6 lg:px-12">
           <ScrollAnimation animation="slideUp">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-8">Le Nostre Competenze</h2>
@@ -350,7 +330,7 @@ const Home = () => {
                     
                     <div className="text-yellow-500 flex mt-auto">
                       {[...Array(testimonial.stars)].map((_, i) => (
-                        <span key={i}>★</span>
+                        <span key={i} className="text-sm">★</span>
                       ))}
                     </div>
                   </div>

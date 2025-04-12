@@ -2,7 +2,7 @@
 import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Code, Cpu, Bot, Shield, Globe, Database, Layers, ChevronRight } from 'lucide-react';
+import { ArrowRight, Code, Cpu, Bot, Shield, Globe, Database, Layers, ChevronRight, Clock, BarChart, MessageSquare, CheckCircle, Users } from 'lucide-react';
 import ParallaxEffect from '../components/ParallaxEffect';
 import ScrollAnimation from '../components/ScrollAnimation';
 import ScrollGradient from '../components/ScrollGradient';
@@ -99,80 +99,288 @@ const Home = () => {
         <div className="absolute top-1/4 right-1/3 w-10 h-10 rounded-full bg-indigo-500/20 opacity-70 hero-element"></div>
       </section>
       
-      {/* Solutions Section - più spazio tra gli elementi */}
-      <section className="py-20 relative">
-        <div className="container mx-auto px-6 lg:px-12">
-          <ScrollAnimation animation="slideUp">
-            <div className="text-center mb-20">
-              <h2 className="text-4xl md:text-5xl font-bold mb-8">Le Nostre Soluzioni</h2>
-              <p className="text-xl text-foreground/80 max-w-3xl mx-auto leading-relaxed">
-                Offriamo un ecosistema completo di servizi tecnologici per affrontare qualsiasi sfida digitale
-              </p>
-            </div>
-          </ScrollAnimation>
+      {/* Valore, competenza e innovazione Section - soluzione avanzata e integrata */}
+<section className="py-24 relative overflow-hidden">
+  {/* Linee di connessione animate che seguono lo scroll */}
+  <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-indigo-500/0 via-indigo-500/20 to-indigo-500/0"></div>
+  <div className="absolute left-1/4 top-40 bottom-40 w-0.5 hidden lg:block bg-gradient-to-b from-cyan-500/0 via-cyan-500/10 to-cyan-500/0"></div>
+  <div className="absolute right-1/4 top-60 bottom-20 w-0.5 hidden lg:block bg-gradient-to-b from-violet-500/0 via-violet-500/10 to-violet-500/0"></div>
+  
+  <div className="container mx-auto px-6 lg:px-12 relative z-10">
+    <ParallaxEffect speed={0.1} direction="up" className="mb-20">
+      <div className="text-center relative">
+        <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-20 h-20 rounded-full 
+                      bg-gradient-to-r from-indigo-500/20 to-violet-500/20 filter blur-xl"></div>
+        <h2 className="text-4xl md:text-5xl font-bold mb-8 relative inline-block">
+          <span className="absolute -left-6 -top-6 w-12 h-12 border border-indigo-500/20 rounded-lg rotate-12 opacity-70"></span>
+          Valore, competenza e innovazione
+          <span className="absolute -right-6 -bottom-6 w-12 h-12 border border-violet-500/20 rounded-lg -rotate-12 opacity-70"></span>
+        </h2>
+        <p className="text-xl text-foreground/80 max-w-3xl mx-auto leading-relaxed">
+          La sinergia tra esperienza nell'AI, competenze tecniche avanzate e visione innovativa, 
+          per trasformare le sfide digitali in opportunità di crescita
+        </p>
+      </div>
+    </ParallaxEffect>
+    
+    {/* Elemento dinamico scroll-based con timeline orizzontale */}
+    <div className="relative my-32">
+      {/* Elemento decorativo timeline orizzontale */}
+      <div className="absolute left-0 right-0 top-1/2 h-0.5 bg-gradient-to-r from-indigo-500/0 via-indigo-500/30 to-indigo-500/0"></div>
+      
+      {/* Primo nodo timeline */}
+      <ScrollAnimation animation="fadeIn" threshold={0.3} className="mb-40">
+        <div className="relative">
+          {/* Indicatore timeline */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full 
+                        bg-gradient-to-r from-indigo-500 to-violet-500 z-10 shadow-lg shadow-indigo-500/30
+                        flex items-center justify-center">
+            <div className="w-3 h-3 bg-white rounded-full"></div>
+          </div>
           
-          <div className="grid md:grid-cols-3 gap-10">
-            {[
-              {
-                title: "Sviluppo Software",
-                description: "Applicazioni web e mobile personalizzate con tecnologie moderne e scalabili",
-                icon: <Code className="w-14 h-14 text-blue-400" />,
-                features: ["React & TypeScript", "Node.js", "API RESTful", "Architetture Cloud"],
-                link: "/services",
-                color: "blue"
-              },
-              {
-                title: "Intelligenza Artificiale",
-                description: "Soluzioni AI per ottimizzare processi e scoprire insights dai tuoi dati",
-                icon: <Cpu className="w-14 h-14 text-violet-400" />,
-                features: ["Machine Learning", "Analisi predittiva", "Natural Language Processing", "Computer Vision"],
-                link: "/ai-agents",
-                color: "violet"
-              },
-              {
-                title: "Chatbot Avanzati",
-                description: "Assistenti virtuali intelligenti per migliorare l'esperienza cliente",
-                icon: <Bot className="w-14 h-14 text-cyan-400" />,
-                features: ["Comprensione del linguaggio", "Integrazione multichannel", "Personalizzazione", "Analytics"],
-                link: "/chatbots",
-                color: "cyan"
-              }
-            ].map((solution, index) => (
-              <ScrollAnimation 
-                key={index}
-                animation="slideUp"
-                delay={0.2 * index}
-                className="h-full"
-              >
-                <div className={`glass p-10 rounded-2xl h-full flex flex-col relative overflow-hidden`}>
-                  <div className={`absolute -top-10 -right-10 w-40 h-40 rounded-full bg-${solution.color}-500/10 filter blur-xl`}></div>
-                  <div className="relative z-10">
-                    <div className="mb-8">{solution.icon}</div>
-                    <h3 className="text-2xl font-bold mb-4">{solution.title}</h3>
-                    <p className="text-foreground/70 mb-8 flex-grow">{solution.description}</p>
-                    
-                    <ul className="space-y-3 mb-8">
-                      {solution.features.map((feature, i) => (
-                        <li key={i} className="flex items-center text-sm">
-                          <div className={`w-1.5 h-1.5 rounded-full bg-${solution.color}-400 mr-2`}></div>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                    
-                    <Link 
-                      to={solution.link} 
-                      className={`inline-flex items-center mt-auto text-${solution.color}-400 hover:text-${solution.color}-300 transition-colors`}
-                    >
-                      Scopri di più <ArrowRight className="ml-2 w-4 h-4" />
-                    </Link>
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="order-2 md:order-1">
+              <ScrollAnimation animation="slideRight" delay={0.2}>
+                <h3 className="text-3xl font-bold mb-6 bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent inline-block">
+                  Expertise in AI e Prompting
+                </h3>
+                <p className="text-foreground/70 leading-relaxed mb-6">
+                  La nostra padronanza nell'intelligenza artificiale e nelle tecniche avanzate di prompting 
+                  ci permette di progettare soluzioni che interagiscono in modo naturale e intuitivo, 
+                  portando l'esperienza utente a un livello superiore e automatizzando processi complessi.
+                </p>
+                
+                <div className="flex flex-wrap gap-4 mb-6">
+                  <div className="px-4 py-2 glass rounded-full text-sm border border-indigo-500/20 hover:border-indigo-500/40 
+                                transition-all hover:shadow-lg hover:shadow-indigo-500/5 hover:-translate-y-1">
+                    LLM & RAG
+                  </div>
+                  <div className="px-4 py-2 glass rounded-full text-sm border border-violet-500/20 hover:border-violet-500/40 
+                                transition-all hover:shadow-lg hover:shadow-violet-500/5 hover:-translate-y-1">
+                    Agenti conversazionali
+                  </div>
+                  <div className="px-4 py-2 glass rounded-full text-sm border border-indigo-500/20 hover:border-indigo-500/40 
+                                transition-all hover:shadow-lg hover:shadow-indigo-500/5 hover:-translate-y-1">
+                    Automazione cognitiva
+                  </div>
+                </div>
+                
+                <div className="flex items-center">
+                  <ArrowRight className="w-5 h-5 text-indigo-400 mr-2" />
+                  <span className="text-foreground/60 text-sm">Trasformiamo i processi ripetitivi in flussi automatizzati intelligenti</span>
+                </div>
+              </ScrollAnimation>
+            </div>
+            
+            <div className="order-1 md:order-2">
+              <ScrollAnimation animation="slideLeft" delay={0.3}>
+                <div className="relative">
+                  {/* Sfondo interattivo */}
+                  <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500/10 to-violet-500/10 rounded-3xl filter blur-xl"></div>
+                  
+                  {/* Contenuto visivo - schermo interattivo */}
+                  <div className="relative glass p-1 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+                    <div className="bg-background/80 rounded-xl p-6 overflow-hidden">
+                      {/* Simulazione conversazione AI */}
+                      <div className="flex mb-4">
+                        <div className="w-8 h-8 rounded-full bg-indigo-500/20 flex-shrink-0 flex items-center justify-center mr-3">
+                          <Bot className="w-4 h-4 text-indigo-400" />
+                        </div>
+                        <div className="glass rounded-lg p-3 max-w-xs">
+                          <p className="text-sm">Come posso aiutarti a ottimizzare il processo di onboarding clienti?</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex justify-end mb-4">
+                        <div className="glass rounded-lg p-3 max-w-xs bg-indigo-500/10">
+                          <p className="text-sm">Vorrei rendere più efficiente il processo di raccolta dei documenti</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex">
+                        <div className="w-8 h-8 rounded-full bg-indigo-500/20 flex-shrink-0 flex items-center justify-center mr-3">
+                          <Bot className="w-4 h-4 text-indigo-400" />
+                        </div>
+                        <div className="glass rounded-lg p-3 max-w-xs">
+                          <p className="text-sm">Posso automatizzare la raccolta con un sistema di verifica intelligente integrato con il tuo CRM</p>
+                          
+                          <div className="mt-3 flex justify-between">
+                            <span className="text-xs text-indigo-400 animate-pulse">Generando soluzione...</span>
+                            <div className="flex space-x-1">
+                              <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>
+                              <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" style={{ animationDelay: '0.2s' }}></span>
+                              <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" style={{ animationDelay: '0.4s' }}></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Linee decorative */}
+                      <div className="absolute top-1/3 right-0 w-20 h-0.5 bg-indigo-500/20"></div>
+                      <div className="absolute bottom-1/3 left-0 w-20 h-0.5 bg-violet-500/20"></div>
+                    </div>
                   </div>
                 </div>
               </ScrollAnimation>
-            ))}
+            </div>
           </div>
         </div>
-      </section>
+      </ScrollAnimation>
+      
+      {/* Secondo nodo timeline - con elemento interattivo semplice */}
+<ScrollAnimation animation="fadeIn" threshold={0.3} className="mb-40">
+  <div className="relative">
+    {/* Indicatore timeline */}
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full 
+                  bg-gradient-to-r from-cyan-500 to-blue-500 z-10 shadow-lg shadow-cyan-500/30
+                  flex items-center justify-center">
+      <div className="w-3 h-3 bg-white rounded-full"></div>
+    </div>
+    
+    <div className="grid md:grid-cols-2 gap-16 items-center">
+      <div>
+        <ScrollAnimation animation="slideRight" delay={0.2}>
+          <div className="relative">
+            {/* Sfondo interattivo */}
+            <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-3xl filter blur-xl"></div>
+            
+            {/* Semplice elemento interattivo */}
+            <div className="relative glass p-6 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+              <div className="text-center mb-6">
+                <div className="inline-block p-4 rounded-full bg-blue-500/10">
+                  <Users className="w-10 h-10 text-blue-400" />
+                </div>
+                <h4 className="mt-3 font-semibold">Il nostro team</h4>
+              </div>
+              
+              {/* Semplice selettore interattivo */}
+              <div className="flex justify-center mb-6">
+                <div className="inline-flex p-1 glass rounded-lg">
+                  <button className="px-4 py-2 rounded-md bg-blue-500/20 text-sm">Full-stack</button>
+                  <button className="px-4 py-2 rounded-md text-sm hover:bg-blue-500/10 transition-colors">AI</button>
+                  <button className="px-4 py-2 rounded-md text-sm hover:bg-blue-500/10 transition-colors">UI/UX</button>
+                </div>
+              </div>
+              
+              {/* Contenuto che cambia */}
+              <div className="p-4 rounded-lg bg-foreground/5">
+                <div className="flex justify-between mb-3">
+                  <span className="text-sm">Esperienza media</span>
+                  <span className="font-medium">5+ anni</span>
+                </div>
+                <div className="w-full h-2 bg-foreground/10 rounded-full overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full" style={{ width: '75%' }}></div>
+                </div>
+                
+                <div className="flex justify-between mb-3 mt-4">
+                  <span className="text-sm">Progetti completati</span>
+                  <span className="font-medium">45+</span>
+                </div>
+                <div className="w-full h-2 bg-foreground/10 rounded-full overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full" style={{ width: '85%' }}></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ScrollAnimation>
+      </div>
+      
+      <div>
+        <ScrollAnimation animation="slideLeft" delay={0.3}>
+          <h3 className="text-3xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent inline-block">
+            Giovani Talenti e Innovazione
+          </h3>
+          <p className="text-foreground/70 leading-relaxed mb-6">
+            L'integrazione di giovani talenti porta energie fresche e approcci innovativi, 
+            combinando competenze tecniche all'avanguardia con una visione disruptive. 
+            Questa sinergia ci permette di affrontare ogni sfida con creatività e pragmatismo.
+          </p>
+          
+          <div className="flex flex-wrap gap-4 mb-6">
+            <div className="px-4 py-2 glass rounded-full text-sm border border-cyan-500/20 hover:border-cyan-500/40 
+                          transition-all hover:shadow-lg hover:shadow-cyan-500/5 hover:-translate-y-1">
+              React & TypeScript
+            </div>
+            <div className="px-4 py-2 glass rounded-full text-sm border border-blue-500/20 hover:border-blue-500/40 
+                          transition-all hover:shadow-lg hover:shadow-blue-500/5 hover:-translate-y-1">
+              Node.js & Cloud
+            </div>
+            <div className="px-4 py-2 glass rounded-full text-sm border border-cyan-500/20 hover:border-cyan-500/40 
+                          transition-all hover:shadow-lg hover:shadow-cyan-500/5 hover:-translate-y-1">
+              DevOps & CI/CD
+            </div>
+          </div>
+          
+          <div className="flex items-center">
+            <ArrowRight className="w-5 h-5 text-cyan-400 mr-2" />
+            <span className="text-foreground/60 text-sm">Architetture moderne, performance senza compromessi</span>
+          </div>
+        </ScrollAnimation>
+      </div>
+    </div>
+  </div>
+</ScrollAnimation>
+
+      
+      {/* Terzo nodo - elemento convergente - più compatto e coerente */}
+<ScrollAnimation animation="fadeIn" threshold={0.3}>
+  <div className="relative">
+    {/* Indicatore timeline */}
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full 
+                  bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500 z-10 shadow-lg shadow-violet-500/30
+                  flex items-center justify-center">
+      <div className="w-3 h-3 bg-white rounded-full"></div>
+    </div>
+    
+    <ScrollAnimation animation="slideUp" delay={0.3} className="max-w-3xl mx-auto">
+      <div className="relative">
+        {/* Sfondo interattivo */}
+        <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500/5 via-violet-500/5 to-cyan-500/5 rounded-3xl filter blur-xl"></div>
+        
+        {/* Main content */}
+        <div className="relative glass p-8 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+          {/* Accent line on top */}
+          <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500"></div>
+          
+          <h3 className="text-2xl font-bold mb-4 text-center bg-gradient-to-r from-indigo-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">
+            Sinergia tra esperienza e innovazione
+          </h3>
+          
+          <p className="text-foreground/70 leading-relaxed mb-6 text-center">
+            Mettiamo insieme il meglio di entrambi i mondi: esperienza consolidata 
+            e potenziale innovativo, creando un approccio unico che unisce la profonda conoscenza 
+            delle tecnologie AI con metodologie di sviluppo all'avanguardia.
+          </p>
+          
+          <div className="flex justify-center gap-6 mb-2">
+            <div className="flex items-center">
+              <div className="w-2 h-2 rounded-full bg-indigo-500 mr-2"></div>
+              <span className="text-sm">Visione strategica</span>
+            </div>
+            <div className="flex items-center">
+              <div className="w-2 h-2 rounded-full bg-violet-500 mr-2"></div>
+              <span className="text-sm">Esecuzione agile</span>
+            </div>
+            <div className="flex items-center">
+              <div className="w-2 h-2 rounded-full bg-cyan-500 mr-2"></div>
+              <span className="text-sm">Risultati misurabili</span>
+            </div>
+          </div>
+          
+          <div className="text-center mt-6">
+            <Link to="/services" className="inline-flex items-center px-6 py-2 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500 
+                                         text-white rounded-lg hover:shadow-lg hover:shadow-violet-500/20 transition-all hover:-translate-y-1">
+              Scopri le nostre soluzioni <ArrowRight className="ml-2 w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </ScrollAnimation>
+  </div>
+</ScrollAnimation>
+    </div>
+  </div>
+</section>
       
       {/* Capabilities Section - sostituisce "Il Nostro Processo" */}
       <section className="py-20 relative overflow-hidden">

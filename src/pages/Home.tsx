@@ -2,7 +2,7 @@
 import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Code, Cpu, Bot, Shield, Globe, Database, Layers, ChevronRight, Clock, BarChart, MessageSquare, CheckCircle, Users } from 'lucide-react';
+import { ArrowRight, Bot, Shield, Globe, Database, Layers, ChevronRight, Users, BrainCircuit, CheckCircle, Clock, Code, Zap, Cpu, Workflow } from 'lucide-react';
 import ParallaxEffect from '../components/ParallaxEffect';
 import ScrollAnimation from '../components/ScrollAnimation';
 import ScrollGradient from '../components/ScrollGradient';
@@ -382,63 +382,415 @@ const Home = () => {
   </div>
 </section>
       
-      {/* Capabilities Section - sostituisce "Il Nostro Processo" */}
-      <section className="py-20 relative overflow-hidden">
-        <ParallaxEffect speed={0.05} direction="right" className="absolute -right-32 top-20 w-96 h-96">
-          <div className="w-full h-full rounded-full bg-indigo-500/20 filter blur-3xl"></div>
-        </ParallaxEffect>
-        
-        <div className="container mx-auto px-6 lg:px-12">
-          <ScrollAnimation animation="slideUp">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-8">Le Nostre Competenze</h2>
-              <p className="text-xl text-foreground/80 max-w-3xl mx-auto leading-relaxed">
-                Un team di esperti con competenze trasversali per supportare ogni fase del ciclo di vita del prodotto
-              </p>
+      {/* Competenze all'avanguardia Section */}
+<section className="py-20 relative overflow-hidden">
+  {/* Background elements */}
+  <div className="absolute top-40 right-20 w-72 h-72 rounded-full bg-indigo-500/20 filter blur-3xl animate-pulse"></div>
+  <div className="absolute bottom-20 left-20 w-80 h-80 rounded-full bg-violet-500/20 filter blur-3xl" style={{ animationDelay: '2s', animationDuration: '8s' }}></div>
+  
+  <div className="container mx-auto px-6 lg:px-12">
+    <ScrollAnimation animation="slideUp">
+      <div className="text-center mb-20">
+        <div className="inline-block px-4 py-1 rounded-full bg-primary/10 border border-primary/20 mb-4">
+          <span className="text-sm font-medium bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
+            Innovazione Tecnologica • Strumenti di Nuova Generazione
+          </span>
+        </div>
+        <h2 className="text-4xl md:text-5xl font-bold mb-6 relative">
+          <span className="relative inline-block">
+            Competenze all'
+            <span className="relative">
+              avanguardia
+              <svg className="absolute -bottom-2 left-0 w-full" height="6" viewBox="0 0 200 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 3C50 -1 150 -1 200 3" stroke="url(#paint0_linear)" strokeWidth="5" strokeLinecap="round"/>
+                <defs>
+                  <linearGradient id="paint0_linear" x1="0" y1="3" x2="200" y2="3" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#6366F1" />
+                    <stop offset="0.5" stopColor="#8B5CF6" />
+                    <stop offset="1" stopColor="#06B6D4" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </span>
+          </span>
+        </h2>
+        <p className="text-xl text-foreground/80 max-w-3xl mx-auto leading-relaxed">
+          Integriamo strumenti innovativi e metodologie pionieristiche che ci posizionano ben oltre 
+          le tradizionali soluzioni software presenti nel panorama italiano
+        </p>
+      </div>
+    </ScrollAnimation>
+    
+    {/* Tools Showcase - Interactive grid with hover effects */}
+    <div className="mb-24">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {[
+          {
+            name: "N8n",
+            description: "Automazione workflow avanzata che supera i tradizionali strumenti di integrazione", 
+            icon: <Workflow className="w-12 h-12" />,
+            color: "from-indigo-500 to-blue-500",
+            textColor: "text-indigo-400",
+            borderColor: "border-indigo-500/30"
+          },
+          {
+            name: "Make.com",
+            description: "Piattaforma di integrazione visuale per connettere app e sistemi senza codice", 
+            icon: <Layers className="w-12 h-12" />,
+            color: "from-violet-500 to-purple-500",
+            textColor: "text-violet-400",
+            borderColor: "border-violet-500/30"
+          },
+          {
+            name: "React",
+            description: "Framework frontend per interfacce dinamiche e altamente reattive", 
+            icon: <Code className="w-12 h-12" />,
+            color: "from-cyan-500 to-blue-500",
+            textColor: "text-cyan-400",
+            borderColor: "border-cyan-500/30"
+          },
+          {
+            name: "Python",
+            description: "Linguaggio versatile per IA, analisi dati e backend robusti", 
+            icon: <Database className="w-12 h-12" />,
+            color: "from-green-500 to-emerald-500",
+            textColor: "text-emerald-400",
+            borderColor: "border-emerald-500/30"
+          }
+        ].map((tool, index) => (
+          <ScrollAnimation 
+            key={index}
+            animation="fadeIn"
+            delay={0.1 * index}
+          >
+            <div className="group relative h-full overflow-hidden">
+              {/* Card background with hover animation */}
+              <div className="absolute inset-0 bg-gradient-to-br from-background to-background z-0 
+                            group-hover:from-primary/5 group-hover:to-background transition-all duration-500"></div>
+              
+              {/* Border gradient animation on hover */}
+              <div className={`absolute inset-0 opacity-0 bg-gradient-to-br ${tool.color} z-0 
+                            group-hover:opacity-10 transition-opacity duration-700 rounded-xl`}></div>
+              
+              {/* Main container */}
+              <div className={`relative z-10 h-full glass p-6 rounded-xl border ${tool.borderColor} 
+                             overflow-hidden group-hover:border-opacity-50 transition-all duration-300
+                             group-hover:shadow-lg group-hover:shadow-primary/5 group-hover:translate-y-[-5px]`}>
+                
+                {/* Content */}
+                <div className="relative z-10">
+                  {/* Icon with gradient background on hover */}
+                  <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-4
+                                group-hover:bg-gradient-to-br ${tool.color} transition-all duration-300
+                                bg-primary/10`}>
+                    <div className="text-foreground/70 group-hover:text-white transition-colors duration-300">
+                      {tool.icon}
+                    </div>
+                  </div>
+                  
+                  <h3 className={`text-2xl font-bold mb-2 group-hover:${tool.textColor} transition-colors duration-300`}>
+                    {tool.name}
+                  </h3>
+                  
+                  <p className="text-foreground/70 text-sm mb-4 line-clamp-2 group-hover:line-clamp-none transition-all duration-500">
+                    {tool.description}
+                  </p>
+                  
+                  {/* Hidden details that appear on hover */}
+                  <div className="h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 group-hover:mt-4 
+                              transition-all duration-500 overflow-hidden">
+                    <span className={`inline-flex items-center text-sm ${tool.textColor}`}>
+                      Scopri di più <ArrowRight className="ml-1 w-4 h-4" />
+                    </span>
+                  </div>
+                </div>
+                
+                {/* Decorative corner */}
+                <div className={`absolute -bottom-10 -right-10 w-20 h-20 rounded-full bg-gradient-to-br ${tool.color}
+                              opacity-0 group-hover:opacity-20 transition-all duration-500 
+                              transform group-hover:scale-150`}></div>
+              </div>
             </div>
           </ScrollAnimation>
+        ))}
+      </div>
+      
+      {/* Additional tools in a dynamic flowing layout */}
+      <div className="mt-8 flex flex-wrap justify-center gap-4">
+        {["JavaScript", "Electron", "Claude AI", "Bolt", "TypeScript", "Node.js", "MongoDB", "Docker"].map((tech, i) => (
+          <div key={i} 
+               className="px-4 py-2 glass rounded-full text-sm border border-primary/20 
+                        hover:border-primary/50 hover:bg-primary/10 hover:scale-110 hover:shadow-md
+                        transition-all duration-300 cursor-pointer"
+          >
+            {tech}
+          </div>
+        ))}
+      </div>
+    </div>
+    
+    {/* Innovation Comparison - Interactive and visual */}
+    <ScrollAnimation animation="fadeIn" className="mb-24">
+      <div className="glass rounded-xl overflow-hidden relative">
+        {/* Color accent top */}
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500"></div>
+        
+        <div className="p-8 md:p-12">
+          <h3 className="text-3xl font-bold mb-8 text-center">
+            Innovazione rispetto alla <span className="bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">media italiana</span>
+          </h3>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                title: "UX/UI Design",
-                description: "Interfacce intuitive e moderne che migliorano l'esperienza utente",
-                icon: <Layers className="w-10 h-10 text-indigo-400" />
-              },
-              {
-                title: "Cloud Architecture",
-                description: "Infrastrutture scalabili e ottimizzate per prestazioni eccellenti",
-                icon: <Globe className="w-10 h-10 text-violet-400" />
-              },
-              {
-                title: "DevOps & CI/CD",
-                description: "Automazione dei processi di sviluppo e deployment",
-                icon: <Database className="w-10 h-10 text-cyan-400" />
-              },
-              {
-                title: "Security By Design",
-                description: "Protezione dei dati e conformità alle normative vigenti",
-                icon: <Shield className="w-10 h-10 text-emerald-400" />
-              }
-            ].map((capability, index) => (
-              <ScrollAnimation 
-                key={index}
-                animation="scale"
-                delay={0.1 * index}
-                threshold={0.2}
-              >
-                <div className="glass p-8 rounded-xl text-center h-full">
-                  <div className="inline-flex items-center justify-center mb-6">
-                    {capability.icon}
+          {/* Interactive comparison tabs */}
+          <div className="grid md:grid-cols-5 gap-8 items-stretch">
+            <div className="md:col-span-2">
+              <div className="space-y-6 h-full flex flex-col">
+                <div className="p-6 glass rounded-xl border border-foreground/10 
+                              hover:border-indigo-500/30 hover:shadow-lg hover:shadow-indigo-500/5 
+                              transition-all duration-300 flex-grow
+                              cursor-pointer group">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 rounded-full flex items-center justify-center bg-indigo-500/20 mr-4 
+                                  group-hover:bg-indigo-500/30 transition-colors duration-300">
+                      <Clock className="w-6 h-6 text-indigo-400" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold group-hover:text-indigo-400 transition-colors duration-300">Tempo di sviluppo</h4>
+                      <p className="text-foreground/60 text-sm">Drasticamente ridotto</p>
+                    </div>
                   </div>
-                  <h3 className="text-xl font-bold mb-3">{capability.title}</h3>
-                  <p className="text-foreground/70">{capability.description}</p>
+                  
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-foreground/70">Approccio tradizionale</span>
+                      <span className="text-sm font-medium">3-6 mesi</span>
+                    </div>
+                    <div className="h-2 w-full bg-foreground/10 rounded-full overflow-hidden">
+                      <div className="h-full bg-foreground/30 rounded-full" style={{ width: '70%' }}></div>
+                    </div>
+                    
+                    <div className="flex justify-between items-center mt-2">
+                      <span className="text-sm text-indigo-400">Il nostro approccio</span>
+                      <span className="text-sm font-medium text-indigo-400">2-4 settimane</span>
+                    </div>
+                    <div className="h-2 w-full bg-indigo-500/10 rounded-full overflow-hidden">
+                      <div className="h-full bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full" style={{ width: '30%' }}></div>
+                    </div>
+                  </div>
                 </div>
-              </ScrollAnimation>
-            ))}
+                
+                <div className="p-6 glass rounded-xl border border-foreground/10 
+                              hover:border-violet-500/30 hover:shadow-lg hover:shadow-violet-500/5
+                              transition-all duration-300 flex-grow
+                              cursor-pointer group">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 rounded-full flex items-center justify-center bg-violet-500/20 mr-4
+                                  group-hover:bg-violet-500/30 transition-colors duration-300">
+                      <Cpu className="w-6 h-6 text-violet-400" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold group-hover:text-violet-400 transition-colors duration-300">Integrazione AI</h4>
+                      <p className="text-foreground/60 text-sm">Profondamente incorporata</p>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-foreground/70">Approccio tradizionale</span>
+                      <span className="text-sm font-medium">AI assente</span>
+                    </div>
+                    <div className="h-2 w-full bg-foreground/10 rounded-full overflow-hidden">
+                      <div className="h-full bg-foreground/30 rounded-full" style={{ width: '10%' }}></div>
+                    </div>
+                    
+                    <div className="flex justify-between items-center mt-2">
+                      <span className="text-sm text-violet-400">Il nostro approccio</span>
+                      <span className="text-sm font-medium text-violet-400">AI in ogni soluzione</span>
+                    </div>
+                    <div className="h-2 w-full bg-violet-500/10 rounded-full overflow-hidden">
+                      <div className="h-full bg-gradient-to-r from-violet-500 to-purple-500 rounded-full" style={{ width: '90%' }}></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Visual comparison */}
+            <div className="md:col-span-3 p-6 glass rounded-xl border border-foreground/10 relative overflow-hidden
+                          hover:border-cyan-500/30 hover:shadow-lg hover:shadow-cyan-500/5 transition-all duration-500">
+              {/* Decorative elements */}
+              <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-cyan-500/10 filter blur-xl opacity-70"></div>
+              <div className="absolute -bottom-12 -left-12 w-40 h-40 rounded-full bg-violet-500/10 filter blur-xl opacity-70"></div>
+              
+              <div className="relative z-10">
+                <h4 className="text-xl font-bold mb-6 flex items-center">
+                  <Zap className="w-6 h-6 text-cyan-400 mr-2" />
+                  <span>Confronto di approcci</span>
+                </h4>
+                
+                <div className="grid md:grid-cols-2 gap-8">
+                  {/* Left column - Traditional approach */}
+                  <div>
+                    <h5 className="font-bold mb-4 text-foreground/70">Approccio tradizionale</h5>
+                    <div className="space-y-4">
+                      <div className="flex items-start">
+                        <div className="p-2 rounded-lg bg-foreground/10 mr-3 mt-1">
+                          <Code className="w-4 h-4 text-foreground/50" />
+                        </div>
+                        <div>
+                          <h6 className="font-medium mb-1">Sviluppo monolitico</h6>
+                          <p className="text-foreground/60 text-sm">Applicazioni rigide e difficili da scalare</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start">
+                        <div className="p-2 rounded-lg bg-foreground/10 mr-3 mt-1">
+                          <Clock className="w-4 h-4 text-foreground/50" />
+                        </div>
+                        <div>
+                          <h6 className="font-medium mb-1">Rilasci lenti</h6>
+                          <p className="text-foreground/60 text-sm">Aggiornamenti poco frequenti e complessi</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start">
+                        <div className="p-2 rounded-lg bg-foreground/10 mr-3 mt-1">
+                          <Users className="w-4 h-4 text-foreground/50" />
+                        </div>
+                        <div>
+                          <h6 className="font-medium mb-1">Automazione limitata</h6>
+                          <p className="text-foreground/60 text-sm">Processi manuali e soggetti a errori</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Right column - Our approach */}
+                  <div>
+                    <h5 className="font-bold mb-4 text-cyan-400">Il nostro approccio innovativo</h5>
+                    <div className="space-y-4">
+                      <div className="flex items-start">
+                        <div className="p-2 rounded-lg bg-cyan-500/20 mr-3 mt-1">
+                          <Code className="w-4 h-4 text-cyan-400" />
+                        </div>
+                        <div>
+                          <h6 className="font-medium mb-1">Sviluppo modulare</h6>
+                          <p className="text-foreground/60 text-sm">Componenti flessibili e facilmente adattabili</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start">
+                        <div className="p-2 rounded-lg bg-cyan-500/20 mr-3 mt-1">
+                          <Clock className="w-4 h-4 text-cyan-400" />
+                        </div>
+                        <div>
+                          <h6 className="font-medium mb-1">Iterazioni rapide</h6>
+                          <p className="text-foreground/60 text-sm">Aggiornamenti continui con feedback immediato</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start">
+                        <div className="p-2 rounded-lg bg-cyan-500/20 mr-3 mt-1">
+                          <Users className="w-4 h-4 text-cyan-400" />
+                        </div>
+                        <div>
+                          <h6 className="font-medium mb-1">Automazione intelligente</h6>
+                          <p className="text-foreground/60 text-sm">Processi autonomi guidati dall'IA</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Interactive comparison indicator */}
+                <div className="mt-8 p-4 rounded-xl bg-gradient-to-r from-indigo-500/5 to-cyan-500/5 border border-cyan-500/20">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <div className="p-2 rounded-full bg-cyan-500/20 mr-3">
+                        <CheckCircle className="w-5 h-5 text-cyan-400" />
+                      </div>
+                      <span className="font-medium text-sm">
+                        Soluzioni <span className="text-cyan-400">5 volte più veloci</span> da implementare
+                      </span>
+                    </div>
+                    
+                    <span className="text-xs px-3 py-1 bg-cyan-500/20 rounded-full text-cyan-400">
+                      +400% efficienza
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
+    </ScrollAnimation>
+    
+    {/* Methodology & Approach Section with 3D-like cards */}
+    <ScrollAnimation animation="slideUp" className="mb-16">
+      <h3 className="text-3xl font-bold mb-10 text-center">
+        Un approccio <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">rivoluzionario</span>
+      </h3>
+      
+      <div className="grid md:grid-cols-3 gap-8">
+        {[
+          {
+            title: "Low-Code & No-Code",
+            description: "Sviluppiamo soluzioni complesse in una frazione del tempo tradizionale grazie a piattaforme visive avanzate",
+            icon: <Database className="w-16 h-16" />,
+            gradient: "from-indigo-500 to-blue-500",
+            color: "indigo"
+          },
+          {
+            title: "AI-First Approach",
+            description: "Integriamo l'intelligenza artificiale in ogni aspetto delle nostre soluzioni per automatizzare processi decisionali",
+            icon: <BrainCircuit className="w-16 h-16" />,
+            gradient: "from-violet-500 to-purple-500",
+            color: "violet"
+          },
+          {
+            title: "Cross-Platform Native",
+            description: "Creiamo applicazioni che funzionano perfettamente su ogni dispositivo con un'unica base di codice unificata",
+            icon: <Globe className="w-16 h-16" />,
+            gradient: "from-cyan-500 to-blue-500",
+            color: "cyan"
+          }
+        ].map((item, index) => (
+          <div 
+            key={index}
+            className="group h-full perspective-1000"
+          >
+            <div className="relative h-full preserve-3d transition-transform duration-500 
+                          group-hover:rotate-y-5 group-hover:translate-z-10 group-hover:scale-105">
+              {/* Card front */}
+              <div className={`absolute inset-0 glass p-8 rounded-xl border border-${item.color}-500/30 
+                            backface-hidden flex flex-col`}>
+                {/* Gradient overlay on hover */}
+                <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity 
+                              duration-300 rounded-xl bg-gradient-to-br ${item.gradient}`}></div>
+                
+                {/* Icon with gradient background */}
+                <div className={`w-24 h-24 mb-6 p-4 rounded-2xl bg-gradient-to-br ${item.gradient} 
+                              flex items-center justify-center text-white 
+                              group-hover:shadow-lg group-hover:shadow-${item.color}-500/30 transition-all duration-300`}>
+                  {item.icon}
+                </div>
+                
+                <h4 className={`text-2xl font-bold mb-4 text-${item.color}-400`}>{item.title}</h4>
+                <p className="text-foreground/70 flex-grow">{item.description}</p>
+                
+                <div className="mt-6 pt-6 border-t border-foreground/10">
+                  <span className={`flex items-center text-${item.color}-400 text-sm font-medium`}>
+                    Scopri di più <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </ScrollAnimation>
+  </div>
+</section>
       
       {/* Testimonials Section - migliorata */}
       <section className="py-20 relative overflow-hidden">

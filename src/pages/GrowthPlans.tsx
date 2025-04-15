@@ -1,7 +1,7 @@
 // src/pages/GrowthPlans.tsx
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { TrendingUp, BarChart, Target, Award, Zap, Users, CheckCircle, Clock } from 'lucide-react';
+import { TrendingUp, Target, Zap, Users, CheckCircle, Clock } from 'lucide-react';
 import ScrollAnimation from '../components/ScrollAnimation';
 
 const GrowthPlans = () => {

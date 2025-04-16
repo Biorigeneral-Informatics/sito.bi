@@ -2,7 +2,7 @@
 import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Bot, Globe, Database, Layers, ChevronRight, Users, BrainCircuit, CheckCircle, Clock, Code, Zap, Cpu, Workflow, Phone, Mail, Shield, TrendingUp, MessageSquare, RefreshCw, Search, BarChart, Cloud, Star, Check } from 'lucide-react';
+import { ArrowRight, Bot, Layers, ChevronRight, Users, BrainCircuit, CheckCircle, Clock, Code, Zap, Cpu, Workflow, Phone, Mail, Shield, TrendingUp, MessageSquare, RefreshCw, Search, BarChart, Cloud, Star, Check } from 'lucide-react';
 import ParallaxEffect from '../components/ParallaxEffect';
 import ScrollAnimation from '../components/ScrollAnimation';
 import ScrollGradient from '../components/ScrollGradient';

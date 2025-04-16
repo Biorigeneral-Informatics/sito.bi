@@ -382,247 +382,276 @@ const Home = () => {
   </div>
 </section>
       
-      {/* Competenze all'avanguardia - Approccio completamente rinnovato */}
-<section className="py-24 relative overflow-hidden">
+      {/* Competenze all'avanguardia - Layout e animazione migliorati */}
+<section className="py-12 pt-8 relative overflow-hidden">
   {/* Background elements interattivi */}
   <div className="absolute top-0 left-0 w-full h-full">
     <div className="absolute top-1/4 left-10 w-64 h-64 rounded-full bg-indigo-500/10 filter blur-3xl animate-pulse"></div>
     <div className="absolute bottom-1/3 right-20 w-80 h-80 rounded-full bg-violet-500/10 filter blur-3xl" style={{ animationDelay: '2s', animationDuration: '8s' }}></div>
-    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 w-96 h-96 rounded-full bg-gradient-to-r from-indigo-500/5 to-violet-500/5 animate-spin-slow" style={{ animationDuration: '40s' }}></div>
   </div>
   
   <div className="container mx-auto px-6 lg:px-12 relative z-10">
-    <ScrollAnimation animation="fadeIn">
-      <div className="text-center mb-16">
-        <span className="inline-block px-4 py-1 rounded-full bg-gradient-to-r from-indigo-500/20 to-violet-500/20 text-sm font-medium mb-4">
-          Stack Tecnologico Avanzato
-        </span>
-        <h2 className="text-4xl md:text-5xl font-bold mb-6">Competenze all'avanguardia</h2>
-        <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-          Un ecosistema di strumenti e tecnologie che superano gli standard tradizionali
+  <ScrollAnimation animation="slideUp">
+      <div className="text-center mb-20">
+        <div className="inline-block px-4 py-1 rounded-full bg-primary/10 border border-primary/20 mb-4">
+          <span className="text-sm font-medium bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
+            Innovazione Tecnologica • Strumenti di Nuova Generazione
+          </span>
+        </div>
+        <h2 className="text-4xl md:text-5xl font-bold mb-6 relative">
+          <span className="relative inline-block">
+            Competenze all'
+            <span className="relative">
+              avanguardia
+              <svg className="absolute -bottom-2 left-0 w-full" height="6" viewBox="0 0 200 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 3C50 -1 150 -1 200 3" stroke="url(#paint0_linear)" strokeWidth="5" strokeLinecap="round"/>
+                <defs>
+                  <linearGradient id="paint0_linear" x1="0" y1="3" x2="200" y2="3" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#6366F1" />
+                    <stop offset="0.5" stopColor="#8B5CF6" />
+                    <stop offset="1" stopColor="#06B6D4" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </span>
+          </span>
+        </h2>
+        <p className="text-xl text-foreground/80 max-w-3xl mx-auto leading-relaxed">
+          Integriamo strumenti innovativi e metodologie pionieristiche che ci posizionano ben oltre 
+          le tradizionali soluzioni software presenti nel panorama italiano
         </p>
       </div>
     </ScrollAnimation>
     
-    {/* Tech ecosystem - Visual hexagon grid with hover interactions */}
-    <div className="mb-24">
-      <div className="relative min-h-[500px] flex justify-center items-center">
-        {/* Central element */}
-        <div className="glass p-6 rounded-full w-40 h-40 flex flex-col items-center justify-center z-20 shadow-xl shadow-indigo-500/10">
-          <BrainCircuit className="w-10 h-10 text-indigo-400 mb-2" />
-          <span className="font-bold text-center">Ecosistema Tecnologico</span>
-        </div>
-        
-        {/* Outer elements in hexagon pattern */}
-        {[
-          { name: "N8n", icon: <Workflow />, position: "top-0 left-1/4", color: "amber" },
-          { name: "Make", icon: <Layers />, position: "top-0 right-1/4", color: "blue" },
-          { name: "React", icon: <Code />, position: "top-1/3 right-10", color: "cyan" },
-          { name: "Claude AI", icon: <BrainCircuit />, position: "bottom-1/3 right-10", color: "violet" },
-          { name: "Electron", icon: <Cpu />, position: "bottom-0 right-1/4", color: "indigo" },
-          { name: "Bolt", icon: <Zap />, position: "bottom-0 left-1/4", color: "green" },
-          { name: "TypeScript", icon: <Code />, position: "bottom-1/3 left-10", color: "blue" },
-          { name: "Python", icon: <Bot />, position: "top-1/3 left-10", color: "indigo" }
-        ].map((tech, index) => (
-          <div 
-            key={index}
-            className={`absolute ${tech.position} glass p-4 rounded-lg hover:scale-110 hover:shadow-lg hover:shadow-${tech.color}-500/20 
-                     transition-all duration-300 z-10 bg-${tech.color}-500/10 border border-${tech.color}-500/30
-                     flex flex-col items-center w-28 h-28 justify-center hover:z-30 group cursor-pointer`}
-          >
-            <div className={`text-${tech.color}-400 mb-2 group-hover:scale-125 transition-transform`}>
-              {tech.icon}
+    {/* Layout ridisegnato: ecosistema a sinistra e vantaggi a destra */}
+    <div className="grid md:grid-cols-2 gap-8 mb-16 items-center">
+      {/* Ecosistema tecnologico - COLONNA SINISTRA */}
+      <ScrollAnimation animation="slideRight" delay={0.2}>
+        <div className="relative h-[500px] flex justify-center items-center">
+          {/* Tracce orbitali con effetto luminoso */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[460px] h-[460px] rounded-full border border-indigo-500/10 glow-orbit"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] rounded-full border border-violet-500/10 glow-orbit"></div>
+          
+          {/* Sfondo centrale raffinato */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-36 h-36 rounded-full bg-gradient-to-br from-indigo-500/10 to-violet-500/10 filter blur-xl"></div>
+          
+          {/* Elemento centrale migliorato */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 glass p-6 rounded-full w-32 h-32 flex flex-col items-center justify-center z-30 shadow-xl border border-indigo-500/30 bg-gradient-to-br from-indigo-500/15 to-violet-500/15">
+            <BrainCircuit className="w-10 h-10 text-indigo-400 mb-2" />
+            <span className="font-bold text-xs text-center">Ecosistema<br/>Tecnologico</span>
+          </div>
+          
+          {/* Orbita esterna - elementi migliorati */}
+          <div className="tech-orbit-container absolute top-1/2 left-1/2 w-[460px] h-[460px] -translate-x-1/2 -translate-y-1/2">
+            {/* Elemento Nord */}
+            <div className="tech-orbit-item absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div className="glass p-4 rounded-full w-20 h-20 flex flex-col items-center justify-center border-2 border-amber-500/40 bg-gradient-to-br from-amber-500/20 to-amber-500/5 shadow-lg shadow-amber-500/10 hover:shadow-amber-500/30 transition-all hover:scale-110 z-20">
+                <Workflow className="w-8 h-8 text-amber-400 mb-1" />
+                <span className="font-semibold text-[10px] text-center">N8n</span>
+              </div>
             </div>
-            <span className="font-medium text-sm text-center">{tech.name}</span>
             
-            {/* Connection lines to center */}
-            <div className="absolute inset-0 pointer-events-none">
-              <svg width="100%" height="100%" className="absolute inset-0">
-                <line 
-                  x1="50%" y1="50%" 
-                  x2="50%" y2="50%" 
-                  className={`stroke-${tech.color}-400/40 group-hover:stroke-${tech.color}-400/80 transition-all duration-300`}
-                  strokeWidth="1" 
-                  strokeDasharray="3 3"
-                />
-              </svg>
+            {/* Elemento Est */}
+            <div className="tech-orbit-item absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2">
+              <div className="glass p-4 rounded-full w-20 h-20 flex flex-col items-center justify-center border-2 border-blue-500/40 bg-gradient-to-br from-blue-500/20 to-blue-500/5 shadow-lg shadow-blue-500/10 hover:shadow-blue-500/30 transition-all hover:scale-110 z-20">
+                <Layers className="w-8 h-8 text-blue-400 mb-1" />
+                <span className="font-semibold text-[10px] text-center">Make</span>
+              </div>
+            </div>
+            
+            {/* Elemento Sud */}
+            <div className="tech-orbit-item absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2">
+              <div className="glass p-4 rounded-full w-20 h-20 flex flex-col items-center justify-center border-2 border-cyan-500/40 bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 shadow-lg shadow-cyan-500/10 hover:shadow-cyan-500/30 transition-all hover:scale-110 z-20">
+                <Code className="w-8 h-8 text-cyan-400 mb-1" />
+                <span className="font-semibold text-[10px] text-center">React</span>
+              </div>
+            </div>
+            
+            {/* Elemento Ovest */}
+            <div className="tech-orbit-item absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2">
+              <div className="glass p-4 rounded-full w-20 h-20 flex flex-col items-center justify-center border-2 border-violet-500/40 bg-gradient-to-br from-violet-500/20 to-violet-500/5 shadow-lg shadow-violet-500/10 hover:shadow-violet-500/30 transition-all hover:scale-110 z-20">
+                <BrainCircuit className="w-8 h-8 text-violet-400 mb-1" />
+                <span className="font-semibold text-[10px] text-center">Claude AI</span>
+              </div>
             </div>
           </div>
-        ))}
-        
-        {/* Connecting lines (as decoration) */}
-        <div className="absolute inset-0 pointer-events-none">
-          <svg width="100%" height="100%" className="absolute inset-0 animate-pulse opacity-30" style={{ animationDuration: '10s' }}>
-            <circle cx="50%" cy="50%" r="200" fill="none" stroke="url(#tech-gradient)" strokeWidth="1" strokeDasharray="5 5" />
-            <circle cx="50%" cy="50%" r="150" fill="none" stroke="url(#tech-gradient)" strokeWidth="1" strokeDasharray="5 5" />
-            <defs>
-              <linearGradient id="tech-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#6366F1" />
-                <stop offset="50%" stopColor="#8B5CF6" />
-                <stop offset="100%" stopColor="#06B6D4" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-      </div>
-      
-      {/* Superiority highlights - animated tabs */}
-      <ScrollAnimation animation="slideUp" className="mt-16">
-        <div className="glass p-8 rounded-2xl border border-primary/20">
-          <h3 className="text-2xl font-bold mb-8 text-center">Perché siamo all'avanguardia</h3>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="glass bg-gradient-to-br from-indigo-500/5 to-indigo-500/10 p-6 rounded-xl border border-indigo-500/20 hover:border-indigo-500/40 transition-all hover:shadow-lg hover:shadow-indigo-500/5">
-              <h4 className="font-bold text-indigo-400 flex items-center mb-4">
-                <Clock className="w-6 h-6 mr-2" />
+          {/* Orbita interna - elementi agli angoli */}
+          <div className="tech-orbit-container-inner absolute top-1/2 left-1/2 w-[320px] h-[320px] -translate-x-1/2 -translate-y-1/2">
+            {/* Elemento Nord-Est */}
+            <div className="tech-orbit-item-inner absolute top-[15%] right-[15%]">
+              <div className="glass p-4 rounded-full w-20 h-20 flex flex-col items-center justify-center border-2 border-indigo-500/40 bg-gradient-to-br from-indigo-500/20 to-indigo-500/5 shadow-lg shadow-indigo-500/10 hover:shadow-indigo-500/30 transition-all hover:scale-110 z-20">
+                <Cpu className="w-8 h-8 text-indigo-400 mb-1" />
+                <span className="font-semibold text-[10px] text-center">Electron</span>
+              </div>
+            </div>
+            
+            {/* Elemento Sud-Est */}
+            <div className="tech-orbit-item-inner absolute bottom-[15%] right-[15%]">
+              <div className="glass p-4 rounded-full w-20 h-20 flex flex-col items-center justify-center border-2 border-green-500/40 bg-gradient-to-br from-green-500/20 to-green-500/5 shadow-lg shadow-green-500/10 hover:shadow-green-500/30 transition-all hover:scale-110 z-20">
+                <Zap className="w-8 h-8 text-green-400 mb-1" />
+                <span className="font-semibold text-[10px] text-center">Bolt</span>
+              </div>
+            </div>
+            
+            {/* Elemento Sud-Ovest */}
+            <div className="tech-orbit-item-inner absolute bottom-[15%] left-[15%]">
+              <div className="glass p-4 rounded-full w-20 h-20 flex flex-col items-center justify-center border-2 border-blue-500/40 bg-gradient-to-br from-blue-500/20 to-blue-500/5 shadow-lg shadow-blue-500/10 hover:shadow-blue-500/30 transition-all hover:scale-110 z-20">
+                <Code className="w-8 h-8 text-blue-400 mb-1" />
+                <span className="font-semibold text-[10px] text-center">TypeScript</span>
+              </div>
+            </div>
+            
+            {/* Elemento Nord-Ovest */}
+            <div className="tech-orbit-item-inner absolute top-[15%] left-[15%]">
+              <div className="glass p-4 rounded-full w-20 h-20 flex flex-col items-center justify-center border-2 border-indigo-500/40 bg-gradient-to-br from-indigo-500/20 to-indigo-500/5 shadow-lg shadow-indigo-500/10 hover:shadow-indigo-500/30 transition-all hover:scale-110 z-20">
+                <Bot className="w-8 h-8 text-indigo-400 mb-1" />
+                <span className="font-semibold text-[10px] text-center">Python</span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Linee di connessione migliorati */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[460px] h-[460px] opacity-40 pointer-events-none">
+            <svg width="100%" height="100%" viewBox="0 0 460 460">
+              {/* Linee radiali con effetto luminoso */}
+              <line x1="230" y1="230" x2="230" y2="0" stroke="url(#tech-line-gradient)" strokeWidth="2" strokeDasharray="4 6" className="tech-line-pulse"/>
+              <line x1="230" y1="230" x2="460" y2="230" stroke="url(#tech-line-gradient)" strokeWidth="2" strokeDasharray="4 6" className="tech-line-pulse" style={{ animationDelay: "0.5s" }}/>
+              <line x1="230" y1="230" x2="230" y2="460" stroke="url(#tech-line-gradient)" strokeWidth="2" strokeDasharray="4 6" className="tech-line-pulse" style={{ animationDelay: "1s" }}/>
+              <line x1="230" y1="230" x2="0" y2="230" stroke="url(#tech-line-gradient)" strokeWidth="2" strokeDasharray="4 6" className="tech-line-pulse" style={{ animationDelay: "1.5s" }}/>
+              
+              {/* Linee diagonali */}
+              <line x1="230" y1="230" x2="370" y2="90" stroke="url(#tech-line-gradient)" strokeWidth="2" strokeDasharray="4 6" className="tech-line-pulse" style={{ animationDelay: "0.25s" }}/>
+              <line x1="230" y1="230" x2="370" y2="370" stroke="url(#tech-line-gradient)" strokeWidth="2" strokeDasharray="4 6" className="tech-line-pulse" style={{ animationDelay: "0.75s" }}/>
+              <line x1="230" y1="230" x2="90" y2="370" stroke="url(#tech-line-gradient)" strokeWidth="2" strokeDasharray="4 6" className="tech-line-pulse" style={{ animationDelay: "1.25s" }}/>
+              <line x1="230" y1="230" x2="90" y2="90" stroke="url(#tech-line-gradient)" strokeWidth="2" strokeDasharray="4 6" className="tech-line-pulse" style={{ animationDelay: "1.75s" }}/>
+              
+              {/* Definizione gradiente */}
+              <defs>
+                <linearGradient id="tech-line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#6366F1" />
+                  <stop offset="50%" stopColor="#8B5CF6" />
+                  <stop offset="100%" stopColor="#06B6D4" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+        </div>
+      </ScrollAnimation>
+      
+      {/* Perché siamo all'avanguardia - COLONNA DESTRA */}
+      <ScrollAnimation animation="slideLeft" delay={0.3}>
+        <div className="glass p-8 rounded-2xl border border-primary/20 bg-gradient-to-br from-background/50 to-background/70 h-full">
+          <h3 className="text-2xl font-bold mb-6">Perché siamo all'avanguardia</h3>
+          
+          <div className="space-y-6">
+            <div className="glass bg-gradient-to-br from-indigo-500/5 to-indigo-500/10 p-5 rounded-xl border-2 border-indigo-500/20 hover:border-indigo-500/40 transition-all hover:shadow-xl hover:shadow-indigo-500/10">
+              <h4 className="font-bold text-indigo-400 flex items-center mb-3">
+                <Clock className="w-6 h-6 mr-3" />
                 Sviluppo 5 volte più veloce
               </h4>
-              <p className="text-foreground/70 text-sm mb-4">
+              <p className="text-foreground/70 text-sm mb-3">
                 Mentre lo sviluppo tradizionale richiede 3-6 mesi, il nostro approccio con strumenti no-code e low-code 
                 riduce i tempi a sole 2-4 settimane, mantenendo la stessa qualità.
               </p>
-              <div className="h-1 w-full bg-gradient-to-r from-indigo-500 to-indigo-600 rounded-full"></div>
-              <div className="text-right text-xs mt-2 text-indigo-400">500% più veloce</div>
+              <div className="h-1.5 w-full bg-gradient-to-r from-indigo-500 to-indigo-600 rounded-full"></div>
+              <div className="text-right text-xs mt-2 text-indigo-400 font-semibold">500% più veloce</div>
             </div>
             
-            <div className="glass bg-gradient-to-br from-violet-500/5 to-violet-500/10 p-6 rounded-xl border border-violet-500/20 hover:border-violet-500/40 transition-all hover:shadow-lg hover:shadow-violet-500/5">
-              <h4 className="font-bold text-violet-400 flex items-center mb-4">
-                <BrainCircuit className="w-6 h-6 mr-2" />
+            <div className="glass bg-gradient-to-br from-violet-500/5 to-violet-500/10 p-5 rounded-xl border-2 border-violet-500/20 hover:border-violet-500/40 transition-all hover:shadow-xl hover:shadow-violet-500/10">
+              <h4 className="font-bold text-violet-400 flex items-center mb-3">
+                <BrainCircuit className="w-6 h-6 mr-3" />
                 Integrazione AI evoluta
               </h4>
-              <p className="text-foreground/70 text-sm mb-4">
+              <p className="text-foreground/70 text-sm mb-3">
                 Mentre la maggior parte delle aziende italiane non sfrutta ancora l'AI, noi integriamo modelli linguistici 
                 avanzati in ogni soluzione, creando sistemi intelligenti e adattivi.
               </p>
-              <div className="h-1 w-full bg-gradient-to-r from-violet-500 to-violet-600 rounded-full"></div>
-              <div className="text-right text-xs mt-2 text-violet-400">Generazione 3.0</div>
+              <div className="h-1.5 w-full bg-gradient-to-r from-violet-500 to-violet-600 rounded-full"></div>
+              <div className="text-right text-xs mt-2 text-violet-400 font-semibold">Generazione 3.0</div>
             </div>
             
-            <div className="glass bg-gradient-to-br from-cyan-500/5 to-cyan-500/10 p-6 rounded-xl border border-cyan-500/20 hover:border-cyan-500/40 transition-all hover:shadow-lg hover:shadow-cyan-500/5">
-              <h4 className="font-bold text-cyan-400 flex items-center mb-4">
-                <Workflow className="w-6 h-6 mr-2" />
+            <div className="glass bg-gradient-to-br from-cyan-500/5 to-cyan-500/10 p-5 rounded-xl border-2 border-cyan-500/20 hover:border-cyan-500/40 transition-all hover:shadow-xl hover:shadow-cyan-500/10">
+              <h4 className="font-bold text-cyan-400 flex items-center mb-3">
+                <Workflow className="w-6 h-6 mr-3" />
                 Automazione intelligente
               </h4>
-              <p className="text-foreground/70 text-sm mb-4">
+              <p className="text-foreground/70 text-sm mb-3">
                 La nostra combinazione di strumenti di automazione come N8n e Make con AI permette di creare flussi di lavoro 
                 completamente autonomi che imparano e migliorano nel tempo.
               </p>
-              <div className="h-1 w-full bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-full"></div>
-              <div className="text-right text-xs mt-2 text-cyan-400">Processi auto-ottimizzanti</div>
+              <div className="h-1.5 w-full bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-full"></div>
+              <div className="text-right text-xs mt-2 text-cyan-400 font-semibold">Processi auto-ottimizzanti</div>
             </div>
           </div>
         </div>
       </ScrollAnimation>
     </div>
-    
-    {/* Technology approach showcase - Interactive cards */}
-    <ScrollAnimation animation="fadeIn" className="mb-16">
-      <div className="grid md:grid-cols-2 gap-10">
-        <div>
-          <h3 className="text-2xl font-bold mb-6">Un approccio rivoluzionario</h3>
-          <p className="text-foreground/80 mb-8">
-            Non utilizziamo semplicemente tecnologie moderne, ma le combiniamo in modo sinergico per creare soluzioni 
-            che superano drasticamente le aspettative tradizionali nel panorama italiano.
-          </p>
-          
-          <div className="space-y-6">
-            <div className="flex items-start">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center text-white mr-4 flex-shrink-0">
-                <ArrowRight className="w-6 h-6" />
-              </div>
-              <div>
-                <h4 className="font-bold mb-1">Oltre la digitalizzazione</h4>
-                <p className="text-foreground/70 text-sm">
-                  Mentre molte aziende si limitano a digitalizzare processi esistenti, noi li reinventiamo completamente 
-                  con l'automazione intelligente e l'apprendimento continuo.
-                </p>
-              </div>
-            </div>
-            
-            <div className="flex items-start">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500 to-cyan-500 flex items-center justify-center text-white mr-4 flex-shrink-0">
-                <ArrowRight className="w-6 h-6" />
-              </div>
-              <div>
-                <h4 className="font-bold mb-1">Integrazione perfetta</h4>
-                <p className="text-foreground/70 text-sm">
-                  Ogni strumento del nostro stack è scelto per integrarsi perfettamente con gli altri, creando 
-                  un ecosistema tecnologico fluido e senza silos.
-                </p>
-              </div>
-            </div>
-            
-            <div className="flex items-start">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-indigo-500 flex items-center justify-center text-white mr-4 flex-shrink-0">
-                <ArrowRight className="w-6 h-6" />
-              </div>
-              <div>
-                <h4 className="font-bold mb-1">Scalabilità intrinseca</h4>
-                <p className="text-foreground/70 text-sm">
-                  Le nostre soluzioni sono progettate per crescere senza limiti, adattandosi dinamicamente 
-                  alle esigenze in evoluzione della tua azienda.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div className="grid grid-cols-2 gap-4 h-full">
-          <div className="glass rounded-xl overflow-hidden group hover:shadow-lg transition-all duration-300 flex flex-col">
-            <div className="relative h-32 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-violet-500/20 group-hover:scale-110 transition-transform duration-500"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Workflow className="w-12 h-12 text-white opacity-80" />
-              </div>
-            </div>
-            <div className="p-4 flex-grow">
-              <h4 className="font-bold mb-2">Automazione visuale</h4>
-              <p className="text-foreground/70 text-sm">Flussi di lavoro drag-and-drop che collegano qualsiasi sistema</p>
-            </div>
-          </div>
-          
-          <div className="glass rounded-xl overflow-hidden group hover:shadow-lg transition-all duration-300 flex flex-col">
-            <div className="relative h-32 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-violet-500/20 to-cyan-500/20 group-hover:scale-110 transition-transform duration-500"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <BrainCircuit className="w-12 h-12 text-white opacity-80" />
-              </div>
-            </div>
-            <div className="p-4 flex-grow">
-              <h4 className="font-bold mb-2">AI conversazionale</h4>
-              <p className="text-foreground/70 text-sm">Sistemi intelligenti che comprendono il linguaggio naturale</p>
-            </div>
-          </div>
-          
-          <div className="glass rounded-xl overflow-hidden group hover:shadow-lg transition-all duration-300 flex flex-col">
-            <div className="relative h-32 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-green-500/20 group-hover:scale-110 transition-transform duration-500"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Code className="w-12 h-12 text-white opacity-80" />
-              </div>
-            </div>
-            <div className="p-4 flex-grow">
-              <h4 className="font-bold mb-2">Architetture moderne</h4>
-              <p className="text-foreground/70 text-sm">Stack tecnologici robosti e type-safe per applicazioni affidabili</p>
-            </div>
-          </div>
-          
-          <div className="glass rounded-xl overflow-hidden group hover:shadow-lg transition-all duration-300 flex flex-col">
-            <div className="relative h-32 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-indigo-500/20 group-hover:scale-110 transition-transform duration-500"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Zap className="w-12 h-12 text-white opacity-80" />
-              </div>
-            </div>
-            <div className="p-4 flex-grow">
-              <h4 className="font-bold mb-2">Velocità di esecuzione</h4>
-              <p className="text-foreground/70 text-sm">Dal concetto alla produzione in tempi record</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </ScrollAnimation>
   </div>
+  
+  {/* CSS per le animazioni - perfezionato */}
+  <style dangerouslySetInnerHTML={{ __html: `
+    /* Animazioni orbite */
+    @keyframes orbit-outer {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    
+    @keyframes orbit-inner {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(-360deg); }
+    }
+    
+    /* Controrivoluzione perfezionata */
+    @keyframes counter-rotate-outer {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(-360deg); }
+    }
+    
+    @keyframes counter-rotate-inner {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Effetto pulsazione linee */
+    @keyframes line-pulse {
+      0% { opacity: 0.2; strokeWidth: 1; }
+      50% { opacity: 0.8; strokeWidth: 2; }
+      100% { opacity: 0.2; strokeWidth: 1; }
+    }
+    
+    /* Effetto luminoso per le orbite */
+    @keyframes orbit-glow {
+      0% { box-shadow: 0 0 5px rgba(99, 102, 241, 0.1); }
+      50% { box-shadow: 0 0 15px rgba(139, 92, 246, 0.2); }
+      100% { box-shadow: 0 0 5px rgba(99, 102, 241, 0.1); }
+    }
+    
+    /* Applicazione animazioni */
+    .tech-orbit-container {
+      animation: orbit-outer 60s linear infinite;
+    }
+    
+    .tech-orbit-item {
+      animation: counter-rotate-outer 60s linear infinite;
+    }
+    
+    .tech-orbit-container-inner {
+      animation: orbit-inner 45s linear infinite;
+    }
+    
+    .tech-orbit-item-inner {
+      animation: counter-rotate-inner 45s linear infinite;
+    }
+    
+    .tech-line-pulse {
+      animation: line-pulse 4s infinite ease-in-out;
+    }
+    
+    .glow-orbit {
+      animation: orbit-glow 5s infinite ease-in-out;
+    }
+  `}} />
 </section>
 
 {/* Recensioni e collaborazioni - Design completamente nuovo */}

@@ -45,9 +45,9 @@ const SoftwarePMI = () => {
         transition={{ duration: 0.5 }}
         className="text-center mb-16"
       >
-        <h1 className="text-4xl md:text-6xl font-bold mb-6">Software PMI</h1>
+        <h1 className="text-4xl md:text-6xl font-bold mb-6">Il Software che cresce con le tue idee</h1>
         <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-          Soluzioni software personalizzate per piccole e medie imprese che trasformano i processi e accelerano la crescita
+        Comprendiamo le sfide uniche delle piccole e medie imprese, trasformiamo le tue esigenze specifiche in soluzioni digitali concrete.
         </p>
       </motion.div>
 
@@ -61,10 +61,9 @@ const SoftwarePMI = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-background/80 to-transparent flex items-center">
             <div className="p-8 md:p-12 max-w-xl">
-              <h2 className="text-3xl font-bold mb-4">Software che fa crescere il tuo business</h2>
+              <h2 className="text-3xl font-bold mb-4">La soluzione ideale per il tuo business</h2>
               <p className="text-foreground/80 mb-6">
-                Trasforma la tua PMI con soluzioni software su misura che ottimizzano i processi, 
-                riducono i costi e aumentano la produttività.
+                Trasforma la tua PMI con applicativi software su misura. Sfrutta il nostro metodo di sviluppo unico AI based per creare l'asset digitale che hai sempre desiderato per la tua azienda.
               </p>
               <Link
                 to="/contact"

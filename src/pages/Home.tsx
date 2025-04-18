@@ -654,772 +654,266 @@ const Home = () => {
   `}} />
 </section>
 
-{/* Recensioni e collaborazioni - Slider cards design */}
+{/* Recensioni e collaborazioni */}
 <section className="py-24 relative overflow-hidden">
-  {/* Background effects */}
+  {/* Background elements */}
   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-500/5 to-transparent"></div>
   <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-indigo-500/10 filter blur-3xl"></div>
   <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-violet-500/10 filter blur-3xl"></div>
   
   <div className="container mx-auto px-6 lg:px-12 relative z-10">
-    <ScrollAnimation animation="fadeIn">
-      <div className="text-center mb-16">
-        <span className="inline-block px-4 py-1 rounded-full bg-gradient-to-r from-indigo-500/20 to-violet-500/20 text-sm font-medium mb-4">
-          La voce dei nostri clienti
-        </span>
-        <h2 className="text-4xl md:text-5xl font-bold mb-6">Recensioni e collaborazioni</h2>
-        <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-          Esperienze reali di chi ha trasformato il proprio business con le nostre soluzioni
-        </p>
-      </div>
-    </ScrollAnimation>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="text-center mb-16"
+    >
+      <span className="inline-block px-4 py-1 rounded-full bg-gradient-to-r from-indigo-500/10 to-violet-500/10 border border-indigo-500/20 text-sm font-medium mb-4">
+        La voce dei nostri clienti
+      </span>
+      <h2 className="text-4xl md:text-5xl font-bold mb-6">Recensioni e collaborazioni</h2>
+      <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
+        Esperienze reali di chi ha trasformato il proprio business con le nostre soluzioni
+      </p>
+    </motion.div>
     
-    {/* Testimonial Slider with controls */}
-    <div className="relative mb-20">
-      {/* Custom Slider Controls */}
-      <div className="absolute -top-16 right-0 flex space-x-2 z-20">
-        <button 
-          className="w-10 h-10 rounded-full glass flex items-center justify-center border border-indigo-500/20 hover:border-indigo-500/50 transition-colors group"
-          aria-label="Testimonianza precedente"
-          onClick={() => {/* Slider previous logic */}}
+    {/* Testimonial Cards */}
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+      {[
+        {
+          quote: "BioriAgent ha trasformato completamente il nostro customer service. L'implementazione è stata rapida e i risultati immediati. Ora gestiamo il triplo delle richieste.",
+          author: "Laura Romano",
+          role: "CEO, Innovatech",
+          avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
+          stars: 5
+        },
+        {
+          quote: "Il team è stato eccezionale - reattivo, professionale e sempre attento alle nostre esigenze in evoluzione. In soli tre mesi abbiamo visto un ROI del 300%.",
+          author: "Alessandro Bianchi",
+          role: "CTO, TechVision",
+          avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
+          stars: 5
+        },
+        {
+          quote: "L'implementazione dei loro chatbot ha migliorato notevolmente l'esperienza clienti. Il nostro team può ora concentrarsi su attività a maggior valore aggiunto.",
+          author: "Giulia Conti",
+          role: "Marketing Director, RetailPlus",
+          avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
+          stars: 4
+        }
+      ].map((testimonial, index) => (
+        <motion.div 
+          key={index}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 * index, duration: 0.5 }}
+          className="glass p-6 rounded-xl border border-white/10 hover:border-white/20 
+                    transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:text-indigo-400 transition-colors">
-            <path d="m15 18-6-6 6-6"/>
-          </svg>
-        </button>
-        <button 
-          className="w-10 h-10 rounded-full glass flex items-center justify-center border border-indigo-500/20 hover:border-indigo-500/50 transition-colors group"
-          aria-label="Testimonianza successiva"
-          onClick={() => {/* Slider next logic */}}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:text-indigo-400 transition-colors">
-            <path d="m9 18 6-6-6-6"/>
-          </svg>
-        </button>
-      </div>
-      
-      {/* Testimonial Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 overflow-hidden relative">
-        {[
-          {
-            quote: "BioriAgent ha trasformato completamente il nostro customer service. L'implementazione è stata rapida e i risultati immediati. Ora gestiamo il triplo delle richieste.",
-            author: "Laura Romano",
-            role: "CEO, Innovatech",
-            avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
-            stars: 5,
-            company: "innovatech",
-            color: "indigo"
-          },
-          {
-            quote: "Il team è stato eccezionale - reattivo, professionale e sempre attento alle nostre esigenze in evoluzione. In soli tre mesi abbiamo visto un ROI del 300%.",
-            author: "Alessandro Bianchi",
-            role: "CTO, TechVision",
-            avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
-            stars: 5,
-            company: "techvision",
-            color: "violet"
-          },
-          {
-            quote: "L'implementazione dei loro chatbot ha migliorato notevolmente l'esperienza clienti. Il nostro team può ora concentrarsi su attività a maggior valore aggiunto.",
-            author: "Giulia Conti",
-            role: "Marketing Director, RetailPlus",
-            avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
-            stars: 4,
-            company: "retailplus",
-            color: "cyan"
-          },
-          // Hidden in initial view, visible when sliding
-          {
-            quote: "La loro soluzione ha automatizzato processi che prima richiedevano ore di lavoro manuale. Notevole l'incremento di efficienza nei nostri flussi operativi.",
-            author: "Marco Verdi",
-            role: "Operations Manager, LogiSmart",
-            avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
-            stars: 5,
-            company: "logismart",
-            color: "emerald"
-          },
-          {
-            quote: "La piattaforma sviluppata ha semplificato l'analisi dei nostri dati finanziari. Decisioni più rapide e basate su dati concreti hanno migliorato la nostra performance.",
-            author: "Elena Neri",
-            role: "CFO, FinTech Solutions",
-            avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
-            stars: 5,
-            company: "fintech",
-            color: "blue"
-          },
-          {
-            quote: "L'integrazione AI nei nostri processi editoriali ha rivoluzionato il modo in cui produciamo contenuti. Qualità superiore in metà tempo.",
-            author: "Paolo Rossi",
-            role: "Editorial Director, MediaGroup",
-            avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80",
-            stars: 4,
-            company: "mediagroup",
-            color: "amber"
-          },
-        ].slice(0, 3).map((testimonial, index) => (
-          <div 
-            key={index}
-            className={`glass p-6 rounded-xl border border-${testimonial.color}-500/20 hover:border-${testimonial.color}-500/40 
-                      transition-all duration-500 hover:shadow-lg hover:shadow-${testimonial.color}-500/10 group`}
-          >
-            {/* Card content with hover effects */}
-            <div className="h-full flex flex-col">
-              {/* Stars Rating */}
-              <div className="flex mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <svg 
-                    key={i} 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    width="16" 
-                    height="16" 
-                    viewBox="0 0 24 24" 
-                    fill={i < testimonial.stars ? "currentColor" : "none"} 
-                    stroke="currentColor" 
-                    strokeWidth="2" 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    className={i < testimonial.stars ? "text-yellow-400" : "text-gray-300"}
-                  >
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                  </svg>
-                ))}
-              </div>
-              
-              {/* Quote */}
-              <div className="relative mb-6 flex-grow">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className={`absolute -top-2 -left-2 text-${testimonial.color}-400/20`}>
-                  <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
-                  <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" />
-                </svg>
-                <p className="text-foreground/80 text-sm leading-relaxed">
-                  {testimonial.quote}
-                </p>
-              </div>
-              
-              {/* Author info */}
-              <div className="flex items-center mt-auto pt-4 border-t border-foreground/10">
-                <div className="w-12 h-12 rounded-full overflow-hidden mr-4 flex-shrink-0 border-2 border-foreground/10 group-hover:border-primary/30 transition-colors">
-                  <img src={testimonial.avatar} alt={testimonial.author} className="w-full h-full object-cover" />
-                </div>
-                <div>
-                  <h4 className="font-bold">{testimonial.author}</h4>
-                  <p className="text-foreground/60 text-sm">{testimonial.role}</p>
-                </div>
-              </div>
-            </div>
-            
-            {/* Decorative shape */}
-            <div className={`absolute bottom-0 right-0 w-16 h-16 rounded-tl-3xl rounded-br-xl bg-${testimonial.color}-500/10 
-                          transition-all duration-500 opacity-0 group-hover:opacity-100 pointer-events-none`}></div>
+          {/* Stars Rating */}
+          <div className="flex mb-4">
+            {[...Array(5)].map((_, i) => (
+              <Star 
+                key={i} 
+                className={`w-4 h-4 ${i < testimonial.stars ? 'text-yellow-400 fill-yellow-400' : 'text-foreground/20'}`} 
+              />
+            ))}
           </div>
-        ))}
-      </div>
-      
-      {/* Slide indicators */}
-      <div className="flex justify-center space-x-2 mt-8">
-        <button className="w-8 h-2 rounded-full bg-indigo-500/50" aria-label="Page 1"></button>
-        <button className="w-8 h-2 rounded-full bg-foreground/20 hover:bg-indigo-500/30 transition-colors" aria-label="Page 2"></button>
-      </div>
+          
+          {/* Quote */}
+          <p className="text-foreground/80 text-sm leading-relaxed mb-6">
+            "{testimonial.quote}"
+          </p>
+          
+          {/* Author info */}
+          <div className="flex items-center mt-auto">
+            <img 
+              src={testimonial.avatar} 
+              alt={testimonial.author}
+              className="w-10 h-10 rounded-full object-cover mr-3 border border-white/10" 
+            />
+            <div>
+              <h4 className="font-bold">{testimonial.author}</h4>
+              <p className="text-foreground/60 text-xs">{testimonial.role}</p>
+            </div>
+          </div>
+        </motion.div>
+      ))}
     </div>
   </div>
 </section>
 
-{/* I nostri servizi - Design innovativo con effetto 3D cards e interazioni */}
+{/* I nostri servizi */}
 <section className="py-24 relative overflow-hidden">
-  {/* Dynamic background gradient elements */}
-  <div className="absolute top-0 left-0 right-0 bottom-1/3 bg-gradient-to-b from-transparent to-indigo-500/5"></div>
-  <div className="absolute -right-32 top-1/4 w-64 h-64 rounded-full bg-violet-500/20 filter blur-3xl"></div>
-  <div className="absolute -left-32 bottom-1/4 w-64 h-64 rounded-full bg-cyan-500/20 filter blur-3xl"></div>
-  
-  {/* Animated floating shapes */}
-  <div className="absolute left-10 top-1/4 opacity-30 floating-shape" style={{ animationDelay: '0s' }}>
-    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M20 0L37.3205 10V30L20 40L2.67949 30V10L20 0Z" fill="url(#paint0_linear_hex)" />
-      <defs>
-        <linearGradient id="paint0_linear_hex" x1="2.67949" y1="20" x2="37.3205" y2="20" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#6366F1" />
-          <stop offset="1" stopColor="#8B5CF6" />
-        </linearGradient>
-      </defs>
-    </svg>
-  </div>
-  
-  <div className="absolute right-10 top-2/3 opacity-30 floating-shape" style={{ animationDelay: '1s' }}>
-    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="15" cy="15" r="15" fill="url(#paint0_linear_circle)" />
-      <defs>
-        <linearGradient id="paint0_linear_circle" x1="0" y1="15" x2="30" y2="15" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#06B6D4" />
-          <stop offset="1" stopColor="#3B82F6" />
-        </linearGradient>
-      </defs>
-    </svg>
-  </div>
-  
-  <div className="absolute left-1/3 bottom-1/4 opacity-30 floating-shape" style={{ animationDelay: '2s' }}>
-    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M18 0L34.6391 9L34.6391 27L18 36L1.36089 27L1.36089 9L18 0Z" fill="url(#paint0_linear_tri)" />
-      <defs>
-        <linearGradient id="paint0_linear_tri" x1="1.36089" y1="18" x2="34.6391" y2="18" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#8B5CF6" />
-          <stop offset="1" stopColor="#EC4899" />
-        </linearGradient>
-      </defs>
-    </svg>
-  </div>
+  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-500/5 to-transparent"></div>
   
   <div className="container mx-auto px-6 lg:px-12 relative z-10">
-    <ScrollAnimation animation="fadeIn">
-      <div className="text-center mb-16">
-        <div className="inline-block px-4 py-1 rounded-full bg-gradient-to-r from-indigo-500/20 to-violet-500/20 text-sm font-medium mb-4">
-          <span className="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
-            Soluzioni & Expertise
-          </span>
-        </div>
-        <h2 className="text-4xl md:text-5xl font-bold mb-6">I nostri servizi</h2>
-        <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-          Trasformiamo la tua visione in realtà con un portfolio completo di servizi digitali innovativi
-        </p>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="text-center mb-16"
+    >
+      <div className="inline-block px-4 py-1 rounded-full bg-gradient-to-r from-indigo-500/10 to-violet-500/10 border border-indigo-500/20 text-sm font-medium mb-4">
+        <span className="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
+          Soluzioni & Expertise
+        </span>
       </div>
-    </ScrollAnimation>
+      <h2 className="text-4xl md:text-5xl font-bold mb-6">I nostri servizi</h2>
+      <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
+        Trasformiamo la tua visione in realtà con un portfolio completo di servizi digitali innovativi
+      </p>
+    </motion.div>
     
-    {/* 3D Interactive Tilt Cards - Main Services */}
-    <div className="grid md:grid-cols-3 gap-8 mb-20">
+    {/* Servizi principali */}
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
       {[
         {
           id: "ai-agents",
           title: "Agenti AI",
           description: "Sistemi intelligenti autonomi che automatizzano i processi aziendali operando 24/7",
-          icon: (
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-violet-400">
-              <circle cx="9" cy="13" r="2" />
-              <circle cx="15" cy="13" r="2" />
-              <path d="M12 5c-.899 0-1.523.047-2.387.322-1.552.492-2.866 1.349-3.281 2.68A5.003 5.003 0 0 0 6 9.5v.5h1.5C9.5 10 9 12.67 9 14c0 .711.202 2.282.453 2.826a2.4 2.4 0 0 0 2.226 1.174h.672a2.4 2.4 0 0 0 2.226-1.174C14.798 16.282 15 14.71 15 14c0-1.329-.5-4-1.5-4H15v-.5a5.003 5.003 0 0 0-.332-1.498c-.415-1.33-1.729-2.188-3.28-2.68C10.522 5.047 9.9 5 9 5h3Z" />
-              <path d="M20.5 9a.5.5 0 0 0-.5.5v5a.5.5 0 0 0 .5.5h1a1.5 1.5 0 0 0 1.5-1.5v-3A1.5 1.5 0 0 0 21.5 9h-1zM3.5 9a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5h-1A1.5 1.5 0 0 1 1 13.5v-3A1.5 1.5 0 0 1 2.5 9h1z" />
-              <path d="M8 13v4H7a2 2 0 0 1-2-2v-2h3zM16 13v4h1a2 2 0 0 0 2-2v-2h-3z" />
-            </svg>
-          ),
+          icon: <Bot className="w-10 h-10 text-violet-400" />,
           features: ["Automazione processi", "Integrazione sistemi", "Operatività 24/7"],
-          stats: ["65%", "risparmio di tempo"],
           color: "violet",
-          link: "/ai-agents",
-          imageUrl: "https://images.unsplash.com/photo-1577760258634-618422a84fad?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+          link: "/ai-agents"
         },
         {
           id: "software-pmi",
           title: "Sviluppo Software",
           description: "Soluzioni software personalizzate per trasformare la tua visione in applicazioni concrete",
-          icon: (
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-indigo-400">
-              <polyline points="16 18 22 12 16 6" />
-              <polyline points="8 6 2 12 8 18" />
-            </svg>
-          ),
+          icon: <Code className="w-10 h-10 text-indigo-400" />,
           features: ["App web responsive", "Software gestionali", "Soluzioni cloud"],
-          stats: ["42%", "incremento efficienza"],
           color: "indigo",
-          link: "/software-pmi",
-          imageUrl: "https://images.unsplash.com/photo-1566837945700-30057527ade0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+          link: "/software-pmi"
         },
         {
           id: "chatbots",
           title: "Chatbot AI",
           description: "Assistenti virtuali intelligenti che migliorano l'esperienza cliente e automatizzano il supporto",
-          icon: (
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-cyan-400">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-            </svg>
-          ),
+          icon: <MessageSquare className="w-10 h-10 text-cyan-400" />,
           features: ["Supporto 24/7", "Multilingue", "Personalizzazione"],
-          stats: ["70%", "richieste automatizzate"],
           color: "cyan",
-          link: "/chatbots",
-          imageUrl: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+          link: "/chatbots"
         }
       ].map((service, index) => (
-        <ScrollAnimation 
+        <motion.div 
           key={service.id}
-          animation="fadeIn"
-          delay={0.15 * index}
-          className="perspective-card"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.15 * index, duration: 0.5 }}
+          className="glass p-6 rounded-xl border border-white/10 hover:border-white/20 
+                   transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex flex-col h-full"
         >
-          <div className="tilt-card-wrapper relative h-[30rem] rounded-2xl service-card group">
-            <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br from-${service.color}-500/20 to-${service.color}-500/5 opacity-0 
-                          group-hover:opacity-100 transition-opacity duration-500 -z-10`}></div>
-                          
-            {/* Card front */}
-            <div className="tilt-card-side tilt-card-front rounded-2xl glass border border-foreground/10 group-hover:border-primary/20 
-                         transition-all duration-500 p-8 flex flex-col h-full overflow-hidden">
-              <div className="relative z-10">
-                {/* Service icon with gradient background */}
-                <div className={`w-16 h-16 rounded-xl bg-${service.color}-500/20 flex items-center justify-center mb-6
-                               group-hover:scale-110 transition-transform duration-500`}>
-                  {service.icon}
-                </div>
-                
-                <h3 className={`text-2xl font-bold mb-4 text-${service.color}-400`}>{service.title}</h3>
-                <p className="text-foreground/70 mb-6">{service.description}</p>
-                
-                {/* Feature list */}
-                <ul className="space-y-3 mb-6">
-                  {service.features.map((feature, i) => (
-                    <li key={i} className="flex items-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`mr-2 text-${service.color}-400`}>
-                        <path d="m5 12 5 5L20 7" />
-                      </svg>
-                      <span className="text-foreground/80">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                
-                {/* Key stat */}
-                <div className={`mt-auto pt-6 border-t border-foreground/10 flex items-center`}>
-                  <div className={`text-3xl font-bold text-${service.color}-400 mr-3`}>{service.stats[0]}</div>
-                  <div className="text-foreground/60 text-sm">{service.stats[1]}</div>
-                </div>
-                
-                <div className="absolute -bottom-2 -right-2 w-20 h-20 rounded-full bg-gradient-to-br 
-                            from-transparent to-foreground/5 group-hover:opacity-100 opacity-0 transition-opacity"></div>
-              </div>
-              
-              {/* Subtle click prompt */}
-              <div className="absolute bottom-4 right-4 text-xs text-foreground/40 flex items-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1">
-                  <path d="m8 3 4 8 5-5 3 10-4-8-5 5z" />
-                </svg>
-                Scopri di più
-              </div>
-            </div>
-            
-            {/* Card back */}
-            <div className="tilt-card-side tilt-card-back rounded-2xl overflow-hidden absolute inset-0">
-              <div className="relative h-full">
-                {/* Background image with overlay */}
-                <div className="absolute inset-0">
-                  <img src={service.imageUrl} alt={service.title} className="h-full w-full object-cover" />
-                  <div className={`absolute inset-0 bg-gradient-to-b from-${service.color}-900/80 to-background/95`}></div>
-                </div>
-                
-                {/* Content */}
-                <div className="relative z-10 flex flex-col justify-end h-full p-8 text-white">
-                  <h3 className="text-2xl font-bold mb-2">{service.title}</h3>
-                  <p className="text-white/80 mb-6 text-sm">{service.description}</p>
-                  
-                  <Link
-                    to={service.link}
-                    className={`inline-flex items-center justify-center px-6 py-3 rounded-lg 
-                              bg-white text-${service.color}-600 font-medium hover:bg-opacity-90 transition-all`}
-                  >
-                    Esplora
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2">
-                      <path d="M5 12h14" />
-                      <path d="m12 5 7 7-7 7" />
-                    </svg>
-                  </Link>
-                </div>
-              </div>
-            </div>
+          <div className={`w-16 h-16 rounded-xl bg-${service.color}-500/20 flex items-center justify-center mb-6`}>
+            {service.icon}
           </div>
-        </ScrollAnimation>
+          
+          <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
+          <p className="text-foreground/70 mb-6">{service.description}</p>
+          
+          {/* Feature list */}
+          <ul className="space-y-3 mb-6 flex-grow">
+            {service.features.map((feature, i) => (
+              <li key={i} className="flex items-start">
+                <CheckCircle className={`w-5 h-5 text-${service.color}-400 mt-0.5 mr-3 flex-shrink-0`} />
+                <span className="text-foreground/80">{feature}</span>
+              </li>
+            ))}
+          </ul>
+          
+          <Link 
+            to={service.link}
+            className={`mt-auto inline-flex items-center text-${service.color}-400 hover:underline font-medium`}
+          >
+            Scopri di più <ArrowRight className="ml-2 w-5 h-5" />
+          </Link>
+        </motion.div>
       ))}
     </div>
     
-    {/* Secondary services with horizontal scroll effect */}
-    <ScrollAnimation animation="fadeIn" className="mb-24">
+    {/* Altri servizi - Carousel */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="mb-24"
+    >
       <h3 className="text-2xl font-bold mb-8 text-center">Altri servizi</h3>
       
-      <div className="overflow-hidden py-4">
-        <div className="scroll-container flex gap-6 pb-4">
+      <div className="overflow-x-auto pb-4">
+        <div className="flex gap-6" style={{ width: "max-content" }}>
           {[
             {
               title: "Team di Sviluppo",
               description: "Sviluppatori esperti integrati nei tuoi team per accelerare i progetti",
-              icon: (
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-indigo-400">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                </svg>
-              ),
+              icon: <Users className="w-8 h-8 text-indigo-400" />,
               color: "indigo",
               link: "/developers"
             },
             {
               title: "Piani di Crescita",
               description: "Strategie di trasformazione digitale per crescita sostenibile",
-              icon: (
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-green-400">
-                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
-                  <polyline points="17 6 23 6 23 12" />
-                </svg>
-              ),
+              icon: <TrendingUp className="w-8 h-8 text-green-400" />,
               color: "green",
               link: "/growth-plans"
             },
             {
               title: "Consulenza AI",
               description: "Guida esperta per integrare l'intelligenza artificiale nel tuo business",
-              icon: (
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-violet-400">
-                  <circle cx="18" cy="18" r="3" />
-                  <circle cx="6" cy="6" r="3" />
-                  <path d="M13 6h3a2 2 0 0 1 2 2v7" />
-                  <path d="M11 18H8a2 2 0 0 1-2-2V9" />
-                </svg>
-              ),
+              icon: <BrainCircuit className="w-8 h-8 text-violet-400" />,
               color: "violet",
               link: "/ai-consulting"
             },
             {
               title: "Cloud Services",
               description: "Infrastrutture scalabili e sicure per le tue applicazioni",
-              icon: (
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-blue-400">
-                  <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
-                </svg>
-              ),
+              icon: <Cloud className="w-8 h-8 text-blue-400" />,
               color: "blue",
               link: "/cloud-services"
             },
             {
               title: "Data Analytics",
               description: "Analisi dati avanzata per decisioni data-driven",
-              icon: (
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-amber-400">
-                  <path d="M3 3v18h18" />
-                  <path d="M18 9a3 3 0 1 0 6 0 3 3 0 1 0-6 0z" />
-                  <path d="M3 9h9.75" />
-                  <path d="M15 21v-9" />
-                  <path d="M9 21v-6" />
-                  <path d="M3 15h6" />
-                </svg>
-              ),
+              icon: <BarChart className="w-8 h-8 text-amber-400" />,
               color: "amber",
               link: "/data-analytics"
             },
             {
               title: "Digital Transformation",
               description: "Percorsi completi di innovazione digitale per il tuo business",
-              icon: (
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-cyan-400">
-                  <path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7Z" />
-                  <path d="m5 16 3 4" />
-                  <path d="m19 16-3 4" />
-                </svg>
-              ),
+              icon: <RefreshCw className="w-8 h-8 text-cyan-400" />,
               color: "cyan",
               link: "/digital-transformation"
             }
           ].map((service, index) => (
-            <div 
+            <Link 
               key={index}
-              className="w-[280px] flex-shrink-0 scroll-item"
-              style={{ "--scroll-offset": `${index * 0.1}s` } as React.CSSProperties}
+              to={service.link}
+              className="w-64 flex-shrink-0 glass p-6 rounded-xl border border-white/10 hover:border-white/20 
+                       transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex flex-col h-64"
             >
-              <Link 
-                to={service.link}
-                className={`h-full glass p-6 rounded-xl border border-${service.color}-500/20 hover:border-${service.color}-500/40 
-                          flex flex-col transition-all duration-300 hover:shadow-lg hover:shadow-${service.color}-500/10 group hover:-translate-y-1`}
-              >
-                <div className={`w-12 h-12 rounded-xl bg-${service.color}-500/20 flex items-center justify-center mb-4`}>
-                  {service.icon}
-                </div>
-                
-                <h4 className={`text-lg font-bold mb-2 text-${service.color}-400`}>{service.title}</h4>
-                <p className="text-foreground/70 text-sm mb-4 flex-grow">{service.description}</p>
-                
-                <div className="mt-auto flex items-center text-sm">
-                  <span className={`text-${service.color}-400 group-hover:underline`}>Scopri di più</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`ml-1 text-${service.color}-400 group-hover:translate-x-1 transition-transform`}>
-                    <path d="M5 12h14" />
-                    <path d="m12 5 7 7-7 7" />
-                  </svg>
-                </div>
-              </Link>
-            </div>
+              <div className={`w-12 h-12 rounded-xl bg-${service.color}-500/20 flex items-center justify-center mb-4`}>
+                {service.icon}
+              </div>
+              
+              <h4 className={`text-lg font-bold mb-2 text-${service.color}-400`}>{service.title}</h4>
+              <p className="text-foreground/70 text-sm mb-4 flex-grow">{service.description}</p>
+              
+              <div className="mt-auto flex items-center text-sm">
+                <span className={`text-${service.color}-400`}>Scopri di più</span>
+                <ArrowRight className={`ml-1 w-4 h-4 text-${service.color}-400`} />
+              </div>
+            </Link>
           ))}
         </div>
       </div>
-    </ScrollAnimation>
-    
-    {/* Process visual - Interactive steps wheel */}
-    <ScrollAnimation animation="fadeIn" className="mb-16">
-      <div className="glass p-10 rounded-2xl relative overflow-hidden border border-indigo-500/20">
-        <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-indigo-500/10 filter blur-3xl"></div>
-        <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-violet-500/10 filter blur-3xl"></div>
-        
-        <div className="relative z-10">
-          <h3 className="text-2xl font-bold mb-2 text-center">Il nostro processo</h3>
-          <p className="text-center text-foreground/70 mb-12 max-w-3xl mx-auto">
-            Un approccio metodico e flessibile per trasformare le tue idee in realtà digitali
-          </p>
-          
-          <div className="process-wheel-container relative max-w-4xl mx-auto h-80">
-            {/* Center hub */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-              <div className="w-24 h-24 rounded-full glass bg-gradient-to-br from-indigo-500/30 to-violet-500/30 
-                           flex items-center justify-center border border-white/20 shadow-xl animate-pulse-slow">
-                <span className="font-bold text-center text-sm">Processo<br/>Iterativo</span>
-              </div>
-            </div>
-            
-            {/* Process steps positioned around center */}
-            {[
-              {
-                title: "Scoperta",
-                description: "Analisi delle esigenze e definizione obiettivi",
-                icon: (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="11" cy="11" r="8" />
-                    <path d="m21 21-4.3-4.3" />
-                  </svg>
-                ),
-                position: "top",
-                color: "indigo"
-              },
-              {
-                title: "Design",
-                description: "Progettazione UX/UI e architettura",
-                icon: (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M2 20h.01" />
-                    <path d="M7 20v-4" />
-                    <path d="M12 20v-8" />
-                    <path d="M17 20V8" />
-                    <path d="M22 20V4" />
-                  </svg>
-                ),
-                position: "right-top",
-                color: "violet"
-              },
-              {
-                title: "Sviluppo",
-                description: "Implementazione con sprint iterativi",
-                icon: (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="16 18 22 12 16 6" />
-                    <polyline points="8 6 2 12 8 18" />
-                  </svg>
-                ),
-                position: "right",
-                color: "blue"
-              },
-              {
-                title: "Testing",
-                description: "Test qualità, performance e sicurezza",
-                icon: (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M2 12a5 5 0 0 0 5 5 8 8 0 0 1 5 2 8 8 0 0 1 5-2 5 5 0 0 0 5-5" />
-                    <path d="M6 11V7a6 6 0 0 1 12 0v4" />
-                  </svg>
-                ),
-                position: "right-bottom",
-                color: "cyan"
-              },
-              {
-                title: "Deployment",
-                description: "Rilascio e implementazione",
-                icon: (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M6 16.326A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 .5 8.973" />
-                    <path d="m13 12-3 5h4l-3 5" />
-                  </svg>
-                ),
-                position: "bottom",
-                color: "emerald"
-              },
-              {
-                title: "Supporto",
-                description: "Manutenzione e ottimizzazione continua",
-                icon: (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M18 8a1 1 0 0 0-1-1H6L3 8" />
-                    <path d="m3 8 3-1" />
-                    <path d="M7 21h9a3 3 0 0 0 0-6H3v3" />
-                    <path d="m6 12 3-1" />
-                    <path d="m9 13 3-1" />
-                    <path d="m12 14 3-1" />
-                    <path d="M18 18h3" />
-                    <path d="M2 19v-4a6 6 0 0 1 6-6h9a1 1 0 0 0 1-1" />
-                  </svg>
-                ),
-                position: "left-bottom",
-                color: "amber"
-              },
-              {
-                title: "Evoluzione",
-                description: "Iterazione e miglioramento continuo",
-                icon: (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-                    <path d="M3 3v5h5" />
-                  </svg>
-                ),
-                position: "left",
-                color: "rose"
-              },
-              {
-                title: "Analisi",
-                description: "Misurazione risultati e nuovi spunti",
-                icon: (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M3 3v18h18" />
-                    <path d="m7 17 4-4 4 4 6-6" />
-                  </svg>
-                ),
-                position: "left-top",
-                color: "purple"
-              },
-            ].map((step, index) => (
-              <div key={index} className={`process-step process-${step.position} absolute`}>
-                <div className={`glass p-4 rounded-xl border border-${step.color}-500/30 hover:border-${step.color}-500/60 
-                             hover:shadow-lg hover:shadow-${step.color}-500/20 transition-all hover:scale-105 
-                             flex items-start gap-3 w-56 backdrop-blur-md bg-background/40`}>
-                  <div className={`w-10 h-10 rounded-lg bg-${step.color}-500/20 flex-shrink-0 flex items-center justify-center text-${step.color}-400`}>
-                    {step.icon}
-                  </div>
-                  <div>
-                    <h4 className="font-bold mb-1">{step.title}</h4>
-                    <p className="text-foreground/70 text-xs">{step.description}</p>
-                  </div>
-                </div>
-                
-                {/* Connector lines */}
-                <div className="absolute connector-line"></div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </ScrollAnimation>
+    </motion.div>
   </div>
-  
-  {/* Add custom CSS for animations and effects */}
-  <style dangerouslySetInnerHTML={{ __html: `
-    /* Floating shapes animation */
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0); }
-      50% { transform: translateY(-15px) rotate(5deg); }
-    }
-    
-    .floating-shape {
-      animation: float 8s ease-in-out infinite;
-    }
-    
-    /* Pulse animation */
-    @keyframes pulse-slow {
-      0%, 100% { opacity: 1; transform: scale(1) translate(-50%, -50%); }
-      50% { opacity: 0.8; transform: scale(1.05) translate(-48%, -48%); }
-    }
-    
-    .animate-pulse-slow {
-      animation: pulse-slow 4s infinite ease-in-out;
-    }
-    
-    /* Services card 3D effect */
-    .perspective-card {
-      perspective: 2000px;
-    }
-    
-    .tilt-card-wrapper {
-      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-      transform-style: preserve-3d;
-    }
-    
-    .tilt-card-wrapper:hover {
-      transform: rotateY(180deg);
-    }
-    
-    .tilt-card-side {
-      backface-visibility: hidden;
-      transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    
-    .tilt-card-back {
-      transform: rotateY(180deg);
-    }
-    
-    /* Horizontal scroll animation */
-    .scroll-container {
-      animation: scroll-left 30s linear infinite;
-      width: fit-content;
-    }
-    
-    @keyframes scroll-left {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    
-    .scroll-container:hover {
-      animation-play-state: paused;
-    }
-    
-    .scroll-item {
-      animation: fade-in 0.5s ease-out forwards;
-      animation-delay: var(--scroll-offset);
-      opacity: 0;
-    }
-    
-    @keyframes fade-in {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    /* Process wheel positioning */
-    .process-wheel-container {
-      position: relative;
-    }
-    
-    .process-top { top: 0; left: 50%; transform: translateX(-50%); }
-    .process-right-top { top: 15%; right: 0; }
-    .process-right { top: 50%; right: 0; transform: translateY(-50%); }
-    .process-right-bottom { bottom: 15%; right: 0; }
-    .process-bottom { bottom: 0; left: 50%; transform: translateX(-50%); }
-    .process-left-bottom { bottom: 15%; left: 0; }
-    .process-left { top: 50%; left: 0; transform: translateY(-50%); }
-    .process-left-top { top: 15%; left: 0; }
-    
-    /* Connector lines */
-    .connector-line {
-      height: 2px;
-      background: linear-gradient(90deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
-      width: 40px;
-      position: absolute;
-    }
-    
-    .process-top .connector-line { 
-      bottom: -20px; left: 50%; transform: translateX(-50%) rotate(90deg);
-    }
-    
-    .process-right-top .connector-line { 
-      bottom: 0; left: 0; transform: rotate(135deg); transform-origin: bottom left;
-    }
-    
-    .process-right .connector-line { 
-      top: 50%; left: -40px; transform: translateY(-50%);
-    }
-    
-    .process-right-bottom .connector-line { 
-      top: 0; left: 0; transform: rotate(45deg); transform-origin: top left;
-    }
-    
-    .process-bottom .connector-line { 
-      top: -20px; left: 50%; transform: translateX(-50%) rotate(90deg);
-    }
-    
-    .process-left-bottom .connector-line { 
-      top: 0; right: 0; transform: rotate(-45deg); transform-origin: top right;
-    }
-    
-    .process-left .connector-line { 
-      top: 50%; right: -40px; transform: translateY(-50%);
-    }
-    
-    .process-left-top .connector-line { 
-      bottom: 0; right: 0; transform: rotate(-135deg); transform-origin: bottom right;
-    }
-  `}} />
 </section>
 
 {/* CTA Section - Design accattivante e interattivo */}

@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Brain, Cpu, Workflow, Zap, Bot, Layers, ArrowRight, RefreshCw, ArrowUpRight, Play, Shield, Database, Check, MessageSquare, Award, TrendingUp } from 'lucide-react';
-import ParallaxEffect from '../components/ParallaxEffect';
+import { Brain, Workflow, Zap, Bot, Layers, ArrowRight, RefreshCw, ArrowUpRight, Play, Shield, Database, Check, MessageSquare, Award, TrendingUp } from 'lucide-react';
 import ScrollAnimation from '../components/ScrollAnimation';
 import ScrollGradient from '../components/ScrollGradient';
 

@@ -7,8 +7,8 @@ import ScrollAnimation from '../components/ScrollAnimation';
 const SoftwarePMI = () => {
   const solutionTypes = [
     {
-      title: "Gestionali",
-      description: "Software ERP personalizzati per gestire tutte le operazioni aziendali in modo efficiente",
+      title: "Software Locali",
+      description: "Software ERP e Client App personalizzati per gestire tutte le operazioni aziendali in modo efficiente",
       icon: <BarChart className="w-12 h-12 text-blue-500" />
     },
     {
@@ -17,24 +17,24 @@ const SoftwarePMI = () => {
       icon: <Laptop className="w-12 h-12 text-green-500" />
     },
     {
-      title: "Sistemi Cloud",
+      title: "Integrazione AI",
       description: "Infrastrutture scalabili e sicure per i tuoi dati e applicazioni",
       icon: <Cloud className="w-12 h-12 text-purple-500" />
     },
     {
-      title: "Soluzioni E-commerce",
-      description: "Piattaforme di vendita online personalizzate e ottimizzate per conversioni",
+      title: "Siti Web",
+      description: "Piattaforme online personalizzate e ottimizzate per conversioni",
       icon: <Database className="w-12 h-12 text-orange-500" />
     }
   ];
 
   const benefits = [
     "Automazione dei processi aziendali ripetitivi",
-    "Riduzione dei costi operativi fino al 35%",
-    "Miglioramento dell'efficienza del personale",
+    "Sistema di sviluppo AI Based",
+    "Massima flessibilità nei costi",
     "Integrazione completa tra sistemi diversi",
-    "Accesso ai dati in tempo reale",
-    "Scalabilità in base alla crescita aziendale"
+    "Offerta completa di piani di manutenzione",
+    "Assistenza strategica in ogni fase di crescita"
   ];
 
   return (
@@ -99,10 +99,9 @@ const SoftwarePMI = () => {
         <div className="glass p-8 rounded-2xl">
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div>
-              <h2 className="text-2xl font-bold mb-6">Vantaggi del Software Personalizzato</h2>
+              <h2 className="text-2xl font-bold mb-6">Creiamo soluzioni su misura per la tua azienda</h2>
               <p className="text-foreground/70 mb-6">
-                Sviluppiamo soluzioni su misura per la tua azienda, garantendo perfetta aderenza ai tuoi processi 
-                e massimizzando il ritorno sull'investimento.
+              Supportiamo le aziende nello sviluppo di software personalizzati, pensati per adattarsi perfettamente alle loro specifiche esigenze operative. Il nostro obiettivo è trasformare le idee in strumenti concreti, funzionali e potenzialmente scalabili.
               </p>
               
               <div className="space-y-3">
@@ -119,31 +118,27 @@ const SoftwarePMI = () => {
               <div className="glass p-6 rounded-xl bg-primary/5 mb-6">
                 <h3 className="flex items-center font-bold mb-3">
                   <Zap className="w-6 h-6 text-amber-500 mr-2" />
-                  Efficienza Operativa
+                  L'alternativa concreta alle grandi agenzie
                 </h3>
                 <p className="text-foreground/70">
-                  Riduzione dei tempi e dei costi operativi attraverso l'automazione dei processi e l'eliminazione delle attività ripetitive.
-                </p>
+                Grazie all’uso mirato dell’intelligenza artificiale, sviluppiamo software personalizzati in modo più rapido, efficiente e accessibile. Offriamo soluzioni di alta qualità, su misura per le tue esigenze reali.                </p>
               </div>
               
               <div className="glass p-6 rounded-xl bg-primary/5 mb-6">
                 <h3 className="flex items-center font-bold mb-3">
                   <Shield className="w-6 h-6 text-blue-500 mr-2" />
-                  Scalabilità
+                  Un'app che scala con te
                 </h3>
                 <p className="text-foreground/70">
-                  Il software cresce con la tua azienda, supportando un numero crescente di utenti, dati e funzionalità senza problemi.
-                </p>
+                Ogni software che sviluppiamo è progettato con una visione a lungo termine: pensiamo alla scalabilità sin dall’inizio, per supportare la crescita futura del tuo business.</p>
               </div>
               
               <div className="glass p-6 rounded-xl bg-primary/5">
                 <h3 className="flex items-center font-bold mb-3">
                   <GitBranch className="w-6 h-6 text-green-500 mr-2" />
-                  Integrazione Totale
-                </h3>
+                  Integrazioni che generano valore </h3>
                 <p className="text-foreground/70">
-                  Connessione perfetta con i tuoi sistemi esistenti, eliminando i silos di dati e garantendo un flusso di informazioni uniforme.
-                </p>
+                Integra con semplicità il tuo software con API, modelli di intelligenza artificiale, agenti e automazioni personalizzate. Strumenti e funzioni avanzati per restare al passo.</p>
               </div>
             </div>
           </div>

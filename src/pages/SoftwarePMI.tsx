@@ -144,43 +144,116 @@ const SoftwarePMI = () => {
         </div>
       </ScrollAnimation>
 
-      {/* Development Process */}
-      <ScrollAnimation animation="slideUp" className="mb-16">
-        <h2 className="text-2xl font-bold mb-8 text-center">Il Nostro Processo di Sviluppo</h2>
-        
-        <div className="relative border-l-2 border-primary/30 ml-6 pl-8 py-4 space-y-8">
-          {[
-            {
-              step: 1,
-              title: "Analisi e Requisiti",
-              description: "Analisi approfondita delle esigenze aziendali, definizione degli obiettivi e pianificazione dettagliata"
-            },
-            {
-              step: 2,
-              title: "Design e Prototipazione",
-              description: "Creazione dell'architettura software e prototipi interattivi per validare l'esperienza utente"
-            },
-            {
-              step: 3,
-              title: "Sviluppo Agile",
-              description: "Implementazione con sprint bisettimanali e feedback continuo per adattamenti rapidi"
-            },
-            {
-              step: 4,
-              title: "Test e Deployment",
-              description: "Testing rigoroso, formazione utenti e supporto continuo post-lancio"
-            }
-          ].map((step) => (
-            <div key={step.step} className="relative">
-              <div className="absolute -left-[45px] w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold">{step.step}</span>
+      {/* Development Process - Simple Horizontal Roadmap */}
+<div className="mb-20">
+  <h2 className="text-3xl font-bold mb-12 text-center">Il Nostro Processo di Sviluppo</h2>
+  
+  <div className="relative">
+    {/* The horizontal timeline line */}
+    <div className="absolute top-12 left-0 right-0 h-1 bg-primary/30 hidden md:block"></div>
+    
+    {/* Timeline steps */}
+    <div className="flex flex-col md:flex-row justify-between space-y-10 md:space-y-0 md:space-x-6">
+      {[
+        {
+          step: "01",
+          title: "Analisi e Requisiti",
+          description: "Analizziamo le tue esigenze e definiamo obiettivi chiari",
+          icon: <Laptop className="w-8 h-8 text-white" />,
+          color: "bg-blue-500"
+        },
+        {
+          step: "02",
+          title: "Design e Prototipazione",
+          description: "Creiamo prototipi interattivi per validare l'esperienza utente",
+          icon: <Code className="w-8 h-8 text-white" />,
+          color: "bg-green-500"
+        },
+        {
+          step: "03",
+          title: "Sviluppo Agile",
+          description: "Implementazione con sprint e feedback continuo",
+          icon: <GitBranch className="w-8 h-8 text-white" />,
+          color: "bg-purple-500"
+        },
+        {
+          step: "04",
+          title: "Test e Deployment",
+          description: "Testing rigoroso e supporto post-lancio",
+          icon: <CheckCircle className="w-8 h-8 text-white" />,
+          color: "bg-amber-500"
+        }
+      ].map((item, index) => (
+        <div key={index} className="w-full md:w-1/4">
+          {/* Step circle */}
+          <div className="flex justify-center">
+            <motion.div
+              className={`w-24 h-24 rounded-full ${item.color} flex items-center justify-center relative z-10 shadow-lg`}
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: "spring", stiffness: 300, damping: 10 }}
+            >
+              <div className="text-white">
+                {item.icon}
               </div>
-              <h3 className="text-xl font-bold mb-2">{step.title}</h3>
-              <p className="text-foreground/70">{step.description}</p>
-            </div>
-          ))}
+              <div className="absolute -top-2 -right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
+                <span className="font-bold text-primary">{item.step}</span>
+              </div>
+            </motion.div>
+          </div>
+          
+          {/* Step content */}
+          <motion.div 
+            className="mt-6 text-center px-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.1 }}
+          >
+            <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+            <p className="text-foreground/70">{item.description}</p>
+          </motion.div>
         </div>
-      </ScrollAnimation>
+      ))}
+    </div>
+    
+    {/* Feature details cards */}
+    <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <motion.div 
+        className="glass p-6 rounded-xl bg-primary/5 border border-primary/20"
+        whileHover={{ scale: 1.02 }}
+        transition={{ duration: 0.2 }}
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+      >
+        <h3 className="flex items-center font-bold mb-3">
+          <Zap className="w-6 h-6 text-primary mr-2" />
+          Approccio AI Based
+        </h3>
+        <p className="text-foreground/70">
+          Utilizziamo l'intelligenza artificiale per accelerare lo sviluppo, ridurre i costi e garantire risultati di alta qualità.
+        </p>
+      </motion.div>
+      
+      <motion.div 
+        className="glass p-6 rounded-xl bg-primary/5 border border-primary/20"
+        whileHover={{ scale: 1.02 }}
+        transition={{ duration: 0.2 }}
+        initial={{ opacity: 0, x: 20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+      >
+        <h3 className="flex items-center font-bold mb-3">
+          <Shield className="w-6 h-6 text-blue-500 mr-2" />
+          Soluzioni Scalabili
+        </h3>
+        <p className="text-foreground/70">
+          Ogni software è progettato per crescere con il tuo business, adattandosi alle tue esigenze future.
+        </p>
+      </motion.div>
+    </div>
+  </div>
+</div>
 
       {/* Technologies */}
       <ScrollAnimation animation="fadeIn" className="mb-16">

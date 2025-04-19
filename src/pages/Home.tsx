@@ -2,7 +2,7 @@
 import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight,  Layers, Users, BrainCircuit, CheckCircle, Clock, Code, Zap, Cpu, Workflow, Phone, Mail, TrendingUp, MessageSquare, BarChart, Cloud, Star, Calendar, BarChart3, Bot } from 'lucide-react';
+import { ArrowRight,  Layers, Users, BrainCircuit, CheckCircle, Clock, Code, Zap, Cpu, Workflow, Phone, Mail, TrendingUp, MessageSquare, BarChart, Cloud, Star, Calendar, BarChart3, Bot, GitBranch, Smartphone, Check } from 'lucide-react';
 import ParallaxEffect from '../components/ParallaxEffect';
 import ScrollAnimation from '../components/ScrollAnimation';
 import ScrollGradient from '../components/ScrollGradient';
@@ -238,52 +238,64 @@ const Home = () => {
     </div>
     
     <div className="grid md:grid-cols-2 gap-16 items-center">
-      <div>
-        <ScrollAnimation animation="slideRight" delay={0.2}>
-          <div className="relative">
-            {/* Sfondo interattivo */}
-            <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-3xl filter blur-xl"></div>
-            
-            {/* Semplice elemento interattivo */}
-            <div className="relative glass p-6 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
-              <div className="text-center mb-6">
-                <div className="inline-block p-4 rounded-full bg-blue-500/10">
-                  <Users className="w-10 h-10 text-blue-400" />
-                </div>
-                <h4 className="mt-3 font-semibold">Il nostro team</h4>
+    <div>
+  <ScrollAnimation animation="slideRight" delay={0.2}>
+    <div className="relative">
+      {/* Sfondo interattivo con gradiente */}
+      <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-3xl filter blur-xl"></div>
+      
+      {/* Grid di competenze con statistiche */}
+      <div className="relative glass p-6 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+        <h4 className="text-lg font-medium text-center mb-6">Competenze chiave</h4>
+        
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {[
+            { name: 'Frontend', icon: <Code className="w-5 h-5 text-blue-400" />, rating: 5 },
+            { name: 'Backend', icon: <Cpu className="w-5 h-5 text-violet-400" />, rating: 4 },
+            { name: 'Cloud', icon: <Cloud className="w-5 h-5 text-cyan-400" />, rating: 5 },
+            { name: 'Mobile', icon: <Smartphone className="w-5 h-5 text-green-400" />, rating: 4 },
+            { name: 'DevOps', icon: <GitBranch className="w-5 h-5 text-amber-400" />, rating: 3 },
+            { name: 'UI/UX', icon: <Layers className="w-5 h-5 text-rose-400" />, rating: 4 }
+          ].map((skill) => (
+            <div key={skill.name} className="p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all hover:-translate-y-1 hover:shadow-lg">
+              <div className="flex items-center mb-2">
+                <div className="p-2 rounded-lg bg-white/10 mr-3">{skill.icon}</div>
+                <span className="font-medium">{skill.name}</span>
               </div>
               
-              {/* Semplice selettore interattivo */}
-              <div className="flex justify-center mb-6">
-                <div className="inline-flex p-1 glass rounded-lg">
-                  <button className="px-4 py-2 rounded-md bg-blue-500/20 text-sm">Full-stack</button>
-                  <button className="px-4 py-2 rounded-md text-sm hover:bg-blue-500/10 transition-colors">AI</button>
-                  <button className="px-4 py-2 rounded-md text-sm hover:bg-blue-500/10 transition-colors">UI/UX</button>
-                </div>
-              </div>
-              
-              {/* Contenuto che cambia */}
-              <div className="p-4 rounded-lg bg-foreground/5">
-                <div className="flex justify-between mb-3">
-                  <span className="text-sm">Esperienza media</span>
-                  <span className="font-medium">5+ anni</span>
-                </div>
-                <div className="w-full h-2 bg-foreground/10 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full" style={{ width: '75%' }}></div>
-                </div>
-                
-                <div className="flex justify-between mb-3 mt-4">
-                  <span className="text-sm">Progetti completati</span>
-                  <span className="font-medium">45+</span>
-                </div>
-                <div className="w-full h-2 bg-foreground/10 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full" style={{ width: '85%' }}></div>
-                </div>
+              <div className="flex mt-2">
+                {[...Array(5)].map((_, i) => (
+                  <div 
+                    key={i} 
+                    className={`w-2 h-2 rounded-full mr-1 ${i < skill.rating ? 'bg-blue-500' : 'bg-gray-400/30'}`}
+                  ></div>
+                ))}
               </div>
             </div>
+          ))}
+        </div>
+        
+        {/* Statistiche di team */}
+        <div className="mt-6 grid grid-cols-3 gap-3 text-center">
+          <div className="p-3 rounded-xl bg-white/5 border border-white/10">
+            <div className="text-2xl font-semibold text-blue-400">45+</div>
+            <div className="text-xs text-gray-400">Progetti completati</div>
           </div>
-        </ScrollAnimation>
+          
+          <div className="p-3 rounded-xl bg-white/5 border border-white/10">
+            <div className="text-2xl font-semibold text-cyan-400">5+</div>
+            <div className="text-xs text-gray-400">Anni di esperienza</div>
+          </div>
+          
+          <div className="p-3 rounded-xl bg-white/5 border border-white/10">
+            <div className="text-2xl font-semibold text-violet-400">24/7</div>
+            <div className="text-xs text-gray-400">Supporto e assistenza</div>
+          </div>
+        </div>
       </div>
+    </div>
+  </ScrollAnimation>
+</div>
       
       <div>
         <ScrollAnimation animation="slideLeft" delay={0.3}>
@@ -651,15 +663,62 @@ const Home = () => {
     .glow-orbit {
       animation: orbit-glow 5s infinite ease-in-out;
     }
+
+    .tech-connection {
+      animation: pulse-connection 3s infinite ease-in-out;
+    }
+    
+    .tech-label {
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: #3b82f6;
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      white-space: nowrap;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s;
+    }
+    
+    .tech-label:hover {
+      transform: translateY(-5px);
+      background: rgba(59, 130, 246, 0.2);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+    
+    @keyframes pulse-connection {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
+    }
+    
+    @keyframes float-particle {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+      25% { opacity: 0.7; }
+      75% { opacity: 0.7; }
+      100% {
+        transform: translateY(-70px) translateX(30px);
+        opacity: 0;
+      }
+    }
+    
+    @keyframes pulse-slow {
+      0%, 100% { opacity: 0.8; }
+      50% { opacity: 1; }
+    }
+
   `}} />
 </section>
 
 {/* Recensioni e collaborazioni - con sfondo nero e gradient */}
-<section className="py-24 relative overflow-hidden bg-background">
-  {/* Background elements */}
-  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-500/5 to-transparent"></div>
-  <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-indigo-500/10 filter blur-3xl"></div>
-  <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-violet-500/10 filter blur-3xl"></div>
+<section className="py-24 relative overflow-visible bg-background">
+  {/* Background elements migliorati */}
+  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-500/10 to-transparent"></div>
+  <div className="absolute -top-80 -right-40 w-[500px] h-[500px] rounded-full bg-indigo-500/20 filter blur-[80px] opacity-70"></div>
+  <div className="absolute -bottom-80 -left-40 w-[500px] h-[500px] rounded-full bg-violet-500/20 filter blur-[80px] opacity-70"></div>
   
   <div className="container mx-auto px-6 lg:px-12 relative z-10">
     <motion.div
@@ -1032,64 +1091,74 @@ const Home = () => {
   `}} />
 </section>
 
-{/* Enhanced CTA Section with interactive elements */}
-<section className="py-24 relative overflow-hidden">
-  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-500/5 to-transparent"></div>
-  <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-indigo-500/10 filter blur-3xl"></div>
-  <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-violet-500/10 filter blur-3xl"></div>
+{/* Enhanced CTA Section con effetti avanzati e form funzionante */}
+<section className="py-24 relative overflow-visible">
+  {/* Effetti di sfondo avanzati */}
+  <div className="absolute inset-0 opacity-80">
+    <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-transparent to-indigo-500/5"></div>
+    <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-transparent to-violet-500/5"></div>
+  </div>
+  
+  {/* Effetti luminosi posizionati strategicamente */}
+  <div className="absolute -top-80 -right-80 w-[800px] h-[800px] rounded-full bg-gradient-to-br from-indigo-600/10 via-violet-500/10 to-cyan-400/10 filter blur-[120px] opacity-70 animate-pulse-slow"></div>
+  <div className="absolute -bottom-80 -left-80 w-[800px] h-[800px] rounded-full bg-gradient-to-tr from-cyan-400/10 via-indigo-500/10 to-violet-500/10 filter blur-[120px] opacity-70 animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
+  
+  {/* Elementi decorativi fluttuanti */}
+  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    {/* Particelle luminose */}
+    <div className="particle-container">
+      {[...Array(12)].map((_, i) => (
+        <div 
+          key={i}
+          className="absolute rounded-full bg-white opacity-30 float-particle"
+          style={{
+            width: `${3 + Math.random() * 6}px`,
+            height: `${3 + Math.random() * 6}px`,
+            top: `${10 + Math.random() * 80}%`,
+            left: `${10 + Math.random() * 80}%`,
+            animationDuration: `${15 + Math.random() * 20}s`,
+            animationDelay: `${Math.random() * 5}s`
+          }}
+        ></div>
+      ))}
+    </div>
+    
+    {/* Forme geometriche */}
+    <div className="absolute top-[15%] left-[10%] w-16 h-16 border border-indigo-500/20 rounded-lg rotate-[15deg] float-element"></div>
+    <div className="absolute bottom-[20%] right-[10%] w-24 h-24 border border-violet-500/20 rounded-full float-element" style={{ animationDelay: '2s' }}></div>
+    <div className="absolute top-[60%] right-[15%] w-12 h-12 border border-cyan-500/20 rounded-lg rotate-[-20deg] float-element" style={{ animationDelay: '3s' }}></div>
+  </div>
   
   <div className="container mx-auto px-6 lg:px-12 relative z-10">
     <div className="relative">
-      {/* Interactive card with layered effect */}
-      <div className="glass border border-white/10 rounded-3xl p-8 lg:p-16 overflow-hidden relative shadow-2xl">
-        {/* Animated background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-violet-500/10 to-cyan-500/10"></div>
+      {/* Card principale con effetto glassmorphism migliorato */}
+      <div className="glass border border-white/10 rounded-3xl p-8 lg:p-0 overflow-hidden relative shadow-2xl backdrop-blur-xl">
+        {/* Accento luminoso superiore */}
+        <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500 opacity-80"></div>
         
-        {/* Animated particles */}
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(12)].map((_, i) => (
-            <div 
-              key={i}
-              className="absolute rounded-full bg-white/30"
-              style={{
-                width: `${3 + Math.random() * 8}px`,
-                height: `${3 + Math.random() * 8}px`,
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                animation: `float-particle ${5 + Math.random() * 15}s linear infinite`,
-                animationDelay: `${Math.random() * 5}s`,
-                opacity: 0.2 + Math.random() * 0.3
-              }}
-            ></div>
-          ))}
-        </div>
-        
-        {/* Colorful top border */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500"></div>
-        
-        {/* Content with 3D effect */}
-        <div className="relative z-10 mx-auto max-w-6xl">
-          <div className="grid gap-12 md:grid-cols-2 items-center">
-            {/* Left column - Text content */}
-            <div className="space-y-8">
+        <div className="grid lg:grid-cols-2 gap-0">
+          {/* Colonna sinistra - Contenuto */}
+          <div className="p-8 lg:p-14 lg:pr-8">
+            <div className="reveal-content">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.7 }}
               >
-                <div className="inline-block rounded-full glass px-4 py-1 border border-indigo-500/30 mb-6">
+                <div className="inline-block rounded-full glass px-4 py-1 border border-indigo-500/30 mb-6 reveal-item">
                   <span className="text-sm font-medium bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
-                    Il tuo futuro digitale inizia qui
+                    Trasformazione digitale
                   </span>
                 </div>
                 
-                <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
-                  Trasforma le <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">idee</span> in <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">innovazione</span>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight reveal-item">
+                  <span className="block">Potenzia il tuo business</span>
+                  <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">con soluzioni innovative</span>
                 </h2>
                 
-                <p className="text-lg text-foreground/80 mb-8">
-                  Inizia oggi un percorso personalizzato verso la trasformazione digitale del tuo business, con soluzioni su misura e all'avanguardia.
+                <p className="text-lg text-foreground/80 mb-8 max-w-lg reveal-item">
+                  Affidati a noi per trasformare la tua visione in realtà. Soluzioni tecnologiche su misura e strategie innovative per accelerare la crescita della tua azienda.
                 </p>
               </motion.div>
               
@@ -1097,154 +1166,271 @@ const Home = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="space-y-4"
+                transition={{ duration: 0.7, delay: 0.3 }}
+                className="space-y-6 reveal-item"
               >
-                {/* Statistics */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="glass p-4 rounded-xl border border-indigo-500/20 text-center">
-                    <div className="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">+45</div>
-                    <div className="text-sm text-foreground/70">Progetti completati</div>
-                  </div>
-                  
-                  <div className="glass p-4 rounded-xl border border-violet-500/20 text-center">
-                    <div className="text-2xl font-bold bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">100%</div>
-                    <div className="text-sm text-foreground/70">Soddisfazione clienti</div>
-                  </div>
+                {/* Punti di forza */}
+                <div className="space-y-4">
+                  {[
+                    { icon: <Check className="w-5 h-5 text-emerald-400" />, text: "Sviluppo con intelligenza artificiale 5 volte più veloce" },
+                    { icon: <Check className="w-5 h-5 text-emerald-400" />, text: "Team di professionisti con esperienza concreta" },
+                    { icon: <Check className="w-5 h-5 text-emerald-400" />, text: "Integrazione completa e supporto continuo" }
+                  ].map((point, index) => (
+                    <div key={index} className="flex items-start">
+                      <div className="p-1 rounded-full bg-emerald-500/10 mr-3 flex-shrink-0">
+                        {point.icon}
+                      </div>
+                      <span className="text-foreground/80">{point.text}</span>
+                    </div>
+                  ))}
                 </div>
                 
-                {/* CTA buttons */}
-                <div className="flex flex-wrap gap-4 pt-4">
-                  <Link
-                    to="/contact"
-                    className="px-8 py-4 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500 text-white rounded-xl hover:shadow-lg hover:shadow-indigo-500/30 transition-all hover:-translate-y-1 flex items-center group"
-                  >
-                    <span className="font-semibold">Contattaci ora</span>
-                    <div className="relative ml-2 w-6 h-6 rounded-full bg-white/20 flex items-center justify-center overflow-hidden group-hover:bg-white/30 transition-colors">
-                      <ArrowRight className="w-4 h-4 text-white relative z-10 transition-transform group-hover:translate-x-5 duration-300" />
-                      <ArrowRight className="w-4 h-4 text-white absolute -left-5 transition-transform group-hover:translate-x-5 duration-300" />
+                {/* Testimonianza in evidenza */}
+                <div className="glass p-4 rounded-xl border border-white/10 bg-white/5">
+                  <div className="flex items-center mb-3">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
+                    ))}
+                    <span className="ml-2 text-sm text-amber-400 font-medium">5.0/5.0</span>
+                  </div>
+                  <p className="text-sm text-foreground/70 italic">
+                    "La soluzione sviluppata ha rivoluzionato completamente il nostro workflow, riducendo i tempi del 70% e aumentando la produttività."
+                  </p>
+                  <div className="flex items-center mt-3">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 mr-2"></div>
+                    <div>
+                      <div className="text-sm font-medium">Marco Bianchi</div>
+                      <div className="text-xs text-foreground/60">CEO, TechVision</div>
                     </div>
-                  </Link>
-                  
-                  <Link
-                    to="/products"
-                    className="px-8 py-4 glass border border-white/20 hover:border-indigo-500/30 rounded-xl transition-all hover:-translate-y-1 flex items-center"
-                  >
-                    Soluzioni
-                  </Link>
+                  </div>
                 </div>
               </motion.div>
             </div>
+          </div>
+          
+          {/* Colonna destra - Form */}
+          <div className="relative lg:rounded-r-3xl overflow-hidden p-8 lg:p-14 lg:pl-8 bg-gradient-to-br from-indigo-900/20 via-violet-900/20 to-transparent">
+            {/* Effetto di bordo luminoso */}
+            <div className="absolute -inset-px lg:-right-px lg:left-0 rounded-3xl lg:rounded-l-none z-0 opacity-20 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 via-violet-500 to-cyan-500"></div>
+            </div>
             
-            {/* Right column - Interactive elements */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="relative z-10"
             >
-              {/* Interactive contact form preview */}
-              <div className="glass p-6 rounded-2xl shadow-xl border border-white/10 hover:border-violet-500/20 transition-all relative group overflow-hidden">
-                {/* Gradient accent */}
-                <div className="absolute -inset-px rounded-2xl overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500 opacity-20"></div>
-                </div>
-                
-                <div className="relative z-10">
-                  <div className="flex justify-between items-center mb-6">
-                    <h3 className="text-xl font-bold bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
-                      Iniziamo insieme
-                    </h3>
-                    <div className="flex space-x-2">
-                      <div className="w-3 h-3 rounded-full bg-rose-500"></div>
-                      <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                      <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                    </div>
-                  </div>
-                  
-                  {/* Form fields */}
-                  <div className="space-y-4 mb-6">
-                    <div className="glass p-3 rounded-lg bg-foreground/5 flex items-center border border-foreground/10 focus-within:border-violet-500/30 transition-colors group/input">
-                      <Mail className="w-5 h-5 text-foreground/50 mr-3 group-focus-within/input:text-violet-400 transition-colors" />
-                      <input 
-                        type="text" 
-                        placeholder="La tua email..." 
-                        className="bg-transparent w-full focus:outline-none text-foreground/80 placeholder:text-foreground/50"
-                        disabled
+              <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-indigo-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">
+                Iniziamo a collaborare
+              </h3>
+              
+              {/* Form funzionante */}
+              <form className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="form-group">
+                    <label htmlFor="name" className="text-sm text-foreground/70 mb-1 block">Nome</label>
+                    <div className="form-input-wrapper">
+                      <input
+                        id="name"
+                        type="text"
+                        className="w-full p-3 rounded-lg bg-white/5 border border-white/10 focus:border-violet-500/50 focus:outline-none transition-colors"
+                        placeholder="Il tuo nome"
                       />
                     </div>
-                    
-                    <div className="glass p-3 rounded-lg bg-foreground/5 border border-foreground/10 focus-within:border-violet-500/30 transition-colors">
-                      <textarea 
-                        placeholder="Raccontaci del tuo progetto..." 
-                        className="bg-transparent w-full focus:outline-none text-foreground/80 placeholder:text-foreground/50 min-h-[80px] resize-none"
-                        disabled
-                      ></textarea>
-                    </div>
                   </div>
                   
-                  {/* Interactive elements */}
-                  <div className="space-y-4">
-                    <div className="flex items-center p-3 glass rounded-lg hover:bg-indigo-500/10 transition-colors cursor-pointer group/item">
-                      <div className="w-10 h-10 rounded-full bg-indigo-500/20 flex items-center justify-center mr-4 group-hover/item:bg-indigo-500/30 transition-colors">
-                        <Phone className="w-5 h-5 text-indigo-400 group-hover/item:scale-110 transition-transform" />
-                      </div>
-                      <div>
-                        <div className="text-sm text-foreground/70">Chiamaci</div>
-                        <div className="font-medium">+39 02 1234 5678</div>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center p-3 glass rounded-lg hover:bg-violet-500/10 transition-colors cursor-pointer group/item">
-                      <div className="w-10 h-10 rounded-full bg-violet-500/20 flex items-center justify-center mr-4 group-hover/item:bg-violet-500/30 transition-colors">
-                        <Calendar className="w-5 h-5 text-violet-400 group-hover/item:scale-110 transition-transform" />
-                      </div>
-                      <div>
-                        <div className="text-sm text-foreground/70">Consulenza gratuita</div>
-                        <div className="font-medium">Prenota un appuntamento</div>
-                      </div>
+                  <div className="form-group">
+                    <label htmlFor="email" className="text-sm text-foreground/70 mb-1 block">Email</label>
+                    <div className="form-input-wrapper">
+                      <input
+                        id="email"
+                        type="email"
+                        className="w-full p-3 rounded-lg bg-white/5 border border-white/10 focus:border-violet-500/50 focus:outline-none transition-colors"
+                        placeholder="La tua email"
+                      />
                     </div>
                   </div>
-                  
-                  {/* Button with wave animation */}
-                  <button 
-                    className="w-full py-4 px-6 mt-6 bg-gradient-to-r from-indigo-500 to-violet-500 rounded-xl text-white font-semibold relative overflow-hidden group/btn"
-                    disabled
-                  >
-                    <span className="relative z-10">Invia messaggio</span>
-                    <div className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300">
-                      <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-violet-600"></div>
-                      <div className="absolute inset-y-0 -inset-x-40 bg-white/20 blur-2xl skew-x-12 animate-wave-slow"></div>
-                    </div>
-                  </button>
                 </div>
+                
+                <div className="form-group">
+                  <label htmlFor="company" className="text-sm text-foreground/70 mb-1 block">Azienda</label>
+                  <div className="form-input-wrapper">
+                    <input
+                      id="company"
+                      type="text"
+                      className="w-full p-3 rounded-lg bg-white/5 border border-white/10 focus:border-violet-500/50 focus:outline-none transition-colors"
+                      placeholder="Nome azienda"
+                    />
+                  </div>
+                </div>
+                
+                <div className="form-group">
+                  <label htmlFor="service" className="text-sm text-foreground/70 mb-1 block">Servizio di interesse</label>
+                  <div className="form-input-wrapper">
+                    <select
+                      id="service"
+                      className="w-full p-3 rounded-lg bg-white/5 border border-white/10 focus:border-violet-500/50 focus:outline-none transition-colors"
+                      defaultValue=""
+                    >
+                      <option value="" disabled>Seleziona un servizio</option>
+                      <option value="ai-agents">Agenti AI</option>
+                      <option value="software-pmi">Sviluppo Software</option>
+                      <option value="chatbots">Chatbot AI</option>
+                      <option value="developers">Team di Sviluppo</option>
+                      <option value="consulting">Consulenza IT</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div className="form-group">
+                  <label htmlFor="message" className="text-sm text-foreground/70 mb-1 block">Messaggio</label>
+                  <div className="form-input-wrapper">
+                    <textarea
+                      id="message"
+                      className="w-full p-3 rounded-lg bg-white/5 border border-white/10 focus:border-violet-500/50 focus:outline-none transition-colors resize-none"
+                      placeholder="Raccontaci del tuo progetto..."
+                    ></textarea>
+                  </div>
+                </div>
+                
+                <div className="flex items-center">
+                  <input 
+                    id="privacy" 
+                    type="checkbox"
+                    className="w-4 h-4 rounded border-white/30 text-indigo-500 focus:ring-indigo-500/50 bg-white/5"
+                  />
+                  <label htmlFor="privacy" className="ml-2 text-sm text-foreground/70">
+                    Accetto la <Link to="/privacy" className="text-indigo-400 hover:underline">Privacy Policy</Link>
+                  </label>
+                </div>
+                
+                {/* Pulsante animato */}
+                <button 
+                  type="submit" 
+                  className="w-full py-3 px-6 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500 rounded-lg text-white font-semibold relative overflow-hidden group mt-6 hover-gradient-btn"
+                >
+                  <span className="relative z-10">Invia richiesta</span>
+                  <span className="absolute inset-0 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 bg-gradient-to-r from-violet-600 via-indigo-600 to-violet-600"></span>
+                </button>
+              </form>
+              
+              {/* Opzioni alternative di contatto */}
+              <div className="mt-8 grid grid-cols-2 gap-4">
+                <Link to="/contact" className="flex items-center justify-center p-3 rounded-lg border border-white/10 hover:bg-white/5 transition-colors group">
+                  <Phone className="w-5 h-5 text-indigo-400 mr-2 group-hover:scale-110 transition-transform" />
+                  <span className="text-sm">Chiamaci</span>
+                </Link>
+                
+                <Link to="/contact#meeting" className="flex items-center justify-center p-3 rounded-lg border border-white/10 hover:bg-white/5 transition-colors group">
+                  <Calendar className="w-5 h-5 text-violet-400 mr-2 group-hover:scale-110 transition-transform" />
+                  <span className="text-sm">Prenota meeting</span>
+                </Link>
               </div>
             </motion.div>
           </div>
         </div>
       </div>
       
-      {/* Decorative elements */}
-      <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full border border-indigo-500/20 blur-sm"></div>
-      <div className="absolute -bottom-14 -left-14 w-64 h-64 rounded-full border border-violet-500/20 blur-sm"></div>
+      {/* Decorazione esterna */}
+      <div className="absolute -top-10 -left-10 w-40 h-40 border border-indigo-500/10 rounded-full"></div>
+      <div className="absolute -bottom-12 -right-12 w-60 h-60 border border-violet-500/10 rounded-full"></div>
     </div>
-  </div>
-  
-  {/* CSS for animations */}
-  <style dangerouslySetInnerHTML={{ __html: `
-    @keyframes float-particle {
-      0%, 100% { transform: translateY(0) translateX(0); }
-      25% { transform: translateY(-20px) translateX(10px); }
-      50% { transform: translateY(10px) translateX(-15px); }
-      75% { transform: translateY(-15px) translateX(-10px); }
-    }
     
-    @keyframes wave-slow {
-      0%, 100% { transform: translateX(-100%) skewX(12deg); }
-      50% { transform: translateX(100%) skewX(12deg); }
-    }
-  `}} />
+    {/* Partner e loghi aziendali */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.7, delay: 0.5 }}
+      className="mt-24 text-center"
+    >
+      <div className="text-sm text-foreground/50 mb-8">Collaboriamo con le migliori realtà</div>
+      
+      <div className="flex flex-wrap items-center justify-center gap-8">
+        {[1, 2, 3, 4, 5].map((i) => (
+          <div key={i} className="grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all">
+            {/* Placeholder per i loghi - sostituire con immagini reali */}
+            <div className="h-8 w-24 bg-foreground/20 rounded-md"></div>
+          </div>
+        ))}
+      </div>
+    </motion.div>
+  </div>
 </section>
+
+{/* Aggiungi stili CSS con dangerouslySetInnerHTML */}
+<div
+  dangerouslySetInnerHTML={{
+    __html: `
+      <style>
+        /* Animazioni */
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 0.5; transform: scale(1); }
+          50% { opacity: 0.7; transform: scale(1.05); }
+        }
+        
+        @keyframes float-particle-anim {
+          0% { transform: translateY(0) translateX(0); opacity: 0; }
+          20% { opacity: 0.8; }
+          80% { opacity: 0.8; }
+          100% { transform: translateY(-120px) translateX(40px); opacity: 0; }
+        }
+        
+        @keyframes float-element-anim {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-20px); }
+        }
+        
+        /* Applicazione animazioni */
+        .animate-pulse-slow {
+          animation: pulse-slow 8s infinite ease-in-out;
+        }
+        
+        .float-particle {
+          animation: float-particle-anim 15s infinite linear;
+        }
+        
+        .float-element {
+          animation: float-element-anim 10s infinite ease-in-out;
+        }
+        
+        /* Stili per il form */
+        .form-input-wrapper {
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .form-input-wrapper::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background: linear-gradient(to right, #6366f1, #8b5cf6, #06b6d4);
+          transform: scaleX(0);
+          transition: transform 0.3s ease;
+        }
+        
+        .form-input-wrapper:focus-within::after {
+          transform: scaleX(1);
+        }
+        
+        /* Effetto reveal sul contenuto */
+        .reveal-content .reveal-item {
+          transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        
+        /* Effetto hover sul bottone gradient */
+        .hover-gradient-btn:hover {
+          box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.5);
+        }
+      </style>
+    `,
+  }}
+/>
           
     
     </>

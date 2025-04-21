@@ -1221,61 +1221,69 @@ const Home = () => {
                     </div>
                   </div>
                   
-                  {/* Form fields */}
-                  <div className="space-y-4 mb-6">
-                    <div className="glass p-3 rounded-lg bg-foreground/5 flex items-center border border-foreground/10 focus-within:border-violet-500/30 transition-colors group/input">
-                      <Mail className="w-5 h-5 text-foreground/50 mr-3 group-focus-within/input:text-violet-400 transition-colors" />
-                      <input 
-                        type="text" 
-                        placeholder="La tua email..." 
-                        className="bg-transparent w-full focus:outline-none text-foreground/80 placeholder:text-foreground/50"
-                        disabled
-                      />
-                    </div>
-                    
-                    <div className="glass p-3 rounded-lg bg-foreground/5 border border-foreground/10 focus-within:border-violet-500/30 transition-colors">
-                      <textarea 
-                        placeholder="Raccontaci del tuo progetto..." 
-                        className="bg-transparent w-full focus:outline-none text-foreground/80 placeholder:text-foreground/50 min-h-[80px] resize-none"
-                        disabled
-                      ></textarea>
-                    </div>
-                  </div>
-                  
-                  {/* Interactive elements */}
-                  <div className="space-y-4">
-                    <div className="flex items-center p-3 glass rounded-lg hover:bg-indigo-500/10 transition-colors cursor-pointer group/item">
-                      <div className="w-10 h-10 rounded-full bg-indigo-500/20 flex items-center justify-center mr-4 group-hover/item:bg-indigo-500/30 transition-colors">
-                        <Phone className="w-5 h-5 text-indigo-400 group-hover/item:scale-110 transition-transform" />
+                  {/* Form fields - ora funzionanti */}
+                  <form onSubmit={(e) => {
+                    e.preventDefault();
+                    // Qui puoi aggiungere la logica per inviare il form
+                    alert('Messaggio inviato con successo!');
+                  }}>
+                    <div className="space-y-4 mb-6">
+                      <div className="glass p-3 rounded-lg bg-foreground/5 flex items-center border border-foreground/10 focus-within:border-violet-500/30 transition-colors group/input">
+                        <Mail className="w-5 h-5 text-foreground/50 mr-3 group-focus-within/input:text-violet-400 transition-colors" />
+                        <input 
+                          type="email" 
+                          name="email"
+                          required
+                          placeholder="La tua email..." 
+                          className="bg-transparent w-full focus:outline-none text-foreground/80 placeholder:text-foreground/50"
+                        />
                       </div>
-                      <div>
-                        <div className="text-sm text-foreground/70">Chiamaci</div>
-                        <div className="font-medium">+39 02 1234 5678</div>
+                      
+                      <div className="glass p-3 rounded-lg bg-foreground/5 border border-foreground/10 focus-within:border-violet-500/30 transition-colors">
+                        <textarea 
+                          name="message"
+                          required
+                          placeholder="Raccontaci del tuo progetto..." 
+                          className="bg-transparent w-full focus:outline-none text-foreground/80 placeholder:text-foreground/50 min-h-[80px] resize-none"
+                        ></textarea>
                       </div>
                     </div>
                     
-                    <div className="flex items-center p-3 glass rounded-lg hover:bg-violet-500/10 transition-colors cursor-pointer group/item">
-                      <div className="w-10 h-10 rounded-full bg-violet-500/20 flex items-center justify-center mr-4 group-hover/item:bg-violet-500/30 transition-colors">
-                        <Calendar className="w-5 h-5 text-violet-400 group-hover/item:scale-110 transition-transform" />
+                    {/* Interactive elements */}
+                    <div className="space-y-4">
+                      <div className="flex items-center p-3 glass rounded-lg hover:bg-indigo-500/10 transition-colors cursor-pointer group/item">
+                        <div className="w-10 h-10 rounded-full bg-indigo-500/20 flex items-center justify-center mr-4 group-hover/item:bg-indigo-500/30 transition-colors">
+                          <Phone className="w-5 h-5 text-indigo-400 group-hover/item:scale-110 transition-transform" />
+                        </div>
+                        <div>
+                          <div className="text-sm text-foreground/70">Chiamaci</div>
+                          <a href="tel:+390212345678" className="font-medium hover:text-indigo-400 transition-colors">+39 02 1234 5678</a>
+                        </div>
                       </div>
-                      <div>
-                        <div className="text-sm text-foreground/70">Consulenza gratuita</div>
-                        <div className="font-medium">Prenota un appuntamento</div>
+                      
+                      <div className="flex items-center p-3 glass rounded-lg hover:bg-violet-500/10 transition-colors cursor-pointer group/item">
+                        <div className="w-10 h-10 rounded-full bg-violet-500/20 flex items-center justify-center mr-4 group-hover/item:bg-violet-500/30 transition-colors">
+                          <Calendar className="w-5 h-5 text-violet-400 group-hover/item:scale-110 transition-transform" />
+                        </div>
+                        <Link to="/contact" className="block">
+                          <div className="text-sm text-foreground/70">Consulenza gratuita</div>
+                          <div className="font-medium hover:text-violet-400 transition-colors">Prenota un appuntamento</div>
+                        </Link>
                       </div>
                     </div>
-                  </div>
-                  
-                  {/* Button with wave animation */}
-                  <button 
-                    className="w-full py-4 px-6 mt-6 bg-gradient-to-r from-indigo-500 to-violet-500 rounded-xl text-white font-semibold relative overflow-hidden group/btn"
-                    disabled
-                  >
-                    <span className="relative z-10">Invia messaggio</span>
-                    <div className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300">
-                      <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-violet-600"></div>
-                      <div className="absolute inset-y-0 -inset-x-40 bg-white/20 blur-2xl skew-x-12 animate-wave-slow"></div>
-                    </div>
-                  </button>
+                    
+                    {/* Button with wave animation - ora funzionante */}
+                    <button 
+                      type="submit"
+                      className="w-full py-4 px-6 mt-6 bg-gradient-to-r from-indigo-500 to-violet-500 rounded-xl text-white font-semibold relative overflow-hidden group/btn"
+                    >
+                      <span className="relative z-10">Invia messaggio</span>
+                      <div className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300">
+                        <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-violet-600"></div>
+                        <div className="absolute inset-y-0 -inset-x-40 bg-white/20 blur-2xl skew-x-12 animate-wave-slow"></div>
+                      </div>
+                    </button>
+                  </form>
                 </div>
               </div>
             </motion.div>

@@ -385,117 +385,242 @@ const Products = () => {
   return (
     <div className="min-h-screen pt-28 pb-16" ref={containerRef}>
       {/* Hero Section con effetti visivi avanzati */}
-      <section className="relative mb-24 overflow-hidden">
-        {/* Background elements animati */}
-        <div className="absolute top-0 left-0 w-full h-full opacity-60 pointer-events-none">
-          <div 
-            className="absolute top-0 left-0 w-full h-full"
-            style={{
-              background: `radial-gradient(circle at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.1), transparent 60%)`
-            }}
-          />
-        </div>
-        
-        <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-indigo-500/10 filter blur-3xl" />
-        <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-violet-500/10 filter blur-3xl" />
-        
-        <div className="container mx-auto px-6 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto mb-12"
-          >
-            <div className="inline-block px-4 py-1 rounded-full bg-gradient-to-r from-indigo-500/10 to-violet-500/10 border border-indigo-500/20 mb-4">
-              <span className="text-sm font-medium bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
-                Soluzioni Digitali Premium
-              </span>
-            </div>
-            
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              <span className="block mb-2">Accelera la tua crescita con</span>
-              <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-blue-400 bg-clip-text text-transparent">
-                soluzioni AI innovative
-              </span>
-            </h1>
-            
-            <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-              Un ecosistema completo di prodotti progettati per trasformare il tuo business
-              attraverso intelligenza artificiale, automazione e analisi avanzata
-            </p>
+<section className="relative mb-24 overflow-hidden min-h-[85vh] flex items-center" 
+         ref={containerRef} // Riferimento diretto alla sezione per calcolare correttamente la posizione del mouse
+>
+  {/* Background elements animati - linee più visibili e gradiente che segue precisamente il mouse */}
+  <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+    {/* Sfondo base scuro per evitare stacchi visibili nella parte superiore */}
+    <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background/95"></div>
+    
+    {/* Gradiente mouse più preciso che segue esattamente il mouse su tutta la sezione */}
+    <div 
+      className="absolute inset-0 opacity-70"
+      style={{
+        background: `radial-gradient(circle 200px at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, 
+                    rgba(99, 102, 241, 0.12), 
+                    rgba(139, 92, 246, 0.08), 
+                    transparent)`,
+        transition: 'background 0.05s linear'
+      }}
+    />
+    
+    {/* Luminosità aggiuntiva verso il fondo per la transizione alla wave */}
+    <div className="absolute bottom-0 left-0 w-full h-[25%] bg-gradient-to-t from-indigo-500/8 to-transparent"></div>
+    
+    {/* Elementi geometrici animati */}
+    <div className="absolute inset-0">
+      {/* Linee orizzontali animate - più visibili */}
+      {[...Array(5)].map((_, i) => (
+        <div 
+          key={`line-h-${i}`}
+          className="absolute h-[1.5px] bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent"
+          style={{
+            top: `${25 + i * 15}%`,
+            width: '120%',
+            left: '-10%',
+            animation: `slideX ${12 + i * 4}s linear infinite ${i * 1.5}s`,
+            opacity: 0.6
+          }}
+        />
+      ))}
+      
+      {/* Linee verticali animate - più visibili */}
+      {[...Array(5)].map((_, i) => (
+        <div 
+          key={`line-v-${i}`}
+          className="absolute w-[1.5px] bg-gradient-to-b from-transparent via-violet-500/20 to-transparent"
+          style={{
+            left: `${20 + i * 15}%`,
+            height: '120%',
+            top: '-10%',
+            animation: `slideY ${15 + i * 3}s linear infinite ${i * 1}s`,
+            opacity: 0.5
+          }}
+        />
+      ))}
+      
+      {/* Grid di punti piccoli (per effetto matrix) */}
+      {[...Array(20)].map((_, i) => (
+        <div 
+          key={`dot-${i}`}
+          className="absolute w-1 h-1 rounded-full bg-indigo-500/15"
+          style={{
+            top: `${5 + (i * 19) % 90}%`,
+            left: `${7 + (i * 13) % 85}%`,
+            animation: `blink ${2 + i % 3}s ease-in-out infinite ${i * 0.2}s`
+          }}
+        />
+      ))}
+      
+      {/* Piccoli cerchi che fluttuano - più visibili */}
+      {[...Array(8)].map((_, i) => (
+        <div 
+          key={`circle-${i}`}
+          className="absolute rounded-full border-2 border-indigo-500/20"
+          style={{
+            width: `${6 + (i % 3) * 4}px`,
+            height: `${6 + (i % 3) * 4}px`,
+            top: `${15 + (i * 8) % 70}%`,
+            left: `${20 + (i * 7) % 65}%`,
+            animation: `float ${7 + i * 2}s ease-in-out infinite ${i * 0.5}s`,
+            opacity: 0.5
+          }}
+        />
+      ))}
+      
+      {/* Quadrati rotanti più visibili */}
+      {[...Array(6)].map((_, i) => (
+        <div 
+          key={`square-${i}`}
+          className="absolute border-2 border-violet-500/15"
+          style={{
+            width: `${8 + (i % 3) * 4}px`,
+            height: `${8 + (i % 3) * 4}px`,
+            top: `${20 + (i * 10) % 60}%`,
+            left: `${15 + (i * 12) % 70}%`,
+            animation: `rotate ${12 + i * 3}s linear infinite ${i * 0.7}s`,
+            opacity: 0.4
+          }}
+        />
+      ))}
+      
+      {/* Triangoli (div ruotati) - più visibili */}
+      {[...Array(4)].map((_, i) => (
+        <div 
+          key={`triangle-${i}`}
+          className="absolute border-t-2 border-r-2 border-indigo-500/15"
+          style={{
+            width: `${10 + (i % 3) * 5}px`,
+            height: `${10 + (i % 3) * 5}px`,
+            top: `${30 + (i * 15) % 50}%`,
+            left: `${25 + (i * 20) % 50}%`,
+            transform: 'rotate(45deg)',
+            animation: `rotate ${10 + i * 4}s linear infinite reverse ${i * 1.2}s`,
+            opacity: 0.35
+          }}
+        />
+      ))}
+    </div>
+  </div>
+  
+  <div className="container mx-auto px-6 relative z-10">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="text-center max-w-4xl mx-auto"
+    >
+      {/* Badge premium */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.3, duration: 0.5 }}
+        className="inline-flex items-center px-4 py-1.5 rounded-full bg-gradient-to-r from-indigo-500/10 to-violet-500/10 border border-indigo-500/20 mb-6"
+      >
+        <div className="w-2 h-2 rounded-full bg-indigo-500 mr-2" 
+             style={{ animation: 'ping-slow 3s cubic-bezier(0, 0, 0.2, 1) infinite' }} />
+        <span className="text-sm font-medium bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
+          Tecnologia All'Avanguardia
+        </span>
+      </motion.div>
+      
+      {/* Headline principale */}
+      <motion.h1 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5, duration: 0.6 }}
+        className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
+      >
+        <span className="block mb-2">Accelera la crescita aziendale con l'integrazione di   </span>
+        <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-blue-400 bg-clip-text text-transparent inline-block">
+           soluzioni AI.
+       
+        </span>
+      </motion.h1>
+      
+      {/* Sottotitolo ottimizzato per conversione */}
+      <motion.p 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6, duration: 0.6 }}
+        className="text-xl text-foreground/80 max-w-3xl mx-auto mb-10"
+      >
+        La nostra suite di prodotti AI è progettata per <strong>automatizzare i processi</strong>, 
+        <strong> ridurre i costi operativi</strong> e <strong>massimizzare il ROI</strong> della tua azienda 
+        in una frazione del tempo rispetto ai metodi tradizionali.
+      </motion.p>
 
-            {/* CTA primaria */}
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Link 
-                to="/contact"
-                className="px-6 py-3 bg-gradient-to-r from-indigo-500 to-violet-500 text-white rounded-lg hover:shadow-lg hover:shadow-indigo-500/30 transition-all hover:-translate-y-1 flex items-center group"
-              >
-                <span className="font-medium">Prenota una demo gratuita</span>
-                <div className="relative ml-2 w-6 h-6 rounded-full bg-white/20 flex items-center justify-center overflow-hidden group-hover:bg-white/30 transition-colors">
-                  <ArrowRight className="w-4 h-4 text-white relative z-10 transition-transform group-hover:translate-x-5 duration-300" />
-                  <ArrowRight className="w-4 h-4 text-white absolute -left-5 transition-transform group-hover:translate-x-5 duration-300" />
-                </div>
-              </Link>
-              
-              <a 
-                href="#products"
-                className="px-6 py-3 border border-indigo-500/30 text-foreground hover:bg-primary/10 rounded-lg transition-all hover:-translate-y-1"
-              >
-                Esplora soluzioni
-              </a>
-            </div>
-          </motion.div>
-          
-          {/* Statistiche con effetto gradiente */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-10">
-            {[
-              { icon: <Rocket className="w-5 h-5" />, value: "45+", label: "Progetti completati", color: "from-indigo-400 to-blue-400" },
-              { icon: <TrendingUp className="w-5 h-5" />, value: "32%", label: "ROI medio clienti", color: "from-violet-400 to-purple-400" },
-              { icon: <Clock className="w-5 h-5" />, value: "78%", label: "Riduzione tempi", color: "from-cyan-400 to-blue-400" },
-              { icon: <Users className="w-5 h-5" />, value: "1200+", label: "Utenti soddisfatti", color: "from-emerald-400 to-green-400" }
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 + (index * 0.1), duration: 0.5 }}
-                className="glass p-4 rounded-xl border border-indigo-500/20 text-center hover:border-indigo-500/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-indigo-500/10"
-              >
-                <div className="flex items-center justify-center mb-2">
-                  <div className={`w-10 h-10 rounded-full bg-gradient-to-r ${stat.color} flex items-center justify-center text-white`}>
-                    {stat.icon}
-                  </div>
-                </div>
-                <div className={`text-3xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-1`}>
-                  {stat.value}
-                </div>
-                <div className="text-foreground/70 text-sm">{stat.label}</div>
-              </motion.div>
-            ))}
+      {/* CTA primarie ottimizzate per conversione */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8, duration: 0.6 }}
+        className="mt-8 flex flex-wrap justify-center gap-4"
+      >
+        <Link 
+          to="/demo"
+          className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-lg hover:shadow-lg hover:shadow-indigo-500/30 transition-all hover:-translate-y-1 flex items-center font-medium group"
+        >
+          <span>Prenota una demo personalizzata</span>
+          <div className="relative ml-2 w-6 h-6 rounded-full bg-white/20 flex items-center justify-center overflow-hidden group-hover:bg-white/30 transition-colors">
+            <ArrowRight className="w-4 h-4 text-white relative z-10 transition-transform group-hover:translate-x-5 duration-300" />
+            <ArrowRight className="w-4 h-4 text-white absolute -left-5 transition-transform group-hover:translate-x-5 duration-300" />
           </div>
+        </Link>
+        
+        <a 
+          href="#products"
+          className="px-8 py-4 border-2 border-indigo-500/40 text-indigo-500 font-medium hover:bg-indigo-500/10 rounded-lg transition-all hover:-translate-y-1"
+        >
+          Scopri le soluzioni
+        </a>
+      </motion.div>
+    </motion.div>
+  </div>
 
-          {/* Animazione prodotti in evidenza */}
-          <div className="relative mt-20 overflow-hidden h-24">
-            <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent z-10"></div>
-            <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background to-transparent z-10"></div>
-            
-            <div className="animate-infinite-scroll flex items-center gap-8">
-              {[...Array(2)].map((_, sliderIndex) => (
-                <React.Fragment key={sliderIndex}>
-                 
-                </React.Fragment>
-              ))}
-            </div>
-          </div>
-        </div>
+  {/* Wave divider - assicuriamoci che sia presente */}
+  <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+    <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-indigo-500/8 to-transparent"></div>
+    <svg className="relative block w-full h-8 sm:h-16" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" className="fill-background"></path>
+    </svg>
+  </div>
+</section>
 
-        {/* Wave divider */}
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
-          <svg className="relative block w-full h-8 sm:h-16" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" className="fill-background"></path>
-          </svg>
-        </div>
-      </section>
+{/* Stili personalizzati per animazioni */}
+<style dangerouslySetInnerHTML={{ __html: `
+  @keyframes ping-slow {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+  }
+  
+  @keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  @keyframes slideX {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  
+  @keyframes slideY {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+  
+  @keyframes blink {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.8; }
+  }
+`}} />
       
       {/* Filtro per industria */}
       <section id="products" className="container mx-auto px-6 mb-16">

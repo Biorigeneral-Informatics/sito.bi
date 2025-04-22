@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight, Bot, BrainCircuit, CheckCircle, Code, Database,
-  Globe, ExternalLink, Laptop, Shield, Zap, Star,
+  Globe, ExternalLink, Shield, Zap, Star,
   ArrowUpRight, Rocket, GitMerge, BarChart, Smartphone,
   Phone, Mail, Users, ChevronRight, Heart, Sparkles,
   MessageSquare, ThumbsUp, Download, ListChecks,
@@ -25,7 +25,7 @@ const Products = () => {
   const [selectedIndustry, setSelectedIndustry] = useState<string>("all");
   const [feedbackVisible, setFeedbackVisible] = useState(false);
   const [compareOpen, setCompareOpen] = useState(false);
-  const [inViewFeature, setInViewFeature] = useState(0);
+  const [, setInViewFeature] = useState(0);
 
   // Gestione movimento mouse per effetti interattivi
   useEffect(() => {

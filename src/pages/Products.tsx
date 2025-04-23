@@ -12,7 +12,19 @@ import {
   FileCheck,
   FileText,
   TrendingUp,
-  Clock
+  Clock,
+  Search,
+  Brain,
+  Send,
+  BarChart3,
+  Cable,
+  Workflow,
+  Bell,
+  GitBranch,
+  ChevronLeft,
+  Grid,
+  FilesIcon,
+  Lightbulb
 } from 'lucide-react';
 import React from 'react';
 
@@ -382,6 +394,14 @@ const Products = () => {
     );
   };
 
+  function setActiveProduct(index: number): void {
+    throw new Error('Function not implemented.');
+  }
+
+  function handlePrevProduct(): void {
+    throw new Error('Function not implemented.');
+  }
+
   return (
     <div className="min-h-screen pt-28 pb-16" ref={containerRef}>
       {/* Hero Section con effetti visivi avanzati */}
@@ -622,139 +642,1063 @@ const Products = () => {
   }
 `}} />
       
-      {/* Filtro per industria */}
-      <section id="products" className="container mx-auto px-6 mb-16">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold mb-4">Soluzioni per la tua industria</h2>
-            <p className="text-foreground/70">Scopri i prodotti perfetti per il tuo settore</p>
-          </div>
-          
-          <div className="flex flex-wrap justify-center gap-2 mb-10">
-            {industries.map((industry) => (
-              <button
-                key={industry.id}
-                onClick={() => setSelectedIndustry(industry.id)}
-                className={`px-4 py-2 rounded-full text-sm transition-all ${
-                  selectedIndustry === industry.id 
-                    ? 'bg-indigo-500 text-white' 
-                    : 'bg-foreground/5 hover:bg-foreground/10 border border-foreground/10'
-                }`}
-              >
-                {industry.name}
-              </button>
-            ))}
-          </div>
+      {/* Sezione prodotti digitali con carousel orizzontale */}
+<section id="solutions" className="container mx-auto px-6 py-24">
+  <div className="max-w-6xl mx-auto">
+    <div className="text-center mb-16">
+      <motion.div 
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="inline-block px-4 py-1 rounded-full bg-gradient-to-r from-indigo-500/10 to-violet-500/10 border border-indigo-500/20 mb-4">
+          <span className="text-sm font-medium bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
+            Innovazione e Automazione
+          </span>
         </div>
-      </section>
+        <h2 className="text-4xl font-bold mb-5 leading-tight">
+          Soluzioni <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-blue-400 bg-clip-text text-transparent">avanzate</span> per il tuo business
+        </h2>
+        <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
+          Tecnologie innovative che trasformano processi complessi in flussi di lavoro automatizzati, 
+          offrendo efficienza e precisione senza precedenti
+        </p>
+      </motion.div>
+    </div>
+    
+    {/* Filtri per categoria con animazione di selezione */}
+    <div className="flex justify-center mb-20">
+      <div className="glass px-1.5 py-1.5 rounded-full border border-indigo-500/20 inline-flex">
+        {[
+          { id: 'all', name: 'Tutti', icon: <Grid className="w-4 h-4" /> },
+          { id: 'workflow', name: 'Workflow', icon: <Workflow className="w-4 h-4" /> },
+          { id: 'intelligence', name: 'Intelligence', icon: <BrainCircuit className="w-4 h-4" /> },
+          { id: 'communication', name: 'Communication', icon: <MessageSquare className="w-4 h-4" /> },
+          { id: 'documents', name: 'Documents', icon: <FilesIcon className="w-4 h-4" /> }
+        ].map((category) => (
+          <button
+            key={category.id}
+            onClick={() => setSelectedIndustry(category.id)}
+            className={`relative px-6 py-2.5 rounded-full transition-all duration-300 z-10 flex items-center ${
+              selectedIndustry === category.id ? 'text-white' : 'hover:bg-foreground/5'
+            }`}
+          >
+            <span className="mr-2">{category.icon}</span>
+            {category.name}
+            {selectedIndustry === category.id && (
+              <motion.div
+                layoutId="active-category"
+                className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-violet-500 to-indigo-600 rounded-full"
+                initial={false}
+                transition={{ type: "spring", stiffness: 250, damping: 25 }}
+                style={{ zIndex: -1 }}
+              />
+            )}
+          </button>
+        ))}
+      </div>
+    </div>
+    
+    {/* Carousel prodotti orizzontale con frecce */}
+    <div className="relative">
+      {/* Frecce di navigazione */}
+      <div className="absolute top-1/2 -left-12 transform -translate-y-1/2 z-30">
+        <button 
+          onClick={() => handlePrevProduct()}
+          className="w-10 h-10 rounded-full glass border border-indigo-500/20 flex items-center justify-center text-indigo-500 hover:bg-indigo-500/10 transition-colors"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+      </div>
       
-      {/* Prodotti principali - Tab view e cards interattive */}
-      <section className="container mx-auto px-6 mb-24">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Soluzioni principali</h2>
-          <p className="text-foreground/70 max-w-2xl mx-auto">
-            Prodotti all'avanguardia che trasformano il tuo business attraverso AI avanzata e automazione intelligente
-          </p>
-        </div>
-        
-        {/* Tabs di navigazione con indicatore animato */}
-        <div className="flex justify-center mb-6 relative">
-          <div className="glass px-1 py-1 rounded-full border border-indigo-500/20 inline-flex">
-            {filteredProducts(mainProducts, selectedIndustry).map((product, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveTab(index)}
-                className={`relative px-5 py-2 rounded-full transition-all duration-300 z-10 ${
-                  activeTab === index ? 'text-white' : 'hover:bg-foreground/5'
-                }`}
-              >
-                {product.title}
-                {activeTab === index && (
-                  <motion.div
-                    layoutId="active-tab"
-                    className={`absolute inset-0 bg-gradient-to-r ${product.gradient} rounded-full`}
-                    initial={false}
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    style={{ zIndex: -1 }}
-                  />
-                )}
-              </button>
-            ))}
-          </div>
-        </div>
-        
-        {/* Contenuti prodotti con animazione */}
-        <div className="relative min-h-[650px]">
-          {filteredProducts(mainProducts, selectedIndustry).map((product, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ 
-                opacity: activeTab === index ? 1 : 0,
-                x: activeTab === index ? 0 : 20,
-                zIndex: activeTab === index ? 1 : 0
-              }}
-              transition={{ duration: 0.4 }}
-              className={`absolute inset-0 ${activeTab !== index ? 'pointer-events-none' : ''}`}
-            >
-              <div className="glass rounded-2xl overflow-hidden border border-indigo-500/20 h-full">
-                <div className="grid md:grid-cols-2 h-full">
-                  {/* Colonna sinistra - Dettagli prodotto */}
-                  <div className="p-8 flex flex-col h-full">
-                    <div className="flex items-center mb-4">
-                      <div className={`p-2 rounded-lg bg-${product.color}-500/20 mr-4`}>
-                        {React.cloneElement(product.icon, { className: `w-8 h-8 text-${product.color}-400` })}
-                      </div>
-                      <div>
-                        <h3 className={`text-3xl font-bold bg-gradient-to-r from-${product.color}-400 to-${product.color}-500 bg-clip-text text-transparent`}>
-                          {product.subtitle}
-                        </h3>
-                        <p className="text-foreground/60 text-sm">{product.title}</p>
+      <div className="absolute top-1/2 -right-12 transform -translate-y-1/2 z-30">
+        <button 
+          onClick={() => handlePrevProduct()}
+          className="w-10 h-10 rounded-full glass border border-indigo-500/20 flex items-center justify-center text-indigo-500 hover:bg-indigo-500/10 transition-colors"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
+      </div>
+      
+      {/* Prodotti carousel */}
+      <motion.div 
+        className="overflow-hidden"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="relative">
+          <motion.div 
+            className="flex"
+            animate={{ x: -setActiveProduct * 100 + '%' }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          >
+            {/* NexusFlow */}
+            <div className="w-full flex-shrink-0">
+              <div className="relative">
+                <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500/5 via-transparent to-violet-500/5 rounded-3xl blur-xl"></div>
+                
+                <div className="glass rounded-2xl border border-indigo-500/20 overflow-hidden relative z-10 hover:border-indigo-500/40 transition-all hover:shadow-xl hover:shadow-indigo-500/10">
+                  <div className="grid md:grid-cols-2 h-full">
+                    {/* Demo interattiva - Lato sinistro */}
+                    <div className="bg-gradient-to-br from-indigo-500/10 via-indigo-600/10 to-violet-700/20 relative overflow-hidden h-full min-h-[380px]">
+                      {/* Demo animata - Workflow builder */}
+                      <div className="absolute inset-0 flex items-center justify-center p-8">
+                        <div className="w-full max-w-md mx-auto">
+                          <div className="relative z-10 group">
+                            {/* Workspace canvas */}
+                            <div className="glass border border-white/20 rounded-xl overflow-hidden shadow-xl bg-background/70 backdrop-blur-md p-6">
+                              <div className="flex items-center justify-between mb-6">
+                                <div className="flex items-center">
+                                  <div className="w-8 h-8 rounded-lg bg-indigo-500 text-white flex items-center justify-center shadow-md">
+                                    <Workflow className="w-4 h-4" />
+                                  </div>
+                                  <span className="ml-2 font-medium text-sm">Nexus Workspace</span>
+                                </div>
+                                <div className="flex space-x-2">
+                                  <div className="w-2.5 h-2.5 rounded-full bg-rose-400"></div>
+                                  <div className="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
+                                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
+                                </div>
+                              </div>
+                              
+                              {/* Workflow nodes and connections - animated on hover */}
+                              <div className="relative" style={{ height: "240px" }}>
+                                {/* Connection lines with animation */}
+                                <svg className="absolute inset-0 w-full h-full overflow-visible" style={{ zIndex: 0 }}>
+                                  {/* Email to Process Connection */}
+                                  <path 
+                                    d="M60,60 C120,60 120,120 180,120" 
+                                    fill="none" 
+                                    stroke="url(#line-gradient-1)" 
+                                    strokeWidth="2" 
+                                    className="workflow-connection"
+                                  />
+                                  
+                                  {/* Process to Decision Connection */}
+                                  <path 
+                                    d="M240,120 C280,120 280,180 320,180" 
+                                    fill="none" 
+                                    stroke="url(#line-gradient-2)" 
+                                    strokeWidth="2" 
+                                    className="workflow-connection"
+                                    style={{ animationDelay: "0.2s" }}
+                                  />
+                                  
+                                  {/* Decision to DB Connection */}
+                                  <path 
+                                    d="M320,210 C320,240 240,240 240,210" 
+                                    fill="none" 
+                                    stroke="url(#line-gradient-3)" 
+                                    strokeWidth="2" 
+                                    className="workflow-connection"
+                                    style={{ animationDelay: "0.4s" }}
+                                  />
+                                  
+                                  {/* Decision to Notification Connection */}
+                                  <path 
+                                    d="M350,180 C400,180 400,60 340,60" 
+                                    fill="none" 
+                                    stroke="url(#line-gradient-4)" 
+                                    strokeWidth="2" 
+                                    className="workflow-connection"
+                                    style={{ animationDelay: "0.6s" }}
+                                  />
+                                  
+                                  {/* Animated data flow particles */}
+                                  <circle className="workflow-particle" r="3" fill="#818cf8">
+                                    <animateMotion
+                                      path="M60,60 C120,60 120,120 180,120 C280,120 280,180 320,180 C320,240 240,240 240,210"
+                                      dur="3s"
+                                      repeatCount="indefinite"
+                                    />
+                                  </circle>
+                                  
+                                  <circle className="workflow-particle" r="3" fill="#c4b5fd" style={{ animationDelay: "1.5s" }}>
+                                    <animateMotion
+                                      path="M60,60 C120,60 120,120 180,120 C280,120 280,180 320,180 C400,180 400,60 340,60"
+                                      dur="4s"
+                                      repeatCount="indefinite"
+                                    />
+                                  </circle>
+                                  
+                                  {/* Gradient definitions */}
+                                  <defs>
+                                    <linearGradient id="line-gradient-1" x1="0%" y1="0%" x2="100%" y2="0%">
+                                      <stop offset="0%" stopColor="#6366f1" />
+                                      <stop offset="100%" stopColor="#8b5cf6" />
+                                    </linearGradient>
+                                    <linearGradient id="line-gradient-2" x1="0%" y1="0%" x2="100%" y2="0%">
+                                      <stop offset="0%" stopColor="#8b5cf6" />
+                                      <stop offset="100%" stopColor="#a78bfa" />
+                                    </linearGradient>
+                                    <linearGradient id="line-gradient-3" x1="0%" y1="0%" x2="100%" y2="0%">
+                                      <stop offset="0%" stopColor="#a78bfa" />
+                                      <stop offset="100%" stopColor="#818cf8" />
+                                    </linearGradient>
+                                    <linearGradient id="line-gradient-4" x1="0%" y1="0%" x2="100%" y2="0%">
+                                      <stop offset="0%" stopColor="#a78bfa" />
+                                      <stop offset="100%" stopColor="#6366f1" />
+                                    </linearGradient>
+                                  </defs>
+                                </svg>
+                                
+                                {/* Nodes */}
+                                <div className="absolute top-10 left-10 workflow-node">
+                                  <div className="w-16 h-16 rounded-xl bg-indigo-500 text-white flex flex-col items-center justify-center shadow-lg shadow-indigo-500/30 relative z-10 workflow-pulse">
+                                    <Mail className="w-6 h-6 mb-1" />
+                                    <span className="text-[10px] opacity-80">Trigger</span>
+                                  </div>
+                                </div>
+                                
+                                <div className="absolute top-[100px] left-[180px] workflow-node" style={{ animationDelay: "0.2s" }}>
+                                  <div className="w-16 h-16 rounded-xl bg-violet-500 text-white flex flex-col items-center justify-center shadow-lg shadow-violet-500/30 relative z-10 workflow-pulse">
+                                    <FileText className="w-6 h-6 mb-1" />
+                                    <span className="text-[10px] opacity-80">Process</span>
+                                  </div>
+                                </div>
+                                
+                                <div className="absolute top-[160px] left-[320px] workflow-node" style={{ animationDelay: "0.4s" }}>
+                                  <div className="w-16 h-16 rounded-xl bg-purple-500 text-white flex flex-col items-center justify-center shadow-lg shadow-purple-500/30 relative z-10 workflow-pulse">
+                                    <GitBranch className="w-6 h-6 mb-1" />
+                                    <span className="text-[10px] opacity-80">Decision</span>
+                                  </div>
+                                </div>
+                                
+                                <div className="absolute top-[190px] left-[220px] workflow-node" style={{ animationDelay: "0.6s" }}>
+                                  <div className="w-16 h-16 rounded-xl bg-blue-500 text-white flex flex-col items-center justify-center shadow-lg shadow-blue-500/30 relative z-10 workflow-pulse">
+                                    <Database className="w-6 h-6 mb-1" />
+                                    <span className="text-[10px] opacity-80">Storage</span>
+                                  </div>
+                                </div>
+                                
+                                <div className="absolute top-[40px] left-[320px] workflow-node" style={{ animationDelay: "0.8s" }}>
+                                  <div className="w-16 h-16 rounded-xl bg-sky-500 text-white flex flex-col items-center justify-center shadow-lg shadow-sky-500/30 relative z-10 workflow-pulse">
+                                    <Bell className="w-6 h-6 mb-1" />
+                                    <span className="text-[10px] opacity-80">Notify</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     
-                    <p className="text-foreground/70 mb-6">{product.description}</p>
-
-                    
-                    
-                    <div className="mt-auto flex space-x-4">
-                      <Link 
-                        to={`/products/${product.id}`}
-                        className={`px-5 py-2 bg-${product.color}-500 hover:bg-${product.color}-600 text-white rounded-lg flex items-center transition-all hover:shadow-lg hover:shadow-${product.color}-500/20`}
-                      >
-                        Scopri di più <ArrowRight className="ml-2 w-5 h-5" />
-                      </Link>
+                    {/* Content - Lato destro */}
+                    <div className="p-8 flex flex-col h-full">
+                      <div className="mb-2">
+                        <div className="inline-block px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-medium text-indigo-400 mb-1">
+                          Workflow Automation
+                        </div>
+                      </div>
                       
-                      <Link 
-                        to="/contact"
-                        className="px-5 py-2 glass border border-foreground/20 hover:border-foreground/40 rounded-lg flex items-center transition-all"
-                      >
-                        Richiedi demo <ExternalLink className="ml-2 w-4 h-4" />
-                      </Link>
+                      <div className="flex items-center mb-5">
+                        <div className="mr-3 relative">
+                          <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white shadow-md shadow-indigo-500/20">
+                            <Workflow className="w-6 h-6" />
+                          </div>
+                          <div className="absolute -right-1 -bottom-1 w-6 h-6 rounded-full bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center text-white shadow-sm shadow-violet-500/30 text-xs">
+                            AI
+                          </div>
+                        </div>
+                        <h3 className="text-2xl font-bold">NexusFlow</h3>
+                      </div>
+                      
+                      <p className="text-base text-foreground/80 mb-6 flex-grow">
+                        Sistema avanzato di automazione workflow che integra intelligenza artificiale per creare, ottimizzare e gestire 
+                        processi aziendali complessi. Connette perfettamente applicazioni, dati e team eliminando attività ripetitive 
+                        e facilitando decisioni basate sui dati in tempo reale.
+                      </p>
+                      
+                      <div className="grid grid-cols-2 gap-4 mb-6">
+                        <div className="bg-gradient-to-br from-indigo-500/5 to-indigo-500/10 rounded-xl p-4 border border-indigo-500/20">
+                          <h4 className="font-semibold text-sm flex items-center mb-2">
+                            <Zap className="w-4 h-4 text-indigo-400 mr-2" />
+                            Automazione intelligente
+                          </h4>
+                          <p className="text-sm text-foreground/70">
+                            Suggerimenti di automazione basati su AI che ottimizzano i flussi di lavoro esistenti.
+                          </p>
+                        </div>
+                        
+                        <div className="bg-gradient-to-br from-indigo-500/5 to-indigo-500/10 rounded-xl p-4 border border-indigo-500/20">
+                          <h4 className="font-semibold text-sm flex items-center mb-2">
+                            <Cable className="w-4 h-4 text-indigo-400 mr-2" />
+                            Connettori universali
+                          </h4>
+                          <p className="text-sm text-foreground/70">
+                            Oltre 300+ integrazioni precostituite per un'automazione completa.
+                          </p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex justify-between items-center">
+                        <div className="flex items-center">
+                          <span className="text-sm text-foreground/70 mr-3">A partire da:</span>
+                          <span className="font-semibold text-xl">€490<span className="text-foreground/60 text-sm font-normal">/mese</span></span>
+                        </div>
+                        
+                        <div className="flex items-center gap-3">
+                          <Link 
+                            to="/products/nexusflow" 
+                            className="text-indigo-400 hover:text-indigo-500 transition-colors font-medium text-sm flex items-center"
+                          >
+                            Demo <ExternalLink className="w-3.5 h-3.5 ml-1" />
+                          </Link>
+                          
+                          <Link 
+                            to="/products/nexusflow"
+                            className="px-5 py-2.5 bg-gradient-to-r from-indigo-500 to-violet-600 text-white rounded-lg flex items-center transition-all hover:shadow-md hover:shadow-indigo-500/20 text-sm font-medium"
+                          >
+                            Scopri di più <ArrowRight className="ml-1.5 w-4 h-4" />
+                          </Link>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  
-            
                 </div>
               </div>
-            </motion.div>
-          ))}
+            </div>
+            
+            {/* QuantumInsight */}
+            <div className="w-full flex-shrink-0">
+              <div className="relative">
+                <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/5 via-transparent to-blue-500/5 rounded-3xl blur-xl"></div>
+                
+                <div className="glass rounded-2xl border border-cyan-500/20 overflow-hidden relative z-10 hover:border-cyan-500/40 transition-all hover:shadow-xl hover:shadow-cyan-500/10">
+                  <div className="grid md:grid-cols-2 h-full">
+                    {/* Content - Lato sinistro */}
+                    <div className="p-8 flex flex-col h-full">
+                      <div className="mb-2">
+                        <div className="inline-block px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-xs font-medium text-cyan-400 mb-1">
+                          Data Intelligence
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center mb-5">
+                        <div className="mr-3 relative">
+                          <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white shadow-md shadow-cyan-500/20">
+                            <BarChart3 className="w-6 h-6" />
+                          </div>
+                          <div className="absolute -right-1 -bottom-1 w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center text-white shadow-sm shadow-blue-500/30 text-xs">
+                            AI
+                          </div>
+                        </div>
+                        <h3 className="text-2xl font-bold">QuantumInsight</h3>
+                      </div>
+                      
+                      <p className="text-base text-foreground/80 mb-6 flex-grow">
+                        Piattaforma di business intelligence potenziata da AI che trasforma i dati grezzi in previsioni 
+                        accurate e approfondimenti strategici. Combina analisi predittiva, rilevamento anomalie e dashboard 
+                        personalizzabili per decisioni aziendali basate su dati in tempo reale.
+                      </p>
+                      
+                      <div className="grid grid-cols-2 gap-4 mb-6">
+                        <div className="bg-gradient-to-br from-cyan-500/5 to-cyan-500/10 rounded-xl p-4 border border-cyan-500/20">
+                          <h4 className="font-semibold text-sm flex items-center mb-2">
+                            <BrainCircuit className="w-4 h-4 text-cyan-400 mr-2" />
+                            Analisi predittiva
+                          </h4>
+                          <p className="text-sm text-foreground/70">
+                            Previsioni di tendenze future con modelli ML che analizzano pattern e anomalie.
+                          </p>
+                        </div>
+                        
+                        <div className="bg-gradient-to-br from-cyan-500/5 to-cyan-500/10 rounded-xl p-4 border border-cyan-500/20">
+                          <h4 className="font-semibold text-sm flex items-center mb-2">
+                            <Lightbulb className="w-4 h-4 text-cyan-400 mr-2" />
+                            Insights automatici
+                          </h4>
+                          <p className="text-sm text-foreground/70">
+                            Identificazione automatica di correlazioni, anomalie e opportunità nascoste.
+                          </p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex justify-between items-center">
+                        <div className="flex items-center">
+                          <span className="text-sm text-foreground/70 mr-3">A partire da:</span>
+                          <span className="font-semibold text-xl">€590<span className="text-foreground/60 text-sm font-normal">/mese</span></span>
+                        </div>
+                        
+                        <div className="flex items-center gap-3">
+                          <Link 
+                            to="/products/quantuminsight" 
+                            className="text-cyan-400 hover:text-cyan-500 transition-colors font-medium text-sm flex items-center"
+                          >
+                            Demo <ExternalLink className="w-3.5 h-3.5 ml-1" />
+                          </Link>
+                          
+                          <Link 
+                            to="/products/quantuminsight"
+                            className="px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-lg flex items-center transition-all hover:shadow-md hover:shadow-cyan-500/20 text-sm font-medium"
+                          >
+                            Scopri di più <ArrowRight className="ml-1.5 w-4 h-4" />
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Demo - Lato destro */}
+                    <div className="bg-gradient-to-br from-cyan-500/10 via-blue-600/10 to-blue-700/20 relative overflow-hidden h-full min-h-[380px]">
+                      {/* Demo animata - Analytics dashboard */}
+                      <div className="absolute inset-0 flex items-center justify-center p-8">
+                        <div className="w-full max-w-md mx-auto">
+                          <div className="relative z-10">
+                            <div className="glass border border-white/20 rounded-xl overflow-hidden shadow-xl bg-background/70 backdrop-blur-md">
+                              <div className="bg-gradient-to-r from-cyan-500/90 to-blue-600/90 py-3 px-4 text-white flex items-center justify-between">
+                                <div className="flex items-center">
+                                  <BarChart3 className="w-4 h-4 mr-2" />
+                                  <span className="text-sm font-medium">Performance Insights</span>
+                                </div>
+                                <div className="flex space-x-1">
+                                  <div className="w-5 h-5 rounded-full bg-background/10 flex items-center justify-center text-[8px]">D</div>
+                                  <div className="w-5 h-5 rounded-full bg-background/10 flex items-center justify-center text-[8px]">W</div>
+                                  <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center text-[8px] font-medium">M</div>
+                                  <div className="w-5 h-5 rounded-full bg-background/10 flex items-center justify-center text-[8px]">Y</div>
+                                </div>
+                              </div>
+                              
+                              <div className="p-4">
+                                <div className="flex justify-between mb-4">
+                                  <div className="text-xs text-foreground/60">Ottobre 2023 - Aprile 2024</div>
+                                  <div className="bg-cyan-500/20 px-2 py-0.5 rounded text-xs text-cyan-500 flex items-center">
+                                    <TrendingUp className="w-3 h-3 mr-1" />
+                                    <span>+24.8%</span>
+                                  </div>
+                                </div>
+                                
+                                {/* Chart with animation */}
+                                <div className="relative h-40 mb-3">
+                                  <svg className="w-full h-full" preserveAspectRatio="none">
+                                    {/* Background grid */}
+                                    <line x1="0" y1="0" x2="100%" y2="0" stroke="#e2e8f0" strokeWidth="0.5" strokeDasharray="4" className="opacity-20" />
+                                    <line x1="0" y1="25%" x2="100%" y2="25%" stroke="#e2e8f0" strokeWidth="0.5" strokeDasharray="4" className="opacity-20" />
+                                    <line x1="0" y1="50%" x2="100%" y2="50%" stroke="#e2e8f0" strokeWidth="0.5" strokeDasharray="4" className="opacity-20" />
+                                    <line x1="0" y1="75%" x2="100%" y2="75%" stroke="#e2e8f0" strokeWidth="0.5" strokeDasharray="4" className="opacity-20" />
+                                    <line x1="0" y1="100%" x2="100%" y2="100%" stroke="#e2e8f0" strokeWidth="0.5" className="opacity-20" />
+                                    
+                                    {/* Animated Area Chart */}
+                                    <path 
+                                      d="M0,100 L0,70 C20,65 40,80 60,60 C80,40 100,50 120,30 C140,15 160,25 180,15 C200,5 220,20 240,10 C260,0 280,5 300,15 L300,100 Z" 
+                                      fill="url(#chart-gradient)" 
+                                      className="chart-area-animation"
+                                    />
+                                    
+                                    {/* Animated Line */}
+                                    <path 
+                                      d="M0,70 C20,65 40,80 60,60 C80,40 100,50 120,30 C140,15 160,25 180,15 C200,5 220,20 240,10 C260,0 280,5 300,15" 
+                                      fill="none" 
+                                      stroke="url(#line-gradient)" 
+                                      strokeWidth="2" 
+                                      className="chart-line-animation"
+                                    />
+                                    
+                                    {/* Data Points */}
+                                    <circle cx="0" cy="70" r="4" fill="#06b6d4" className="chart-point-animation" style={{ animationDelay: "0.1s" }} />
+                                    <circle cx="60" cy="60" r="4" fill="#06b6d4" className="chart-point-animation" style={{ animationDelay: "0.3s" }} />
+                                    <circle cx="120" cy="30" r="4" fill="#06b6d4" className="chart-point-animation" style={{ animationDelay: "0.5s" }} />
+                                    <circle cx="180" cy="15" r="4" fill="#06b6d4" className="chart-point-animation" style={{ animationDelay: "0.7s" }} />
+                                    <circle cx="240" cy="10" r="4" fill="#06b6d4" className="chart-point-animation" style={{ animationDelay: "0.9s" }} />
+                                    <circle cx="300" cy="15" r="4" fill="#06b6d4" className="chart-point-animation" style={{ animationDelay: "1.1s" }} />
+                                    
+                                    {/* Gradient definitions */}
+                                    <defs>
+                                      <linearGradient id="chart-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.3" />
+                                        <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.05" />
+                                      </linearGradient>
+                                      <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" stopColor="#06b6d4" />
+                                        <stop offset="100%" stopColor="#0ea5e9" />
+                                      </linearGradient>
+                                    </defs>
+                                  </svg>
+                                </div>
+                                
+                                {/* KPI Cards */}
+                                <div className="grid grid-cols-3 gap-2">
+                                  <div className="glass rounded-lg p-2 border border-white/10 text-center">
+                                    <div className="text-xs text-foreground/60">Conversioni</div>
+                                    <div className="text-sm font-semibold text-cyan-500 flex items-center justify-center">
+                                      3.8%
+                                      <TrendingUp className="w-3 h-3 ml-1 text-emerald-500" />
+                                    </div>
+                                  </div>
+                                  
+                                  <div className="glass rounded-lg p-2 border border-white/10 text-center">
+                                    <div className="text-xs text-foreground/60">Ricavi</div>
+                                    <div className="text-sm font-semibold text-cyan-500 flex items-center justify-center">
+                                      €28.5K
+                                      <TrendingUp className="w-3 h-3 ml-1 text-emerald-500" />
+                                    </div>
+                                  </div>
+                                  
+                                  <div className="glass rounded-lg p-2 border border-white/10 text-center">
+                                    <div className="text-xs text-foreground/60">Retention</div>
+                                    <div className="text-sm font-semibold text-cyan-500 flex items-center justify-center">
+                                      84%
+                                      <TrendingUp className="w-3 h-3 ml-1 text-emerald-500" />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* SynapseChat */}
+            <div className="w-full flex-shrink-0">
+              <div className="relative">
+                <div className="absolute -inset-4 bg-gradient-to-r from-violet-500/5 via-transparent to-purple-500/5 rounded-3xl blur-xl"></div>
+                
+                <div className="glass rounded-2xl border border-violet-500/20 overflow-hidden relative z-10 hover:border-violet-500/40 transition-all hover:shadow-xl hover:shadow-violet-500/10">
+                  <div className="grid md:grid-cols-2 h-full">
+                    {/* Demo interattiva - Lato sinistro */}
+                    <div className="bg-gradient-to-br from-violet-500/10 via-violet-600/10 to-purple-700/20 relative overflow-hidden h-full min-h-[380px]">
+                      {/* Demo animata - Conversazione AI */}
+                      <div className="absolute inset-0 flex items-center justify-center p-8">
+                        <div className="w-full max-w-md mx-auto">
+                          <div className="relative z-10 group">
+                            <div className="glass border border-white/20 rounded-xl overflow-hidden shadow-xl bg-background/70 backdrop-blur-md">
+                              <div className="bg-gradient-to-r from-violet-500/90 to-purple-600/90 py-3 px-4 text-white flex items-center justify-between">
+                                <div className="flex items-center">
+                                  <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center mr-3">
+                                    <Bot className="w-4 h-4" />
+                                  </div>
+                                  <div>
+                                    <div className="text-sm font-medium">Synapse</div>
+                                    <div className="text-xs text-white/70">AI Assistant</div>
+                                  </div>
+                                </div>
+                                <div className="flex space-x-2">
+                                  <div className="w-2.5 h-2.5 rounded-full bg-white/30"></div>
+                                  <div className="w-2.5 h-2.5 rounded-full bg-white/30"></div>
+                                  <div className="w-2.5 h-2.5 rounded-full bg-white/30"></div>
+                                </div>
+                              </div>
+                              
+                              <div className="p-4 h-[280px] overflow-hidden">
+                                {/* Chat Messages */}
+                                <div className="space-y-4">
+                                  <div className="flex items-start">
+                                    <div className="w-8 h-8 rounded-full bg-violet-500/20 flex items-center justify-center mr-2 flex-shrink-0">
+                                      <Bot className="w-4 h-4 text-violet-400" />
+                                    </div>
+                                    <div className="bg-violet-500/10 rounded-lg rounded-tl-none p-3 max-w-[80%] text-sm border border-violet-500/20">
+                                      <p>Buongiorno! Sono Synapse, il tuo assistente AI. Come posso aiutarti oggi?</p>
+                                    </div>
+                                  </div>
+                                  
+                                  <div className="flex justify-end">
+                                    <div className="bg-violet-500/20 rounded-lg rounded-tr-none p-3 max-w-[80%] text-sm">
+                                      <p>Ho un problema con l'ordine #45678. Non ho ricevuto conferma di spedizione.</p>
+                                    </div>
+                                  </div>
+                                  
+                                  <div className="flex items-start">
+                                    <div className="w-8 h-8 rounded-full bg-violet-500/20 flex items-center justify-center mr-2 flex-shrink-0">
+                                      <Bot className="w-4 h-4 text-violet-400" />
+                                    </div>
+                                    <div className="bg-violet-500/10 rounded-lg rounded-tl-none p-3 max-w-[80%] text-sm border border-violet-500/20">
+                                      <p className="chat-typing-animation">Sto verificando il tuo ordine #45678...</p>
+                                    </div>
+                                  </div>
+                                  
+                                  {/* Message that appears on hover */}
+                                  <div className="flex items-start transition-opacity duration-500 opacity-0 group-hover:opacity-100" style={{ transitionDelay: "0.5s" }}>
+                                    <div className="w-8 h-8 rounded-full bg-violet-500/20 flex items-center justify-center mr-2 flex-shrink-0">
+                                      <Bot className="w-4 h-4 text-violet-400" />
+                                    </div>
+                                    <div className="bg-violet-500/10 rounded-lg rounded-tl-none p-3 max-w-[80%] text-sm border border-violet-500/20">
+                                      <p>Ho trovato il tuo ordine. La spedizione è stata elaborata oggi alle 09:24. Il corriere ha già preso in carico il pacco e riceverai l'email di tracking entro un'ora. Posso aiutarti con altro?</p>
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                                {/* Input area */}
+                                <div className="absolute bottom-4 left-4 right-4">
+                                  <div className="glass border border-white/20 rounded-full bg-background/60 backdrop-blur-sm flex items-center p-1 pl-4">
+                                    <input type="text" placeholder="Scrivi un messaggio..." className="bg-transparent border-0 outline-none flex-grow text-sm" />
+                                    <button className="w-8 h-8 rounded-full bg-violet-500 flex items-center justify-center text-white">
+                                      <Send className="w-4 h-4" />
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Content - Lato destro */}
+                    <div className="p-8 flex flex-col h-full">
+                      <div className="mb-2">
+                        <div className="inline-block px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/20 text-xs font-medium text-violet-400 mb-1">
+                          Conversational AI
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center mb-5">
+                        <div className="mr-3 relative">
+                          <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white shadow-md shadow-violet-500/20">
+                            <MessageSquare className="w-6 h-6" />
+                          </div>
+                          <div className="absolute -right-1 -bottom-1 w-6 h-6 rounded-full bg-gradient-to-br from-purple-500 to-fuchsia-600 flex items-center justify-center text-white shadow-sm shadow-purple-500/30 text-xs">
+                            AI
+                          </div>
+                        </div>
+                        <h3 className="text-2xl font-bold">SynapseChat</h3>
+                      </div>
+                      
+                      <p className="text-base text-foreground/80 mb-6 flex-grow">
+                        Piattaforma di conversazione AI avanzata che trasforma il servizio clienti e l'assistenza. 
+                        Con comprensione del linguaggio naturale, memoria contestuale e integrazione multicanale, 
+                        offre esperienze conversazionali fluide che risolvono problemi complessi in modo autonomo.
+                      </p>
+                      
+                      <div className="grid grid-cols-2 gap-4 mb-6">
+                        <div className="bg-gradient-to-br from-violet-500/5 to-violet-500/10 rounded-xl p-4 border border-violet-500/20">
+                          <h4 className="font-semibold text-sm flex items-center mb-2">
+                            <Brain className="w-4 h-4 text-violet-400 mr-2" />
+                            Memoria contestuale
+                          </h4>
+                          <p className="text-sm text-foreground/70">
+                            Ricorda l'intera storia del cliente e personalizza le interazioni.
+                          </p>
+                        </div>
+                        
+                        <div className="bg-gradient-to-br from-violet-500/5 to-violet-500/10 rounded-xl p-4 border border-violet-500/20">
+                          <h4 className="font-semibold text-sm flex items-center mb-2">
+                            <Globe className="w-4 h-4 text-violet-400 mr-2" />
+                            Supporto multilingua
+                          </h4>
+                          <p className="text-sm text-foreground/70">
+                            Comunica fluentemente in 29 lingue con comprensione di sfumature culturali.
+                          </p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex justify-between items-center">
+                        <div className="flex items-center">
+                          <span className="text-sm text-foreground/70 mr-3">A partire da:</span>
+                          <span className="font-semibold text-xl">€390<span className="text-foreground/60 text-sm font-normal">/mese</span></span>
+                        </div>
+                        
+                        <div className="flex items-center gap-3">
+                          <Link 
+                            to="/products/synapsechat" 
+                            className="text-violet-400 hover:text-violet-500 transition-colors font-medium text-sm flex items-center"
+                          >
+                            Demo <ExternalLink className="w-3.5 h-3.5 ml-1" />
+                          </Link>
+                          
+                          <Link 
+                            to="/products/synapsechat"
+                            className="px-5 py-2.5 bg-gradient-to-r from-violet-500 to-purple-600 text-white rounded-lg flex items-center transition-all hover:shadow-md hover:shadow-violet-500/20 text-sm font-medium"
+                          >
+                            Scopri di più <ArrowRight className="ml-1.5 w-4 h-4" />
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* OmniDoc */}
+            <div className="w-full flex-shrink-0">
+              <div className="relative">
+                <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/5 via-transparent to-green-500/5 rounded-3xl blur-xl"></div>
+                
+                <div className="glass rounded-2xl border border-emerald-500/20 overflow-hidden relative z-10 hover:border-emerald-500/40 transition-all hover:shadow-xl hover:shadow-emerald-500/10">
+                  <div className="grid md:grid-cols-2 h-full">
+                    {/* Content - Lato sinistro */}
+                    <div className="p-8 flex flex-col h-full">
+                      <div className="mb-2">
+                        <div className="inline-block px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-medium text-emerald-400 mb-1">
+                          Document Intelligence
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center mb-5">
+                        <div className="mr-3 relative">
+                          <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center text-white shadow-md shadow-emerald-500/20">
+                            <FileSearch className="w-6 h-6" />
+                          </div>
+                          <div className="absolute -right-1 -bottom-1 w-6 h-6 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center text-white shadow-sm shadow-green-500/30 text-xs">
+                            AI
+                          </div>
+                        </div>
+                        <h3 className="text-2xl font-bold">OmniDoc</h3>
+                      </div>
+                      
+                      <p className="text-base text-foreground/80 mb-6 flex-grow">
+                        Piattaforma di intelligenza documentale che automatizza l'estrazione e l'elaborazione di informazioni da qualsiasi tipo di documento. 
+                        Utilizza AI avanzata per riconoscere, classificare e digitalizzare dati da fatture, contratti e moduli, 
+                        eliminando l'inserimento manuale e riducendo gli errori.
+                      </p>
+                      
+                      <div className="grid grid-cols-2 gap-4 mb-6">
+                        <div className="bg-gradient-to-br from-emerald-500/5 to-emerald-500/10 rounded-xl p-4 border border-emerald-500/20">
+                          <h4 className="font-semibold text-sm flex items-center mb-2">
+                            <FileCheck className="w-4 h-4 text-emerald-400 mr-2" />
+                            Estrazione di precisione
+                          </h4>
+                          <p className="text-sm text-foreground/70">
+                            Riconosce e estrae dati con una precisione del 99.3%, superando l'OCR tradizionale.
+                          </p>
+                        </div>
+                        
+                        <div className="bg-gradient-to-br from-emerald-500/5 to-emerald-500/10 rounded-xl p-4 border border-emerald-500/20">
+                          <h4 className="font-semibold text-sm flex items-center mb-2">
+                            <Search className="w-4 h-4 text-emerald-400 mr-2" />
+                            Ricerca semantica
+                          </h4>
+                          <p className="text-sm text-foreground/70">
+                            Indicizzazione intelligente che permette di cercare documenti per concetti.
+                          </p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex justify-between items-center">
+                        <div className="flex items-center">
+                          <span className="text-sm text-foreground/70 mr-3">A partire da:</span>
+                          <span className="font-semibold text-xl">€450<span className="text-foreground/60 text-sm font-normal">/mese</span></span>
+                        </div>
+                        
+                        <div className="flex items-center gap-3">
+                          <Link 
+                            to="/products/omnidoc" 
+                            className="text-emerald-400 hover:text-emerald-500 transition-colors font-medium text-sm flex items-center"
+                          >
+                            Demo <ExternalLink className="w-3.5 h-3.5 ml-1" />
+                          </Link>
+                          
+                          <Link 
+                            to="/products/omnidoc"
+                            className="px-5 py-2.5 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-lg flex items-center transition-all hover:shadow-md hover:shadow-emerald-500/20 text-sm font-medium"
+                          >
+                            Scopri di più <ArrowRight className="ml-1.5 w-4 h-4" />
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Demo - Lato destro */}
+                    <div className="bg-gradient-to-br from-emerald-500/10 via-green-600/10 to-green-700/20 relative overflow-hidden h-full min-h-[380px]">
+                      {/* Demo animata - Document processing */}
+                      <div className="absolute inset-0 flex items-center justify-center p-8">
+                        <div className="w-full max-w-md mx-auto">
+                          <div className="relative z-10 group">
+                            {/* Document with annotations */}
+                            <div className="glass border border-white/20 rounded-xl overflow-hidden shadow-xl bg-background/70 backdrop-blur-md p-5">
+                              <div className="flex justify-between items-center mb-4">
+                                <div className="flex items-center">
+                                  <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center mr-2">
+                                    <FileText className="w-4 h-4 text-emerald-400" />
+                                  </div>
+                                  <span className="text-sm font-medium">Estrazione intelligente</span>
+                                </div>
+                                <div className="flex items-center">
+                                  <div className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-xs text-emerald-400 flex items-center">
+                                    <CheckCircle className="w-3 h-3 mr-1" />
+                                    <span>99.3% match</span>
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              {/* Document UI */}
+                              <div className="relative bg-white dark:bg-gray-900 rounded-lg overflow-hidden">
+                                {/* Document header */}
+                                <div className="border-b border-emerald-500/20 p-3">
+                                  <div className="flex justify-between items-center">
+                                    <div className="w-24 h-8 bg-emerald-500/20 rounded doc-element"></div>
+                                    <div className="w-20 h-6 bg-emerald-500/10 rounded doc-element"></div>
+                                  </div>
+                                </div>
+                                
+                                {/* Document content */}
+                                <div className="p-4 relative">
+                                  {/* Document structure */}
+                                  <div className="space-y-4">
+                                    <div className="flex items-baseline gap-1">
+                                      <div className="w-16 h-4 bg-emerald-500/10 rounded doc-element"></div>
+                                      <div className="w-40 h-4 bg-emerald-500/30 rounded doc-element ml-2"></div>
+                                    </div>
+                                    
+                                    <div className="space-y-2">
+                                      <div className="w-full h-3 bg-emerald-500/10 rounded doc-element"></div>
+                                      <div className="w-full h-3 bg-emerald-500/10 rounded doc-element"></div>
+                                      <div className="w-3/4 h-3 bg-emerald-500/10 rounded doc-element"></div>
+                                    </div>
+                                    
+                                    <div className="flex items-baseline gap-1">
+                                      <div className="w-20 h-4 bg-emerald-500/10 rounded doc-element"></div>
+                                      <div className="w-32 h-4 bg-emerald-500/30 rounded doc-element ml-2"></div>
+                                    </div>
+                                    
+                                    <div className="space-y-2">
+                                      <div className="w-full h-3 bg-emerald-500/10 rounded doc-element"></div>
+                                      <div className="w-5/6 h-3 bg-emerald-500/10 rounded doc-element"></div>
+                                    </div>
+                                    
+                                    <div className="flex justify-between pt-2 border-t border-emerald-500/20">
+                                      <div className="w-24 h-5 bg-emerald-500/10 rounded doc-element"></div>
+                                      <div className="w-20 h-5 bg-emerald-500/30 rounded doc-element"></div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              {/* Extracted data result */}
+                              <div className="mt-4 border-t border-emerald-500/20 pt-4">
+                                <h4 className="text-xs font-medium mb-2">Dati estratti</h4>
+                                <div className="grid grid-cols-2 gap-3">
+                                  <div className="glass p-2 rounded-lg bg-emerald-500/5 border border-emerald-500/20">
+                                    <div className="text-xs text-foreground/60">Cliente</div>
+                                    <div className="text-sm font-medium text-emerald-500 doc-extracted-data">ABC Corp</div>
+                                  </div>
+                                  
+                                  <div className="glass p-2 rounded-lg bg-emerald-500/5 border border-emerald-500/20">
+                                    <div className="text-xs text-foreground/60">Fattura #</div>
+                                    <div className="text-sm font-medium text-emerald-500 doc-extracted-data">INV-2024-0562</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            {/* Document stack effect */}
+                            <div className="absolute -z-10 -bottom-3 -right-3 w-full h-full border border-white/10 rounded-xl bg-background/50 transform rotate-2"></div>
+                            <div className="absolute -z-20 -bottom-6 -right-6 w-full h-full border border-white/5 rounded-xl bg-background/30 transform rotate-4"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
+      </motion.div>
+      
+    </div>
+    
+    {/* Soluzioni personalizzate - versione semplificata */}
+    <div className="mt-20 relative">
+      <div className="glass rounded-xl border border-indigo-500/20 p-8 text-center">
+        <h3 className="text-2xl font-bold mb-3">
+          <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-blue-400 bg-clip-text text-transparent">
+            Soluzioni personalizzate
+          </span>
+        </h3>
         
-        {/* Messaggio se non ci sono prodotti per l'industria selezionata */}
-        {filteredProducts(mainProducts, selectedIndustry).length === 0 && (
-          <div className="glass p-10 rounded-2xl text-center">
-            <h3 className="text-2xl font-bold mb-4">Nessun prodotto principale per questa industria</h3>
-            <p className="text-foreground/70 mb-6">Abbiamo soluzioni personalizzate per il tuo settore. Contattaci per scoprire come possiamo aiutarti.</p>
-            <Link 
-              to="/contact"
-              className="px-6 py-3 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg inline-flex items-center transition-all hover:shadow-lg"
-            >
-              Contattaci per una consulenza <ArrowRight className="ml-2 w-5 h-5" />
-            </Link>
-          </div>
-        )}
-      </section>
+        <p className="text-foreground/70 max-w-2xl mx-auto mb-6">
+          Il nostro team di esperti è pronto a sviluppare soluzioni su misura per le tue specifiche esigenze aziendali.
+        </p>
+        
+        <Link 
+          to="/contact"
+          className="px-6 py-3 bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-lg hover:shadow-lg hover:shadow-indigo-500/30 transition-all hover:-translate-y-1 inline-flex items-center font-medium"
+        >
+          Richiedi una consulenza
+          <ArrowRight className="ml-2 w-5 h-5" />
+        </Link>
+      </div>
+    </div>
+  </div>
+  
+  {/* Stili CSS per animazioni avanzate */}
+  <style dangerouslySetInnerHTML={{ __html: `
+    /* Workflow animations */
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+      50% { box-shadow: 0 0 10px 3px rgba(99, 102, 241, 0.6); }
+    }
+    
+    .workflow-pulse {
+      animation: pulse-glow 3s infinite ease-in-out;
+    }
+    
+    .workflow-node {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: appear 0.5s forwards ease-out;
+    }
+    
+    @keyframes appear {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .workflow-connection {
+      stroke-dasharray: 15;
+      stroke-dashoffset: 150;
+      animation: dash 3s linear infinite;
+    }
+    
+    @keyframes dash {
+      to { stroke-dashoffset: 0; }
+    }
+    
+    .workflow-particle {
+      opacity: 0;
+      animation: particle-fade 2s infinite ease-in-out;
+    }
+    
+    @keyframes particle-fade {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+    
+    /* Chart animations */
+    .chart-area-animation {
+      opacity: 0;
+      animation: fade-in 1s forwards ease-out 0.5s;
+    }
+    
+    .chart-line-animation {
+      stroke-dasharray: 500;
+      stroke-dashoffset: 500;
+      animation: draw 2s forwards ease-out;
+    }
+    
+    @keyframes draw {
+      to { stroke-dashoffset: 0; }
+    }
+    
+    .chart-point-animation {
+      opacity: 0;
+      animation: point-appear 0.5s forwards ease-out;
+    }
+    
+    @keyframes point-appear {
+      to { opacity: 1; }
+    }
+    
+    /* Chat animations */
+    .chat-typing-animation::after {
+      content: "";
+      animation: typing 1.5s infinite;
+    }
+    
+    @keyframes typing {
+      0% { content: ""; }
+      25% { content: "."; }
+      50% { content: ".."; }
+      75% { content: "..."; }
+    }
+    
+    /* Document animations */
+    .doc-element {
+      opacity: 0.7;
+      animation: pulse-element 3s infinite ease-in-out;
+    }
+    
+    @keyframes pulse-element {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+    
+    .doc-extracted-data {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .doc-extracted-data::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.2), transparent);
+      animation: shine-effect 3s infinite;
+    }
+    
+    @keyframes shine-effect {
+      0% { left: -100%; }
+      50%, 100% { left: 100%; }
+    }
+    
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  `}} />
+</section>
+
+{/* Script di gestione navigazione carousel */}
+<script dangerouslySetInnerHTML={{ __html: `
+  // Gestione del carousel di prodotti
+  const handlePrevProduct = () => {
+    const currentActive = activeProduct;
+    setActiveProduct(currentActive === 0 ? 3 : currentActive - 1);
+  };
+  
+  const handleNextProduct = () => {
+    const currentActive = activeProduct;
+    setActiveProduct(currentActive === 3 ? 0 : currentActive + 1);
+  };
+  
+  // Inizializzazione dello stato del prodotto attivo
+  let activeProduct = 0;
+  const setActiveProduct = (index) => {
+    activeProduct = index;
+    
+    // Aggiornamento indicatori di pagina
+    document.querySelectorAll('.product-indicator').forEach((indicator, i) => {
+      if (i === index) {
+        indicator.classList.add('bg-indigo-500', 'w-8');
+        indicator.classList.remove('bg-indigo-500/30');
+      } else {
+        indicator.classList.remove('bg-indigo-500', 'w-8');
+        indicator.classList.add('bg-indigo-500/30');
+      }
+    });
+    
+    // Aggiornamento posizione carousel
+    const carouselContainer = document.querySelector('.carousel-container');
+    if (carouselContainer) {
+      carouselContainer.style.transform = \`translateX(-\${index * 100}%)\`;
+    }
+  };
+  
+  // Autoplay del carousel ogni 8 secondi
+  let autoplayInterval;
+  
+  const startAutoplay = () => {
+    autoplayInterval = setInterval(() => {
+      handleNextProduct();
+    }, 8000);
+  };
+  
+  const stopAutoplay = () => {
+    clearInterval(autoplayInterval);
+  };
+  
+  // Inizializzazione dell'autoplay
+  document.addEventListener('DOMContentLoaded', () => {
+    startAutoplay();
+    
+    // Fermata autoplay on hover
+    const carousel = document.querySelector('.carousel-wrapper');
+    if (carousel) {
+      carousel.addEventListener('mouseenter', stopAutoplay);
+      carousel.addEventListener('mouseleave', startAutoplay);
+    }
+  });
+`}} />
       
       {/* Sezione prodotti secondari - Design a griglia con effetti 3D */}
       <section className="container mx-auto px-6 mb-24 relative overflow-hidden">

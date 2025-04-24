@@ -32,7 +32,7 @@ const Products = () => {
   // Refs e stati
   const containerRef = useRef<HTMLDivElement>(null);
   const [hoverCard, setHoverCard] = useState<number | null>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [mousePosition, setMousePosition] = useState({ x: 0.5, y: 0.5 });
   const [selectedIndustry, setSelectedIndustry] = useState<string>("all");
   const [feedbackVisible, setFeedbackVisible] = useState(false);
   const [compareOpen, setCompareOpen] = useState(false);
@@ -42,17 +42,27 @@ const Products = () => {
   // Gestione movimento mouse per effetti interattivi
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      if (containerRef.current) {
-        const { left, top, width, height } = containerRef.current.getBoundingClientRect();
-        const x = (e.clientX - left) / width;
-        const y = (e.clientY - top) / height;
-        setMousePosition({ x, y });
+      const heroSection = document.getElementById('hero-section');
+      if (heroSection) {
+        const { left, top, width, height } = heroSection.getBoundingClientRect();
+        
+        // Verifica se il mouse è dentro la sezione hero
+        if (e.clientX >= left && 
+            e.clientX <= left + width && 
+            e.clientY >= top && 
+            e.clientY <= top + height) {
+          // Calcola la posizione relativa del mouse all'interno dell'elemento
+          const x = (e.clientX - left) / width;
+          const y = (e.clientY - top) / height;
+          setMousePosition({ x, y });
+        }
       }
     };
-
+  
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
+  
 
   // Prodotti principali
   const mainProducts = [
@@ -416,27 +426,30 @@ useEffect(() => {
     <div className="min-h-screen pt-28 pb-16" ref={containerRef}>
       {/* Hero Section con effetti visivi avanzati */}
 <section className="relative mb-24 overflow-hidden min-h-[85vh] flex items-center" 
-         ref={containerRef} // Riferimento diretto alla sezione per calcolare correttamente la posizione del mouse
+         id="hero-section" // Riferimento diretto alla sezione per calcolare correttamente la posizione del mouse
 >
-  {/* Background elements animati - linee più visibili e gradiente che segue precisamente il mouse */}
-  <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-    {/* Sfondo base scuro per evitare stacchi visibili nella parte superiore */}
-    <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background/95"></div>
-    
-    {/* Gradiente mouse più preciso che segue esattamente il mouse su tutta la sezione */}
-    <div 
-      className="absolute inset-0 opacity-70"
-      style={{
-        background: `radial-gradient(circle 200px at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, 
-                    rgba(99, 102, 241, 0.12), 
-                    rgba(139, 92, 246, 0.08), 
-                    transparent)`,
-        transition: 'background 0.05s linear'
-      }}
-    />
-    
-    {/* Luminosità aggiuntiva verso il fondo per la transizione alla wave */}
-    <div className="absolute bottom-0 left-0 w-full h-[25%] bg-gradient-to-t from-indigo-500/8 to-transparent"></div>
+
+  
+{/* Background elements animati - linee più visibili e gradiente che segue precisamente il mouse */}
+<div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+  {/* Sfondo base scuro per evitare stacchi visibili nella parte superiore */}
+  <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background/95"></div>
+  
+  {/* Gradiente mouse più preciso che segue esattamente il mouse su tutta la sezione */}
+  <div 
+  className="absolute inset-0 opacity-70 pointer-events-none z-5"
+  style={{
+    background: `radial-gradient(circle 300px at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, 
+                rgba(99, 102, 241, 0.3), 
+                rgba(139, 92, 246, 0.2), 
+                transparent 70%)`,
+    transition: 'none',
+    zIndex: 5,  // Un valore di z-index inferiore a quello della wave
+  }}
+/>
+  
+  {/* Luminosità aggiuntiva verso il fondo per la transizione alla wave */}
+  <div className="absolute bottom-0 left-0 w-full h-[25%] bg-gradient-to-t from-indigo-500/8 to-transparent z-10"></div>
     
     {/* Elementi geometrici animati */}
     <div className="absolute inset-0">
@@ -609,13 +622,32 @@ useEffect(() => {
     </motion.div>
   </div>
 
-  {/* Wave divider - assicuriamoci che sia presente */}
-  <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
-    <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-indigo-500/8 to-transparent"></div>
-    <svg className="relative block w-full h-8 sm:h-16" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-      <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" className="fill-background"></path>
-    </svg>
-  </div>
+{/* Wave divider con sovrapposizione aggressiva */}
+<div className="absolute bottom-0 left-0 right-0 w-full overflow-hidden" style={{ zIndex: 25 }}>
+  {/* SVG Wave */}
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    viewBox="0 0 1440 320" 
+    className="w-full" 
+    preserveAspectRatio="none"
+    height="80"
+    style={{ display: 'block', marginBottom: '-2px' }}
+  >
+    <path 
+      className="fill-background" 
+      d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,213.3C1248,235,1344,213,1392,202.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+    ></path>
+  </svg>
+  
+  
+  {/* Sovrapposizione aggressiva per eliminare la linea */}
+  <div 
+    className="absolute -bottom-1 left-0 right-0 h-4 bg-background" 
+    style={{ zIndex: 26 }}
+  ></div>
+</div>
+
+
 </section>
 
 {/* Stili personalizzati per animazioni */}
@@ -653,7 +685,7 @@ useEffect(() => {
 `}} />
       
       {/* Sezione prodotti digitali con carousel orizzontale */}
-<section id="solutions" className="container mx-auto px-6 py-24">
+<section id="solutions" className="container mx-auto px-6 pt-24 mt-0 bg-background relative z-10">
   <div className="max-w-6xl mx-auto">
     <div className="text-center mb-16">
       <motion.div 

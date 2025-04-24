@@ -31,13 +31,13 @@ import React from 'react';
 const Products = () => {
   // Refs e stati
   const containerRef = useRef<HTMLDivElement>(null);
-  const [activeTab, setActiveTab] = useState(0);
   const [hoverCard, setHoverCard] = useState<number | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [selectedIndustry, setSelectedIndustry] = useState<string>("all");
   const [feedbackVisible, setFeedbackVisible] = useState(false);
   const [compareOpen, setCompareOpen] = useState(false);
   const [, setInViewFeature] = useState(0);
+  const [activeProduct, setActiveProduct] = useState(0);
 
   // Gestione movimento mouse per effetti interattivi
   useEffect(() => {
@@ -394,13 +394,23 @@ const Products = () => {
     );
   };
 
-  function setActiveProduct(index: number): void {
-    throw new Error('Function not implemented.');
-  }
+ // Funzioni di navigazione per il carousel di prodotti
+const handlePrevProduct = () => {
+  setActiveProduct(prev => (prev === 0 ? 3 : prev - 1));
+};
 
-  function handlePrevProduct(): void {
-    throw new Error('Function not implemented.');
-  }
+const handleNextProduct = () => {
+  setActiveProduct(prev => (prev === 3 ? 0 : prev + 1));
+};
+
+// Autoplay per il carousel
+useEffect(() => {
+  const interval = setInterval(() => {
+    handleNextProduct();
+  }, 8000);
+  
+  return () => clearInterval(interval);
+}, []);
 
   return (
     <div className="min-h-screen pt-28 pb-16" ref={containerRef}>
@@ -705,7 +715,7 @@ const Products = () => {
       {/* Frecce di navigazione */}
       <div className="absolute top-1/2 -left-12 transform -translate-y-1/2 z-30">
         <button 
-          onClick={() => handlePrevProduct()}
+         onClick={() => handleNextProduct()}
           className="w-10 h-10 rounded-full glass border border-indigo-500/20 flex items-center justify-center text-indigo-500 hover:bg-indigo-500/10 transition-colors"
         >
           <ChevronLeft className="w-5 h-5" />
@@ -729,11 +739,11 @@ const Products = () => {
         transition={{ duration: 0.5 }}
       >
         <div className="relative">
-          <motion.div 
-            className="flex"
-            animate={{ x: -setActiveProduct * 100 + '%' }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          >
+        <motion.div 
+          className="flex"
+          animate={{ x: -activeProduct * 100 + '%' }}
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            >
             {/* NexusFlow */}
             <div className="w-full flex-shrink-0">
               <div className="relative">
@@ -1638,67 +1648,7 @@ const Products = () => {
   `}} />
 </section>
 
-{/* Script di gestione navigazione carousel */}
-<script dangerouslySetInnerHTML={{ __html: `
-  // Gestione del carousel di prodotti
-  const handlePrevProduct = () => {
-    const currentActive = activeProduct;
-    setActiveProduct(currentActive === 0 ? 3 : currentActive - 1);
-  };
-  
-  const handleNextProduct = () => {
-    const currentActive = activeProduct;
-    setActiveProduct(currentActive === 3 ? 0 : currentActive + 1);
-  };
-  
-  // Inizializzazione dello stato del prodotto attivo
-  let activeProduct = 0;
-  const setActiveProduct = (index) => {
-    activeProduct = index;
-    
-    // Aggiornamento indicatori di pagina
-    document.querySelectorAll('.product-indicator').forEach((indicator, i) => {
-      if (i === index) {
-        indicator.classList.add('bg-indigo-500', 'w-8');
-        indicator.classList.remove('bg-indigo-500/30');
-      } else {
-        indicator.classList.remove('bg-indigo-500', 'w-8');
-        indicator.classList.add('bg-indigo-500/30');
-      }
-    });
-    
-    // Aggiornamento posizione carousel
-    const carouselContainer = document.querySelector('.carousel-container');
-    if (carouselContainer) {
-      carouselContainer.style.transform = \`translateX(-\${index * 100}%)\`;
-    }
-  };
-  
-  // Autoplay del carousel ogni 8 secondi
-  let autoplayInterval;
-  
-  const startAutoplay = () => {
-    autoplayInterval = setInterval(() => {
-      handleNextProduct();
-    }, 8000);
-  };
-  
-  const stopAutoplay = () => {
-    clearInterval(autoplayInterval);
-  };
-  
-  // Inizializzazione dell'autoplay
-  document.addEventListener('DOMContentLoaded', () => {
-    startAutoplay();
-    
-    // Fermata autoplay on hover
-    const carousel = document.querySelector('.carousel-wrapper');
-    if (carousel) {
-      carousel.addEventListener('mouseenter', stopAutoplay);
-      carousel.addEventListener('mouseleave', startAutoplay);
-    }
-  });
-`}} />
+
       
       {/* Sezione prodotti secondari - Design a griglia con effetti 3D */}
       <section className="container mx-auto px-6 mb-24 relative overflow-hidden">
@@ -1961,128 +1911,6 @@ const Products = () => {
         </div>
       </section>
       
-      {/* Recensioni clienti - Scorrimento orizzontale avanzato */}
-      <section className="py-20 bg-gradient-to-b from-background to-indigo-950/10 relative overflow-hidden mb-24">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-indigo-500/10 filter blur-3xl" />
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 rounded-full bg-violet-500/10 filter blur-3xl" />
-        </div>
-        
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center mb-12">
-            <span className="inline-block px-4 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-sm font-medium mb-4">
-              Testimonianze
-            </span>
-            <h2 className="text-4xl font-bold mb-6">I nostri clienti parlano di noi</h2>
-            <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
-              Esperienze reali di chi ha trasformato il proprio business con le nostre soluzioni
-            </p>
-          </div>
-          
-          {/* Slider testimonial */}
-          <div className="relative overflow-hidden">
-            <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent z-10"></div>
-            <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background to-transparent z-10"></div>
-            
-            <div className="flex gap-6 pb-4 animate-testimonial-scroll">
-              {[...Array(2)].map((_, sliderIndex) => (
-                <React.Fragment key={sliderIndex}>
-                  {[
-                    {
-                      quote: "Abbiamo implementato BioriAgent per il nostro customer service e i risultati sono stati immediati. Ora gestiamo il triplo delle richieste con lo stesso team e i clienti sono entusiasti della velocità di risposta.",
-                      author: "Laura Romano",
-                      role: "CTO, TechVision",
-                      logo: "https://images.unsplash.com/photo-1572044162444-ad60f128bdea?q=80&w=100&auto=format",
-                      stars: 5,
-                      color: "blue"
-                    },
-                    {
-                      quote: "La suite BioriPMI ha unificato tutti i nostri processi aziendali. L'interfaccia intuitiva ha permesso a tutto il team di adattarsi rapidamente e la produttività è aumentata del 42% in soli due mesi.",
-                      author: "Giulia Conti",
-                      role: "Operations Manager, RetailPlus",
-                      logo: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?q=80&w=100&auto=format",
-                      stars: 5,
-                      color: "violet"
-                    },
-                    {
-                      quote: "BioriData ha rivoluzionato il nostro approccio ai dati aziendali. Ora prendiamo decisioni basate su insights in tempo reale e abbiamo aumentato la conversione del 38% grazie a strategie data-driven.",
-                      author: "Alessandro Rossi",
-                      role: "Data Analyst, FinTech Solutions",
-                      logo: "https://images.unsplash.com/photo-1599305019927-32f17e9a33e3?q=80&w=100&auto=format",
-                      stars: 4,
-                      color: "amber"
-                    },
-                    {
-                      quote: "L'approccio innovativo di Biori Informatics ci ha permesso di implementare soluzioni che pensavamo richiedessero mesi in sole tre settimane. Il ROI è stato immediato e continua a crescere.",
-                      author: "Francesca Verdi",
-                      role: "Marketing Director, GrowthPlus",
-                      logo: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?q=80&w=100&auto=format",
-                      stars: 5,
-                      color: "green"
-                    }
-                  ].map((testimonial, index) => (
-                    <div 
-                      key={`${sliderIndex}-${index}`}
-                      className={`glass flex-shrink-0 w-96 p-6 rounded-xl border border-${testimonial.color}-500/30 
-                                bg-gradient-to-br from-background/90 to-${testimonial.color}-500/5
-                                hover:shadow-lg hover:shadow-${testimonial.color}-500/20 transition-all duration-300 hover:-translate-y-1`}
-                    >
-                      {/* Stars */}
-                      <div className="flex mb-4">
-                        {[...Array(5)].map((_, i) => (
-                          <Star 
-                            key={i} 
-                            className={`w-4 h-4 ${i < testimonial.stars ? 'text-yellow-400 fill-yellow-400' : 'text-foreground/20'}`} 
-                          />
-                        ))}
-                      </div>
-                      
-                      {/* Quote */}
-                      <p className="text-foreground/80 text-sm leading-relaxed mb-6 h-32 overflow-hidden">
-                        "{testimonial.quote}"
-                      </p>
-                      
-                      {/* Author */}
-                      <div className="flex items-center mt-auto justify-between">
-                        <div className="flex items-center">
-                          <div className={`w-10 h-10 rounded-full border-2 border-${testimonial.color}-500/30 overflow-hidden bg-${testimonial.color}-500/20 flex items-center justify-center`}>
-                            {testimonial.author.charAt(0)}
-                          </div>
-                          <div className="ml-3">
-                            <h4 className="font-bold text-sm">{testimonial.author}</h4>
-                            <p className="text-foreground/60 text-xs">{testimonial.role}</p>
-                          </div>
-                        </div>
-                        
-                        <div className="w-8 h-8 rounded-full bg-foreground/5 overflow-hidden flex items-center justify-center">
-                          <img 
-                            src={testimonial.logo} 
-                            alt="Company logo"
-                            className="w-full h-full object-cover" 
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </React.Fragment>
-              ))}
-            </div>
-          </div>
-          
-          {/* Logo clienti */}
-          <div className="mt-16">
-            <p className="text-center text-sm text-foreground/60 mb-6">Aziende che ci hanno scelto</p>
-            <div className="flex flex-wrap justify-center gap-8">
-              {[...Array(8)].map((_, i) => (
-                <div key={i} className="glass px-4 py-2 rounded-lg border border-white/10 opacity-70 hover:opacity-100 transition-opacity">
-                  <div className="h-6 w-16 bg-foreground/20 rounded animate-pulse"></div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-      
       {/* FAQ Section - Ampliata e migliorata */}
       <section className="container mx-auto px-6 mb-24">
         <div className="text-center mb-12">
@@ -2262,158 +2090,7 @@ const Products = () => {
         </div>
       </section>
       
-      {/* CTA finale */}
-      <section className="container mx-auto px-6 mb-16">
-        <div className="relative">
-          <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500/20 via-violet-500/20 to-blue-500/20 rounded-3xl filter blur-xl"></div>
-          
-          <div className="glass p-12 md:p-16 rounded-2xl border border-indigo-500/20 relative z-10">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">Pronto a trasformare il tuo business?</h2>
-                <p className="text-foreground/70 text-lg mb-8">
-                  Inizia oggi il tuo percorso verso l'innovazione digitale con una consulenza gratuita e senza impegno con i nostri esperti.
-                </p>
-                
-                <div className="space-y-6 mb-8">
-                  {[
-                    {
-                      title: "Consulenza personalizzata",
-                      desc: "Analisi delle tue esigenze specifiche",
-                      icon: <Users className="w-5 h-5 text-indigo-400" />
-                    },
-                    {
-                      title: "Demo su misura",
-                      desc: "Prova pratica delle soluzioni più adatte",
-                      icon: <Sparkles className="w-5 h-5 text-violet-400" />
-                    },
-                    {
-                      title: "Piano d'azione chiaro",
-                      desc: "Roadmap dettagliata per l'implementazione",
-                      icon: <ListChecks className="w-5 h-5 text-blue-400" />
-                    }
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-start">
-                      <div className="w-10 h-10 rounded-full bg-indigo-500/10 flex items-center justify-center mr-4 mt-1">
-                        {item.icon}
-                      </div>
-                      <div>
-                        <h4 className="font-bold">{item.title}</h4>
-                        <p className="text-foreground/70 text-sm">{item.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                
-                <div className="flex flex-wrap gap-4">
-                  <Link
-                    to="/contact"
-                    className="px-8 py-4 bg-gradient-to-r from-indigo-500 to-violet-500 text-white rounded-xl hover:shadow-lg hover:shadow-indigo-500/30 transition-all hover:-translate-y-1 flex items-center"
-                  >
-                    Contattaci ora <ArrowRight className="ml-2 w-5 h-5" />
-                  </Link>
-                  
-                  <a
-                    href="tel:+390212345678"
-                    className="px-8 py-4 glass border border-white/20 hover:border-indigo-500/30 rounded-xl transition-all hover:-translate-y-1 flex items-center"
-                  >
-                    <Phone className="w-5 h-5 mr-2" /> +39 02 1234 5678
-                  </a>
-                </div>
-              </div>
-              
-              <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500/10 to-violet-500/10 rounded-3xl filter blur-xl"></div>
-                
-                <div className="relative z-10 glass p-6 rounded-xl border border-white/10 overflow-hidden">
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 via-violet-500 to-blue-500"></div>
-                  
-                  <div className="text-center mb-6">
-                    <h3 className="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
-                      Richiedi informazioni
-                    </h3>
-                    <p className="text-foreground/60 text-sm">Ti ricontatteremo entro 24 ore</p>
-                  </div>
-                  
-                  <form className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <input 
-                          type="text" 
-                          placeholder="Nome" 
-                          className="w-full p-3 glass rounded-lg border border-white/20 bg-background/50 focus:outline-none focus:border-indigo-500/50 text-sm"
-                        />
-                      </div>
-                      <div>
-                        <input 
-                          type="text" 
-                          placeholder="Cognome" 
-                          className="w-full p-3 glass rounded-lg border border-white/20 bg-background/50 focus:outline-none focus:border-indigo-500/50 text-sm"
-                        />
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <input 
-                        type="email" 
-                        placeholder="Email aziendale" 
-                        className="w-full p-3 glass rounded-lg border border-white/20 bg-background/50 focus:outline-none focus:border-indigo-500/50 text-sm"
-                      />
-                    </div>
-                    
-                    <div>
-                      <input 
-                        type="tel" 
-                        placeholder="Telefono" 
-                        className="w-full p-3 glass rounded-lg border border-white/20 bg-background/50 focus:outline-none focus:border-indigo-500/50 text-sm"
-                      />
-                    </div>
-                    
-                    <div>
-                      <select 
-                        className="w-full p-3 glass rounded-lg border border-white/20 bg-background/50 focus:outline-none focus:border-indigo-500/50 text-sm"
-                      >
-                        <option value="">Prodotto di interesse</option>
-                        <option value="bioriagent">BioriAgent</option>
-                        <option value="bioritalk">BioriTalk</option>
-                        <option value="bioripmi">BioriPMI</option>
-                        <option value="altro">Altro</option>
-                      </select>
-                    </div>
-                    
-                    <div>
-                      <textarea 
-                        placeholder="Il tuo messaggio" 
-                        rows={3}
-                        className="w-full p-3 glass rounded-lg border border-white/20 bg-background/50 focus:outline-none focus:border-indigo-500/50 text-sm resize-none"
-                      ></textarea>
-                    </div>
-                    
-                    <button 
-                      type="submit"
-                      className="w-full py-3 bg-gradient-to-r from-indigo-500 to-violet-500 text-white rounded-lg hover:shadow-lg hover:shadow-indigo-500/30 transition-all font-medium text-sm"
-                    >
-                      Invia richiesta
-                    </button>
-                  </form>
-                  
-                  <div className="mt-4 flex items-center gap-4 justify-center">
-                    <a href="mailto:info@biorigeneral.com" className="text-sm flex items-center text-foreground/60 hover:text-indigo-400">
-                      <Mail className="w-4 h-4 mr-1" /> Email
-                    </a>
-                    <a href="tel:+390212345678" className="text-sm flex items-center text-foreground/60 hover:text-indigo-400">
-                      <Phone className="w-4 h-4 mr-1" /> Telefono
-                    </a>
-                    <Link to="/contact" className="text-sm flex items-center text-foreground/60 hover:text-indigo-400">
-                      <MessageSquare className="w-4 h-4 mr-1" /> Live chat
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      
       
       {/* Modal per feedback (appare quando l'utente clicca "Mi interessa") */}
       {feedbackVisible && (

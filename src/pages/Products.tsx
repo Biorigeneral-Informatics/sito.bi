@@ -4,9 +4,9 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight, Bot, BrainCircuit, CheckCircle, Code, Database,
-  Globe, ExternalLink, Shield, Zap, Star,
-  ArrowUpRight, Rocket, GitMerge, BarChart, Smartphone,
-  Phone, Mail, Users, ChevronRight, Heart, Sparkles,
+  Globe, ExternalLink, Shield, Zap, 
+  Rocket, GitMerge, BarChart, Smartphone,
+  Mail, Users, ChevronRight, 
   MessageSquare, ThumbsUp, Download, ListChecks,
   FileSearch,
   FileCheck,
@@ -1683,102 +1683,15 @@ useEffect(() => {
 
 
       
-      {/* Sezione prodotti secondari - Design a griglia con effetti 3D */}
-      <section className="container mx-auto px-6 mb-24 relative overflow-hidden">
-        {/* Background elements interattivi */}
-        <div 
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 h-1/2 rounded-full bg-indigo-500/5"
-          style={{
-            filter: 'blur(100px)',
-            opacity: 0.5,
-            transform: `translate(calc(-50% + ${(mousePosition.x - 0.5) * 30}px), calc(-50% + ${(mousePosition.y - 0.5) * 30}px))`
-          }}
-        />
-        
-        <div className="text-center mb-12 relative z-10">
-          <h2 className="text-3xl font-bold mb-4">Soluzioni complementari</h2>
-          <p className="text-foreground/70 max-w-2xl mx-auto">
-            Potenzia il tuo ecosistema digitale con le nostre soluzioni aggiuntive
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
-          {filteredProducts(secondaryProducts, selectedIndustry).map((product, index) => (
-            <motion.div
-              key={product.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 * index, duration: 0.5 }}
-              className="relative group"
-              onMouseEnter={() => setHoverCard(index)}
-              onMouseLeave={() => setHoverCard(null)}
-            >
-              <div 
-                className={`glass p-6 rounded-xl border border-${product.color}-500/20 h-full transition-all duration-300 relative z-10 overflow-hidden ${
-                  hoverCard === index ? `border-${product.color}-500/50 shadow-lg shadow-${product.color}-500/20` : ''
-                }`}
-                style={{
-                  transform: hoverCard === index 
-                    ? `perspective(1000px) rotateX(${(mousePosition.y - 0.5) * -5}deg) rotateY(${(mousePosition.x - 0.5) * 5}deg)` 
-                    : 'perspective(1000px) rotateX(0) rotateY(0)',
-                  transition: 'transform 0.3s ease'
-                }}
-              >
-                {/* Background glow effect on hover */}
-                <div 
-                  className={`absolute -inset-px bg-gradient-to-br from-${product.color}-500/0 to-${product.color}-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl -z-10`}
-                />
-                
-                <div 
-                  className={`w-12 h-12 rounded-xl bg-${product.color}-500/20 flex items-center justify-center mb-4 transition-transform duration-300 ${
-                    hoverCard === index ? 'scale-110' : ''
-                  }`}
-                >
-                  {React.cloneElement(product.icon, { className: `w-6 h-6 text-${product.color}-400` })}
-                </div>
-                
-                <h3 className="text-xl font-bold mb-2 group-hover:translate-y-0 transition-transform">
-                  {product.title}
-                </h3>
-                
-                <p className="text-foreground/70 mb-4 text-sm">
-                  {product.description}
-                </p>
-                
-                <Link 
-                  to={`/products/${product.id}`}
-                  className={`inline-flex items-center text-${product.color}-500 text-sm font-medium transition-all group-hover:translate-x-1`}
-                >
-                  Scopri di più <ArrowUpRight className="ml-1 w-4 h-4" />
-                </Link>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-        
-        {/* Messaggio se non ci sono prodotti per l'industria selezionata */}
-        {filteredProducts(secondaryProducts, selectedIndustry).length === 0 && (
-          <div className="glass p-6 rounded-2xl text-center max-w-2xl mx-auto">
-            <p className="text-foreground/70">Non abbiamo ancora soluzioni complementari specifiche per questa industria. <Link to="/contact" className="text-indigo-400 hover:underline">Contattaci</Link> per soluzioni personalizzate.</p>
-          </div>
-        )}
-      </section>
-      
 {/* Sezione Processo di Implementazione con Timeline Orizzontale Animata e Responsive */}
-<section className="py-24 relative overflow-hidden mb-24" id="implementation-process">
-  {/* Background esteso senza interruzioni */}
-  <div className="absolute inset-0 -top-40 -bottom-40 bg-gradient-to-b from-background via-indigo-900/5 to-background pointer-events-none"></div>
+<section className="py-32 relative z-10" id="implementation-process">
+  {/* Gradient centrale esteso che copre anche le sezioni adiacenti - leggermente più luminoso */}
+  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[1200px] rounded-full bg-gradient-to-br from-violet-500/20 via-purple-500/25 to-fuchsia-500/20 filter blur-[180px] timeline-glow -z-10"></div>
   
-  {/* Elementi di sfondo con animazione */}
-  <div className="absolute inset-0 overflow-hidden pointer-events-none">
-    <div className="absolute top-1/4 right-[10%] w-[500px] h-[500px] rounded-full bg-violet-500/10 filter blur-[120px]"></div>
-    <div className="absolute bottom-1/3 left-[15%] w-[400px] h-[400px] rounded-full bg-indigo-500/10 filter blur-[100px]"></div>
-  </div>
-  
-  <div className="container mx-auto px-6 relative z-10">
+  {/* Contenitore principale senza margini verticali che creerebbero divisioni */}
+  <div className="container mx-auto px-6 relative z-20">
     <div className="text-center mb-20">
-      <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-gradient-to-r from-indigo-500/10 to-violet-500/10 border border-indigo-500/20 mb-4">
+      <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-gradient-to-r from-indigo-500/20 to-violet-500/20 border border-indigo-500/30 mb-4 backdrop-blur-md">
         <div className="w-2 h-2 rounded-full bg-indigo-500 mr-2" 
              style={{ animation: 'ping-slow 3s cubic-bezier(0, 0, 0.2, 1) infinite' }} />
         <span className="text-sm font-medium bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
@@ -1797,16 +1710,16 @@ useEffect(() => {
       </p>
     </div>
     
-    {/* Timeline container con classe speciale per l'observer */}
-    <div className="timeline-wrapper max-w-6xl mx-auto relative mb-12" id="timeline-container">
-      {/* Linea principale della timeline - orizzontale su desktop, verticale su mobile */}
-      <div className="timeline-track absolute md:top-1/2 md:left-0 md:right-0 md:h-1 md:w-full h-full w-1 top-0 left-1/2 transform md:translate-y-0 -translate-x-1/2 bg-gradient-to-r md:from-indigo-500/20 md:via-violet-500/20 md:to-blue-500/20 from-indigo-500/20 via-violet-500/20 to-blue-500/20 rounded-full overflow-hidden">
-        {/* Linea luminosa che avanza con lo scroll */}
-        <div className="timeline-progress-bar absolute md:h-full h-[0%] w-full md:w-[0%] bg-gradient-to-r from-indigo-500 via-violet-500 to-blue-500 rounded-full transition-all duration-300 ease-out"></div>
-      </div>
+    {/* Timeline container */}
+    <div className="max-w-6xl mx-auto relative mb-12 timeline-container">
+      {/* Timeline track (barra principale) */}
+      <div className="absolute left-0 right-0 h-2 top-16 bg-gradient-to-r from-indigo-500/20 via-violet-500/20 to-blue-500/20 backdrop-blur-sm rounded-full hidden md:block timeline-track"></div>
       
-      {/* Contenitore degli step, in flex orizzontale su desktop, colonna su mobile */}
-      <div className="flex md:flex-row flex-col md:justify-between relative">
+      {/* Linea della timeline verticale per mobile */}
+      <div className="absolute top-0 bottom-0 w-1 left-8 bg-gradient-to-b from-indigo-500/30 via-violet-500/30 to-blue-500/30 rounded-full md:hidden"></div>
+      
+      {/* Step della timeline */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-16">
         {[
           {
             step: 1,
@@ -1814,8 +1727,9 @@ useEffect(() => {
             description: "Analizziamo i tuoi processi attuali e definiamo gli obiettivi della trasformazione, creando una roadmap personalizzata.",
             duration: "1-2 settimane",
             icon: <Search className="w-6 h-6" />,
-            results: ["Mappatura dei processi", "Identificazione opportunità", "Roadmap personalizzata"],
-            color: "indigo"
+            results: ["Mappatura processi", "Identificazione opportunità", "Roadmap personalizzata"],
+            color: "indigo",
+            gradient: "from-indigo-500 to-violet-500"
           },
           {
             step: 2,
@@ -1823,8 +1737,9 @@ useEffect(() => {
             description: "Configuriamo la soluzione in base alle tue esigenze specifiche e la integriamo con i sistemi esistenti.",
             duration: "2-3 settimane",
             icon: <GitMerge className="w-6 h-6" />,
-            results: ["Setup dell'ambiente", "Integrazione sistemi", "Workflow automatizzati"],
-            color: "violet"
+            results: ["Setup ambiente", "Integrazione sistemi", "Workflow automatizzati"],
+            color: "violet",
+            gradient: "from-violet-500 to-purple-500"
           },
           {
             step: 3,
@@ -1832,8 +1747,9 @@ useEffect(() => {
             description: "Formiamo il tuo team e testiamo tutti i workflow in un ambiente controllato prima del lancio in produzione.",
             duration: "1 settimana",
             icon: <Users className="w-6 h-6" />,
-            results: ["Team formato", "Workflow testati", "Documentazione completa"],
-            color: "purple"
+            results: ["Team formato", "Workflow testati", "Documentazione"],
+            color: "purple",
+            gradient: "from-purple-500 to-blue-500"
           },
           {
             step: 4,
@@ -1842,51 +1758,64 @@ useEffect(() => {
             duration: "Continuo",
             icon: <Rocket className="w-6 h-6" />,
             results: ["Go-live senza interruzioni", "Monitoraggio", "Ottimizzazione continua"],
-            color: "blue"
+            color: "blue",
+            gradient: "from-blue-500 to-cyan-500"
           }
         ].map((item, index) => (
-          <div
-            key={index}
-            className={`timeline-step md:w-1/4 w-full md:px-4 md:mb-0 mb-16 last:mb-0 relative opacity-0 transition-all duration-500 ease-out`}
-            data-step={index + 1}
-            style={{
-              transitionDelay: `${index * 150}ms`
-            }}
-          >
-            {/* Punto della timeline con icona */}
-            <div className="relative md:mb-8 mb-4 z-10">
-              {/* Su desktop punti superiori, su mobile a sinistra */}
-              <div className={`w-12 h-12 rounded-full bg-gradient-to-br from-${item.color}-500 to-${item.color}-600 text-white flex items-center justify-center
-                           md:mx-auto md:relative absolute left-0 transform md:translate-x-0 -translate-x-1/2 md:translate-y-0`}>
-                {item.icon}
-              </div>
-              
-              <div className="md:absolute md:top-0 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-8 md:text-center pl-8 md:pl-0">
-                <div className="text-sm font-bold bg-background md:px-3 inline-block">Fase {item.step}</div>
-              </div>
+          <div key={index} className={`relative group timeline-step step-${index + 1}`}>
+            {/* Elemento circolare della timeline con numero all'interno */}
+            <div className={`md:absolute md:top-16 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 
+                        absolute top-0 left-8 transform -translate-x-1/2 flex-shrink-0
+                        w-14 h-14 rounded-full bg-gradient-to-br ${item.gradient} text-white 
+                        flex items-center justify-center text-xl font-bold shadow-lg shadow-${item.color}-500/30 z-10
+                        border-4 border-background transition-all duration-300 
+                        group-hover:scale-110 group-hover:shadow-xl group-hover:shadow-${item.color}-500/40`}>
+              {item.step}
             </div>
             
-            {/* Contenuto del passo, posizionato a destra su mobile */}
-            <div className={`glass rounded-xl border border-${item.color}-500/20 p-5 bg-${item.color}-500/5 h-full transform transition-all
-                           md:translate-y-0 ml-8 md:ml-0 relative`}>
-              <div className={`inline-block px-3 py-1 rounded-full bg-${item.color}-500/10 border border-${item.color}-500/20 text-xs font-medium text-${item.color}-400 mb-2`}>
-                {item.duration}
+            {/* Card principale con effetti glassmorph - dimensioni ridotte */}
+            <div className={`glass rounded-xl border border-${item.color}-500/30 p-5 
+                           transition-all duration-300 
+                           bg-gradient-to-br from-background/70 to-${item.color}-500/10
+                           backdrop-blur-xl
+                           hover:shadow-2xl hover:shadow-${item.color}-500/25 hover:scale-105 
+                           hover:border-${item.color}-500/50
+                           md:mt-24 ml-16 md:ml-0 relative
+                           flex flex-col`}>
+              
+              {/* Effetto glow all'hover */}
+              <div className={`absolute inset-0 -z-10 bg-gradient-to-br from-${item.color}-500/0 to-${item.color}-500/10 opacity-0 group-hover:opacity-100 rounded-xl blur-xl transition-opacity duration-300`}></div>
+              
+              <div className="flex items-center mb-3 justify-between">
+                <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${item.gradient} flex items-center justify-center mr-3 text-white shadow-md shadow-${item.color}-500/30 group-hover:shadow-lg group-hover:shadow-${item.color}-500/40 transition-all duration-300`}>
+                  {item.icon}
+                </div>
+                <div className={`inline-block px-3 py-1 rounded-full bg-${item.color}-500/20 border border-${item.color}-500/30 text-xs font-medium text-${item.color}-400 backdrop-blur-md`}>
+                  {item.duration}
+                </div>
               </div>
-              <h3 className="text-xl font-bold mb-3">{item.title}</h3>
+              
+              <h3 className="text-lg font-bold mb-2">{item.title}</h3>
               <p className="text-foreground/70 text-sm mb-4">{item.description}</p>
               
-              <div className={`border-t border-${item.color}-500/20 pt-3 mt-auto`}>
-                <h4 className="font-semibold text-sm mb-2 text-${item.color}-400">Risultati:</h4>
+              <div className={`border-t border-${item.color}-500/30 pt-3 mt-auto`}>
+                <h4 className={`font-semibold text-xs mb-2 text-${item.color}-400`}>Risultati:</h4>
                 <ul className="space-y-1">
                   {item.results.map((result, rIndex) => (
-                    <li key={rIndex} className="flex items-start text-sm text-foreground/80 mb-1">
-                      <CheckCircle className={`w-4 h-4 text-${item.color}-400 mr-2 mt-0.5 flex-shrink-0`} />
+                    <li key={rIndex} className="flex items-start text-xs text-foreground/80">
+                      <CheckCircle className={`w-3.5 h-3.5 text-${item.color}-400 mr-1.5 mt-0.5 flex-shrink-0`} />
                       <span>{result}</span>
                     </li>
                   ))}
                 </ul>
               </div>
+              
+              {/* Effetto di riflesso */}
+              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white/5 to-transparent rounded-b-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
             </div>
+            
+            {/* Linea connettrice per mobile */}
+            <div className="absolute top-0 bottom-0 left-8 w-1 bg-gradient-to-b from-indigo-500/10 via-indigo-500/40 to-indigo-500/10 md:hidden"></div>
           </div>
         ))}
       </div>
@@ -1894,7 +1823,7 @@ useEffect(() => {
     
     {/* Indicazione tempo totale */}
     <div className="text-center text-foreground/70 text-sm mb-8">
-      <div className="inline-flex items-center glass px-4 py-2 rounded-full border border-indigo-500/20">
+      <div className="inline-flex items-center glass px-5 py-3 rounded-full border border-indigo-500/30 backdrop-blur-xl">
         <Clock className="w-4 h-4 text-indigo-400 mr-2" />
         Tempo totale di implementazione: <span className="font-bold ml-1">4-6 settimane</span>
       </div>
@@ -1904,121 +1833,17 @@ useEffect(() => {
     <div className="text-center mt-12">
       <Link 
         to="/methodology"
-        className="px-6 py-3 bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-lg hover:shadow-lg hover:shadow-indigo-500/30 transition-all hover:-translate-y-1 inline-flex items-center font-medium"
+        className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-lg shadow-lg shadow-indigo-500/20 hover:shadow-xl hover:shadow-indigo-500/30 transition-all hover:-translate-y-1 hover:scale-105 inline-flex items-center font-medium"
       >
         Scopri di più sulla nostra metodologia
-        <ArrowRight className="ml-2 w-4 h-4" />
+        <ArrowRight className="ml-2 w-5 h-5" />
       </Link>
     </div>
   </div>
   
-  {/* Script per animare la timeline con lo scroll */}
-  <script dangerouslySetInnerHTML={{__html: `
-    document.addEventListener('DOMContentLoaded', function() {
-      // Seleziona gli elementi necessari
-      const timelineContainer = document.getElementById('timeline-container');
-      const timelineSteps = document.querySelectorAll('.timeline-step');
-      const progressBar = document.querySelector('.timeline-progress-bar');
-      const timelineTrack = document.querySelector('.timeline-track');
-      
-      // Se non ci sono gli elementi, esci
-      if (!timelineContainer || !timelineSteps.length || !progressBar || !timelineTrack) return;
-      
-      // Funzione per controllare se è mobile
-      const isMobile = () => window.innerWidth < 768;
-      
-      // Calcola la percentuale di visibilità del container
-      function getTimelineScrollPercentage() {
-        const rect = timelineContainer.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        
-        // Se completamente sopra la viewport
-        if (rect.bottom < 0) return 0;
-        
-        // Se completamente sotto la viewport
-        if (rect.top > windowHeight) return 0;
-        
-        // Se più grande della viewport e già iniziato
-        if (rect.height > windowHeight && rect.top < 0) {
-          const visibleHeight = Math.min(rect.height + rect.top, windowHeight);
-          const percentage = visibleHeight / rect.height;
-          return Math.min(percentage * 1.5, 1); // Moltiplica per avanzare più velocemente
-        }
-        
-        // Altrimenti calcola percentuale standard
-        const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
-        const percentage = visibleHeight / Math.min(rect.height, windowHeight);
-        return Math.min(percentage * 1.5, 1); // Moltiplica per avanzare più velocemente
-      }
-      
-      // Funzione per aggiornare la progress bar
-      function updateProgressBar() {
-        const percentage = getTimelineScrollPercentage() * 100;
-        
-        // Aggiorna la barra in base all'orientamento (mobile/desktop)
-        if (isMobile()) {
-          progressBar.style.height = \`\${percentage}%\`;
-        } else {
-          progressBar.style.width = \`\${percentage}%\`;
-        }
-        
-        // Attiva gli step in base alla percentuale
-        timelineSteps.forEach((step, index) => {
-          const stepThreshold = (index / (timelineSteps.length - 1)) * 100;
-          
-          if (percentage >= stepThreshold) {
-            step.classList.add('active');
-            step.style.opacity = '1';
-            
-            // Effetto di entrata
-            if (isMobile()) {
-              step.style.transform = 'translateX(0)';
-            } else {
-              step.style.transform = 'translateY(0)';
-            }
-          } else {
-            step.classList.remove('active');
-          }
-        });
-      }
-      
-      // Listener per lo scroll
-      window.addEventListener('scroll', updateProgressBar);
-      
-      // Listener per il resize (per gestire il cambio mobile/desktop)
-      window.addEventListener('resize', function() {
-        // Reset delle proprietà quando cambia orientamento
-        if (isMobile()) {
-          progressBar.style.width = '100%';
-          progressBar.style.height = '0%';
-          timelineSteps.forEach(step => {
-            step.style.transform = step.classList.contains('active') ? 'translateX(0)' : 'translateX(20px)';
-          });
-        } else {
-          progressBar.style.height = '100%';
-          progressBar.style.width = '0%';
-          timelineSteps.forEach(step => {
-            step.style.transform = step.classList.contains('active') ? 'translateY(0)' : 'translateY(20px)';
-          });
-        }
-        updateProgressBar();
-      });
-      
-      // Imposta lo stato iniziale
-      if (isMobile()) {
-        timelineSteps.forEach(step => {
-          step.style.transform = 'translateX(20px)';
-        });
-      } else {
-        timelineSteps.forEach(step => {
-          step.style.transform = 'translateY(20px)';
-        });
-      }
-      
-      // Aggiorna subito per impostare lo stato corretto
-      updateProgressBar();
-    });
-  `}} />
+  {/* Gradient per le ultime due sezioni */}
+  <div className="absolute -z-10 left-0 w-[600px] h-[1000px] bg-gradient-to-r from-violet-500/25 to-transparent filter blur-[180px] pointer-events-none" style={{ top: 'calc(100% + 300px)' }}></div>
+  <div className="absolute -z-10 right-0 w-[600px] h-[1000px] bg-gradient-to-l from-fuchsia-500/25 to-transparent filter blur-[180px] pointer-events-none" style={{ top: 'calc(100% + 800px)' }}></div>
   
   <style dangerouslySetInnerHTML={{ __html: `
     @keyframes ping-slow {
@@ -2027,31 +1852,76 @@ useEffect(() => {
       100% { transform: scale(1); opacity: 1; }
     }
     
-    .timeline-step.active {
+    /* Gradient centrale con animazione più dolce e più luminoso */
+    @keyframes central-glow {
+      0% { 
+        opacity: 0.4;
+        transform: translate(-50%, -50%) scale(1);
+        filter: blur(180px);
+      }
+      50% { 
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1.2);
+        filter: blur(190px);
+      }
+      100% { 
+        opacity: 0.4;
+        transform: translate(-50%, -50%) scale(1);
+        filter: blur(180px);
+      }
+    }
+    
+    /* Animazione attiva anche senza hover */
+    .timeline-glow {
+      animation: central-glow 15s infinite ease-in-out;
+      pointer-events: none;
+    }
+    
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    
+    /* Timeline illuminazione progressiva al passaggio del mouse */
+    .timeline-container .timeline-track::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(to right, rgb(99, 102, 241), rgb(139, 92, 246), rgb(59, 130, 246), rgb(14, 165, 233));
+      border-radius: 9999px;
+      transition: width 0.4s ease-out;
+      opacity: 0;
+    }
+    
+    /* Illuminazione graduale per ogni step */
+    .timeline-container:hover .step-1:hover ~ .timeline-track::before {
+      width: 25%;
       opacity: 1;
     }
     
-    /* Stile della timeline - Desktop */
-    @media (min-width: 768px) {
-      .timeline-step {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      
-      .timeline-step.active {
-        transform: translateY(0);
-      }
+    .timeline-container:hover .step-2:hover ~ .timeline-track::before {
+      width: 50%;
+      opacity: 1;
     }
     
-    /* Stile della timeline - Mobile */
-    @media (max-width: 767px) {
+    .timeline-container:hover .step-3:hover ~ .timeline-track::before {
+      width: 75%;
+      opacity: 1;
+    }
+    
+    .timeline-container:hover .step-4:hover ~ .timeline-track::before {
+      width: 100%;
+      opacity: 1;
+    }
+    
+    /* Versione mobile */
+    @media (max-width: 768px) {
       .timeline-step {
-        opacity: 0;
-        transform: translateX(20px);
-      }
-      
-      .timeline-step.active {
-        transform: translateX(0);
+        margin-left: 2rem;
       }
     }
   `}} />

@@ -38,6 +38,7 @@ const Products = () => {
   const [compareOpen, setCompareOpen] = useState(false);
   const [, setInViewFeature] = useState(0);
   const [activeProduct, setActiveProduct] = useState(0);
+  const [showAllFaqs, setShowAllFaqs] = useState(false);
 
   // Gestione movimento mouse per effetti interattivi
   useEffect(() => {
@@ -1764,242 +1765,608 @@ useEffect(() => {
         )}
       </section>
       
-      {/* Sezione funzionalità esclusive - Layout avanzato con effetti parallax */}
-      <section className="py-20 bg-gradient-to-b from-background to-indigo-900/10 relative overflow-hidden mb-24">
-        {/* Background elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-full opacity-30">
-            <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-violet-500/20 filter blur-3xl" />
-            <div className="absolute bottom-40 left-20 w-80 h-80 rounded-full bg-indigo-500/20 filter blur-3xl" />
-          </div>
-        </div>
-
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-sm font-medium mb-4">
-              Funzionalità esclusive
-            </span>
-            <h2 className="text-4xl font-bold mb-6">Perché ci distinguiamo dagli altri</h2>
-            <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
-              Innovazioni proprietarie che rendono le nostre soluzioni uniche ed efficaci
-            </p>
-          </div>
-          
-          <div className="space-y-24 max-w-5xl mx-auto">
-            {exclusiveFeatures.map((feature, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                onViewportEnter={() => setInViewFeature(index)}
-                className={`grid md:grid-cols-5 gap-8 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}
-              >
-                {/* Immagine con effetto */}
-                <div className={`md:col-span-3 ${index % 2 === 1 ? 'md:order-2' : 'md:order-1'}`}>
-                  <motion.div 
-                    initial={{ scale: 0.9, y: 50 }}
-                    whileInView={{ scale: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.7 }}
-                    className="relative"
-                  >
-                    <div className={`absolute -inset-4 bg-gradient-to-r from-${feature.color}-500/25 to-${feature.color}-500/5 rounded-3xl filter blur-xl opacity-80`} />
-                    
-                    <div className="glass rounded-2xl border border-white/10 overflow-hidden relative">
-                      {/* Overlay with gradient */}
-                      <div className={`absolute inset-0 bg-gradient-to-br from-background/10 via-background/40 to-${feature.color}-900/30 mix-blend-multiply`}></div>
-                      
-                      <img 
-                        src={feature.image} 
-                        alt={feature.title} 
-                        className="w-full h-64 object-cover object-center"
-                      />
-                      
-                      {/* Stats overlay */}
-                      <div className="absolute bottom-4 right-4 left-4 flex justify-between">
-                        {feature.stats.map((stat, statIndex) => (
-                          <div key={statIndex} className="glass p-3 rounded-xl border border-white/20 backdrop-blur-sm">
-                            <div className={`text-lg font-bold text-white`}>{stat.value}</div>
-                            <div className="text-xs text-white/70">{stat.label}</div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </motion.div>
-                </div>
-                
-                {/* Content */}
-                <div className={`md:col-span-2 ${index % 2 === 1 ? 'md:order-1' : 'md:order-2'}`}>
-                  <motion.div
-                    initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.7 }}
-                  >
-                    <div className="flex items-center mb-4">
-                      <div className={`p-3 rounded-xl bg-${feature.color}-500/20 mr-4`}>
-                        {feature.icon}
-                      </div>
-                      <h3 className={`text-2xl font-bold text-${feature.color}-400`}>{feature.title}</h3>
-                    </div>
-                    
-                    <p className="text-foreground/70 mb-6 leading-relaxed">
-                      {feature.description}
-                    </p>
-                    
-                    <div className="flex items-center space-x-4">
-                      <Link 
-                        to="/contact"
-                        className={`px-4 py-2 bg-${feature.color}-500 hover:bg-${feature.color}-600 text-white rounded-lg flex items-center transition-all hover:shadow-lg hover:shadow-${feature.color}-500/20 text-sm`}
-                      >
-                        Scopri di più <ArrowRight className="ml-2 w-4 h-4" />
-                      </Link>
-                      
-                      <button 
-                        onClick={() => setFeedbackVisible(true)}
-                        className={`px-4 py-2 border border-${feature.color}-500/30 text-${feature.color}-400 hover:bg-${feature.color}-500/10 rounded-lg transition-all text-sm flex items-center`}
-                      >
-                        <Heart className="w-4 h-4 mr-2" /> Mi interessa
-                      </button>
-                    </div>
-                  </motion.div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+{/* Sezione Processo di Implementazione con Timeline Orizzontale Animata e Responsive */}
+<section className="py-24 relative overflow-hidden mb-24" id="implementation-process">
+  {/* Background esteso senza interruzioni */}
+  <div className="absolute inset-0 -top-40 -bottom-40 bg-gradient-to-b from-background via-indigo-900/5 to-background pointer-events-none"></div>
+  
+  {/* Elementi di sfondo con animazione */}
+  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div className="absolute top-1/4 right-[10%] w-[500px] h-[500px] rounded-full bg-violet-500/10 filter blur-[120px]"></div>
+    <div className="absolute bottom-1/3 left-[15%] w-[400px] h-[400px] rounded-full bg-indigo-500/10 filter blur-[100px]"></div>
+  </div>
+  
+  <div className="container mx-auto px-6 relative z-10">
+    <div className="text-center mb-20">
+      <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-gradient-to-r from-indigo-500/10 to-violet-500/10 border border-indigo-500/20 mb-4">
+        <div className="w-2 h-2 rounded-full bg-indigo-500 mr-2" 
+             style={{ animation: 'ping-slow 3s cubic-bezier(0, 0, 0.2, 1) infinite' }} />
+        <span className="text-sm font-medium bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
+          Processo di Implementazione
+        </span>
+      </div>
       
-      {/* Sezione Confronto - Perché scegliere noi */}
-      <section className="container mx-auto px-6 mb-24">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Confronto con metodi tradizionali</h2>
-          <p className="text-foreground/70 max-w-2xl mx-auto">
-            Scopri i vantaggi tangibili delle nostre soluzioni rispetto agli approcci convenzionali
-          </p>
-        </div>
-        
-        <div className="max-w-4xl mx-auto">
-          {/* Tabs per categoria */}
-          <div className="flex flex-wrap justify-center gap-2 mb-8">
-            <button
-              onClick={() => setCompareOpen(!compareOpen)}
-              className="flex items-center px-4 py-2 bg-indigo-500 text-white rounded-lg transition-all hover:bg-indigo-600"
-            >
-              {compareOpen ? "Nascondi dettagli" : "Mostra tutti i confronti"}
-              <ChevronRight className={`ml-1 w-4 h-4 transition-transform ${compareOpen ? 'rotate-90' : ''}`} />
-            </button>
-          </div>
-          
-          {/* Tabella confronto */}
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ 
-              height: compareOpen ? 'auto' : 'auto', 
-              opacity: compareOpen ? 1 : 1,
-              marginBottom: compareOpen ? '2rem' : '0'
+      <h2 className="text-4xl font-bold mb-5">
+        <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-blue-400 bg-clip-text text-transparent">
+          Trasformazione digitale 
+        </span>
+        in soli 4 passaggi
+      </h2>
+      <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
+        La nostra metodologia comprovata garantisce risultati rapidi con un impatto minimo sulle tue operazioni quotidiane
+      </p>
+    </div>
+    
+    {/* Timeline container con classe speciale per l'observer */}
+    <div className="timeline-wrapper max-w-6xl mx-auto relative mb-12" id="timeline-container">
+      {/* Linea principale della timeline - orizzontale su desktop, verticale su mobile */}
+      <div className="timeline-track absolute md:top-1/2 md:left-0 md:right-0 md:h-1 md:w-full h-full w-1 top-0 left-1/2 transform md:translate-y-0 -translate-x-1/2 bg-gradient-to-r md:from-indigo-500/20 md:via-violet-500/20 md:to-blue-500/20 from-indigo-500/20 via-violet-500/20 to-blue-500/20 rounded-full overflow-hidden">
+        {/* Linea luminosa che avanza con lo scroll */}
+        <div className="timeline-progress-bar absolute md:h-full h-[0%] w-full md:w-[0%] bg-gradient-to-r from-indigo-500 via-violet-500 to-blue-500 rounded-full transition-all duration-300 ease-out"></div>
+      </div>
+      
+      {/* Contenitore degli step, in flex orizzontale su desktop, colonna su mobile */}
+      <div className="flex md:flex-row flex-col md:justify-between relative">
+        {[
+          {
+            step: 1,
+            title: "Analisi e Pianificazione",
+            description: "Analizziamo i tuoi processi attuali e definiamo gli obiettivi della trasformazione, creando una roadmap personalizzata.",
+            duration: "1-2 settimane",
+            icon: <Search className="w-6 h-6" />,
+            results: ["Mappatura dei processi", "Identificazione opportunità", "Roadmap personalizzata"],
+            color: "indigo"
+          },
+          {
+            step: 2,
+            title: "Configurazione e Integrazione",
+            description: "Configuriamo la soluzione in base alle tue esigenze specifiche e la integriamo con i sistemi esistenti.",
+            duration: "2-3 settimane",
+            icon: <GitMerge className="w-6 h-6" />,
+            results: ["Setup dell'ambiente", "Integrazione sistemi", "Workflow automatizzati"],
+            color: "violet"
+          },
+          {
+            step: 3,
+            title: "Formazione e Test",
+            description: "Formiamo il tuo team e testiamo tutti i workflow in un ambiente controllato prima del lancio in produzione.",
+            duration: "1 settimana",
+            icon: <Users className="w-6 h-6" />,
+            results: ["Team formato", "Workflow testati", "Documentazione completa"],
+            color: "purple"
+          },
+          {
+            step: 4,
+            title: "Lancio e Ottimizzazione",
+            description: "Lanciamo la soluzione in produzione e monitoriamo le performance, ottimizzando continuamente per massimizzare i risultati.",
+            duration: "Continuo",
+            icon: <Rocket className="w-6 h-6" />,
+            results: ["Go-live senza interruzioni", "Monitoraggio", "Ottimizzazione continua"],
+            color: "blue"
+          }
+        ].map((item, index) => (
+          <div
+            key={index}
+            className={`timeline-step md:w-1/4 w-full md:px-4 md:mb-0 mb-16 last:mb-0 relative opacity-0 transition-all duration-500 ease-out`}
+            data-step={index + 1}
+            style={{
+              transitionDelay: `${index * 150}ms`
             }}
-            transition={{ duration: 0.5 }}
-            className={`glass rounded-xl border border-indigo-500/20 overflow-hidden transition-all ${compareOpen ? 'shadow-xl shadow-indigo-500/5' : ''}`}
           >
-            {/* Intestazione */}
-            <div className="grid grid-cols-12 bg-indigo-500/10 p-4 border-b border-indigo-500/20">
-              <div className="col-span-4 font-bold">Categoria</div>
-              <div className="col-span-3 font-bold text-center">Approccio tradizionale</div>
-              <div className="col-span-3 font-bold text-center text-indigo-500">Biori Informatics</div>
-              <div className="col-span-2 font-bold text-center text-violet-500">Vantaggio</div>
-            </div>
-            
-            {/* Righe confronto - tutte visibili o prime 3 */}
-            <div className="divide-y divide-indigo-500/10">
-              {(compareOpen ? comparisonData : comparisonData.slice(0, 3)).map((item, index) => (
-                <motion.div 
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="grid grid-cols-12 items-center p-4 hover:bg-indigo-500/5 transition-colors"
-                >
-                  <div className="col-span-4 font-medium">{item.category}</div>
-                  <div className="col-span-3 text-center text-foreground/70 line-through decoration-red-500/30">{item.traditional}</div>
-                  <div className="col-span-3 text-center font-medium text-indigo-500">{item.biori}</div>
-                  <div className="col-span-2 text-center bg-violet-500/10 py-1 px-2 rounded-full text-sm font-medium text-violet-500">{item.benefit}</div>
-                </motion.div>
-              ))}
-            </div>
-            
-            {!compareOpen && (
-              <div className="p-4 text-center">
-                <button
-                  onClick={() => setCompareOpen(true)}
-                  className="text-indigo-400 hover:text-indigo-500 font-medium flex items-center justify-center mx-auto"
-                >
-                  Vedi tutti i confronti <ChevronRight className="ml-1 w-4 h-4" />
-                </button>
+            {/* Punto della timeline con icona */}
+            <div className="relative md:mb-8 mb-4 z-10">
+              {/* Su desktop punti superiori, su mobile a sinistra */}
+              <div className={`w-12 h-12 rounded-full bg-gradient-to-br from-${item.color}-500 to-${item.color}-600 text-white flex items-center justify-center
+                           md:mx-auto md:relative absolute left-0 transform md:translate-x-0 -translate-x-1/2 md:translate-y-0`}>
+                {item.icon}
               </div>
-            )}
-          </motion.div>
-        </div>
-      </section>
+              
+              <div className="md:absolute md:top-0 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-8 md:text-center pl-8 md:pl-0">
+                <div className="text-sm font-bold bg-background md:px-3 inline-block">Fase {item.step}</div>
+              </div>
+            </div>
+            
+            {/* Contenuto del passo, posizionato a destra su mobile */}
+            <div className={`glass rounded-xl border border-${item.color}-500/20 p-5 bg-${item.color}-500/5 h-full transform transition-all
+                           md:translate-y-0 ml-8 md:ml-0 relative`}>
+              <div className={`inline-block px-3 py-1 rounded-full bg-${item.color}-500/10 border border-${item.color}-500/20 text-xs font-medium text-${item.color}-400 mb-2`}>
+                {item.duration}
+              </div>
+              <h3 className="text-xl font-bold mb-3">{item.title}</h3>
+              <p className="text-foreground/70 text-sm mb-4">{item.description}</p>
+              
+              <div className={`border-t border-${item.color}-500/20 pt-3 mt-auto`}>
+                <h4 className="font-semibold text-sm mb-2 text-${item.color}-400">Risultati:</h4>
+                <ul className="space-y-1">
+                  {item.results.map((result, rIndex) => (
+                    <li key={rIndex} className="flex items-start text-sm text-foreground/80 mb-1">
+                      <CheckCircle className={`w-4 h-4 text-${item.color}-400 mr-2 mt-0.5 flex-shrink-0`} />
+                      <span>{result}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+    
+    {/* Indicazione tempo totale */}
+    <div className="text-center text-foreground/70 text-sm mb-8">
+      <div className="inline-flex items-center glass px-4 py-2 rounded-full border border-indigo-500/20">
+        <Clock className="w-4 h-4 text-indigo-400 mr-2" />
+        Tempo totale di implementazione: <span className="font-bold ml-1">4-6 settimane</span>
+      </div>
+    </div>
+    
+    {/* CTA */}
+    <div className="text-center mt-12">
+      <Link 
+        to="/methodology"
+        className="px-6 py-3 bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-lg hover:shadow-lg hover:shadow-indigo-500/30 transition-all hover:-translate-y-1 inline-flex items-center font-medium"
+      >
+        Scopri di più sulla nostra metodologia
+        <ArrowRight className="ml-2 w-4 h-4" />
+      </Link>
+    </div>
+  </div>
+  
+  {/* Script per animare la timeline con lo scroll */}
+  <script dangerouslySetInnerHTML={{__html: `
+    document.addEventListener('DOMContentLoaded', function() {
+      // Seleziona gli elementi necessari
+      const timelineContainer = document.getElementById('timeline-container');
+      const timelineSteps = document.querySelectorAll('.timeline-step');
+      const progressBar = document.querySelector('.timeline-progress-bar');
+      const timelineTrack = document.querySelector('.timeline-track');
       
-      {/* FAQ Section - Ampliata e migliorata */}
-      <section className="container mx-auto px-6 mb-24">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Domande frequenti</h2>
-          <p className="text-foreground/70 max-w-2xl mx-auto">
-            Risposte alle domande più comuni sui nostri prodotti e servizi
-          </p>
+      // Se non ci sono gli elementi, esci
+      if (!timelineContainer || !timelineSteps.length || !progressBar || !timelineTrack) return;
+      
+      // Funzione per controllare se è mobile
+      const isMobile = () => window.innerWidth < 768;
+      
+      // Calcola la percentuale di visibilità del container
+      function getTimelineScrollPercentage() {
+        const rect = timelineContainer.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        // Se completamente sopra la viewport
+        if (rect.bottom < 0) return 0;
+        
+        // Se completamente sotto la viewport
+        if (rect.top > windowHeight) return 0;
+        
+        // Se più grande della viewport e già iniziato
+        if (rect.height > windowHeight && rect.top < 0) {
+          const visibleHeight = Math.min(rect.height + rect.top, windowHeight);
+          const percentage = visibleHeight / rect.height;
+          return Math.min(percentage * 1.5, 1); // Moltiplica per avanzare più velocemente
+        }
+        
+        // Altrimenti calcola percentuale standard
+        const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
+        const percentage = visibleHeight / Math.min(rect.height, windowHeight);
+        return Math.min(percentage * 1.5, 1); // Moltiplica per avanzare più velocemente
+      }
+      
+      // Funzione per aggiornare la progress bar
+      function updateProgressBar() {
+        const percentage = getTimelineScrollPercentage() * 100;
+        
+        // Aggiorna la barra in base all'orientamento (mobile/desktop)
+        if (isMobile()) {
+          progressBar.style.height = \`\${percentage}%\`;
+        } else {
+          progressBar.style.width = \`\${percentage}%\`;
+        }
+        
+        // Attiva gli step in base alla percentuale
+        timelineSteps.forEach((step, index) => {
+          const stepThreshold = (index / (timelineSteps.length - 1)) * 100;
+          
+          if (percentage >= stepThreshold) {
+            step.classList.add('active');
+            step.style.opacity = '1';
+            
+            // Effetto di entrata
+            if (isMobile()) {
+              step.style.transform = 'translateX(0)';
+            } else {
+              step.style.transform = 'translateY(0)';
+            }
+          } else {
+            step.classList.remove('active');
+          }
+        });
+      }
+      
+      // Listener per lo scroll
+      window.addEventListener('scroll', updateProgressBar);
+      
+      // Listener per il resize (per gestire il cambio mobile/desktop)
+      window.addEventListener('resize', function() {
+        // Reset delle proprietà quando cambia orientamento
+        if (isMobile()) {
+          progressBar.style.width = '100%';
+          progressBar.style.height = '0%';
+          timelineSteps.forEach(step => {
+            step.style.transform = step.classList.contains('active') ? 'translateX(0)' : 'translateX(20px)';
+          });
+        } else {
+          progressBar.style.height = '100%';
+          progressBar.style.width = '0%';
+          timelineSteps.forEach(step => {
+            step.style.transform = step.classList.contains('active') ? 'translateY(0)' : 'translateY(20px)';
+          });
+        }
+        updateProgressBar();
+      });
+      
+      // Imposta lo stato iniziale
+      if (isMobile()) {
+        timelineSteps.forEach(step => {
+          step.style.transform = 'translateX(20px)';
+        });
+      } else {
+        timelineSteps.forEach(step => {
+          step.style.transform = 'translateY(20px)';
+        });
+      }
+      
+      // Aggiorna subito per impostare lo stato corretto
+      updateProgressBar();
+    });
+  `}} />
+  
+  <style dangerouslySetInnerHTML={{ __html: `
+    @keyframes ping-slow {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.5; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    
+    .timeline-step.active {
+      opacity: 1;
+    }
+    
+    /* Stile della timeline - Desktop */
+    @media (min-width: 768px) {
+      .timeline-step {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      
+      .timeline-step.active {
+        transform: translateY(0);
+      }
+    }
+    
+    /* Stile della timeline - Mobile */
+    @media (max-width: 767px) {
+      .timeline-step {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+      
+      .timeline-step.active {
+        transform: translateX(0);
+      }
+    }
+  `}} />
+</section>
+
+{/* Sezione Confronto con immagine */}
+<section className="py-24 relative overflow-hidden mb-24">
+  {/* Background esteso senza interruzioni */}
+  <div className="absolute inset-0 -top-40 -bottom-40 bg-gradient-to-b from-background via-indigo-900/5 to-background pointer-events-none"></div>
+  
+  <div className="container mx-auto px-6 relative z-10">
+    <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+      {/* Contenuto testuale a sinistra */}
+      <div>
+        <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-gradient-to-r from-indigo-500/10 to-violet-500/10 border border-indigo-500/20 mb-4">
+          <span className="text-sm font-medium bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
+            Confronto Prestazionale
+          </span>
         </div>
         
-        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
+        <h2 className="text-4xl font-bold mb-6">
+          Supera i limiti dei metodi tradizionali
+        </h2>
+        
+        <p className="text-lg text-foreground/80 mb-6">
+          I sistemi tradizionali richiedono mesi di implementazione, frequenti manutenzioni e costi nascosti. Le nostre soluzioni AI-first offrono tempi di implementazione 5 volte più rapidi, costi prevedibili e risultati immediati.
+        </p>
+        
+        <div className="space-y-4 mb-8">
           {[
             {
-              q: "Quanto tempo richiede l'implementazione?",
-              a: "Le nostre soluzioni vengono implementate in 2-4 settimane, rispetto ai 3-6 mesi tradizionali grazie al nostro approccio AI-first e alle integrazioni precostituite."
+              title: "Tempi di implementazione 5x più rapidi",
+              description: "2-4 settimane anziché 3-6 mesi grazie alla nostra piattaforma preconfigurabile",
+              icon: <Clock className="w-5 h-5 text-indigo-400" />
             },
             {
-              q: "Come funziona l'integrazione con i sistemi esistenti?",
-              a: "Tutte le nostre soluzioni offrono oltre 250+ integrazioni native con i principali software aziendali. Per sistemi custom, utilizziamo API RESTful e webhook per garantire una comunicazione fluida."
+              title: "Costi operativi ridotti del 40%",
+              description: "Automazione avanzata dei processi e manutenzione proattiva con AI",
+              icon: <TrendingUp className="w-5 h-5 text-indigo-400" />
             },
             {
-              q: "Le soluzioni sono personalizzabili?",
-              a: "Assolutamente sì. Ogni prodotto è completamente personalizzabile in base alle tue esigenze specifiche, senza compromettere la rapidità di implementazione o la facilità d'uso."
-            },
-            {
-              q: "Quali sono i costi di manutenzione?",
-              a: "Tutti i piani includono manutenzione e aggiornamenti regolari. Le nostre soluzioni cloud-based eliminano i costi di infrastruttura e riducono significativamente la necessità di supporto IT."
-            },
-            {
-              q: "Come garantite la sicurezza dei dati?",
-              a: "Utilizziamo crittografia end-to-end, autenticazione multi-fattore e infrastrutture certificate ISO 27001. I dati rimangono di tua proprietà al 100% e rispettiamo rigorosamente il GDPR."
-            },
-            {
-              q: "È disponibile un periodo di prova?",
-              a: "Sì, offriamo una prova gratuita di 14 giorni per tutti i nostri prodotti, senza vincoli o carta di credito. Inoltre, forniamo demo personalizzate guidate dai nostri esperti."
+              title: "Scalabilità illimitata",
+              description: "Cresci senza interruzioni e aggiungi funzionalità in modo componibile",
+              icon: <Zap className="w-5 h-5 text-indigo-400" />
             }
-          ].map((faq, index) => (
-            <div key={index} className="glass p-6 rounded-xl border border-indigo-500/20 hover:border-indigo-500/40 transition-all hover:shadow-lg hover:shadow-indigo-500/5">
-              <h3 className="text-lg font-bold mb-3 flex items-start">
-                <div className="w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                  <span className="text-indigo-400 text-sm">Q</span>
-                </div>
-                {faq.q}
-              </h3>
-              <p className="text-foreground/70 pl-9">{faq.a}</p>
+          ].map((item, index) => (
+            <div key={index} className="flex">
+              <div className="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center mr-4 flex-shrink-0 border border-indigo-500/20">
+                {item.icon}
+              </div>
+              <div>
+                <h3 className="text-lg font-bold mb-1">{item.title}</h3>
+                <p className="text-foreground/70 text-sm">{item.description}</p>
+              </div>
             </div>
           ))}
         </div>
         
-        <div className="text-center mt-8">
+        <div className="flex flex-wrap gap-4">
           <Link 
-            to="/faq"
-            className="text-indigo-400 hover:text-indigo-500 font-medium flex items-center justify-center mx-auto"
+            to="/demo"
+            className="px-6 py-3 bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-lg hover:shadow-lg hover:shadow-indigo-500/30 transition-all hover:-translate-y-1 inline-flex items-center font-medium"
           >
-            Vedi tutte le FAQ <ChevronRight className="ml-1 w-4 h-4" />
+            Prenota una demo
+            <ArrowRight className="ml-2 w-4 h-4" />
+          </Link>
+          
+          <Link 
+            to="/case-studies"
+            className="px-6 py-3 border-2 border-indigo-500/40 text-indigo-500 font-medium hover:bg-indigo-500/10 rounded-lg transition-all hover:-translate-y-1"
+          >
+            Leggi i case study
           </Link>
         </div>
-      </section>
+      </div>
+      
+      {/* Immagine a destra */}
+      <div className="relative">
+        <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500/5 via-transparent to-violet-500/5 rounded-3xl blur-xl"></div>
+        
+        <div className="glass rounded-2xl border border-indigo-500/20 overflow-hidden relative z-10 hover:border-indigo-500/40 transition-all hover:shadow-xl hover:shadow-indigo-500/10">
+          <img 
+            src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070" 
+            alt="Team collaborating on digital transformation" 
+            className="w-full h-auto object-cover"
+          />
+          
+          {/* Overlay con gradiente */}
+          <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/40 via-violet-900/30 to-transparent mix-blend-multiply"></div>
+          
+          {/* Card informative in overlay */}
+          <div className="absolute bottom-6 left-6 right-6 flex justify-between">
+            <div className="glass p-3 rounded-xl border border-white/20 backdrop-blur-sm max-w-[45%]">
+              <div className="text-lg font-bold text-white">-78%</div>
+              <div className="text-xs text-white/70">Tempo di sviluppo</div>
+            </div>
+            
+            <div className="glass p-3 rounded-xl border border-white/20 backdrop-blur-sm max-w-[45%]">
+              <div className="text-lg font-bold text-white">+83%</div>
+              <div className="text-xs text-white/70">Precisione decisionale</div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Quote in overlay */}
+        <div className="absolute -bottom-5 -right-5 glass p-4 rounded-xl border border-indigo-500/20 backdrop-blur-sm bg-background/60 max-w-[80%] shadow-lg">
+          <div className="flex">
+            <div className="w-10 h-10 rounded-full bg-indigo-500 flex items-center justify-center text-white mr-3 flex-shrink-0">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 12H4.5C3.12 12 2 10.88 2 9.5V9C2 5.69 4.69 3 8 3H9V7H8C7.45 7 7 7.45 7 8V9.5C7 10.05 7.45 10.5 8 10.5H9C10.1 10.5 11 11.4 11 12.5V19C11 20.1 10.1 21 9 21H5C3.9 21 3 20.1 3 19V18H8V12ZM22 12H18.5C17.12 12 16 10.88 16 9.5V9C16 5.69 18.69 3 22 3H23V7H22C21.45 7 21 7.45 21 8V9.5C21 10.05 21.45 10.5 22 10.5H23C24.1 10.5 25 11.4 25 12.5V19C25 20.1 24.1 21 23 21H19C17.9 21 17 20.1 17 19V18H22V12Z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div>
+              <p className="text-sm italic mb-2">La soluzione ha ridotto i nostri tempi operativi del 68% fin dalla prima settimana di utilizzo.</p>
+              <p className="text-xs font-bold">Marco Rossi, CTO</p>
+              <p className="text-xs">TechVision Italia</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+      
+{/* FAQ Section - Layout a due colonne con visibilità condizionale */}
+<section className="container mx-auto px-6 mb-24 relative z-10">
+  <div className="text-center mb-12">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+    >
+      {/* Badge distintivo */}
+      <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-gradient-to-r from-indigo-500/10 to-violet-500/10 border border-indigo-500/20 mb-4 relative">
+        <div className="w-2 h-2 rounded-full bg-indigo-500 mr-2" 
+             style={{ animation: 'ping-slow 3s cubic-bezier(0, 0, 0.2, 1) infinite' }} />
+        <span className="text-sm font-medium bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
+          Domande Frequenti
+        </span>
+      </div>
+      
+      <h2 className="text-4xl font-bold mb-5">
+        <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-blue-400 bg-clip-text text-transparent">
+          Hai domande
+        </span> sui nostri prodotti?
+      </h2>
+      <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
+        Risposte alle domande più comuni per aiutarti a scegliere la soluzione più adatta alle tue esigenze
+      </p>
+    </motion.div>
+  </div>
+  
+  {/* Background effect */}
+  <div className="absolute -inset-10 bg-gradient-to-br from-indigo-500/5 via-violet-500/5 to-transparent rounded-3xl blur-2xl opacity-70 pointer-events-none"></div>
+  
+  {/* FAQ a due colonne - prime 4 domande sempre visibili */}
+  <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-5 relative z-10">
+    {[
+      {
+        q: "Quale soluzione è più adatta per l'automazione dei processi aziendali?",
+        a: "BioriAgent è la soluzione ideale per l'automazione dei processi aziendali. Offre agenti AI che operano 24/7, si adattano alle tue esigenze specifiche e si integrano con oltre 250 strumenti aziendali per trasformare flussi di lavoro complessi in processi automatizzati.",
+        icon: <BrainCircuit className="w-5 h-5" />,
+        color: "indigo"
+      },
+      {
+        q: "Posso personalizzare le funzionalità delle soluzioni?",
+        a: "Assolutamente sì. Tutte le nostre soluzioni sono completamente personalizzabili in base alle esigenze specifiche della tua azienda. Offriamo configurazione su misura, dashboard personalizzate e workflow adattabili, senza compromettere le performance o la semplicità d'uso.",
+        icon: <Workflow className="w-5 h-5" />,
+        color: "violet"
+      },
+      {
+        q: "Come migliora BioriTalk l'esperienza dei clienti?",
+        a: "BioriTalk migliora l'esperienza cliente con assistenti conversazionali avanzati disponibili 24/7 che comprendono il linguaggio naturale in oltre 24 lingue. Il sistema risolve automaticamente il 78% delle richieste, personalizza le interazioni e apprende continuamente per offrire risposte sempre più precise e pertinenti.",
+        icon: <MessageSquare className="w-5 h-5" />,
+        color: "purple"
+      },
+      {
+        q: "Quanto tempo richiede l'implementazione delle soluzioni?",
+        a: "Le nostre soluzioni vengono implementate in 2-4 settimane, un tempo significativamente inferiore rispetto ai 3-6 mesi richiesti dai metodi tradizionali. Questo è possibile grazie al nostro approccio AI-first, alle integrazioni precostituite e a un team di esperti dedicati che ti guida in ogni fase del processo.",
+        icon: <Clock className="w-5 h-5" />,
+        color: "blue"
+      }
+    ].map((faq, index) => (
+      <motion.div 
+        key={index}
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: index * 0.1, duration: 0.5 }}
+        className="group"
+      >
+        <details className="glass rounded-xl border border-t border-l border-white/10 border-r border-b border-white/5 overflow-hidden transition-all 
+                           hover:border-t-indigo-500/30 hover:border-l-indigo-500/30
+                           hover:border-r-violet-500/30 hover:border-b-violet-500/30
+                           hover:shadow-xl hover:shadow-indigo-500/10">
+          <summary className="flex items-center justify-between p-5 cursor-pointer">
+            <div className="flex items-center">
+              <div className={`w-10 h-10 rounded-lg bg-${faq.color}-500/20 flex items-center justify-center mr-4 text-${faq.color}-400 transition-all group-hover:scale-110`}>
+                {faq.icon}
+              </div>
+              <h3 className="text-lg font-medium">{faq.q}</h3>
+            </div>
+            <div className="w-6 h-6 flex items-center justify-center rounded-full border border-indigo-500/20 bg-indigo-500/10 text-indigo-400 transition-transform group-open:rotate-180">
+              <ChevronRight className="w-4 h-4 rotate-90" />
+            </div>
+          </summary>
+          
+          <div className="p-5 pt-0">
+            <div className="ml-14 text-foreground/70 border-t border-indigo-500/20 pt-4">
+              {faq.a}
+            </div>
+          </div>
+          
+          {/* Effetto di luce diagonale su hover */}
+          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none"></div>
+        </details>
+      </motion.div>
+    ))}
+  </div>
+  
+  {/* Domande aggiuntive che appaiono solo dopo aver cliccato "Visualizza tutte le domande" */}
+  <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-5 relative z-10 mt-5">
+    {showAllFaqs && (
+      <>
+        {[
+          {
+            q: "Come si integra BioriPMI con i sistemi gestionali esistenti?",
+            a: "BioriPMI offre API RESTful e connettori predefiniti per tutti i principali sistemi gestionali (SAP, Oracle, Microsoft Dynamics, ecc.). Il processo di integrazione è gestito dal nostro team tecnico, che configura sincronizzazioni bidirezionali per garantire coerenza dei dati tra tutti i sistemi aziendali.",
+            icon: <Cable className="w-5 h-5" />,
+            color: "cyan"
+          },
+          {
+            q: "Quali metriche fornisce QuantumInsight per misurare le performance?",
+            a: "QuantumInsight offre dashboard personalizzabili con oltre 200 KPI preconfigurati relativi a vendite, marketing, operazioni e finanza. Il sistema genera automaticamente analisi predittive, rileva anomalie e identifica correlazioni tra dati, permettendoti di prendere decisioni strategiche basate su insights accurati in tempo reale.",
+            icon: <BarChart3 className="w-5 h-5" />,
+            color: "emerald"
+          },
+          {
+            q: "Come garantite la sicurezza dei dati con OmniDoc?",
+            a: "OmniDoc implementa crittografia end-to-end a 256 bit, autenticazione multi-fattore e controlli granulari degli accessi. Tutti i dati sono archiviati in data center certificati ISO 27001, con backup continui e conformità completa a GDPR e altre normative sulla privacy. Manteniamo inoltre un team dedicato alla sicurezza che monitora le minacce 24/7.",
+            icon: <Shield className="w-5 h-5" />,
+            color: "amber"
+          },
+          {
+            q: "È possibile iniziare con una soluzione e aggiungerne altre in futuro?",
+            a: "Assolutamente. La nostra piattaforma è modulare e scalabile, progettata per crescere con la tua azienda. Puoi iniziare con la soluzione che risponde alle tue esigenze più urgenti e aggiungerne altre quando necessario. Tutte le nostre soluzioni sono integrate nativamente, garantendo una perfetta interoperabilità quando decidi di espandere.",
+            icon: <GitBranch className="w-5 h-5" />,
+            color: "rose"
+          }
+        ].map((faq, index) => (
+          <motion.div 
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1, duration: 0.5 }}
+            className="group"
+          >
+            <details className="glass rounded-xl border border-t border-l border-white/10 border-r border-b border-white/5 overflow-hidden transition-all 
+                            hover:border-t-indigo-500/30 hover:border-l-indigo-500/30
+                            hover:border-r-violet-500/30 hover:border-b-violet-500/30
+                            hover:shadow-xl hover:shadow-indigo-500/10">
+              <summary className="flex items-center justify-between p-5 cursor-pointer">
+                <div className="flex items-center">
+                  <div className={`w-10 h-10 rounded-lg bg-${faq.color}-500/20 flex items-center justify-center mr-4 text-${faq.color}-400 transition-all group-hover:scale-110`}>
+                    {faq.icon}
+                  </div>
+                  <h3 className="text-lg font-medium">{faq.q}</h3>
+                </div>
+                <div className="w-6 h-6 flex items-center justify-center rounded-full border border-indigo-500/20 bg-indigo-500/10 text-indigo-400 transition-transform group-open:rotate-180">
+                  <ChevronRight className="w-4 h-4 rotate-90" />
+                </div>
+              </summary>
+              
+              <div className="p-5 pt-0">
+                <div className="ml-14 text-foreground/70 border-t border-indigo-500/20 pt-4">
+                  {faq.a}
+                </div>
+              </div>
+              
+              {/* Effetto di luce diagonale su hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none"></div>
+            </details>
+          </motion.div>
+        ))}
+      </>
+    )}
+  </div>
+  
+  {/* Toggle per visualizzare tutte le domande */}
+  <motion.div 
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ delay: 0.7, duration: 0.5 }}
+    className="text-center mt-12"
+  >
+    <button 
+      onClick={() => setShowAllFaqs(!showAllFaqs)}
+      className="glass p-5 rounded-full border border-indigo-500/20 inline-flex items-center backdrop-blur-sm px-6 hover:border-indigo-500/40 transition-all hover:shadow-lg hover:shadow-indigo-500/10"
+    >
+      <div className="w-10 h-10 rounded-full bg-indigo-500/20 flex items-center justify-center mr-3">
+        <ListChecks className="w-5 h-5 text-indigo-400" />
+      </div>
+      <span className="font-medium mr-5">
+        {showAllFaqs ? "Nascondi domande aggiuntive" : "Visualizza tutte le domande"}
+      </span>
+      <div className="w-8 h-8 rounded-full bg-indigo-500/10 flex items-center justify-center text-indigo-400 hover:bg-indigo-500 hover:text-white transition-colors">
+        <ChevronRight className={`w-4 h-4 transition-transform duration-300 ${showAllFaqs ? 'rotate-90' : ''}`} />
+      </div>
+    </button>
+  </motion.div>
+</section>
+
+
       
       {/* Download di risorse gratuite - Generazione lead */}
       <section className="container mx-auto px-6 mb-24">

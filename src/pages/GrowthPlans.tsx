@@ -7,39 +7,54 @@ import ScrollAnimation from '../components/ScrollAnimation';
 const GrowthPlans = () => {
   const growthPlans = [
     {
-      title: "Piano Startup",
+      title: "Piano PMI",
       description: "Ideale per aziende agli inizi che vogliono costruire basi solide per la crescita digitale",
       features: [
-        "Analisi mercato e competitor",
-        "Setup infrastruttura tecnologica",
-        "Sito web e CRM base",
-        "Strategia social media"
+        "Siti web illimitati",
+        "Google Ads pacchetto Starter",
+        "SEO di base",
+        "Gestione del Blog",
+        "CRM gestito",
+        "Social media Ads",
+        "1 Software gestionale aziendale personalizzato",
+        "Consulenza 1 giorno a settimana",
       ],
       price: "da €1.500/mese",
       popular: false
     },
     {
-      title: "Piano Crescita",
+      title: "Piano High Growth",
       description: "Per PMI in fase di espansione che necessitano di scalare i loro sistemi e processi",
       features: [
-        "Software gestionale personalizzato",
-        "Integrazione sistemi esistenti",
-        "CRM avanzato con automazioni",
-        "Dashboard analytics",
-        "Consulenza strategica"
+        "Siti web illimitati",
+        "Google Ads pacchetto PRO",
+        "SEO avanzata",
+        "Gestione del Blog",
+        "CRM gestito",
+        "Social media Ads",
+        "1 Software gestionale aziendale personalizzato",
+        "Consulenza strategica full time",
+        "e-commerce aziendale",
+        "Whatsapp Marketing",
+        "Youtube Content Marketing",
+        "Social ChatBots",
+        "Accesso gratuito illimitato al nostro catalogo prodotti",
+        "Piani di formazione AI per il tuo Team",
       ],
       price: "da €3.000/mese",
       popular: true
     },
     {
-      title: "Piano Enterprise",
+      title: "Piano Max Support",
       description: "Soluzione completa per aziende consolidate che cercano innovazione e vantaggio competitivo",
       features: [
-        "Ecosistema software completo",
-        "BI e analytics avanzato",
-        "Integrazione AI nei processi",
-        "Sviluppo multi-piattaforma",
-        "Consulenza strategica continua"
+        "Tutto dei piani precedenti",
+        "Software Illimitati",
+        "Servizi di data Analysis avanzati in R studio o Python",
+        "Sviluppo   Full-Stack a 360 gradi",
+        "SaaS e Paas avanzati",
+        "Integrazione completa nei sistemi aziendali",
+        "Automazioni Make, N8n e Zapier illimitate gestite"
       ],
       price: "da €6.000/mese",
       popular: false

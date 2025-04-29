@@ -1,5 +1,3 @@
-/* Modifica di src/index.css per cambiare i colori principali a viola acceso e verde acqua */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,29 +10,20 @@
     --card-foreground: 0 0% 98%;
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
-    
-    /* Modifica per usare viola acceso */
-    --primary: 280 75% 60%;      /* Viola acceso */
-    --primary-foreground: 210 40% 98%;
-    
-    /* Modifica per usare verde acqua come secondario */
-    --secondary: 170 75% 41%;    /* Verde acqua */
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
-    
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-    
-    /* Aggiornato accent a verde acqua */
-    --accent: 170 75% 41%;
+    --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
-    
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
     
-    /* Modifica per usare viola acceso */
-    --ring: 280 75% 60%;
   }
 }
 
@@ -55,17 +44,16 @@
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
-/* Modifica dei gradienti per usare viola e verde acqua */
 .gradient-bg {
   background: radial-gradient(circle at 50% 50%, 
-    rgba(170, 51, 255, 0.15),   /* Viola acceso */
-    rgba(170, 51, 255, 0.05) 30%,
+    rgba(var(--primary), 0.15),
+    rgba(var(--primary), 0.05) 30%,
     transparent 60%
   );
 }
 
 .text-gradient {
-  background: linear-gradient(to right, #aa33ff, #20c997);  /* Da viola a verde acqua */
+  background: linear-gradient(to right, #60A5FA, #A78BFA);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -80,15 +68,15 @@
   box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45);
 }
 
-/* Aggiornamento dei gradienti */
+/* Miglioramenti per i gradienti in src/index.css */
 .text-gradient {
-  background: linear-gradient(to right, #ba55d3, #20c997); /* Viola acceso e verde acqua */
+  background: linear-gradient(to right, #818cf8, #c084fc); /* Colori indigo e viola più intensi */
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-/* Aggiornare la classe glass con sfumature verso i nuovi colori */
+/* Aggiornare la classe glass */
 .glass {
   background: rgba(20, 20, 35, 0.5);
   backdrop-filter: blur(16px);
@@ -139,7 +127,7 @@
   animation: pulse 6s infinite;
 }
 
-/* Effetti di hover migliorati con nuovi colori */
+/* Effetti di hover migliorati */
 .hover-lift {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -149,7 +137,7 @@
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
 }
 
-/* Gradients per bordi con nuovi colori */
+/* Gradients per bordi */
 .gradient-border-top {
   position: relative;
 }
@@ -161,5 +149,5 @@
   left: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(to right, #aa33ff, #20c997, #a533ff);  /* Viola acceso e verde acqua */
+  background: linear-gradient(to right, #6366f1, #8b5cf6, #06b6d4);
 }

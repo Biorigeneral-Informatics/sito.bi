@@ -141,7 +141,7 @@ const Home = () => {
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="order-2 md:order-1">
               <ScrollAnimation animation="slideRight" delay={0.2}>
-                <h3 className="text-3xl font-bold mb-6 bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent inline-block">
+                <h3 className="text-3xl font-bold mb-6 bg-gradient-to-r from-purple-500 to-teal-400 bg-clip-text text-transparent inline-block">
                   Expertise in AI e Prompting
                 </h3>
                 <p className="text-foreground/70 leading-relaxed mb-6">
@@ -339,7 +339,7 @@ const Home = () => {
   <div className="relative">
     {/* Indicatore timeline */}
     <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full 
-                  bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500 z-10 shadow-lg shadow-violet-500/30
+                  bg-gradient-to-r from-purple-600 via-fuchsia-500 to-teal-400 z-10 shadow-lg shadow-violet-500/30
                   flex items-center justify-center">
       <div className="w-3 h-3 bg-white rounded-full"></div>
     </div>
@@ -352,7 +352,7 @@ const Home = () => {
         {/* Main content */}
         <div className="relative glass p-8 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
           {/* Accent line on top */}
-          <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500"></div>
+          <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-600 via-fuchsia-500 to-teal-400"></div>
           
           <h3 className="text-2xl font-bold mb-4 text-center bg-gradient-to-r from-indigo-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">
             Sinergia tra esperienza e innovazione
@@ -380,7 +380,7 @@ const Home = () => {
           </div>
           
           <div className="text-center mt-6">
-            <Link to="/services" className="inline-flex items-center px-6 py-2 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500 
+            <Link to="/services" className="inline-flex items-center px-6 py-2 bg-gradient-to-r from-purple-600 via-fuchsia-500 to-teal-400 
                                          text-white rounded-lg hover:shadow-lg hover:shadow-violet-500/20 transition-all hover:-translate-y-1">
               Scopri le nostre soluzioni <ArrowRight className="ml-2 w-4 h-4" />
             </Link>
@@ -406,7 +406,7 @@ const Home = () => {
   <ScrollAnimation animation="slideUp">
       <div className="text-center mb-20">
         <div className="inline-block px-4 py-1 rounded-full bg-primary/10 border border-primary/20 mb-4">
-          <span className="text-sm font-medium bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
+          <span className="text-sm font-medium bg-gradient-to-r from-purple-500 to-teal-400 bg-clip-text text-transparent">
             Innovazione Tecnologica • Strumenti di Nuova Generazione
           </span>
         </div>
@@ -823,7 +823,7 @@ const Home = () => {
       className="text-center mb-16"
     >
       <div className="inline-block px-4 py-1 rounded-full bg-gradient-to-r from-indigo-500/10 to-violet-500/10 border border-indigo-500/20 text-sm font-medium mb-4">
-        <span className="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-purple-500 to-teal-400 bg-clip-text text-transparent">
           Soluzioni & Expertise
         </span>
       </div>
@@ -1124,7 +1124,7 @@ const Home = () => {
         </div>
         
         {/* Colorful top border */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500"></div>
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-600 via-fuchsia-500 to-teal-400"></div>
         
         {/* Content with 3D effect */}
         <div className="relative z-10 mx-auto max-w-6xl">
@@ -1162,7 +1162,7 @@ const Home = () => {
                 {/* Statistics */}
                 <div className="grid grid-cols-2 gap-4">
                   <div className="glass p-4 rounded-xl border border-indigo-500/20 text-center">
-                    <div className="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">+45</div>
+                    <div className="text-2xl font-bold bg-gradient-to-r from-purple-500 to-teal-400 bg-clip-text text-transparent">+45</div>
                     <div className="text-sm text-foreground/70">Progetti completati</div>
                   </div>
                   
@@ -1176,7 +1176,7 @@ const Home = () => {
                 <div className="flex flex-wrap gap-4 pt-4">
                   <Link
                     to="/contact"
-                    className="px-8 py-4 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500 text-white rounded-xl hover:shadow-lg hover:shadow-indigo-500/30 transition-all hover:-translate-y-1 flex items-center group"
+                    className="px-8 py-4 bg-gradient-to-r from-purple-600 via-fuchsia-500 to-teal-400 text-white rounded-xl hover:shadow-lg hover:shadow-indigo-500/30 transition-all hover:-translate-y-1 flex items-center group"
                   >
                     <span className="font-semibold">Contattaci ora</span>
                     <div className="relative ml-2 w-6 h-6 rounded-full bg-white/20 flex items-center justify-center overflow-hidden group-hover:bg-white/30 transition-colors">
@@ -1206,12 +1206,12 @@ const Home = () => {
               <div className="glass p-6 rounded-2xl shadow-xl border border-white/10 hover:border-violet-500/20 transition-all relative group overflow-hidden">
                 {/* Gradient accent */}
                 <div className="absolute -inset-px rounded-2xl overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500 opacity-20"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-fuchsia-500 to-teal-400 opacity-20"></div>
                 </div>
                 
                 <div className="relative z-10">
                   <div className="flex justify-between items-center mb-6">
-                    <h3 className="text-xl font-bold bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
+                    <h3 className="text-xl font-bold bg-gradient-to-r from-purple-500 to-teal-400 bg-clip-text text-transparent">
                       Iniziamo insieme
                     </h3>
                     <div className="flex space-x-2">

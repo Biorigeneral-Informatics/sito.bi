@@ -5,7 +5,6 @@ import { motion, useInView } from 'framer-motion';
 import { 
   Code, 
   BrainCircuit, 
-  Database, 
   ArrowRight,
   GraduationCap,
   Trophy,
@@ -25,7 +24,7 @@ const Developers = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: false, amount: 0.1 });
-  const [particles, setParticles] = useState<ParticleProps[]>([]);
+  const [, setParticles] = useState<ParticleProps[]>([]);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   
   // Initialize particles

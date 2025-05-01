@@ -88,7 +88,7 @@ const Contact = () => {
               <div>
                 <h3 className="font-bold">Telefono</h3>
                 <a href="tel:+390212345678" className="text-foreground/80 hover:text-primary transition-colors">
-                  +39 02 1234 5678
+                  +39 392 015 8140 (Whatsapp)
                 </a>
               </div>
             </div>

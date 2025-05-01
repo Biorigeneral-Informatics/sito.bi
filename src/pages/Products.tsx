@@ -3,40 +3,27 @@ import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
-  ArrowRight, Bot, BrainCircuit, CheckCircle, Code, Database,
-  Globe, ExternalLink, Shield, Zap, 
-  Rocket, GitMerge, BarChart, Smartphone,
-  Mail, Users, ChevronRight, 
-  MessageSquare, ThumbsUp, Download, ListChecks,
-  FileSearch,
-  FileCheck,
-  FileText,
-  TrendingUp,
-  Clock,
-  Search,
-  Brain,
-  Send,
-  BarChart3,
-  Cable,
-  Workflow,
-  Bell,
-  GitBranch,
-  ChevronLeft,
-  Grid,
-  FilesIcon,
-  Lightbulb
+  ArrowRight, Bot, BrainCircuit, CheckCircle, Database,
+  ExternalLink, Shield, Zap, 
+  Rocket, GitMerge, BarChart, Users, ChevronRight, 
+  MessageSquare, Download, ListChecks,
+  FileSearch, FileCheck, FileText, TrendingUp,
+  Clock, Search, Send,
+  BarChart3, Cable, Workflow, 
+  GitBranch, ChevronLeft, Grid,
+  Lightbulb, Calendar, Table, RefreshCw,
+  Library, PlayCircle
 } from 'lucide-react';
-import React from 'react';
+
 
 const Products = () => {
   // Refs e stati
   const containerRef = useRef<HTMLDivElement>(null);
-  const [hoverCard, setHoverCard] = useState<number | null>(null);
+
   const [mousePosition, setMousePosition] = useState({ x: 0.5, y: 0.5 });
   const [selectedIndustry, setSelectedIndustry] = useState<string>("all");
   const [feedbackVisible, setFeedbackVisible] = useState(false);
-  const [compareOpen, setCompareOpen] = useState(false);
-  const [, setInViewFeature] = useState(0);
+  
   const [activeProduct, setActiveProduct] = useState(0);
   const [showAllFaqs, setShowAllFaqs] = useState(false);
 
@@ -65,363 +52,6 @@ const Products = () => {
   }, []);
   
 
-  // Prodotti principali
-  const mainProducts = [
-    {
-      id: 'bioriagent',
-      title: 'Agenti AI',
-      subtitle: 'BioriAgent',
-      description: 'Piattaforma di automazione intelligente con agenti AI che operano 24/7, imparano e si adattano alle tue esigenze specifiche. Trasforma i flussi di lavoro ripetitivi in processi automatizzati intelligenti.',
-      shortDesc: 'Automazione intelligente dei processi aziendali con agenti AI che operano 24/7.',
-      icon: <BrainCircuit />,
-      industries: ['software', 'ecommerce', 'finance', 'healthcare', 'manufacturing'],
-      features: [
-        'Automazione completa dei flussi di lavoro ripetitivi',
-        'Integrazione nativa con oltre 250+ strumenti aziendali',
-        'Machine learning adattivo per miglioramento continuo',
-        'Analisi dati in tempo reale e reportistica avanzata'
-      ],
-      benefits: [
-        { title: "Risparmio di tempo", value: "120+ ore/mese", icon: <Clock className="w-4 h-4" /> },
-        { title: "Aumento efficienza", value: "+65%", icon: <Zap className="w-4 h-4" /> },
-        { title: "ROI medio", value: "4.2x", icon: <TrendingUp className="w-4 h-4" /> },
-        { title: "Riduzione errori", value: "-87%", icon: <ThumbsUp className="w-4 h-4" /> }
-      ],
-      pricing: [
-        { 
-          plan: "Startup", 
-          price: "€490", 
-          period: "/mese", 
-          features: ["3 agenti AI attivi", "50 automazioni/mese", "5 integrazioni", "Supporto email"],
-          cta: "Inizia ora",
-          popular: false
-        },
-        { 
-          plan: "Business", 
-          price: "€990", 
-          period: "/mese", 
-          features: ["10 agenti AI attivi", "250 automazioni/mese", "20 integrazioni", "Supporto prioritario"],
-          cta: "Prova gratuita",
-          popular: true
-        },
-        { 
-          plan: "Enterprise", 
-          price: "Contattaci", 
-          period: "", 
-          features: ["Agenti illimitati", "Automazioni illimitate", "Integrazioni illimitate", "Supporto dedicato"],
-          cta: "Prenota demo",
-          popular: false
-        }
-      ],
-      casestudy: {
-        company: "TechVision",
-        quote: "BioriAgent ha trasformato il nostro servizio clienti, permettendoci di gestire il triplo delle richieste con lo stesso personale. Il ROI è stato immediato.",
-        stats: [
-          { label: "Tempo risparmiato", value: "1500 ore/mese" },
-          { label: "Conversioni", value: "+43%" },
-          { label: "ROI", value: "410%" }
-        ],
-        author: "Marco Rossi, CTO"
-      },
-      color: 'indigo',
-      image: 'https://images.unsplash.com/photo-1677442135968-6d89485dc891?q=80&w=800',
-      gradient: 'from-indigo-500 to-violet-500'
-    },
-    {
-      id: 'bioritalk',
-      title: 'Chatbot AI',
-      subtitle: 'BioriTalk',
-      description: 'Assistenti conversazionali avanzati potenziati da intelligenza artificiale per un servizio clienti superiore disponibile 24/7. Automatizza le interazioni più comuni mantenendo un esperienza utente naturale e personalizzata.',
-      shortDesc: 'Assistenti conversazionali avanzati potenziati da AI per un servizio clienti superiore.',
-      icon: <Bot />,
-      industries: ['ecommerce', 'education', 'realestate', 'healthcare', 'hospitality'],
-      features: [
-        'Comprensione avanzata del linguaggio naturale',
-        'Personalizzazione completa dell\'esperienza conversazionale',
-        'Apprendimento continuo dalle interazioni passate',
-        'Integrazione multipiattaforma (web, mobile, social)'
-      ],
-      benefits: [
-        { title: "Risoluzione auto", value: "78%", icon: <CheckCircle className="w-4 h-4" /> },
-        { title: "Disponibilità", value: "24/7", icon: <Clock className="w-4 h-4" /> },
-        { title: "Lingue supportate", value: "24+", icon: <Globe className="w-4 h-4" /> },
-        { title: "Tempi di risposta", value: "2.3s", icon: <Zap className="w-4 h-4" /> }
-      ],
-      pricing: [
-        { 
-          plan: "Starter", 
-          price: "€290", 
-          period: "/mese", 
-          features: ["1 chatbot", "1000 interazioni/mese", "3 canali", "Supporto email"],
-          cta: "Inizia ora",
-          popular: false
-        },
-        { 
-          plan: "Professional", 
-          price: "€790", 
-          period: "/mese", 
-          features: ["3 chatbot", "10.000 interazioni/mese", "7 canali", "Supporto prioritario"],
-          cta: "Prova gratuita",
-          popular: true
-        },
-        { 
-          plan: "Enterprise", 
-          price: "Contattaci", 
-          period: "", 
-          features: ["Chatbot illimitati", "Volume personalizzato", "Tutti i canali", "Account manager"],
-          cta: "Prenota demo",
-          popular: false
-        }
-      ],
-      casestudy: {
-        company: "E-Shop Italia",
-        quote: "BioriTalk ha rivoluzionato il nostro supporto clienti. Il 76% delle richieste viene gestito automaticamente e i clienti adorano la rapidità delle risposte.",
-        stats: [
-          { label: "Soddisfazione clienti", value: "+62%" },
-          { label: "Costi operativi", value: "-45%" },
-          { label: "Conversioni", value: "+28%" }
-        ],
-        author: "Lucia Bianchi, Customer Service Manager"
-      },
-      color: 'violet',
-      image: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=800',
-      gradient: 'from-violet-500 to-purple-500'
-    },
-    {
-      id: 'bioripmi',
-      title: 'Software Business',
-      subtitle: 'BioriPMI',
-      description: 'Suite completa di applicazioni gestionali su misura per piccole e medie imprese, con funzionalità avanzate e interfaccia intuitiva. Ottimizza ogni aspetto della tua azienda con un sistema integrato e personalizzabile.',
-      shortDesc: 'Suite completa di applicazioni gestionali su misura per piccole e medie imprese.',
-      icon: <Code />,
-      industries: ['manufacturing', 'logistics', 'retail', 'professional', 'hospitality'],
-      features: [
-        'Dashboard personalizzabili con KPI in tempo reale',
-        'CRM integrato con automazione marketing e vendite',
-        'Gestione progetti e risorse con timeline intelligenti',
-        'Fatturazione elettronica e integrazione fiscale'
-      ],
-      benefits: [
-        { title: "Produttività", value: "+42%", icon: <Zap className="w-4 h-4" /> },
-        { title: "Costi operativi", value: "-35%", icon: <TrendingUp className="w-4 h-4" /> },
-        { title: "Implementazione", value: "2-4 settimane", icon: <Clock className="w-4 h-4" /> },
-        { title: "Soddisfazione", value: "98%", icon: <ThumbsUp className="w-4 h-4" /> }
-      ],
-      pricing: [
-        { 
-          plan: "Basic", 
-          price: "€390", 
-          period: "/mese", 
-          features: ["5 utenti", "3 moduli", "Supporto nelle ore lavorative", "Aggiornamenti inclusi"],
-          cta: "Inizia ora",
-          popular: false
-        },
-        { 
-          plan: "Professional", 
-          price: "€890", 
-          period: "/mese", 
-          features: ["15 utenti", "Tutti i moduli", "Supporto prioritario", "Formazione inclusa"],
-          cta: "Prova gratuita",
-          popular: true
-        },
-        { 
-          plan: "Enterprise", 
-          price: "Contattaci", 
-          period: "", 
-          features: ["Utenti illimitati", "Soluzioni custom", "Account manager dedicato", "SLA garantito"],
-          cta: "Prenota demo",
-          popular: false
-        }
-      ],
-      casestudy: {
-        company: "Manifattura Moderna",
-        quote: "BioriPMI ci ha permesso di centralizzare tutti i processi aziendali in un'unica piattaforma intuitiva. Abbiamo ridotto i tempi amministrativi del 43% e migliorato la collaborazione tra team.",
-        stats: [
-          { label: "Efficienza operativa", value: "+38%" },
-          { label: "Riduzione errori", value: "87%" },
-          { label: "ROI primo anno", value: "320%" }
-        ],
-        author: "Antonio Verdi, Operations Director"
-      },
-      color: 'blue',
-      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800',
-      gradient: 'from-blue-500 to-cyan-500'
-    }
-  ];
-
-  // Prodotti secondari per la visualizzazione a griglia
-  const secondaryProducts = [
-    {
-      id: 'bioridata',
-      title: 'BioriData',
-      description: 'Piattaforma di analisi dati con dashboard interattivi e insights predittivi in tempo reale.',
-      icon: <Database />,
-      industries: ['finance', 'healthcare', 'manufacturing', 'logistics'],
-      features: ['Business Intelligence', 'Analisi predittiva', 'Visualizzazioni interattive'],
-      color: 'amber',
-      gradient: 'from-amber-500 to-orange-500'
-    },
-    {
-      id: 'biorisec',
-      title: 'BioriSec',
-      description: 'Soluzioni di sicurezza informatica avanzate per proteggere i tuoi dati e sistemi dalle minacce moderne.',
-      icon: <Shield />,
-      industries: ['finance', 'healthcare', 'ecommerce', 'software'],
-      features: ['Monitoraggio 24/7', 'Protezione avanzata', 'Conformità GDPR'],
-      color: 'red',
-      gradient: 'from-red-500 to-rose-500'
-    },
-    {
-      id: 'bioriapps',
-      title: 'BioriApps',
-      description: 'Sviluppo di applicazioni mobile native per iOS e Android con esperienza utente superiore.',
-      icon: <Smartphone />,
-      industries: ['retail', 'ecommerce', 'hospitality', 'realestate'],
-      features: ['UX/UI personalizzato', 'Integrazione backend', 'Pubblicazione store'],
-      color: 'green',
-      gradient: 'from-green-500 to-emerald-500'
-    },
-    {
-      id: 'bioricloud',
-      title: 'BioriCloud',
-      description: 'Infrastrutture cloud scalabili e sicure per ospitare le tue applicazioni e servizi.',
-      icon: <Globe />,
-      industries: ['software', 'ecommerce', 'finance', 'professional'],
-      features: ['Scalabilità automatica', 'Backup continui', 'Alta disponibilità'],
-      color: 'sky',
-      gradient: 'from-sky-500 to-blue-500'
-    }
-  ];
-
-  // Industrie target per filtro
-  const industries = [
-    { id: 'all', name: 'Tutte le industrie' },
-    { id: 'ecommerce', name: 'E-commerce' },
-    { id: 'finance', name: 'Finanza' },
-    { id: 'healthcare', name: 'Sanità' },
-    { id: 'manufacturing', name: 'Manifattura' },
-    { id: 'software', name: 'Software & IT' },
-    { id: 'retail', name: 'Retail' },
-    { id: 'professional', name: 'Servizi professionali' },
-    { id: 'logistics', name: 'Logistica' },
-    { id: 'hospitality', name: 'Ospitalità' },
-    { id: 'realestate', name: 'Real Estate' },
-    { id: 'education', name: 'Educazione' }
-  ];
-
-  // Funzionalità esclusive rispetto alla concorrenza
-  const exclusiveFeatures = [
-    {
-      title: "Intelligenza artificiale generativa integrata",
-      description: "Tutte le nostre soluzioni includono capacità di AI generativa che trasformano l'esperienza utente e automatizzano i processi complessi.",
-      icon: <BrainCircuit className="w-6 h-6 text-violet-400" />,
-      color: "violet",
-      image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=800&auto=format",
-      stats: [
-        { label: "Aumento produttività", value: "+47%" },
-        { label: "Innovazione", value: "2x più veloce" }
-      ]
-    },
-    {
-      title: "Sviluppo iperaccelerato",
-      description: "Il nostro approccio AI-first riduce drasticamente i tempi di sviluppo, portando al mercato le tue soluzioni in una frazione del tempo tradizionale.",
-      icon: <Rocket className="w-6 h-6 text-indigo-400" />,
-      color: "indigo",
-      image: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=800&auto=format",
-      stats: [
-        { label: "Tempo di sviluppo", value: "-78%" },
-        { label: "Time-to-market", value: "5x più veloce" }
-      ]
-    },
-    {
-      title: "Piattaforma unificata e componibile",
-      description: "Un ecosistema completo che unifica tutte le nostre soluzioni, permettendoti di aggiungere funzionalità senza interrompere le operazioni esistenti.",
-      icon: <GitMerge className="w-6 h-6 text-cyan-400" />,
-      color: "cyan",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format",
-      stats: [
-        { label: "Integrazione", value: "100% nativa" },
-        { label: "Costi di integrazione", value: "-65%" }
-      ]
-    },
-    {
-      title: "Insights in tempo reale",
-      description: "Analisi dati continua su tutti i processi, fornendo metriche e dashboard personalizzabili per decisioni aziendali più informate.",
-      icon: <BarChart className="w-6 h-6 text-emerald-400" />,
-      color: "emerald",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format",
-      stats: [
-        { label: "Precisione decisionale", value: "+83%" },
-        { label: "ROI medio", value: "3.7x" }
-      ]
-    }
-  ];
-
-  // Il nostro metodo rispetto ad altri approcci
-  const comparisonData = [
-    {
-      category: "Tempi di implementazione",
-      traditional: "3-6 mesi",
-      biori: "2-4 settimane",
-      benefit: "5x più veloce"
-    },
-    {
-      category: "Integrazione AI",
-      traditional: "Moduli separati",
-      biori: "Nativa in tutte le soluzioni",
-      benefit: "Esperienza utente superiore"
-    },
-    {
-      category: "Personalizzazione",
-      traditional: "Limitata/Costosa",
-      biori: "Completamente adattabile",
-      benefit: "Perfettamente su misura"
-    },
-    {
-      category: "Costi operativi",
-      traditional: "Alti e crescenti",
-      biori: "Ridotti e prevedibili",
-      benefit: "-40% in media"
-    },
-    {
-      category: "Manutenzione",
-      traditional: "Complessa e manuale",
-      biori: "Automatizzata e proattiva",
-      benefit: "Tempo ridotto dell'85%"
-    },
-    {
-      category: "Scalabilità",
-      traditional: "Limitata dalla struttura",
-      biori: "Illimitata e senza interruzioni",
-      benefit: "Crescita senza barriere"
-    }
-  ];
-
-  // Filtro prodotti per industria
-  const filteredProducts = (products: any[], industry: string) => {
-    if (industry === 'all') return products;
-    return products.filter(product => 
-      product.industries && product.industries.includes(industry)
-    );
-  };
-
- // Funzioni di navigazione per il carousel di prodotti
-const handlePrevProduct = () => {
-  setActiveProduct(prev => (prev === 0 ? 3 : prev - 1));
-};
-
-const handleNextProduct = () => {
-  setActiveProduct(prev => (prev === 3 ? 0 : prev + 1));
-};
-
-// Autoplay per il carousel
-useEffect(() => {
-  const interval = setInterval(() => {
-    handleNextProduct();
-  }, 8000);
-  
-  return () => clearInterval(interval);
-}, []);
 
   return (
     <div className="min-h-screen pt-28 pb-16" ref={containerRef}>
@@ -685,8 +315,12 @@ useEffect(() => {
   }
 `}} />
       
-      {/* Sezione prodotti digitali con carousel orizzontale */}
+{/* Sezione prodotti digitali con carousel orizzontale */}
 <section id="solutions" className="container mx-auto px-6 pt-24 mt-0 bg-background relative z-10">
+ 
+{/* Gradient viola centralizzato che pulsa */}
+<div className="absolute w-4/5 h-4/5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-gradient-pulse rounded-full blur-3xl -z-10 pointer-events-none opacity-60"></div>
+
   <div className="max-w-6xl mx-auto">
     <div className="text-center mb-16">
       <motion.div 
@@ -710,15 +344,15 @@ useEffect(() => {
       </motion.div>
     </div>
     
-    {/* Filtri per categoria con animazione di selezione */}
-    <div className="flex justify-center mb-20">
+    {/* Filtri per categoria adattati ai nuovi prodotti */}
+    <div className="flex justify-center mb-20 overflow-x-auto pb-2">
       <div className="glass px-1.5 py-1.5 rounded-full border border-indigo-500/20 inline-flex">
         {[
           { id: 'all', name: 'Tutti', icon: <Grid className="w-4 h-4" /> },
-          { id: 'workflow', name: 'Workflow', icon: <Workflow className="w-4 h-4" /> },
-          { id: 'intelligence', name: 'Intelligence', icon: <BrainCircuit className="w-4 h-4" /> },
-          { id: 'communication', name: 'Communication', icon: <MessageSquare className="w-4 h-4" /> },
-          { id: 'documents', name: 'Documents', icon: <FilesIcon className="w-4 h-4" /> }
+          { id: 'assistants', name: 'Assistenti', icon: <Bot className="w-4 h-4" /> },
+          { id: 'data', name: 'Dati', icon: <Table className="w-4 h-4" /> },
+          { id: 'ai', name: 'AI', icon: <BrainCircuit className="w-4 h-4" /> },
+          { id: 'automation', name: 'Automazione', icon: <Workflow className="w-4 h-4" /> }
         ].map((category) => (
           <button
             key={category.id}
@@ -743,451 +377,176 @@ useEffect(() => {
       </div>
     </div>
     
-    {/* Carousel prodotti orizzontale con frecce */}
+    {/* Carousel prodotti orizzontale completamente riorganizzato */}
     <div className="relative">
-      {/* Frecce di navigazione */}
-      <div className="absolute top-1/2 -left-12 transform -translate-y-1/2 z-30">
-        <button 
-         onClick={() => handleNextProduct()}
-          className="w-10 h-10 rounded-full glass border border-indigo-500/20 flex items-center justify-center text-indigo-500 hover:bg-indigo-500/10 transition-colors"
-        >
-          <ChevronLeft className="w-5 h-5" />
-        </button>
-      </div>
+      {/* Frecce di navigazione ottimizzate */}
       
-      <div className="absolute top-1/2 -right-12 transform -translate-y-1/2 z-30">
-        <button 
-          onClick={() => handlePrevProduct()}
-          className="w-10 h-10 rounded-full glass border border-indigo-500/20 flex items-center justify-center text-indigo-500 hover:bg-indigo-500/10 transition-colors"
-        >
-          <ChevronRight className="w-5 h-5" />
-        </button>
-      </div>
+<button 
+  onClick={(e) => {
+    e.preventDefault();
+    // Usa setTimeout per garantire che la transizione sia coerente
+    const newIndex = activeProduct === 0 ? 3 : activeProduct - 1;
+    setActiveProduct(newIndex);
+  }}
+  className="absolute top-1/2 -left-16 transform -translate-y-1/2 z-30 w-12 h-12 rounded-full glass border border-indigo-500/20 flex items-center justify-center text-indigo-500 transition-colors focus:outline-none md:flex"
+  aria-label="Prodotto precedente"
+>
+  <ChevronLeft className="w-6 h-6" />
+</button>
+
+
+<button 
+  onClick={(e) => {
+    e.preventDefault();
+    // Usa setTimeout per garantire che la transizione sia coerente
+    const newIndex = activeProduct === 3 ? 0 : activeProduct + 1;
+    setActiveProduct(newIndex);
+  }}
+  className="absolute top-1/2 -right-16 transform -translate-y-1/2 z-30 w-12 h-12 rounded-full glass border border-indigo-500/20 flex items-center justify-center text-indigo-500 transition-colors focus:outline-none md:flex "
+  aria-label="Prodotto successivo"
+>
+  <ChevronRight className="w-6 h-6" />
+</button>
       
-      {/* Prodotti carousel */}
-      <motion.div 
-        className="overflow-hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className="relative">
-        <motion.div 
-          className="flex"
-          animate={{ x: -activeProduct * 100 + '%' }}
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            >
-            {/* NexusFlow */}
-            <div className="w-full flex-shrink-0">
-              <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500/5 via-transparent to-violet-500/5 rounded-3xl blur-xl"></div>
-                
-                <div className="glass rounded-2xl border border-indigo-500/20 overflow-hidden relative z-10 hover:border-indigo-500/40 transition-all hover:shadow-xl hover:shadow-indigo-500/10">
-                  <div className="grid md:grid-cols-2 h-full">
-                    {/* Demo interattiva - Lato sinistro */}
-                    <div className="bg-gradient-to-br from-indigo-500/10 via-indigo-600/10 to-violet-700/20 relative overflow-hidden h-full min-h-[380px]">
-                      {/* Demo animata - Workflow builder */}
-                      <div className="absolute inset-0 flex items-center justify-center p-8">
-                        <div className="w-full max-w-md mx-auto">
-                          <div className="relative z-10 group">
-                            {/* Workspace canvas */}
-                            <div className="glass border border-white/20 rounded-xl overflow-hidden shadow-xl bg-background/70 backdrop-blur-md p-6">
-                              <div className="flex items-center justify-between mb-6">
-                                <div className="flex items-center">
-                                  <div className="w-8 h-8 rounded-lg bg-indigo-500 text-white flex items-center justify-center shadow-md">
-                                    <Workflow className="w-4 h-4" />
-                                  </div>
-                                  <span className="ml-2 font-medium text-sm">Nexus Workspace</span>
-                                </div>
-                                <div className="flex space-x-2">
-                                  <div className="w-2.5 h-2.5 rounded-full bg-rose-400"></div>
-                                  <div className="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
-                                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
-                                </div>
-                              </div>
-                              
-                              {/* Workflow nodes and connections - animated on hover */}
-                              <div className="relative" style={{ height: "240px" }}>
-                                {/* Connection lines with animation */}
-                                <svg className="absolute inset-0 w-full h-full overflow-visible" style={{ zIndex: 0 }}>
-                                  {/* Email to Process Connection */}
-                                  <path 
-                                    d="M60,60 C120,60 120,120 180,120" 
-                                    fill="none" 
-                                    stroke="url(#line-gradient-1)" 
-                                    strokeWidth="2" 
-                                    className="workflow-connection"
-                                  />
-                                  
-                                  {/* Process to Decision Connection */}
-                                  <path 
-                                    d="M240,120 C280,120 280,180 320,180" 
-                                    fill="none" 
-                                    stroke="url(#line-gradient-2)" 
-                                    strokeWidth="2" 
-                                    className="workflow-connection"
-                                    style={{ animationDelay: "0.2s" }}
-                                  />
-                                  
-                                  {/* Decision to DB Connection */}
-                                  <path 
-                                    d="M320,210 C320,240 240,240 240,210" 
-                                    fill="none" 
-                                    stroke="url(#line-gradient-3)" 
-                                    strokeWidth="2" 
-                                    className="workflow-connection"
-                                    style={{ animationDelay: "0.4s" }}
-                                  />
-                                  
-                                  {/* Decision to Notification Connection */}
-                                  <path 
-                                    d="M350,180 C400,180 400,60 340,60" 
-                                    fill="none" 
-                                    stroke="url(#line-gradient-4)" 
-                                    strokeWidth="2" 
-                                    className="workflow-connection"
-                                    style={{ animationDelay: "0.6s" }}
-                                  />
-                                  
-                                  {/* Animated data flow particles */}
-                                  <circle className="workflow-particle" r="3" fill="#818cf8">
-                                    <animateMotion
-                                      path="M60,60 C120,60 120,120 180,120 C280,120 280,180 320,180 C320,240 240,240 240,210"
-                                      dur="3s"
-                                      repeatCount="indefinite"
-                                    />
-                                  </circle>
-                                  
-                                  <circle className="workflow-particle" r="3" fill="#c4b5fd" style={{ animationDelay: "1.5s" }}>
-                                    <animateMotion
-                                      path="M60,60 C120,60 120,120 180,120 C280,120 280,180 320,180 C400,180 400,60 340,60"
-                                      dur="4s"
-                                      repeatCount="indefinite"
-                                    />
-                                  </circle>
-                                  
-                                  {/* Gradient definitions */}
-                                  <defs>
-                                    <linearGradient id="line-gradient-1" x1="0%" y1="0%" x2="100%" y2="0%">
-                                      <stop offset="0%" stopColor="#6366f1" />
-                                      <stop offset="100%" stopColor="#8b5cf6" />
-                                    </linearGradient>
-                                    <linearGradient id="line-gradient-2" x1="0%" y1="0%" x2="100%" y2="0%">
-                                      <stop offset="0%" stopColor="#8b5cf6" />
-                                      <stop offset="100%" stopColor="#a78bfa" />
-                                    </linearGradient>
-                                    <linearGradient id="line-gradient-3" x1="0%" y1="0%" x2="100%" y2="0%">
-                                      <stop offset="0%" stopColor="#a78bfa" />
-                                      <stop offset="100%" stopColor="#818cf8" />
-                                    </linearGradient>
-                                    <linearGradient id="line-gradient-4" x1="0%" y1="0%" x2="100%" y2="0%">
-                                      <stop offset="0%" stopColor="#a78bfa" />
-                                      <stop offset="100%" stopColor="#6366f1" />
-                                    </linearGradient>
-                                  </defs>
-                                </svg>
-                                
-                                {/* Nodes */}
-                                <div className="absolute top-10 left-10 workflow-node">
-                                  <div className="w-16 h-16 rounded-xl bg-indigo-500 text-white flex flex-col items-center justify-center shadow-lg shadow-indigo-500/30 relative z-10 workflow-pulse">
-                                    <Mail className="w-6 h-6 mb-1" />
-                                    <span className="text-[10px] opacity-80">Trigger</span>
-                                  </div>
-                                </div>
-                                
-                                <div className="absolute top-[100px] left-[180px] workflow-node" style={{ animationDelay: "0.2s" }}>
-                                  <div className="w-16 h-16 rounded-xl bg-violet-500 text-white flex flex-col items-center justify-center shadow-lg shadow-violet-500/30 relative z-10 workflow-pulse">
-                                    <FileText className="w-6 h-6 mb-1" />
-                                    <span className="text-[10px] opacity-80">Process</span>
-                                  </div>
-                                </div>
-                                
-                                <div className="absolute top-[160px] left-[320px] workflow-node" style={{ animationDelay: "0.4s" }}>
-                                  <div className="w-16 h-16 rounded-xl bg-purple-500 text-white flex flex-col items-center justify-center shadow-lg shadow-purple-500/30 relative z-10 workflow-pulse">
-                                    <GitBranch className="w-6 h-6 mb-1" />
-                                    <span className="text-[10px] opacity-80">Decision</span>
-                                  </div>
-                                </div>
-                                
-                                <div className="absolute top-[190px] left-[220px] workflow-node" style={{ animationDelay: "0.6s" }}>
-                                  <div className="w-16 h-16 rounded-xl bg-blue-500 text-white flex flex-col items-center justify-center shadow-lg shadow-blue-500/30 relative z-10 workflow-pulse">
-                                    <Database className="w-6 h-6 mb-1" />
-                                    <span className="text-[10px] opacity-80">Storage</span>
-                                  </div>
-                                </div>
-                                
-                                <div className="absolute top-[40px] left-[320px] workflow-node" style={{ animationDelay: "0.8s" }}>
-                                  <div className="w-16 h-16 rounded-xl bg-sky-500 text-white flex flex-col items-center justify-center shadow-lg shadow-sky-500/30 relative z-10 workflow-pulse">
-                                    <Bell className="w-6 h-6 mb-1" />
-                                    <span className="text-[10px] opacity-80">Notify</span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+      {/* Contenitore con overflow nascosto e posizione relativa */}
+      <div className="overflow-hidden relative">
+        {/* Slider con transizione fluida e affidabile */}
+        <div 
+          className="flex transition-all duration-700 ease-in-out"
+          style={{ transform: `translateX(-${activeProduct * 100}%)` }}
+        >
+          {/* Segretario Telegram */}
+          <div className="w-full flex-shrink-0">
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500/5 via-transparent to-violet-500/5 rounded-3xl blur-xl"></div>
+              
+              <div className="glass rounded-2xl border border-indigo-500/20 overflow-hidden relative z-10 transition-all">
+
+                <div className="grid md:grid-cols-2 h-full">
+                  {/* Content - Lato sinistro */}
+                  <div className="p-8 flex flex-col h-full">
+                    <div className="mb-2 flex items-center gap-2">
+                      <div className="inline-block px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-medium text-indigo-400 mb-1">
+                        Assistente Virtuale
+                      </div>
+                      <div className="inline-block px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/30 text-xs font-medium text-amber-400 mb-1">
+                        In Sviluppo
                       </div>
                     </div>
                     
-                    {/* Content - Lato destro */}
-                    <div className="p-8 flex flex-col h-full">
-                      <div className="mb-2">
-                        <div className="inline-block px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-medium text-indigo-400 mb-1">
-                          Workflow Automation
+                    <div className="flex items-center mb-5">
+                      <div className="mr-3 relative">
+                        <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white shadow-md shadow-indigo-500/20">
+                          <MessageSquare className="w-6 h-6" />
+                        </div>
+                        <div className="absolute -right-1 -bottom-1 w-6 h-6 rounded-full bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center text-white shadow-sm shadow-violet-500/30 text-xs">
+                          AI
                         </div>
                       </div>
-                      
-                      <div className="flex items-center mb-5">
-                        <div className="mr-3 relative">
-                          <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white shadow-md shadow-indigo-500/20">
-                            <Workflow className="w-6 h-6" />
-                          </div>
-                          <div className="absolute -right-1 -bottom-1 w-6 h-6 rounded-full bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center text-white shadow-sm shadow-violet-500/30 text-xs">
-                            AI
-                          </div>
-                        </div>
-                        <h3 className="text-2xl font-bold">NexusFlow</h3>
+                      <h3 className="text-2xl font-bold">Segretario Telegram</h3>
+                    </div>
+                    
+                    <p className="text-base text-foreground/80 mb-6 flex-grow">
+                      Assistente virtuale che gestisce conversazioni, pianifica appuntamenti e automatizza risposte su Telegram. 
+                      Integrazione perfetta con i tuoi workflow aziendali per una comunicazione efficiente 24/7.
+                    </p>
+                    
+                    <div className="grid grid-cols-2 gap-4 mb-6">
+                      <div className="bg-gradient-to-br from-indigo-500/5 to-indigo-500/10 rounded-xl p-4 border border-indigo-500/20">
+                        <h4 className="font-semibold text-sm flex items-center mb-2">
+                          <MessageSquare className="w-4 h-4 text-indigo-400 mr-2" />
+                          Risposte automatiche
+                        </h4>
+                        <p className="text-sm text-foreground/70">
+                          Gestisce conversazioni standard e risponde alle domande frequenti con precisione.
+                        </p>
                       </div>
                       
-                      <p className="text-base text-foreground/80 mb-6 flex-grow">
-                        Sistema avanzato di automazione workflow che integra intelligenza artificiale per creare, ottimizzare e gestire 
-                        processi aziendali complessi. Connette perfettamente applicazioni, dati e team eliminando attività ripetitive 
-                        e facilitando decisioni basate sui dati in tempo reale.
-                      </p>
+                      <div className="bg-gradient-to-br from-indigo-500/5 to-indigo-500/10 rounded-xl p-4 border border-indigo-500/20">
+                        <h4 className="font-semibold text-sm flex items-center mb-2">
+                          <Calendar className="w-4 h-4 text-indigo-400 mr-2" />
+                          Gestione calendario
+                        </h4>
+                        <p className="text-sm text-foreground/70">
+                          Pianifica appuntamenti e invia promemoria automatici ai partecipanti.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center">
+                        <span className="text-sm text-foreground/70 mr-3">A partire da:</span>
+                        <span className="font-semibold text-xl">€99<span className="text-foreground/60 text-sm font-normal">/mese</span></span>
+                      </div>
                       
-                      <div className="grid grid-cols-2 gap-4 mb-6">
-                        <div className="bg-gradient-to-br from-indigo-500/5 to-indigo-500/10 rounded-xl p-4 border border-indigo-500/20">
-                          <h4 className="font-semibold text-sm flex items-center mb-2">
-                            <Zap className="w-4 h-4 text-indigo-400 mr-2" />
-                            Automazione intelligente
-                          </h4>
-                          <p className="text-sm text-foreground/70">
-                            Suggerimenti di automazione basati su AI che ottimizzano i flussi di lavoro esistenti.
-                          </p>
-                        </div>
+                      <div className="flex items-center gap-3">
+                        <Link 
+                          to="/products/segretario-telegram" 
+                          className="text-indigo-400 hover:text-indigo-500 transition-colors font-medium text-sm flex items-center"
+                        >
+                          Demo <ExternalLink className="w-3.5 h-3.5 ml-1" />
+                        </Link>
                         
-                        <div className="bg-gradient-to-br from-indigo-500/5 to-indigo-500/10 rounded-xl p-4 border border-indigo-500/20">
-                          <h4 className="font-semibold text-sm flex items-center mb-2">
-                            <Cable className="w-4 h-4 text-indigo-400 mr-2" />
-                            Connettori universali
-                          </h4>
-                          <p className="text-sm text-foreground/70">
-                            Oltre 300+ integrazioni precostituite per un'automazione completa.
-                          </p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex justify-between items-center">
-                        <div className="flex items-center">
-                          <span className="text-sm text-foreground/70 mr-3">A partire da:</span>
-                          <span className="font-semibold text-xl">€490<span className="text-foreground/60 text-sm font-normal">/mese</span></span>
-                        </div>
-                        
-                        <div className="flex items-center gap-3">
-                          <Link 
-                            to="/products/nexusflow" 
-                            className="text-indigo-400 hover:text-indigo-500 transition-colors font-medium text-sm flex items-center"
-                          >
-                            Demo <ExternalLink className="w-3.5 h-3.5 ml-1" />
-                          </Link>
-                          
-                          <Link 
-                            to="/products/nexusflow"
-                            className="px-5 py-2.5 bg-gradient-to-r from-indigo-500 to-violet-600 text-white rounded-lg flex items-center transition-all hover:shadow-md hover:shadow-indigo-500/20 text-sm font-medium"
-                          >
-                            Scopri di più <ArrowRight className="ml-1.5 w-4 h-4" />
-                          </Link>
-                        </div>
+                        <Link 
+                          to="/products/segretario-telegram"
+                          className="px-5 py-2.5 bg-gradient-to-r from-indigo-500 to-violet-600 text-white rounded-lg flex items-center transition-all hover:shadow-md hover:shadow-indigo-500/20 text-sm font-medium"
+                        >
+                          Scopri di più <ArrowRight className="ml-1.5 w-4 h-4" />
+                        </Link>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* QuantumInsight */}
-            <div className="w-full flex-shrink-0">
-              <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/5 via-transparent to-blue-500/5 rounded-3xl blur-xl"></div>
-                
-                <div className="glass rounded-2xl border border-cyan-500/20 overflow-hidden relative z-10 hover:border-cyan-500/40 transition-all hover:shadow-xl hover:shadow-cyan-500/10">
-                  <div className="grid md:grid-cols-2 h-full">
-                    {/* Content - Lato sinistro */}
-                    <div className="p-8 flex flex-col h-full">
-                      <div className="mb-2">
-                        <div className="inline-block px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-xs font-medium text-cyan-400 mb-1">
-                          Data Intelligence
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-center mb-5">
-                        <div className="mr-3 relative">
-                          <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white shadow-md shadow-cyan-500/20">
-                            <BarChart3 className="w-6 h-6" />
-                          </div>
-                          <div className="absolute -right-1 -bottom-1 w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center text-white shadow-sm shadow-blue-500/30 text-xs">
-                            AI
+                  
+                  {/* Demo - Lato destro (dimensioni ridotte) */}
+                  <div className="bg-gradient-to-br from-indigo-500/10 via-indigo-600/10 to-violet-700/20 relative overflow-hidden h-full min-h-[380px] flex items-center justify-center">
+                    {/* Contenitore più piccolo e centrato */}
+                    <div className="w-10/12 max-w-[320px] mx-auto pointer-events-none select-none">
+                      {/* Chat Telegram */}
+                      <div className="glass border border-white/20 rounded-xl overflow-hidden shadow-xl bg-background/70 backdrop-blur-md">
+                        <div className="bg-indigo-600/90 py-2 px-3 text-white flex items-center justify-between">
+                          <div className="flex items-center">
+                            <Bot className="w-4 h-4 mr-2" />
+                            <span className="text-sm font-medium">Segretario Bot</span>
                           </div>
                         </div>
-                        <h3 className="text-2xl font-bold">QuantumInsight</h3>
-                      </div>
-                      
-                      <p className="text-base text-foreground/80 mb-6 flex-grow">
-                        Piattaforma di business intelligence potenziata da AI che trasforma i dati grezzi in previsioni 
-                        accurate e approfondimenti strategici. Combina analisi predittiva, rilevamento anomalie e dashboard 
-                        personalizzabili per decisioni aziendali basate su dati in tempo reale.
-                      </p>
-                      
-                      <div className="grid grid-cols-2 gap-4 mb-6">
-                        <div className="bg-gradient-to-br from-cyan-500/5 to-cyan-500/10 rounded-xl p-4 border border-cyan-500/20">
-                          <h4 className="font-semibold text-sm flex items-center mb-2">
-                            <BrainCircuit className="w-4 h-4 text-cyan-400 mr-2" />
-                            Analisi predittiva
-                          </h4>
-                          <p className="text-sm text-foreground/70">
-                            Previsioni di tendenze future con modelli ML che analizzano pattern e anomalie.
-                          </p>
-                        </div>
                         
-                        <div className="bg-gradient-to-br from-cyan-500/5 to-cyan-500/10 rounded-xl p-4 border border-cyan-500/20">
-                          <h4 className="font-semibold text-sm flex items-center mb-2">
-                            <Lightbulb className="w-4 h-4 text-cyan-400 mr-2" />
-                            Insights automatici
-                          </h4>
-                          <p className="text-sm text-foreground/70">
-                            Identificazione automatica di correlazioni, anomalie e opportunità nascoste.
-                          </p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex justify-between items-center">
-                        <div className="flex items-center">
-                          <span className="text-sm text-foreground/70 mr-3">A partire da:</span>
-                          <span className="font-semibold text-xl">€590<span className="text-foreground/60 text-sm font-normal">/mese</span></span>
-                        </div>
-                        
-                        <div className="flex items-center gap-3">
-                          <Link 
-                            to="/products/quantuminsight" 
-                            className="text-cyan-400 hover:text-cyan-500 transition-colors font-medium text-sm flex items-center"
-                          >
-                            Demo <ExternalLink className="w-3.5 h-3.5 ml-1" />
-                          </Link>
+                        <div className="p-3 space-y-3 max-h-[300px] overflow-hidden">
+                          <div className="flex items-start">
+                            <div className="w-7 h-7 rounded-full bg-indigo-500/20 flex items-center justify-center mr-2 flex-shrink-0">
+                              <Bot className="w-3 h-3 text-indigo-400" />
+                            </div>
+                            <div className="bg-indigo-500/10 rounded-lg rounded-tl-none p-2 max-w-[80%] text-xs">
+                              <p>Buongiorno! Sono il tuo segretario. Come posso aiutarti?</p>
+                            </div>
+                          </div>
                           
-                          <Link 
-                            to="/products/quantuminsight"
-                            className="px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-lg flex items-center transition-all hover:shadow-md hover:shadow-cyan-500/20 text-sm font-medium"
-                          >
-                            Scopri di più <ArrowRight className="ml-1.5 w-4 h-4" />
-                          </Link>
+                          <div className="flex justify-end">
+                            <div className="bg-indigo-500/20 rounded-lg rounded-tr-none p-2 max-w-[80%] text-xs">
+                              <p>Voglio fissare una call con il team marketing</p>
+                            </div>
+                          </div>
+                          
+                          <div className="flex items-start">
+                            <div className="w-7 h-7 rounded-full bg-indigo-500/20 flex items-center justify-center mr-2 flex-shrink-0">
+                              <Bot className="w-3 h-3 text-indigo-400" />
+                            </div>
+                            <div className="bg-indigo-500/10 rounded-lg rounded-tl-none p-2 max-w-[80%] text-xs">
+                              <p>Giovedì alle 10:00 è disponibile. Creo l'evento?</p>
+                            </div>
+                          </div>
+                          
+                          <div className="flex justify-end">
+                            <div className="bg-indigo-500/20 rounded-lg rounded-tr-none p-2 max-w-[80%] text-xs">
+                              <p>Sì, perfetto.</p>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                    
-                    {/* Demo - Lato destro */}
-                    <div className="bg-gradient-to-br from-cyan-500/10 via-blue-600/10 to-blue-700/20 relative overflow-hidden h-full min-h-[380px]">
-                      {/* Demo animata - Analytics dashboard */}
-                      <div className="absolute inset-0 flex items-center justify-center p-8">
-                        <div className="w-full max-w-md mx-auto">
-                          <div className="relative z-10">
-                            <div className="glass border border-white/20 rounded-xl overflow-hidden shadow-xl bg-background/70 backdrop-blur-md">
-                              <div className="bg-gradient-to-r from-cyan-500/90 to-blue-600/90 py-3 px-4 text-white flex items-center justify-between">
-                                <div className="flex items-center">
-                                  <BarChart3 className="w-4 h-4 mr-2" />
-                                  <span className="text-sm font-medium">Performance Insights</span>
-                                </div>
-                                <div className="flex space-x-1">
-                                  <div className="w-5 h-5 rounded-full bg-background/10 flex items-center justify-center text-[8px]">D</div>
-                                  <div className="w-5 h-5 rounded-full bg-background/10 flex items-center justify-center text-[8px]">W</div>
-                                  <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center text-[8px] font-medium">M</div>
-                                  <div className="w-5 h-5 rounded-full bg-background/10 flex items-center justify-center text-[8px]">Y</div>
-                                </div>
-                              </div>
-                              
-                              <div className="p-4">
-                                <div className="flex justify-between mb-4">
-                                  <div className="text-xs text-foreground/60">Ottobre 2023 - Aprile 2024</div>
-                                  <div className="bg-cyan-500/20 px-2 py-0.5 rounded text-xs text-cyan-500 flex items-center">
-                                    <TrendingUp className="w-3 h-3 mr-1" />
-                                    <span>+24.8%</span>
-                                  </div>
-                                </div>
-                                
-                                {/* Chart with animation */}
-                                <div className="relative h-40 mb-3">
-                                  <svg className="w-full h-full" preserveAspectRatio="none">
-                                    {/* Background grid */}
-                                    <line x1="0" y1="0" x2="100%" y2="0" stroke="#e2e8f0" strokeWidth="0.5" strokeDasharray="4" className="opacity-20" />
-                                    <line x1="0" y1="25%" x2="100%" y2="25%" stroke="#e2e8f0" strokeWidth="0.5" strokeDasharray="4" className="opacity-20" />
-                                    <line x1="0" y1="50%" x2="100%" y2="50%" stroke="#e2e8f0" strokeWidth="0.5" strokeDasharray="4" className="opacity-20" />
-                                    <line x1="0" y1="75%" x2="100%" y2="75%" stroke="#e2e8f0" strokeWidth="0.5" strokeDasharray="4" className="opacity-20" />
-                                    <line x1="0" y1="100%" x2="100%" y2="100%" stroke="#e2e8f0" strokeWidth="0.5" className="opacity-20" />
-                                    
-                                    {/* Animated Area Chart */}
-                                    <path 
-                                      d="M0,100 L0,70 C20,65 40,80 60,60 C80,40 100,50 120,30 C140,15 160,25 180,15 C200,5 220,20 240,10 C260,0 280,5 300,15 L300,100 Z" 
-                                      fill="url(#chart-gradient)" 
-                                      className="chart-area-animation"
-                                    />
-                                    
-                                    {/* Animated Line */}
-                                    <path 
-                                      d="M0,70 C20,65 40,80 60,60 C80,40 100,50 120,30 C140,15 160,25 180,15 C200,5 220,20 240,10 C260,0 280,5 300,15" 
-                                      fill="none" 
-                                      stroke="url(#line-gradient)" 
-                                      strokeWidth="2" 
-                                      className="chart-line-animation"
-                                    />
-                                    
-                                    {/* Data Points */}
-                                    <circle cx="0" cy="70" r="4" fill="#06b6d4" className="chart-point-animation" style={{ animationDelay: "0.1s" }} />
-                                    <circle cx="60" cy="60" r="4" fill="#06b6d4" className="chart-point-animation" style={{ animationDelay: "0.3s" }} />
-                                    <circle cx="120" cy="30" r="4" fill="#06b6d4" className="chart-point-animation" style={{ animationDelay: "0.5s" }} />
-                                    <circle cx="180" cy="15" r="4" fill="#06b6d4" className="chart-point-animation" style={{ animationDelay: "0.7s" }} />
-                                    <circle cx="240" cy="10" r="4" fill="#06b6d4" className="chart-point-animation" style={{ animationDelay: "0.9s" }} />
-                                    <circle cx="300" cy="15" r="4" fill="#06b6d4" className="chart-point-animation" style={{ animationDelay: "1.1s" }} />
-                                    
-                                    {/* Gradient definitions */}
-                                    <defs>
-                                      <linearGradient id="chart-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                        <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.3" />
-                                        <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.05" />
-                                      </linearGradient>
-                                      <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                        <stop offset="0%" stopColor="#06b6d4" />
-                                        <stop offset="100%" stopColor="#0ea5e9" />
-                                      </linearGradient>
-                                    </defs>
-                                  </svg>
-                                </div>
-                                
-                                {/* KPI Cards */}
-                                <div className="grid grid-cols-3 gap-2">
-                                  <div className="glass rounded-lg p-2 border border-white/10 text-center">
-                                    <div className="text-xs text-foreground/60">Conversioni</div>
-                                    <div className="text-sm font-semibold text-cyan-500 flex items-center justify-center">
-                                      3.8%
-                                      <TrendingUp className="w-3 h-3 ml-1 text-emerald-500" />
-                                    </div>
-                                  </div>
-                                  
-                                  <div className="glass rounded-lg p-2 border border-white/10 text-center">
-                                    <div className="text-xs text-foreground/60">Ricavi</div>
-                                    <div className="text-sm font-semibold text-cyan-500 flex items-center justify-center">
-                                      €28.5K
-                                      <TrendingUp className="w-3 h-3 ml-1 text-emerald-500" />
-                                    </div>
-                                  </div>
-                                  
-                                  <div className="glass rounded-lg p-2 border border-white/10 text-center">
-                                    <div className="text-xs text-foreground/60">Retention</div>
-                                    <div className="text-sm font-semibold text-cyan-500 flex items-center justify-center">
-                                      84%
-                                      <TrendingUp className="w-3 h-3 ml-1 text-emerald-500" />
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
+                        
+                        <div className="border-t border-white/10 p-2">
+                          <div className="flex items-center">
+                            <div className="bg-transparent flex-grow text-xs opacity-60 px-2">Scrivi un messaggio...</div>
+                            <div className="w-6 h-6 rounded-full bg-indigo-500 flex items-center justify-center text-white">
+                              <Send className="w-3 h-3" />
                             </div>
                           </div>
                         </div>
@@ -1197,333 +556,146 @@ useEffect(() => {
                 </div>
               </div>
             </div>
-            
-            {/* SynapseChat */}
-            <div className="w-full flex-shrink-0">
-              <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-r from-violet-500/5 via-transparent to-purple-500/5 rounded-3xl blur-xl"></div>
-                
-                <div className="glass rounded-2xl border border-violet-500/20 overflow-hidden relative z-10 hover:border-violet-500/40 transition-all hover:shadow-xl hover:shadow-violet-500/10">
-                  <div className="grid md:grid-cols-2 h-full">
-                    {/* Demo interattiva - Lato sinistro */}
-                    <div className="bg-gradient-to-br from-violet-500/10 via-violet-600/10 to-purple-700/20 relative overflow-hidden h-full min-h-[380px]">
-                      {/* Demo animata - Conversazione AI */}
-                      <div className="absolute inset-0 flex items-center justify-center p-8">
-                        <div className="w-full max-w-md mx-auto">
-                          <div className="relative z-10 group">
-                            <div className="glass border border-white/20 rounded-xl overflow-hidden shadow-xl bg-background/70 backdrop-blur-md">
-                              <div className="bg-gradient-to-r from-violet-500/90 to-purple-600/90 py-3 px-4 text-white flex items-center justify-between">
-                                <div className="flex items-center">
-                                  <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center mr-3">
-                                    <Bot className="w-4 h-4" />
-                                  </div>
-                                  <div>
-                                    <div className="text-sm font-medium">Synapse</div>
-                                    <div className="text-xs text-white/70">AI Assistant</div>
-                                  </div>
-                                </div>
-                                <div className="flex space-x-2">
-                                  <div className="w-2.5 h-2.5 rounded-full bg-white/30"></div>
-                                  <div className="w-2.5 h-2.5 rounded-full bg-white/30"></div>
-                                  <div className="w-2.5 h-2.5 rounded-full bg-white/30"></div>
-                                </div>
-                              </div>
-                              
-                              <div className="p-4 h-[280px] overflow-hidden">
-                                {/* Chat Messages */}
-                                <div className="space-y-4">
-                                  <div className="flex items-start">
-                                    <div className="w-8 h-8 rounded-full bg-violet-500/20 flex items-center justify-center mr-2 flex-shrink-0">
-                                      <Bot className="w-4 h-4 text-violet-400" />
-                                    </div>
-                                    <div className="bg-violet-500/10 rounded-lg rounded-tl-none p-3 max-w-[80%] text-sm border border-violet-500/20">
-                                      <p>Buongiorno! Sono Synapse, il tuo assistente AI. Come posso aiutarti oggi?</p>
-                                    </div>
-                                  </div>
-                                  
-                                  <div className="flex justify-end">
-                                    <div className="bg-violet-500/20 rounded-lg rounded-tr-none p-3 max-w-[80%] text-sm">
-                                      <p>Ho un problema con l'ordine #45678. Non ho ricevuto conferma di spedizione.</p>
-                                    </div>
-                                  </div>
-                                  
-                                  <div className="flex items-start">
-                                    <div className="w-8 h-8 rounded-full bg-violet-500/20 flex items-center justify-center mr-2 flex-shrink-0">
-                                      <Bot className="w-4 h-4 text-violet-400" />
-                                    </div>
-                                    <div className="bg-violet-500/10 rounded-lg rounded-tl-none p-3 max-w-[80%] text-sm border border-violet-500/20">
-                                      <p className="chat-typing-animation">Sto verificando il tuo ordine #45678...</p>
-                                    </div>
-                                  </div>
-                                  
-                                  {/* Message that appears on hover */}
-                                  <div className="flex items-start transition-opacity duration-500 opacity-0 group-hover:opacity-100" style={{ transitionDelay: "0.5s" }}>
-                                    <div className="w-8 h-8 rounded-full bg-violet-500/20 flex items-center justify-center mr-2 flex-shrink-0">
-                                      <Bot className="w-4 h-4 text-violet-400" />
-                                    </div>
-                                    <div className="bg-violet-500/10 rounded-lg rounded-tl-none p-3 max-w-[80%] text-sm border border-violet-500/20">
-                                      <p>Ho trovato il tuo ordine. La spedizione è stata elaborata oggi alle 09:24. Il corriere ha già preso in carico il pacco e riceverai l'email di tracking entro un'ora. Posso aiutarti con altro?</p>
-                                    </div>
-                                  </div>
-                                </div>
-                                
-                                {/* Input area */}
-                                <div className="absolute bottom-4 left-4 right-4">
-                                  <div className="glass border border-white/20 rounded-full bg-background/60 backdrop-blur-sm flex items-center p-1 pl-4">
-                                    <input type="text" placeholder="Scrivi un messaggio..." className="bg-transparent border-0 outline-none flex-grow text-sm" />
-                                    <button className="w-8 h-8 rounded-full bg-violet-500 flex items-center justify-center text-white">
-                                      <Send className="w-4 h-4" />
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+          </div>
+          
+          {/* Excel Lead Generator */}
+          <div className="w-full flex-shrink-0">
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/5 via-transparent to-green-500/5 rounded-3xl blur-xl"></div>
+              
+              <div className="glass rounded-2xl border border-emerald-500/20 overflow-hidden relative z-10 hover:border-emerald-500/40 transition-all">
+                <div className="grid md:grid-cols-2 h-full">
+                  {/* Content - Lato sinistro */}
+                  <div className="p-8 flex flex-col h-full">
+                    <div className="mb-2 flex items-center gap-2">
+                      <div className="inline-block px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-medium text-emerald-400 mb-1">
+                        Data Automation
+                      </div>
+                      <div className="inline-block px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/30 text-xs font-medium text-amber-400 mb-1">
+                        In Sviluppo
                       </div>
                     </div>
                     
-                    {/* Content - Lato destro */}
-                    <div className="p-8 flex flex-col h-full">
-                      <div className="mb-2">
-                        <div className="inline-block px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/20 text-xs font-medium text-violet-400 mb-1">
-                          Conversational AI
+                    <div className="flex items-center mb-5">
+                      <div className="mr-3 relative">
+                        <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center text-white shadow-md shadow-emerald-500/20">
+                          <Table className="w-6 h-6" />
+                        </div>
+                        <div className="absolute -right-1 -bottom-1 w-6 h-6 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center text-white shadow-sm shadow-green-500/30 text-xs">
+                          AI
                         </div>
                       </div>
-                      
-                      <div className="flex items-center mb-5">
-                        <div className="mr-3 relative">
-                          <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white shadow-md shadow-violet-500/20">
-                            <MessageSquare className="w-6 h-6" />
-                          </div>
-                          <div className="absolute -right-1 -bottom-1 w-6 h-6 rounded-full bg-gradient-to-br from-purple-500 to-fuchsia-600 flex items-center justify-center text-white shadow-sm shadow-purple-500/30 text-xs">
-                            AI
-                          </div>
-                        </div>
-                        <h3 className="text-2xl font-bold">SynapseChat</h3>
+                      <h3 className="text-2xl font-bold">Excel Lead Generator</h3>
+                    </div>
+                    
+                    <p className="text-base text-foreground/80 mb-6 flex-grow">
+                      Trasforma i fogli Excel in potenti strumenti di generazione lead con arricchimento automatico dei dati tramite AI. 
+                      Converte dati grezzi in contatti qualificati pronti per le vendite.
+                    </p>
+                    
+                    <div className="grid grid-cols-2 gap-4 mb-6">
+                      <div className="bg-gradient-to-br from-emerald-500/5 to-emerald-500/10 rounded-xl p-4 border border-emerald-500/20">
+                        <h4 className="font-semibold text-sm flex items-center mb-2">
+                          <Database className="w-4 h-4 text-emerald-400 mr-2" />
+                          Arricchimento dati
+                        </h4>
+                        <p className="text-sm text-foreground/70">
+                          Completa automaticamente informazioni mancanti da fonti pubbliche e private.
+                        </p>
                       </div>
                       
-                      <p className="text-base text-foreground/80 mb-6 flex-grow">
-                        Piattaforma di conversazione AI avanzata che trasforma il servizio clienti e l'assistenza. 
-                        Con comprensione del linguaggio naturale, memoria contestuale e integrazione multicanale, 
-                        offre esperienze conversazionali fluide che risolvono problemi complessi in modo autonomo.
-                      </p>
+                      <div className="bg-gradient-to-br from-emerald-500/5 to-emerald-500/10 rounded-xl p-4 border border-emerald-500/20">
+                        <h4 className="font-semibold text-sm flex items-center mb-2">
+                          <BarChart className="w-4 h-4 text-emerald-400 mr-2" />
+                          Scoring lead automatico
+                        </h4>
+                        <p className="text-sm text-foreground/70">
+                          Valuta e classifica i contatti in base alla probabilità di conversione.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center">
+                        <span className="text-sm text-foreground/70 mr-3">A partire da:</span>
+                        <span className="font-semibold text-xl">€149<span className="text-foreground/60 text-sm font-normal">/mese</span></span>
+                      </div>
                       
-                      <div className="grid grid-cols-2 gap-4 mb-6">
-                        <div className="bg-gradient-to-br from-violet-500/5 to-violet-500/10 rounded-xl p-4 border border-violet-500/20">
-                          <h4 className="font-semibold text-sm flex items-center mb-2">
-                            <Brain className="w-4 h-4 text-violet-400 mr-2" />
-                            Memoria contestuale
-                          </h4>
-                          <p className="text-sm text-foreground/70">
-                            Ricorda l'intera storia del cliente e personalizza le interazioni.
-                          </p>
-                        </div>
+                      <div className="flex items-center gap-3">
+                        <Link 
+                          to="/products/excel-lead-generator" 
+                          className="text-emerald-400 hover:text-emerald-500 transition-colors font-medium text-sm flex items-center"
+                        >
+                          Demo <ExternalLink className="w-3.5 h-3.5 ml-1" />
+                        </Link>
                         
-                        <div className="bg-gradient-to-br from-violet-500/5 to-violet-500/10 rounded-xl p-4 border border-violet-500/20">
-                          <h4 className="font-semibold text-sm flex items-center mb-2">
-                            <Globe className="w-4 h-4 text-violet-400 mr-2" />
-                            Supporto multilingua
-                          </h4>
-                          <p className="text-sm text-foreground/70">
-                            Comunica fluentemente in 29 lingue con comprensione di sfumature culturali.
-                          </p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex justify-between items-center">
-                        <div className="flex items-center">
-                          <span className="text-sm text-foreground/70 mr-3">A partire da:</span>
-                          <span className="font-semibold text-xl">€390<span className="text-foreground/60 text-sm font-normal">/mese</span></span>
-                        </div>
-                        
-                        <div className="flex items-center gap-3">
-                          <Link 
-                            to="/products/synapsechat" 
-                            className="text-violet-400 hover:text-violet-500 transition-colors font-medium text-sm flex items-center"
-                          >
-                            Demo <ExternalLink className="w-3.5 h-3.5 ml-1" />
-                          </Link>
-                          
-                          <Link 
-                            to="/products/synapsechat"
-                            className="px-5 py-2.5 bg-gradient-to-r from-violet-500 to-purple-600 text-white rounded-lg flex items-center transition-all hover:shadow-md hover:shadow-violet-500/20 text-sm font-medium"
-                          >
-                            Scopri di più <ArrowRight className="ml-1.5 w-4 h-4" />
-                          </Link>
-                        </div>
+                        <Link 
+                          to="/products/excel-lead-generator"
+                          className="px-5 py-2.5 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-lg flex items-center transition-all hover:shadow-md hover:shadow-emerald-500/20 text-sm font-medium"
+                        >
+                          Scopri di più <ArrowRight className="ml-1.5 w-4 h-4" />
+                        </Link>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* OmniDoc */}
-            <div className="w-full flex-shrink-0">
-              <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/5 via-transparent to-green-500/5 rounded-3xl blur-xl"></div>
-                
-                <div className="glass rounded-2xl border border-emerald-500/20 overflow-hidden relative z-10 hover:border-emerald-500/40 transition-all hover:shadow-xl hover:shadow-emerald-500/10">
-                  <div className="grid md:grid-cols-2 h-full">
-                    {/* Content - Lato sinistro */}
-                    <div className="p-8 flex flex-col h-full">
-                      <div className="mb-2">
-                        <div className="inline-block px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-medium text-emerald-400 mb-1">
-                          Document Intelligence
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-center mb-5">
-                        <div className="mr-3 relative">
-                          <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center text-white shadow-md shadow-emerald-500/20">
-                            <FileSearch className="w-6 h-6" />
-                          </div>
-                          <div className="absolute -right-1 -bottom-1 w-6 h-6 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center text-white shadow-sm shadow-green-500/30 text-xs">
-                            AI
+                  
+                  {/* Demo - Lato destro (dimensioni ridotte) */}
+                  <div className="bg-gradient-to-br from-emerald-500/10 via-green-600/10 to-green-700/20 relative overflow-hidden h-full min-h-[380px] flex items-center justify-center">
+                    {/* Contenitore più piccolo e centrato */}
+                    <div className="w-10/12 max-w-[320px] mx-auto pointer-events-none select-none">
+                      {/* Excel interface semplificata */}
+                      <div className="glass border border-white/20 rounded-xl overflow-hidden shadow-xl bg-background/70 backdrop-blur-md">
+                        <div className="bg-emerald-700/90 py-2 px-3 text-white flex items-center justify-between">
+                          <div className="flex items-center">
+                            <Table className="w-4 h-4 mr-2" />
+                            <span className="text-sm font-medium">Lead Generator</span>
                           </div>
                         </div>
-                        <h3 className="text-2xl font-bold">OmniDoc</h3>
-                      </div>
-                      
-                      <p className="text-base text-foreground/80 mb-6 flex-grow">
-                        Piattaforma di intelligenza documentale che automatizza l'estrazione e l'elaborazione di informazioni da qualsiasi tipo di documento. 
-                        Utilizza AI avanzata per riconoscere, classificare e digitalizzare dati da fatture, contratti e moduli, 
-                        eliminando l'inserimento manuale e riducendo gli errori.
-                      </p>
-                      
-                      <div className="grid grid-cols-2 gap-4 mb-6">
-                        <div className="bg-gradient-to-br from-emerald-500/5 to-emerald-500/10 rounded-xl p-4 border border-emerald-500/20">
-                          <h4 className="font-semibold text-sm flex items-center mb-2">
-                            <FileCheck className="w-4 h-4 text-emerald-400 mr-2" />
-                            Estrazione di precisione
-                          </h4>
-                          <p className="text-sm text-foreground/70">
-                            Riconosce e estrae dati con una precisione del 99.3%, superando l'OCR tradizionale.
-                          </p>
-                        </div>
                         
-                        <div className="bg-gradient-to-br from-emerald-500/5 to-emerald-500/10 rounded-xl p-4 border border-emerald-500/20">
-                          <h4 className="font-semibold text-sm flex items-center mb-2">
-                            <Search className="w-4 h-4 text-emerald-400 mr-2" />
-                            Ricerca semantica
-                          </h4>
-                          <p className="text-sm text-foreground/70">
-                            Indicizzazione intelligente che permette di cercare documenti per concetti.
-                          </p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex justify-between items-center">
-                        <div className="flex items-center">
-                          <span className="text-sm text-foreground/70 mr-3">A partire da:</span>
-                          <span className="font-semibold text-xl">€450<span className="text-foreground/60 text-sm font-normal">/mese</span></span>
-                        </div>
-                        
-                        <div className="flex items-center gap-3">
-                          <Link 
-                            to="/products/omnidoc" 
-                            className="text-emerald-400 hover:text-emerald-500 transition-colors font-medium text-sm flex items-center"
-                          >
-                            Demo <ExternalLink className="w-3.5 h-3.5 ml-1" />
-                          </Link>
+                        <div className="p-1 bg-white/5">
+                          {/* Excel header */}
+                          <div className="grid grid-cols-4 text-[10px] font-medium border-b border-white/20 py-1 px-1 bg-emerald-900/30">
+                            <div className="px-1">Azienda</div>
+                            <div className="px-1">Contatto</div>
+                            <div className="px-1">Email</div>
+                            <div className="px-1">Score</div>
+                          </div>
                           
-                          <Link 
-                            to="/products/omnidoc"
-                            className="px-5 py-2.5 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-lg flex items-center transition-all hover:shadow-md hover:shadow-emerald-500/20 text-sm font-medium"
-                          >
-                            Scopri di più <ArrowRight className="ml-1.5 w-4 h-4" />
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Demo - Lato destro */}
-                    <div className="bg-gradient-to-br from-emerald-500/10 via-green-600/10 to-green-700/20 relative overflow-hidden h-full min-h-[380px]">
-                      {/* Demo animata - Document processing */}
-                      <div className="absolute inset-0 flex items-center justify-center p-8">
-                        <div className="w-full max-w-md mx-auto">
-                          <div className="relative z-10 group">
-                            {/* Document with annotations */}
-                            <div className="glass border border-white/20 rounded-xl overflow-hidden shadow-xl bg-background/70 backdrop-blur-md p-5">
-                              <div className="flex justify-between items-center mb-4">
-                                <div className="flex items-center">
-                                  <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center mr-2">
-                                    <FileText className="w-4 h-4 text-emerald-400" />
-                                  </div>
-                                  <span className="text-sm font-medium">Estrazione intelligente</span>
-                                </div>
-                                <div className="flex items-center">
-                                  <div className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-xs text-emerald-400 flex items-center">
-                                    <CheckCircle className="w-3 h-3 mr-1" />
-                                    <span>99.3% match</span>
-                                  </div>
-                                </div>
-                              </div>
-                              
-                              {/* Document UI */}
-                              <div className="relative bg-white dark:bg-gray-900 rounded-lg overflow-hidden">
-                                {/* Document header */}
-                                <div className="border-b border-emerald-500/20 p-3">
-                                  <div className="flex justify-between items-center">
-                                    <div className="w-24 h-8 bg-emerald-500/20 rounded doc-element"></div>
-                                    <div className="w-20 h-6 bg-emerald-500/10 rounded doc-element"></div>
-                                  </div>
-                                </div>
-                                
-                                {/* Document content */}
-                                <div className="p-4 relative">
-                                  {/* Document structure */}
-                                  <div className="space-y-4">
-                                    <div className="flex items-baseline gap-1">
-                                      <div className="w-16 h-4 bg-emerald-500/10 rounded doc-element"></div>
-                                      <div className="w-40 h-4 bg-emerald-500/30 rounded doc-element ml-2"></div>
-                                    </div>
-                                    
-                                    <div className="space-y-2">
-                                      <div className="w-full h-3 bg-emerald-500/10 rounded doc-element"></div>
-                                      <div className="w-full h-3 bg-emerald-500/10 rounded doc-element"></div>
-                                      <div className="w-3/4 h-3 bg-emerald-500/10 rounded doc-element"></div>
-                                    </div>
-                                    
-                                    <div className="flex items-baseline gap-1">
-                                      <div className="w-20 h-4 bg-emerald-500/10 rounded doc-element"></div>
-                                      <div className="w-32 h-4 bg-emerald-500/30 rounded doc-element ml-2"></div>
-                                    </div>
-                                    
-                                    <div className="space-y-2">
-                                      <div className="w-full h-3 bg-emerald-500/10 rounded doc-element"></div>
-                                      <div className="w-5/6 h-3 bg-emerald-500/10 rounded doc-element"></div>
-                                    </div>
-                                    
-                                    <div className="flex justify-between pt-2 border-t border-emerald-500/20">
-                                      <div className="w-24 h-5 bg-emerald-500/10 rounded doc-element"></div>
-                                      <div className="w-20 h-5 bg-emerald-500/30 rounded doc-element"></div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              
-                              {/* Extracted data result */}
-                              <div className="mt-4 border-t border-emerald-500/20 pt-4">
-                                <h4 className="text-xs font-medium mb-2">Dati estratti</h4>
-                                <div className="grid grid-cols-2 gap-3">
-                                  <div className="glass p-2 rounded-lg bg-emerald-500/5 border border-emerald-500/20">
-                                    <div className="text-xs text-foreground/60">Cliente</div>
-                                    <div className="text-sm font-medium text-emerald-500 doc-extracted-data">ABC Corp</div>
-                                  </div>
-                                  
-                                  <div className="glass p-2 rounded-lg bg-emerald-500/5 border border-emerald-500/20">
-                                    <div className="text-xs text-foreground/60">Fattura #</div>
-                                    <div className="text-sm font-medium text-emerald-500 doc-extracted-data">INV-2024-0562</div>
-                                  </div>
-                                </div>
+                          {/* Excel rows */}
+                          {[
+                            { company: "TechSolutions", contact: "Mario Rossi", email: "mario@tech...", score: "87%" },
+                            { company: "Digital First", contact: "Laura Bianchi", email: "l.bianchi@...", score: "92%" },
+                            { company: "Innovate SRL", contact: "Andrea Verdi", email: "andrea@in...", score: "78%" },
+                            { company: "Studio Mori", contact: "Giulia Mori", email: "g.mori@st...", score: "65%" },
+                            { company: "EcoSmart", contact: "Luca Ferrari", email: "l.ferrari@...", score: "89%" }
+                          ].map((row, idx) => (
+                            <div key={idx} className={`grid grid-cols-4 text-[10px] py-1 px-1 ${idx % 2 === 0 ? 'bg-emerald-900/10' : 'bg-emerald-900/20'}`}>
+                              <div className="px-1 truncate">{row.company}</div>
+                              <div className="px-1 truncate">{row.contact}</div>
+                              <div className="px-1 truncate">{row.email}</div>
+                              <div className="px-1">
+                                <span className={`px-1 py-0.5 rounded-full text-[8px] ${
+                                  parseInt(row.score) > 85 ? 'bg-emerald-500/30 text-emerald-400' : 
+                                  parseInt(row.score) > 70 ? 'bg-amber-500/30 text-amber-400' : 
+                                  'bg-rose-500/30 text-rose-400'
+                                }`}>
+                                  {row.score}
+                                </span>
                               </div>
                             </div>
-                            
-                            {/* Document stack effect */}
-                            <div className="absolute -z-10 -bottom-3 -right-3 w-full h-full border border-white/10 rounded-xl bg-background/50 transform rotate-2"></div>
-                            <div className="absolute -z-20 -bottom-6 -right-6 w-full h-full border border-white/5 rounded-xl bg-background/30 transform rotate-4"></div>
+                          ))}
+                        </div>
+                        
+                        {/* Excel toolbar semplificato */}
+                        <div className="p-2 bg-emerald-900/40 flex justify-between items-center">
+                          <div className="px-2 py-1 bg-emerald-500/20 border border-emerald-500/30 rounded text-[10px]">
+                            <RefreshCw className="w-3 h-3 inline mr-1" />
+                            Aggiorna
+                          </div>
+                          
+                          <div className="px-2 py-1 bg-emerald-500/20 border border-emerald-500/30 rounded text-[10px]">
+                            <Download className="w-3 h-3 inline mr-1" />
+                            Esporta
                           </div>
                         </div>
                       </div>
@@ -1532,10 +704,382 @@ useEffect(() => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
+          
+          {/* AI CRM */}
+          <div className="w-full flex-shrink-0">
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/5 via-transparent to-sky-500/5 rounded-3xl blur-xl"></div>
+              
+              <div className="glass rounded-2xl border border-blue-500/20 overflow-hidden relative z-10 hover:border-emerald-500/40 transition-all">
+                <div className="grid md:grid-cols-2 h-full">
+                  {/* Content - Lato sinistro */}
+                  <div className="p-8 flex flex-col h-full">
+                    <div className="mb-2 flex items-center gap-2">
+                      <div className="inline-block px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-medium text-blue-400 mb-1">
+                        Customer Intelligence
+                      </div>
+                      <div className="inline-block px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/30 text-xs font-medium text-amber-400 mb-1">
+                        In Sviluppo
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center mb-5">
+                      <div className="mr-3 relative">
+                        <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-sky-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20">
+                          <Users className="w-6 h-6" />
+                        </div>
+                        <div className="absolute -right-1 -bottom-1 w-6 h-6 rounded-full bg-gradient-to-br from-sky-500 to-blue-600 flex items-center justify-center text-white shadow-sm shadow-blue-500/30 text-xs">
+                          AI
+                        </div>
+                      </div>
+                      <h3 className="text-2xl font-bold">AI CRM</h3>
+                    </div>
+                    
+                    <p className="text-base text-foreground/80 mb-6 flex-grow">
+                      Sistema CRM potenziato da intelligenza artificiale che prevede le esigenze dei clienti, 
+                      automatizza il follow-up e massimizza le conversioni con suggerimenti personalizzati.
+                    </p>
+                    
+                    <div className="grid grid-cols-2 gap-4 mb-6">
+                      <div className="bg-gradient-to-br from-blue-500/5 to-blue-500/10 rounded-xl p-4 border border-blue-500/20">
+                        <h4 className="font-semibold text-sm flex items-center mb-2">
+                          <BrainCircuit className="w-4 h-4 text-blue-400 mr-2" />
+                          Previsione comportamento
+                        </h4>
+                        <p className="text-sm text-foreground/70">
+                          Anticipa le esigenze dei clienti con analisi predittiva avanzata.
+                        </p>
+                      </div>
+                      
+                      <div className="bg-gradient-to-br from-blue-500/5 to-blue-500/10 rounded-xl p-4 border border-blue-500/20">
+                        <h4 className="font-semibold text-sm flex items-center mb-2">
+                          <MessageSquare className="w-4 h-4 text-blue-400 mr-2" />
+                          Automazione follow-up
+                        </h4>
+                        <p className="text-sm text-foreground/70">
+                          Gestisce autonomamente i follow-up con frequenza e tono ottimali.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center">
+                        <span className="text-sm text-foreground/70 mr-3">A partire da:</span>
+                        <span className="font-semibold text-xl">€199<span className="text-foreground/60 text-sm font-normal">/mese</span></span>
+                      </div>
+                      
+                      <div className="flex items-center gap-3">
+                        <Link 
+                          to="/products/ai-crm" 
+                          className="text-blue-400 hover:text-blue-500 transition-colors font-medium text-sm flex items-center"
+                        >
+                          Demo <ExternalLink className="w-3.5 h-3.5 ml-1" />
+                        </Link>
+                        
+                        <Link 
+                          to="/products/ai-crm"
+                          className="px-5 py-2.5 bg-gradient-to-r from-blue-500 to-sky-600 text-white rounded-lg flex items-center transition-all hover:shadow-md hover:shadow-blue-500/20 text-sm font-medium"
+                        >
+                          Scopri di più <ArrowRight className="ml-1.5 w-4 h-4" />
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Demo - Lato destro (dimensioni ridotte) */}
+                  <div className="bg-gradient-to-br from-blue-500/10 via-blue-600/10 to-sky-700/20 relative overflow-hidden h-full min-h-[380px] flex items-center justify-center">
+                    {/* Contenitore più piccolo e centrato */}
+                    <div className="w-10/12 max-w-[320px] mx-auto pointer-events-none select-none">
+                      {/* CRM Dashboard semplificato */}
+                      <div className="glass border border-white/20 rounded-xl overflow-hidden shadow-xl bg-background/70 backdrop-blur-md">
+                        <div className="bg-gradient-to-r from-blue-700/90 to-sky-600/90 py-2 px-3 text-white flex items-center justify-between">
+                          <div className="flex items-center">
+                            <Users className="w-4 h-4 mr-2" />
+                            <span className="text-sm font-medium">AI CRM</span>
+                          </div>
+                        </div>
+                        
+                        <div className="p-3 space-y-3">
+                          {/* Stats overview semplificati */}
+                          <div className="grid grid-cols-3 gap-2 mb-3">
+                            <div className="glass rounded p-1.5 text-center">
+                              <div className="text-[10px] text-foreground/60">Lead</div>
+                              <div className="text-sm font-semibold text-blue-400">48</div>
+                              <div className="text-[8px] text-emerald-400">+12%</div>
+                            </div>
+                            <div className="glass rounded p-1.5 text-center">
+                              <div className="text-[10px] text-foreground/60">Conversioni</div>
+                              <div className="text-sm font-semibold text-blue-400">24</div>
+                              <div className="text-[8px] text-emerald-400">+8%</div>
+                            </div>
+                            <div className="glass rounded p-1.5 text-center">
+                              <div className="text-[10px] text-foreground/60">Ricavi</div>
+                              <div className="text-sm font-semibold text-blue-400">€9.2k</div>
+                              <div className="text-[8px] text-emerald-400">+15%</div>
+                            </div>
+                          </div>
+                          
+                          {/* AI Insights */}
+                          <div>
+                            <div className="flex items-center mb-1">
+                              <BrainCircuit className="w-3 h-3 text-blue-400 mr-1" />
+                              <div className="text-[10px] font-medium">Insights AI</div>
+                            </div>
+                            <div className="glass rounded p-2 border border-blue-500/20 bg-blue-500/5">
+                              <p className="text-[10px] text-foreground/80 mb-1">
+                                <span className="font-medium">Opportunità di upsell:</span> 12 clienti hanno mostrato interesse per il pacchetto Premium.
+                              </p>
+                            </div>
+                          </div>
+                          
+                          {/* Customers list semplificata */}
+                          <div>
+                            <div className="flex items-center mb-1">
+                              <Users className="w-3 h-3 text-blue-400 mr-1" />
+                              <div className="text-[10px] font-medium">Clienti con priorità</div>
+                            </div>
+                            <div className="space-y-1.5">
+                              {[
+                                {name: "Marco Rossi", company: "TechVision", score: 94},
+                                {name: "Laura Bianchi", company: "Digital First", score: 86}
+                              ].map((customer, idx) => (
+                                <div key={idx} className="glass p-1.5 rounded flex justify-between items-center">
+                                  <div className="flex items-center">
+                                    <div className="w-5 h-5 rounded-full bg-rose-500/80 flex items-center justify-center text-white text-[8px] mr-1.5">
+                                      {customer.name.charAt(0)}
+                                    </div>
+                                    <div>
+                                      <div className="text-[10px] font-medium">{customer.name}</div>
+                                      <div className="text-[8px] text-foreground/60">{customer.company}</div>
+                                    </div>
+                                  </div>
+                                  <div className="text-right">
+                                    <div className="text-[8px] text-foreground/60">Score: {customer.score}</div>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* PromptElite */}
+          <div className="w-full flex-shrink-0">
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-r from-fuchsia-500/5 via-transparent to-purple-500/5 rounded-3xl blur-xl"></div>
+              
+              <div className="glass rounded-2xl border border-fuchsia-500/20 overflow-hidden relative z-10 hover:border-fuchsia-500/40 transition-all">
+                <div className="grid md:grid-cols-2 h-full">
+                  {/* Content - Lato sinistro */}
+                  <div className="p-8 flex flex-col h-full">
+                    <div className="mb-2 flex items-center gap-2">
+                      <div className="inline-block px-3 py-1 rounded-full bg-fuchsia-500/10 border border-fuchsia-500/20 text-xs font-medium text-fuchsia-400 mb-1">
+                        Prompt Engineering
+                      </div>
+                      <div className="inline-block px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/30 text-xs font-medium text-amber-400 mb-1">
+                        In Sviluppo
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center mb-5">
+                      <div className="mr-3 relative">
+                        <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-fuchsia-500 to-purple-600 flex items-center justify-center text-white shadow-md shadow-fuchsia-500/20">
+                          <BrainCircuit className="w-6 h-6" />
+                        </div>
+                        <div className="absolute -right-1 -bottom-1 w-6 h-6 rounded-full bg-gradient-to-br from-purple-500 to-fuchsia-600 flex items-center justify-center text-white shadow-sm shadow-purple-500/30 text-xs">
+                          AI
+                        </div>
+                      </div>
+                      <h3 className="text-2xl font-bold">PromptElite</h3>
+                    </div>
+                    
+                    <p className="text-base text-foreground/80 mb-6 flex-grow">
+                      Strumento avanzato per la creazione e ottimizzazione di prompt per modelli AI. 
+                      Massimizza le performance dei tuoi assistenti virtuali con template pronti all'uso e analitiche dettagliate.
+                    </p>
+                    
+                    <div className="grid grid-cols-2 gap-4 mb-6">
+                      <div className="bg-gradient-to-br from-fuchsia-500/5 to-fuchsia-500/10 rounded-xl p-4 border border-fuchsia-500/20">
+                        <h4 className="font-semibold text-sm flex items-center mb-2">
+                          <Library className="w-4 h-4 text-fuchsia-400 mr-2" />
+                          Template library
+                        </h4>
+                        <p className="text-sm text-foreground/70">
+                          Centinaia di template pronti all'uso per ogni caso d'uso aziendale.
+                        </p>
+                      </div>
+                      
+                      <div className="bg-gradient-to-br from-fuchsia-500/5 to-fuchsia-500/10 rounded-xl p-4 border border-fuchsia-500/20">
+                        <h4 className="font-semibold text-sm flex items-center mb-2">
+                          <BarChart className="w-4 h-4 text-fuchsia-400 mr-2" />
+                          A/B testing
+                        </h4>
+                        <p className="text-sm text-foreground/70">
+                          Confronta diversi prompt per trovare la formulazione più efficace.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center">
+                        <span className="text-sm text-foreground/70 mr-3">A partire da:</span>
+                        <span className="font-semibold text-xl">€129<span className="text-foreground/60 text-sm font-normal">/mese</span></span>
+                      </div>
+                      
+                      <div className="flex items-center gap-3">
+                        <Link 
+                          to="/products/promptelite" 
+                          className="text-fuchsia-400 hover:text-fuchsia-500 transition-colors font-medium text-sm flex items-center"
+                        >
+                          Demo <ExternalLink className="w-3.5 h-3.5 ml-1" />
+                        </Link>
+                        
+                        <Link 
+                          to="/products/promptelite"
+                          className="px-5 py-2.5 bg-gradient-to-r from-fuchsia-500 to-purple-600 text-white rounded-lg flex items-center transition-all hover:shadow-md hover:shadow-fuchsia-500/20 text-sm font-medium"
+                        >
+                          Scopri di più <ArrowRight className="ml-1.5 w-4 h-4" />
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Demo - Lato destro (dimensioni ridotte) */}
+                  <div className="bg-gradient-to-br from-fuchsia-500/10 via-pink-600/10 to-purple-700/20 relative overflow-hidden h-full min-h-[380px] flex items-center justify-center">
+                    {/* Contenitore più piccolo e centrato */}
+                    <div className="w-10/12 max-w-[320px] mx-auto pointer-events-none select-none">
+                      {/* Prompt Editor semplificato */}
+                      <div className="glass border border-white/20 rounded-xl overflow-hidden shadow-xl bg-background/70 backdrop-blur-md">
+                        <div className="bg-gradient-to-r from-fuchsia-700/90 to-purple-600/90 py-2 px-3 text-white flex items-center justify-between">
+                          <div className="flex items-center">
+                            <BrainCircuit className="w-4 h-4 mr-2" />
+                            <span className="text-sm font-medium">PromptElite</span>
+                          </div>
+                        </div>
+                        
+                        <div className="p-3 space-y-2">
+                          {/* Template selector */}
+                          <div className="flex items-center space-x-1.5 mb-1">
+                            <div className="text-[10px] text-foreground/60">Template:</div>
+                            <div className="text-[10px] bg-fuchsia-500/10 border border-fuchsia-500/30 rounded py-1 px-1.5 text-foreground/80">
+                              Customer Service
+                            </div>
+                          </div>
+                          
+                          {/* Prompt editor */}
+                          <div className="glass border border-fuchsia-500/20 rounded p-2 bg-background/50">
+                            <div className="text-[10px] text-fuchsia-400 mb-1">Prompt Template:</div>
+                            <div className="text-[8px] text-foreground/80 font-mono h-24 overflow-hidden">
+                              {"Sei un assistente clienti esperto di {company}.\n\nQuando rispondi alle domande dei clienti:\n1. Mantieni un tono cordiale e professionale\n2. Offri soluzioni concrete ai problemi\n3. Suggerisci prodotti correlati\n4. Chiedi feedback sulla risposta"}
+                            </div>
+                          </div>
+                          
+                          {/* Variables */}
+                          <div className="grid grid-cols-2 gap-1.5">
+                            <div className="flex flex-col gap-1">
+                              <label className="text-[8px] text-fuchsia-400">company:</label>
+                              <div className="text-[8px] bg-fuchsia-500/10 border border-fuchsia-500/30 rounded py-1 px-1.5">
+                                TechSolutions
+                              </div>
+                            </div>
+                            <div className="flex flex-col gap-1">
+                              <label className="text-[8px] text-fuchsia-400">products:</label>
+                              <div className="text-[8px] bg-fuchsia-500/10 border border-fuchsia-500/30 rounded py-1 px-1.5">
+                                X1, X2 Pro, X3 Ultra
+                              </div>
+                            </div>
+                          </div>
+                          
+                          {/* Performance metrics */}
+                          <div className="grid grid-cols-3 gap-1.5">
+                            <div className="glass rounded p-1.5 text-center">
+                              <div className="text-[8px] text-foreground/60">Efficacia</div>
+                              <div className="text-[10px] text-fuchsia-400 font-medium">92%</div>
+                            </div>
+                            <div className="glass rounded p-1.5 text-center">
+                              <div className="text-[8px] text-foreground/60">Chiarezza</div>
+                              <div className="text-[10px] text-fuchsia-400 font-medium">88%</div>
+                            </div>
+                            <div className="glass rounded p-1.5 text-center">
+                              <div className="text-[8px] text-foreground/60">Conversioni</div>
+                              <div className="text-[10px] text-fuchsia-400 font-medium">+42%</div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Actions */}
+                        <div className="p-2 border-t border-fuchsia-500/20 flex justify-between">
+                          <div className="px-2 py-1 bg-fuchsia-500/20 border border-fuchsia-500/30 rounded text-[8px] text-fuchsia-400">
+                            <Lightbulb className="w-2 h-2 inline mr-1" />
+                            Ottimizza
+                          </div>
+                          <div className="px-2 py-1 bg-fuchsia-500 rounded text-[8px] text-white">
+                            <PlayCircle className="w-2 h-2 inline mr-1" />
+                            Testa
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </motion.div>
+      </div>
       
+      {/* Indicatori di scorrimento migliorati */}
+      <div className="flex justify-center mt-8 gap-3">
+        {[0, 1, 2, 3].map((index) => (
+          <button
+            key={index}
+            onClick={() => setActiveProduct(index)}
+            className={`rounded-full transition-all duration-300 flex items-center justify-center focus:outline-none ${
+              activeProduct === index 
+                ? index === 0 ? 'bg-indigo-500 w-8 h-3' : 
+                  index === 1 ? 'bg-emerald-500 w-8 h-3' : 
+                  index === 2 ? 'bg-blue-500 w-8 h-3' : 
+                  'bg-fuchsia-500 w-8 h-3'
+                : 'bg-foreground/20 hover:bg-foreground/30 w-3 h-3'
+            }`}
+            aria-label={`Vai al prodotto ${index + 1}`}
+          />
+        ))}
+      </div>
+      
+      {/* Controlli di navigazione per mobile */}
+      <div className="flex justify-center mt-6 md:hidden">
+        <div className="flex gap-6">
+          <button 
+            onClick={() => {
+              const newIndex = activeProduct === 0 ? 3 : activeProduct - 1;
+              setActiveProduct(newIndex);
+            }}
+            className="w-12 h-12 rounded-full glass border border-indigo-500/20 flex items-center justify-center text-indigo-500"
+            aria-label="Prodotto precedente"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          
+          <button 
+            onClick={() => {
+              const newIndex = activeProduct === 3 ? 0 : activeProduct + 1;
+              setActiveProduct(newIndex);
+            }}
+            className="w-12 h-12 rounded-full glass border border-indigo-500/20 flex items-center justify-center text-indigo-500"
+            aria-label="Prodotto successivo"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+        </div>
+      </div>
     </div>
     
     {/* Soluzioni personalizzate - versione semplificata */}
@@ -1562,125 +1106,47 @@ useEffect(() => {
     </div>
   </div>
   
-  {/* Stili CSS per animazioni avanzate */}
+  {/* Stili CSS per animazioni */}
   <style dangerouslySetInnerHTML={{ __html: `
-    /* Workflow animations */
-    @keyframes pulse-glow {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
-      50% { box-shadow: 0 0 10px 3px rgba(99, 102, 241, 0.6); }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
     
-    .workflow-pulse {
-      animation: pulse-glow 3s infinite ease-in-out;
+    .animate-float {
+      animation: float 5s ease-in-out infinite;
     }
     
-    .workflow-node {
-      opacity: 0;
-      transform: translateY(10px);
-      animation: appear 0.5s forwards ease-out;
-    }
-    
-    @keyframes appear {
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .workflow-connection {
-      stroke-dasharray: 15;
-      stroke-dashoffset: 150;
-      animation: dash 3s linear infinite;
-    }
-    
-    @keyframes dash {
-      to { stroke-dashoffset: 0; }
-    }
-    
-    .workflow-particle {
-      opacity: 0;
-      animation: particle-fade 2s infinite ease-in-out;
-    }
-    
-    @keyframes particle-fade {
-      0%, 100% { opacity: 0; }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
       50% { opacity: 1; }
     }
     
-    /* Chart animations */
-    .chart-area-animation {
-      opacity: 0;
-      animation: fade-in 1s forwards ease-out 0.5s;
+    .animate-pulse {
+      animation: pulse 2s infinite;
     }
-    
-    .chart-line-animation {
-      stroke-dasharray: 500;
-      stroke-dashoffset: 500;
-      animation: draw 2s forwards ease-out;
-    }
-    
-    @keyframes draw {
-      to { stroke-dashoffset: 0; }
-    }
-    
-    .chart-point-animation {
-      opacity: 0;
-      animation: point-appear 0.5s forwards ease-out;
-    }
-    
-    @keyframes point-appear {
-      to { opacity: 1; }
-    }
-    
-    /* Chat animations */
-    .chat-typing-animation::after {
-      content: "";
-      animation: typing 1.5s infinite;
-    }
-    
-    @keyframes typing {
-      0% { content: ""; }
-      25% { content: "."; }
-      50% { content: ".."; }
-      75% { content: "..."; }
-    }
-    
-    /* Document animations */
-    .doc-element {
-      opacity: 0.7;
-      animation: pulse-element 3s infinite ease-in-out;
-    }
-    
-    @keyframes pulse-element {
-      0%, 100% { opacity: 0.7; }
-      50% { opacity: 1; }
-    }
-    
-    .doc-extracted-data {
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .doc-extracted-data::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.2), transparent);
-      animation: shine-effect 3s infinite;
-    }
-    
-    @keyframes shine-effect {
-      0% { left: -100%; }
-      50%, 100% { left: 100%; }
-    }
-    
-    @keyframes fade-in {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
+ 
+    @keyframes gradient-pulse {
+  0%, 100% { 
+    background: radial-gradient(circle at center, rgba(139, 92, 246, 0.7), transparent 70%);
+    transform: scale(0.9) translate(-50%, -50%); 
+  }
+  50% { 
+    background: radial-gradient(circle at center, rgba(124, 58, 237, 0.6), transparent 75%);
+    transform: scale(1.1) translate(-45%, -45%); 
+  }
+}
+
+.animate-gradient-pulse {
+  animation: gradient-pulse 8s ease-in-out infinite;
+  transform-origin: center;
+}
+
   `}} />
 </section>
+                            
 
+                                
 
       
 {/* Sezione Processo di Implementazione con Timeline Orizzontale Animata e Responsive */}

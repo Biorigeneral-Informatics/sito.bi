@@ -6,63 +6,31 @@ import {
   Code, 
   BrainCircuit, 
   ArrowRight,
-  GraduationCap,
-  Trophy,
-  ChevronRight
+  Briefcase,
+  Star,
+  Clock,
+  CheckCircle,
+  Calendar,
+  Users,
+  Shuffle,
+  Zap,
+  BarChart,
+  Send,
+  Cloud
 } from 'lucide-react';
-
-// Particle component with proper typing
-interface ParticleProps {
-  x: number;
-  y: number;
-  size: number;
-  color: string;
-  velocity: { x: number; y: number };
-}
 
 const Developers = () => {
   const heroRef = useRef<HTMLDivElement>(null);
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: false, amount: 0.1 });
-  const [, setParticles] = useState<ParticleProps[]>([]);
+  const section1Ref = useRef<HTMLDivElement>(null);
+  const section2Ref = useRef<HTMLDivElement>(null);
+  const section3Ref = useRef<HTMLDivElement>(null);
+  const isSection1InView = useInView(section1Ref, { once: true, amount: 0.2 });
+  const isSection2InView = useInView(section2Ref, { once: true, amount: 0.2 });
+  const isSection3InView = useInView(section3Ref, { once: true, amount: 0.2 });
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   
-  // Initialize particles
+  // Track mouse for background effect
   useEffect(() => {
-    const newParticles: ParticleProps[] = [];
-    
-    for (let i = 0; i < 50; i++) {
-      newParticles.push({
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
-        size: Math.random() * 4 + 1,
-        color: Math.random() > 0.5 ? 'rgba(139, 92, 246, 0.6)' : 'rgba(56, 189, 248, 0.6)',
-        velocity: {
-          x: Math.random() * 0.5 - 0.25,
-          y: Math.random() * 0.5 - 0.25
-        }
-      });
-    }
-    
-    setParticles(newParticles);
-  }, []);
-  
-  // Update particles and handle mouse interaction
-  useEffect(() => {
-    const canvas = document.getElementById('particle-canvas') as HTMLCanvasElement;
-    if (!canvas) return;
-    
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-    
     const handleMouseMove = (e: MouseEvent) => {
       if (heroRef.current) {
         const rect = heroRef.current.getBoundingClientRect();
@@ -72,178 +40,239 @@ const Developers = () => {
           e.clientY >= rect.top &&
           e.clientY <= rect.bottom
         ) {
-          setMousePosition({ x: e.clientX, y: e.clientY });
+          const x = (e.clientX - rect.left) / rect.width;
+          const y = (e.clientY - rect.top) / rect.height;
+          setMousePosition({ x, y });
         }
       }
     };
     
     window.addEventListener('mousemove', handleMouseMove);
-    
-    const animateParticles = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      setParticles(prevParticles => 
-        prevParticles.map(particle => {
-          let newX = particle.x + particle.velocity.x;
-          let newY = particle.y + particle.velocity.y;
-          
-          // Boundary check
-          if (newX > canvas.width) newX = 0;
-          if (newX < 0) newX = canvas.width;
-          if (newY > canvas.height) newY = 0;
-          if (newY < 0) newY = canvas.height;
-          
-          // Mouse attraction
-          const dx = mousePosition.x - newX;
-          const dy = mousePosition.y - newY;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          if (distance < 200) {
-            const attractionForce = 0.5;
-            newX += (dx / distance) * attractionForce;
-            newY += (dy / distance) * attractionForce;
-          }
-          
-          // Draw particle
-          ctx.beginPath();
-          ctx.arc(newX, newY, particle.size, 0, Math.PI * 2);
-          ctx.fillStyle = particle.color;
-          ctx.fill();
-          
-          return {
-            ...particle,
-            x: newX,
-            y: newY
-          };
-        })
-      );
-      
-      requestAnimationFrame(animateParticles);
-    };
-    
-    const animationId = requestAnimationFrame(animateParticles);
-    
-    return () => {
-      window.removeEventListener('resize', resizeCanvas);
-      window.removeEventListener('mousemove', handleMouseMove);
-      cancelAnimationFrame(animationId);
-    };
-  }, [mousePosition]);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   return (
-    <div className="min-h-screen font-['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen']">
-      {/* Particle canvas for background */}
-      <canvas 
-        id="particle-canvas" 
-        className="fixed top-0 left-0 w-full h-full z-0"
-      />
-      
-      {/* Gradient overlays */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute left-0 top-0 w-1/4 h-full bg-gradient-to-r from-violet-600/20 to-transparent"></div>
-        <div className="absolute right-0 top-0 w-1/4 h-full bg-gradient-to-l from-sky-600/20 to-transparent"></div>
-        
-        {/* Decorative shapes */}
-        <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-gradient-to-br from-violet-500/10 to-transparent blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-64 h-64 rounded-full bg-gradient-to-br from-sky-500/10 to-transparent blur-3xl"></div>
-      </div>
-      
-      {/* Hero Section */}
-      <div 
+    <div className="min-h-screen">
+      {/* 1. HERO SECTION */}
+      <section 
         ref={heroRef} 
-        className="relative min-h-screen flex items-center justify-center px-4 z-10"
+        className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden"
       >
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-20 h-80 bg-gradient-to-r from-violet-600/20 to-transparent blur-lg rounded-r-full"></div>
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-20 h-80 bg-gradient-to-l from-sky-600/20 to-transparent blur-lg rounded-l-full"></div>
+        {/* Enhanced Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Animated horizontal lines */}
+          {[...Array(12)].map((_, i) => (
+            <div 
+              key={`h-line-${i}`}
+              className="absolute h-[1px] bg-purple-500/20"
+              style={{
+                top: `${8 + i * 8}%`,
+                left: '0',
+                right: '0',
+                transform: `translateX(${(mousePosition.x - 0.5) * -20}px)`,
+                opacity: 0.1 + (i % 3) * 0.15
+              }}
+            />
+          ))}
+          
+          {/* Animated vertical lines */}
+          {[...Array(24)].map((_, i) => (
+            <div 
+              key={`v-line-${i}`}
+              className="absolute w-[1px] bg-purple-500/20"
+              style={{
+                left: `${4 + i * 4}%`,
+                top: '0',
+                bottom: '0',
+                transform: `translateY(${(mousePosition.y - 0.5) * -20}px)`,
+                opacity: 0.1 + (i % 3) * 0.15
+              }}
+            />
+          ))}
+          
+          {/* Floating particles */}
+          {[...Array(20)].map((_, i) => (
+            <div 
+              key={`particle-${i}`}
+              className="absolute rounded-full bg-purple-400/30"
+              style={{
+                width: `${3 + Math.random() * 6}px`,
+                height: `${3 + Math.random() * 6}px`,
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                animation: `float ${5 + Math.random() * 10}s infinite ease-in-out ${Math.random() * 5}s`
+              }}
+            />
+          ))}
+          
+          {/* Gradient Orbs */}
+          <div 
+            className="absolute w-[600px] h-[600px] rounded-full bg-purple-500/15 blur-[120px] opacity-70"
+            style={{
+              left: `calc(${mousePosition.x * 100}% - 300px)`,
+              top: `calc(${mousePosition.y * 100}% - 300px)`,
+              transition: 'left 0.7s ease-out, top 0.7s ease-out'
+            }}
+          />
+          
+          <div 
+            className="absolute w-[400px] h-[400px] rounded-full bg-purple-600/10 blur-[80px] opacity-60"
+            style={{
+              right: `calc(${(1-mousePosition.x) * 100}% - 200px)`,
+              bottom: `calc(${(1-mousePosition.y) * 100}% - 200px)`,
+              transition: 'right 0.5s ease-out, bottom 0.5s ease-out'
+            }}
+          />
+          
+          {/* Decorative shapes */}
+          <div className="absolute top-[20%] left-[15%] w-16 h-16 border-2 border-purple-500/20 rounded-lg transform rotate-12 animate-pulse"></div>
+          <div className="absolute bottom-[25%] right-[10%] w-24 h-24 border border-purple-500/15 rounded-full transform rotate-45 animate-pulse" style={{ animationDuration: '8s' }}></div>
+          <div className="absolute top-[70%] left-[25%] w-32 h-32 border-2 border-purple-500/10 rounded-full transform -rotate-12 animate-pulse" style={{ animationDuration: '10s' }}></div>
+        </div>
         
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="max-w-5xl mx-auto text-center relative z-10"
+          className="max-w-6xl mx-auto text-center z-10"
         >
-          <h1 className="text-5xl md:text-7xl font-bold mb-8 text-white leading-tight">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-violet-600">Alessandro</span> & <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-sky-600">Federico</span>
-            <span className="block mt-2 text-3xl md:text-4xl font-normal text-white/90">AI Developers</span>
-          </h1>
+          <div className="inline-block mb-6 px-4 py-1 rounded-full border border-purple-300/30 bg-purple-500/5">
+            <span className="text-purple-400 text-sm font-medium">
+              Espandi il tuo team di sviluppo
+            </span>
+          </div>
+          
+          <motion.h1 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="text-5xl md:text-7xl font-bold mb-8 leading-tight text-white"
+          >
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="block"
+            >
+              Talenti tech specializzati
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="block mt-4 text-3xl md:text-4xl font-normal"
+            >
+              per accelerare la tua innovazione digitale
+            </motion.span>
+          </motion.h1>
           
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: 120 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="h-1 bg-gradient-to-r from-violet-500 to-sky-500 mx-auto mb-8"
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="h-1 bg-purple-500 mx-auto mb-8"
           />
           
-          <p className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto mb-12 leading-relaxed">
-            Due giovani talenti specializzati in intelligenza artificiale 
-            pronti ad unirsi al tuo team per trasformare il tuo business.
-          </p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+            className="text-xl md:text-2xl text-foreground/80 max-w-3xl mx-auto mb-12 leading-relaxed"
+          >
+            Integra competenze avanzate in intelligenza artificiale 
+            e sviluppo software nel tuo team con i nostri talenti
+          </motion.p>
           
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
           >
             <Link
               to="/contact"
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-violet-600 to-indigo-600 text-white text-lg font-medium rounded-lg shadow-lg hover:shadow-violet-500/30 transition-all duration-300 hover:-translate-y-1"
+              className="inline-flex items-center px-8 py-4 bg-teal-600 text-white text-lg font-medium rounded-lg shadow-lg hover:shadow-teal-500/20 transition-all duration-300 hover:-translate-y-1"
             >
-              Contattaci ora
+              Contatta i nostri sviluppatori
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </motion.div>
         </motion.div>
-      </div>
+      </section>
       
-      {/* Developers Profiles */}
-      <div className="relative py-24 z-10">
+      {/* 2. DEVELOPERS PROFILES SECTION */}
+      <section ref={section1Ref} className="py-32 bg-gradient-to-b from-background via-purple-900/5 to-background relative">
         <div className="max-w-6xl mx-auto px-4">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={isSection1InView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
             className="mb-16 text-center"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              Incontra i Nostri <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-sky-400">Talenti</span>
-            </h2>
-            <div className="h-1 w-32 bg-gradient-to-r from-violet-500 to-sky-500 mx-auto mb-8"></div>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              animate={isSection1InView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-4xl md:text-5xl font-bold mb-6 text-white"
+            >
+              Profili specializzati
+            </motion.h2>
+            <motion.div
+              initial={{ width: 0 }}
+              animate={isSection1InView ? { width: "120px" } : {}}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="h-1 bg-purple-500 mx-auto mb-8"
+            />
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={isSection1InView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="text-lg text-foreground/80 max-w-3xl mx-auto"
+            >
+              I nostri sviluppatori combinano competenze tecniche avanzate,
+              esperienza di settore e capacità di innovazione
+            </motion.p>
           </motion.div>
           
-          <div className="grid md:grid-cols-2 gap-10">
-            {/* Alessandro */}
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Alessandro Profile Card */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6 }}
+              initial={{ opacity: 0, x: -50 }}
+              animate={isSection1InView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
               className="group"
             >
-              <div className="bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden border border-violet-500/20 shadow-lg hover:shadow-violet-500/20 transition-all duration-300 h-full">
-                <div className="h-3 bg-gradient-to-r from-violet-500 to-indigo-500"></div>
+              <div className="rounded-xl overflow-hidden border border-purple-500/20 shadow-lg shadow-purple-500/5 hover:shadow-purple-500/20 transition-all duration-500 h-full bg-gradient-to-br from-background to-purple-900/10">
+                <div className="h-2 bg-purple-500"></div>
                 <div className="p-8">
                   <div className="flex items-center mb-6">
-                    <div className="bg-violet-500/10 p-3 rounded-lg mr-4">
-                      <BrainCircuit className="h-8 w-8 text-violet-400" />
+                    <div className="bg-purple-500/10 p-3 rounded-lg mr-4">
+                      <BrainCircuit className="h-8 w-8 text-purple-400" />
                     </div>
                     <div>
                       <h3 className="text-2xl font-bold text-white">Alessandro</h3>
-                      <p className="text-violet-400">AI Research Engineer</p>
+                      <p className="text-purple-400">AI Research Engineer</p>
                     </div>
                   </div>
                   
-                  <p className="text-white/80 mb-6">
+                  <div className="w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden bg-foreground/5 border-2 border-purple-500/30 group-hover:border-purple-500/50 transition-all duration-300">
+                    <img 
+                      src="/api/placeholder/160/160" 
+                      alt="Alessandro" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  
+                  <p className="text-foreground/80 mb-6">
                     Specializzato in modelli di machine learning e computer vision. Alessandro combina solide 
                     competenze teoriche con implementazioni pratiche per sviluppare soluzioni AI innovative.
                   </p>
                   
                   <div className="mb-6">
                     <h4 className="flex items-center text-white font-medium mb-3">
-                      <GraduationCap className="mr-2 h-5 w-5 text-violet-400" />
+                      <Briefcase className="mr-2 h-5 w-5 text-purple-400" />
                       Formazione
                     </h4>
-                    <ul className="text-white/80 space-y-2 pl-6">
+                    <ul className="text-foreground/70 space-y-2 pl-6">
                       <li className="list-disc">Laurea Magistrale in Computer Science</li>
                       <li className="list-disc">Master in Intelligenza Artificiale</li>
                       <li className="list-disc">Certificazioni in TensorFlow e PyTorch</li>
@@ -252,12 +281,12 @@ const Developers = () => {
                   
                   <div className="mb-6">
                     <h4 className="flex items-center text-white font-medium mb-3">
-                      <Trophy className="mr-2 h-5 w-5 text-violet-400" />
-                      Expertise
+                      <Star className="mr-2 h-5 w-5 text-purple-400" />
+                      Competenze principali
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {['TensorFlow', 'PyTorch', 'Computer Vision', 'Deep Learning', 'Python', 'MLOps'].map((skill) => (
-                        <span key={skill} className="px-3 py-1 bg-violet-500/10 text-white/80 text-sm rounded-md border border-violet-500/20">
+                        <span key={skill} className="px-3 py-1 bg-purple-500/10 text-foreground/80 text-sm rounded-md border border-purple-500/20">
                           {skill}
                         </span>
                       ))}
@@ -265,48 +294,55 @@ const Developers = () => {
                   </div>
                   
                   <Link 
-                    to="/profile/alessandro" 
-                    className="inline-flex items-center text-violet-400 hover:text-violet-300 transition-colors"
+                    to="/contact?dev=alessandro" 
+                    className="inline-flex items-center mt-2 px-5 py-2 bg-teal-600 text-white text-sm font-medium rounded-lg transition-all duration-300 hover:-translate-y-1"
                   >
-                    Scopri di più
-                    <ChevronRight className="ml-1 h-4 w-4" />
+                    Contatta Alessandro
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </div>
               </div>
             </motion.div>
             
-            {/* Federico */}
+            {/* Federico Profile Card */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              initial={{ opacity: 0, x: 50 }}
+              animate={isSection1InView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.4 }}
               className="group"
             >
-              <div className="bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden border border-sky-500/20 shadow-lg hover:shadow-sky-500/20 transition-all duration-300 h-full">
-                <div className="h-3 bg-gradient-to-r from-sky-500 to-blue-500"></div>
+              <div className="rounded-xl overflow-hidden border border-purple-500/20 shadow-lg shadow-purple-500/5 hover:shadow-purple-500/20 transition-all duration-500 h-full bg-gradient-to-br from-background to-purple-900/10">
+                <div className="h-2 bg-purple-500"></div>
                 <div className="p-8">
                   <div className="flex items-center mb-6">
-                    <div className="bg-sky-500/10 p-3 rounded-lg mr-4">
-                      <Code className="h-8 w-8 text-sky-400" />
+                    <div className="bg-purple-500/10 p-3 rounded-lg mr-4">
+                      <Code className="h-8 w-8 text-purple-400" />
                     </div>
                     <div>
                       <h3 className="text-2xl font-bold text-white">Federico</h3>
-                      <p className="text-sky-400">AI Solutions Architect</p>
+                      <p className="text-purple-400">AI Solutions Architect</p>
                     </div>
                   </div>
                   
-                  <p className="text-white/80 mb-6">
+                  <div className="w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden bg-foreground/5 border-2 border-purple-500/30 group-hover:border-purple-500/50 transition-all duration-300">
+                    <img 
+                      src="/api/placeholder/160/160" 
+                      alt="Federico" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  
+                  <p className="text-foreground/80 mb-6">
                     Esperto nell'integrazione di soluzioni AI in contesti aziendali. Federico sviluppa 
                     architetture scalabili e applicazioni end-to-end con focus su usabilità e performance.
                   </p>
                   
                   <div className="mb-6">
                     <h4 className="flex items-center text-white font-medium mb-3">
-                      <GraduationCap className="mr-2 h-5 w-5 text-sky-400" />
+                      <Briefcase className="mr-2 h-5 w-5 text-purple-400" />
                       Formazione
                     </h4>
-                    <ul className="text-white/80 space-y-2 pl-6">
+                    <ul className="text-foreground/70 space-y-2 pl-6">
                       <li className="list-disc">Ingegneria Informatica</li>
                       <li className="list-disc">Specializzazione in AI & Cloud Computing</li>
                       <li className="list-disc">AWS Certified Solutions Architect</li>
@@ -315,12 +351,12 @@ const Developers = () => {
                   
                   <div className="mb-6">
                     <h4 className="flex items-center text-white font-medium mb-3">
-                      <Trophy className="mr-2 h-5 w-5 text-sky-400" />
-                      Expertise
+                      <Star className="mr-2 h-5 w-5 text-purple-400" />
+                      Competenze principali
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {['React', 'Node.js', 'NLP', 'AWS', 'Docker', 'Next.js'].map((skill) => (
-                        <span key={skill} className="px-3 py-1 bg-sky-500/10 text-white/80 text-sm rounded-md border border-sky-500/20">
+                        <span key={skill} className="px-3 py-1 bg-purple-500/10 text-foreground/80 text-sm rounded-md border border-purple-500/20">
                           {skill}
                         </span>
                       ))}
@@ -328,72 +364,100 @@ const Developers = () => {
                   </div>
                   
                   <Link 
-                    to="/profile/federico" 
-                    className="inline-flex items-center text-sky-400 hover:text-sky-300 transition-colors"
+                    to="/contact?dev=federico" 
+                    className="inline-flex items-center mt-2 px-5 py-2 bg-teal-600 text-white text-sm font-medium rounded-lg transition-all duration-300 hover:-translate-y-1"
                   >
-                    Scopri di più
-                    <ChevronRight className="ml-1 h-4 w-4" />
+                    Contatta Federico
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </div>
               </div>
             </motion.div>
           </div>
         </div>
-      </div>
+        
+        {/* Background Elements */}
+        <div className="absolute top-1/4 right-10 w-32 h-32 rounded-full border border-purple-500/20 opacity-50 animate-pulse" style={{ animationDuration: '8s' }}></div>
+        <div className="absolute bottom-1/3 left-10 w-24 h-24 border border-purple-500/10 rounded-lg rotate-12 opacity-50 animate-pulse" style={{ animationDuration: '12s' }}></div>
+      </section>
       
-      {/* Integration Benefits Section */}
-      <div ref={sectionRef} className="relative py-24 z-10">
+      {/* 3. BENEFITS SECTION */}
+      <section ref={section2Ref} className="py-32 bg-gradient-to-b from-background via-teal-900/5 to-background relative">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isSection2InView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8 }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-                Vantaggi dell'<span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-sky-400">Integrazione</span>
-              </h2>
+              <div className="inline-block mb-4 px-4 py-1 rounded-full border border-teal-300/30 bg-teal-500/5">
+                <span className="text-teal-400 text-sm font-medium">
+                  Vantaggi per il tuo business
+                </span>
+              </div>
               
-              <div className="h-1 w-24 bg-gradient-to-r from-violet-500 to-sky-500 mb-8"></div>
+              <motion.h2 
+                initial={{ opacity: 0, y: 20 }}
+                animate={isSection2InView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-3xl md:text-4xl font-bold mb-6 text-white"
+              >
+                Potenzia il tuo team con competenze specialistiche
+              </motion.h2>
               
-              <p className="text-white/80 text-lg mb-8 leading-relaxed">
-                Integrare i nostri sviluppatori nel tuo team significa accedere immediatamente a competenze 
-                specialistiche in AI e sviluppo software, senza i costi e i tempi necessari per l'assunzione 
-                e formazione di nuovo personale.
-              </p>
+              <motion.div
+                initial={{ width: 0 }}
+                animate={isSection2InView ? { width: "120px" } : {}}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="h-1 bg-teal-500 mb-8"
+              />
               
-              <div className="space-y-5">
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={isSection2InView ? { opacity: 1 } : {}}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="text-foreground/80 text-lg mb-8 leading-relaxed"
+              >
+                L'integrazione dei nostri sviluppatori nel tuo team offre accesso immediato a competenze 
+                avanzate in AI e sviluppo software, accelerando l'innovazione e ottimizzando i costi.
+              </motion.p>
+              
+              <div className="space-y-6">
                 {[
                   {
-                    title: "Competenze Immediatamente Operative",
-                    desc: "Accesso diretto a talenti specializzati senza tempi di formazione"
+                    title: "Time-to-market ridotto",
+                    desc: "Sviluppo accelerato grazie a competenze immediatamente operative",
+                    icon: <Clock className="w-6 h-6 text-teal-400" />
                   },
                   {
-                    title: "Flessibilità nei Modelli di Collaborazione",
-                    desc: "Soluzioni su misura per le tue specifiche esigenze di progetto"
+                    title: "Flessibilità e scalabilità",
+                    desc: "Modelli di collaborazione adattabili alle tue specifiche esigenze",
+                    icon: <Shuffle className="w-6 h-6 text-teal-400" />
                   },
                   {
-                    title: "Approccio Orientato ai Risultati",
-                    desc: "Focus su deliverable concreti e misurabili"
+                    title: "Innovazione continua",
+                    desc: "Accesso costante alle ultime tecnologie e metodologie di sviluppo",
+                    icon: <Zap className="w-6 h-6 text-teal-400" />
                   },
                   {
-                    title: "Trasferimento del Know-How",
-                    desc: "Condivisione di conoscenze con il tuo team interno"
+                    title: "Ottimizzazione costi",
+                    desc: "Riduzione dei costi di recruiting, onboarding e formazione",
+                    icon: <BarChart className="w-6 h-6 text-teal-400" />
                   }
                 ].map((item, i) => (
                   <motion.div
                     key={i}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.4, delay: 0.1 * i }}
-                    className="flex"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={isSection2InView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 0.6 + (i * 0.1) }}
+                    className="flex p-4 rounded-lg border border-teal-500/20 bg-teal-500/5"
                   >
-                    <div className="mr-4 h-6 w-6 rounded-full bg-gradient-to-br from-violet-500 to-sky-500 flex-shrink-0 mt-1 flex items-center justify-center">
-                      <ChevronRight className="h-4 w-4 text-white" />
+                    <div className="mr-4 p-2 rounded-lg bg-teal-500/10 h-min flex-shrink-0">
+                      {item.icon}
                     </div>
                     <div>
-                      <h4 className="text-white font-medium mb-1">{item.title}</h4>
-                      <p className="text-white/70">{item.desc}</p>
+                      <h4 className="text-lg font-medium text-white mb-1">{item.title}</h4>
+                      <p className="text-foreground/70">{item.desc}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -401,104 +465,281 @@ const Developers = () => {
             </motion.div>
             
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6 }}
-              className="relative"
+              initial={{ opacity: 0, x: 50 }}
+              animate={isSection2InView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.3 }}
             >
-              <div className="absolute -z-10 inset-0 bg-gradient-to-br from-violet-500/10 to-sky-500/10 rounded-3xl blur-3xl"></div>
-              
-              <div className="bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 shadow-xl">
-                <div className="p-6">
-                  <img 
-                    src="/api/placeholder/600/400" 
-                    alt="Team Integration" 
-                    className="w-full h-auto rounded-lg mb-6 opacity-90"
-                  />
+              <div className="rounded-xl overflow-hidden border border-teal-500/20 shadow-lg shadow-teal-500/5 bg-gradient-to-br from-background to-teal-900/10">
+                <div className="p-8">
+                  <motion.h3 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={isSection2InView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 0.6 }}
+                    className="text-2xl font-bold mb-6 text-white"
+                  >
+                    Modalità di collaborazione
+                  </motion.h3>
                   
-                  <h3 className="text-2xl font-bold mb-4 text-white">Modalità di Integrazione</h3>
-                  
-                  <div className="space-y-3">
+                  <div className="space-y-6">
                     {[
                       {
-                        title: "Progetti Specifici",
-                        desc: "Collaborazione focalizzata su singoli progetti con obiettivi definiti"
+                        title: "Team Extension",
+                        desc: "Integrazione diretta dei nostri sviluppatori nel tuo team esistente",
+                        icon: <Users className="w-6 h-6 text-teal-400" />
                       },
                       {
-                        title: "Team Extension",
-                        desc: "Integrazione dei nostri sviluppatori nel tuo team esistente"
+                        title: "Progetti Specifici",
+                        desc: "Sviluppo completo di progetti con obiettivi e tempistiche definite",
+                        icon: <Calendar className="w-6 h-6 text-teal-400" />
                       },
                       {
                         title: "Consulenza Tecnica",
-                        desc: "Supporto per progettazione e implementazione di soluzioni AI"
-                      },
-                      {
-                        title: "Formazione e Workshop",
-                        desc: "Sessioni di trasferimento di conoscenze al tuo team interno"
+                        desc: "Supporto specialistico per progettazione e implementazione di soluzioni AI",
+                        icon: <BrainCircuit className="w-6 h-6 text-teal-400" />
                       }
                     ].map((item, i) => (
                       <motion.div
                         key={i}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.4, delay: 0.15 * i }}
-                        className="p-4 bg-white/5 border border-white/10 rounded-lg hover:border-violet-500/30 transition-colors"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={isSection2InView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.5, delay: 0.7 + (i * 0.15) }}
+                        className="flex p-4 rounded-lg border border-teal-500/20 hover:border-teal-500/40 transition-colors bg-teal-500/5"
                       >
-                        <h4 className="font-medium text-white mb-1">{item.title}</h4>
-                        <p className="text-white/70 text-sm">{item.desc}</p>
+                        <div className="mr-4 p-2 rounded-lg bg-teal-500/10 h-min flex-shrink-0">
+                          {item.icon}
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-medium text-white mb-1">{item.title}</h4>
+                          <p className="text-foreground/70 text-sm">{item.desc}</p>
+                        </div>
                       </motion.div>
                     ))}
                   </div>
+                  
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isSection2InView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 1.2 }}
+                    className="mt-8 p-6 rounded-lg border border-teal-500/20 bg-gradient-to-br from-teal-500/10 to-teal-500/5"
+                  >
+                    <h4 className="font-medium flex items-center mb-3 text-white">
+                      <CheckCircle className="w-5 h-5 text-teal-400 mr-2" />
+                      Il nostro impegno
+                    </h4>
+                    <ul className="space-y-2 text-sm text-foreground/80">
+                      <li className="flex items-start">
+                        <CheckCircle className="w-4 h-4 text-teal-400 mt-0.5 mr-2 flex-shrink-0" />
+                        <span>Allineamento completo con gli obiettivi del tuo team</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="w-4 h-4 text-teal-400 mt-0.5 mr-2 flex-shrink-0" />
+                        <span>Comunicazione continua e trasparente</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="w-4 h-4 text-teal-400 mt-0.5 mr-2 flex-shrink-0" />
+                        <span>Trasferimento di conoscenze e best practices</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="w-4 h-4 text-teal-400 mt-0.5 mr-2 flex-shrink-0" />
+                        <span>Focus sui risultati concreti e misurabili</span>
+                      </li>
+                    </ul>
+                  </motion.div>
                 </div>
               </div>
             </motion.div>
           </div>
         </div>
-      </div>
-      
-      {/* CTA Section */}
-      <div className="relative py-24 z-10">
-        <div className="absolute -z-10 inset-0">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-violet-600/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-sky-600/10 rounded-full blur-3xl"></div>
-        </div>
         
-        <div className="max-w-4xl mx-auto px-4">
+        {/* Background Elements */}
+        <div className="absolute top-1/4 left-10 w-40 h-40 rounded-full border border-teal-500/20 opacity-50 animate-pulse" style={{ animationDuration: '10s' }}></div>
+        <div className="absolute bottom-1/3 right-10 w-32 h-32 border border-teal-500/10 rounded-lg rotate-45 opacity-50 animate-pulse" style={{ animationDuration: '15s' }}></div>
+      </section>
+      
+      {/* 4. EXPERTISE SECTION */}
+      <section ref={section3Ref} className="py-32 bg-gradient-to-b from-background via-purple-900/5 to-background relative">
+        <div className="max-w-6xl mx-auto px-4">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6 }}
-            className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-12 text-center shadow-2xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isSection3InView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+            className="mb-16 text-center"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-              Pronti a <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-sky-400">potenziare</span> il tuo team?
-            </h2>
-            
-            <div className="h-1 w-32 bg-gradient-to-r from-violet-500 to-sky-500 mx-auto mb-8"></div>
-            
-            <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
-              Alessandro e Federico sono disponibili per valutare le tue esigenze e 
-              proporti la soluzione di integrazione più adatta.
-            </p>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              animate={isSection3InView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-4xl md:text-5xl font-bold mb-6 text-white"
+            >
+              Ambiti di specializzazione
+            </motion.h2>
             
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ width: 0 }}
+              animate={isSection3InView ? { width: "120px" } : {}}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="h-1 bg-purple-500 mx-auto mb-8"
+            />
+            
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={isSection3InView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="text-lg text-foreground/80 max-w-3xl mx-auto"
+            >
+              I nostri developer possiedono competenze avanzate in diverse aree tecnologiche
+            </motion.p>
+          </motion.div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Intelligenza Artificiale",
+                desc: "Sviluppo di sistemi predittivi, visione artificiale, NLP e modelli ML/DL",
+                skills: ["Computer Vision", "NLP", "Reti Neurali", "PyTorch", "TensorFlow", "Reinforcement Learning"],
+                icon: <BrainCircuit className="w-8 h-8 text-purple-400" />
+              },
+              {
+                title: "Sviluppo Software",
+                desc: "Creazione di applicazioni scalabili, sicure e performanti con tecnologie moderne",
+                skills: ["React", "Node.js", "TypeScript", "Python", "AWS/Azure", "Docker"],
+                icon: <Code className="w-8 h-8 text-purple-400" />
+              },
+              {
+                title: "Cloud & DevOps",
+                desc: "Implementazione di soluzioni cloud-native e pipeline CI/CD automatizzate",
+                skills: ["Kubernetes", "AWS", "Azure", "CI/CD", "Microservizi", "IaC"],
+                icon: <Cloud className="w-8 h-8 text-purple-400" />
+              }
+            ].map((expertise, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isSection3InView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.6 + (i * 0.2) }}
+                className="rounded-xl border border-purple-500/20 shadow-lg bg-gradient-to-br from-background to-purple-900/10 overflow-hidden hover:shadow-purple-500/10 transition-all duration-300"
+              >
+                <div className="h-2 bg-purple-500"></div>
+                <div className="p-6">
+                  <div className="p-3 bg-purple-500/10 rounded-lg w-min mb-4">
+                    {expertise.icon}
+                  </div>
+                  
+                  <h3 className="text-xl font-bold mb-3 text-white">{expertise.title}</h3>
+                  <p className="text-foreground/70 mb-6">{expertise.desc}</p>
+                  
+                  <div className="flex flex-wrap gap-2">
+                    {expertise.skills.map((skill, j) => (
+                      <span 
+                        key={j} 
+                        className="px-3 py-1 bg-purple-500/10 text-foreground/80 text-sm rounded-md border border-purple-500/20"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Background Elements */}
+        <div className="absolute top-1/3 right-10 w-32 h-32 rounded-full border border-purple-500/20 opacity-50 animate-pulse" style={{ animationDuration: '7s' }}></div>
+        <div className="absolute bottom-1/4 left-10 w-24 h-24 border border-purple-500/10 rounded-lg -rotate-12 opacity-50 animate-pulse" style={{ animationDuration: '9s' }}></div>
+      </section>
+      
+      {/* 5. CTA SECTION */}
+      <section className="py-24 relative bg-gradient-to-b from-background to-teal-900/5">
+        <div className="max-w-4xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8 }}
+            className="rounded-2xl p-12 text-center shadow-2xl border border-teal-500/20 bg-gradient-to-br from-background to-teal-900/10"
+          >
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-3xl md:text-4xl font-bold mb-6 text-white"
+            >
+              Accelera i tuoi progetti con talenti specializzati
+            </motion.h2>
+            
+            <motion.div
+              initial={{ width: 0 }}
+              whileInView={{ width: "120px" }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="h-1 bg-teal-500 mx-auto mb-8"
+            />
+            
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="text-xl text-foreground/80 mb-10 max-w-2xl mx-auto"
+            >
+              Alessandro e Federico sono pronti a valutare le tue esigenze e 
+              proporti la soluzione di integrazione più adatta al tuo business.
+            </motion.p>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+              className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4"
             >
               <Link
                 to="/contact"
-                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-violet-600 to-sky-600 text-white text-lg font-medium rounded-lg shadow-lg hover:shadow-violet-500/30 transition-all duration-300 hover:-translate-y-1"
+                className="inline-flex items-center justify-center px-8 py-4 bg-teal-600 text-white text-lg font-medium rounded-lg shadow-lg hover:shadow-teal-500/20 transition-all duration-300 hover:-translate-y-1"
               >
-                Richiedi una consulenza gratuita
+                Contattaci ora
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
+              
+              <Link
+                to="/case-studies"
+                className="inline-flex items-center justify-center px-8 py-4 border border-teal-500/30 text-foreground hover:bg-teal-500/5 rounded-lg transition-all duration-300"
+              >
+                Scopri i case studies
+              </Link>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.9 }}
+              className="mt-10 flex items-center justify-center"
+            >
+              <a href="mailto:info@biorigeneral.com" className="flex items-center text-teal-400 hover:text-teal-300 transition-colors">
+                <Send className="w-4 h-4 mr-2" />
+                info@biorigeneral.com
+              </a>
             </motion.div>
           </motion.div>
         </div>
-      </div>
+        
+        {/* Background Elements */}
+        <div className="absolute bottom-10 right-10 w-40 h-40 rounded-full border border-teal-500/20 opacity-30 animate-pulse" style={{ animationDuration: '12s' }}></div>
+        <div className="absolute top-1/3 left-20 w-24 h-24 border border-teal-500/10 rounded-lg rotate-45 opacity-30 animate-pulse" style={{ animationDuration: '15s' }}></div>
+      </section>
+      
+      {/* CSS Animation Keyframes */}
+     {/* CSS Animation Keyframes */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-15px); }
+        }
+      `}} />
+
     </div>
   );
 };

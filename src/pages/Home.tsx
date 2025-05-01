@@ -9,8 +9,53 @@ import ScrollGradient from '../components/ScrollGradient';
 import HeroAnimation from '../components/HeroAnimation';
 
 const Home = () => {
-  const heroRef = useRef<HTMLDivElement>(null);
+
+  // Load HubSpot form script dynamically
+  useEffect(() => {
+    // Create script for HubSpot forms
+    const script1 = document.createElement('script');
+    script1.charset = 'utf-8';
+    script1.type = 'text/javascript';
+    script1.src = '//js-eu1.hsforms.net/forms/embed/v2.js';
+    script1.async = true;
+    
+    // Create script for form creation
+    const script2 = document.createElement('script');
+    script2.type = 'text/javascript';
+    script2.innerHTML = `
+      (function() {
+        if (window.hbspt) {
+          window.hbspt.forms.create({
+            portalId: "144593984",
+            formId: "4afa40f5-1683-4f2d-b3b5-b3a1303238fb",
+            region: "eu1",
+            target: "#hubspot-form-container"
+          });
+        }
+      })();
+    `;
+    
+    // Add scripts to document
+    document.body.appendChild(script1);
+    
+    // Add the second script after the first one loads
+    script1.onload = () => {
+      document.body.appendChild(script2);
+    };
+    
+    // Cleanup
+    return () => {
+      document.body.removeChild(script1);
+      if (document.body.contains(script2)) {
+        document.body.removeChild(script2);
+      }
+    };
+  }, []);
   
+
+  // Hero section mouse move effect
+  const heroRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!heroRef.current) return;
@@ -141,7 +186,7 @@ const Home = () => {
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="order-2 md:order-1">
               <ScrollAnimation animation="slideRight" delay={0.2}>
-                <h3 className="text-3xl font-bold mb-6 bg-gradient-to-r from-purple-500 to-teal-400 bg-clip-text text-transparent inline-block">
+                <h3 className="text-3xl font-bold mb-6 bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent inline-block">
                   Expertise in AI e Prompting
                 </h3>
                 <p className="text-foreground/70 leading-relaxed mb-6">
@@ -339,7 +384,7 @@ const Home = () => {
   <div className="relative">
     {/* Indicatore timeline */}
     <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full 
-                  bg-gradient-to-r from-purple-600 via-fuchsia-500 to-teal-400 z-10 shadow-lg shadow-violet-500/30
+                  bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500 z-10 shadow-lg shadow-violet-500/30
                   flex items-center justify-center">
       <div className="w-3 h-3 bg-white rounded-full"></div>
     </div>
@@ -352,7 +397,7 @@ const Home = () => {
         {/* Main content */}
         <div className="relative glass p-8 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
           {/* Accent line on top */}
-          <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-600 via-fuchsia-500 to-teal-400"></div>
+          <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500"></div>
           
           <h3 className="text-2xl font-bold mb-4 text-center bg-gradient-to-r from-indigo-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">
             Sinergia tra esperienza e innovazione
@@ -380,7 +425,7 @@ const Home = () => {
           </div>
           
           <div className="text-center mt-6">
-            <Link to="/services" className="inline-flex items-center px-6 py-2 bg-gradient-to-r from-purple-600 via-fuchsia-500 to-teal-400 
+            <Link to="/services" className="inline-flex items-center px-6 py-2 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500 
                                          text-white rounded-lg hover:shadow-lg hover:shadow-violet-500/20 transition-all hover:-translate-y-1">
               Scopri le nostre soluzioni <ArrowRight className="ml-2 w-4 h-4" />
             </Link>
@@ -406,7 +451,7 @@ const Home = () => {
   <ScrollAnimation animation="slideUp">
       <div className="text-center mb-20">
         <div className="inline-block px-4 py-1 rounded-full bg-primary/10 border border-primary/20 mb-4">
-          <span className="text-sm font-medium bg-gradient-to-r from-purple-500 to-teal-400 bg-clip-text text-transparent">
+          <span className="text-sm font-medium bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
             Innovazione Tecnologica • Strumenti di Nuova Generazione
           </span>
         </div>
@@ -823,7 +868,7 @@ const Home = () => {
       className="text-center mb-16"
     >
       <div className="inline-block px-4 py-1 rounded-full bg-gradient-to-r from-indigo-500/10 to-violet-500/10 border border-indigo-500/20 text-sm font-medium mb-4">
-        <span className="bg-gradient-to-r from-purple-500 to-teal-400 bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
           Soluzioni & Expertise
         </span>
       </div>
@@ -1124,7 +1169,7 @@ const Home = () => {
         </div>
         
         {/* Colorful top border */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-600 via-fuchsia-500 to-teal-400"></div>
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500"></div>
         
         {/* Content with 3D effect */}
         <div className="relative z-10 mx-auto max-w-6xl">
@@ -1162,7 +1207,7 @@ const Home = () => {
                 {/* Statistics */}
                 <div className="grid grid-cols-2 gap-4">
                   <div className="glass p-4 rounded-xl border border-indigo-500/20 text-center">
-                    <div className="text-2xl font-bold bg-gradient-to-r from-purple-500 to-teal-400 bg-clip-text text-transparent">+45</div>
+                    <div className="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">+45</div>
                     <div className="text-sm text-foreground/70">Progetti completati</div>
                   </div>
                   
@@ -1176,7 +1221,7 @@ const Home = () => {
                 <div className="flex flex-wrap gap-4 pt-4">
                   <Link
                     to="/contact"
-                    className="px-8 py-4 bg-gradient-to-r from-purple-600 via-fuchsia-500 to-teal-400 text-white rounded-xl hover:shadow-lg hover:shadow-indigo-500/30 transition-all hover:-translate-y-1 flex items-center group"
+                    className="px-8 py-4 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500 text-white rounded-xl hover:shadow-lg hover:shadow-indigo-500/30 transition-all hover:-translate-y-1 flex items-center group"
                   >
                     <span className="font-semibold">Contattaci ora</span>
                     <div className="relative ml-2 w-6 h-6 rounded-full bg-white/20 flex items-center justify-center overflow-hidden group-hover:bg-white/30 transition-colors">
@@ -1206,12 +1251,12 @@ const Home = () => {
               <div className="glass p-6 rounded-2xl shadow-xl border border-white/10 hover:border-violet-500/20 transition-all relative group overflow-hidden">
                 {/* Gradient accent */}
                 <div className="absolute -inset-px rounded-2xl overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-fuchsia-500 to-teal-400 opacity-20"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500 opacity-20"></div>
                 </div>
                 
                 <div className="relative z-10">
                   <div className="flex justify-between items-center mb-6">
-                    <h3 className="text-xl font-bold bg-gradient-to-r from-purple-500 to-teal-400 bg-clip-text text-transparent">
+                    <h3 className="text-xl font-bold bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
                       Iniziamo insieme
                     </h3>
                     <div className="flex space-x-2">
@@ -1221,69 +1266,52 @@ const Home = () => {
                     </div>
                   </div>
                   
-                  {/* Form fields - ora funzionanti */}
-                  <form onSubmit={(e) => {
-                    e.preventDefault();
-                    // Qui puoi aggiungere la logica per inviare il form
-                    alert('Messaggio inviato con successo!');
-                  }}>
-                    <div className="space-y-4 mb-6">
-                      <div className="glass p-3 rounded-lg bg-foreground/5 flex items-center border border-foreground/10 focus-within:border-violet-500/30 transition-colors group/input">
-                        <Mail className="w-5 h-5 text-foreground/50 mr-3 group-focus-within/input:text-violet-400 transition-colors" />
-                        <input 
-                          type="email" 
-                          name="email"
-                          required
-                          placeholder="La tua email..." 
-                          className="bg-transparent w-full focus:outline-none text-foreground/80 placeholder:text-foreground/50"
-                        />
+                <div className="flex flex-col items-center justify-center p-6">
+                  <h3 className="text-xl font-bold bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent mb-6">
+                    Iniziamo insieme
+                  </h3>
+                  
+                  {/* Info di contatto */}
+                  <div className="space-y-4 w-full mb-8">
+                    <div className="flex items-center p-3 glass rounded-lg hover:bg-indigo-500/10 transition-colors cursor-pointer group/item">
+                      <div className="w-10 h-10 rounded-full bg-indigo-500/20 flex items-center justify-center mr-4 group-hover/item:bg-indigo-500/30 transition-colors">
+                        <Phone className="w-5 h-5 text-indigo-400 group-hover/item:scale-110 transition-transform" />
                       </div>
-                      
-                      <div className="glass p-3 rounded-lg bg-foreground/5 border border-foreground/10 focus-within:border-violet-500/30 transition-colors">
-                        <textarea 
-                          name="message"
-                          required
-                          placeholder="Raccontaci del tuo progetto..." 
-                          className="bg-transparent w-full focus:outline-none text-foreground/80 placeholder:text-foreground/50 min-h-[80px] resize-none"
-                        ></textarea>
+                      <div>
+                        <div className="text-sm text-foreground/70">Chiamaci</div>
+                        <a href="tel:+390212345678" className="font-medium hover:text-indigo-400 transition-colors">+39 02 1234 5678</a>
                       </div>
                     </div>
                     
-                    {/* Interactive elements */}
-                    <div className="space-y-4">
-                      <div className="flex items-center p-3 glass rounded-lg hover:bg-indigo-500/10 transition-colors cursor-pointer group/item">
-                        <div className="w-10 h-10 rounded-full bg-indigo-500/20 flex items-center justify-center mr-4 group-hover/item:bg-indigo-500/30 transition-colors">
-                          <Phone className="w-5 h-5 text-indigo-400 group-hover/item:scale-110 transition-transform" />
-                        </div>
-                        <div>
-                          <div className="text-sm text-foreground/70">Chiamaci</div>
-                          <a href="tel:+390212345678" className="font-medium hover:text-indigo-400 transition-colors">+39 02 1234 5678</a>
-                        </div>
+                    <div className="flex items-center p-3 glass rounded-lg hover:bg-violet-500/10 transition-colors cursor-pointer group/item">
+                      <div className="w-10 h-10 rounded-full bg-violet-500/20 flex items-center justify-center mr-4 group-hover/item:bg-violet-500/30 transition-colors">
+                        <Mail className="w-5 h-5 text-violet-400 group-hover/item:scale-110 transition-transform" />
                       </div>
-                      
-                      <div className="flex items-center p-3 glass rounded-lg hover:bg-violet-500/10 transition-colors cursor-pointer group/item">
-                        <div className="w-10 h-10 rounded-full bg-violet-500/20 flex items-center justify-center mr-4 group-hover/item:bg-violet-500/30 transition-colors">
-                          <Calendar className="w-5 h-5 text-violet-400 group-hover/item:scale-110 transition-transform" />
-                        </div>
-                        <Link to="/contact" className="block">
-                          <div className="text-sm text-foreground/70">Consulenza gratuita</div>
-                          <div className="font-medium hover:text-violet-400 transition-colors">Prenota un appuntamento</div>
-                        </Link>
+                      <div>
+                        <div className="text-sm text-foreground/70">Scrivici</div>
+                        <a href="mailto:biorigeneralinformatics@gmail.com" className="font-medium hover:text-violet-400 transition-colors">biorigeneralinformatics@gmail.com</a>
                       </div>
                     </div>
-                    
-                    {/* Button with wave animation - ora funzionante */}
-                    <button 
-                      type="submit"
-                      className="w-full py-4 px-6 mt-6 bg-gradient-to-r from-indigo-500 to-violet-500 rounded-xl text-white font-semibold relative overflow-hidden group/btn"
-                    >
-                      <span className="relative z-10">Invia messaggio</span>
-                      <div className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300">
-                        <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-violet-600"></div>
-                        <div className="absolute inset-y-0 -inset-x-40 bg-white/20 blur-2xl skew-x-12 animate-wave-slow"></div>
-                      </div>
-                    </button>
-                  </form>
+                  </div>
+                  
+                  {/* Grande bottone che rimanda alla pagina contatti */}
+                  <Link 
+                    to="/contact"
+                    className="w-full py-4 px-6 bg-gradient-to-r from-indigo-500 to-violet-500 rounded-xl text-white font-semibold relative overflow-hidden group/btn flex items-center justify-center"
+                  >
+                    <span className="relative z-10 flex items-center">
+                      <MessageSquare className="w-5 h-5 mr-2" /> 
+                      Vai alla pagina contatti
+                    </span>
+                    <div className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300">
+                      <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-violet-600"></div>
+                      <div className="absolute inset-y-0 -inset-x-40 bg-white/20 blur-2xl skew-x-12 animate-wave-slow"></div>
+                    </div>
+                    <div className="absolute right-6 w-6 h-6 rounded-full bg-white/20 flex items-center justify-center transition-transform group-hover/btn:translate-x-1">
+                      <ArrowRight className="w-4 h-4 text-white" />
+                    </div>
+                  </Link>
+                </div>
                 </div>
               </div>
             </motion.div>

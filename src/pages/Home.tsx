@@ -1303,6 +1303,7 @@ const Home = () => {
                       <MessageSquare className="w-5 h-5 mr-2" /> 
                       Vai alla pagina contatti
                     </span>
+                    
                     <div className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300">
                       <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-violet-600"></div>
                       <div className="absolute inset-y-0 -inset-x-40 bg-white/20 blur-2xl skew-x-12 animate-wave-slow"></div>

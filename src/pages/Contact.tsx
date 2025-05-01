@@ -171,7 +171,222 @@ const Contact = () => {
       </div>
       
       {/* La sezione CTA per video consulenza è stata rimossa */}
-
+{/* CTA per video consulenza - Design corretto e ben allineato */}
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ delay: 0.3 }}
+  className="mt-16 relative overflow-hidden"
+>
+  {/* Elementi decorativi di sfondo */}
+  <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-indigo-500/20 filter blur-3xl"></div>
+  <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-violet-500/20 filter blur-3xl"></div>
+  
+  <div className="glass border border-white/10 rounded-2xl overflow-hidden">
+    {/* Linea gradiente superiore */}
+    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 via-violet-500 to-blue-500"></div>
+    
+    {/* Forma decorativa */}
+    <div className="absolute -right-16 -bottom-16 w-64 h-64 rounded-full border border-indigo-500/20 opacity-50"></div>
+    <div className="absolute right-10 top-10 w-32 h-32 rounded-full border-2 border-violet-500/20 opacity-30"></div>
+    <div className="absolute right-20 top-20 w-16 h-16 rounded-full bg-violet-500/10"></div>
+    
+    <div className="relative z-10 p-8 md:p-10">
+      <div className="grid md:grid-cols-12 gap-8 items-center">
+        {/* Colonna sinistra - Testuale CORRETTA */}
+        <div className="md:col-span-7">
+          <div className="inline-block px-4 py-1 rounded-full bg-primary/10 border border-primary/20 mb-4">
+            <span className="text-sm font-medium bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
+              Video consulenza esclusiva
+            </span>
+          </div>
+          
+          <h3 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+            Discutiamo la tua <span className="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">visione</span>
+            <br className="hidden md:block" /> in una <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">video call</span>
+          </h3>
+          
+          <p className="text-foreground/70 text-lg mb-8 max-w-xl">
+            Prenota una sessione gratuita di 30 minuti con un nostro esperto per ricevere 
+            insights personalizzati sulle tue sfide digitali.
+          </p>
+          
+          {/* Timeline senza linea verticale */}
+          <div className="relative pl-10 mb-6 max-w-xl">            
+            <div className="space-y-8">
+              <div className="relative">
+                <div className="absolute -left-7 top-1 w-6 h-6 rounded-full bg-indigo-500/20 border border-indigo-500/50 flex items-center justify-center">
+                  <div className="w-2 h-2 rounded-full bg-indigo-500"></div>
+                </div>
+                <h4 className="font-bold text-base">Prenota facilmente</h4>
+                <p className="text-foreground/70">Scegli data e ora secondo la tua disponibilità</p>
+              </div>
+              
+              <div className="relative">
+                <div className="absolute -left-7 top-1 w-6 h-6 rounded-full bg-violet-500/20 border border-violet-500/50 flex items-center justify-center">
+                  <div className="w-2 h-2 rounded-full bg-violet-500"></div>
+                </div>
+                <h4 className="font-bold text-base">Confronto con esperti</h4>
+                <p className="text-foreground/70">Ricevi consigli personalizzati per il tuo progetto</p>
+              </div>
+              
+              <div className="relative">
+                <div className="absolute -left-7 top-1 w-6 h-6 rounded-full bg-blue-500/20 border border-blue-500/50 flex items-center justify-center">
+                  <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                </div>
+                <h4 className="font-bold text-base">Piano d'azione chiaro</h4>
+                <p className="text-foreground/70">Ottieni una roadmap concreta per i prossimi passi</p>
+              </div>
+            </div>
+          </div>
+          
+          {/* Statistiche allineate correttamente */}
+          <div className="grid grid-cols-3 gap-4 mb-6 max-w-xl">
+            <div className="text-center p-3 glass rounded-lg border border-indigo-500/20">
+              <div className="text-2xl font-bold text-indigo-400">30</div>
+              <div className="text-xs text-foreground/70">Minuti gratuiti</div>
+            </div>
+            <div className="text-center p-3 glass rounded-lg border border-violet-500/20">
+              <div className="text-2xl font-bold text-violet-400">100%</div>
+              <div className="text-xs text-foreground/70">Personalizzato</div>
+            </div>
+            <div className="text-center p-3 glass rounded-lg border border-blue-500/20">
+              <div className="text-2xl font-bold text-blue-400">0€</div>
+              <div className="text-xs text-foreground/70">Senza impegno</div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Colonna destra - Elemento visivo (rimanendo uguale) */}
+        <div className="md:col-span-5 relative">
+          <div className="relative glass p-6 rounded-2xl border border-white/10 overflow-hidden group">
+            {/* Sfondo animato */}
+            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-violet-500/10 to-blue-500/10 opacity-50 
+                         group-hover:opacity-80 transition-opacity duration-700"></div>
+                         
+            {/* Video call illustration */}
+            <div className="relative z-10 mb-8">
+              <div className="w-full rounded-xl overflow-hidden border-2 border-white/20 shadow-xl aspect-video flex flex-col">
+                <div className="h-6 bg-foreground/10 flex items-center px-2 gap-1">
+                  <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                  <div className="w-2 h-2 rounded-full bg-amber-500"></div>
+                  <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  <div className="text-center text-xs text-foreground/50 flex-grow">Video Call</div>
+                </div>
+                
+                <div className="flex-grow bg-gradient-to-br from-indigo-500/20 to-violet-500/20 flex flex-col items-center justify-center p-4">
+                  <div className="w-20 h-20 rounded-full bg-indigo-500/20 border border-indigo-500/40 mb-2 flex items-center justify-center">
+                    <Users className="w-10 h-10 text-indigo-400" />
+                  </div>
+                  
+                  <div className="w-full flex justify-center space-x-3 mt-3">
+                    <div className="w-8 h-8 rounded-full bg-foreground/20 flex items-center justify-center">
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 10L19.5528 7.72361C20.2177 7.39116 21 7.87465 21 8.61803V15.382C21 16.1253 20.2177 16.6088 19.5528 16.2764L15 14M5 18H13C14.1046 18 15 17.1046 15 16V8C15 6.89543 14.1046 6 13 6H5C3.89543 6 3 6.89543 3 8V16C3 17.1046 3.89543 18 5 18Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    <div className="w-8 h-8 rounded-full bg-foreground/20 flex items-center justify-center">
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 11H5M19 11C20.1046 11 21 11.8954 21 13V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V13C3 11.8954 3.89543 11 5 11M19 11V9C19 7.89543 18.1046 7 17 7M5 11V9C5 7.89543 5.89543 7 7 7M7 7V5C7 3.89543 7.89543 3 9 3H15C16.1046 3 17 3.89543 17 5V7M7 7H17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    <div className="w-8 h-8 rounded-full bg-foreground/20 flex items-center justify-center">
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 18.5C15.5899 18.5 18.5 15.5899 18.5 12C18.5 8.41015 15.5899 5.5 12 5.5C8.41015 5.5 5.5 8.41015 5.5 12C5.5 15.5899 8.41015 18.5 12 18.5Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M19.14 19.14L17.17 17.17M6.83 6.83L4.86 4.86M12 2.5V1M12 23V21.5M2.5 12H1M23 12H21.5M6.83 17.17L4.86 19.14M19.14 4.86L17.17 6.83" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Indicatori animati */}
+              <div className="absolute w-4 h-4 top-10 right-6 animate-pulse-echo">
+                <span className="absolute inset-0 rounded-full bg-green-500 opacity-75 animate-ping"></span>
+                <span className="absolute inset-0 rounded-full bg-green-500"></span>
+              </div>
+              
+              <div className="absolute bottom-4 left-10 flex items-center">
+                <span className="inline-block w-2 h-2 bg-green-500 rounded-full mr-1"></span>
+                <span className="text-xs text-white/80">Live</span>
+              </div>
+            </div>
+            
+            {/* Disponibilità */}
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h4 className="font-bold text-lg">Prossima disponibilità</h4>
+                <p className="text-foreground/60 text-sm">Questa settimana</p>
+              </div>
+              <div className="w-12 h-12 rounded-full bg-indigo-500/20 flex items-center justify-center">
+                <Calendar className="w-6 h-6 text-indigo-400" />
+              </div>
+            </div>
+            
+            {/* CTA con effetto elegante */}
+            <a
+              href="https://calendly.com/biorigeneralinformatics/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group/btn block w-full py-4 px-6 relative overflow-hidden rounded-xl"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-violet-500 opacity-90 group-hover/btn:opacity-100 transition-opacity"></div>
+              
+              {/* Particelle animate */}
+              <div className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity">
+                {[...Array(5)].map((_, i) => (
+                  <div 
+                    key={i}
+                    className="absolute w-1 h-10 bg-white/30 rounded-full transform rotate-45"
+                    style={{
+                      left: `${10 + i * 20}%`,
+                      top: '100%',
+                      animation: `particleRise 1.5s ease-out infinite`,
+                      animationDelay: `${i * 0.3}s`
+                    }}
+                  ></div>
+                ))}
+              </div>
+              
+              <div className="relative z-10 flex items-center justify-center">
+                <span className="font-bold text-white flex items-center">
+                  <Calendar className="w-5 h-5 mr-2" />
+                  Prenota la tua sessione
+                </span>
+                <div className="absolute right-4 w-6 h-6 rounded-full bg-white/20 flex items-center justify-center ml-2 
+                              transform group-hover/btn:translate-x-1 transition-transform">
+                  <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </a>
+            
+            <div className="text-center mt-4 text-foreground/60 text-xs">
+              30 minuti gratuiti • Esperti disponibili • Nessun impegno
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  {/* CSS per animazioni avanzate */}
+  <style dangerouslySetInnerHTML={{ __html: `
+    @keyframes particleRise {
+      0% { transform: translateY(0) rotate(45deg); opacity: 0.7; }
+      100% { transform: translateY(-100px) rotate(45deg); opacity: 0; }
+    }
+    
+    @keyframes pulse-echo {
+      0% { transform: scale(0.95); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(0.95); }
+    }
+  `}} />
+</motion.div>
+      
 {/* Google Maps con API */}
 <motion.div
   initial={{ opacity: 0, y: 20 }}

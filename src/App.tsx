@@ -9,9 +9,11 @@ import AIAgents from './pages/AIAgents';
 import Chatbots from './pages/Chatbots';
 import GrowthPlans from './pages/GrowthPlans';
 import Developers from './pages/Developers';
+import TerminiCondizioni from './pages/TerminiCondizioni';
 import Contact from './pages/Contact';
 import Footer from './components/Footer';
 import AnimatedBackground from './components/AnimatedBackground';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 // Componente ScrollToTop per garantire lo scroll all'inizio
 const ScrollToTop = () => {
@@ -43,6 +45,10 @@ function App() {
             <Route path="/growth-plans" element={<GrowthPlans />} />
             <Route path="/developers" element={<Developers />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/TerminiCondizioni" element={<TerminiCondizioni />} />
+            <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
+            
+            {/* Percorsi secondari */}
             
             {/* Reindirizzamenti per compatibilità con percorsi /services/ */}
             <Route path="/services/software-pmi" element={<Navigate to="/software-pmi" replace />} />

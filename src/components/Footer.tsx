@@ -71,14 +71,14 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <a href="#" className="text-foreground/70 hover:text-primary transition">
+                <Link to="/PrivacyPolicy" className="text-foreground/70 hover:text-primary transition">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-foreground/70 hover:text-primary transition">
-                  Termini di Servizio
-                </a>
+                <Link to="/TerminiCondizioni" className="text-foreground/70 hover:text-primary transition">
+                  Termini e Condizioni
+                </Link>
               </li>
             </ul>
           </div>

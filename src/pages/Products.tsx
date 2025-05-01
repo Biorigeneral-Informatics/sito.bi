@@ -7,7 +7,7 @@ import {
   ExternalLink, Shield, Zap, 
   Rocket, GitMerge, BarChart, Users, ChevronRight, 
   MessageSquare, Download, ListChecks,
-  FileSearch, FileCheck, FileText, TrendingUp,
+   TrendingUp,
   Clock, Search, Send,
   BarChart3, Cable, Workflow, 
   GitBranch, ChevronLeft, Grid,
@@ -1580,7 +1580,7 @@ const Products = () => {
         transition={{ delay: index * 0.1, duration: 0.5 }}
         className="group"
       >
-        <details className="glass rounded-xl border border-t border-l border-white/10 border-r border-b border-white/5 overflow-hidden transition-all 
+        <details className="glass rounded-xl border border-t border-l border-white/10 border-r border-b overflow-hidden transition-all 
                            hover:border-t-indigo-500/30 hover:border-l-indigo-500/30
                            hover:border-r-violet-500/30 hover:border-b-violet-500/30
                            hover:shadow-xl hover:shadow-indigo-500/10">
@@ -1646,7 +1646,7 @@ const Products = () => {
             transition={{ delay: index * 0.1, duration: 0.5 }}
             className="group"
           >
-            <details className="glass rounded-xl border border-t border-l border-white/10 border-r border-b border-white/5 overflow-hidden transition-all 
+            <details className="glass rounded-xl border border-t border-l border-white/10 border-r border-b overflow-hidden transition-all 
                             hover:border-t-indigo-500/30 hover:border-l-indigo-500/30
                             hover:border-r-violet-500/30 hover:border-b-violet-500/30
                             hover:shadow-xl hover:shadow-indigo-500/10">

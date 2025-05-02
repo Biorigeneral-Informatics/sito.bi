@@ -1,49 +1,122 @@
+// src/pages/Contact.tsx
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Clock, MessageSquare, Calendar, Users } from 'lucide-react';
-import { useEffect } from 'react';
+import { Mail, Phone, MapPin, Clock, MessageSquare, Calendar, Users, CheckCircle, Loader2 } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
-  // Effect to create HubSpot form after component mounts
-  useEffect(() => {
-    // Create script for HubSpot forms
-    const script1 = document.createElement('script');
-    script1.charset = 'utf-8';
-    script1.type = 'text/javascript';
-    script1.src = '//js-eu1.hsforms.net/forms/embed/v2.js';
-    script1.async = true;
+  const formRef = useRef<HTMLFormElement>(null);
+  const [formState, setFormState] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    message: '',
+    service: 'Informazioni generali',
+    submitted: false,
+    loading: false,
+    error: ''
+  });
+  
+ // Configura questi valori con i tuoi ID di EmailJS
+ const SERVICE_ID = 'service_nhnagz6';
+ const TEMPLATE_ID = 'template_j4o825r'; // Template principale
+ const autoReplyTemplateId = 'template_fhnwdy2'; // Template di auto-risposta
+ const PUBLIC_KEY = 'AXsuKSAkeJzxB7KTx';
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormState(prev => ({ ...prev, [name]: value }));
+  };
+  
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormState(prev => ({ ...prev, loading: true, error: '' }));
     
-    // Create script for form creation
-    const script2 = document.createElement('script');
-    script2.type = 'text/javascript';
-    script2.innerHTML = `
-      (function() {
-        if (window.hbspt) {
-          window.hbspt.forms.create({
-            portalId: "144593984",
-            formId: "4afa40f5-1683-4f2d-b3b5-b3a1303238fb",
-            region: "eu1",
-            target: "#hubspot-form-container"
-          });
+    
+    // Formatta la data corrente nel formato italiano
+    const today = new Date().toLocaleDateString('it-IT', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    });
+    
+    // Aggiungi la data come campo nascosto prima di inviare
+    if (formRef.current) {
+      const hiddenInput = document.createElement('input');
+      hiddenInput.type = 'hidden';
+      hiddenInput.name = 'today';
+      hiddenInput.value = today;
+      formRef.current.appendChild(hiddenInput);
+    }
+    
+    // Invia l'email principale (notifica a te)
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current!, PUBLIC_KEY)
+      .then((result) => {
+        console.log('Email inviata con successo:', result.text);
+        
+        // Rimuovi il campo nascosto
+        if (formRef.current) {
+          const hiddenInput = formRef.current.querySelector('input[name="today"]');
+          if (hiddenInput) {
+            hiddenInput.remove();
+          }
         }
-      })();
-    `;
-    
-    // Add scripts to document
-    document.body.appendChild(script1);
-    
-    // Add the second script after the first one loads
-    script1.onload = () => {
-      document.body.appendChild(script2);
-    };
-    
-    // Cleanup
-    return () => {
-      document.body.removeChild(script1);
-      if (document.body.contains(script2)) {
-        document.body.removeChild(script2);
-      }
-    };
-  }, []);
+        
+        // Invia l'email di auto-risposta all'utente (opzionale)
+        return emailjs.send(SERVICE_ID, autoReplyTemplateId, {
+          firstName: formState.firstName,
+          lastName: formState.lastName,
+          email: formState.email,
+          service: formState.service,
+          today: today,  // Passiamo la data formattata
+          to_email: formState.email, // Destinatario (l'utente)
+        }, PUBLIC_KEY);
+      })
+      .then((result) => {
+        console.log('Auto-risposta inviata con successo:', result?.text);
+        setFormState(prev => ({ 
+          ...prev, 
+          submitted: true, 
+          loading: false,
+          firstName: '',
+          lastName: '',
+          email: '',
+          message: '',
+          service: 'Informazioni generali'
+        }));
+      })
+      .catch((error) => {
+        console.error('Errore nell\'invio dell\'email:', error.text);
+        
+        // Rimuovi il campo nascosto in caso di errore
+        if (formRef.current) {
+          const hiddenInput = formRef.current.querySelector('input[name="today"]');
+          if (hiddenInput) {
+            hiddenInput.remove();
+          }
+        }
+        
+        setFormState(prev => ({ 
+          ...prev, 
+          loading: false, 
+          error: 'Si è verificato un errore nell\'invio del form. Per favore riprova o contattaci direttamente via email.' 
+        }));
+      });
+  };
+
+// Effect to clean up HubSpot scripts if they were added
+useEffect(() => {
+  // Remove any HubSpot script elements if they exist
+  const hubspotScripts = document.querySelectorAll('script[src*="hsforms"]');
+  hubspotScripts.forEach(script => {
+    if (script.parentNode) {
+      script.parentNode.removeChild(script);
+    }
+  });
+
+  // Inizializza EmailJS
+  emailjs.init(PUBLIC_KEY);
+}, []);
 
   return (
     <div className="pt-32 pb-16 px-4 max-w-7xl mx-auto">
@@ -69,13 +142,13 @@ const Contact = () => {
           <h2 className="text-2xl font-bold mb-6">Informazioni di Contatto</h2>
           
           <div className="space-y-6 mb-10">
-          <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4">
               <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center">
                 <Mail className="w-5 h-5 text-blue-500" />
               </div>
               <div>
                 <h3 className="font-bold">Email</h3>
-                <a href="mailto:contact@biorigeneral.com" className="text-foreground/80 hover:text-primary transition-colors">
+                <a href="mailto:biorigeneralinformatics@gmail.com" className="text-foreground/80 hover:text-primary transition-colors">
                   biorigeneralinformatics@gmail.com
                 </a>
               </div>
@@ -87,7 +160,7 @@ const Contact = () => {
               </div>
               <div>
                 <h3 className="font-bold">Telefono</h3>
-                <a href="tel:+390212345678" className="text-foreground/80 hover:text-primary transition-colors">
+                <a href="tel:+393920158140" className="text-foreground/80 hover:text-primary transition-colors">
                   +39 392 015 8140 (Whatsapp)
                 </a>
               </div>
@@ -165,8 +238,169 @@ const Contact = () => {
         >
           <h2 className="text-2xl font-bold mb-6">Inviaci un messaggio</h2>
           
-          {/* HubSpot Form Container */}
-          <div id="hubspot-form-container"></div>
+          {/* Sostituire il contenitore HubSpot con il nostro form custom */}
+          {formState.submitted ? (
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="text-center py-8"
+            >
+              <div className="mx-auto w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mb-6">
+                <CheckCircle className="w-8 h-8 text-green-500" />
+              </div>
+              <h2 className="text-2xl font-bold mb-4">Messaggio Inviato!</h2>
+              <p className="text-foreground/70 mb-6">
+                Grazie per averci contattato. Ti risponderemo al più presto possibile.
+              </p>
+              <button 
+                onClick={() => setFormState(prev => ({ ...prev, submitted: false }))}
+                className="px-6 py-3 mt-4 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all hover:shadow-lg"
+              >
+                Invia un altro messaggio
+              </button>
+            </motion.div>
+          ) : (
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+              {/* Errore */}
+              {formState.error && (
+                <motion.div 
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-4 bg-red-500/10 border border-red-500/30 rounded-lg text-red-500 flex items-center"
+                >
+                  <svg className="w-5 h-5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>{formState.error}</span>
+                </motion.div>
+              )}
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label htmlFor="firstName" className="block text-sm font-medium text-foreground/90">
+                    Nome <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    value={formState.firstName}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 rounded-lg bg-background/50 border border-border focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
+                    placeholder="Inserisci il tuo nome"
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <label htmlFor="lastName" className="block text-sm font-medium text-foreground/90">
+                    Cognome <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    value={formState.lastName}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 rounded-lg bg-background/50 border border-border focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
+                    placeholder="Inserisci il tuo cognome"
+                  />
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <label htmlFor="email" className="block text-sm font-medium text-foreground/90">
+                  Email <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formState.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 rounded-lg bg-background/50 border border-border focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
+                  placeholder="La tua email di contatto"
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <label htmlFor="service" className="block text-sm font-medium text-foreground/90">
+                  Servizio di interesse <span className="text-red-500">*</span>
+                </label>
+                <select
+                  id="service"
+                  name="service"
+                  value={formState.service}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 rounded-lg bg-background/50 border border-border focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all appearance-none"
+                  style={{ backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 1rem center', backgroundSize: '1em' }}
+                >
+                  <option value="Informazioni Generali">Informazioni Generali</option>
+                  <option value="ChatBot AI">Chatbot AI</option>
+                  <option value="Agenti AI">Agenti AI</option>
+                  <option value="sviluppatori">Sviluppatori</option>
+                  <option value="Piani di Crescita">Piani di Crescita</option>
+                  <option value="Altro">Altro</option>
+                </select>
+              </div>
+              
+              <div className="space-y-2">
+                <label htmlFor="message" className="block text-sm font-medium text-foreground/90">
+                  Messaggio <span className="text-red-500">*</span>
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formState.message}
+                  onChange={handleChange}
+                  rows={5}
+                  required
+                  className="w-full px-4 py-3 rounded-lg bg-background/50 border border-border focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all resize-none"
+                  placeholder="Descrivici il tuo progetto o la tua richiesta..."
+                ></textarea>
+              </div>
+              
+              {/* Campi nascosti per EmailJS */}
+              <input type="hidden" name="subject" value={`[Biorigeneralinformatics] Richiesta info: ${formState.service}`} />
+              
+              <div className="flex flex-col sm:flex-row items-center gap-4">
+                <button
+                  type="submit"
+                  disabled={formState.loading}
+                  className={`px-6 py-3 bg-primary text-primary-foreground rounded-lg 
+                           hover:bg-primary/90 transition-all hover:shadow-lg flex items-center justify-center
+                           focus:outline-none focus:ring-2 focus:ring-primary/50 w-full sm:w-auto
+                           ${formState.loading ? 'opacity-80 cursor-not-allowed' : ''}`}
+                >
+                  {formState.loading ? (
+                    <>
+                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                      Invio in corso...
+                    </>
+                  ) : (
+                    'Invia Messaggio'
+                  )}
+                </button>
+                
+                <a
+                  href="https://calendly.com/biorigeneralinformatics/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-3 border border-primary/30 text-foreground hover:bg-primary/10 rounded-lg transition-all flex items-center justify-center w-full sm:w-auto"
+                >
+                  <Calendar className="w-4 h-4 mr-2" />
+                  Prenota una call
+                </a>
+              </div>
+              
+              <p className="text-xs text-foreground/60 mt-4">
+                * I campi contrassegnati con l'asterisco sono obbligatori. I tuoi dati saranno trattati secondo la nostra <a href="/privacy-policy" className="text-primary hover:underline">Privacy Policy</a>.
+              </p>
+            </form>
+          )}
         </motion.div>
       </div>
       

@@ -14,6 +14,7 @@ import Contact from './pages/Contact';
 import Footer from './components/Footer';
 import AnimatedBackground from './components/AnimatedBackground';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import CookieBanner from './components/CookieBanner';
 
 // Componente ScrollToTop per garantire lo scroll all'inizio
 const ScrollToTop = () => {
@@ -63,6 +64,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
+        <CookieBanner /> {/* Aggiungi qui il componente CookieBanner */}
       </div>
     </Router>
   );

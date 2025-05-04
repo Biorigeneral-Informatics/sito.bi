@@ -16,6 +16,8 @@ import AnimatedBackground from './components/AnimatedBackground';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import CookieBanner from './components/CookieBanner';
 
+localStorage.removeItem('preloaderShown');
+
 // Componente ScrollToTop per garantire lo scroll all'inizio
 const ScrollToTop = () => {
   const { pathname } = useLocation();

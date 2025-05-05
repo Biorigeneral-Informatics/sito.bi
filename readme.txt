@@ -76,7 +76,11 @@ TypeScript + JavaScript Language Features
 
 Lanciare il comando: npm install (se ci sono ancora errori, seguire i suggerimenti di VSCode e aggiornare le librerie)
 
-Installa le dipendenze principali: npm install react-router-dom framer-motion lucide-react
+Installa le dipendenze principali: 
+npm install react-router-dom framer-motion lucide-react
+npm install npm install --save @emailjs/browser
+
+
 
 ## TEST LOCALI 
 Avviare il server di sviluppo con: npm run dev

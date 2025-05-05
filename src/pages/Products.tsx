@@ -233,7 +233,7 @@ const Products = () => {
         className="mt-8 flex flex-wrap justify-center gap-4"
       >
         <Link 
-          to="/demo"
+          to="/contact"
           className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-lg hover:shadow-lg hover:shadow-indigo-500/30 transition-all hover:-translate-y-1 flex items-center font-medium group"
         >
           <span>Prenota una demo personalizzata</span>
@@ -243,12 +243,6 @@ const Products = () => {
           </div>
         </Link>
         
-        <a 
-          href="#products"
-          className="px-8 py-4 border-2 border-indigo-500/40 text-indigo-500 font-medium hover:bg-indigo-500/10 rounded-lg transition-all hover:-translate-y-1"
-        >
-          Scopri le soluzioni
-        </a>
       </motion.div>
     </motion.div>
   </div>
@@ -1298,7 +1292,7 @@ const Products = () => {
     {/* CTA */}
     <div className="text-center mt-12">
       <Link 
-        to="/methodology"
+        to="/Contact"
         className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-lg shadow-lg shadow-indigo-500/20 hover:shadow-xl hover:shadow-indigo-500/30 transition-all hover:-translate-y-1 hover:scale-105 inline-flex items-center font-medium"
       >
         Scopri di più sulla nostra metodologia
@@ -1448,19 +1442,13 @@ const Products = () => {
         
         <div className="flex flex-wrap gap-4">
           <Link 
-            to="/demo"
+            to="/Contact"
             className="px-6 py-3 bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-lg hover:shadow-lg hover:shadow-indigo-500/30 transition-all hover:-translate-y-1 inline-flex items-center font-medium"
           >
             Prenota una demo
             <ArrowRight className="ml-2 w-4 h-4" />
           </Link>
           
-          <Link 
-            to="/case-studies"
-            className="px-6 py-3 border-2 border-indigo-500/40 text-indigo-500 font-medium hover:bg-indigo-500/10 rounded-lg transition-all hover:-translate-y-1"
-          >
-            Leggi i case study
-          </Link>
         </div>
       </div>
       

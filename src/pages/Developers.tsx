@@ -265,7 +265,7 @@ const Developers = () => {
                   
                   <div className="w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden bg-foreground/5 border-2 border-purple-500/30 group-hover:border-purple-500/50 transition-all duration-300">
                     <img 
-                      src="/api/placeholder/160/160" 
+                      src="https://i.ibb.co/0jd4p6tB/IMG-3443.jpg" 
                       alt="Alessandro" 
                       className="w-full h-full object-cover"
                     />
@@ -282,7 +282,7 @@ const Developers = () => {
                       Formazione
                     </h4>
                     <ul className="text-foreground/70 space-y-2 pl-6">
-                      <li className="list-disc">Laurea Magistrale in Computer Science</li>
+                      <li className="list-disc">Laurea Triennale in Economia e Informatica per l'impresa</li>
                       <li className="list-disc">Master in Intelligenza Artificiale</li>
                       <li className="list-disc">Certificazioni in TensorFlow e PyTorch</li>
                     </ul>
@@ -330,7 +330,7 @@ const Developers = () => {
                   
                   <div className="w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden bg-foreground/5 border-2 border-purple-500/30 group-hover:border-purple-500/50 transition-all duration-300">
                     <img 
-                      src="/api/placeholder/160/160" 
+                      src="https://i.ibb.co/W4T1h0pn/Foto-fede.png" 
                       alt="Federico" 
                       className="w-full h-full object-cover"
                     />
@@ -347,7 +347,7 @@ const Developers = () => {
                       Formazione
                     </h4>
                     <ul className="text-foreground/70 space-y-2 pl-6">
-                      <li className="list-disc">Ingegneria Informatica</li>
+                      <li className="list-disc">Laurea Triennale in Economia e Informatica per l'impresa</li>
                       <li className="list-disc">Specializzazione in AI & Cloud Computing</li>
                       <li className="list-disc">AWS Certified Solutions Architect</li>
                     </ul>
@@ -700,7 +700,7 @@ const Developers = () => {
         transition={{ duration: 0.6, delay: 0.5 }}
         className="text-xl text-foreground/80 mb-10 max-w-2xl mx-auto"
       >
-        Alessandro e Federico sono pronti a valutare le tue esigenze e 
+        Siamo pronti a valutare le tue esigenze e 
         proporti la soluzione di integrazione più adatta al tuo business.
       </motion.p>
       
@@ -720,10 +720,10 @@ const Developers = () => {
         </Link>
         
         <Link
-          to="/case-studies"
+          to="/products"
           className="inline-flex items-center justify-center px-8 py-4 border border-teal-500/30 text-foreground hover:bg-teal-500/5 rounded-lg transition-all duration-300"
         >
-          Scopri i case studies
+          Vedi i nostri prodotti
         </Link>
       </motion.div>
       
@@ -736,7 +736,7 @@ const Developers = () => {
       >
         <a href="mailto:info@biorigeneral.com" className="flex items-center text-teal-400 hover:text-teal-300 transition-colors">
           <Send className="w-4 h-4 mr-2" />
-          info@biorigeneral.com
+          biorigeneralinformatics@gmail.com
         </a>
       </motion.div>
     </motion.div>

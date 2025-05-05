@@ -1647,7 +1647,7 @@ const Chatbots = () => {
           </p>
           <div className="flex flex-wrap gap-4">
             <Link
-              to="/contatti"
+              to="/contact"
               className="px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-medium rounded-xl shadow-md hover:shadow-green-500/20 transition-all duration-300 hover:-translate-y-1 flex items-center"
             >
               <span>Richiedi una Demo</span>

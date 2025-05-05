@@ -94,12 +94,7 @@ const AIAgents = () => {
               Scopri le Soluzioni <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
             
-            <Link
-              to="/demos"
-              className="inline-flex items-center px-6 py-3 bg-background border border-cyan-500/30 rounded-lg hover:bg-cyan-500/5 transition-all"
-            >
-              Guarda le Demo <Play className="ml-2 w-5 h-5" />
-            </Link>
+
           </div>
           
           {/* Stats */}

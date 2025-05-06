@@ -1,0 +1,467 @@
+/* ============================================
+   COMPONENT VARIABLES
+   Variabili CSS centralizzate per tutti i componenti
+   ============================================ */
+
+   :root {
+    /* ============================================
+       Colors and Theme Variables
+       ============================================ */
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+    
+    /* ============================================
+       Component Colors
+       ============================================ */
+    --glass-backdrop: rgba(20, 20, 35, 0.5);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-hover-backdrop: rgba(25, 25, 40, 0.6);
+    
+    --navbar-bg: rgba(40, 44, 52, 0.8);
+    --navbar-bg-scrolled: rgba(40, 44, 52, 0.9);
+    --navbar-link-color: rgba(255, 255, 255, 0.8);
+    --navbar-link-hover: rgba(255, 255, 255, 1);
+    
+    --footer-text: rgba(var(--foreground), 0.7);
+    --footer-link-hover: hsl(var(--primary));
+    
+    --cookie-banner-bg: rgba(40, 44, 52, 0.7);
+    --cookie-banner-border: rgba(99, 102, 241, 0.2);
+    --cookie-toggle-active: #6366f1;
+    --cookie-toggle-inactive: #d1d5db;
+    
+    /* ============================================
+       Spacing Variables
+       ============================================ */
+    --component-padding-sm: 1rem;
+    --component-padding-md: 1.5rem;
+    --component-padding-lg: 2rem;
+    --component-padding-xl: 2.5rem;
+    
+    --component-margin-sm: 1rem;
+    --component-margin-md: 1.5rem;
+    --component-margin-lg: 2rem;
+    --component-margin-xl: 3rem;
+    
+    --navbar-margin: 1rem;
+    --navbar-padding: 1rem 1.5rem;
+    --navbar-mobile-padding: 0.75rem 1rem;
+    
+    --footer-padding-top: 4rem;
+    --footer-padding-bottom: 2rem;
+    --footer-content-gap: 2.5rem;
+    
+    --cta-padding: 2.5rem;
+    --cta-button-padding: 0.75rem 2rem;
+    
+    /* ============================================
+       Border Radius Variables
+       ============================================ */
+    --component-radius-sm: 0.375rem; /* 6px */
+    --component-radius-md: 0.5rem;   /* 8px */
+    --component-radius-lg: 0.75rem;  /* 12px */
+    --component-radius-xl: 1rem;     /* 16px */
+    --component-radius-2xl: 1.5rem;  /* 24px */
+    --component-radius-full: 9999px;
+    
+    /* ============================================
+       Animation/Transition Variables
+       ============================================ */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    --transition-smooth: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Animation durations */
+    --animation-fast: 0.3s;
+    --animation-normal: 0.5s;
+    --animation-slow: 0.8s;
+    --animation-slowest: 1.2s;
+    
+    /* Easing functions */
+    --ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
+    --ease-in-out-cubic: cubic-bezier(0.45, 0, 0.55, 1);
+    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+    --ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
+    
+    /* ============================================
+       Z-Index Variables
+       ============================================ */
+    --z-cookie-banner: 100;
+    --z-modal: 90;
+    --z-navbar: 80;
+    --z-dropdown: 70;
+    --z-overlay: 60;
+    --z-loading: 50;
+    --z-background: -1;
+    
+    /* ============================================
+       Shadow Variables
+       ============================================ */
+    --shadow-sm: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+    --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
+    
+    /* ============================================
+       Typography Variables
+       ============================================ */
+    --text-xs: 0.75rem;    /* 12px */
+    --text-sm: 0.875rem;   /* 14px */
+    --text-base: 1rem;     /* 16px */
+    --text-lg: 1.125rem;   /* 18px */
+    --text-xl: 1.25rem;    /* 20px */
+    --text-2xl: 1.5rem;    /* 24px */
+    --text-3xl: 1.875rem;  /* 30px */
+    --text-4xl: 2.25rem;   /* 36px */
+    --text-5xl: 3rem;      /* 48px */
+    
+    --font-thin: 100;
+    --font-light: 300;
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+    --font-extrabold: 800;
+    --font-black: 900;
+    
+    --line-height-none: 1;
+    --line-height-tight: 1.25;
+    --line-height-snug: 1.375;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.625;
+    --line-height-loose: 2;
+    
+    /* ============================================
+       Hero Animation Variables
+       ============================================ */
+    --hero-card-radius: 180px;
+    --hero-card-width: 230px;
+    --hero-vertical-offset: 40px;
+    --hero-rotation-duration: 120s;
+    
+    /* ============================================
+       Scroll Animation Variables
+       ============================================ */
+    --scroll-animation-distance: 50px;
+    --scroll-animation-scale-start: 0.8;
+    --scroll-animation-rotate-start: -5deg;
+    
+    /* ============================================
+       Media Query Variables (for JavaScript usage)
+       ============================================ */
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+    --breakpoint-2xl: 1536px;
+    
+    /* ============================================
+       Gradient Variables
+       ============================================ */
+    --gradient-primary: linear-gradient(to right, #818cf8, #c084fc);
+    --gradient-accent: linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4);
+    --gradient-border: linear-gradient(to right, #6366f1, #8b5cf6, #06b6d4);
+    --gradient-bg: radial-gradient(circle at 50% 50%, 
+      rgba(var(--primary), 0.15),
+      rgba(var(--primary), 0.05) 30%,
+      transparent 60%
+    );
+    
+    /* ============================================
+       Container Variables
+       ============================================ */
+    --container-max-width: 80rem; /* 1280px */
+    --container-padding: 1rem;
+    --container-padding-md: 1.5rem;
+    --container-padding-lg: 2rem;
+  }
+  
+  /* ============================================
+     Component-specific Variables
+     ============================================ */
+  
+  /* Navbar specific variables */
+  .navbar-container {
+    --navbar-height: 4rem;
+    --navbar-blur: 16px;
+    --navbar-border-width: 1px;
+    --navbar-link-spacing: 1.5rem;
+    --navbar-mobile-gap: 1rem;
+    --navbar-submenu-width: 14rem; /* 224px */
+    --navbar-animation-duration: 0.3s;
+  }
+  
+  /* Footer specific variables */
+  .footer-container {
+    --footer-grid-gap: 2.5rem;
+    --footer-logo-size: 2.5rem;
+    --footer-social-gap: 1rem;
+    --footer-section-gap: 1rem;
+    --footer-copyright-spacing: 3rem;
+    --footer-border-opacity: 0.3;
+  }
+  
+  /* Cookie Banner specific variables */
+  .cookie-banner-container {
+    --cookie-banner-max-width: 96rem;
+    --cookie-banner-border-radius: var(--component-radius-xl);
+    --cookie-banner-gradient-height: 4px;
+    --cookie-toggle-width: 48px;
+    --cookie-toggle-height: 24px;
+    --cookie-slider-size: 16px;
+    --cookie-slider-offset: 4px;
+    --cookie-panel-transition: all 0.3s ease;
+  }
+  
+  /* CTA Section specific variables */
+  .cta-container {
+    --cta-title-size: 1.875rem;
+    --cta-description-max-width: 42rem;
+    --cta-description-opacity: 0.7;
+    --cta-button-hover-lift: -2px;
+    --cta-button-shadow-primary-opacity: 0.2;
+  }
+  
+  /* Hero Animation specific variables */
+  .hero-animation-container {
+    --hero-bg-blur-1-size: 288px;
+    --hero-bg-blur-2-size: 384px;
+    --hero-bg-blur-radius: 3rem;
+    --hero-card-padding: 1.5rem;
+    --hero-card-icon-size: 4rem;
+    --hero-card-title-size: 1.5rem;
+    --hero-card-hover-scale: 1.03;
+    --hero-animation-delay-2: 1s;
+  }
+  
+  /* Parallax specific variables */
+  .parallax-element {
+    --parallax-speed: 0.3;
+    --parallax-threshold: 0;
+    --parallax-smooth-transition: 0.2s ease-out;
+  }
+  
+  /* Scroll Animation specific variables */
+  [class*="scroll-"] {
+    --scroll-delay-base: 0.1s;
+    --scroll-animation-threshold: 0.1;
+    --scroll-fade-opacity: 0;
+    --scroll-fade-visible-opacity: 1;
+    --scroll-translate-distance: 50px;
+    --scroll-rotate-angle: -5deg;
+    --scroll-scale-start: 0.8;
+    --scroll-scale-end: 1;
+  }
+  
+  /* ============================================
+     Responsive Variables
+     ============================================ */
+  
+  /* Small devices (landscape phones, 576px and up) */
+  @media (max-width: 576px) {
+    :root {
+      --component-padding-sm: 0.75rem;
+      --component-padding-md: 1rem;
+      --component-padding-lg: 1.5rem;
+      
+      --navbar-padding: 0.5rem 0.75rem;
+      --footer-content-gap: 1.5rem;
+      --cta-padding: 1.5rem;
+      
+      --hero-card-radius: 100px;
+      --hero-card-width: 180px;
+    }
+    
+    .navbar-container {
+      --navbar-height: 3.5rem;
+      --navbar-link-spacing: 1rem;
+    }
+    
+    .footer-container {
+      --footer-grid-gap: 1.5rem;
+      --footer-copyright-spacing: 2rem;
+    }
+    
+    .hero-animation-container {
+      height: 350px;
+    }
+  }
+  
+  /* Medium devices (tablets, 768px and up) */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    :root {
+      --hero-card-radius: 140px;
+      --hero-card-width: 200px;
+    }
+    
+    .hero-animation-container {
+      height: 400px;
+    }
+    
+    .footer-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  /* Large devices (desktops, 1024px and up) */
+  @media (min-width: 1024px) {
+    :root {
+      --component-padding-lg: 2.5rem;
+      --component-padding-xl: 3rem;
+      
+      --container-padding: 1.5rem;
+      --container-padding-lg: 2rem;
+    }
+    
+    .footer-container {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  /* Extra large devices (large desktops, 1280px and up) */
+  @media (min-width: 1280px) {
+    :root {
+      --container-max-width: 90rem; /* 1440px */
+    }
+  }
+  
+  /* ============================================
+     Theme Variables (for dark mode support)
+     ============================================ */
+  
+  /* Light theme - default is already set above */
+  
+  /* Dark theme variables */
+  .dark,
+  [data-theme="dark"] {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --border: 217.2 32.6% 17.5%;
+    
+    --glass-backdrop: rgba(10, 10, 25, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-hover-backdrop: rgba(15, 15, 30, 0.8);
+    
+    --navbar-bg: rgba(10, 10, 25, 0.9);
+    --navbar-bg-scrolled: rgba(5, 5, 20, 0.95);
+    
+    --cookie-banner-bg: rgba(10, 10, 25, 0.9);
+  }
+  
+  /* ============================================
+     Print Styles Variables
+     ============================================ */
+  @media print {
+    :root {
+      --component-padding-sm: 0.5rem;
+      --component-padding-md: 0.75rem;
+      --component-padding-lg: 1rem;
+      
+      --shadow-sm: none;
+      --shadow-md: none;
+      --shadow-lg: none;
+      --shadow-xl: none;
+      --shadow-2xl: none;
+      --shadow-glow: none;
+    }
+  }
+  
+  /* ============================================
+     Prefers Reduced Motion Variables
+     ============================================ */
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --transition-fast: 0s;
+      --transition-normal: 0s;
+      --transition-slow: 0s;
+      --transition-smooth: 0s;
+      
+      --animation-fast: 0s;
+      --animation-normal: 0s;
+      --animation-slow: 0s;
+      --animation-slowest: 0s;
+    }
+    
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  
+  /* ============================================
+     High Contrast Variables
+     ============================================ */
+  @media (prefers-contrast: high) {
+    :root {
+      --border: 0 0% 0%;
+      --input: 0 0% 0%;
+      --ring: 210 100% 50%;
+      
+      --glass-border: rgba(255, 255, 255, 0.5);
+      --navbar-link-color: rgba(255, 255, 255, 1);
+    }
+  }
+  
+  /* ============================================
+     Utility Classes for Variable Usage
+     ============================================ */
+  
+  /* Apply component variables */
+  .apply-component-spacing {
+    padding: var(--component-padding-md);
+    margin: var(--component-margin-md);
+  }
+  
+  .apply-transition-normal {
+    transition: all var(--transition-normal);
+  }
+  
+  .apply-border-radius {
+    border-radius: var(--component-radius-md);
+  }
+  
+  .apply-shadow {
+    box-shadow: var(--shadow-md);
+  }
+  
+  /* Custom properties helper classes */
+  .custom-property-spacing {
+    --spacing: var(--component-padding-md);
+    padding: var(--spacing);
+    margin: var(--spacing);
+  }
+  
+  .custom-property-timing {
+    --timing: var(--transition-normal);
+    --delay: var(--scroll-delay-300);
+    transition: all var(--timing);
+    transition-delay: var(--delay);
+  }

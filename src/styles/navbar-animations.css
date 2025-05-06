@@ -1,0 +1,226 @@
+/* ============================================
+   NAVBAR MOBILE ANIMATIONS
+   Animazioni specifiche per la navbar mobile
+   ============================================ */
+
+/* Animazioni per navbar mobile */
+@keyframes navbarFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes navbarFadeOut {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+  }
+  
+  .navbar-animate-in {
+    animation: navbarFadeIn 0.3s ease-out forwards;
+  }
+  
+  .navbar-animate-out {
+    animation: navbarFadeOut 0.3s ease-out forwards;
+  }
+  
+  /* Animazioni per menu mobile */
+  @keyframes mobileMenuFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-100%);
+      visibility: hidden;
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+    }
+  }
+  
+  @keyframes mobileMenuFadeOut {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-100%);
+      visibility: hidden;
+    }
+  }
+  
+  .navbar-mobile-menu-animate-in {
+    animation: mobileMenuFadeIn 0.3s ease-out forwards;
+  }
+  
+  .navbar-mobile-menu-animate-out {
+    animation: mobileMenuFadeOut 0.3s ease-out forwards;
+  }
+  
+  /* Animazioni per sottomenu navbar */
+  @keyframes submenuFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+      visibility: hidden;
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+    }
+  }
+  
+  @keyframes submenuFadeOut {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-10px);
+      visibility: hidden;
+    }
+  }
+  
+  .navbar-submenu-animate-in {
+    animation: submenuFadeIn 0.2s ease-out forwards;
+  }
+  
+  .navbar-submenu-animate-out {
+    animation: submenuFadeOut 0.2s ease-out forwards;
+  }
+  
+  /* Animazioni per sottomenu mobile */
+  @keyframes mobileSubmenuExpand {
+    from {
+      height: 0;
+      opacity: 0;
+      visibility: hidden;
+    }
+    to {
+      height: auto;
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  
+  @keyframes mobileSubmenuCollapse {
+    from {
+      height: auto;
+      opacity: 1;
+      visibility: visible;
+    }
+    to {
+      height: 0;
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+  
+  .navbar-mobile-submenu-list {
+    overflow: hidden;
+    transition: all 0.3s ease-out;
+  }
+  
+  .navbar-mobile-submenu-expanding {
+    animation: mobileSubmenuExpand 0.3s ease-out forwards;
+  }
+  
+  .navbar-mobile-submenu-collapsing {
+    animation: mobileSubmenuCollapse 0.3s ease-out forwards;
+  }
+  
+  /* Transizioni per link navbar */
+  .navbar-link,
+  .navbar-submenu-button,
+  .navbar-mobile-link {
+    transition: all 0.3s ease;
+  }
+  
+  /* Transizione per indicatore pagina corrente */
+  .navbar-indicator {
+    transition: all 0.3s ease;
+  }
+  
+  /* Animazione per icon mobile menu */
+  @keyframes iconSpin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(180deg);
+    }
+  }
+  
+  .navbar-mobile-button svg {
+    transition: transform 0.3s ease;
+  }
+  
+  .navbar-mobile-button[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+  }
+  
+  /* Hover effects per mobile */
+  @media (max-width: 767px) {
+    .navbar-mobile-link {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .navbar-mobile-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(var(--primary), 0.1),
+        transparent
+      );
+      transition: left 0.5s ease;
+    }
+    
+    .navbar-mobile-link:active::before {
+      left: 100%;
+    }
+  }
+  
+  /* Stagger animations per link menu */
+  @keyframes staggerIn {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .navbar-mobile-content > * {
+    opacity: 0;
+    animation: staggerIn 0.3s ease-out forwards;
+  }
+  
+  .navbar-mobile-content > *:nth-child(1) { animation-delay: 0.1s; }
+  .navbar-mobile-content > *:nth-child(2) { animation-delay: 0.15s; }
+  .navbar-mobile-content > *:nth-child(3) { animation-delay: 0.2s; }
+  .navbar-mobile-content > *:nth-child(4) { animation-delay: 0.25s; }
+  .navbar-mobile-content > *:nth-child(5) { animation-delay: 0.3s; }

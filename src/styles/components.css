@@ -69,11 +69,11 @@
     @apply bg-background text-foreground;
   }
 }
-
+ 
 /* ============================================
    UTILITY CLASSES
    ============================================ */
-
+ 
 /* Glass effects */
 .glass {
   background: rgba(20, 20, 35, 0.5);

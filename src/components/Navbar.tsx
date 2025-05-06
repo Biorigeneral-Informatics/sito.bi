@@ -2,12 +2,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [submenuAnimating, setSubmenuAnimating] = useState(false);
+  const [mobileSubmenuAnimating, setMobileSubmenuAnimating] = useState(false);
   const servicesRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
@@ -59,96 +60,99 @@ const Navbar = () => {
   // Controlla se il percorso corrente è un servizio
   const isServicePage = servicesLinks.some(link => location.pathname === link.href);
 
+  const toggleServices = () => {
+    if (servicesOpen) {
+      setSubmenuAnimating(true);
+      setTimeout(() => {
+        setServicesOpen(false);
+        setSubmenuAnimating(false);
+      }, 200);
+    } else {
+      setServicesOpen(true);
+    }
+  };
+
+  const toggleMobileServices = () => {
+    if (servicesOpen) {
+      setMobileSubmenuAnimating(true);
+      setTimeout(() => {
+        setServicesOpen(false);
+        setMobileSubmenuAnimating(false);
+      }, 200);
+    } else {
+      setServicesOpen(true);
+    }
+  };
+
+  const toggleMobileMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const getSubmenuClasses = () => {
+    if (submenuAnimating) return 'navbar-submenu navbar-submenu-animate-out';
+    return `navbar-submenu ${servicesOpen ? 'navbar-submenu-animate-in' : 'opacity-0 invisible'}`;
+  };
+
+  const getMobileSubmenuClasses = () => {
+    if (mobileSubmenuAnimating) return 'navbar-mobile-submenu-list navbar-mobile-submenu-collapsing';
+    return `navbar-mobile-submenu-list ${servicesOpen ? 'navbar-mobile-submenu-expanding' : 'opacity-0 invisible h-0'}`;
+  };
+
   return (
-    <motion.nav 
-      className="fixed w-full z-50"
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className={`mx-4 my-4 px-6 py-4 rounded-2xl transition-all duration-300 ${
-        scrolled 
-          ? 'glass backdrop-blur-md bg-background/80' 
-          : 'glass bg-background/20'
-      }`}>
-        <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-2">
-            <img src="https://i.imgur.com/UoihSYZ.png" alt="Biorigeneral" className="w-10 h-10" />
-            <span className="font-bold text-xl">Biorigeneral</span>
+    <nav className="navbar-container navbar-animate-in">
+      <div className={`navbar-inner ${scrolled ? 'navbar-scrolled' : 'navbar-not-scrolled'}`}>
+        <div className="navbar-content">
+          <Link to="/" className="navbar-logo">
+            <img src="https://i.imgur.com/UoihSYZ.png" alt="Biorigeneral" />
+            <span className="navbar-brand-text">Biorigeneral</span>
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-8">
+          <div className="navbar-desktop-menu">
             {mainLinks.map((link) => 
               link.hasSubmenu ? (
                 <div key={link.label} className="relative" ref={servicesRef}>
                   <button
-                    onClick={() => setServicesOpen(!servicesOpen)}
-                    className={`flex items-center px-2 py-1 text-foreground/80 hover:text-foreground transition-colors ${
-                      isServicePage ? 'text-foreground' : ''
-                    }`}
+                    onClick={toggleServices}
+                    className={`navbar-submenu-button ${isServicePage ? 'active' : ''}`}
                   >
                     {link.label}
                     {servicesOpen ? (
-                      <ChevronUp className="ml-1 h-4 w-4" />
+                      <ChevronUp className="navbar-submenu-icon" />
                     ) : (
-                      <ChevronDown className="ml-1 h-4 w-4" />
+                      <ChevronDown className="navbar-submenu-icon" />
                     )}
                   </button>
                   
                   {/* Sottomenu Servizi Desktop */}
-                  <AnimatePresence>
-                    {servicesOpen && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        transition={{ duration: 0.2 }}
-                        className="absolute left-0 mt-2 w-56 glass backdrop-blur-md rounded-xl py-2 shadow-lg"
+                  <div className={getSubmenuClasses()}>
+                    {servicesLinks.map((serviceLink) => (
+                      <Link
+                        key={serviceLink.href}
+                        to={serviceLink.href}
+                        className={`navbar-submenu-link ${
+                          location.pathname === serviceLink.href ? 'active' : ''
+                        }`}
                       >
-                        {servicesLinks.map((serviceLink) => (
-                          <Link
-                            key={serviceLink.href}
-                            to={serviceLink.href}
-                            className={`block px-4 py-2 text-foreground/80 hover:text-foreground hover:bg-primary/10 transition-colors ${
-                              location.pathname === serviceLink.href ? 'bg-primary/20 text-foreground' : ''
-                            }`}
-                          >
-                            {serviceLink.label}
-                          </Link>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                        {serviceLink.label}
+                      </Link>
+                    ))}
+                  </div>
 
                   {/* Indicatore pagina corrente per sezione Servizi */}
                   {isServicePage && (
-                    <motion.div
-                      layoutId="navbar-indicator"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                    />
+                    <div className="navbar-indicator" />
                   )}
                 </div>
               ) : (
                 <Link
                   key={link.href}
                   to={link.href}
-                  className={`relative px-2 py-1 text-foreground/80 hover:text-foreground transition-colors ${
-                    location.pathname === link.href ? 'text-foreground' : ''
-                  }`}
+                  className={`navbar-link ${location.pathname === link.href ? 'active' : ''}`}
                 >
                   {link.label}
                   {location.pathname === link.href && (
-                    <motion.div
-                      layoutId="navbar-indicator"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                    />
+                    <div className="navbar-indicator" />
                   )}
                 </Link>
               )
@@ -156,87 +160,65 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <motion.button
-            className="md:hidden"
-            onClick={() => setIsOpen(!isOpen)}
-            whileTap={{ scale: 0.95 }}
+          <button
+            className="navbar-mobile-button"
+            onClick={toggleMobileMenu}
           >
             {isOpen ? <X /> : <Menu />}
-          </motion.button>
+          </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="glass md:hidden mx-4 mt-2 p-4 rounded-xl backdrop-blur-md"
-          >
-            <div className="flex flex-col space-y-2">
-              {mainLinks.map((link) => 
-                link.hasSubmenu ? (
-                  <div key={link.label} className="space-y-1">
-                    <button
-                      onClick={() => setServicesOpen(!servicesOpen)}
-                      className={`w-full flex justify-between items-center py-2 px-3 rounded-lg text-foreground/80 hover:text-foreground transition-colors ${
-                        isServicePage ? 'bg-primary/20 text-foreground' : ''
-                      }`}
-                    >
-                      {link.label}
-                      {servicesOpen ? (
-                        <ChevronUp className="h-4 w-4" />
-                      ) : (
-                        <ChevronDown className="h-4 w-4" />
-                      )}
-                    </button>
-                    
-                    {/* Sottomenu Servizi Mobile */}
-                    <AnimatePresence>
-                      {servicesOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="pl-4"
-                        >
-                          {servicesLinks.map((serviceLink) => (
-                            <Link
-                              key={serviceLink.href}
-                              to={serviceLink.href}
-                              className={`block py-2 px-3 rounded-lg text-foreground/80 hover:text-foreground transition-colors ${
-                                location.pathname === serviceLink.href ? 'bg-primary/10 text-foreground' : ''
-                              }`}
-                            >
-                              {serviceLink.label}
-                            </Link>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                ) : (
-                  <Link
-                    key={link.href}
-                    to={link.href}
-                    className={`block py-2 px-3 rounded-lg text-foreground/80 hover:text-foreground transition-colors ${
-                      location.pathname === link.href 
-                        ? 'bg-primary/20 text-foreground' 
-                        : ''
-                    }`}
+      {isOpen && (
+        <div className={`navbar-mobile-menu ${isOpen ? 'navbar-mobile-menu-animate-in' : ''}`}>
+          <div className="navbar-mobile-content">
+            {mainLinks.map((link) => 
+              link.hasSubmenu ? (
+                <div key={link.label} className="navbar-mobile-submenu-section">
+                  <button
+                    onClick={toggleMobileServices}
+                    className={`navbar-mobile-submenu-button ${isServicePage ? 'active' : ''}`}
                   >
                     {link.label}
-                  </Link>
-                )
-              )}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+                    {servicesOpen ? (
+                      <ChevronUp className="h-4 w-4" />
+                    ) : (
+                      <ChevronDown className="h-4 w-4" />
+                    )}
+                  </button>
+                  
+                  {/* Sottomenu Servizi Mobile */}
+                  <div className={getMobileSubmenuClasses()}>
+                    {servicesLinks.map((serviceLink) => (
+                      <Link
+                        key={serviceLink.href}
+                        to={serviceLink.href}
+                        className={`navbar-mobile-link ${
+                          location.pathname === serviceLink.href ? 'active' : ''
+                        }`}
+                      >
+                        {serviceLink.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className={`navbar-mobile-link ${
+                    location.pathname === link.href ? 'active' : ''
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
+          </div>
+        </div>
+      )}
+    </nav>
   );
 }
 

@@ -4,53 +4,53 @@ import { Mail, Phone, MapPin, Linkedin, Twitter, Github, Instagram } from 'lucid
 
 const Footer = () => {
   return (
-    <footer className="mt-20 pt-16 pb-8 glass">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-          <div>
-            <Link to="/" className="flex items-center space-x-2 mb-6">
-              <img src="https://i.imgur.com/UoihSYZ.png" alt="Biorigeneral" className="w-10 h-10" />
-              <span className="font-bold text-xl">Bi</span>
+    <footer className="footer-container glass">
+      <div className="footer-content">
+        <div className="footer-grid">
+          <div className="footer-brand-section">
+            <Link to="/" className="footer-logo">
+              <img src="https://i.imgur.com/UoihSYZ.png" alt="Biorigeneral" />
+              <span>Bi</span>
             </Link>
-            <p className="text-foreground/70 mb-4">
+            <p className="footer-description">
               Innovazione tecnologica e soluzioni software all'avanguardia per le PMI italiane.
             </p>
-            <div className="flex space-x-4 mt-4">
-              <a href="#" className="text-foreground/70 hover:text-primary transition">
+            <div className="footer-social-links">
+              <a href="#" className="footer-social-link">
                 <Linkedin size={20} />
               </a>
-              <a href="#" className="text-foreground/70 hover:text-primary transition">
+              <a href="#" className="footer-social-link">
                 <Twitter size={20} />
               </a>
-              <a href="#" className="text-foreground/70 hover:text-primary transition">
+              <a href="#" className="footer-social-link">
                 <Github size={20} />
               </a>
-              <a href="#" className="text-foreground/70 hover:text-primary transition">
+              <a href="#" className="footer-social-link">
                 <Instagram size={20} />
               </a>
             </div>
           </div>
           
           <div>
-            <h3 className="font-bold text-lg mb-4">Servizi</h3>
-            <ul className="space-y-2">
+            <h3 className="footer-section-title">Servizi</h3>
+            <ul className="footer-links-list">
               <li>
-                <Link to="/services" className="text-foreground/70 hover:text-primary transition">
+                <Link to="/services" className="footer-link">
                   Sviluppo Software
                 </Link>
               </li>
               <li>
-                <Link to="/ai-agents" className="text-foreground/70 hover:text-primary transition">
+                <Link to="/ai-agents" className="footer-link">
                   Agenti AI
                 </Link>
               </li>
               <li>
-                <Link to="/chatbots" className="text-foreground/70 hover:text-primary transition">
+                <Link to="/chatbots" className="footer-link">
                   Chatbot AI
                 </Link>
               </li>
               <li>
-                <Link to="/developers" className="text-foreground/70 hover:text-primary transition">
+                <Link to="/developers" className="footer-link">
                   Team di Sviluppo
                 </Link>
               </li>
@@ -58,25 +58,25 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="font-bold text-lg mb-4">Azienda</h3>
-            <ul className="space-y-2">
+            <h3 className="footer-section-title">Azienda</h3>
+            <ul className="footer-links-list">
               <li>
-                <Link to="/about" className="text-foreground/70 hover:text-primary transition">
+                <Link to="/about" className="footer-link">
                   Chi Siamo
                 </Link>
               </li>
               <li>
-                <Link to="/careers" className="text-foreground/70 hover:text-primary transition">
+                <Link to="/careers" className="footer-link">
                   Lavora con Noi
                 </Link>
               </li>
               <li>
-                <Link to="/PrivacyPolicy" className="text-foreground/70 hover:text-primary transition">
+                <Link to="/PrivacyPolicy" className="footer-link">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link to="/TerminiCondizioni" className="text-foreground/70 hover:text-primary transition">
+                <Link to="/TerminiCondizioni" className="footer-link">
                   Termini e Condizioni
                 </Link>
               </li>
@@ -84,19 +84,19 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="font-bold text-lg mb-4">Contatti</h3>
-            <ul className="space-y-4">
-              <li className="flex items-center space-x-3">
-                <Mail size={18} className="text-primary" />
-                <span className="text-foreground/70">biorigeneralinformatics@gmail.com</span>
+            <h3 className="footer-section-title">Contatti</h3>
+            <ul className="footer-contact-list">
+              <li className="footer-contact-item center-icon">
+                <Mail size={18} className="footer-contact-icon" />
+                <span className="footer-contact-text">biorigeneralinformatics@gmail.com</span>
               </li>
-              <li className="flex items-center space-x-3">
-                <Phone size={18} className="text-primary" />
-                <span className="text-foreground/70">+39 392 015 8140 (Whatsapp)</span>
+              <li className="footer-contact-item center-icon">
+                <Phone size={18} className="footer-contact-icon" />
+                <span className="footer-contact-text">+39 392 015 8140 (Whatsapp)</span>
               </li>
-              <li className="flex items-start space-x-3">
-                <MapPin size={18} className="text-primary mt-1" />
-                <span className="text-foreground/70">
+              <li className="footer-contact-item">
+                <MapPin size={18} className="footer-contact-icon" />
+                <span className="footer-contact-text">
                   Via Salara 2/A,<br />
                   64026 Roseto degli Abruzzi (TE), Italia
                 </span>
@@ -105,7 +105,7 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="mt-12 pt-6 border-t border-border/30 text-center text-foreground/60 text-sm">
+        <div className="footer-copyright">
           © {new Date().getFullYear()} Biorigeneral Informatics. Tutti i diritti riservati.
         </div>
       </div>

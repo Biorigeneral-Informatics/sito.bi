@@ -1,7 +1,7 @@
 // src/components/CTASection.tsx
-import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
 
 interface CTASectionProps {
   title: string;
@@ -18,25 +18,43 @@ const CTASection = ({
   buttonLink, 
   bgClass = "glass" 
 }: CTASectionProps) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-      className={`${bgClass} p-10 rounded-2xl text-center my-16`}
+    <div
+      ref={sectionRef}
+      className={`cta-container ${bgClass} ${isVisible ? 'cta-animate-in' : 'opacity-0'}`}
     >
-      <h2 className="text-3xl font-bold mb-4">{title}</h2>
-      <p className="text-foreground/70 mb-8 max-w-2xl mx-auto">
+      <h2 className="cta-title">{title}</h2>
+      <p className="cta-description">
         {description}
       </p>
       <Link
         to={buttonLink}
-        className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all hover:translate-y-[-2px] shadow-lg hover:shadow-primary/20"
+        className="cta-button"
       >
-        {buttonText} <ArrowRight className="ml-2 w-5 h-5" />
+        {buttonText} <ArrowRight className="cta-button-icon" />
       </Link>
-    </motion.div>
+    </div>
   );
 };
 

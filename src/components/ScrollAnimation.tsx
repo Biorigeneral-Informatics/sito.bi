@@ -1,42 +1,16 @@
-// src/components/ScrollAnimation.tsx - Nuovo componente
+// src/components/ScrollAnimation.tsx
 import { useRef, useEffect, useState, ReactNode } from 'react';
-import { motion } from 'framer-motion';
 
 interface ScrollAnimationProps {
   children: ReactNode;
-  animation?: 'fadeIn' | 'slideUp' | 'slideLeft' | 'slideRight' | 'scale' | 'rotate';
+  animation?: 'fadeIn' | 'slideUp' | 'slideLeft' | 'slideRight' | 'scale' | 'rotate' | 'slideUp-rotate' | 'scale-rotate';
   delay?: number;
   duration?: number;
   threshold?: number;
   className?: string;
+  optimized?: boolean;
+  easing?: 'ease-out' | 'ease-in-out' | 'cubic-bezier';
 }
-
-const animations = {
-  fadeIn: {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 }
-  },
-  slideUp: {
-    initial: { opacity: 0, y: 50 },
-    animate: { opacity: 1, y: 0 }
-  },
-  slideLeft: {
-    initial: { opacity: 0, x: 50 },
-    animate: { opacity: 1, x: 0 }
-  },
-  slideRight: {
-    initial: { opacity: 0, x: -50 },
-    animate: { opacity: 1, x: 0 }
-  },
-  scale: {
-    initial: { opacity: 0, scale: 0.8 },
-    animate: { opacity: 1, scale: 1 }
-  },
-  rotate: {
-    initial: { opacity: 0, rotate: -5 },
-    animate: { opacity: 1, rotate: 0 }
-  }
-};
 
 const ScrollAnimation = ({ 
   children, 
@@ -44,12 +18,65 @@ const ScrollAnimation = ({
   delay = 0, 
   duration = 0.5,
   threshold = 0.1,
-  className = ''
+  className = '',
+  optimized = true,
+  easing = 'cubic-bezier'
 }: ScrollAnimationProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+    
+    // Apply CSS classes
+    element.classList.add('scroll-animation', `scroll-${animation}`);
+    
+    // Apply duration class
+    if (duration === 0.3) {
+      element.classList.add('scroll-animation-fast');
+    } else if (duration === 0.5) {
+      element.classList.add('scroll-animation-normal');
+    } else if (duration === 0.8) {
+      element.classList.add('scroll-animation-slow');
+    } else {
+      // Custom duration
+      element.style.transitionDuration = `${duration}s`;
+    }
+    
+    // Apply delay class
+    const delayMs = delay * 1000;
+    if (delayMs === 100) {
+      element.classList.add('scroll-delay-100');
+    } else if (delayMs === 200) {
+      element.classList.add('scroll-delay-200');
+    } else if (delayMs === 300) {
+      element.classList.add('scroll-delay-300');
+    } else if (delayMs === 500) {
+      element.classList.add('scroll-delay-500');
+    } else if (delayMs === 700) {
+      element.classList.add('scroll-delay-700');
+    } else if (delayMs === 1000) {
+      element.classList.add('scroll-delay-1000');
+    } else if (delayMs > 0) {
+      // Custom delay
+      element.style.transitionDelay = `${delay}s`;
+    }
+    
+    // Apply easing class
+    if (easing === 'ease-out') {
+      element.classList.add('scroll-animation-ease-out');
+    } else if (easing === 'ease-in-out') {
+      element.classList.add('scroll-animation-ease-in-out');
+    } else if (easing === 'cubic-bezier') {
+      element.classList.add('scroll-animation-cubic-bezier');
+    }
+    
+    // Apply optimization class
+    if (optimized) {
+      element.classList.add('scroll-optimized');
+    }
+    
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -60,29 +87,45 @@ const ScrollAnimation = ({
       { threshold }
     );
     
-    const currentRef = ref.current;
-    if (currentRef) {
-      observer.observe(currentRef);
+    if (element) {
+      observer.observe(element);
     }
     
     return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
+      if (element) {
+        observer.unobserve(element);
+        
+        // Clean up classes
+        element.classList.remove(
+          'scroll-animation',
+          `scroll-${animation}`,
+          'scroll-animation-fast',
+          'scroll-animation-normal',
+          'scroll-animation-slow',
+          'scroll-delay-100',
+          'scroll-delay-200',
+          'scroll-delay-300',
+          'scroll-delay-500',
+          'scroll-delay-700',
+          'scroll-delay-1000',
+          'scroll-animation-ease-out',
+          'scroll-animation-ease-in-out',
+          'scroll-animation-cubic-bezier',
+          'scroll-optimized'
+        );
       }
     };
-  }, [threshold]);
+  }, [threshold, animation, delay, duration, easing, optimized]);
   
-  const animationVariants = animations[animation];
+  useEffect(() => {
+    if (isVisible && ref.current) {
+      ref.current.classList.add('visible');
+    }
+  }, [isVisible]);
   
   return (
     <div ref={ref} className={className}>
-      <motion.div
-        initial={animationVariants.initial}
-        animate={isVisible ? animationVariants.animate : animationVariants.initial}
-        transition={{ duration, delay }}
-      >
-        {children}
-      </motion.div>
+      {children}
     </div>
   );
 };

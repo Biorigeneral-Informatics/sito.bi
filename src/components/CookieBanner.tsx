@@ -1,7 +1,6 @@
 // src/components/CookieBanner.tsx
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronDown, ChevronUp, Cookie, Shield, BarChart, Zap, Check,} from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { X, ChevronDown, ChevronUp, Cookie, Shield, BarChart, Zap, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface CookiePreferences {
@@ -11,16 +10,20 @@ interface CookiePreferences {
 }
 
 const CookieBanner = () => {
-  // Stato per controllare la visibilità del banner
+  // Stati per la gestione dell'UI
   const [isVisible, setIsVisible] = useState(false);
-  // Stato per controllare se mostrare le preferenze dettagliate
   const [showPreferences, setShowPreferences] = useState(false);
+  const [preferencesPanelHeight, setPreferencesPanelHeight] = useState('auto');
+  
   // Stato per le preferenze dei cookie
   const [preferences, setPreferences] = useState<CookiePreferences>({
     necessary: true, // I cookie necessari sono sempre attivi
     analytics: false,
     functional: false,
   });
+
+  // Ref per il pannello delle preferenze
+  const preferencesPanelRef = useRef<HTMLDivElement>(null);
 
   // Verifica all'avvio se le preferenze sono già state impostate
   useEffect(() => {
@@ -51,9 +54,7 @@ const CookieBanner = () => {
     };
     setPreferences(allAccepted);
     localStorage.setItem('cookieConsent', JSON.stringify(allAccepted));
-    setIsVisible(false);
-    
-    // Qui puoi impostare i cookie effettivi o trigger eventi di analytics
+    closeBanner();
     setupCookies(allAccepted);
   };
 
@@ -66,19 +67,28 @@ const CookieBanner = () => {
     };
     setPreferences(onlyNecessary);
     localStorage.setItem('cookieConsent', JSON.stringify(onlyNecessary));
-    setIsVisible(false);
-    
-    // Imposta solo i cookie necessari
+    closeBanner();
     setupCookies(onlyNecessary);
   };
 
   // Funzione per salvare le preferenze personalizzate
   const savePreferences = () => {
     localStorage.setItem('cookieConsent', JSON.stringify(preferences));
-    setIsVisible(false);
-    
-    // Imposta i cookie in base alle preferenze
+    closeBanner();
     setupCookies(preferences);
+  };
+
+  // Funzione per chiudere il banner con animazione
+  const closeBanner = () => {
+    const container = document.querySelector('.cookie-banner-container');
+    if (container) {
+      container.classList.remove('cookie-banner-animate-in');
+      container.classList.add('cookie-banner-animate-out');
+      
+      setTimeout(() => {
+        setIsVisible(false);
+      }, 300);
+    }
   };
 
   // Funzione per gestire il cambiamento delle preferenze
@@ -98,227 +108,219 @@ const CookieBanner = () => {
     
     // Esempio:
     if (cookiePrefs.analytics) {
-      // Inizializza Google Analytics o strumenti simili
       console.log('Inizializzazione cookie analitici');
-      // window.gtag = ...
     }
     
     if (cookiePrefs.functional) {
-      // Inizializza cookie funzionali
       console.log('Inizializzazione cookie funzionali');
     }
     
-    // I cookie necessari vengono sempre impostati
     console.log('Inizializzazione cookie necessari');
-  };
-
-  // Animazioni Framer Motion
-  const bannerVariants = {
-    hidden: { y: 100, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { type: 'spring', bounce: 0.3, duration: 0.7 } },
-    exit: { y: 100, opacity: 0, transition: { duration: 0.3 } }
-  };
-
-  const preferencesPanelVariants = {
-    hidden: { height: 0, opacity: 0 },
-    visible: { height: 'auto', opacity: 1, transition: { duration: 0.4 } },
-    exit: { height: 0, opacity: 0, transition: { duration: 0.3 } }
   };
 
   // Gestione dell'apertura delle impostazioni
   const togglePreferences = () => {
-    setShowPreferences(prev => !prev);
+    setShowPreferences(prev => {
+      if (!prev && preferencesPanelRef.current) {
+        const height = preferencesPanelRef.current.scrollHeight;
+        setPreferencesPanelHeight(`${height}px`);
+      }
+      return !prev;
+    });
   };
+
+  // Gestisci l'animazione del pannello preferenze
+  useEffect(() => {
+    const panel = preferencesPanelRef.current;
+    if (!panel) return;
+
+    if (showPreferences) {
+      panel.style.setProperty('--preferences-height', preferencesPanelHeight);
+      panel.classList.remove('preferences-panel-collapsing');
+      panel.classList.add('preferences-panel-expanding');
+    } else {
+      const height = panel.getBoundingClientRect().height;
+      panel.style.setProperty('--preferences-height', `${height}px`);
+      panel.classList.remove('preferences-panel-expanding');
+      panel.classList.add('preferences-panel-collapsing');
+    }
+  }, [showPreferences, preferencesPanelHeight]);
 
   if (!isVisible) return null;
 
   return (
-    <AnimatePresence>
-      <motion.div
-        className="fixed bottom-4 left-4 right-4 z-50 max-w-6xl mx-auto"
-        variants={bannerVariants}
-        initial="hidden"
-        animate="visible"
-        exit="exit"
-      >
-        {/* Banner principale */}
-        <div className="glass backdrop-blur-lg bg-background/70 rounded-xl shadow-2xl border border-indigo-500/20 overflow-hidden">
-          {/* Barra colorata sopra */}
-          <div className="h-1 w-full bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500"></div>
+    <div className="cookie-banner-container cookie-banner-animate-in">
+      {/* Banner principale */}
+      <div className="cookie-banner-main">
+        {/* Barra colorata sopra */}
+        <div className="cookie-banner-gradient-top"></div>
+        
+        <div className="cookie-banner-content">
+          {/* Intestazione e chiusura */}
+          <div className="cookie-banner-header">
+            <div className="cookie-banner-title-wrapper">
+              <Cookie className="cookie-banner-icon" />
+              <h3 className="cookie-banner-title">Impostazioni Cookie</h3>
+            </div>
+            <button 
+              onClick={rejectNonEssential}
+              className="cookie-banner-close-btn"
+              aria-label="Chiudi banner cookie"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
           
-          <div className="p-6">
-            {/* Intestazione e chiusura */}
-            <div className="flex justify-between items-center mb-4">
-              <div className="flex items-center">
-                <Cookie className="w-6 h-6 text-indigo-400 mr-2" />
-                <h3 className="font-bold text-xl">Impostazioni Cookie</h3>
-              </div>
-              <button 
-                onClick={rejectNonEssential}
-                className="p-1 rounded-full hover:bg-gray-500/10 transition-colors"
-                aria-label="Chiudi banner cookie"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
+          {/* Descrizione */}
+          <div className="cookie-banner-description">
+            <p>
+              Utilizziamo cookie e tecnologie simili per migliorare la tua esperienza sul nostro sito, personalizzare contenuti e analizzare il traffico. Puoi scegliere quali cookie accettare.
+            </p>
+            <p>
+              Per maggiori dettagli, consulta la nostra{' '}
+              <Link to="/PrivacyPolicy" className="cookie-banner-privacy-link">Privacy Policy</Link>.
+            </p>
+          </div>
+          
+          {/* Pulsanti principali */}
+          <div className="cookie-banner-buttons">
+            <button
+              onClick={acceptAll}
+              className="cookie-banner-button-accept"
+            >
+              Accetta tutti
+            </button>
             
-            {/* Descrizione */}
-            <div className="mb-6">
-              <p className="text-foreground/80 mb-3">
-                Utilizziamo cookie e tecnologie simili per migliorare la tua esperienza sul nostro sito, personalizzare contenuti e analizzare il traffico. Puoi scegliere quali cookie accettare.
-              </p>
-              <p className="text-foreground/70 text-sm">
-                Per maggiori dettagli, consulta la nostra{' '}
-                <Link to="/PrivacyPolicy" className="text-indigo-400 hover:underline">Privacy Policy</Link>.
-              </p>
-            </div>
+            <button
+              onClick={rejectNonEssential}
+              className="cookie-banner-button-reject"
+            >
+              Rifiuta cookie non essenziali
+            </button>
             
-            {/* Pulsanti principali */}
-            <div className="flex flex-wrap gap-3 mb-4">
-              <button
-                onClick={acceptAll}
-                className="px-5 py-2 bg-gradient-to-r from-indigo-500 to-violet-500 text-white rounded-lg hover:shadow-lg hover:shadow-indigo-500/20 transition-all hover:-translate-y-0.5 font-medium"
-              >
-                Accetta tutti
-              </button>
-              
-              <button
-                onClick={rejectNonEssential}
-                className="px-5 py-2 border border-indigo-500/20 rounded-lg hover:bg-indigo-500/10 transition-all hover:-translate-y-0.5"
-              >
-                Rifiuta cookie non essenziali
-              </button>
-              
-              <button
-                onClick={togglePreferences}
-                className="px-5 py-2 border border-indigo-500/20 rounded-lg hover:bg-indigo-500/10 transition-all hover:-translate-y-0.5 flex items-center"
-              >
-                Preferenze cookie
-                {showPreferences ? (
-                  <ChevronUp className="ml-2 w-4 h-4" />
-                ) : (
-                  <ChevronDown className="ml-2 w-4 h-4" />
-                )}
-              </button>
-            </div>
-            
-            {/* Pannello preferenze espandibile */}
-            <AnimatePresence>
-              {showPreferences && (
-                <motion.div
-                  variants={preferencesPanelVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="hidden"
-                  className="overflow-hidden"
-                >
-                  <div className="border-t border-indigo-500/10 pt-4 mt-2 space-y-4">
-                    {/* Cookie necessari */}
-                    <div className="p-4 rounded-lg bg-indigo-500/5 border border-indigo-500/20">
-                      <div className="flex items-start">
-                        <div className="flex-shrink-0 mt-0.5">
-                          <Shield className="w-5 h-5 text-indigo-400" />
-                        </div>
-                        <div className="ml-3 flex-1">
-                          <div className="flex items-center justify-between">
-                            <h4 className="font-medium text-lg">Cookie Necessari</h4>
-                            <div className="relative">
-                              <button
-                                disabled
-                                className="w-12 h-6 rounded-full bg-indigo-500 relative flex items-center cursor-not-allowed"
-                              >
-                                <span className="absolute right-1 top-1 bottom-1 w-4 h-4 rounded-full bg-white"></span>
-                              </button>
-                            </div>
-                          </div>
-                          <p className="text-foreground/70 mt-1 text-sm">
-                            Essenziali per il funzionamento del sito. Consentono funzionalità di base come la navigazione e l'accesso ad aree protette.
-                          </p>
-                          <div className="text-xs mt-1 text-indigo-400/70">Non richiedono consenso</div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Cookie analitici */}
-                    <div className="p-4 rounded-lg bg-indigo-500/5 border border-indigo-500/20">
-                      <div className="flex items-start">
-                        <div className="flex-shrink-0 mt-0.5">
-                          <BarChart className="w-5 h-5 text-indigo-400" />
-                        </div>
-                        <div className="ml-3 flex-1">
-                          <div className="flex items-center justify-between">
-                            <h4 className="font-medium text-lg">Cookie Analitici</h4>
-                            <div className="relative">
-                              <button
-                                onClick={() => handlePreferenceChange('analytics')}
-                                className={`w-12 h-6 rounded-full relative flex items-center transition-colors ${
-                                  preferences.analytics ? 'bg-indigo-500' : 'bg-gray-300'
-                                }`}
-                              >
-                                <span 
-                                  className={`absolute top-1 bottom-1 w-4 h-4 rounded-full bg-white transition-all ${
-                                    preferences.analytics ? 'right-1' : 'left-1'
-                                  }`}
-                                ></span>
-                              </button>
-                            </div>
-                          </div>
-                          <p className="text-foreground/70 mt-1 text-sm">
-                            Ci permettono di contare le visite, le fonti di traffico e comprendere come gli utenti navigano nel sito.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Cookie funzionali */}
-                    <div className="p-4 rounded-lg bg-indigo-500/5 border border-indigo-500/20">
-                      <div className="flex items-start">
-                        <div className="flex-shrink-0 mt-0.5">
-                          <Zap className="w-5 h-5 text-indigo-400" />
-                        </div>
-                        <div className="ml-3 flex-1">
-                          <div className="flex items-center justify-between">
-                            <h4 className="font-medium text-lg">Cookie Funzionali</h4>
-                            <div className="relative">
-                              <button
-                                onClick={() => handlePreferenceChange('functional')}
-                                className={`w-12 h-6 rounded-full relative flex items-center transition-colors ${
-                                  preferences.functional ? 'bg-indigo-500' : 'bg-gray-300'
-                                }`}
-                              >
-                                <span 
-                                  className={`absolute top-1 bottom-1 w-4 h-4 rounded-full bg-white transition-all ${
-                                    preferences.functional ? 'right-1' : 'left-1'
-                                  }`}
-                                ></span>
-                              </button>
-                            </div>
-                          </div>
-                          <p className="text-foreground/70 mt-1 text-sm">
-                            Permettono al sito di fornire funzionalità e personalizzazione avanzate, come preferenze e funzioni social.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Pulsante conferma */}
-                    <div className="flex justify-end pt-2">
-                      <button
-                        onClick={savePreferences}
-                        className="px-6 py-2 bg-gradient-to-r from-indigo-500 to-violet-500 text-white rounded-lg hover:shadow-lg hover:shadow-indigo-500/20 flex items-center font-medium transition-all hover:-translate-y-0.5"
-                      >
-                        <Check className="w-4 h-4 mr-2" />
-                        Salva preferenze
-                      </button>
-                    </div>
-                  </div>
-                </motion.div>
+            <button
+              onClick={togglePreferences}
+              className="cookie-banner-button-preferences"
+            >
+              Preferenze cookie
+              {showPreferences ? (
+                <ChevronUp className="ml-2 w-4 h-4" />
+              ) : (
+                <ChevronDown className="ml-2 w-4 h-4" />
               )}
-            </AnimatePresence>
+            </button>
+          </div>
+          
+          {/* Pannello preferenze espandibile */}
+          <div 
+            ref={preferencesPanelRef} 
+            className={`cookie-preferences-panel ${showPreferences ? '' : 'h-0 opacity-0'}`}
+            style={{ overflow: 'hidden' }}
+          >
+            <div className="cookie-preferences-list">
+              {/* Cookie necessari */}
+              <div className="cookie-preferences-item">
+                <div className="cookie-preferences-item-content">
+                  <div className="cookie-preferences-icon">
+                    <Shield />
+                  </div>
+                  <div className="cookie-preferences-details">
+                    <div className="cookie-preferences-header">
+                      <h4 className="cookie-preferences-name">Cookie Necessari</h4>
+                      <div className="relative">
+                        <button
+                          disabled
+                          className="cookie-toggle cookie-toggle-active cookie-toggle-disabled"
+                        >
+                          <span className="cookie-toggle-slider" style={{ right: '4px' }}></span>
+                        </button>
+                      </div>
+                    </div>
+                    <p className="cookie-preferences-description">
+                      Essenziali per il funzionamento del sito. Consentono funzionalità di base come la navigazione e l'accesso ad aree protette.
+                    </p>
+                    <div className="cookie-preferences-note">Non richiedono consenso</div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Cookie analitici */}
+              <div className="cookie-preferences-item">
+                <div className="cookie-preferences-item-content">
+                  <div className="cookie-preferences-icon">
+                    <BarChart />
+                  </div>
+                  <div className="cookie-preferences-details">
+                    <div className="cookie-preferences-header">
+                      <h4 className="cookie-preferences-name">Cookie Analitici</h4>
+                      <div className="relative">
+                        <button
+                          onClick={() => handlePreferenceChange('analytics')}
+                          className={`cookie-toggle ${preferences.analytics ? 'cookie-toggle-active' : 'cookie-toggle-inactive'}`}
+                        >
+                          <span 
+                            className="cookie-toggle-slider"
+                            style={{ 
+                              right: preferences.analytics ? '4px' : 'auto',
+                              left: preferences.analytics ? 'auto' : '4px'
+                            }}
+                          ></span>
+                        </button>
+                      </div>
+                    </div>
+                    <p className="cookie-preferences-description">
+                      Ci permettono di contare le visite, le fonti di traffico e comprendere come gli utenti navigano nel sito.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Cookie funzionali */}
+              <div className="cookie-preferences-item">
+                <div className="cookie-preferences-item-content">
+                  <div className="cookie-preferences-icon">
+                    <Zap />
+                  </div>
+                  <div className="cookie-preferences-details">
+                    <div className="cookie-preferences-header">
+                      <h4 className="cookie-preferences-name">Cookie Funzionali</h4>
+                      <div className="relative">
+                        <button
+                          onClick={() => handlePreferenceChange('functional')}
+                          className={`cookie-toggle ${preferences.functional ? 'cookie-toggle-active' : 'cookie-toggle-inactive'}`}
+                        >
+                          <span 
+                            className="cookie-toggle-slider"
+                            style={{ 
+                              right: preferences.functional ? '4px' : 'auto',
+                              left: preferences.functional ? 'auto' : '4px'
+                            }}
+                          ></span>
+                        </button>
+                      </div>
+                    </div>
+                    <p className="cookie-preferences-description">
+                      Permettono al sito di fornire funzionalità e personalizzazione avanzate, come preferenze e funzioni social.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Pulsante conferma */}
+              <div className="cookie-banner-save-action">
+                <button
+                  onClick={savePreferences}
+                  className="cookie-preferences-save-btn"
+                >
+                  <Check className="w-4 h-4 mr-2" />
+                  Salva preferenze
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </motion.div>
-    </AnimatePresence>
+      </div>
+    </div>
   );
 };
 

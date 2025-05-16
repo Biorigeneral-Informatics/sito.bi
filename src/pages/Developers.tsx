@@ -734,9 +734,9 @@ const Developers = () => {
         transition={{ duration: 0.5, delay: 0.9 }}
         className="mt-10 flex items-center justify-center"
       >
-        <a href="mailto:info@biorigeneral.com" className="flex items-center text-teal-400 hover:text-teal-300 transition-colors">
+        <a href="mailto:info@biorigeneralinformatics.com" className="flex items-center text-teal-400 hover:text-teal-300 transition-colors">
           <Send className="w-4 h-4 mr-2" />
-          biorigeneralinformatics@gmail.com
+          info@biorigeneralinformatics.com
         </a>
       </motion.div>
     </motion.div>

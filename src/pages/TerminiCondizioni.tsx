@@ -377,7 +377,7 @@ const TerminiCondizioni = () => {
                         Risoluzione amichevole
                       </h3>
                       <p>
-                        Prima di intraprendere qualsiasi azione legale, entrambe le parti si impegnano a tentare in buona fede di risolvere qualsiasi controversia attraverso consultazioni e negoziati diretti. Ti invitiamo a contattarci all'indirizzo biorigeneralinformatics@gmail.com per discutere di eventuali problemi.
+                        Prima di intraprendere qualsiasi azione legale, entrambe le parti si impegnano a tentare in buona fede di risolvere qualsiasi controversia attraverso consultazioni e negoziati diretti. Ti invitiamo a contattarci all'indirizzo info@biorigeneralinformatics.com per discutere di eventuali problemi.
                       </p>
                     </div>
                   </div>
@@ -518,7 +518,7 @@ const TerminiCondizioni = () => {
                       <div className="flex flex-col items-center text-center p-4 bg-white/5 rounded-lg">
                         <Mail className="w-10 h-10 text-indigo-400 mb-4" />
                         <h4 className="font-medium mb-2">Email</h4>
-                        <a href="mailto:biorigeneralinformatics@gmail.com" className="text-indigo-400 hover:underline">biorigeneralinformatics@gmail.com</a>
+                        <a href="mailto:info@biorigeneralinformatics.com" className="text-indigo-400 hover:underline">info@biorigeneralinformatics.com</a>
                         <p className="text-sm mt-2 text-foreground/60">Per domande generali o richieste legali</p>
                       </div>
                       

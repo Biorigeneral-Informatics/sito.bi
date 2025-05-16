@@ -109,7 +109,7 @@ const PrivacyPolicy = () => {
                 <SectionTitle icon={Users} title="Titolare del Trattamento" number="Sezione 2" />
                 <div className="space-y-6 text-foreground/80 pl-16">
                   <p className="text-lg leading-relaxed">
-                    Il Titolare del trattamento dei dati personali è <strong>Biorigeneral Informatics</strong>, con sede legale in Via Salara 2/A, 64026 Roseto degli Abruzzi (TE), Italia, P.IVA [Inserire P.IVA], contattabile all'indirizzo email: <a href="mailto:biorigeneralinformatics@gmail.com" className="text-indigo-400 hover:underline">biorigeneralinformatics@gmail.com</a>.
+                    Il Titolare del trattamento dei dati personali è <strong>Biorigeneral Informatics</strong>, con sede legale in Via Salara 2/A, 64026 Roseto degli Abruzzi (TE), Italia, P.IVA [Inserire P.IVA], contattabile all'indirizzo email: <a href="mailto:info@biorigeneralinformatics.com" className="text-indigo-400 hover:underline">info@biorigeneralinformatics.com</a>.
                   </p>
                   <p className="text-lg leading-relaxed">
                     Al momento non è stato nominato un Responsabile della Protezione dei Dati (DPO) poiché non siamo soggetti all'obbligo di designazione ai sensi dell'art. 37 del GDPR. In ogni caso, per qualsiasi questione relativa al trattamento dei tuoi dati personali e per esercitare i tuoi diritti, puoi contattarci utilizzando le informazioni sopra indicate.
@@ -530,7 +530,7 @@ const PrivacyPolicy = () => {
                       Per esercitare uno qualsiasi dei tuoi diritti, puoi contattarci tramite:
                     </p>
                     <ul className="list-disc pl-6 space-y-2">
-                      <li>Email: <a href="mailto:biorigeneralinformatics@gmail.com" className="text-indigo-400 hover:underline">biorigeneralinformatics@gmail.com</a></li>
+                      <li>Email: <a href="mailto:info@biorigeneralinformatics.com" className="text-indigo-400 hover:underline">info@biorigeneralinformatics.com</a></li>
                       <li>Posta: Biorigeneral Informatics, Via Salara 2/A, 64026 Roseto degli Abruzzi (TE), Italia</li>
                     </ul>
                     <p className="mt-4">
@@ -621,7 +621,7 @@ const PrivacyPolicy = () => {
                     <ol className="list-decimal pl-6 space-y-3">
                       <li>
                         <strong>Contattaci per prima cosa:</strong> 
-                        <p className="mt-1">Scrivi un'email a <a href="mailto:biorigeneralinformatics@gmail.com" className="text-indigo-400 hover:underline">biorigeneralinformatics@gmail.com</a> con oggetto "Reclamo Privacy", descrivendo il problema e come vorresti che fosse risolto.</p>
+                        <p className="mt-1">Scrivi un'email a <a href="mailto:info@biorigeneralinformatics.com" className="text-indigo-400 hover:underline">info@biorigeneralinformatics.com</a> con oggetto "Reclamo Privacy", descrivendo il problema e come vorresti che fosse risolto.</p>
                       </li>
                       <li>
                         <strong>Tempistiche di risposta:</strong> 
@@ -668,7 +668,7 @@ const PrivacyPolicy = () => {
                       <div className="flex flex-col items-center text-center p-4 bg-white/5 rounded-lg">
                         <Mail className="w-10 h-10 text-indigo-400 mb-4" />
                         <h4 className="font-medium mb-2">Email</h4>
-                        <a href="mailto:biorigeneralinformatics@gmail.com" className="text-indigo-400 hover:underline">biorigeneralinformatics@gmail.com</a>
+                        <a href="mailto:info@biorigeneralinformatics.com" className="text-indigo-400 hover:underline">info@biorigeneralinformatics.com</a>
                         <p className="text-sm mt-2 text-foreground/60">Per domande generali o richieste relative alla privacy</p>
                       </div>
                       

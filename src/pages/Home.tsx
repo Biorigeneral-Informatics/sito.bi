@@ -1368,7 +1368,7 @@ const Home = () => {
                       </div>
                       <div>
                         <div className="text-xs md:text-sm text-foreground/70">Scrivici</div>
-                        <a href="mailto:biorigeneralinformatics@gmail.com" className="font-medium text-xs sm:text-sm md:text-base hover:text-violet-400 transition-colors truncate">biorigeneralinformatics@gmail.com</a>
+                        <a href="mailto: info@biorigeneralinformatics.com" className="font-medium text-xs sm:text-sm md:text-base hover:text-violet-400 transition-colors truncate"> info@biorigeneralinformatics.com</a>
                       </div>
                     </div>
                   </div>

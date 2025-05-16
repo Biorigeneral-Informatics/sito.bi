@@ -148,8 +148,8 @@ useEffect(() => {
               </div>
               <div>
                 <h3 className="font-bold">Email</h3>
-                <a href="mailto:biorigeneralinformatics@gmail.com" className="text-foreground/80 hover:text-primary transition-colors">
-                  biorigeneralinformatics@gmail.com
+                <a href="mailto:info@biorigeneralinformatics.com" className="text-foreground/80 hover:text-primary transition-colors">
+                  info@biorigeneralinformatics.com
                 </a>
               </div>
             </div>

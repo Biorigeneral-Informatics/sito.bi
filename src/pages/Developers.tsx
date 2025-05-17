@@ -260,7 +260,7 @@ const Developers = () => {
                 <div className="p-8">
                   <div className="text-center mb-6">
                     <h3 className="text-2xl font-bold text-white">Alessandro</h3>
-                    <p className="text-purple-400">AI Research Engineer</p>
+                    <p className="text-purple-400">Co-Founder & Developer</p>
                   </div>
                   
                   <div className="w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden bg-foreground/5 border-2 border-purple-500/30 group-hover:border-purple-500/50 transition-all duration-300">
@@ -272,8 +272,7 @@ const Developers = () => {
                   </div>
                   
                   <p className="text-foreground/80 mb-6">
-                    Specializzato in modelli di machine learning e computer vision. Alessandro combina solide 
-                    competenze teoriche con implementazioni pratiche per sviluppare soluzioni AI innovative.
+                   Esperto nell'integrazione di soluzioni AI in contesti aziendali.
                   </p>
                   
                   <div className="mb-6">
@@ -283,8 +282,7 @@ const Developers = () => {
                     </h4>
                     <ul className="text-foreground/70 space-y-2 pl-6">
                       <li className="list-disc">Laurea Triennale in Economia e Informatica per l'impresa</li>
-                      <li className="list-disc">Master in Intelligenza Artificiale</li>
-                      <li className="list-disc">Certificazioni in TensorFlow e PyTorch</li>
+                      <li className="list-disc">Laurea Magistrale in Economia e Business Analytics (In corso)</li>
                     </ul>
                   </div>
                   
@@ -294,7 +292,7 @@ const Developers = () => {
                       Competenze principali
                     </h4>
                     <div className="flex flex-wrap gap-2">
-                      {['TensorFlow', 'PyTorch', 'Computer Vision', 'Deep Learning', 'Python', 'MLOps'].map((skill) => (
+                      {['React', 'Python', 'MySQL', 'Tailwind', 'Html', 'CSS', 'Javascript', 'Node.js', 'Make'].map((skill) => (
                         <span key={skill} className="px-3 py-1 bg-purple-500/10 text-foreground/80 text-sm rounded-md border border-purple-500/20">
                           {skill}
                         </span>
@@ -302,13 +300,6 @@ const Developers = () => {
                     </div>
                   </div>
                   
-                  <Link 
-                    to="/contact?dev=alessandro" 
-                    className="inline-flex items-center mt-2 px-5 py-2 bg-teal-600 text-white text-sm font-medium rounded-lg transition-all duration-300 hover:-translate-y-1"
-                  >
-                    Contatta Alessandro
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
                 </div>
               </div>
             </motion.div>
@@ -325,7 +316,7 @@ const Developers = () => {
                 <div className="p-8">
                   <div className="text-center mb-6">
                     <h3 className="text-2xl font-bold text-white">Federico</h3>
-                    <p className="text-purple-400">AI Solutions Architect</p>
+                    <p className="text-purple-400">Founder & Senior Advisor</p>
                   </div>
                   
                   <div className="w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden bg-foreground/5 border-2 border-purple-500/30 group-hover:border-purple-500/50 transition-all duration-300">
@@ -337,8 +328,7 @@ const Developers = () => {
                   </div>
                   
                   <p className="text-foreground/80 mb-6">
-                    Esperto nell'integrazione di soluzioni AI in contesti aziendali. Federico sviluppa 
-                    architetture scalabili e applicazioni end-to-end con focus su usabilità e performance.
+                    Esperto nell'integrazione di soluzioni AI in contesti aziendali.
                   </p>
                   
                   <div className="mb-6">
@@ -348,8 +338,7 @@ const Developers = () => {
                     </h4>
                     <ul className="text-foreground/70 space-y-2 pl-6">
                       <li className="list-disc">Laurea Triennale in Economia e Informatica per l'impresa</li>
-                      <li className="list-disc">Specializzazione in AI & Cloud Computing</li>
-                      <li className="list-disc">AWS Certified Solutions Architect</li>
+                      <li className="list-disc">Master Universitario in Scalabilità e crescita aziendale (In corso)</li>
                     </ul>
                   </div>
                   
@@ -359,7 +348,7 @@ const Developers = () => {
                       Competenze principali
                     </h4>
                     <div className="flex flex-wrap gap-2">
-                      {['React', 'Node.js', 'NLP', 'AWS', 'Docker', 'Next.js'].map((skill) => (
+                      {['React', 'Node.js', 'Python', 'n8n', 'Make', 'Html', 'CSS', 'Javascript'].map((skill) => (
                         <span key={skill} className="px-3 py-1 bg-purple-500/10 text-foreground/80 text-sm rounded-md border border-purple-500/20">
                           {skill}
                         </span>
@@ -367,13 +356,6 @@ const Developers = () => {
                     </div>
                   </div>
                   
-                  <Link 
-                    to="/contact?dev=federico" 
-                    className="inline-flex items-center mt-2 px-5 py-2 bg-teal-600 text-white text-sm font-medium rounded-lg transition-all duration-300 hover:-translate-y-1"
-                  >
-                    Contatta Federico
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
                 </div>
               </div>
             </motion.div>

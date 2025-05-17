@@ -338,9 +338,9 @@ const Products = () => {
       </motion.div>
     </div>
     
-    {/* Filtri per categoria adattati ai nuovi prodotti */}
+    {/* Filtri per categoria adattati ai nuovi prodotti - modificato per mobile */}
     <div className="flex justify-center mb-20 overflow-x-auto pb-2">
-      <div className="glass px-1.5 py-1.5 rounded-full border border-indigo-500/20 inline-flex">
+      <div className="glass px-1.5 py-1.5 rounded-full border border-indigo-500/20 inline-flex max-md:flex-wrap max-md:justify-center max-md:gap-1 max-md:rounded-xl">
         {[
           { id: 'all', name: 'Tutti', icon: <Grid className="w-4 h-4" /> },
           { id: 'assistants', name: 'Assistenti', icon: <Bot className="w-4 h-4" /> },
@@ -351,7 +351,7 @@ const Products = () => {
           <button
             key={category.id}
             onClick={() => setSelectedIndustry(category.id)}
-            className={`relative px-6 py-2.5 rounded-full transition-all duration-300 z-10 flex items-center ${
+            className={`relative px-6 py-2.5 rounded-full transition-all duration-300 z-10 flex items-center max-md:px-3 max-md:py-1.5 max-md:text-sm ${
               selectedIndustry === category.id ? 'text-white' : 'hover:bg-foreground/5'
             }`}
           >
@@ -360,7 +360,7 @@ const Products = () => {
             {selectedIndustry === category.id && (
               <motion.div
                 layoutId="active-category"
-                className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-violet-500 to-indigo-600 rounded-full"
+                className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-violet-500 to-indigo-600 rounded-full max-md:rounded-lg"
                 initial={false}
                 transition={{ type: "spring", stiffness: 250, damping: 25 }}
                 style={{ zIndex: -1 }}
@@ -374,33 +374,32 @@ const Products = () => {
     {/* Carousel prodotti orizzontale completamente riorganizzato */}
     <div className="relative">
       {/* Frecce di navigazione ottimizzate */}
-      
-<button 
-  onClick={(e) => {
-    e.preventDefault();
-    // Usa setTimeout per garantire che la transizione sia coerente
-    const newIndex = activeProduct === 0 ? 3 : activeProduct - 1;
-    setActiveProduct(newIndex);
-  }}
-  className="absolute top-1/2 -left-16 transform -translate-y-1/2 z-30 w-12 h-12 rounded-full glass border border-indigo-500/20 flex items-center justify-center text-indigo-500 transition-colors focus:outline-none md:flex"
-  aria-label="Prodotto precedente"
->
-  <ChevronLeft className="w-6 h-6" />
-</button>
+      <button 
+        onClick={(e) => {
+          e.preventDefault();
+          // Usa setTimeout per garantire che la transizione sia coerente
+          const newIndex = activeProduct === 0 ? 3 : activeProduct - 1;
+          setActiveProduct(newIndex);
+        }}
+        className="absolute top-1/2 -left-16 transform -translate-y-1/2 z-30 w-12 h-12 rounded-full glass border border-indigo-500/20 flex items-center justify-center text-indigo-500 transition-colors focus:outline-none max-md:hidden"
+        aria-label="Prodotto precedente"
+      >
+        <ChevronLeft className="w-6 h-6" />
+      </button>
 
 
-<button 
-  onClick={(e) => {
-    e.preventDefault();
-    // Usa setTimeout per garantire che la transizione sia coerente
-    const newIndex = activeProduct === 3 ? 0 : activeProduct + 1;
-    setActiveProduct(newIndex);
-  }}
-  className="absolute top-1/2 -right-16 transform -translate-y-1/2 z-30 w-12 h-12 rounded-full glass border border-indigo-500/20 flex items-center justify-center text-indigo-500 transition-colors focus:outline-none md:flex "
-  aria-label="Prodotto successivo"
->
-  <ChevronRight className="w-6 h-6" />
-</button>
+      <button 
+        onClick={(e) => {
+          e.preventDefault();
+          // Usa setTimeout per garantire che la transizione sia coerente
+          const newIndex = activeProduct === 3 ? 0 : activeProduct + 1;
+          setActiveProduct(newIndex);
+        }}
+        className="absolute top-1/2 -right-16 transform -translate-y-1/2 z-30 w-12 h-12 rounded-full glass border border-indigo-500/20 flex items-center justify-center text-indigo-500 transition-colors focus:outline-none max-md:hidden"
+        aria-label="Prodotto successivo"
+      >
+        <ChevronRight className="w-6 h-6" />
+      </button>
       
       {/* Contenitore con overflow nascosto e posizione relativa */}
       <div className="overflow-hidden relative">
@@ -1056,7 +1055,7 @@ const Products = () => {
               const newIndex = activeProduct === 0 ? 3 : activeProduct - 1;
               setActiveProduct(newIndex);
             }}
-            className="w-12 h-12 rounded-full glass border border-indigo-500/20 flex items-center justify-center text-indigo-500"
+            className="w-12 h-12 rounded-full glass border border-indigo-500/20 flex items-center justify-center text-indigo-500 bg-background/70 backdrop-blur-sm shadow-md shadow-indigo-500/20"
             aria-label="Prodotto precedente"
           >
             <ChevronLeft className="w-6 h-6" />
@@ -1067,7 +1066,7 @@ const Products = () => {
               const newIndex = activeProduct === 3 ? 0 : activeProduct + 1;
               setActiveProduct(newIndex);
             }}
-            className="w-12 h-12 rounded-full glass border border-indigo-500/20 flex items-center justify-center text-indigo-500"
+            className="w-12 h-12 rounded-full glass border border-indigo-500/20 flex items-center justify-center text-indigo-500 bg-background/70 backdrop-blur-sm shadow-md shadow-indigo-500/20"
             aria-label="Prodotto successivo"
           >
             <ChevronRight className="w-6 h-6" />
@@ -1076,6 +1075,58 @@ const Products = () => {
       </div>
     </div>
     
+
+      {/* Stili specifici per mobile */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @media (max-width: 768px) {
+          /* Migliora la spaziatura interna delle card su mobile */
+          .p-8 {
+            padding: 1rem;
+          }
+          
+          /* Riduci la dimensione dei testi per i filtri su mobile */
+          .max-md\\:text-sm {
+            font-size: 0.875rem;
+          }
+          
+          /* Rimuovi l'overflow che causa lo scroll orizzontale */
+          .overflow-x-auto {
+            overflow-x: visible;
+          }
+          
+          /* Adatta meglio i filtri su mobile */
+          .max-md\\:flex-wrap {
+            flex-wrap: wrap;
+          }
+          
+          .max-md\\:justify-center {
+            justify-content: center;
+          }
+          
+          .max-md\\:gap-1 {
+            gap: 0.25rem;
+          }
+          
+          .max-md\\:rounded-xl {
+            border-radius: 0.75rem;
+          }
+          
+          .max-md\\:rounded-lg {
+            border-radius: 0.5rem;
+          }
+          
+          .max-md\\:px-3 {
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+          }
+          
+          .max-md\\:py-1\\.5 {
+            padding-top: 0.375rem;
+            padding-bottom: 0.375rem;
+          }
+        }
+      `}} />
+
     {/* Soluzioni personalizzate - versione semplificata */}
     <div className="mt-20 relative">
       <div className="glass rounded-xl border border-indigo-500/20 p-8 text-center">

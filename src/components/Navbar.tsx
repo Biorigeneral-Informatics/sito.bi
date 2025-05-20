@@ -45,7 +45,7 @@ const Navbar = () => {
     { href: '/', label: 'Home' },
     { href: '/products', label: 'Prodotti' },
     { href: '#', label: 'Servizi', hasSubmenu: true },
-    { href: '/developers', label: 'Sviluppatori' },
+    { href: '/community', label: 'Community' },
     { href: '/contact', label: 'Contatti' },
   ];
 
@@ -54,7 +54,9 @@ const Navbar = () => {
     { href: '/ai-agents', label: 'Agenti AI' },
     { href: '/chatbots', label: 'Chatbot AI' },
     { href: '/growth-plans', label: 'Piani di Crescita' },
+    { href: '/developers', label: 'Sviluppatori' },
   ];
+
 
   // Controlla se il percorso corrente è un servizio
   const isServicePage = servicesLinks.some(link => location.pathname === link.href);

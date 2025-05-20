@@ -9,6 +9,7 @@ import AIAgents from './pages/AIAgents';
 import Chatbots from './pages/Chatbots';
 import GrowthPlans from './pages/GrowthPlans';
 import Developers from './pages/Developers';
+import Community from './pages/Community';
 import TerminiCondizioni from './pages/TerminiCondizioni';
 import Contact from './pages/Contact';
 import Footer from './components/Footer';
@@ -47,6 +48,7 @@ function App() {
             <Route path="/chatbots" element={<Chatbots />} />
             <Route path="/growth-plans" element={<GrowthPlans />} />
             <Route path="/developers" element={<Developers />} />
+            <Route path="/community" element={<Community />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/TerminiCondizioni" element={<TerminiCondizioni />} />
             <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
@@ -60,6 +62,7 @@ function App() {
             <Route path="/services/growth-plans" element={<Navigate to="/growth-plans" replace />} />
             <Route path="/services/developers" element={<Navigate to="/developers" replace />} />
             <Route path="/services" element={<Navigate to="/software-pmi" replace />} />
+            <Route path="/services/community" element={<Navigate to="/community" replace />} />
             
             {/* Fallback per percorsi non trovati */}
             <Route path="*" element={<Navigate to="/" replace />} />

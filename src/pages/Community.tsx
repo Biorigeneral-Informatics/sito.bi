@@ -1,18 +1,14 @@
 // src/pages/Community.tsx
 import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import { 
   Users, 
   MessageSquare, 
   ArrowRight,
   Youtube,
-  Play,
   Crown,
-  Gift,
   MessageCircle,
   Download,
-  Star,
   Clock,
   Shield,
   Heart,
@@ -20,15 +16,12 @@ import {
   Gamepad2,
   Headphones,
   Coffee,
-  Code,
-  Rocket,
   Bell,
   Eye,
   Calendar,
   Video,
   Mic,
   Share2,
-  CheckCircle,
   UserPlus,
   Lightbulb,
   Target,
@@ -301,67 +294,24 @@ const Community = () => {
               transition={{ duration: 0.8, delay: 0.5 }}
               className="relative hidden md:block"
             >
-              <div className="relative glass border border-indigo-500/20 rounded-xl p-6 bg-background/60 backdrop-blur-sm shadow-2xl">
-                {/* Stats header */}
-                <div className="flex items-center mb-6 pb-3 border-b border-indigo-500/20">
-                  <div className="w-10 h-10 rounded-full bg-indigo-500/20 flex items-center justify-center mr-3">
-                    <Users className="w-5 h-5 text-indigo-400" />
+              <div className="relative glass border border-indigo-500/20 rounded-xl p-8 bg-background/60 backdrop-blur-sm shadow-2xl">
+                <div className="text-center">
+                  <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-indigo-400/20 to-violet-400/20 flex items-center justify-center mb-6">
+                    <Users className="w-10 h-10 text-indigo-400" />
                   </div>
-                  <div>
-                    <h3 className="font-bold text-base">Community Stats</h3>
-                    <span className="text-xs text-indigo-400 flex items-center">
-                      <span className="w-2 h-2 bg-indigo-500 rounded-full inline-block mr-1 animate-pulse"></span>
-                      In costante crescita
-                    </span>
-                  </div>
-                </div>
-                
-                {/* Stats grid */}
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="bg-background/50 rounded-lg p-4 text-center border border-indigo-500/10">
-                    <div className="text-2xl font-bold text-indigo-400 mb-1">500+</div>
-                    <div className="text-xs text-foreground/70">Membri Attivi</div>
-                  </div>
-                  
-                  <div className="bg-background/50 rounded-lg p-4 text-center border border-indigo-500/10">
-                    <div className="text-2xl font-bold text-violet-400 mb-1">50+</div>
-                    <div className="text-xs text-foreground/70">Video Tutorial</div>
-                  </div>
-                  
-                  <div className="bg-background/50 rounded-lg p-4 text-center border border-indigo-500/10">
-                    <div className="text-2xl font-bold text-indigo-400 mb-1">100+</div>
-                    <div className="text-xs text-foreground/70">Progetti Condivisi</div>
-                  </div>
-                  
-                  <div className="bg-background/50 rounded-lg p-4 text-center border border-indigo-500/10">
-                    <div className="text-2xl font-bold text-violet-400 mb-1">24/7</div>
-                    <div className="text-xs text-foreground/70">Supporto Community</div>
-                  </div>
-                </div>
-                
-                {/* Recent activity */}
-                <div className="space-y-3">
-                  <h4 className="text-sm font-semibold text-foreground/80 mb-3">Attività Recente</h4>
-                  
-                  <div className="flex items-center space-x-3 text-sm">
-                    <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center">
-                      <Code className="w-3 h-3 text-green-400" />
+                  <h3 className="text-2xl font-bold mb-4">Unisciti alla Community</h3>
+                  <p className="text-foreground/70 mb-6">
+                    Oltre 500 membri attivi che condividono passione per l'innovazione e la tecnologia
+                  </p>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-indigo-400">500+</div>
+                      <div className="text-sm text-foreground/60">Membri</div>
                     </div>
-                    <span className="text-foreground/70">Nuovo tutorial React pubblicato</span>
-                  </div>
-                  
-                  <div className="flex items-center space-x-3 text-sm">
-                    <div className="w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center">
-                      <MessageSquare className="w-3 h-3 text-blue-400" />
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-violet-400">50+</div>
+                      <div className="text-sm text-foreground/60">Tutorial</div>
                     </div>
-                    <span className="text-foreground/70">5 nuove discussioni in Discord</span>
-                  </div>
-                  
-                  <div className="flex items-center space-x-3 text-sm">
-                    <div className="w-6 h-6 rounded-full bg-violet-500/20 flex items-center justify-center">
-                      <Gift className="w-3 h-3 text-violet-400" />
-                    </div>
-                    <span className="text-foreground/70">Nuovi materiali esclusivi</span>
                   </div>
                 </div>
               </div>
@@ -470,251 +420,144 @@ const Community = () => {
             
             {/* Right side - Video placeholder */}
             <ScrollAnimation animation="slideLeft" delay={0.3}>
-              <div className="relative">
-                <div className="aspect-video bg-gradient-to-br from-background/30 to-red-500/5 backdrop-blur-sm rounded-xl border border-red-500/20 shadow-lg overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-20 h-20 rounded-full bg-red-500/20 flex items-center justify-center backdrop-blur-sm">
-                      <Play className="w-10 h-10 text-red-400 ml-1" />
-                    </div>
-                  </div>
-                  
-                  {/* Video thumbnail overlay */}
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="bg-background/80 backdrop-blur-sm rounded-lg p-3">
-                      <h4 className="font-bold text-sm mb-1">Come Implementare AI nel Tuo Business</h4>
-                      <p className="text-xs text-foreground/70 mb-2">Guida completa per PMI italiane</p>
-                      <div className="flex items-center justify-between text-xs text-foreground/60">
-                        <span>15:42</span>
-                        <span>2.1K visualizzazioni</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Stats overlay */}
-                <div className="absolute -top-4 -right-4 bg-background/90 backdrop-blur-sm rounded-xl p-4 border border-red-500/20">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-red-400">50+</div>
-                    <div className="text-xs text-foreground/70">Video Tutorial</div>
-                  </div>
-                </div>
-                
-                <div className="absolute -bottom-4 -left-4 bg-background/90 backdrop-blur-sm rounded-xl p-4 border border-orange-500/20">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-orange-400">1.2K</div>
-                    <div className="text-xs text-foreground/70">Iscritti</div>
-                  </div>
-                </div>
+            <div className="relative">
+              <div className="aspect-video rounded-xl overflow-hidden shadow-lg bg-background/30">
+                <iframe
+                  src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                  title="Video Tutorial Biorigeneral"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full border-0"
+                  style={{ border: 'none' }}
+                ></iframe>
               </div>
-            </ScrollAnimation>
-          </div>
-        </div>
-      </section>
-
-      {/* Patreon Section */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] rounded-full bg-orange-500/10 filter blur-[80px] opacity-40"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-[300px] h-[300px] rounded-full bg-red-500/10 filter blur-[80px] opacity-40"></div>
-        
-        <div className="container mx-auto px-6 lg:px-12 relative z-10">
-          <ScrollAnimation animation="fadeIn" className="mb-16 text-center">
-            <div className="inline-block px-4 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 mb-4">
-              <span className="text-sm font-medium bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
-                Community Esclusiva
-              </span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
-              Unisciti su Patreon
-            </h2>
-            <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-              Accesso esclusivo a contenuti premium, materiali avanzati e una community di professionisti che condividono la tua passione per l'innovazione tecnologica.
-            </p>
-          </ScrollAnimation>
-          
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            {/* Tier 1 */}
-            <ScrollAnimation animation="slideUp" delay={0.1}>
-              <div className="bg-gradient-to-br from-background/80 to-orange-500/5 rounded-xl border border-orange-500/20 p-6 hover:scale-105 transition-all duration-300">
-                <div className="text-center mb-6">
-                  <div className="w-16 h-16 mx-auto rounded-full bg-orange-500/10 flex items-center justify-center mb-4">
-                    <Star className="w-8 h-8 text-orange-400" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">Supporter</h3>
-                  <div className="text-3xl font-bold text-orange-400 mb-1">€5</div>
-                  <div className="text-sm text-foreground/60">al mese</div>
-                </div>
-                
-                <ul className="space-y-3 mb-6">
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-orange-400 mr-3 flex-shrink-0" />
-                    <span className="text-sm">Accesso Discord Community</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-orange-400 mr-3 flex-shrink-0" />
-                    <span className="text-sm">Contenuti esclusivi mensili</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-orange-400 mr-3 flex-shrink-0" />
-                    <span className="text-sm">Badge Supporter in Discord</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-orange-400 mr-3 flex-shrink-0" />
-                    <span className="text-sm">Accesso feed aggiornamenti</span>
-                  </li>
-                </ul>
-                
-                <a
-                  href="https://patreon.com/biorigeneral"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-3 bg-gradient-to-r from-orange-500/80 to-red-500/80 text-white font-medium rounded-lg hover:from-orange-500 hover:to-red-500 transition-all duration-300 hover:-translate-y-1 text-center block"
-                >
-                  Diventa Supporter
-                </a>
-              </div>
-            </ScrollAnimation>
-
-            {/* Tier 2 */}
-            <ScrollAnimation animation="slideUp" delay={0.2}>
-              <div className="bg-gradient-to-br from-background/80 to-red-500/5 rounded-xl border-2 border-red-500/30 p-6 hover:scale-105 transition-all duration-300 relative">
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <div className="bg-gradient-to-r from-red-500 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-medium">
-                    Più Popolare
-                  </div>
-                </div>
-                
-                <div className="text-center mb-6">
-                  <div className="w-16 h-16 mx-auto rounded-full bg-red-500/10 flex items-center justify-center mb-4">
-                    <Crown className="w-8 h-8 text-red-400" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">Creator</h3>
-                  <div className="text-3xl font-bold text-red-400 mb-1">€15</div>
-                  <div className="text-sm text-foreground/60">al mese</div>
-                </div>
-                
-                <ul className="space-y-3 mb-6">
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-red-400 mr-3 flex-shrink-0" />
-                    <span className="text-sm">Tutti i vantaggi Supporter</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-red-400 mr-3 flex-shrink-0" />
-                    <span className="text-sm">Tutorial avanzati esclusivi</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-red-400 mr-3 flex-shrink-0" />
-                    <span className="text-sm">Codice sorgente progetti</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-red-400 mr-3 flex-shrink-0" />
-                    <span className="text-sm">Q&A mensili in diretta</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-red-400 mr-3 flex-shrink-0" />
-                    <span className="text-sm">Early access nuovi corsi</span>
-                  </li>
-                </ul>
-                
-                <a
-                  href="https://patreon.com/biorigeneral"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-3 bg-gradient-to-r from-red-500 to-orange-500 text-white font-medium rounded-lg hover:shadow-lg hover:shadow-red-500/20 transition-all duration-300 hover:-translate-y-1 text-center block"
-                >
-                  Diventa Creator
-                </a>
-              </div>
-            </ScrollAnimation>
-
-            {/* Tier 3 */}
-            <ScrollAnimation animation="slideUp" delay={0.3}>
-              <div className="bg-gradient-to-br from-background/80 to-violet-500/5 rounded-xl border border-violet-500/20 p-6 hover:scale-105 transition-all duration-300">
-                <div className="text-center mb-6">
-                  <div className="w-16 h-16 mx-auto rounded-full bg-violet-500/10 flex items-center justify-center mb-4">
-                    <Rocket className="w-8 h-8 text-violet-400" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">Innovator</h3>
-                  <div className="text-3xl font-bold text-violet-400 mb-1">€50</div>
-                  <div className="text-sm text-foreground/60">al mese</div>
-                </div>
-                
-                <ul className="space-y-3 mb-6">
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-violet-400 mr-3 flex-shrink-0" />
-                    <span className="text-sm">Tutti i vantaggi Creator</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-violet-400 mr-3 flex-shrink-0" />
-                    <span className="text-sm">Consulenza mensile 1-on-1</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-violet-400 mr-3 flex-shrink-0" />
-                    <span className="text-sm">Accesso beta nuovi prodotti</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-violet-400 mr-3 flex-shrink-0" />
-                    <span className="text-sm">Canale Discord privato</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-violet-400 mr-3 flex-shrink-0" />
-                    <span className="text-sm">Richieste contenuti prioritarie</span>
-                  </li>
-                </ul>
-                
-                <a
-                  href="https://patreon.com/biorigeneral"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-3 bg-gradient-to-r from-violet-500/80 to-purple-500/80 text-white font-medium rounded-lg hover:from-violet-500 hover:to-purple-500 transition-all duration-300 hover:-translate-y-1 text-center block"
-                >
-                  Diventa Innovator
-                </a>
-              </div>
-            </ScrollAnimation>
-          </div>
-          
-          {/* Patreon benefits overview */}
-          <ScrollAnimation animation="fadeIn" delay={0.4}>
-            <div className="bg-gradient-to-br from-background/60 to-orange-500/5 backdrop-blur-sm rounded-xl border border-orange-500/20 p-8">
-              <h3 className="text-2xl font-bold mb-6 text-center">Perché Unirsi alla Community Patreon?</h3>
               
-              <div className="grid md:grid-cols-4 gap-6">
+              {/* Stats overlay */}
+              <div className="absolute -top-4 -right-4 bg-background/90 backdrop-blur-sm rounded-xl p-4 border border-red-500/20">
                 <div className="text-center">
-                  <div className="w-12 h-12 mx-auto rounded-full bg-orange-500/10 flex items-center justify-center mb-4">
-                    <Download className="w-6 h-6 text-orange-400" />
-                  </div>
-                  <h4 className="font-semibold mb-2">Materiali Esclusivi</h4>
-                  <p className="text-sm text-foreground/70">Template, codice sorgente e risorse premium per i tuoi progetti</p>
-                </div>
-                
-                <div className="text-center">
-                  <div className="w-12 h-12 mx-auto rounded-full bg-red-500/10 flex items-center justify-center mb-4">
-                    <Eye className="w-6 h-6 text-red-400" />
-                  </div>
-                  <h4 className="font-semibold mb-2">Early Access</h4>
-                  <p className="text-sm text-foreground/70">Accesso anticipato ai nuovi contenuti e prodotti prima di tutti</p>
-                </div>
-                
-                <div className="text-center">
-                  <div className="w-12 h-12 mx-auto rounded-full bg-violet-500/10 flex items-center justify-center mb-4">
-                    <MessageCircle className="w-6 h-6 text-violet-400" />
-                  </div>
-                  <h4 className="font-semibold mb-2">Supporto Diretto</h4>
-                  <p className="text-sm text-foreground/70">Interazione diretta con il team e supporto personalizzato</p>
-                </div>
-                
-                <div className="text-center">
-                  <div className="w-12 h-12 mx-auto rounded-full bg-indigo-500/10 flex items-center justify-center mb-4">
-                    <Trophy className="w-6 h-6 text-indigo-400" />
-                  </div>
-                  <h4 className="font-semibold mb-2">Network Esclusivo</h4>
-                  <p className="text-sm text-foreground/70">Connettiti con altri innovatori e professionisti del settore</p>
+                  <div className="text-2xl font-bold text-red-400">50+</div>
+                  <div className="text-xs text-foreground/70">Video Tutorial</div>
                 </div>
               </div>
             </div>
-          </ScrollAnimation>
+            </ScrollAnimation>
+          </div>
         </div>
       </section>
+
+   {/* Patreon Section */}
+<section className="py-24 relative overflow-hidden">
+  <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] rounded-full bg-orange-500/10 filter blur-[80px] opacity-40"></div>
+  <div className="absolute bottom-1/3 right-1/4 w-[300px] h-[300px] rounded-full bg-red-500/10 filter blur-[80px] opacity-40"></div>
+  
+  <div className="container mx-auto px-6 lg:px-12 relative z-10">
+    <ScrollAnimation animation="fadeIn" className="mb-16 text-center">
+      <div className="inline-block px-4 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 mb-4">
+        <span className="text-sm font-medium bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
+          Community Esclusiva
+        </span>
+      </div>
+      <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
+        Unisciti su Patreon
+      </h2>
+      <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
+        Accesso esclusivo a contenuti premium, materiali avanzati e una community di professionisti che condividono la tua passione per l'innovazione tecnologica.
+      </p>
+    </ScrollAnimation>
+    
+    {/* Grid layout per affiiancare i due riquadri */}
+    <div className="grid md:grid-cols-2 gap-8 items-start">
+      {/* Primo riquadro - Descrizione */}
+      <ScrollAnimation animation="slideRight" delay={0.2}>
+        <div className="bg-gradient-to-br from-background/80 to-orange-500/5 rounded-xl border border-orange-500/20 p-8 h-full">                
+          <h3 className="text-2xl font-bold mb-6 text-center">La Community Patreon</h3>
+          <div className="space-y-6 text-foreground/80">
+            <p>
+              La nostra community Patreon è molto più di una semplice piattaforma di supporto: è un ecosistema 
+              esclusivo dove innovatori, sviluppatori e imprenditori si incontrano per crescere insieme.
+            </p>
+            
+            <p>
+              Come membro Patreon, avrai accesso a contenuti premium che non troverai da nessun'altra parte: 
+              tutorial avanzati step-by-step, codice sorgente completo dei progetti, template pronti all'uso 
+              e molto altro materiale esclusivo creato appositamente per accelerare il tuo percorso di crescita.
+            </p>
+            
+            <p>
+              Ogni abbonamento contribuisce direttamente alla creazione di contenuti di qualità sempre più elevata 
+              e ti garantisce un ruolo attivo nella direzione futura della community. I tuoi suggerimenti e 
+              richieste hanno priorità nella pianificazione dei contenuti.
+            </p>
+          </div>
+        </div>
+      </ScrollAnimation>
+
+      {/* Secondo riquadro - Benefici */}
+      <ScrollAnimation animation="slideLeft" delay={0.4}>
+        <div className="bg-gradient-to-br from-background/60 to-orange-500/5 backdrop-blur-sm rounded-xl border border-orange-500/20 p-8 h-full">
+          <h3 className="text-2xl font-bold mb-6 text-center">Perché Unirsi?</h3>
+          
+          <div className="grid grid-cols-1 gap-6">
+            <div className="flex items-start space-x-4">
+              <div className="w-12 h-12 rounded-full bg-orange-500/10 flex items-center justify-center flex-shrink-0">
+                <Download className="w-6 h-6 text-orange-400" />
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Materiali Esclusivi</h4>
+                <p className="text-sm text-foreground/70">Template, codice sorgente e risorse premium per i tuoi progetti</p>
+              </div>
+            </div>
+            
+            <div className="flex items-start space-x-4">
+              <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center flex-shrink-0">
+                <Eye className="w-6 h-6 text-red-400" />
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Early Access</h4>
+                <p className="text-sm text-foreground/70">Accesso anticipato ai nuovi contenuti e prodotti prima di tutti</p>
+              </div>
+            </div>
+            
+            <div className="flex items-start space-x-4">
+              <div className="w-12 h-12 rounded-full bg-violet-500/10 flex items-center justify-center flex-shrink-0">
+                <MessageCircle className="w-6 h-6 text-violet-400" />
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Supporto Diretto</h4>
+                <p className="text-sm text-foreground/70">Interazione diretta con il team e supporto personalizzato</p>
+              </div>
+            </div>
+            
+            <div className="flex items-start space-x-4">
+              <div className="w-12 h-12 rounded-full bg-indigo-500/10 flex items-center justify-center flex-shrink-0">
+                <Trophy className="w-6 h-6 text-indigo-400" />
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Network Esclusivo</h4>
+                <p className="text-sm text-foreground/70">Connettiti con altri innovatori e professionisti del settore</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ScrollAnimation>
+    </div>
+    {/* CTA Section */}
+<ScrollAnimation animation="fadeIn" delay={0.6} className="mt-16">
+  <div className="bg-gradient-to-br from-background/60 to-orange-500/5 backdrop-blur-sm rounded-xl border border-orange-500/20 p-8 text-center">
+    <h3 className="text-2xl font-bold mb-4">Sostieni il Progetto</h3>
+    <p className="text-foreground/80 mb-6 max-w-2xl mx-auto">
+      Supporta la creazione di contenuti di qualità e ottieni accesso esclusivo a materiali premium, tutorial avanzati e una community di professionisti.
+    </p>
+    <button className="px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white font-medium rounded-xl shadow-lg hover:shadow-orange-500/20 transition-all duration-300 hover:-translate-y-1">
+      Scopri Patreon
+    </button>
+  </div>
+</ScrollAnimation>
+  </div>
+</section>
+
+
 
       {/* Discord Community Section */}
       <section className="py-24 relative overflow-hidden">
@@ -902,12 +745,6 @@ const Community = () => {
                   </div>
                 </div>
                 
-                <div className="absolute -bottom-4 -left-4 bg-background/90 backdrop-blur-sm rounded-xl p-4 border border-violet-500/20">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-violet-400">24/7</div>
-                    <div className="text-xs text-foreground/70">Sempre Attivo</div>
-                  </div>
-                </div>
               </div>
             </ScrollAnimation>
           </div>
@@ -956,13 +793,13 @@ const Community = () => {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-34 relative overflow-visible z-10">
-        <div className="absolute inset-0 -top-16 -bottom-16 flex items-center justify-center overflow-visible z-10">
-          <div className="absolute w-[600px] h-[600px] rounded-full bg-gradient-to-r from-indigo-500/10 via-violet-500/15 to-purple-400/10 blur-3xl animate-pulse-slow"></div>
-          <div className="absolute w-[450px] h-[450px] rounded-full bg-gradient-to-r from-violet-500/5 via-indigo-500/10 to-purple-400/5 blur-2xl animate-pulse-slow-2"></div>
+      <section className="py-36 relative overflow-visible z-0">
+        <div className="absolute inset-0 -top-16 -bottom-18 flex items-center justify-center overflow-visible z-0">
+          <div className="absolute w-[500px] h-[500px] rounded-full bg-gradient-to-r from-indigo-500/10 via-violet-500/15 to-purple-400/10 blur-3xl animate-pulse-slow"></div>
+          <div className="absolute w-[350px] h-[350px] rounded-full bg-gradient-to-r from-violet-500/5 via-indigo-500/10 to-purple-400/5 blur-2xl animate-pulse-slow-2"></div>
         </div>
         
-        <div className="container mx-auto px-6 lg:px-8 relative z-10">
+        <div className="container mx-auto px-4 lg:px-8 relative z-0">
           <div className="max-w-4xl mx-auto bg-gradient-to-br from-background/80 to-indigo-500/5 backdrop-blur-sm border border-indigo-500/20 rounded-2xl shadow-xl p-8 relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-400 via-violet-400 to-purple-400"></div>
             
@@ -1022,18 +859,24 @@ const Community = () => {
         <style>
           @keyframes floating-particle {
             0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-            25% { transform: translateY(-20px) translateX(10px) rotate(90deg); }
-            50% { transform: translateY(-10px) translateX(30px) rotate(180deg); }
-            75% { transform: translateY(20px) translateX(15px) rotate(270deg); }
+            25% { transform: translateY(-15px) translateX(8px) rotate(90deg); }
+            50% { transform: translateY(-8px) translateX(15px) rotate(180deg); }
+            75% { transform: translateY(15px) translateX(5px) rotate(270deg); }
           }
           
           .floating-particle {
-            animation: floating-particle linear infinite;
+          animation: floating-particle linear infinite;
+          will-change: transform;
           }
           
           @keyframes pulse-slow {
             0%, 100% { opacity: 0.3; transform: scale(1); }
             50% { opacity: 0.6; transform: scale(1.05); }
+          }
+
+          /* Forza il contenimento dell'overflow */
+          body, html {
+            overflow-x: hidden !important;
           }
 
           @keyframes pulse-slow-2 {

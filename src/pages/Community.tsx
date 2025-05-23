@@ -346,7 +346,7 @@ const Community = () => {
                 </h2>
                 
                 <p className="text-lg text-foreground/80 mb-8">
-                  Sul nostro canale YouTube trovi contenuti settimanali su sviluppo software, 
+                  Sul nostro canale YouTube trovi contenuti su sviluppo software, 
                   intelligenza artificiale, automazione e strategie di business. Tutorial pratici, 
                   live coding e consigli per far crescere la tua attività.
                 </p>

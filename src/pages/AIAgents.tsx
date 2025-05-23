@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Brain, Workflow, Zap, Bot, Layers, ArrowRight, RefreshCw, ArrowUpRight, Play, Shield, Database, Check, MessageSquare, Award, TrendingUp } from 'lucide-react';
+import { Brain, Workflow, Zap, Bot, Layers, ArrowRight, RefreshCw, ArrowUpRight, Shield, Database, Check, MessageSquare, Award, TrendingUp } from 'lucide-react';
 import ScrollAnimation from '../components/ScrollAnimation';
 import ScrollGradient from '../components/ScrollGradient';
 
@@ -403,40 +403,7 @@ const AIAgents = () => {
         </ScrollAnimation>
       </section>
 
-      {/* Demo section */}
-      <section className="py-16 px-4 max-w-7xl mx-auto">
-        <ScrollAnimation animation="slideUp" delay={0.2}>
-          <div className="glass p-6 rounded-2xl mb-16 relative overflow-hidden">
-            <div className="absolute -top-16 -left-16 w-64 h-64 rounded-full bg-cyan-500/20 filter blur-3xl"></div>
-            
-            <div className="relative z-10">
-              <h2 className="text-3xl font-bold mb-4 text-center">Un Esempio Reale</h2>
-              <p className="text-foreground/80 mb-6 max-w-3xl mx-auto text-center">
-                Guarda come un agente AI può automatizzare la gestione dei lead, rispondere alle domande e qualificare i clienti.
-              </p>
-              
-              <div className="aspect-video rounded-xl overflow-hidden bg-black/30 mb-6 flex items-center justify-center group cursor-pointer">
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/30 to-violet-500/30 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <a href="#" className="flex flex-col items-center text-foreground/90 group-hover:text-foreground transition-colors z-10">
-                  <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                    <Play className="w-8 h-8 text-white" />
-                  </div>
-                  <span className="font-medium">Guarda la demo</span>
-                </a>
-              </div>
-              
-              <div className="mt-6 text-center">
-                <Link
-                  to="/demo-request"
-                  className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-cyan-500 to-violet-500 text-primary-foreground rounded-lg hover:translate-y-[-2px] transition-all shadow-lg"
-                >
-                  Richiedi una Demo Personalizzata <ArrowRight className="ml-2 w-5 h-5" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </ScrollAnimation>
-      </section>
+     
 
       {/* CTA Section */}
       <section className="py-16 px-4 max-w-7xl mx-auto">

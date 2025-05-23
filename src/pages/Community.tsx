@@ -263,7 +263,7 @@ const Community = () => {
                 className="flex flex-wrap gap-5"
               >
                 <a
-                  href="https://patreon.com/biorigeneral"
+                  href="https://www.patreon.com/c/BiorigeneralInformatics"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-violet-600 text-white text-lg font-medium rounded-lg shadow-lg hover:shadow-indigo-500/20 transition-all duration-300 hover:-translate-y-1 flex items-center group"
@@ -276,7 +276,7 @@ const Community = () => {
                 </a>
                 
                 <a
-                  href="https://youtube.com/@biorigeneral"
+                  href="https://www.youtube.com/@federicozizi_ai/featured"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-8 py-4 border border-indigo-500/30 text-foreground hover:bg-indigo-500/10 rounded-lg transition-all hover:-translate-y-1 flex items-center"
@@ -301,16 +301,16 @@ const Community = () => {
                   </div>
                   <h3 className="text-2xl font-bold mb-4">Unisciti alla Community</h3>
                   <p className="text-foreground/70 mb-6">
-                    Oltre 500 membri attivi che condividono passione per l'innovazione e la tecnologia
+                    Oltre 50 guide e codici pronti all'uso sviluppati da chi condivide passione per l'innovazione e la tecnologia.
                   </p>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-indigo-400">500+</div>
-                      <div className="text-sm text-foreground/60">Membri</div>
+                      <div className="text-3xl font-bold text-indigo-400">100+</div>
+                      <div className="text-sm text-foreground/60">Utenti</div>
                     </div>
                     <div className="text-center">
                       <div className="text-3xl font-bold text-violet-400">50+</div>
-                      <div className="text-sm text-foreground/60">Tutorial</div>
+                      <div className="text-sm text-foreground/60">Guide e White Papers</div>
                     </div>
                   </div>
                 </div>
@@ -348,7 +348,7 @@ const Community = () => {
                 <p className="text-lg text-foreground/80 mb-8">
                   Sul nostro canale YouTube trovi contenuti settimanali su sviluppo software, 
                   intelligenza artificiale, automazione e strategie di business. Tutorial pratici, 
-                  casi studio reali e consigli per far crescere la tua attività.
+                  live coding e consigli per far crescere la tua attività.
                 </p>
                 
                 <div className="grid grid-cols-2 gap-6 mb-8">
@@ -356,9 +356,9 @@ const Community = () => {
                     <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mb-4">
                       <Video className="w-6 h-6 text-red-400" />
                     </div>
-                    <h4 className="text-lg font-semibold mb-2">Tutorial Settimanali</h4>
+                    <h4 className="text-lg font-semibold mb-2">Tutorial</h4>
                     <p className="text-sm text-foreground/70">
-                      Nuovi contenuti ogni settimana su tecnologie all'avanguardia
+                      Nuovi contenuti su tecnologie all'avanguardia.
                     </p>
                   </div>
                   
@@ -366,9 +366,9 @@ const Community = () => {
                     <div className="w-12 h-12 rounded-full bg-orange-500/10 flex items-center justify-center mb-4">
                       <Lightbulb className="w-6 h-6 text-orange-400" />
                     </div>
-                    <h4 className="text-lg font-semibold mb-2">Casi Studio Reali</h4>
+                    <h4 className="text-lg font-semibold mb-2">Strategie Business</h4>
                     <p className="text-sm text-foreground/70">
-                      Esempi pratici di implementazione e risultati ottenuti
+                      Consigli per ottimizzare processi e aumentare profittabilità.
                     </p>
                   </div>
                   
@@ -376,9 +376,9 @@ const Community = () => {
                     <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mb-4">
                       <Target className="w-6 h-6 text-red-400" />
                     </div>
-                    <h4 className="text-lg font-semibold mb-2">Strategie Business</h4>
+                    <h4 className="text-lg font-semibold mb-2">Live Coding</h4>
                     <p className="text-sm text-foreground/70">
-                      Consigli per ottimizzare processi e aumentare profittabilità
+                      Esempi pratici di implementazione e risultati ottenuti.
                     </p>
                   </div>
                   
@@ -388,14 +388,14 @@ const Community = () => {
                     </div>
                     <h4 className="text-lg font-semibold mb-2">Trend Tecnologici</h4>
                     <p className="text-sm text-foreground/70">
-                      Analisi delle ultime innovazioni e come applicarle
+                      Analisi delle ultime innovazioni e come applicarle.
                     </p>
                   </div>
                 </div>
                 
                 <div className="flex flex-wrap gap-4">
                   <a
-                    href="https://youtube.com/@biorigeneral"
+                    href="https://www.youtube.com/@federicozizi_ai/featured"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-6 py-3 bg-gradient-to-r from-red-500 to-orange-500 text-white font-medium rounded-xl shadow-md hover:shadow-red-500/20 transition-all duration-300 hover:-translate-y-1 flex items-center"
@@ -406,7 +406,7 @@ const Community = () => {
                   </a>
                   
                   <a
-                    href="https://youtube.com/@biorigeneral"
+                    href="https://www.youtube.com/@federicozizi_ai/featured"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-6 py-3 border border-red-500/30 text-foreground hover:bg-red-500/10 rounded-xl transition-all hover:-translate-y-1 flex items-center"
@@ -423,7 +423,7 @@ const Community = () => {
             <div className="relative">
               <div className="aspect-video rounded-xl overflow-hidden shadow-lg bg-background/30">
                 <iframe
-                  src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                  src="https://www.youtube.com/embed/1972U599P-M?si=IVKn8_-of2xaG5S1"
                   title="Video Tutorial Biorigeneral"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -436,7 +436,7 @@ const Community = () => {
               {/* Stats overlay */}
               <div className="absolute -top-4 -right-4 bg-background/90 backdrop-blur-sm rounded-xl p-4 border border-red-500/20">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-red-400">50+</div>
+                  <div className="text-2xl font-bold text-red-400">20+</div>
                   <div className="text-xs text-foreground/70">Video Tutorial</div>
                 </div>
               </div>
@@ -549,9 +549,9 @@ const Community = () => {
     <p className="text-foreground/80 mb-6 max-w-2xl mx-auto">
       Supporta la creazione di contenuti di qualità e ottieni accesso esclusivo a materiali premium, tutorial avanzati e una community di professionisti.
     </p>
-    <button className="px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white font-medium rounded-xl shadow-lg hover:shadow-orange-500/20 transition-all duration-300 hover:-translate-y-1">
+    <a href='https://www.patreon.com/c/BiorigeneralInformatics' className="px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white font-medium rounded-xl shadow-lg hover:shadow-orange-500/20 transition-all duration-300 hover:-translate-y-1">
       Scopri Patreon
-    </button>
+    </a>
   </div>
 </ScrollAnimation>
   </div>
@@ -607,19 +607,19 @@ const Community = () => {
                       <div className="w-12 h-12 rounded-full bg-violet-500/10 flex items-center justify-center mr-4">
                         <Mic className="w-6 h-6 text-violet-400" />
                       </div>
-                      <h3 className="text-xl font-bold">Eventi Live</h3>
+                      <h3 className="text-xl font-bold">Canali Vocali</h3>
                     </div>
                     <p className="text-foreground/70 mb-4">
-                      Sessioni Q&A settimanali, workshop tecnici e call di networking per crescere insieme.
+                      Canali vocali dedicati, consulenze e call di networking per crescere insieme.
                     </p>
                     <div className="grid grid-cols-2 gap-3 text-sm">
                       <div className="flex items-center">
                         <Calendar className="w-4 h-4 text-violet-400 mr-2" />
-                        <span>Q&A settimanali</span>
+                        <span>Consulenze</span>
                       </div>
                       <div className="flex items-center">
                         <Coffee className="w-4 h-4 text-violet-400 mr-2" />
-                        <span>Coffee chat mensili</span>
+                        <span>Canali dedicati</span>
                       </div>
                     </div>
                   </div>
@@ -641,7 +641,7 @@ const Community = () => {
                       </div>
                       <div className="flex items-center">
                         <Gamepad2 className="w-4 h-4 text-purple-400 mr-2" />
-                        <span>Hackathon interni</span>
+                        <span>Sviluppo condiviso</span>
                       </div>
                     </div>
                   </div>
@@ -660,54 +660,54 @@ const Community = () => {
                     </div>
                     <div>
                       <h4 className="font-bold">Biorigeneral Community</h4>
-                      <p className="text-xs text-foreground/60">500+ membri online</p>
+                      <p className="text-xs text-foreground/60">100+ membri online</p>
                     </div>
                   </div>
                   
                   {/* Channel list */}
                   <div className="space-y-3 mb-6">
                     <div className="text-xs font-semibold text-foreground/80 uppercase tracking-wider">
-                      📚 Apprendimento
+                      👥・Community
                     </div>
                     <div className="space-y-2 ml-4">
                       <div className="flex items-center text-sm text-foreground/70 hover:text-foreground transition-colors">
                         <span className="mr-2">#</span>
-                        <span>tutorial-e-guide</span>
+                        <span>chat-generale</span>
                         <span className="ml-auto text-xs bg-indigo-500/20 px-2 py-0.5 rounded">3</span>
                       </div>
                       <div className="flex items-center text-sm text-foreground/70 hover:text-foreground transition-colors">
                         <span className="mr-2">#</span>
-                        <span>domande-e-risposte</span>
+                        <span>notizie-ai</span>
                         <span className="ml-auto text-xs bg-violet-500/20 px-2 py-0.5 rounded">7</span>
                       </div>
                     </div>
                     
                     <div className="text-xs font-semibold text-foreground/80 uppercase tracking-wider mt-4">
-                      🚀 Progetti
+                      📚・ White Papers e Guide
                     </div>
                     <div className="space-y-2 ml-4">
                       <div className="flex items-center text-sm text-foreground/70 hover:text-foreground transition-colors">
                         <span className="mr-2">#</span>
-                        <span>showcase-progetti</span>
+                        <span>guide</span>
                       </div>
                       <div className="flex items-center text-sm text-foreground/70 hover:text-foreground transition-colors">
                         <span className="mr-2">#</span>
-                        <span>cerco-collaboratori</span>
+                        <span>prompt-book</span>
                         <span className="ml-auto text-xs bg-green-500/20 px-2 py-0.5 rounded">2</span>
                       </div>
                     </div>
                     
                     <div className="text-xs font-semibold text-foreground/80 uppercase tracking-wider mt-4">
-                      💼 Business
+                      🌟・Gold Zone 🔒
                     </div>
                     <div className="space-y-2 ml-4">
                       <div className="flex items-center text-sm text-foreground/70 hover:text-foreground transition-colors">
                         <span className="mr-2">#</span>
-                        <span>strategie-business</span>
+                        <span>gold-asset</span>
                       </div>
                       <div className="flex items-center text-sm text-foreground/70 hover:text-foreground transition-colors">
                         <span className="mr-2">#</span>
-                        <span>networking</span>
+                        <span>gold-manuals</span>
                       </div>
                     </div>
                   </div>
@@ -740,7 +740,7 @@ const Community = () => {
                 {/* Floating stats */}
                 <div className="absolute -top-4 -right-4 bg-background/90 backdrop-blur-sm rounded-xl p-4 border border-indigo-500/20">
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-indigo-400">500+</div>
+                    <div className="text-2xl font-bold text-indigo-400">100+</div>
                     <div className="text-xs text-foreground/70">Membri Attivi</div>
                   </div>
                 </div>
@@ -814,7 +814,7 @@ const Community = () => {
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
                 <a
-                  href="https://patreon.com/biorigeneral"
+                  href="https://www.patreon.com/c/BiorigeneralInformatics"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-8 py-4 bg-gradient-to-r from-indigo-500 to-violet-500 text-white font-medium rounded-xl shadow-lg hover:shadow-indigo-500/20 transition-all duration-300 hover:-translate-y-1 flex items-center"
@@ -825,7 +825,7 @@ const Community = () => {
                 </a>
                 
                 <a
-                  href="https://youtube.com/@biorigeneral"
+                  href="https://www.youtube.com/@federicozizi_ai/featured"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-8 py-4 border border-indigo-500/30 text-foreground hover:bg-indigo-500/10 rounded-xl transition-all hover:-translate-y-1 flex items-center"

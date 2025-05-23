@@ -1,6 +1,6 @@
 // src/components/Footer.tsx
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Linkedin, Twitter, Github, Instagram } from 'lucide-react';
+import { Mail, MapPin, Linkedin, Twitter, Github, Instagram } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -89,10 +89,6 @@ const Footer = () => {
               <li className="flex items-center space-x-3">
                 <Mail size={18} className="text-primary" />
                 <span className="text-foreground/70">info@biorigeneralinformatics.com</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <Phone size={18} className="text-primary" />
-                <span className="text-foreground/70">+39 392 015 8140 (Whatsapp)</span>
               </li>
               <li className="flex items-start space-x-3">
                 <MapPin size={18} className="text-primary mt-1" />

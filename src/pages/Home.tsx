@@ -2,7 +2,7 @@
 import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight,  Layers, Users, BrainCircuit, CheckCircle, Clock, Code, Zap, Cpu, Workflow, Phone, Mail, TrendingUp, MessageSquare, BarChart, Cloud, Star, BarChart3, Bot, GitBranch, Smartphone } from 'lucide-react';
+import { ArrowRight,  Layers, Users, BrainCircuit, CheckCircle, Clock, Code, Zap, Cpu, Workflow, Mail, TrendingUp, MessageSquare, BarChart, Cloud, Star, BarChart3, Bot, GitBranch, Smartphone } from 'lucide-react';
 import ParallaxEffect from '../components/ParallaxEffect';
 import ScrollAnimation from '../components/ScrollAnimation';
 import ScrollGradient from '../components/ScrollGradient';
@@ -1352,15 +1352,7 @@ const Home = () => {
                   
                   {/* Info di contatto */}
                   <div className="space-y-3 md:space-y-4 w-full mb-6 md:mb-8">
-                    <div className="flex items-center p-2 md:p-3 glass rounded-lg hover:bg-indigo-500/10 transition-colors cursor-pointer group/item">
-                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-indigo-500/20 flex items-center justify-center mr-3 md:mr-4 group-hover/item:bg-indigo-500/30 transition-colors">
-                        <Phone className="w-4 h-4 md:w-5 md:h-5 text-indigo-400 group-hover/item:scale-110 transition-transform" />
-                      </div>
-                      <div>
-                        <div className="text-xs md:text-sm text-foreground/70">Chiamaci</div>
-                        <a href="tel:+390212345678" className="font-medium text-sm md:text-base hover:text-indigo-400 transition-colors">+39 02 1234 5678</a>
-                      </div>
-                    </div>
+                    
                     
                     <div className="flex items-center p-2 md:p-3 glass rounded-lg hover:bg-violet-500/10 transition-colors cursor-pointer group/item">
                       <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-violet-500/20 flex items-center justify-center mr-3 md:mr-4 group-hover/item:bg-violet-500/30 transition-colors">

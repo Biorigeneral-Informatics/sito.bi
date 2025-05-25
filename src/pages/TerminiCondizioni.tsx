@@ -535,8 +535,6 @@ const TerminiCondizioni = () => {
                     </div>
                     
                     <div className="text-center mt-8">
-                      <h4 className="font-medium mb-2">Telefono</h4>
-                      <a href="tel:+393920158140" className="text-indigo-400 hover:underline">+39 392 015 8140</a>
                       <p className="text-sm mt-1 text-foreground/60">Dal lunedì al venerdì, 9:00-18:00 CET</p>
                     </div>
                   </div>

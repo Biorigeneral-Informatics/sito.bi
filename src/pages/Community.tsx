@@ -589,15 +589,17 @@ const Community = () => {
                       <div className="w-12 h-12 rounded-full bg-indigo-500/10 flex items-center justify-center mr-4">
                         <MessageSquare className="w-6 h-6 text-indigo-400" />
                       </div>
-                      <h3 className="text-xl font-bold">Chat Tematici</h3>
+                      <h3 className="text-xl font-bold">Risorse strategiche</h3>
                     </div>
                     <p className="text-foreground/70 mb-4">
-                      Canali dedicati per ogni argomento: sviluppo, AI, business, networking e molto altro.
+                      Manuali, guide, automazione notizie AI, file utili e molto altro.
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      <span className="px-3 py-1 bg-indigo-500/10 rounded-full text-xs">#sviluppo-web</span>
-                      <span className="px-3 py-1 bg-violet-500/10 rounded-full text-xs">#intelligenza-artificiale</span>
-                      <span className="px-3 py-1 bg-purple-500/10 rounded-full text-xs">#business-ideas</span>
+                      <span className="px-3 py-1 bg-indigo-500/10 rounded-full text-xs">#notizie-ai</span>
+                      <span className="px-3 py-1 bg-violet-500/10 rounded-full text-xs">#file-automazioni</span>
+                      <span className="px-3 py-1 bg-purple-500/10 rounded-full text-xs">#prompt-book</span>
+                      <span className="px-3 py-1 bg-purple-500/10 rounded-full text-xs">#guide</span>
+                      <span className="px-3 py-1 bg-purple-500/10 rounded-full text-xs">ecc...</span>
                     </div>
                   </div>
                   
@@ -606,15 +608,15 @@ const Community = () => {
                       <div className="w-12 h-12 rounded-full bg-violet-500/10 flex items-center justify-center mr-4">
                         <Mic className="w-6 h-6 text-violet-400" />
                       </div>
-                      <h3 className="text-xl font-bold">Canali Vocali</h3>
+                      <h3 className="text-xl font-bold">Chat Vocali e Testuali</h3>
                     </div>
                     <p className="text-foreground/70 mb-4">
-                      Canali vocali dedicati, consulenze e call di networking per crescere insieme.
+                      Condividi passioni e competenze, crea sinergie e legami per crescere insieme.
                     </p>
                     <div className="grid grid-cols-2 gap-3 text-sm">
                       <div className="flex items-center">
                         <Calendar className="w-4 h-4 text-violet-400 mr-2" />
-                        <span>Consulenze</span>
+                        <span>Brain storming condiviso</span>
                       </div>
                       <div className="flex items-center">
                         <Coffee className="w-4 h-4 text-violet-400 mr-2" />
@@ -631,16 +633,15 @@ const Community = () => {
                       <h3 className="text-xl font-bold">Collaborazioni</h3>
                     </div>
                     <p className="text-foreground/70 mb-4">
-                      Trova partner per i tuoi progetti, condividi competenze e crea sinergie professionali.
-                    </p>
+                     Questo luogo nasce supportare i nostri utenti più fedeli ed appassionati.                    </p>
                     <div className="grid grid-cols-2 gap-3 text-sm">
                       <div className="flex items-center">
                         <UserPlus className="w-4 h-4 text-purple-400 mr-2" />
-                        <span>Team building</span>
+                        <span>Consulenze 1 to 1</span>
                       </div>
                       <div className="flex items-center">
                         <Gamepad2 className="w-4 h-4 text-purple-400 mr-2" />
-                        <span>Sviluppo condiviso</span>
+                        <span>Supporto tecnico</span>
                       </div>
                     </div>
                   </div>

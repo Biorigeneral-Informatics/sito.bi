@@ -211,7 +211,7 @@ const Community = () => {
             >
               <div className="inline-block mb-6 px-4 py-1 rounded-full border border-indigo-300/30 bg-indigo-500/5">
                 <span className="text-indigo-400 text-sm font-medium">
-                  Connessione • Apprendimento • Crescita
+                  Supporto • Networking • Vantaggi Esclusivi
                 </span>
               </div>
               
@@ -227,7 +227,7 @@ const Community = () => {
                   transition={{ duration: 0.8, delay: 0.2 }}
                   className="block"
                 >
-                  Community <span className="text-gradient bg-gradient-to-r from-indigo-400 to-violet-400">Biorigeneral</span>
+                  Stiamo aprendo la nostra <span className="text-gradient bg-gradient-to-r from-indigo-400 to-violet-400">Community</span>
                 </motion.span>
                 <motion.span
                   initial={{ opacity: 0, y: 20 }}
@@ -235,7 +235,7 @@ const Community = () => {
                   transition={{ duration: 0.8, delay: 0.4 }}
                   className="block mt-4 text-2xl md:text-3xl font-normal text-foreground/80"
                 >
-                  Dove l'innovazione incontra la collaborazione
+                  Supportaci e noi ti supporteremo con vantaggi esclusivi davvero unici. 
                 </motion.span>
               </motion.h1>
               
@@ -252,8 +252,8 @@ const Community = () => {
                 transition={{ duration: 0.8, delay: 0.7 }}
                 className="text-lg md:text-xl text-foreground/80 max-w-xl mb-12"
               >
-                Unisciti alla nostra community di sviluppatori, imprenditori e innovatori. 
-                Condividi conoscenze, scopri nuove tecnologie e fai crescere il tuo business con il supporto di una community attiva e appassionata.
+                Diventa un membro onorario della nostra community. 
+                Condividi conoscenze, scopri nuove tecnologie e fai crescere il tuo business con il supporto diretto di Federico e dei suoi collaboratori.
               </motion.p>
               
               <motion.div
@@ -342,13 +342,13 @@ const Community = () => {
                 </div>
                 
                 <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
-                  Impara con i Nostri Tutorial
+                  Iscriviti su YouTube
                 </h2>
                 
                 <p className="text-lg text-foreground/80 mb-8">
-                  Sul nostro canale YouTube trovi contenuti settimanali su sviluppo software, 
-                  intelligenza artificiale, automazione e strategie di business. Tutorial pratici, 
-                  live coding e consigli per far crescere la tua attività.
+                  Siamo i primi content creator, imprenditori e sviluppatori Italiani a portare l'AI Agency 
+                  Business Model. In questo canale Federico ti darà nozioni uniche, legate a strumenti professionali
+                  utilizzati dai migliori imprenditori e sviluppatori del settore.
                 </p>
                 
                 <div className="grid grid-cols-2 gap-6 mb-8">
@@ -356,7 +356,7 @@ const Community = () => {
                     <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mb-4">
                       <Video className="w-6 h-6 text-red-400" />
                     </div>
-                    <h4 className="text-lg font-semibold mb-2">Tutorial</h4>
+                    <h4 className="text-lg font-semibold mb-2">Tutorial dettagliati</h4>
                     <p className="text-sm text-foreground/70">
                       Nuovi contenuti su tecnologie all'avanguardia.
                     </p>
@@ -366,9 +366,9 @@ const Community = () => {
                     <div className="w-12 h-12 rounded-full bg-orange-500/10 flex items-center justify-center mb-4">
                       <Lightbulb className="w-6 h-6 text-orange-400" />
                     </div>
-                    <h4 className="text-lg font-semibold mb-2">Strategie Business</h4>
+                    <h4 className="text-lg font-semibold mb-2">Sblocca l'AI Business Model</h4>
                     <p className="text-sm text-foreground/70">
-                      Consigli per ottimizzare processi e aumentare profittabilità.
+                      Consigli e metodi pratici per avviare una AI Agency.
                     </p>
                   </div>
                   
@@ -376,7 +376,7 @@ const Community = () => {
                     <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mb-4">
                       <Target className="w-6 h-6 text-red-400" />
                     </div>
-                    <h4 className="text-lg font-semibold mb-2">Live Coding</h4>
+                    <h4 className="text-lg font-semibold mb-2">Impementazioni AI</h4>
                     <p className="text-sm text-foreground/70">
                       Esempi pratici di implementazione e risultati ottenuti.
                     </p>
@@ -386,9 +386,9 @@ const Community = () => {
                     <div className="w-12 h-12 rounded-full bg-orange-500/10 flex items-center justify-center mb-4">
                       <TrendingUp className="w-6 h-6 text-orange-400" />
                     </div>
-                    <h4 className="text-lg font-semibold mb-2">Trend Tecnologici</h4>
+                    <h4 className="text-lg font-semibold mb-2">Tools e Framework</h4>
                     <p className="text-sm text-foreground/70">
-                      Analisi delle ultime innovazioni e come applicarle.
+                      Sblocca tutto il potenziale dell'Intelligenza Artificiale.
                     </p>
                   </div>
                 </div>
@@ -459,10 +459,10 @@ const Community = () => {
         </span>
       </div>
       <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
-        Unisciti su Patreon
+        Supportaci su Patreon
       </h2>
       <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-        Accesso esclusivo a contenuti premium, materiali avanzati e una community di professionisti che condividono la tua passione per l'innovazione tecnologica.
+        Ottieni l'accesso esclusivo a contenuti premium, materiali avanzati e sblocca il nostro supporto ai tuoi progetti.
       </p>
     </ScrollAnimation>
     
@@ -471,23 +471,22 @@ const Community = () => {
       {/* Primo riquadro - Descrizione */}
       <ScrollAnimation animation="slideRight" delay={0.2}>
         <div className="bg-gradient-to-br from-background/80 to-orange-500/5 rounded-xl border border-orange-500/20 p-8 h-full">                
-          <h3 className="text-2xl font-bold mb-6 text-center">La Community Patreon</h3>
+          <h3 className="text-2xl font-bold mb-6 text-center">L'idea di Community</h3>
           <div className="space-y-6 text-foreground/80">
             <p>
-              La nostra community Patreon è molto più di una semplice piattaforma di supporto: è un ecosistema 
-              esclusivo dove innovatori, sviluppatori e imprenditori si incontrano per crescere insieme.
+              La nostra community è molto di più di una semplice piattaforma di supporto, vorremmo creare un
+              ecosistema in cui poter dedicare tutta l'attenzione che meritano i nostri utenti più appassionati.
             </p>
             
             <p>
               Come membro Patreon, avrai accesso a contenuti premium che non troverai da nessun'altra parte: 
-              tutorial avanzati step-by-step, codice sorgente completo dei progetti, template pronti all'uso 
-              e molto altro materiale esclusivo creato appositamente per accelerare il tuo percorso di crescita.
+              guide step-by-step, codice JSON completo di intere automazioni, template pronti all'uso 
+              e molto altro materiale esclusivo creato appositamente per supportarti.
             </p>
             
             <p>
               Ogni abbonamento contribuisce direttamente alla creazione di contenuti di qualità sempre più elevata 
-              e ti garantisce un ruolo attivo nella direzione futura della community. I tuoi suggerimenti e 
-              richieste hanno priorità nella pianificazione dei contenuti.
+              e ti garantisce un ruolo attivo nella community, oltre che il nostro supporto. 
             </p>
           </div>
         </div>
@@ -525,7 +524,7 @@ const Community = () => {
               </div>
               <div>
                 <h4 className="font-semibold mb-2">Supporto Diretto</h4>
-                <p className="text-sm text-foreground/70">Interazione diretta con il team e supporto personalizzato</p>
+                <p className="text-sm text-foreground/70">Interazione diretta con Federico ed il suo team</p>
               </div>
             </div>
             
@@ -534,8 +533,8 @@ const Community = () => {
                 <Trophy className="w-6 h-6 text-indigo-400" />
               </div>
               <div>
-                <h4 className="font-semibold mb-2">Network Esclusivo</h4>
-                <p className="text-sm text-foreground/70">Connettiti con altri innovatori e professionisti del settore</p>
+                <h4 className="font-semibold mb-2">Networking</h4>
+                <p className="text-sm text-foreground/70">Stringi i rapporti per potenziali collaborazioni con noi</p>
               </div>
             </div>
           </div>
@@ -545,9 +544,9 @@ const Community = () => {
     {/* CTA Section */}
 <ScrollAnimation animation="fadeIn" delay={0.6} className="mt-16">
   <div className="bg-gradient-to-br from-background/60 to-orange-500/5 backdrop-blur-sm rounded-xl border border-orange-500/20 p-8 text-center">
-    <h3 className="text-2xl font-bold mb-4">Sostieni il Progetto</h3>
+    <h3 className="text-2xl font-bold mb-4">Diventa parte di tutto questo</h3>
     <p className="text-foreground/80 mb-6 max-w-2xl mx-auto">
-      Supporta la creazione di contenuti di qualità e ottieni accesso esclusivo a materiali premium, tutorial avanzati e una community di professionisti.
+      Tutto questo ti intriga? Cosa aspetti, unisciti a noi su Patreon e inizia a esplorare tutte le opportunità.
     </p>
     <a href='https://www.patreon.com/c/BiorigeneralInformatics' className="px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white font-medium rounded-xl shadow-lg hover:shadow-orange-500/20 transition-all duration-300 hover:-translate-y-1">
       Scopri Patreon

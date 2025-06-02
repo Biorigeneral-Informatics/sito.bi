@@ -2,7 +2,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { 
-  Users, 
   MessageSquare, 
   ArrowRight,
   Youtube,
@@ -14,7 +13,6 @@ import {
   Heart,
   Trophy,
   Gamepad2,
-  Headphones,
   Coffee,
   Bell,
   Eye,
@@ -201,13 +199,13 @@ const Community = () => {
         </div>
 
         <div className="container mx-auto px-6 lg:px-12 z-10">
-          <div className="grid md:grid-cols-2 gap-20 items-center">
+          <div className="flex justify-center items-center">
             {/* Left column - Hero text */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-left"
+              className="text-center max-w-5xl mx-auto"
             >
               <div className="inline-block mb-6 px-4 py-1 rounded-full border border-indigo-300/30 bg-indigo-500/5">
                 <span className="text-indigo-400 text-sm font-medium">
@@ -241,16 +239,16 @@ const Community = () => {
               
               <motion.div
                 initial={{ width: 0 }}
-                animate={{ width: 120 }}
+                animate={{ width: 200 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="h-1 bg-gradient-to-r from-indigo-500 to-violet-500 mb-8"
+                className="h-1 bg-gradient-to-r from-indigo-500 to-violet-500 mb-8 mx-auto"
               />
               
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.7 }}
-                className="text-lg md:text-xl text-foreground/80 max-w-xl mb-12"
+                className="text-lg md:text-xl text-foreground/80 max-w-4xl mx-auto mb-12 leading-relaxed"
               >
                 Diventa un membro onorario della nostra community. 
                 Condividi conoscenze, scopri nuove tecnologie e fai crescere il tuo business con il supporto diretto di Federico e dei suoi collaboratori.
@@ -260,7 +258,7 @@ const Community = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.8 }}
-                className="flex flex-wrap gap-5"
+                className="flex flex-col sm:flex-row flex-wrap gap-5 justify-center items-center"
               >
                 <a
                   href="https://www.patreon.com/c/BiorigeneralInformatics"
@@ -287,39 +285,6 @@ const Community = () => {
               </motion.div>
             </motion.div>
             
-            {/* Right column - Community stats card */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="relative hidden md:block"
-            >
-              <div className="relative glass border border-indigo-500/20 rounded-xl p-8 bg-background/60 backdrop-blur-sm shadow-2xl">
-                <div className="text-center">
-                  <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-indigo-400/20 to-violet-400/20 flex items-center justify-center mb-6">
-                    <Users className="w-10 h-10 text-indigo-400" />
-                  </div>
-                  <h3 className="text-2xl font-bold mb-4">Unisciti alla Community</h3>
-                  <p className="text-foreground/70 mb-6">
-                    Oltre 50 guide e codici pronti all'uso sviluppati da chi condivide passione per l'innovazione e la tecnologia.
-                  </p>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-indigo-400">100+</div>
-                      <div className="text-sm text-foreground/60">Utenti</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-violet-400">50+</div>
-                      <div className="text-sm text-foreground/60">Guide e White Papers</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Decorative elements */}
-              <div className="absolute -bottom-4 -right-4 w-40 h-40 border border-indigo-500/20 rounded-full"></div>
-              <div className="absolute -top-4 -left-4 w-20 h-20 border border-indigo-500/10 rounded-lg rotate-12"></div>
-            </motion.div>
           </div>
         </div>
       </section>
@@ -660,7 +625,7 @@ const Community = () => {
                     </div>
                     <div>
                       <h4 className="font-bold">Biorigeneral Community</h4>
-                      <p className="text-xs text-foreground/60">100+ membri online</p>
+                      <p className="text-xs text-foreground/60">Canale privato</p>
                     </div>
                   </div>
                   
@@ -737,63 +702,16 @@ const Community = () => {
                   </div>
                 </div>
                 
-                {/* Floating stats */}
-                <div className="absolute -top-4 -right-4 bg-background/90 backdrop-blur-sm rounded-xl p-4 border border-indigo-500/20">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-indigo-400">100+</div>
-                    <div className="text-xs text-foreground/70">Membri Attivi</div>
-                  </div>
-                </div>
-                
               </div>
             </ScrollAnimation>
           </div>
           
-          {/* Discord benefits */}
-          <ScrollAnimation animation="fadeIn" delay={0.4}>
-            <div className="bg-gradient-to-br from-background/60 to-indigo-500/5 backdrop-blur-sm rounded-xl border border-indigo-500/20 p-8">
-              <h3 className="text-2xl font-bold mb-8 text-center">Benefici Esclusivi della Discord Community</h3>
-              
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div className="text-center">
-                  <div className="w-16 h-16 mx-auto rounded-full bg-indigo-500/10 flex items-center justify-center mb-4">
-                    <Download className="w-8 h-8 text-indigo-400" />
-                  </div>
-                  <h4 className="font-semibold mb-2">Risorse Gratuite</h4>
-                  <p className="text-sm text-foreground/70">Template, tools e risorse condivise dalla community</p>
-                </div>
-                
-                <div className="text-center">
-                  <div className="w-16 h-16 mx-auto rounded-full bg-violet-500/10 flex items-center justify-center mb-4">
-                    <Eye className="w-8 h-8 text-violet-400" />
-                  </div>
-                  <h4 className="font-semibold mb-2">Anteprima Contenuti</h4>
-                  <p className="text-sm text-foreground/70">Accesso in anteprima ai nuovi video e materiali</p>
-                </div>
-                
-                <div className="text-center">
-                  <div className="w-16 h-16 mx-auto rounded-full bg-purple-500/10 flex items-center justify-center mb-4">
-                    <Headphones className="w-8 h-8 text-purple-400" />
-                  </div>
-                  <h4 className="font-semibold mb-2">Supporto Tecnico</h4>
-                  <p className="text-sm text-foreground/70">Aiuto diretto da esperti e altri membri della community</p>
-                </div>
-                
-                <div className="text-center">
-                  <div className="w-16 h-16 mx-auto rounded-full bg-pink-500/10 flex items-center justify-center mb-4">
-                    <Users className="w-8 h-8 text-pink-400" />
-                  </div>
-                  <h4 className="font-semibold mb-2">Networking</h4>
-                  <p className="text-sm text-foreground/70">Connessioni professionali e opportunità di collaborazione</p>
-                </div>
-              </div>
-            </div>
-          </ScrollAnimation>
+          
         </div>
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-36 relative overflow-visible z-0">
+      <section className="py-32 relative overflow-visible z-0">
         <div className="absolute inset-0 -top-16 -bottom-18 flex items-center justify-center overflow-visible z-0">
           <div className="absolute w-[500px] h-[500px] rounded-full bg-gradient-to-r from-indigo-500/10 via-violet-500/15 to-purple-400/10 blur-3xl animate-pulse-slow"></div>
           <div className="absolute w-[350px] h-[350px] rounded-full bg-gradient-to-r from-violet-500/5 via-indigo-500/10 to-purple-400/5 blur-2xl animate-pulse-slow-2"></div>

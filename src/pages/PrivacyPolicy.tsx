@@ -79,7 +79,7 @@ const PrivacyPolicy = () => {
         <div className="container mx-auto px-6 lg:px-12">
           <div className="flex items-center max-w-5xl mx-auto pl-4 border-l-4 border-indigo-400/30">
             <Clock className="w-5 h-5 text-indigo-400 mr-3" />
-            <span className="text-foreground/70">Ultimo aggiornamento: 1 Maggio 2025</span>
+            <span className="text-foreground/70">Ultimo aggiornamento: 2 Giugno 2025</span>
           </div>
         </div>
       </section>
@@ -220,6 +220,17 @@ const PrivacyPolicy = () => {
                       </p>
                     </div>
                   </div>
+
+                  <p className="text-lg mt-8 font-medium">Modalità di trattamento dei dati:</p>
+
+                  <ul className="list-disc space-y-3 pl-6 mt-4">
+                    <li>Il nostro sito utilizza Vercel per l'Hosting e la creazione del sito web</li>
+                    <li>Utilizziamo Google Analytics per analizzare l'uso del sito web e migliorare i nostri servizi.</li>
+                    <li>Utilizziamo <a href="https://calendly.com/legal/privacy-notice" style={{ color: "purple" }}>Calendly</a> per la gestione degli appuntamenti</li>
+                    <li>Utilizziamo <a href="https://www.make.com/en/privacy-and-gdpr" style={{ color: "purple" }}>Make</a> per il processamento dei dati e 
+                    workflow produttivi ad uso interno (ecco altre info sulla <a href="https://www.make.com/en/security" style={{ color: "purple" }}>sicurezza</a>)</li>
+                    <li>Utilizziamo <a href="https://www.zoho.com/privacy.html" style={{ color: "purple" }}>Zoho</a> per gestire le email che riceviamo ed i contatti</li>
+                  </ul>
                   
                   <p className="text-lg mt-8 font-medium">Gli scopi specifici per cui trattiamo i tuoi dati personali includono:</p>
                   

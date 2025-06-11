@@ -1,0 +1,278 @@
+/* Theme Configuration - Centralizzazione colori e stili */
+/* Aggiungi questo contenuto al tuo file src/index.css esistente */
+
+/* Importazione Google Fonts per un font più sottile */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Variabili CSS per la gestione centralizzata dei colori */
+:root {
+  /* Colori principali personalizzati */
+  --bg-primary: #121212;
+  --bg-secondary: #171717;
+  --bg-glass: rgba(23, 23, 23, 0.8);
+  --bg-glass-hover: rgba(23, 23, 23, 0.9);
+  
+  /* Aggiornamento delle variabili Tailwind esistenti */
+  --background: 18 18 18; /* #121212 convertito in HSL */
+  --foreground: 0 0% 98%;
+  --card: 23 23 23; /* #171717 convertito in HSL */
+  --card-foreground: 0 0% 98%;
+  --popover: 23 23 23;
+  --popover-foreground: 0 0% 98%;
+  --primary: 217.2 91.2% 59.8%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 23 23 23;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 23 23 23;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 23 23 23;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 23 23 23;
+  --input: 23 23 23;
+  --ring: 224.3 76.3% 48%;
+}
+
+/* Applicazione del font più sottile globalmente */
+* {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 400; /* Peso di default più sottile */
+}
+
+/* Aggiustamenti per i pesi dei font */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600; /* Più sottile per i titoli */
+}
+
+.font-bold {
+  font-weight: 600 !important; /* Invece di 700 */
+}
+
+.font-semibold {
+  font-weight: 500 !important; /* Invece di 600 */
+}
+
+.font-medium {
+  font-weight: 500 !important; /* Più sottile */
+}
+
+.font-light {
+  font-weight: 300 !important;
+}
+
+/* Applicazione del colore di sfondo principale */
+body {
+  background-color: var(--bg-primary) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+/* Stile glass migliorato basato sul riquadro video call */
+.glass {
+  background: var(--bg-glass) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 
+    0 8px 32px 0 rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+.glass:hover {
+  background: var(--bg-glass-hover) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 
+    0 12px 40px 0 rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Stile per i card principali */
+.bg-card,
+.bg-background {
+  background-color: var(--bg-secondary) !important;
+}
+
+/* Stile per elementi con sfondo secondario */
+.bg-secondary,
+.bg-muted {
+  background-color: var(--bg-secondary) !important;
+}
+
+/* Navbar con effetto glass migliorato */
+nav .glass {
+  background: rgba(18, 18, 18, 0.9) !important;
+  backdrop-filter: blur(25px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Footer con effetto glass */
+footer.glass {
+  background: rgba(18, 18, 18, 0.95) !important;
+  backdrop-filter: blur(20px) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Stile per i riquadri del hero animation */
+.hero-element .glass {
+  background: rgba(23, 23, 23, 0.85) !important;
+  backdrop-filter: blur(15px) !important;
+  border: 1px solid rgba(139, 92, 246, 0.2) !important;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Input e form elements */
+input, textarea, select {
+  background-color: rgba(23, 23, 23, 0.8) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+input:focus, textarea:focus, select:focus {
+  background-color: rgba(23, 23, 23, 0.9) !important;
+  border-color: hsl(var(--primary)) !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important;
+}
+
+/* Buttons con effetto glass */
+button.glass,
+.btn-glass {
+  background: rgba(23, 23, 23, 0.8) !important;
+  backdrop-filter: blur(15px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+button.glass:hover,
+.btn-glass:hover {
+  background: rgba(23, 23, 23, 0.95) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Cookie banner styling */
+.cookie-banner .glass {
+  background: rgba(23, 23, 23, 0.95) !important;
+  backdrop-filter: blur(25px) !important;
+  border: 1px solid rgba(139, 92, 246, 0.2) !important;
+}
+
+/* Stile specifico per sezioni content */
+.content-box {
+  background: var(--bg-glass) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 
+    0 8px 32px 0 rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+.content-box:hover {
+  background: var(--bg-glass-hover) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Stile per cards con hover effect */
+.card-hover {
+  background: var(--bg-glass) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+.card-hover:hover {
+  background: var(--bg-glass-hover) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  transform: translateY(-5px) !important;
+  box-shadow: 
+    0 15px 40px 0 rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Gradients per elementi decorativi */
+.gradient-bg {
+  background: radial-gradient(circle at 50% 50%, 
+    rgba(59, 130, 246, 0.1),
+    rgba(139, 92, 246, 0.05) 30%,
+    transparent 60%
+  ) !important;
+}
+
+/* Scrollbar personalizzata */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Stile per elementi con bordi sfumati */
+.gradient-border-top::before {
+  background: linear-gradient(to right, #6366f1, #8b5cf6, #06b6d4) !important;
+}
+
+/* Media queries per responsività */
+@media (max-width: 768px) {
+  .glass {
+    backdrop-filter: blur(15px) !important;
+  }
+}
+
+/* Animazioni specifiche per il tema */
+@keyframes glassShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.glass-shimmer {
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.1), 
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: glassShimmer 2s infinite;
+}
+
+/* Utility classes per il nuovo tema */
+.bg-primary-custom {
+  background-color: var(--bg-primary) !important;
+}
+
+.bg-secondary-custom {
+  background-color: var(--bg-secondary) !important;
+}
+
+.bg-glass-custom {
+  background: var(--bg-glass) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Override per elementi specifici che potrebbero non seguire il tema */
+.override-theme {
+  background-color: var(--bg-secondary) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+/* Stile per i dropdown e modal */
+.dropdown-content,
+.modal-content {
+  background: var(--bg-glass) !important;
+  backdrop-filter: blur(25px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5) !important;
+}

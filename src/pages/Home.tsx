@@ -1,181 +1,53 @@
 // src/pages/Home.tsx - Versione migliorata e ottimizzata per mobile
-import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight,  Layers, Users, BrainCircuit, CheckCircle, Clock, Code, Zap, Cpu, Workflow, Mail, TrendingUp, MessageSquare, BarChart, Cloud, Star, BarChart3, Bot, GitBranch, Smartphone } from 'lucide-react';
 import ParallaxEffect from '../components/ParallaxEffect';
 import ScrollAnimation from '../components/ScrollAnimation';
 import ScrollGradient from '../components/ScrollGradient';
-import HeroAnimation from '../components/HeroAnimation';
 
 const Home = () => {
-
-  // Load HubSpot form script dynamically
-  useEffect(() => {
-    // Create script for HubSpot forms
-    const script1 = document.createElement('script');
-    script1.charset = 'utf-8';
-    script1.type = 'text/javascript';
-    script1.src = '//js-eu1.hsforms.net/forms/embed/v2.js';
-    script1.async = true;
-    
-    // Create script for form creation
-    const script2 = document.createElement('script');
-    script2.type = 'text/javascript';
-    script2.innerHTML = `
-      (function() {
-        if (window.hbspt) {
-          window.hbspt.forms.create({
-            portalId: "144593984",
-            formId: "4afa40f5-1683-4f2d-b3b5-b3a1303238fb",
-            region: "eu1",
-            target: "#hubspot-form-container"
-          });
-        }
-      })();
-    `;
-    
-    // Add scripts to document
-    document.body.appendChild(script1);
-    
-    // Add the second script after the first one loads
-    script1.onload = () => {
-      document.body.appendChild(script2);
-    };
-    
-    // Cleanup
-    return () => {
-      document.body.removeChild(script1);
-      if (document.body.contains(script2)) {
-        document.body.removeChild(script2);
-      }
-    };
-  }, []);
-  
-
-  // Hero section mouse move effect
-  const heroRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!heroRef.current) return;
-      
-      const { clientX, clientY } = e;
-      const { innerWidth, innerHeight } = window;
-      
-      // Calculate movement based on mouse position
-      const moveX = (clientX - innerWidth / 2) * 0.015;
-      const moveY = (clientY - innerHeight / 2) * 0.015;
-      
-      // Apply movement to hero elements
-      const elements = heroRef.current.querySelectorAll('.hero-element');
-      elements.forEach((el: Element, i) => {
-        const depth = (i + 1) * 0.2;
-        (el as HTMLElement).style.transform = `translate(${moveX * depth}px, ${moveY * depth}px)`;
-      });
-    };
-    
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-  
   return (
     <>
-      {/* Dynamic gradient backgrounds - more visible and responsive */}
+      {/* Background gradients statici */}
       <ScrollGradient 
-        colorStart="rgba(79, 70, 229, 0.3)" // indigo più intenso
-        colorEnd="rgba(139, 92, 246, 0.3)"  // viola più intenso
-        intensity={1.5} 
+        colorStart="rgba(79, 70, 229, 0.3)"
+        colorEnd="rgba(139, 92, 246, 0.3)"
       />
       <ScrollGradient 
-        colorStart="rgba(45, 212, 191, 0.25)" // teal
-        colorEnd="rgba(16, 185, 129, 0.2)"    // emerald
+        colorStart="rgba(45, 212, 191, 0.25)"
+        colorEnd="rgba(16, 185, 129, 0.2)"
         reverse={true} 
         className="opacity-80" 
       />
 
-      {/* Hero Section - completamente rivisto per mobile */}
-      <section ref={heroRef} className="relative min-h-[90vh] md:min-h-screen flex items-center overflow-hidden pt-24 md:pt-20 pb-16 md:pb-24">
-        {/* Elementi decorativi SOLO per mobile */}
-        <div className="sm:hidden absolute top-0 right-0 w-32 h-32 rounded-bl-full bg-gradient-to-bl from-indigo-500/20 to-violet-500/5 blur-md"></div>
-        
-        {/* Cerchi decorativi animati SOLO per mobile */}
-        <div className="sm:hidden absolute top-24 left-4 w-4 h-4 rounded-full bg-indigo-500/40 animate-pulse"></div>
-        <div className="sm:hidden absolute top-32 left-20 w-2 h-2 rounded-full bg-violet-500/40 animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-        <div className="sm:hidden absolute bottom-24 right-6 w-3 h-3 rounded-full bg-indigo-500/40 animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="sm:hidden absolute top-60 right-8 w-2 h-2 rounded-full bg-violet-500/40 animate-pulse" style={{ animationDelay: '1.5s' }}></div>
-        
-        {/* Linee decorative diagonal SOLO per mobile */}
-        <div className="sm:hidden absolute top-40 -left-10 w-40 h-[1px] bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent transform rotate-45"></div>
-        <div className="sm:hidden absolute bottom-40 -right-10 w-40 h-[1px] bg-gradient-to-r from-transparent via-violet-500/30 to-transparent transform -rotate-45"></div>
-        
+      {/* Hero Section - Centrato e minimal */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-16">
         <div className="container mx-auto px-4 md:px-6 lg:px-12 z-10">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-            >
-              {/* Sfondo luminoso SOLO per mobile */}
-              <div className="sm:hidden absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-gradient-to-br from-indigo-500/10 to-violet-500/10 blur-3xl"></div>
-              
-              <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 md:mb-8 hero-element">
-                <span className="block">Oltre il codice,</span>
-                <span className="text-gradient">verso l'innovazione</span>
-              </h1>
-              
-              <p className="text-lg md:text-xl text-foreground/80 mb-8 md:mb-10 hero-element leading-relaxed">
-                AI Agency e Software Engineering. Soluzioni digitali innovative per il tuo business.
-              </p>
-              
-              <div className="flex flex-wrap gap-4 md:gap-5 hero-element">
-                <Link
-                  to="/contact"
-                  className="px-6 sm:px-8 py-3 md:py-4 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all hover:translate-y-[-2px] shadow-lg text-sm sm:text-base"
-                >
-                  Inizia Ora <ArrowRight className="inline ml-2 w-4 h-4 sm:w-5 sm:h-5" />
-                </Link>
-                
-                <Link
-                  to="/services"
-                  className="px-6 sm:px-8 py-3 md:py-4 border border-primary/30 text-foreground hover:bg-primary/10 rounded-lg transition-all text-sm sm:text-base"
-                >
-                  Esplora Soluzioni
-                </Link>
-              </div>
-            </motion.div>
+          <div className="max-w-4xl mx-auto text-center">
             
-            {/* L'animazione è visibile solo da tablet in su */}
-            <div className="hidden sm:block">
-              <ParallaxEffect speed={0.1} direction="down">
-                <div className="relative hero-visual flex justify-center">
-                  <HeroAnimation />
-                </div>
-              </ParallaxEffect>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 md:mb-8 leading-tight">
+              <span className="block text-white font-semibold">Oltre il codice,</span>
+              <span className="text-primary font-semibold">verso l'innovazione</span>
+            </h1>
+            
+            <p className="text-base md:text-lg text-white/90 mb-8 md:mb-10 leading-relaxed max-w-2xl mx-auto font-normal">
+              AI Agency e Software Engineering. Soluzioni digitali innovative per il tuo business.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center">
+              <Link to="/contact" className="px-6 py-3 bg-primary text-black rounded-md font-medium text-sm border border-primary hover:bg-primary/90 transition-colors inline-flex items-center">
+                Inizia Ora
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Link>
+              
+              <Link to="/services" className="px-6 py-3 bg-transparent text-white rounded-md font-medium text-sm border border-white/40 hover:bg-white/5 transition-colors">
+                Esplora Soluzioni
+              </Link>
             </div>
+            
           </div>
         </div>
-        
-        {/* Decorative Elements - nascosti su mobile, visibili solo da tablet in su */}
-        <div className="hidden sm:block absolute top-1/3 left-5 md:left-10 w-16 md:w-24 h-16 md:h-24 rounded-full border border-indigo-400/30 opacity-70 hero-element"></div>
-        <div className="hidden sm:block absolute bottom-1/4 right-5 md:right-16 w-12 md:w-16 h-12 md:h-16 rounded-full border border-violet-400/30 opacity-70 hero-element"></div>
-        <div className="hidden sm:block absolute top-1/4 right-1/3 w-8 md:w-10 h-8 md:h-10 rounded-full bg-indigo-500/20 opacity-70 hero-element"></div>
-        
-        {/* Animazione particelle galleggianti SOLO per mobile */}
-        {[...Array(10)].map((_, i) => (
-          <div 
-            key={i}
-            className="sm:hidden absolute rounded-full bg-indigo-500/30"
-            style={{
-              width: `${2 + Math.random() * 4}px`,
-              height: `${2 + Math.random() * 4}px`,
-              top: `${20 + Math.random() * 70}%`,
-              left: `${10 + Math.random() * 80}%`,
-              animation: `float-mobile ${5 + Math.random() * 10}s infinite ease-in-out`,
-              animationDelay: `${Math.random() * 5}s`
-            }}
-          ></div>
-        ))}
       </section>
       
       {/* Valore, competenza e innovazione Section - ottimizzata per mobile */}

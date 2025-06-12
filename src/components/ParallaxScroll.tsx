@@ -1,5 +1,5 @@
-// src/components/ParallaxScroll.tsx
-import { useRef, useEffect, ReactNode } from 'react';
+// src/components/ParallaxScroll.tsx - Static Version
+import { ReactNode } from 'react';
 
 interface ParallaxScrollProps {
   children: ReactNode;
@@ -7,25 +7,9 @@ interface ParallaxScrollProps {
   className?: string;
 }
 
-const ParallaxScroll = ({ children, speed = 0.3, className = '' }: ParallaxScrollProps) => {
-  const elementRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!elementRef.current) return;
-      
-      const scrollY = window.scrollY;
-      const offsetY = scrollY * speed;
-      
-      elementRef.current.style.transform = `translateY(${offsetY}px)`;
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [speed]);
-
+const ParallaxScroll = ({ children, className = '' }: ParallaxScrollProps) => {
   return (
-    <div ref={elementRef} className={className}>
+    <div className={className}>
       {children}
     </div>
   );

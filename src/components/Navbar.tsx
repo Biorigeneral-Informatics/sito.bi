@@ -1,8 +1,7 @@
-// src/components/Navbar.tsx
+// src/components/Navbar.tsx - Static Version
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,14 +20,11 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    // Chiudi il sottomenu dei servizi quando la pagina cambia
     setServicesOpen(false);
-    // Chiudi il menu mobile quando la pagina cambia
     setIsOpen(false);
   }, [location]);
 
   useEffect(() => {
-    // Gestisce i click fuori dal menu servizi per chiuderlo
     const handleClickOutside = (event: MouseEvent) => {
       if (servicesRef.current && !servicesRef.current.contains(event.target as Node)) {
         setServicesOpen(false);
@@ -57,18 +53,11 @@ const Navbar = () => {
     { href: '/developers', label: 'Sviluppatori' },
   ];
 
-
-  // Controlla se il percorso corrente è un servizio
   const isServicePage = servicesLinks.some(link => location.pathname === link.href);
 
   return (
-    <motion.nav 
-      className="fixed w-full z-50"
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className={`mx-4 my-4 px-6 py-4 rounded-2xl transition-all duration-300 ${
+    <nav className="fixed w-full z-50">
+      <div className={`mx-4 my-4 px-6 py-4 rounded-2xl ${
         scrolled 
           ? 'glass backdrop-blur-md bg-background/80' 
           : 'glass bg-background/20'
@@ -76,7 +65,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
             <img src="https://i.imgur.com/UoihSYZ.png" alt="Biorigeneral" className="w-10 h-10" />
-            <span className="font-bold text-xl">Biorigeneral</span>
+            <span className="font-bold text-xl text-white">Biorigeneral</span>
           </Link>
 
           {/* Desktop Menu */}
@@ -86,8 +75,8 @@ const Navbar = () => {
                 <div key={link.label} className="relative" ref={servicesRef}>
                   <button
                     onClick={() => setServicesOpen(!servicesOpen)}
-                    className={`flex items-center px-2 py-1 text-foreground/80 hover:text-foreground transition-colors ${
-                      isServicePage ? 'text-foreground' : ''
+                    className={`navbar-link flex items-center px-2 py-1 text-white hover:text-accent ${
+                      isServicePage ? 'text-accent active' : ''
                     }`}
                   >
                     {link.label}
@@ -99,146 +88,104 @@ const Navbar = () => {
                   </button>
                   
                   {/* Sottomenu Servizi Desktop */}
-                  <AnimatePresence>
-                    {servicesOpen && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        transition={{ duration: 0.2 }}
-                        className="absolute left-0 mt-2 w-56 glass backdrop-blur-md rounded-xl py-2 shadow-lg"
-                      >
-                        {servicesLinks.map((serviceLink) => (
-                          <Link
-                            key={serviceLink.href}
-                            to={serviceLink.href}
-                            className={`block px-4 py-2 text-foreground/80 hover:text-foreground hover:bg-primary/10 transition-colors ${
-                              location.pathname === serviceLink.href ? 'bg-primary/20 text-foreground' : ''
-                            }`}
-                          >
-                            {serviceLink.label}
-                          </Link>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-
-                  {/* Indicatore pagina corrente per sezione Servizi */}
-                  {isServicePage && (
-                    <motion.div
-                      layoutId="navbar-indicator"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                    />
+                  {servicesOpen && (
+                    <div className="absolute left-0 mt-2 w-56 glass backdrop-blur-md rounded-xl py-2 shadow-lg">
+                      {servicesLinks.map((serviceLink) => (
+                        <Link
+                          key={serviceLink.href}
+                          to={serviceLink.href}
+                          className={`block px-4 py-2 text-white hover:text-accent hover:bg-primary/10 ${
+                            location.pathname === serviceLink.href ? 'bg-primary/20 text-accent' : ''
+                          }`}
+                        >
+                          {serviceLink.label}
+                        </Link>
+                      ))}
+                    </div>
                   )}
+
+                  {/* Indicatore pagina corrente per sezione Servizi - ora gestito da CSS */}
                 </div>
               ) : (
                 <Link
                   key={link.href}
                   to={link.href}
-                  className={`relative px-2 py-1 text-foreground/80 hover:text-foreground transition-colors ${
-                    location.pathname === link.href ? 'text-foreground' : ''
+                  className={`navbar-link px-2 py-1 text-white hover:text-accent ${
+                    location.pathname === link.href ? 'text-accent active' : ''
                   }`}
                 >
                   {link.label}
-                  {location.pathname === link.href && (
-                    <motion.div
-                      layoutId="navbar-indicator"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  )}
                 </Link>
               )
             )}
           </div>
 
           {/* Mobile Menu Button */}
-          <motion.button
-            className="md:hidden"
+          <button
+            className="md:hidden text-white"
             onClick={() => setIsOpen(!isOpen)}
-            whileTap={{ scale: 0.95 }}
           >
             {isOpen ? <X /> : <Menu />}
-          </motion.button>
+          </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="glass md:hidden mx-4 mt-2 p-4 rounded-xl backdrop-blur-md"
-          >
-            <div className="flex flex-col space-y-2">
-              {mainLinks.map((link) => 
-                link.hasSubmenu ? (
-                  <div key={link.label} className="space-y-1">
-                    <button
-                      onClick={() => setServicesOpen(!servicesOpen)}
-                      className={`w-full flex justify-between items-center py-2 px-3 rounded-lg text-foreground/80 hover:text-foreground transition-colors ${
-                        isServicePage ? 'bg-primary/20 text-foreground' : ''
-                      }`}
-                    >
-                      {link.label}
-                      {servicesOpen ? (
-                        <ChevronUp className="h-4 w-4" />
-                      ) : (
-                        <ChevronDown className="h-4 w-4" />
-                      )}
-                    </button>
-                    
-                    {/* Sottomenu Servizi Mobile */}
-                    <AnimatePresence>
-                      {servicesOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="pl-4"
-                        >
-                          {servicesLinks.map((serviceLink) => (
-                            <Link
-                              key={serviceLink.href}
-                              to={serviceLink.href}
-                              className={`block py-2 px-3 rounded-lg text-foreground/80 hover:text-foreground transition-colors ${
-                                location.pathname === serviceLink.href ? 'bg-primary/10 text-foreground' : ''
-                              }`}
-                            >
-                              {serviceLink.label}
-                            </Link>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                ) : (
-                  <Link
-                    key={link.href}
-                    to={link.href}
-                    className={`block py-2 px-3 rounded-lg text-foreground/80 hover:text-foreground transition-colors ${
-                      location.pathname === link.href 
-                        ? 'bg-primary/20 text-foreground' 
-                        : ''
+      {isOpen && (
+        <div className="glass md:hidden mx-4 mt-2 p-4 rounded-xl backdrop-blur-md">
+          <div className="flex flex-col space-y-2">
+            {mainLinks.map((link) => 
+              link.hasSubmenu ? (
+                <div key={link.label} className="space-y-1">
+                  <button
+                    onClick={() => setServicesOpen(!servicesOpen)}
+                    className={`w-full flex justify-between items-center py-2 px-3 rounded-lg text-white hover:text-accent ${
+                      isServicePage ? 'bg-primary/20 text-accent' : ''
                     }`}
                   >
                     {link.label}
-                  </Link>
-                )
-              )}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+                    {servicesOpen ? (
+                      <ChevronUp className="h-4 w-4" />
+                    ) : (
+                      <ChevronDown className="h-4 w-4" />
+                    )}
+                  </button>
+                  
+                  {/* Sottomenu Servizi Mobile */}
+                  {servicesOpen && (
+                    <div className="pl-4">
+                      {servicesLinks.map((serviceLink) => (
+                        <Link
+                          key={serviceLink.href}
+                          to={serviceLink.href}
+                          className={`block py-2 px-3 rounded-lg text-white hover:text-accent ${
+                            location.pathname === serviceLink.href ? 'bg-primary/10 text-accent' : ''
+                          }`}
+                        >
+                          {serviceLink.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className={`block py-2 px-3 rounded-lg text-white hover:text-accent ${
+                    location.pathname === link.href 
+                      ? 'bg-primary/20 text-accent' 
+                      : ''
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
+          </div>
+        </div>
+      )}
+    </nav>
   );
 }
 

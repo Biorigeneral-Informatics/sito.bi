@@ -16,6 +16,7 @@ import Footer from './components/Footer';
 import AnimatedBackground from './components/AnimatedBackground';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import CookieBanner from './components/CookieBanner';
+import { ThemeProvider } from './hooks/useTheme';
 
 localStorage.removeItem('preloaderShown');
 
@@ -32,6 +33,7 @@ const ScrollToTop = () => {
 
 function App() {
   return (
+    <ThemeProvider>
     <Router>
       <ScrollToTop />
       <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
@@ -72,6 +74,7 @@ function App() {
         <CookieBanner /> {/* Aggiungi qui il componente CookieBanner */}
       </div>
     </Router>
+    </ThemeProvider>
   );
 }
 

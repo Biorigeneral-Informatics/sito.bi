@@ -5,6 +5,10 @@ export default {
     extend: {
       // === COLORS === 
       colors: {
+
+        primary: 'var(--text-primary)',
+        secondary: 'var(--text-secondary)',
+        inverse: 'var(--text-inverse)',
         // Background colors using CSS variables
         background: {
           DEFAULT: "var(--bg-primary)",

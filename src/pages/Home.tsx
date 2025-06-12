@@ -5,6 +5,7 @@ import { ArrowRight,  Layers, Users, BrainCircuit, CheckCircle, Clock, Code, Zap
 import ParallaxEffect from '../components/ParallaxEffect';
 import ScrollAnimation from '../components/ScrollAnimation';
 import ScrollGradient from '../components/ScrollGradient';
+import ThemeToggle from '../components/ThemeToggle';
 
 const Home = () => {
   return (
@@ -26,10 +27,15 @@ const Home = () => {
         <div className="container mx-auto px-4 md:px-6 lg:px-12 z-10">
           <div className="max-w-4xl mx-auto text-center">
             
+           {/* Theme Toggle */}
+            <div className="mb-8 flex justify-center">
+              <ThemeToggle />
+            </div>
+
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 md:mb-8 leading-tight">
-            <span className="block text-white font-semibold">Oltre il codice</span>
+            <span className="block text-primary font-semibold">Oltre il codice,</span>
             <motion.span 
-              className="block font-semibold text-green-400"
+              className="block font-semibold text-accent"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.5 }}
@@ -50,25 +56,25 @@ const Home = () => {
             </motion.span>
           </h1>
             
-            <p className="text-base md:text-lg text-white/90 mb-8 md:mb-10 leading-relaxed max-w-2xl mx-auto font-normal">
-              AI Agency e Software Engineering. Soluzioni digitali innovative per il tuo business.
-            </p>
+            <p className="text-base md:text-lg text-secondary mb-8 md:mb-10 leading-relaxed max-w-2xl mx-auto font-normal">
+            AI Agency e Software Engineering. Soluzioni digitali innovative per il tuo business.
+          </p>
             
            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center">
-  <Link 
-    to="/contact" 
-    className="glass px-6 py-3 rounded-xl font-semibold text-sm text-white bg-accent/30 border-accent/40 hover:bg-accent/40 hover:border-accent/60 backdrop-blur-lg hover:-translate-y-1 transition-all duration-300"
-  >
-    Inizia Ora
-  </Link>
-  
-  <Link 
-    to="/services" 
-    className="glass px-6 py-3 rounded-xl font-semibold text-sm text-white bg-white/10 border-white/20 hover:bg-white/20 hover:border-white/30 backdrop-blur-lg hover:-translate-y-1 transition-all duration-300"
-  >
-    Esplora Soluzioni
-  </Link>
-</div>
+            <Link 
+              to="/contact" 
+              className="glass px-6 py-3 rounded-xl font-semibold text-sm text-accent bg-accent/30 border-accent/40 hover:bg-accent/40 hover:border-accent/60 hover:-translate-y-1 transition-all duration-300 inline-flex items-center group"
+            >
+              Inizia Ora
+            </Link>
+            
+            <Link 
+              to="/services" 
+              className="glass px-6 py-3 rounded-xl font-semibold text-sm text-primary bg-glass-secondary border-secondary hover:bg-glass-hover hover:border-primary hover:-translate-y-1 transition-all duration-300"
+            >
+              Esplora Soluzioni
+            </Link>
+          </div>
             
           </div>
         </div>

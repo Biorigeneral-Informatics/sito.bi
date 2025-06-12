@@ -87,124 +87,122 @@ const Navbar = () => {
                     )}
                   </button>
                   
-                {/* Sottomenu Servizi Desktop - Aperto verso SINISTRA */}
-                {servicesOpen && (
-                  <div className="absolute right-0 mt-8 w-[480px] glass backdrop-blur-md rounded-xl p-4 shadow-lg border border-white/10">
-                    {/* Header del menu */}
-                    <div className="pb-3 mb-3 border-b border-white/10">
-                      <h3 className="text-sm font-semibold text-white/80">I nostri servizi</h3>
+                  {/* Sottomenu semplificato */}
+                  {servicesOpen && (
+                    <div 
+                      className="absolute right-0 mt-8 w-[600px] backdrop-blur-xl bg-background rounded-xl p-6 shadow-2xl border border-white/40"
+                      onMouseEnter={() => setServicesOpen(true)}
+                      onMouseLeave={() => setServicesOpen(false)}
+                    >
+                      {/* Header del menu */}
+                      <div className="pb-4 mb-4 border-b border-white/20">
+                        <h3 className="text-sm font-semibold text-white/80">I nostri servizi</h3>
+                      </div>
+                      
+                      {/* Grid a 3 colonne */}
+                      <div className="grid grid-cols-3 gap-8 relative">
+                        
+                        {/* Colonna 1 - Sviluppo */}
+                        <div className="space-y-2">
+                          <div className="px-2 mb-3">
+                            <span className="text-xs font-medium text-accent uppercase tracking-wide">Sviluppo</span>
+                          </div>
+                          
+                          <Link
+                            to="/software-pmi"
+                            className={`flex items-center px-3 py-2 rounded-lg text-white transition-colors ${
+                              location.pathname === '/software-pmi' ? 'bg-primary/20 text-accent' : ''
+                            }`}
+                          >
+                            <div className="w-6 h-6 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
+                              <Code className="w-3 h-3 text-gray-400" />
+                            </div>
+                            <span className="font-medium text-sm">Software PMI</span>
+                          </Link>
+                          
+                          <Link
+                            to="/developers"
+                            className={`flex items-center px-3 py-2 rounded-lg text-white transition-colors ${
+                              location.pathname === '/developers' ? 'bg-primary/20 text-accent' : ''
+                            }`}
+                          >
+                            <div className="w-6 h-6 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
+                              <Users className="w-3 h-3 text-gray-400" />
+                            </div>
+                            <span className="font-medium text-sm">Team Sviluppo</span>
+                          </Link>
+                        </div>
+                        
+                        {/* Separatore colonna 1-2 */}
+                        <div className="absolute left-1/3 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent"></div>
+                        
+                        {/* Colonna 2 - Intelligenza Artificiale */}
+                        <div className="space-y-2">
+                          <div className="px-2 mb-3">
+                            <span className="text-xs font-medium text-accent uppercase tracking-wide">AI</span>
+                          </div>
+                          
+                          <Link
+                            to="/ai-agents"
+                            className={`flex items-center px-3 py-2 rounded-lg text-white transition-colors ${
+                              location.pathname === '/ai-agents' ? 'bg-primary/20 text-accent' : ''
+                            }`}
+                          >
+                            <div className="w-6 h-6 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
+                              <Bot className="w-3 h-3 text-gray-400" />
+                            </div>
+                            <span className="font-medium text-sm">Agenti AI</span>
+                          </Link>
+                          
+                          <Link
+                            to="/chatbots"
+                            className={`flex items-center px-3 py-2 rounded-lg text-white transition-colors ${
+                              location.pathname === '/chatbots' ? 'bg-primary/20 text-accent' : ''
+                            }`}
+                          >
+                            <div className="w-6 h-6 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
+                              <MessageSquare className="w-3 h-3 text-gray-400" />
+                            </div>
+                            <span className="font-medium text-sm">Chatbot AI</span>
+                          </Link>
+                        </div>
+                        
+                        {/* Separatore colonna 2-3 */}
+                        <div className="absolute left-2/3 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent"></div>
+                        
+                        {/* Colonna 3 - Strategia */}
+                        <div className="space-y-2">
+                          <div className="px-2 mb-3">
+                            <span className="text-xs font-medium text-accent uppercase tracking-wide">Strategia</span>
+                          </div>
+                          
+                          <Link
+                            to="/growth-plans"
+                            className={`flex items-center px-3 py-2 rounded-lg text-white transition-colors ${
+                              location.pathname === '/growth-plans' ? 'bg-primary/20 text-accent' : ''
+                            }`}
+                          >
+                            <div className="w-6 h-6 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
+                              <TrendingUp className="w-3 h-3 text-gray-400" />
+                            </div>
+                            <span className="font-medium text-sm">Piani di Crescita</span>
+                          </Link>
+                          
+                          <Link
+                            to="/contact"
+                            className={`flex items-center px-3 py-2 rounded-lg text-white transition-colors ${
+                              location.pathname === '/contact' ? 'bg-primary/20 text-accent' : ''
+                            }`}
+                          >
+                            <div className="w-6 h-6 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
+                              <Mail className="w-3 h-3 text-gray-400" />
+                            </div>
+                            <span className="font-medium text-sm">Consulenza</span>
+                          </Link>
+                        </div>
+                      </div>
                     </div>
-                    
-                    {/* Grid a 3 colonne */}
-                    <div className="grid grid-cols-3 gap-4">
-                      
-                      {/* Colonna 1 - Sviluppo */}
-                      <div className="space-y-1">
-                        <div className="px-2 mb-3">
-                          <span className="text-xs font-medium text-accent uppercase tracking-wide">Sviluppo</span>
-                        </div>
-                        
-                        <Link
-                          to="/software-pmi"
-                          className={`flex items-start px-3 py-2 rounded-lg text-white hover:text-accent hover:bg-primary/10 transition-colors group ${
-                            location.pathname === '/software-pmi' ? 'bg-primary/20 text-accent' : ''
-                          }`}
-                        >
-                          <Code className="w-4 h-4 mr-3 mt-0.5 text-blue-400 group-hover:text-blue-300 transition-colors" />
-                          <div>
-                            <div className="font-medium text-sm">Software PMI</div>
-                            <div className="text-xs text-white/60 mt-0.5">Soluzioni su misura</div>
-                          </div>
-                        </Link>
-                        
-                        <Link
-                          to="/developers"
-                          className={`flex items-start px-3 py-2 rounded-lg text-white hover:text-accent hover:bg-primary/10 transition-colors group ${
-                            location.pathname === '/developers' ? 'bg-primary/20 text-accent' : ''
-                          }`}
-                        >
-                          <Users className="w-4 h-4 mr-3 mt-0.5 text-indigo-400 group-hover:text-indigo-300 transition-colors" />
-                          <div>
-                            <div className="font-medium text-sm">Team Sviluppo</div>
-                            <div className="text-xs text-white/60 mt-0.5">Sviluppatori esperti</div>
-                          </div>
-                        </Link>
-                      </div>
-                      
-                      {/* Separatore colonna 1-2 */}
-                      <div className="absolute left-1/3 top-16 bottom-4 w-px bg-white/10"></div>
-                      
-                      {/* Colonna 2 - Intelligenza Artificiale */}
-                      <div className="space-y-1">
-                        <div className="px-2 mb-3">
-                          <span className="text-xs font-medium text-accent uppercase tracking-wide">AI</span>
-                        </div>
-                        
-                        <Link
-                          to="/ai-agents"
-                          className={`flex items-start px-3 py-2 rounded-lg text-white hover:text-accent hover:bg-primary/10 transition-colors group ${
-                            location.pathname === '/ai-agents' ? 'bg-primary/20 text-accent' : ''
-                          }`}
-                        >
-                          <Bot className="w-4 h-4 mr-3 mt-0.5 text-violet-400 group-hover:text-violet-300 transition-colors" />
-                          <div>
-                            <div className="font-medium text-sm">Agenti AI</div>
-                            <div className="text-xs text-white/60 mt-0.5">Automazione intelligente</div>
-                          </div>
-                        </Link>
-                        
-                        <Link
-                          to="/chatbots"
-                          className={`flex items-start px-3 py-2 rounded-lg text-white hover:text-accent hover:bg-primary/10 transition-colors group ${
-                            location.pathname === '/chatbots' ? 'bg-primary/20 text-accent' : ''
-                          }`}
-                        >
-                          <MessageSquare className="w-4 h-4 mr-3 mt-0.5 text-cyan-400 group-hover:text-cyan-300 transition-colors" />
-                          <div>
-                            <div className="font-medium text-sm">Chatbot AI</div>
-                            <div className="text-xs text-white/60 mt-0.5">Assistenti virtuali</div>
-                          </div>
-                        </Link>
-                      </div>
-                      
-                      {/* Separatore colonna 2-3 */}
-                      <div className="absolute left-2/3 top-16 bottom-4 w-px bg-white/10"></div>
-                      
-                      {/* Colonna 3 - Strategia */}
-                      <div className="space-y-1">
-                        <div className="px-2 mb-3">
-                          <span className="text-xs font-medium text-accent uppercase tracking-wide">Strategia</span>
-                        </div>
-                        
-                        <Link
-                          to="/growth-plans"
-                          className={`flex items-start px-3 py-2 rounded-lg text-white hover:text-accent hover:bg-primary/10 transition-colors group ${
-                            location.pathname === '/growth-plans' ? 'bg-primary/20 text-accent' : ''
-                          }`}
-                        >
-                          <TrendingUp className="w-4 h-4 mr-3 mt-0.5 text-green-400 group-hover:text-green-300 transition-colors" />
-                          <div>
-                            <div className="font-medium text-sm">Piani di Crescita</div>
-                            <div className="text-xs text-white/60 mt-0.5">Strategie digitali</div>
-                          </div>
-                        </Link>
-                        
-                        <Link
-                          to="/contact"
-                          className={`flex items-start px-3 py-2 rounded-lg text-white hover:text-accent hover:bg-primary/10 transition-colors group ${
-                            location.pathname === '/contact' ? 'bg-primary/20 text-accent' : ''
-                          }`}
-                        >
-                          <Mail className="w-4 h-4 mr-3 mt-0.5 text-amber-400 group-hover:text-amber-300 transition-colors" />
-                          <div>
-                            <div className="font-medium text-sm">Consulenza</div>
-                            <div className="text-xs text-white/60 mt-0.5">Supporto dedicato</div>
-                          </div>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                )}
+                  )}
 
                   {/* Indicatore pagina corrente per sezione Servizi - ora gestito da CSS */}
                 </div>

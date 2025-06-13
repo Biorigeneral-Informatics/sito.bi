@@ -114,8 +114,8 @@ const Navbar = () => {
                               location.pathname === '/software-pmi' ? 'bg-primary/20 text-accent' : ''
                             }`}
                           >
-                            <div className="w-6 h-6 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
-                              <Code className="w-3 h-3 text-gray-400" />
+                            <div className="w-10 h-10 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
+                              <Code className="w-4 h-4 text-gray-400" />
                             </div>
                             <span className="font-medium text-sm">Software PMI</span>
                           </Link>
@@ -126,8 +126,8 @@ const Navbar = () => {
                               location.pathname === '/developers' ? 'bg-primary/20 text-accent' : ''
                             }`}
                           >
-                            <div className="w-6 h-6 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
-                              <Users className="w-3 h-3 text-gray-400" />
+                            <div className="w-10 h-10 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
+                              <Users className="w-4 h-4 text-gray-400" />
                             </div>
                             <span className="font-medium text-sm">Team Sviluppo</span>
                           </Link>
@@ -148,8 +148,8 @@ const Navbar = () => {
                               location.pathname === '/ai-agents' ? 'bg-primary/20 text-accent' : ''
                             }`}
                           >
-                            <div className="w-6 h-6 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
-                              <Bot className="w-3 h-3 text-gray-400" />
+                            <div className="w-10 h-10 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
+                              <Bot className="w-4 h-4 text-gray-400" />
                             </div>
                             <span className="font-medium text-sm">Agenti AI</span>
                           </Link>
@@ -160,8 +160,8 @@ const Navbar = () => {
                               location.pathname === '/chatbots' ? 'bg-primary/20 text-accent' : ''
                             }`}
                           >
-                            <div className="w-6 h-6 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
-                              <MessageSquare className="w-3 h-3 text-gray-400" />
+                            <div className="w-10 h-10 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
+                              <MessageSquare className="w-4 h-4 text-gray-400" />
                             </div>
                             <span className="font-medium text-sm">Chatbot AI</span>
                           </Link>
@@ -182,8 +182,8 @@ const Navbar = () => {
                               location.pathname === '/growth-plans' ? 'bg-primary/20 text-accent' : ''
                             }`}
                           >
-                            <div className="w-6 h-6 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
-                              <TrendingUp className="w-3 h-3 text-gray-400" />
+                            <div className="w-10 h-10 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
+                              <TrendingUp className="w-4 h-4 text-gray-400" />
                             </div>
                             <span className="font-medium text-sm">Piani di Crescita</span>
                           </Link>
@@ -194,8 +194,8 @@ const Navbar = () => {
                               location.pathname === '/contact' ? 'bg-primary/20 text-accent' : ''
                             }`}
                           >
-                            <div className="w-6 h-6 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
-                              <Mail className="w-3 h-3 text-gray-400" />
+                            <div className="w-10 h-10 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
+                              <Mail className="w-4 h-4 text-gray-400" />
                             </div>
                             <span className="font-medium text-sm">Consulenza</span>
                           </Link>

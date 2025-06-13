@@ -1,5 +1,4 @@
 // src/components/AnimatedBackground.tsx - Static Version
-import { useRef } from 'react';
 import { useTheme } from '../hooks/useTheme';
 
 const AnimatedBackground = () => {

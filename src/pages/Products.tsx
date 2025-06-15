@@ -16,9 +16,6 @@ import ScrollGradient from '../components/ScrollGradient';
 const Products = () => {
   // Refs e stati
   const containerRef = useRef<HTMLDivElement>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0.5, y: 0.5 });
-  const [selectedIndustry, setSelectedIndustry] = useState<string>("all");
-  const [feedbackVisible, setFeedbackVisible] = useState(false);
   const [activeProduct, setActiveProduct] = useState(0);
   const [showAllFaqs, setShowAllFaqs] = useState(false);
 
@@ -27,27 +24,6 @@ const Products = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Gestione movimento mouse per effetti interattivi
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const heroSection = document.getElementById('hero-section');
-      if (heroSection) {
-        const { left, top, width, height } = heroSection.getBoundingClientRect();
-        
-        if (e.clientX >= left && 
-            e.clientX <= left + width && 
-            e.clientY >= top && 
-            e.clientY <= top + height) {
-          const x = (e.clientX - left) / width;
-          const y = (e.clientY - top) / height;
-          setMousePosition({ x, y });
-        }
-      }
-    };
-  
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
 
   return (
     <>
@@ -66,7 +42,7 @@ const Products = () => {
       <div className="min-h-screen pt-28 pb-16" ref={containerRef}>
         
         {/* Hero Section - Ispirato alla Home ma con contenuti diversi */}
-        <section id="hero-section" className="pt-4 pb-16 relative overflow-hidden">
+        <section id="hero-section" className="pt-20 pb-16 relative overflow-hidden">
           <div className="container mx-auto px-4 md:px-6 lg:px-12 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -75,11 +51,11 @@ const Products = () => {
               className="text-center max-w-4xl mx-auto"
             >
               {/* Badge sopra il titolo */}
-              <div className="inline-block px-3 md:px-5 py-1 rounded-full border border-green-500">
-              <span className="text-xs md:text-sm font-medium text-green-500">
-                Innovazione e Automazione
-              </span>
-              </div>
+        <div className="inline-block px-3 md:px-4 py-1 rounded-full glass border border-white/10 text-xs md:text-sm font-medium mb-3 md:mb-4">
+          <span className="text-green-500">
+            Innovazione e Automazione
+          </span>
+        </div>
               
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 md:mb-8 leading-tight font-semibold">
                 <span className="block text-primary">Accelera la crescita aziendale con l'integrazione di
@@ -96,7 +72,7 @@ const Products = () => {
       
 
 {/* Selettore prodotti e showcase */}
-<section className="py-8 container mx-auto px-4 md:px-6 lg:px-12">
+<section className="py-20 container mx-auto mt-20 px-4 md:px-6 lg:px-12">
   
   {/* Header con titolo principale */}
   <ScrollAnimation animation="fadeIn">
@@ -231,14 +207,10 @@ const Products = () => {
                         alt="SegretarioAI Telegram Interface"
                         className="w-full h-400 object-cover rounded-xl opacity-70 border border-violet-600"
                       />
-                    </div>
-                    
+                    </div>              
                   </div>
-                  
-                  
                 </div>
               </div>
-            
             </div>
           )}
           
@@ -247,54 +219,73 @@ const Products = () => {
           {activeProduct === 1 && (
             <div className="bg-transparent backdrop-blur-sm border border-gray-600 rounded-2xl overflow-hidden transition-all duration-500 min-h-[500px] relative">
               
+              {/* Contenuto centrale */}
               <div className="p-8 text-center">
                 <div className="max-w-4xl mx-auto">
                   
-                  <div className="mb-8">
-                    <div className="inline-flex items-center gap-3 mb-4">
-                      <div className="w-12 h-12 rounded-xl bg-gray-700 border border-gray-600 flex items-center justify-center">
-                        <Users className="w-6 h-6 text-white" />
-                      </div>
-                      <h3 className="text-2xl font-bold text-white">AI CRM</h3>
-                    </div>
-                    <div className="inline-block px-3 py-1 rounded-full bg-gray-800 border border-gray-600 text-xs font-medium text-gray-300 mb-6">
-                      CRM Intelligente
-                    </div>
-                  </div>
-                  
+                  {/* Descrizione centrale */}
                   <p className="text-white text-base leading-relaxed mb-12 max-w-3xl mx-auto">
                     Sistema CRM di nuova generazione che sfrutta algoritmi di machine learning avanzati per rivoluzionare 
                     il processo di vendita. Qualifica automaticamente i lead con precisione chirurgica, prevede le conversioni 
                     con accuratezza del 92% e ottimizza l'intera pipeline commerciale. Integra fonti dati multiple e fornisce 
                     insights predittivi che aumentano le conversioni del 45%.
+                    <span className='block pt-4'> A partire da <span className="text-sm font-bold text-blue-500">€297/mese</span> </span>
                   </p>
-                  
+                 
+
+                  {/* Tick funzionalità */}
+                  <div className="flex flex-wrap justify-center gap-4 mb-8">
+                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                      <div className="w-5 h-5 rounded-full bg-grey-500/20 border border-white-500 flex items-center justify-center">
+                        <svg className="w-3 h-3 text-grey-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span>Lead Qualification</span>
+                    </div>
+                    
+                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                      <div className="w-5 h-5 rounded-full bg-grey-500/20 border border-white-500 flex items-center justify-center">
+                        <svg className="w-3 h-3 text-grey-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span>Insights Predittivi</span>
+                    </div>
+                    
+                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                      <div className="w-5 h-5 rounded-full bg-grey-500/20 border border-white-500 flex items-center justify-center">
+                        <svg className="w-3 h-3 text-grey-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span>Automazione Pipeline</span>
+                    </div>
+                    
+                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                      <div className="w-5 h-5 rounded-full bg-grey-500/20 border border-white-500 flex items-center justify-center">
+                        <svg className="w-3 h-3 text-grey-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span>Integrazione Multi-fonte</span>
+                    </div>
+                  </div>
+
+                  {/* Immagine */}
                   <div className="flex justify-center mb-8">
                     <div className="w-full max-w-md">
                       <img 
                         src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop&crop=center" 
                         alt="AI CRM Dashboard Analytics"
-                        className="w-full h-64 object-cover rounded-xl border border-gray-600"
+                        className="w-full h-400 object-cover rounded-xl opacity-70 border border-blue-600"
                       />
                     </div>
                   </div>
+                  
                 </div>
               </div>
-
-              <div className="absolute bottom-6 right-6">
-                <div className="bg-gray-800/80 border border-gray-600 rounded-xl p-4 backdrop-blur-sm">
-                  <div className="text-right">
-                    <div className="text-xs text-gray-400 mb-1">Prezzo mensile</div>
-                    <div className="text-xl font-bold text-white">€297<span className="text-sm font-normal text-gray-400">/mese</span></div>
-                    <Link 
-                      to="/ai-agents" 
-                      className="inline-block mt-3 px-4 py-2 bg-transparent border border-gray-600 text-white text-sm rounded-lg hover:bg-gray-700/30 transition-all"
-                    >
-                      Scopri di più
-                    </Link>
-                  </div>
-                </div>
-              </div>
+            
             </div>
           )}
 
@@ -302,54 +293,73 @@ const Products = () => {
           {activeProduct === 2 && (
             <div className="bg-transparent backdrop-blur-sm border border-gray-600 rounded-2xl overflow-hidden transition-all duration-500 min-h-[500px] relative">
               
+              {/* Contenuto centrale */}
               <div className="p-8 text-center">
                 <div className="max-w-4xl mx-auto">
                   
-                  <div className="mb-8">
-                    <div className="inline-flex items-center gap-3 mb-4">
-                      <div className="w-12 h-12 rounded-xl bg-gray-700 border border-gray-600 flex items-center justify-center">
-                        <Table className="w-6 h-6 text-white" />
-                      </div>
-                      <h3 className="text-2xl font-bold text-white">Excel Lead Generator</h3>
-                    </div>
-                    <div className="inline-block px-3 py-1 rounded-full bg-gray-800 border border-gray-600 text-xs font-medium text-gray-300 mb-6">
-                      Lead Generation
-                    </div>
-                  </div>
-                  
+                  {/* Descrizione centrale */}
                   <p className="text-white text-base leading-relaxed mb-12 max-w-3xl mx-auto">
                     Trasforma i tuoi semplici fogli Excel in potenti motori di lead generation attraverso algoritmi di machine learning. 
-                    Arricchisce automaticamente i dati dei contatti con informazioni dettagliate, calcola punteggi di qualificazione 
-                    intelligenti e integra tutto nel tuo CRM. Processa oltre 10.000 contatti all'ora con accuratezza dell'85%, 
-                    migliorando la qualità dei lead del 70%.
+                    Arricchisce automaticamente i dati dei contatti con informazioni validate in tempo reale, calcola score di 
+                    qualificazione personalizzabili e integra tutto con i tuoi sistemi CRM esistenti. Processa oltre 10.000 contatti 
+                    all'ora con accuratezza dell'85%, migliorando la qualità dei lead del 70%.
+                    <span className='block pt-4'> A partire da <span className="text-sm font-bold text-green-500">€147/mese</span> </span>
                   </p>
-                  
+                 
+
+                  {/* Tick funzionalità */}
+                  <div className="flex flex-wrap justify-center gap-4 mb-8">
+                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                      <div className="w-5 h-5 rounded-full bg-grey-500/20 border border-white-500 flex items-center justify-center">
+                        <svg className="w-3 h-3 text-grey-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span>Arricchimento Dati</span>
+                    </div>
+                    
+                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                      <div className="w-5 h-5 rounded-full bg-grey-500/20 border border-white-500 flex items-center justify-center">
+                        <svg className="w-3 h-3 text-grey-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span>Scoring Qualificazione</span>
+                    </div>
+                    
+                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                      <div className="w-5 h-5 rounded-full bg-grey-500/20 border border-white-500 flex items-center justify-center">
+                        <svg className="w-3 h-3 text-grey-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span>Integrazione CRM</span>
+                    </div>
+                    
+                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                      <div className="w-5 h-5 rounded-full bg-grey-500/20 border border-white-500 flex items-center justify-center">
+                        <svg className="w-3 h-3 text-grey-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span>Processing 10K/ora</span>
+                    </div>
+                  </div>
+
+                  {/* Immagine */}
                   <div className="flex justify-center mb-8">
                     <div className="w-full max-w-md">
                       <img 
                         src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop&crop=center" 
                         alt="Excel Lead Processing Interface"
-                        className="w-full h-64 object-cover rounded-xl border border-gray-600"
+                        className="w-full h-400 object-cover rounded-xl opacity-70 border border-green-600"
                       />
                     </div>
                   </div>
+                  
                 </div>
               </div>
-
-              <div className="absolute bottom-6 right-6">
-                <div className="bg-gray-800/80 border border-gray-600 rounded-xl p-4 backdrop-blur-sm">
-                  <div className="text-right">
-                    <div className="text-xs text-gray-400 mb-1">Prezzo mensile</div>
-                    <div className="text-xl font-bold text-white">€147<span className="text-sm font-normal text-gray-400">/mese</span></div>
-                    <Link 
-                      to="/products" 
-                      className="inline-block mt-3 px-4 py-2 bg-transparent border border-gray-600 text-white text-sm rounded-lg hover:bg-gray-700/30 transition-all"
-                    >
-                      Scopri di più
-                    </Link>
-                  </div>
-                </div>
-              </div>
+            
             </div>
           )}
 
@@ -357,54 +367,73 @@ const Products = () => {
           {activeProduct === 3 && (
             <div className="bg-transparent backdrop-blur-sm border border-gray-600 rounded-2xl overflow-hidden transition-all duration-500 min-h-[500px] relative">
               
+              {/* Contenuto centrale */}
               <div className="p-8 text-center">
                 <div className="max-w-4xl mx-auto">
                   
-                  <div className="mb-8">
-                    <div className="inline-flex items-center gap-3 mb-4">
-                      <div className="w-12 h-12 rounded-xl bg-gray-700 border border-gray-600 flex items-center justify-center">
-                        <Heart className="w-6 h-6 text-white" />
+                  {/* Descrizione centrale */}
+                  <p className="text-white text-base leading-relaxed mb-12 max-w-3xl mx-auto">
+                    Assistente AI specializzato per il settore sanitario, progettato con rigorosa compliance GDPR e standard medicali. 
+                    Gestisce automaticamente prenotazioni, triaging intelligente e supporto decisionale clinico. Integrato con sistemi 
+                    ospedalieri esistenti, riduce i tempi di attesa del 60% e migliora l'accuratezza diagnostica. Supporta protocolli 
+                    sanitari europei con crittografia medicale certificata ISO 27001.
+                    <span className='block pt-4'> A partire da <span className="text-sm font-bold text-red-500">€497/mese</span> </span>
+                  </p>
+                 
+
+                  {/* Tick funzionalità */}
+                  <div className="flex flex-wrap justify-center gap-4 mb-8">
+                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                      <div className="w-5 h-5 rounded-full bg-grey-500/20 border border-white-500 flex items-center justify-center">
+                        <svg className="w-3 h-3 text-grey-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
                       </div>
-                      <h3 className="text-2xl font-bold text-white">Healthcare Assistant</h3>
+                      <span>Compliance GDPR</span>
                     </div>
-                    <div className="inline-block px-3 py-1 rounded-full bg-gray-800 border border-gray-600 text-xs font-medium text-gray-300 mb-6">
-                      Healthcare AI
+                    
+                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                      <div className="w-5 h-5 rounded-full bg-grey-500/20 border border-white-500 flex items-center justify-center">
+                        <svg className="w-3 h-3 text-grey-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span>Triaging Intelligente</span>
+                    </div>
+                    
+                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                      <div className="w-5 h-5 rounded-full bg-grey-500/20 border border-white-500 flex items-center justify-center">
+                        <svg className="w-3 h-3 text-grey-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span>Supporto Clinico</span>
+                    </div>
+                    
+                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                      <div className="w-5 h-5 rounded-full bg-grey-500/20 border border-white-500 flex items-center justify-center">
+                        <svg className="w-3 h-3 text-grey-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span>ISO 27001 Certified</span>
                     </div>
                   </div>
-                  
-                  <p className="text-white text-base leading-relaxed mb-12 max-w-3xl mx-auto">
-                    Assistente AI specializzato per il settore sanitario, progettato con rigorosa compliance GDPR. 
-                    Digitalizza completamente la gestione pazienti: gestisce appuntamenti con algoritmi di ottimizzazione, 
-                    invia promemoria personalizzati per terapie e fornisce supporto h24. Migliora l'aderenza terapeutica 
-                    del 65% e riduce significativamente i costi operativi delle strutture sanitarie.
-                  </p>
-                  
+
+                  {/* Immagine */}
                   <div className="flex justify-center mb-8">
                     <div className="w-full max-w-md">
                       <img 
                         src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=250&fit=crop&crop=center" 
-                        alt="Healthcare Patient Management System"
-                        className="w-full h-64 object-cover rounded-xl border border-gray-600"
+                        alt="Healthcare AI Assistant Interface"
+                        className="w-full h-400 object-cover rounded-xl opacity-70 border border-red-600"
                       />
                     </div>
                   </div>
+                  
                 </div>
               </div>
-
-              <div className="absolute bottom-6 right-6">
-                <div className="bg-gray-800/80 border border-gray-600 rounded-xl p-4 backdrop-blur-sm">
-                  <div className="text-right">
-                    <div className="text-xs text-gray-400 mb-1">Prezzo mensile</div>
-                    <div className="text-xl font-bold text-white">€347<span className="text-sm font-normal text-gray-400">/mese</span></div>
-                    <Link 
-                      to="/ai-agents" 
-                      className="inline-block mt-3 px-4 py-2 bg-transparent border border-gray-600 text-white text-sm rounded-lg hover:bg-gray-700/30 transition-all"
-                    >
-                      Scopri di più
-                    </Link>
-                  </div>
-                </div>
-              </div>
+            
             </div>
           )}
 
@@ -418,7 +447,7 @@ const Products = () => {
 
         
         {/* FAQ Section */}
-        <section className="py-16">
+        <section className="py-16 mt-20">
           <div className="container mx-auto px-4 md:px-6 lg:px-12">
             <div className="text-center mb-12">
               <motion.div 
@@ -427,8 +456,9 @@ const Products = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <div className="inline-block px-3 md:px-4 py-1 rounded-full border border-white/10 text-xs md:text-sm font-medium mb-3 md:mb-4 bg-white/5">
-                  <span className="text-blue-500">
+                {/* Badge sopra il titolo */}
+                <div className="inline-block px-3 md:px-4 py-1 rounded-full glass border border-white/10 text-xs md:text-sm font-medium mb-3 md:mb-4">
+                  <span className="text-green-500">
                     Domande Frequenti
                   </span>
                 </div>

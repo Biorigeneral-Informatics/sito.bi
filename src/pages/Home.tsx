@@ -265,11 +265,11 @@ const Home = () => {
     <ScrollAnimation animation="slideUp">
       <div className="text-center mb-12 md:mb-20">
         {/* Badge sopra il titolo */}
-        <div className="inline-block px-3 md:px-5 py-1 rounded-full border border-green-500">
-        <span className="text-xs md:text-sm font-medium text-green-500">
-          Innovazione Tecnologica • Strumenti di Nuova Generazione
-        </span>
-      </div>
+        <div className="inline-block px-3 md:px-4 py-1 rounded-full glass border border-white/10 text-xs md:text-sm font-medium mb-3 md:mb-4">
+          <span className="text-green-500">
+            Innovazione Tecnologica • Strumenti All'
+          </span>
+        </div>
         
         <div>
         {/* Titolo con esattamente lo stesso stile di "Valore, competenza e innovazione" */}

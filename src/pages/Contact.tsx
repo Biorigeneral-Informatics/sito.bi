@@ -467,9 +467,9 @@ const Contact = () => {
                         <div className="text-center text-xs text-gray-400 flex-grow">Video Call</div>
                       </div>
                       
-                      <div className="flex-grow bg-gradient-to-br from-green-500/20 to-emerald-500/20 flex flex-col items-center justify-center p-4">
-                        <div className="w-20 h-20 rounded-full bg-green-500/20 flex items-center justify-center mb-3">
-                          <Users className="w-10 h-10 text-green-400" />
+                      <div className="flex-grow bg-gradient-to-br   flex flex-col items-center justify-center p-4">
+                        <div className="w-20 h-20 rounded-full bg-green-500/10 flex items-center justify-center mb-3">
+                          <Users className="w-10 h-10 text-grey-400" />
                         </div>
                         <div className="text-center">
                           <p className="text-sm font-medium text-white">Sessione 1:1</p>

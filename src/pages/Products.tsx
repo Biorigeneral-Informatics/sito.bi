@@ -3,12 +3,12 @@ import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
-  ArrowRight, Bot, BrainCircuit, Database,
-  Shield, BarChart, Users, ChevronRight, 
+  BrainCircuit, 
+  Shield, Users, ChevronRight, 
   MessageSquare, ListChecks, Clock,
-  BarChart3, Cable, Workflow, 
-  GitBranch, ChevronLeft, Grid, Calendar, Table,
-  Heart, Stethoscope
+  Cable, Workflow, 
+  GitBranch, Table,
+  Heart, 
 } from 'lucide-react';
 import ScrollAnimation from '../components/ScrollAnimation';
 import ScrollGradient from '../components/ScrollGradient';
@@ -74,10 +74,11 @@ const Products = () => {
               transition={{ duration: 0.7 }}
               className="text-center max-w-4xl mx-auto"
             >
-              <div className="inline-block px-3 md:px-4 py-1 rounded-full border border-white/10 text-xs md:text-sm font-medium mb-3 md:mb-4 bg-white/5">
-                <span className="text-blue-500">
-                  Innovazione e Automazione
-                </span>
+              {/* Badge sopra il titolo */}
+              <div className="inline-block px-3 md:px-5 py-1 rounded-full border border-green-500">
+              <span className="text-xs md:text-sm font-medium text-green-500">
+                Innovazione e Automazione
+              </span>
               </div>
               
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 md:mb-8 leading-tight font-semibold">
@@ -93,601 +94,327 @@ const Products = () => {
           </div>
         </section>
       
-        {/* Filtri per categoria - Design più pulito */}
-        <section className="pb-8">
-          <div className="container mx-auto px-4 md:px-6 lg:px-12">
-            <div className="flex justify-center mb-20 overflow-x-auto pb-2">
-              <div className="border border-white/10 px-2 py-2 rounded-full inline-flex flex-wrap justify-center gap-1 bg-white/5">
-                {[
-                  { id: 'all', name: 'Tutti', icon: <Grid className="w-4 h-4" /> },
-                  { id: 'assistants', name: 'Assistenti', icon: <Bot className="w-4 h-4" /> },
-                  { id: 'data', name: 'Dati', icon: <Table className="w-4 h-4" /> },
-                  { id: 'ai', name: 'AI', icon: <BrainCircuit className="w-4 h-4" /> },
-                  { id: 'automation', name: 'Automazione', icon: <Workflow className="w-4 h-4" /> }
-                ].map((category) => (
-                  <button
-                    key={category.id}
-                    onClick={() => {
-                      setSelectedIndustry(category.id);
-                      setActiveProduct(0);
-                    }}
-                    className={`relative px-4 py-2 rounded-full transition-all duration-300 flex items-center text-sm ${
-                      selectedIndustry === category.id 
-                        ? 'bg-accent text-white' 
-                        : 'hover:bg-white/5 text-foreground/70 hover:text-foreground'
-                    }`}
-                  >
-                    <span className="mr-2">{category.icon}</span>
-                    {category.name}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
 
-        {/* Carousel prodotti migliorato e più interattivo */}
-        <section className="py-12 container mx-auto px-4 md:px-6 lg:px-12">
+{/* Selettore prodotti e showcase */}
+<section className="py-8 container mx-auto px-4 md:px-6 lg:px-12">
+  
+  {/* Header con titolo principale */}
+  <ScrollAnimation animation="fadeIn">
+    <div className="text-center mb-12">
+      <h3 className="text-2xl md:text-3xl font-semibold text-white mb-4">
+        Accelera il tuo business con soluzioni AI 
+        <span className="block text-gray-400">senza mai lasciare la tua dashboard preferita</span>
+      </h3>
+    </div>
+  </ScrollAnimation>
+
+  {/* Bottoni di selezione prodotti - Più piccoli e grigio diverso */}
+  <ScrollAnimation animation="slideUp" delay={0.1}>
+    <div className="flex flex-wrap justify-center gap-3 mb-8">
+      {[
+        { id: 'telegram', name: 'SegretarioAI Telegram', icon: <MessageSquare className="w-4 h-4" /> },
+        { id: 'crm', name: 'AI CRM', icon: <Users className="w-4 h-4" /> },
+        { id: 'excel', name: 'Excel Lead Generator', icon: <Table className="w-4 h-4" /> },
+        { id: 'healthcare', name: 'Healthcare Assistant', icon: <Heart className="w-4 h-4" /> }
+      ].map((product) => (
+        <button
+          key={product.id}
+          onClick={() => setActiveProduct(product.id === 'telegram' ? 0 : product.id === 'crm' ? 1 : product.id === 'excel' ? 2 : 3)}
+          className={`px-5 py-2.5 rounded-full font-medium text-xs transition-all duration-300 flex items-center gap-2 border ${
+            (activeProduct === 0 && product.id === 'telegram') ||
+            (activeProduct === 1 && product.id === 'crm') ||
+            (activeProduct === 2 && product.id === 'excel') ||
+            (activeProduct === 3 && product.id === 'healthcare')
+              ? 'bg-transparent border-white text-white' 
+              : 'bg-transparent border-gray-500 text-gray-500 hover:border-white hover:text-white'
+          }`}
+        >
+          {product.icon}
+          <span>{product.name}</span>
+        </button>
+      ))}
+    </div>
+  </ScrollAnimation>
+
+  {/* NUOVO Container wrapper applicazione */}
+  <ScrollAnimation animation="fadeIn" delay={0.2}>
+    <div className="relative max-w-6xl mx-auto">
+      
+      {/* Container esterno - Wrapper applicazione */}
+      <div className=" backdrop-blur-sm border border-gray-500 rounded-2xl overflow-hidden">
+        
+        
+        {/* Header applicazione con 3 dot grigi */}
+        <div className="flex items-center justify-between px-6 py-3  border-gray-700/50">
+          <div className="flex items-center gap-3">
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 rounded-full bg-gray-800"></div>
+            <div className="w-3 h-3 rounded-full bg-gray-800"></div>
+            <div className="w-3 h-3 rounded-full bg-gray-800"></div>
+          </div>
+        </div>
+
+        {/* Container prodotto dinamico - ESISTENTE non modificato */}
+        <div className="relative max-w-6xl mr-6 ml-6 mb-8">
           
-          {/* Header con contatore dinamico */}
-          <div className="flex justify-between items-center mb-8">
-            <div className="flex items-center gap-4">
-              <h2 className="text-xl md:text-2xl font-semibold text-primary">
-                Prodotti Disponibili
-              </h2>
-              <div className="flex items-center gap-2">
-                <div className="text-sm text-foreground/60">
-                  {activeProduct + 1} di 4
-                </div>
-                <div className="flex gap-1">
-                  {[0, 1, 2, 3].map((index) => (
-                    <div 
-                      key={index}
-                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                        index === activeProduct ? 'bg-accent' : 'bg-white/20'
-                      }`}
-                    />
-                  ))}
+          {/* SegretarioAI Telegram */}
+          {activeProduct === 0 && (
+            <div className="bg-transparent backdrop-blur-sm border border-gray-600 rounded-2xl overflow-hidden transition-all duration-500 min-h-[500px] relative">
+              
+              {/* Contenuto centrale */}
+              <div className="p-8 text-center">
+                <div className="max-w-4xl mx-auto">
+                  
+                  
+                  {/* Descrizione centrale */}
+                  <p className="text-white text-base leading-relaxed mb-12 max-w-3xl mx-auto">
+                    Il primo assistente virtuale italiano che rivoluziona la gestione delle comunicazioni aziendali attraverso Telegram. 
+                    Integrato con workflow N8n avanzati, automatizza conversazioni complesse, gestisce appuntamenti intelligenti 
+                    e si integra perfettamente con tutti i tuoi sistemi esistenti. Disponibile 24/7, riduce dell'80% il carico 
+                    di lavoro manuale e migliora drasticamente l'efficienza operativa.  
+                   <span className='block pt-4'> A parire da <span className="text-sm font-bold text-violet-500">€147/mese</span> </span>
+                  </p>
+                 
+
+                  {/* Tick funzionalità - Inserire dopo la descrizione e prima dell'immagine */}
+                    <div className="flex flex-wrap justify-center gap-4 mb-8">
+                      {/* Per SegretarioAI Telegram */}
+                      {activeProduct === 0 && (
+                        <>
+                          <div className="flex items-center gap-2 text-sm text-gray-400">
+                            <div className="w-5 h-5 rounded-full bg-grey-500/20 border border-white-500 flex items-center justify-center">
+                              <svg className="w-3 h-3 text-grey-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                              </svg>
+                            </div>
+                            <span>Gestione Conversazioni</span>
+                          </div>
+                          
+                          <div className="flex items-center gap-2 text-sm text-gray-400">
+                            <div className="w-5 h-5 rounded-full bg-grey-500/20 border border-white-500 flex items-center justify-center">
+                              <svg className="w-3 h-3 text-grey-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                              </svg>
+                            </div>
+                            <span>Workflow N8n</span>
+                          </div>
+                          
+                          <div className="flex items-center gap-2 text-sm text-gray-400">
+                            <div className="w-5 h-5 rounded-full bg-grey-500/20 border border-white-500 flex items-center justify-center">
+                              <svg className="w-3 h-3 text-grey-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                              </svg>
+                            </div>
+                            <span>Appuntamenti Automatici</span>
+                          </div>
+                          
+                          <div className="flex items-center gap-2 text-sm text-gray-400">
+                            <div className="w-5 h-5 rounded-full bg-grey-500/20 border border-white-500 flex items-center justify-center">
+                              <svg className="w-3 h-3 text-grey-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                              </svg>
+                            </div>
+                            <span>Disponibilità 24/7</span>
+                          </div>
+                        </>
+                      )}
+                      </div>
+                  
+                  {/* Immagine reale centrale */}
+                  <div className="flex justify-center mb-8">
+                    <div className="w-100% max-w-600 max-h-400 h-400">
+                       {/* Top gradient border verde */}
+                      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-violet-400 via-violet-300 to-black-400"></div>
+                      <img 
+                        src="https://i.imgur.com/BJRduao.jpeg" 
+                        alt="SegretarioAI Telegram Interface"
+                        className="w-full h-400 object-cover rounded-xl opacity-70 border border-violet-600"
+                      />
+                    </div>
+                    
+                  </div>
+                  
+                  
                 </div>
               </div>
-            </div>
             
-            <div className="flex gap-2">
-              <button 
-                onClick={() => {
-                  const newIndex = activeProduct === 0 ? 3 : activeProduct - 1;
-                  setActiveProduct(newIndex);
-                }}
-                className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-foreground hover:bg-white/5 hover:border-accent/30 transition-all duration-300 group"
-                aria-label="Prodotto precedente"
-              >
-                <ChevronLeft className="w-5 h-5 group-hover:text-accent transition-colors" />
-              </button>
-              
-              <button 
-                onClick={() => {
-                  const newIndex = activeProduct === 3 ? 0 : activeProduct + 1;
-                  setActiveProduct(newIndex);
-                }}
-                className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-foreground hover:bg-white/5 hover:border-accent/30 transition-all duration-300 group"
-                aria-label="Prodotto successivo"
-              >
-                <ChevronRight className="w-5 h-5 group-hover:text-accent transition-colors" />
-              </button>
             </div>
-          </div>
+          )}
+          
 
-          {/* Slider con transizioni fluide */}
-          <div className="relative overflow-hidden rounded-2xl">
-            <div 
-              className="flex transition-all duration-700 ease-in-out"
-              style={{ transform: `translateX(-${activeProduct * 100}%)` }}
-            >
+          {/* AI CRM */}
+          {activeProduct === 1 && (
+            <div className="bg-transparent backdrop-blur-sm border border-gray-600 rounded-2xl overflow-hidden transition-all duration-500 min-h-[500px] relative">
               
-              {/* SegretarioAI Telegram */}
-              <div className="w-full flex-shrink-0">
-                <div className="border border-white/10 rounded-2xl overflow-hidden bg-white/5">
-                  <div className="grid md:grid-cols-2 h-full">
-                    <div className="p-8 flex flex-col h-full">
-                      <div className="mb-2 flex items-center gap-2">
-                        <div className="inline-block px-3 py-1 rounded-full bg-indigo-500/20 text-xs font-medium text-indigo-400 mb-1">
-                          Assistente Virtuale
-                        </div>
+              <div className="p-8 text-center">
+                <div className="max-w-4xl mx-auto">
+                  
+                  <div className="mb-8">
+                    <div className="inline-flex items-center gap-3 mb-4">
+                      <div className="w-12 h-12 rounded-xl bg-gray-700 border border-gray-600 flex items-center justify-center">
+                        <Users className="w-6 h-6 text-white" />
                       </div>
-                      
-                      <div className="flex items-center mb-5">
-                        <div className="mr-3 relative">
-                          <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white">
-                            <MessageSquare className="w-6 h-6" />
-                          </div>
-                          <div className="absolute -right-1 -bottom-1 w-6 h-6 rounded-full bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center text-white text-xs">
-                            AI
-                          </div>
-                        </div>
-                        <h3 className="text-2xl font-semibold">SegretarioAI Telegram</h3>
-                      </div>
-                      
-                      <p className="text-base text-foreground/80 mb-6 flex-grow">
-                        Assistente virtuale che gestisce conversazioni, pianifica appuntamenti e automatizza risposte su Telegram. 
-                        Integrazione perfetta con i tuoi workflow aziendali per una comunicazione efficiente 24/7.
-                      </p>
-                      
-                      <div className="grid grid-cols-2 gap-4 mb-6">
-                        <div className="bg-gradient-to-br from-indigo-500/10 to-indigo-500/5 rounded-xl p-4 border border-indigo-500/20">
-                          <h4 className="font-semibold text-sm flex items-center mb-2">
-                            <MessageSquare className="w-4 h-4 text-indigo-400 mr-2" />
-                            Risposte automatiche
-                          </h4>
-                          <p className="text-sm text-foreground/70">
-                            Gestisce conversazioni standard e risponde alle domande frequenti con precisione.
-                          </p>
-                        </div>
-                        
-                        <div className="bg-gradient-to-br from-indigo-500/10 to-indigo-500/5 rounded-xl p-4 border border-indigo-500/20">
-                          <h4 className="font-semibold text-sm flex items-center mb-2">
-                            <Calendar className="w-4 h-4 text-indigo-400 mr-2" />
-                            Gestione calendario
-                          </h4>
-                          <p className="text-sm text-foreground/70">
-                            Pianifica appuntamenti e invia promemoria automatici ai partecipanti.
-                          </p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex justify-between items-center">
-                        <div className="flex items-center">
-                          <span className="text-sm text-foreground/70 mr-3">A partire da:</span>
-                          <span className="font-semibold text-xl">€99<span className="text-foreground/60 text-sm font-normal">/mese</span></span>
-                        </div>
-                        
-                        <Link 
-                          to="/contact"
-                          className="px-5 py-2.5 bg-gradient-to-r from-indigo-500 to-violet-600 text-white rounded-lg flex items-center transition-all hover:shadow-lg text-sm font-medium"
-                        >
-                          Scopri di più <ArrowRight className="ml-1.5 w-4 h-4" />
-                        </Link>
-                      </div>
+                      <h3 className="text-2xl font-bold text-white">AI CRM</h3>
                     </div>
-                    
-                    {/* Demo area */}
-                    <div className="bg-gradient-to-br from-indigo-500/10 via-indigo-600/10 to-violet-700/20 relative overflow-hidden h-full min-h-[380px] flex items-center justify-center">
-                      <div className="w-10/12 max-w-[320px] mx-auto pointer-events-none select-none">
-                        <div className="border border-white/20 rounded-xl overflow-hidden bg-background/70 backdrop-blur-md">
-                          <div className="bg-indigo-600/90 py-2 px-3 text-white flex items-center justify-between">
-                            <div className="flex items-center">
-                              <Bot className="w-4 h-4 mr-2" />
-                              <span className="text-sm font-medium">Segretario Bot</span>
-                            </div>
-                          </div>
-                          
-                          <div className="p-3 space-y-3 max-h-[300px] overflow-hidden">
-                            <div className="flex items-start">
-                              <div className="w-7 h-7 rounded-full bg-indigo-500/20 flex items-center justify-center mr-2 flex-shrink-0">
-                                <Bot className="w-3 h-3 text-indigo-400" />
-                              </div>
-                              <div className="bg-indigo-500/10 rounded-lg rounded-tl-none p-2 max-w-[80%] text-xs">
-                                <p>Buongiorno! Sono il tuo segretario virtuale. Come posso aiutarti oggi?</p>
-                              </div>
-                            </div>
-                            
-                            <div className="flex items-start justify-end">
-                              <div className="bg-accent/20 rounded-lg rounded-tr-none p-2 max-w-[80%] text-xs ml-auto">
-                                <p>Prenota un meeting per domani alle 14:00</p>
-                              </div>
-                            </div>
-                            
-                            <div className="flex items-start">
-                              <div className="w-7 h-7 rounded-full bg-indigo-500/20 flex items-center justify-center mr-2 flex-shrink-0">
-                                <Bot className="w-3 h-3 text-indigo-400" />
-                              </div>
-                              <div className="bg-indigo-500/10 rounded-lg rounded-tl-none p-2 max-w-[80%] text-xs">
-                                <p>✅ Meeting prenotato per domani 15/06 alle 14:00. Ho inviato l'invito ai partecipanti.</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                    <div className="inline-block px-3 py-1 rounded-full bg-gray-800 border border-gray-600 text-xs font-medium text-gray-300 mb-6">
+                      CRM Intelligente
+                    </div>
+                  </div>
+                  
+                  <p className="text-white text-base leading-relaxed mb-12 max-w-3xl mx-auto">
+                    Sistema CRM di nuova generazione che sfrutta algoritmi di machine learning avanzati per rivoluzionare 
+                    il processo di vendita. Qualifica automaticamente i lead con precisione chirurgica, prevede le conversioni 
+                    con accuratezza del 92% e ottimizza l'intera pipeline commerciale. Integra fonti dati multiple e fornisce 
+                    insights predittivi che aumentano le conversioni del 45%.
+                  </p>
+                  
+                  <div className="flex justify-center mb-8">
+                    <div className="w-full max-w-md">
+                      <img 
+                        src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop&crop=center" 
+                        alt="AI CRM Dashboard Analytics"
+                        className="w-full h-64 object-cover rounded-xl border border-gray-600"
+                      />
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Excel Lead Generator */}
-              <div className="w-full flex-shrink-0">
-                <div className="border border-white/10 rounded-2xl overflow-hidden bg-white/5">
-                  <div className="grid md:grid-cols-2 h-full">
-                    <div className="p-8 flex flex-col h-full">
-                      <div className="mb-2 flex items-center gap-2">
-                        <div className="inline-block px-3 py-1 rounded-full bg-emerald-500/20 text-xs font-medium text-emerald-400 mb-1">
-                          Data Automation
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-center mb-5">
-                        <div className="mr-3 relative">
-                          <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center text-white">
-                            <Table className="w-6 h-6" />
-                          </div>
-                          <div className="absolute -right-1 -bottom-1 w-6 h-6 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center text-white text-xs">
-                            AI
-                          </div>
-                        </div>
-                        <h3 className="text-2xl font-semibold">Excel Lead Generator</h3>
-                      </div>
-                      
-                      <p className="text-base text-foreground/80 mb-6 flex-grow">
-                        Trasforma i fogli Excel in potenti strumenti di generazione lead con arricchimento automatico dei dati tramite AI. 
-                        Converte dati grezzi in contatti qualificati pronti per le vendite.
-                      </p>
-                      
-                      <div className="grid grid-cols-2 gap-4 mb-6">
-                        <div className="bg-gradient-to-br from-emerald-500/10 to-emerald-500/5 rounded-xl p-4 border border-emerald-500/20">
-                          <h4 className="font-semibold text-sm flex items-center mb-2">
-                            <Database className="w-4 h-4 text-emerald-400 mr-2" />
-                            Arricchimento dati
-                          </h4>
-                          <p className="text-sm text-foreground/70">
-                            Completa automaticamente informazioni mancanti da fonti pubbliche e private.
-                          </p>
-                        </div>
-                        
-                        <div className="bg-gradient-to-br from-emerald-500/10 to-emerald-500/5 rounded-xl p-4 border border-emerald-500/20">
-                          <h4 className="font-semibold text-sm flex items-center mb-2">
-                            <BarChart className="w-4 h-4 text-emerald-400 mr-2" />
-                            Scoring lead automatico
-                          </h4>
-                          <p className="text-sm text-foreground/70">
-                            Valuta e classifica i contatti in base alla probabilità di conversione.
-                          </p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex justify-between items-center">
-                        <div className="flex items-center">
-                          <span className="text-sm text-foreground/70 mr-3">A partire da:</span>
-                          <span className="font-semibold text-xl">€149<span className="text-foreground/60 text-sm font-normal">/mese</span></span>
-                        </div>
-                        
-                        <Link 
-                          to="/contact"
-                          className="px-5 py-2.5 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-lg flex items-center transition-all hover:shadow-lg text-sm font-medium"
-                        >
-                          Scopri di più <ArrowRight className="ml-1.5 w-4 h-4" />
-                        </Link>
-                      </div>
-                    </div>
-                    
-                    {/* Demo area */}
-                    <div className="bg-gradient-to-br from-emerald-500/10 via-green-600/10 to-green-700/20 relative overflow-hidden h-full min-h-[380px] flex items-center justify-center">
-                      <div className="w-10/12 max-w-[320px] mx-auto pointer-events-none select-none">
-                        <div className="border border-white/20 rounded-xl overflow-hidden bg-background/70 backdrop-blur-md">
-                          <div className="bg-emerald-700/90 py-2 px-3 text-white flex items-center justify-between">
-                            <div className="flex items-center">
-                              <Table className="w-4 h-4 mr-2" />
-                              <span className="text-sm font-medium">Lead Generator</span>
-                            </div>
-                          </div>
-                          
-                          <div className="p-1 bg-white/5">
-                            <div className="grid grid-cols-4 text-[10px] font-medium border-b border-white/20 py-1 px-1 bg-emerald-900/30">
-                              <div className="px-1">Azienda</div>
-                              <div className="px-1">Contatto</div>
-                              <div className="px-1">Email</div>
-                              <div className="px-1">Score</div>
-                            </div>
-                            
-                            {[
-                              { company: "TechSolutions", contact: "Mario Rossi", email: "mario@tech...", score: "87%" },
-                              { company: "Digital First", contact: "Laura Bianchi", email: "l.bianchi@...", score: "92%" },
-                              { company: "Innovate SRL", contact: "Andrea Verdi", email: "andrea@in...", score: "78%" },
-                              { company: "Studio Mori", contact: "Giulia Mori", email: "g.mori@st...", score: "65%" },
-                              { company: "EcoSmart", contact: "Luca Ferrari", email: "l.ferrari@...", score: "89%" }
-                            ].map((row, idx) => (
-                              <div key={idx} className={`grid grid-cols-4 text-[10px] py-1 px-1 ${idx % 2 === 0 ? 'bg-white/5' : 'bg-transparent'}`}>
-                                <div className="px-1 truncate">{row.company}</div>
-                                <div className="px-1 truncate">{row.contact}</div>
-                                <div className="px-1 truncate">{row.email}</div>
-                                <div className={`px-1 font-medium ${
-                                  parseInt(row.score) > 85 ? 'text-emerald-400' : 
-                                  parseInt(row.score) > 70 ? 'text-yellow-400' : 
-                                  'text-red-400'
-                                }`}>{row.score}</div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* AI CRM */}
-              <div className="w-full flex-shrink-0">
-                <div className="border border-white/10 rounded-2xl overflow-hidden bg-white/5">
-                  <div className="grid md:grid-cols-2 h-full">
-                    <div className="p-8 flex flex-col h-full">
-                      <div className="mb-2 flex items-center gap-2">
-                        <div className="inline-block px-3 py-1 rounded-full bg-blue-500/20 text-xs font-medium text-blue-400 mb-1">
-                          CRM Intelligente
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-center mb-5">
-                        <div className="mr-3 relative">
-                          <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-sky-600 flex items-center justify-center text-white">
-                            <Users className="w-6 h-6" />
-                          </div>
-                          <div className="absolute -right-1 -bottom-1 w-6 h-6 rounded-full bg-gradient-to-br from-sky-500 to-blue-600 flex items-center justify-center text-white text-xs">
-                            AI
-                          </div>
-                        </div>
-                        <h3 className="text-2xl font-semibold">AI CRM</h3>
-                      </div>
-                      
-                      <p className="text-base text-foreground/80 mb-6 flex-grow">
-                        Sistema CRM potenziato da intelligenza artificiale che prevede le esigenze dei clienti, 
-                        automatizza il follow-up e massimizza le conversioni con suggerimenti personalizzati.
-                      </p>
-                      
-                      <div className="grid grid-cols-2 gap-4 mb-6">
-                        <div className="bg-gradient-to-br from-blue-500/10 to-blue-500/5 rounded-xl p-4 border border-blue-500/20">
-                          <h4 className="font-semibold text-sm flex items-center mb-2">
-                            <BrainCircuit className="w-4 h-4 text-blue-400 mr-2" />
-                            Previsione comportamento
-                          </h4>
-                          <p className="text-sm text-foreground/70">
-                            Anticipa le esigenze dei clienti con analisi predittiva avanzata.
-                          </p>
-                        </div>
-                        
-                        <div className="bg-gradient-to-br from-blue-500/10 to-blue-500/5 rounded-xl p-4 border border-blue-500/20">
-                          <h4 className="font-semibold text-sm flex items-center mb-2">
-                            <MessageSquare className="w-4 h-4 text-blue-400 mr-2" />
-                            Automazione follow-up
-                          </h4>
-                          <p className="text-sm text-foreground/70">
-                            Gestisce autonomamente i follow-up con frequenza e tono ottimali.
-                          </p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex justify-between items-center">
-                        <div className="flex items-center">
-                          <span className="text-sm text-foreground/70 mr-3">A partire da:</span>
-                          <span className="font-semibold text-xl">€199<span className="text-foreground/60 text-sm font-normal">/mese</span></span>
-                        </div>
-                        
-                        <Link 
-                          to="/contact"
-                          className="px-5 py-2.5 bg-gradient-to-r from-blue-500 to-sky-600 text-white rounded-lg flex items-center transition-all hover:shadow-lg text-sm font-medium"
-                        >
-                          Scopri di più <ArrowRight className="ml-1.5 w-4 h-4" />
-                        </Link>
-                      </div>
-                    </div>
-                    
-                    {/* Demo area */}
-                    <div className="bg-gradient-to-br from-blue-500/10 via-blue-600/10 to-sky-700/20 relative overflow-hidden h-full min-h-[380px] flex items-center justify-center">
-                      <div className="w-10/12 max-w-[320px] mx-auto pointer-events-none select-none">
-                        <div className="border border-white/20 rounded-xl overflow-hidden bg-background/70 backdrop-blur-md">
-                          <div className="bg-gradient-to-r from-blue-700/90 to-sky-600/90 py-2 px-3 text-white flex items-center justify-between">
-                            <div className="flex items-center">
-                              <Users className="w-4 h-4 mr-2" />
-                              <span className="text-sm font-medium">AI CRM</span>
-                            </div>
-                          </div>
-                          
-                          <div className="p-3 space-y-3">
-                            <div className="grid grid-cols-3 gap-2 mb-3">
-                              <div className="bg-white/5 rounded p-1.5 text-center">
-                                <div className="text-[10px] text-foreground/60">Lead</div>
-                                <div className="text-sm font-semibold text-blue-400">48</div>
-                                <div className="text-[8px] text-emerald-400">+12%</div>
-                              </div>
-                              <div className="bg-white/5 rounded p-1.5 text-center">
-                                <div className="text-[10px] text-foreground/60">Conversioni</div>
-                                <div className="text-sm font-semibold text-blue-400">24</div>
-                                <div className="text-[8px] text-emerald-400">+8%</div>
-                              </div>
-                              <div className="bg-white/5 rounded p-1.5 text-center">
-                                <div className="text-[10px] text-foreground/60">Ricavi</div>
-                                <div className="text-sm font-semibold text-blue-400">€9.2k</div>
-                                <div className="text-[8px] text-emerald-400">+15%</div>
-                              </div>
-                            </div>
-                            
-                            <div>
-                              <div className="flex items-center mb-1">
-                                <BrainCircuit className="w-3 h-3 text-blue-400 mr-1" />
-                                <div className="text-[10px] font-medium">Insights AI</div>
-                              </div>
-                              <div className="bg-white/5 rounded p-2 border border-blue-500/20">
-                                <p className="text-[10px] text-foreground/80 mb-1">
-                                  <span className="font-medium">Opportunità di upsell:</span> 12 clienti hanno mostrato interesse per il pacchetto Premium.
-                                </p>
-                              </div>
-                            </div>
-                            
-                            <div>
-                              <div className="flex items-center mb-1">
-                                <Users className="w-3 h-3 text-blue-400 mr-1" />
-                                <div className="text-[10px] font-medium">Clienti con priorità</div>
-                              </div>
-                              <div className="space-y-1.5">
-                                {[
-                                  {name: "Marco Rossi", company: "TechVision", score: 94},
-                                  {name: "Laura Bianchi", company: "Digital First", score: 86}
-                                ].map((customer, idx) => (
-                                  <div key={idx} className="bg-white/5 p-1.5 rounded flex justify-between items-center">
-                                    <div className="flex items-center">
-                                      <div className="w-5 h-5 rounded-full bg-blue-500/80 flex items-center justify-center text-white text-[8px] mr-1.5">
-                                        {customer.name.charAt(0)}
-                                      </div>
-                                      <div>
-                                        <div className="text-[10px] font-medium">{customer.name}</div>
-                                        <div className="text-[8px] text-foreground/60">{customer.company}</div>
-                                      </div>
-                                    </div>
-                                    <div className="text-right">
-                                      <div className="text-[8px] text-foreground/60">Score: {customer.score}</div>
-                                    </div>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* BioMed AI */}
-              <div className="w-full flex-shrink-0">
-                <div className="border border-white/10 rounded-2xl overflow-hidden bg-white/5">
-                  <div className="grid md:grid-cols-2 h-full">
-                    <div className="p-8 flex flex-col h-full">
-                      <div className="mb-2 flex items-center gap-2">
-                        <div className="inline-block px-3 py-1 rounded-full bg-red-500/20 text-xs font-medium text-red-400 mb-1">
-                          AI Medicale
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-center mb-5">
-                        <div className="mr-3 relative">
-                          <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-red-500 to-pink-600 flex items-center justify-center text-white">
-                            <Stethoscope className="w-6 h-6" />
-                          </div>
-                          <div className="absolute -right-1 -bottom-1 w-6 h-6 rounded-full bg-gradient-to-br from-pink-500 to-red-600 flex items-center justify-center text-white text-xs">
-                            AI
-                          </div>
-                        </div>
-                        <h3 className="text-2xl font-semibold">BioMed AI</h3>
-                      </div>
-                      
-                      <p className="text-base text-foreground/80 mb-6 flex-grow">
-                        Piattaforma AI specializzata per applicazioni biomediche e sanitarie. Analizza dati clinici, 
-                        supporta diagnosi e ottimizza processi sanitari con algoritmi di machine learning avanzati.
-                      </p>
-                      
-                      <div className="grid grid-cols-2 gap-4 mb-6">
-                        <div className="bg-gradient-to-br from-red-500/10 to-red-500/5 rounded-xl p-4 border border-red-500/20">
-                          <h4 className="font-semibold text-sm flex items-center mb-2">
-                            <BarChart3 className="w-4 h-4 text-red-400 mr-2" />
-                            Analisi dati clinici
-                          </h4>
-                          <p className="text-sm text-foreground/70">
-                            Elabora e analizza grandi volumi di dati medici per insights predittivi.
-                          </p>
-                        </div>
-                        
-                        <div className="bg-gradient-to-br from-red-500/10 to-red-500/5 rounded-xl p-4 border border-red-500/20">
-                          <h4 className="font-semibold text-sm flex items-center mb-2">
-                            <Shield className="w-4 h-4 text-red-400 mr-2" />
-                            Conformità GDPR
-                          </h4>
-                          <p className="text-sm text-foreground/70">
-                            Rispetta tutti gli standard sanitari e normative sulla privacy dei dati.
-                          </p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex justify-between items-center">
-                        <div className="flex items-center">
-                          <span className="text-sm text-foreground/70 mr-3">A partire da:</span>
-                          <span className="font-semibold text-xl">€299<span className="text-foreground/60 text-sm font-normal">/mese</span></span>
-                        </div>
-                        
-                        <Link 
-                          to="/contact"
-                          className="px-5 py-2.5 bg-gradient-to-r from-red-500 to-pink-600 text-white rounded-lg flex items-center transition-all hover:shadow-lg text-sm font-medium"
-                        >
-                          Scopri di più <ArrowRight className="ml-1.5 w-4 h-4" />
-                        </Link>
-                      </div>
-                    </div>
-                    
-                    {/* Demo area */}
-                    <div className="bg-gradient-to-br from-red-500/10 via-red-600/10 to-pink-700/20 relative overflow-hidden h-full min-h-[380px] flex items-center justify-center">
-                      <div className="w-10/12 max-w-[320px] mx-auto pointer-events-none select-none">
-                        <div className="border border-white/20 rounded-xl overflow-hidden bg-background/70 backdrop-blur-md">
-                          <div className="bg-gradient-to-r from-red-700/90 to-pink-600/90 py-2 px-3 text-white flex items-center justify-between">
-                            <div className="flex items-center">
-                              <Stethoscope className="w-4 h-4 mr-2" />
-                              <span className="text-sm font-medium">BioMed AI</span>
-                            </div>
-                          </div>
-                          
-                          <div className="p-3 space-y-3">
-                            <div className="grid grid-cols-2 gap-2 mb-3">
-                              <div className="bg-white/5 rounded p-1.5 text-center">
-                                <div className="text-[10px] text-foreground/60">Analisi</div>
-                                <div className="text-sm font-semibold text-red-400">1,247</div>
-                                <div className="text-[8px] text-emerald-400">Oggi</div>
-                              </div>
-                              <div className="bg-white/5 rounded p-1.5 text-center">
-                                <div className="text-[10px] text-foreground/60">Accuratezza</div>
-                                <div className="text-sm font-semibold text-red-400">96.8%</div>
-                                <div className="text-[8px] text-emerald-400">+0.3%</div>
-                              </div>
-                            </div>
-                            
-                            <div>
-                              <div className="flex items-center mb-1">
-                                <Heart className="w-3 h-3 text-red-400 mr-1" />
-                                <div className="text-[10px] font-medium">Diagnosi AI</div>
-                              </div>
-                              <div className="bg-white/5 rounded p-2 border border-red-500/20">
-                                <p className="text-[10px] text-foreground/80 mb-1">
-                                  <span className="font-medium">Rilevate anomalie:</span> 3 casi richiedono attenzione medica immediata.
-                                </p>
-                              </div>
-                            </div>
-                            
-                            <div>
-                              <div className="flex items-center mb-1">
-                                <Shield className="w-3 h-3 text-red-400 mr-1" />
-                                <div className="text-[10px] font-medium">Sicurezza Dati</div>
-                              </div>
-                              <div className="space-y-1">
-                                <div className="bg-white/5 p-1.5 rounded flex justify-between items-center">
-                                  <div className="text-[10px]">Crittografia</div>
-                                  <div className="text-[8px] text-emerald-400">AES-256</div>
-                                </div>
-                                <div className="bg-white/5 p-1.5 rounded flex justify-between items-center">
-                                  <div className="text-[10px]">Conformità</div>
-                                  <div className="text-[8px] text-emerald-400">GDPR ✓</div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+              <div className="absolute bottom-6 right-6">
+                <div className="bg-gray-800/80 border border-gray-600 rounded-xl p-4 backdrop-blur-sm">
+                  <div className="text-right">
+                    <div className="text-xs text-gray-400 mb-1">Prezzo mensile</div>
+                    <div className="text-xl font-bold text-white">€297<span className="text-sm font-normal text-gray-400">/mese</span></div>
+                    <Link 
+                      to="/ai-agents" 
+                      className="inline-block mt-3 px-4 py-2 bg-transparent border border-gray-600 text-white text-sm rounded-lg hover:bg-gray-700/30 transition-all"
+                    >
+                      Scopri di più
+                    </Link>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
 
-          {/* Navigation dots interattivi */}
-          <div className="flex justify-center mt-8 gap-3">
-            {[0, 1, 2, 3].map((index) => (
-              <button
-                key={index}
-                onClick={() => setActiveProduct(index)}
-                className={`transition-all duration-300 rounded-full ${
-                  index === activeProduct 
-                    ? 'w-8 h-3 bg-accent' 
-                    : 'w-3 h-3 bg-white/20 hover:bg-white/40'
-                }`}
-                aria-label={`Vai al prodotto ${index + 1}`}
-              />
-            ))}
-          </div>
-        </section>
+          {/* Excel Lead Generator */}
+          {activeProduct === 2 && (
+            <div className="bg-transparent backdrop-blur-sm border border-gray-600 rounded-2xl overflow-hidden transition-all duration-500 min-h-[500px] relative">
+              
+              <div className="p-8 text-center">
+                <div className="max-w-4xl mx-auto">
+                  
+                  <div className="mb-8">
+                    <div className="inline-flex items-center gap-3 mb-4">
+                      <div className="w-12 h-12 rounded-xl bg-gray-700 border border-gray-600 flex items-center justify-center">
+                        <Table className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-white">Excel Lead Generator</h3>
+                    </div>
+                    <div className="inline-block px-3 py-1 rounded-full bg-gray-800 border border-gray-600 text-xs font-medium text-gray-300 mb-6">
+                      Lead Generation
+                    </div>
+                  </div>
+                  
+                  <p className="text-white text-base leading-relaxed mb-12 max-w-3xl mx-auto">
+                    Trasforma i tuoi semplici fogli Excel in potenti motori di lead generation attraverso algoritmi di machine learning. 
+                    Arricchisce automaticamente i dati dei contatti con informazioni dettagliate, calcola punteggi di qualificazione 
+                    intelligenti e integra tutto nel tuo CRM. Processa oltre 10.000 contatti all'ora con accuratezza dell'85%, 
+                    migliorando la qualità dei lead del 70%.
+                  </p>
+                  
+                  <div className="flex justify-center mb-8">
+                    <div className="w-full max-w-md">
+                      <img 
+                        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop&crop=center" 
+                        alt="Excel Lead Processing Interface"
+                        className="w-full h-64 object-cover rounded-xl border border-gray-600"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="absolute bottom-6 right-6">
+                <div className="bg-gray-800/80 border border-gray-600 rounded-xl p-4 backdrop-blur-sm">
+                  <div className="text-right">
+                    <div className="text-xs text-gray-400 mb-1">Prezzo mensile</div>
+                    <div className="text-xl font-bold text-white">€147<span className="text-sm font-normal text-gray-400">/mese</span></div>
+                    <Link 
+                      to="/products" 
+                      className="inline-block mt-3 px-4 py-2 bg-transparent border border-gray-600 text-white text-sm rounded-lg hover:bg-gray-700/30 transition-all"
+                    >
+                      Scopri di più
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Healthcare Assistant */}
+          {activeProduct === 3 && (
+            <div className="bg-transparent backdrop-blur-sm border border-gray-600 rounded-2xl overflow-hidden transition-all duration-500 min-h-[500px] relative">
+              
+              <div className="p-8 text-center">
+                <div className="max-w-4xl mx-auto">
+                  
+                  <div className="mb-8">
+                    <div className="inline-flex items-center gap-3 mb-4">
+                      <div className="w-12 h-12 rounded-xl bg-gray-700 border border-gray-600 flex items-center justify-center">
+                        <Heart className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-white">Healthcare Assistant</h3>
+                    </div>
+                    <div className="inline-block px-3 py-1 rounded-full bg-gray-800 border border-gray-600 text-xs font-medium text-gray-300 mb-6">
+                      Healthcare AI
+                    </div>
+                  </div>
+                  
+                  <p className="text-white text-base leading-relaxed mb-12 max-w-3xl mx-auto">
+                    Assistente AI specializzato per il settore sanitario, progettato con rigorosa compliance GDPR. 
+                    Digitalizza completamente la gestione pazienti: gestisce appuntamenti con algoritmi di ottimizzazione, 
+                    invia promemoria personalizzati per terapie e fornisce supporto h24. Migliora l'aderenza terapeutica 
+                    del 65% e riduce significativamente i costi operativi delle strutture sanitarie.
+                  </p>
+                  
+                  <div className="flex justify-center mb-8">
+                    <div className="w-full max-w-md">
+                      <img 
+                        src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=250&fit=crop&crop=center" 
+                        alt="Healthcare Patient Management System"
+                        className="w-full h-64 object-cover rounded-xl border border-gray-600"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="absolute bottom-6 right-6">
+                <div className="bg-gray-800/80 border border-gray-600 rounded-xl p-4 backdrop-blur-sm">
+                  <div className="text-right">
+                    <div className="text-xs text-gray-400 mb-1">Prezzo mensile</div>
+                    <div className="text-xl font-bold text-white">€347<span className="text-sm font-normal text-gray-400">/mese</span></div>
+                    <Link 
+                      to="/ai-agents" 
+                      className="inline-block mt-3 px-4 py-2 bg-transparent border border-gray-600 text-white text-sm rounded-lg hover:bg-gray-700/30 transition-all"
+                    >
+                      Scopri di più
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+        </div>
+      </div>
+      
+    </div>
+  </ScrollAnimation>
+
+</section>
 
         
         {/* FAQ Section */}

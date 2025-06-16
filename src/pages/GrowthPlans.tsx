@@ -299,8 +299,10 @@ const GrowthPlans = () => {
         <section className="py-16 md:py-24 relative">
           <div className="container mx-auto px-4 md:px-6 lg:px-12 relative z-10">
             
+            
             {/* Griglia piani */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16">
+              
               {growthPlans.map((plan, index) => (
                 <ScrollAnimation 
                   key={index} 
@@ -329,7 +331,8 @@ const GrowthPlans = () => {
                         <p className="text-foreground/70 mb-4">{plan.description}</p>
                         <div className="text-3xl font-bold text-accent">{plan.price}</div>
                       </div>
-                      
+                       <div className="absolute top-4 right-4 w-64 h-64 rounded-full bg-green-800/10 filter blur-3xl"></div>
+                        <div className="absolute bottom-4 left-4 w-64 h-64 rounded-full bg-green-800/10 filter blur-3xl"></div>
                       {/* Lista features */}
                       <div className="flex-grow">
                         <h4 className="font-semibold mb-4 text-foreground/90">Include:</h4>
@@ -490,6 +493,8 @@ const GrowthPlans = () => {
     <ScrollAnimation animation="fadeIn">
       <div className="glass p-8 lg:p-12 rounded-2xl border border-white/10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+           <div className="absolute top-4 right-4 w-64 h-64 rounded-full bg-green-400/20 filter blur-3xl"></div>
+                   <div className="absolute bottom-4 left-4 w-64 h-64 rounded-full bg-violet-400/10 filter blur-3xl"></div>
           
           {/* Contenuto a sinistra */}
           <div className="text-left">

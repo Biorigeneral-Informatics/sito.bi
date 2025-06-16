@@ -28,6 +28,7 @@ import {
 import ScrollAnimation from '../components/ScrollAnimation';
 import ScrollGradient from '../components/ScrollGradient';
 
+
 const Community = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -84,206 +85,51 @@ const Community = () => {
         className="opacity-70" 
       />
 
-      {/* Hero section with interactive background e onda in basso */}
-      <section 
-        ref={heroRef} 
-        className="relative min-h-screen pt-32 pb-24 flex items-center overflow-hidden"
-      >
-        {/* Enhanced Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          {/* Grid pattern with mouse interaction */}
-          <div className="absolute inset-0" style={{ opacity: 0.1 }}>
-            <div className="absolute h-full w-full grid grid-cols-12 gap-4 z-0">
-              {[...Array(12)].map((_, i) => (
-                <div key={`grid-col-${i}`} className="h-full border-r border-indigo-500/20"></div>
-              ))}
-            </div>
-            <div className="absolute h-full w-full grid grid-rows-12 gap-4 z-0">
-              {[...Array(12)].map((_, i) => (
-                <div key={`grid-row-${i}`} className="w-full border-b border-indigo-500/20"></div>
-              ))}
-            </div>
-          </div>
-          
-          {/* Animated horizontal lines with mouse interaction */}
-          {[...Array(12)].map((_, i) => (
-            <div 
-              key={`h-line-${i}`}
-              className="absolute h-[1px] bg-indigo-500/20"
-              style={{
-                top: `${8 + i * 8}%`,
-                left: '0',
-                right: '0',
-                transform: `translateX(${(mousePosition.x - 0.5) * -5}px)`,
-                opacity: 0.1 + (i % 3) * 0.15
-              }}
-            />
-          ))}
-          
-          {/* Animated vertical lines with mouse interaction */}
-          {[...Array(24)].map((_, i) => (
-            <div 
-              key={`v-line-${i}`}
-              className="absolute w-[1px] bg-indigo-500/20"
-              style={{
-                left: `${4 + i * 4}%`,
-                top: '0',
-                bottom: '0',
-                transform: `translateY(${(mousePosition.y - 0.5) * -5}px)`,
-                opacity: 0.1 + (i % 3) * 0.15
-              }}
-            />
-          ))}
-          
-          {/* Floating particles with continuous slow movement */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {particlesData.map((particle, i) => (
-              <div 
-                key={`particle-${i}`}
-                className="absolute rounded-full bg-indigo-400/30 floating-particle"
-                style={{
-                  width: `${particle.width}px`,
-                  height: `${particle.height}px`,
-                  top: `${particle.top}%`,
-                  left: `${particle.left}%`,
-                  opacity: particle.opacity,
-                  animationDuration: `${particle.duration}s`, 
-                  animationDelay: `${particle.delay}s`
-                }}
-              />
-            ))}
-          </div>
-          
-          {/* Subtle gradient orbs - following mouse movement */}
-          <div 
-            className="absolute w-[600px] h-[600px] rounded-full bg-indigo-500/10 blur-[120px] opacity-60"
-            style={{
-              left: `calc(${mousePosition.x * 100}% - 300px)`,
-              top: `calc(${mousePosition.y * 100}% - 300px)`,
-              transition: 'left 1.5s ease-out, top 1.5s ease-out',
-              opacity: bgOpacity.get()
-            }}
-          />
-          
-          <div 
-            className="absolute w-[400px] h-[400px] rounded-full bg-violet-600/5 blur-[80px] opacity-50"
-            style={{
-              right: `calc(${(1-mousePosition.x) * 100}% - 200px)`,
-              bottom: `calc(${(1-mousePosition.y) * 100}% - 200px)`,
-              transition: 'right 1.5s ease-out, bottom 1.5s ease-out'
-            }}
-          />
-          
-          {/* Decorative shapes with slow animations */}
-          <div className="absolute top-[20%] left-[15%] w-16 h-16 border-2 border-indigo-500/20 rounded-lg transform rotate-12 animate-pulse-slow"></div>
-          <div className="absolute bottom-[25%] right-[10%] w-24 h-24 border border-violet-500/15 rounded-full transform rotate-45 animate-pulse-slow" style={{ animationDuration: '15s' }}></div>
-          
-          {/* Nuova onda in basso - completamente nera */}
-          <div className="absolute bottom-0 left-0 right-0 h-24 overflow-hidden">
-            <svg 
-              viewBox="0 0 1200 120" 
-              preserveAspectRatio="none" 
-              className="absolute bottom-0 w-full h-full"
-            >
-              <path 
-                d="M0,0 C150,90 350,0 500,50 C650,100 750,20 900,40 C1050,60 1150,100 1200,80 L1200,120 L0,120 Z" 
-                className="fill-background"
-              ></path>
-              <path 
-                d="M0,40 C150,70 300,10 450,30 C600,50 750,100 900,70 C1050,40 1150,80 1200,60 L1200,120 L0,120 Z" 
-                className="fill-background"
-                style={{ opacity: 0.5 }}
-              ></path>
-            </svg>
-          </div>
-        </div>
-
-        <div className="container mx-auto px-6 lg:px-12 z-10">
-          <div className="flex justify-center items-center">
-            {/* Left column - Hero text */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-center max-w-5xl mx-auto"
-            >
-              <div className="inline-block mb-6 px-4 py-1 rounded-full border border-indigo-300/30 bg-indigo-500/5">
-                <span className="text-indigo-400 text-sm font-medium">
-                  Supporto • Networking • Vantaggi Esclusivi
-                </span>
-              </div>
-              
-              <motion.h1 
+      {/* Hero Section - Stile Home con effetto typing */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-16">
+        <div className="container mx-auto px-4 md:px-6 lg:px-12 z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 md:mb-8 leading-tight">
+              <span className="block text-primary font-semibold">Stiamo aprendo la nostra</span>
+              <motion.span 
+                className="block font-semibold text-accent"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
-                className="text-4xl md:text-6xl font-bold mb-8 leading-tight text-white"
+                transition={{ duration: 0.5, delay: 0.5 }}
               >
+                {/* Effetto typing */}
                 <motion.span
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="block"
+                  initial={{ width: 0 }}
+                  animate={{ width: "auto" }}
+                  transition={{ 
+                    duration: 2.5, 
+                    delay: 1,
+                    ease: "easeOut"
+                  }}
+                  className="inline-block overflow-hidden whitespace-nowrap"
                 >
-                  Stiamo aprendo la nostra <span className="text-gradient bg-gradient-to-r from-indigo-400 to-violet-400">Community</span>
+                  Community.  
                 </motion.span>
-                <motion.span
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                  className="block mt-4 text-2xl md:text-3xl font-normal text-foreground/80"
-                >
-                  Supportaci e noi ti supporteremo con vantaggi esclusivi davvero unici. 
-                </motion.span>
-              </motion.h1>
-              
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: 200 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                className="h-1 bg-gradient-to-r from-indigo-500 to-violet-500 mb-8 mx-auto"
-              />
-              
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.7 }}
-                className="text-lg md:text-xl text-foreground/80 max-w-4xl mx-auto mb-12 leading-relaxed"
+              </motion.span>
+            </h1>
+            
+            <p className="text-base md:text-lg text-secondary mb-8 md:mb-10 leading-relaxed max-w-2xl mx-auto font-normal">
+              Supportaci e noi ti supporteremo con vantaggi esclusivi davvero unici. 
+              Diventa un membro onorario della nostra community.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center">
+              <a 
+                href="https://www.patreon.com/c/BiorigeneralInformatics" 
+                className="glass px-6 py-3 rounded-xl font-semibold text-sm text-accent bg-accent/30 border-accent/40 hover:bg-accent/40 hover:border-accent/60 hover:-translate-y-1 transition-all duration-300 inline-flex items-center group"
               >
-                Diventa un membro onorario della nostra community. 
-                Condividi conoscenze, scopri nuove tecnologie e fai crescere il tuo business con il supporto diretto di Federico e dei suoi collaboratori.
-              </motion.p>
+                Scopri Patreon
+                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </a>
               
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.8 }}
-                className="flex flex-col sm:flex-row flex-wrap gap-5 justify-center items-center"
-              >
-                <a
-                  href="https://www.patreon.com/c/BiorigeneralInformatics"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-violet-600 text-white text-lg font-medium rounded-lg shadow-lg hover:shadow-indigo-500/20 transition-all duration-300 hover:-translate-y-1 flex items-center group"
-                >
-                  <span>Unisciti su Patreon</span>
-                  <div className="relative ml-2 w-6 h-6 rounded-full bg-white/20 flex items-center justify-center overflow-hidden group-hover:bg-white/30 transition-colors">
-                    <ArrowRight className="w-4 h-4 text-white relative z-10 transition-transform group-hover:translate-x-5 duration-300" />
-                    <ArrowRight className="w-4 h-4 text-white absolute -left-5 transition-transform group-hover:translate-x-5 duration-300" />
-                  </div>
-                </a>
-                
-                <a
-                  href="https://www.youtube.com/@federicozizi_ai/featured"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-8 py-4 border border-indigo-500/30 text-foreground hover:bg-indigo-500/10 rounded-lg transition-all hover:-translate-y-1 flex items-center"
-                >
-                  <Youtube className="w-5 h-5 mr-2" />
-                  Segui su YouTube
-                </a>
-              </motion.div>
-            </motion.div>
+            
+            </div>
             
           </div>
         </div>
@@ -306,11 +152,11 @@ const Community = () => {
                   </span>
                 </div>
                 
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
-                  Iscriviti su YouTube
-                </h2>
+                <h1 className="text-2xl sm:text-2xl md:text-4xl lg:text-4xl mb-6 md:mb-8 leading-tight">
+              <span className="block text-primary font-semibold">Iscriviti su YouTube</span>
+              </h1>
                 
-                <p className="text-lg text-foreground/80 mb-8">
+                <p className="text-lg text-foreground/80 text-gray-300 mb-8">
                   Siamo i primi content creator, imprenditori e sviluppatori Italiani a portare l'AI Agency 
                   Business Model. In questo canale Federico ti darà nozioni uniche, legate a strumenti professionali
                   utilizzati dai migliori imprenditori e sviluppatori del settore.
@@ -363,7 +209,7 @@ const Community = () => {
                     href="https://www.youtube.com/@federicozizi_ai/featured"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-6 py-3 bg-gradient-to-r from-red-500 to-orange-500 text-white font-medium rounded-xl shadow-md hover:shadow-red-500/20 transition-all duration-300 hover:-translate-y-1 flex items-center"
+                    className="px-6 py-3 border text-white hover:text-white font-medium rounded-xl shadow-md hover:shadow-red-500/20 transition-all duration-300 hover:-translate-y-1 flex items-center"
                   >
                     <Youtube className="w-5 h-5 mr-2" />
                     <span>Iscriviti al Canale</span>
@@ -374,7 +220,7 @@ const Community = () => {
                     href="https://www.youtube.com/@federicozizi_ai/featured"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-6 py-3 border border-red-500/30 text-foreground hover:bg-red-500/10 rounded-xl transition-all hover:-translate-y-1 flex items-center"
+                    className="px-6 py-3 border border-red-500/30 text-foreground hover:text-white hover:bg-red-500/10 rounded-xl transition-all hover:-translate-y-1 flex items-center"
                   >
                     <Bell className="w-5 h-5 mr-2" />
                     Attiva Notifiche
@@ -418,15 +264,15 @@ const Community = () => {
   
   <div className="container mx-auto px-6 lg:px-12 relative z-10">
     <ScrollAnimation animation="fadeIn" className="mb-16 text-center">
-      <div className="inline-block px-4 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 mb-4">
-        <span className="text-sm font-medium bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
+      <div className="inline-block px-4 py-1 rounded-full  border border-green-500/20 mb-4">
+        <span className="text-sm font-medium bg-gradient-to-r from-green-400 to-green-400 bg-clip-text text-transparent">
           Community Esclusiva
         </span>
       </div>
-      <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
-        Supportaci su Patreon
-      </h2>
-      <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl mb-6 md:mb-8 leading-tight">
+              <span className="block text-primary font-semibold">Supportaci su Patreon</span>
+              </h1>
+      <p className="text-xl text-foreground/80 text-gray-300 max-w-3xl mx-auto">
         Ottieni l'accesso esclusivo a contenuti premium, materiali avanzati e sblocca il nostro supporto ai tuoi progetti.
       </p>
     </ScrollAnimation>
@@ -435,7 +281,7 @@ const Community = () => {
     <div className="grid md:grid-cols-2 gap-8 items-start">
       {/* Primo riquadro - Descrizione */}
       <ScrollAnimation animation="slideRight" delay={0.2}>
-        <div className="bg-gradient-to-br from-background/80 to-orange-500/5 rounded-xl border border-orange-500/20 p-8 h-full">                
+        <div className="bg-gradient-to-br from-background/80 to-green-500/5 rounded-xl border border-green-500/20 p-8 h-full">                
           <h3 className="text-2xl font-bold mb-6 text-center">L'idea di Community</h3>
           <div className="space-y-6 text-foreground/80">
             <p>
@@ -459,13 +305,13 @@ const Community = () => {
 
       {/* Secondo riquadro - Benefici */}
       <ScrollAnimation animation="slideLeft" delay={0.4}>
-        <div className="bg-gradient-to-br from-background/60 to-orange-500/5 backdrop-blur-sm rounded-xl border border-orange-500/20 p-8 h-full">
+        <div className="bg-gradient-to-br from-background/60 to-green-500/5 backdrop-blur-sm rounded-xl border border-green-500/20 p-8 h-full">
           <h3 className="text-2xl font-bold mb-6 text-center">Perché Unirsi?</h3>
           
           <div className="grid grid-cols-1 gap-6">
             <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 rounded-full bg-orange-500/10 flex items-center justify-center flex-shrink-0">
-                <Download className="w-6 h-6 text-orange-400" />
+              <div className="w-12 h-12 rounded-full bg-gray-500/10 flex items-center justify-center flex-shrink-0">
+                <Download className="w-6 h-6 text-gray-400" />
               </div>
               <div>
                 <h4 className="font-semibold mb-2">Materiali Esclusivi</h4>
@@ -474,8 +320,8 @@ const Community = () => {
             </div>
             
             <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center flex-shrink-0">
-                <Eye className="w-6 h-6 text-red-400" />
+              <div className="w-12 h-12 rounded-full bg-gray-500/10 flex items-center justify-center flex-shrink-0">
+                <Eye className="w-6 h-6 text-gray-400" />
               </div>
               <div>
                 <h4 className="font-semibold mb-2">Early Access</h4>
@@ -484,8 +330,8 @@ const Community = () => {
             </div>
             
             <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 rounded-full bg-violet-500/10 flex items-center justify-center flex-shrink-0">
-                <MessageCircle className="w-6 h-6 text-violet-400" />
+              <div className="w-12 h-12 rounded-full bg-gray-500/10 flex items-center justify-center flex-shrink-0">
+                <MessageCircle className="w-6 h-6 text-gray-400" />
               </div>
               <div>
                 <h4 className="font-semibold mb-2">Supporto Diretto</h4>
@@ -494,8 +340,8 @@ const Community = () => {
             </div>
             
             <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 rounded-full bg-indigo-500/10 flex items-center justify-center flex-shrink-0">
-                <Trophy className="w-6 h-6 text-indigo-400" />
+              <div className="w-12 h-12 rounded-full bg-gray-500/10 flex items-center justify-center flex-shrink-0">
+                <Trophy className="w-6 h-6 text-gray-400" />
               </div>
               <div>
                 <h4 className="font-semibold mb-2">Networking</h4>
@@ -508,12 +354,12 @@ const Community = () => {
     </div>
     {/* CTA Section */}
 <ScrollAnimation animation="fadeIn" delay={0.6} className="mt-16">
-  <div className="bg-gradient-to-br from-background/60 to-orange-500/5 backdrop-blur-sm rounded-xl border border-orange-500/20 p-8 text-center">
+  <div className="bg-gradient-to-br from-background/60 to-green-500/5 backdrop-blur-sm rounded-xl border border-green-500/20 p-8 text-center">
     <h3 className="text-2xl font-bold mb-4">Diventa parte di tutto questo</h3>
     <p className="text-foreground/80 mb-6 max-w-2xl mx-auto">
       Tutto questo ti intriga? Cosa aspetti, unisciti a noi su Patreon e inizia a esplorare tutte le opportunità.
     </p>
-    <a href='https://www.patreon.com/c/BiorigeneralInformatics' className="px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white font-medium rounded-xl shadow-lg hover:shadow-orange-500/20 transition-all duration-300 hover:-translate-y-1">
+    <a href='https://www.patreon.com/c/BiorigeneralInformatics' className="px-8 py-4 border text-white font-medium rounded-xl shadow-lg hover:text-white hover:shadow-orange-500/20 transition-all duration-300 hover:-translate-y-1">
       Scopri Patreon
     </a>
   </div>
@@ -535,10 +381,10 @@ const Community = () => {
                 Hub della Community
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl font-bold mb-6 text-center">
               Discord Community
             </h2>
-            <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
+            <p className="text-xl text-foreground/80 text-gray-300 max-w-3xl mx-auto">
               Il cuore pulsante della nostra community. Connettiti con sviluppatori, imprenditori e innovatori da tutta Italia. 
               Condividi progetti, ricevi feedback e collabora su idee rivoluzionarie.
             </p>
@@ -722,7 +568,7 @@ const Community = () => {
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-400 via-violet-400 to-purple-400"></div>
             
             <div className="text-center">
-              <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
+              <h2 className="text-3xl font-bold mb-6 text-center">
                 Inizia il Tuo Percorso di Crescita
               </h2>
               <p className="text-lg text-foreground/80 mb-8 max-w-2xl mx-auto">
@@ -735,18 +581,18 @@ const Community = () => {
                   href="https://www.patreon.com/c/BiorigeneralInformatics"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-8 py-4 bg-gradient-to-r from-indigo-500 to-violet-500 text-white font-medium rounded-xl shadow-lg hover:shadow-indigo-500/20 transition-all duration-300 hover:-translate-y-1 flex items-center"
+                  className="px-8 py-4 bg-gradient-to-r from-indigo-500 to-black-500 hover:text-white text-white font-medium rounded-xl shadow-lg hover:shadow-indigo-500/20 transition-all duration-300 hover:-translate-y-1 flex items-center"
                 >
                   <Crown className="w-5 h-5 mr-2" />
                   <span>Unisciti su Patreon</span>
-                  <ArrowRight className="w-4 h-4 ml-2" />
+                 
                 </a>
                 
                 <a
                   href="https://www.youtube.com/@federicozizi_ai/featured"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-8 py-4 border border-indigo-500/30 text-foreground hover:bg-indigo-500/10 rounded-xl transition-all hover:-translate-y-1 flex items-center"
+                  className="px-8 py-4 border border-indigo-500/30 text-foreground hover:text-white hover:bg-indigo-500/10 rounded-xl transition-all hover:-translate-y-1 flex items-center"
                 >
                   <Youtube className="w-5 h-5 mr-2" />
                   Segui su YouTube

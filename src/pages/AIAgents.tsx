@@ -414,16 +414,8 @@ const AIAgents = () => {
                     <div className="text-sm font-semibold">Trello</div>
                   </div>
                   <div className="glass p-4 rounded-lg hover:shadow-lg transition-all border border-transparent hover:border-purple-500/20 text-center">
-                    <img src="https://cdn.worldvectorlogo.com/logos/monday-com.svg" alt="Monday.com" className="w-8 h-8 mx-auto mb-2 opacity-70 hover:opacity-100 transition-opacity" />
-                    <div className="text-sm font-semibold">Monday.com</div>
-                  </div>
-                  <div className="glass p-4 rounded-lg hover:shadow-lg transition-all border border-transparent hover:border-purple-500/20 text-center">
                     <img src="https://cdn.worldvectorlogo.com/logos/zapier.svg" alt="Zapier" className="w-8 h-8 mx-auto mb-2 opacity-70 hover:opacity-100 transition-opacity" />
                     <div className="text-sm font-semibold">Zapier</div>
-                  </div>
-                  <div className="glass p-4 rounded-lg hover:shadow-lg transition-all border border-transparent hover:border-purple-500/20 text-center">
-                    <img src="https://images.ctfassets.net/spoqsaf9291f/5lRS4JEkZa5ParRHb2dXDL/2ab00ebd9eb8c8624b0ceab30a3e8a6d/make-com-logo.svg" alt="Make.com" className="w-8 h-8 mx-auto mb-2 opacity-70 hover:opacity-100 transition-opacity" />
-                    <div className="text-sm font-semibold">Make.com</div>
                   </div>
                   <div className="glass p-4 rounded-lg hover:shadow-lg transition-all border border-transparent hover:border-purple-500/20 text-center">
                     <img src="https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png" alt="Google Drive" className="w-8 h-8 mx-auto mb-2 opacity-70 hover:opacity-100 transition-opacity" />

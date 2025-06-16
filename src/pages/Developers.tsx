@@ -158,6 +158,8 @@ const Developers = () => {
               {/* Alessandro Profile Card */}
               <ScrollAnimation animation="slideUp" delay={0.1}>
                 <div className="glass rounded-2xl border border-white/10 hover:border-accent/30 transition-all duration-500 group h-full">
+                  <div className="absolute top-4 right-4 w-64 h-64 rounded-full bg-green-800/10 filter blur-3xl"></div>
+                  <div className="absolute bottom-4 left-4 w-64 h-64 rounded-full bg-violet-800/10 filter blur-3xl"></div>
                   <div className="h-1 bg-accent"></div>
                   <div className="p-8">
                     <div className="text-center mb-6">
@@ -208,6 +210,8 @@ const Developers = () => {
               {/* Federico Profile Card */}
               <ScrollAnimation animation="slideUp" delay={0.2}>
                 <div className="glass rounded-2xl border border-white/10 hover:border-accent/30 transition-all duration-500 group h-full">
+                  <div className="absolute top-4 right-4 w-64 h-64 rounded-full bg-green-800/10 filter blur-3xl"></div>
+                   <div className="absolute bottom-4 left-4 w-64 h-64 rounded-full bg-violet-800/10 filter blur-3xl"></div>
                   <div className="h-1 bg-accent"></div>
                   <div className="p-8">
                     <div className="text-center mb-6">
@@ -475,6 +479,7 @@ const Developers = () => {
                 <ScrollAnimation key={index} animation="slideUp" delay={index * 0.1}>
                   <div className="glass p-6 md:p-8 rounded-2xl border border-white/10 hover:border-accent/30 transition-all duration-300 group h-full">
                     <div className="flex items-center mb-4">
+                      <div className="absolute top-4 right-4 w-64 h-64 rounded-full bg-green-800/10 filter blur-3xl"></div>
                       <div className="p-3 rounded-xl bg-accent/20 text-accent group-hover:bg-accent/30 transition-colors mr-4">
                         {area.icon}
                       </div>

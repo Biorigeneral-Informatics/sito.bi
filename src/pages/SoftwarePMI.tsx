@@ -174,6 +174,9 @@ const SoftwarePMI = () => {
         {/* Sezione Soluzioni Software Personalizzate */}
         <section className="py-16 md:py-10 relative overflow-hidden">
           <div className="container mx-auto px-4 md:px-6 lg:px-12 relative z-10">
+           <div className="absolute bottom-4 left-4 w-64 h-64 rounded-full bg-violet-800/10 filter blur-3xl"></div>
+            <div className="absolute bottom-4 right-4 w-64 h-64 rounded-full bg-violet-800/10 filter blur-3xl"></div>
+
            
               {/* Riquadro 1 - Software Personalizzati */}
               <ScrollAnimation animation="slideUp" delay={0.1} className="md:col-span-5 relative">
@@ -253,6 +256,7 @@ const SoftwarePMI = () => {
                   </div>
                   
                   <div>
+                    
                     <motion.div 
                       className="bg-background/60 p-6 rounded-xl border border-white/10 backdrop-blur-md shadow-lg shadow-black/10 hover:bg-green-500/5 transition-all mb-6"
                       whileHover={{ scale: 1.02 }}
@@ -262,12 +266,14 @@ const SoftwarePMI = () => {
                       viewport={{ once: true }}
                     >
                       <h3 className="flex items-center font-bold mb-3 text-white">
+                        
                         <Zap className="w-6 h-6 text-green-500 mr-2" />
                         L'alternativa concreta alle grandi agenzie
                       </h3>
                       <p className="text-foreground/70">
                         Grazie all'uso mirato dell'intelligenza artificiale, sviluppiamo software personalizzati in modo più rapido, efficiente e accessibile. Offriamo soluzioni di alta qualità, su misura per le tue esigenze reali.
                       </p>
+                      
                     </motion.div>
                     
                     <motion.div 

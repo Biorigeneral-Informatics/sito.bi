@@ -129,7 +129,8 @@ const Products = () => {
       
       {/* Container esterno - Wrapper applicazione */}
       <div className=" backdrop-blur-sm border border-gray-500 rounded-2xl overflow-hidden">
-        
+                <div className="absolute bottom-4 left-4 w-64 h-64 rounded-full bg-violet-500/10 filter blur-3xl"></div>
+
         
         {/* Header applicazione con 3 dot grigi */}
         <div className="flex items-center justify-between px-6 py-3  border-gray-700/50">
@@ -144,6 +145,7 @@ const Products = () => {
 
         {/* Container prodotto dinamico - ESISTENTE non modificato */}
         <div className="relative max-w-6xl mr-6 ml-6 mb-8">
+          
           
           {/* SegretarioAI Telegram */}
           {activeProduct === 0 && (

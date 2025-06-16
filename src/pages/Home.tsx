@@ -36,11 +36,15 @@ const Home = () => {
         <div className="container mx-auto px-4 md:px-6 lg:px-12 z-10">
           <div className="max-w-4xl mx-auto text-center">
             
-           {/* Theme Toggle */}
+
+            
+            {/* Theme Toggle - COMMENTATO INSERIRE IN SEGUITO
             <div className="mb-8 flex justify-center">
               <ThemeToggle />
             </div>
+            */}
 
+            
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 md:mb-8 leading-tight">
             <span className="block text-primary font-semibold">Oltre il codice,</span>
             <motion.span 

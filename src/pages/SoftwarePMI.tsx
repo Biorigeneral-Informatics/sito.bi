@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import { Code, GitBranch, Database, Laptop, Cloud, Shield, Zap, CheckCircle, BarChart, ArrowRight, Workflow,Bot,  } from 'lucide-react';
 import ScrollAnimation from '../components/ScrollAnimation';
 import ScrollGradient from '../components/ScrollGradient';
+import SEO from '../components/SEO';
+import { getSEOData } from '../config/seoData';
+
+const seoData = getSEOData('softwarePMI'); // cambia 'nomePagina'
 
 const SoftwarePMI = () => {
   const solutionTypes = [
@@ -72,6 +76,14 @@ const SoftwarePMI = () => {
 
   return (
     <>
+     
+    <SEO 
+      title={seoData.title}
+      description={seoData.description}
+      keywords={seoData.keywords}
+      canonicalUrl={seoData.canonicalUrl}
+    />
+  
       {/* Background gradients simili alla Home */}
       <ScrollGradient 
         colorStart="rgba(79, 70, 229, 0.3)"

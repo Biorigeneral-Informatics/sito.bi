@@ -19,6 +19,10 @@ import {
 } from 'lucide-react';
 import ScrollAnimation from '../components/ScrollAnimation';
 import ScrollGradient from '../components/ScrollGradient';
+import SEO from '../components/SEO';
+import { getSEOData } from '../config/seoData';
+
+const seoData = getSEOData('developers'); // cambia 'nomePagina'
 
 const Developers = () => {
 
@@ -29,6 +33,13 @@ const Developers = () => {
 
   return (
     <>
+
+    <SEO 
+      title={seoData.title}
+      description={seoData.description}
+      keywords={seoData.keywords}
+      canonicalUrl={seoData.canonicalUrl}
+    />
       {/* Background gradients - Stesso stile delle altre pagine */}
       <ScrollGradient 
         colorStart="rgba(79, 70, 229, 0.3)"

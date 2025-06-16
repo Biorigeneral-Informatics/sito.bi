@@ -13,6 +13,11 @@ import {
 import ScrollAnimation from '../components/ScrollAnimation';
 import ScrollGradient from '../components/ScrollGradient';
 
+import SEO from '../components/SEO';
+import { getSEOData } from '../config/seoData';
+
+const seoData = getSEOData('products'); 
+
 const Products = () => {
   // Refs e stati
   const containerRef = useRef<HTMLDivElement>(null);
@@ -27,6 +32,12 @@ const Products = () => {
 
   return (
     <>
+    <SEO 
+      title={seoData.title}
+      description={seoData.description}
+      keywords={seoData.keywords}
+      canonicalUrl={seoData.canonicalUrl}
+    />
       {/* Background gradients simili alla Home ma non identici */}
       <ScrollGradient 
         colorStart="rgba(79, 70, 229, 0.2)"

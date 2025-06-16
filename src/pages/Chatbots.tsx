@@ -33,6 +33,9 @@ import {
 import ScrollAnimation from '../components/ScrollAnimation';
 import ScrollGradient from '../components/ScrollGradient';
 
+
+
+
 // Typing animation hook - ottimizzato per prestazioni migliori
 const useTypingAnimation = (text: string, speed: number = 30) => {
   const [displayText, setDisplayText] = useState('');
@@ -63,6 +66,7 @@ interface ChatMessageProps {
   delay?: number;
 }
 
+
 const ChatMessage: React.FC<ChatMessageProps> = ({ sender, message, isTyping = false, delay = 0 }) => {
   // For user messages, no typing animation
   if (sender === 'user') {
@@ -84,6 +88,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ sender, message, isTyping = f
   const { displayText, isComplete } = useTypingAnimation(isTyping ? message : '');
   
   return (
+
     <motion.div 
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
@@ -190,6 +195,7 @@ const Chatbots = () => {
 
 
   return (
+    
     <div className="min-h-screen overflow-x-hidden">
       {/* Dynamic gradient backgrounds */}
       <ScrollGradient 
@@ -209,6 +215,7 @@ const Chatbots = () => {
         ref={heroRef} 
         className="relative min-h-screen pt-32 pb-24 flex items-center overflow-hidden"
       >
+        
         {/* Enhanced Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           {/* Grid pattern with mouse interaction */}

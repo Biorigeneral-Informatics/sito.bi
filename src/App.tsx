@@ -1,5 +1,6 @@
 // src/App.tsx
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -33,6 +34,7 @@ const ScrollToTop = () => {
 
 function App() {
   return (
+    <HelmetProvider>
     <ThemeProvider>
     <Router>
       <ScrollToTop />
@@ -75,6 +77,7 @@ function App() {
       </div>
     </Router>
     </ThemeProvider>
+    </HelmetProvider>
   );
 }
 

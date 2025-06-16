@@ -5,10 +5,20 @@ import { ArrowRight, Users, BrainCircuit, Code, Workflow, TrendingUp, Bot } from
 import ScrollAnimation from '../components/ScrollAnimation';
 import ScrollGradient from '../components/ScrollGradient';
 import ThemeToggle from '../components/ThemeToggle';
+import SEO from '../components/SEO';
+import { getSEOData } from '../config/seoData';
+
+const seoData = getSEOData('home'); 
 
 const Home = () => {
   return (
     <>
+     <SEO 
+      title={seoData.title}
+      description={seoData.description}
+      keywords={seoData.keywords}
+      canonicalUrl={seoData.canonicalUrl}
+    />
       {/* Background gradients statici */}
       <ScrollGradient 
         colorStart="rgba(79, 70, 229, 0.3)"

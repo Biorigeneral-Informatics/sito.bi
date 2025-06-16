@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Code2, GitBranch, Database, Terminal, Cloud, Shield, Zap, Users, CheckCircle, Cpu, PencilRuler } from 'lucide-react';
 //import { Link } from 'react-router';
 import CTASection from '../components/CTASection';
+ 
 
 const Services = () => {
   const technologies = [
@@ -54,6 +55,7 @@ const Services = () => {
   ];
 
   return (
+    
     <div className="min-h-screen">
       <div className="pt-32 pb-16 px-4 max-w-7xl mx-auto">
         <motion.div

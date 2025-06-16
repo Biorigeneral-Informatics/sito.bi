@@ -14,6 +14,12 @@ import ScrollAnimation from '../components/ScrollAnimation';
 import ScrollGradient from '../components/ScrollGradient';
 import React from 'react';
 
+import SEO from '../components/SEO';
+import { getSEOData } from '../config/seoData';
+
+const seoData = getSEOData('growthPlans'); // cambia 'nomePagina'
+
+
 const GrowthPlans = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -216,6 +222,12 @@ const GrowthPlans = () => {
 
   return (
     <>
+     <SEO 
+      title={seoData.title}
+      description={seoData.description}
+      keywords={seoData.keywords}
+      canonicalUrl={seoData.canonicalUrl}
+    />
       {/* Background gradients simili alla Home */}
       <ScrollGradient 
         colorStart="rgba(79, 70, 229, 0.2)"

@@ -9,6 +9,11 @@ import {
 } from 'lucide-react';
 import ScrollAnimation from '../components/ScrollAnimation';
 import ScrollGradient from '../components/ScrollGradient';
+import SEO from '../components/SEO';
+import { getSEOData } from '../config/seoData';
+
+const seoData = getSEOData('aiAgents'); // cambia 'nomePagina'
+
 
 const AIAgents = () => {
 
@@ -25,6 +30,13 @@ const AIAgents = () => {
 
   return (
     <>
+
+    <SEO 
+      title={seoData.title}
+      description={seoData.description}
+      keywords={seoData.keywords}
+      canonicalUrl={seoData.canonicalUrl}
+    />
       {/* Background gradients - Mix Home + Products */}
       <ScrollGradient 
         colorStart="rgba(79, 70, 229, 0.3)"

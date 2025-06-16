@@ -3,8 +3,21 @@ import { motion } from 'framer-motion';
 import { Mail, MapPin, Clock, MessageSquare, Calendar, Users, CheckCircle, Loader2 } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
+import SEO from '../components/SEO';
+import { getSEOData } from '../config/seoData';
+
+const seoData = getSEOData('contact'); 
 
 const Contact = () => {
+
+   <>
+    <SEO 
+      title={seoData.title}
+      description={seoData.description}
+      keywords={seoData.keywords}
+      canonicalUrl={seoData.canonicalUrl}
+    />
+  </>
   const formRef = useRef<HTMLFormElement>(null);
   const [formState, setFormState] = useState({
     firstName: '',

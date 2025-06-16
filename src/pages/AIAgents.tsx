@@ -1,449 +1,497 @@
+// src/pages/AIAgents.tsx - Design completamente ridisegnato usando mix degli stili migliori
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Brain, Workflow, Zap, Bot, Layers, ArrowRight, RefreshCw, ArrowUpRight, Shield, Database, Check, MessageSquare, Award, TrendingUp } from 'lucide-react';
+import { 
+  Brain,  Users, Shield, TrendingUp, 
+   Workflow, 
+   CheckCircle, ArrowRight,
+  BarChart, 
+} from 'lucide-react';
 import ScrollAnimation from '../components/ScrollAnimation';
 import ScrollGradient from '../components/ScrollGradient';
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 }
-};
-
 const AIAgents = () => {
-  // Lista di applicazioni e benefici
-  const applications = [
-    {
-      title: "Automazione Customer Service",
-      icon: <MessageSquare className="w-10 h-10 text-cyan-400" />,
-      benefits: [
-        "Risposte immediate 24/7 alle richieste clienti",
-        "Riduzione fino al 45% dei ticket di supporto",
-        "Gestione automatica delle domande frequenti",
-        "Escalation intelligente ai team umani quando necessario"
-      ]
-    },
-    {
-      title: "Lead Generation e Qualificazione",
-      icon: <TrendingUp className="w-10 h-10 text-violet-400" />,
-      benefits: [
-        "Identificazione automatica dei lead più promettenti",
-        "Qualificazione attraverso conversazioni intelligenti",
-        "Aggiornamento automatico del CRM",
-        "Follow-up programmati senza intervento umano"
-      ]
-    },
-    {
-      title: "Automazione Processi Interni",
-      icon: <Workflow className="w-10 h-10 text-emerald-400" />,
-      benefits: [
-        "Gestione automatica di approvazioni e documenti",
-        "Creazione e distribuzione di report periodici",
-        "Monitoraggio KPI e alert automatici",
-        "Coordinamento tra diversi dipartimenti"
-      ]
-    }
+
+
+  const benefits = [
+    "Operatività 24/7 senza interruzioni o pause",
+    "Riduzione 85% errori umani e inconsistenze",
+    "Integrazione nativa con tutti i sistemi esistenti",
+    "Apprendimento continuo e ottimizzazione automatica",
+    "ROI positivo entro 3 mesi dall'implementazione",
+    "Scalabilità illimitata senza costi aggiuntivi"
+  ];
+
+  const integrationTools = [
+    { name: 'HubSpot', category: 'CRM', color: 'bg-red-500' },
+    { name: 'Salesforce', category: 'CRM', color: 'bg-blue-500' },
+    { name: 'Slack', category: 'Communication', color: 'bg-purple-500' },
+    { name: 'Telegram', category: 'Messaging', color: 'bg-blue-400' },
+    { name: 'WhatsApp', category: 'Messaging', color: 'bg-green-500' },
+    { name: 'Gmail', category: 'Email', color: 'bg-red-600' },
+    { name: 'Trello', category: 'Project Mgmt', color: 'bg-blue-600' },
+    { name: 'Monday.com', category: 'Project Mgmt', color: 'bg-purple-600' },
+    { name: 'Zapier', category: 'Automation', color: 'bg-orange-500' },
+    { name: 'Make.com', category: 'Automation', color: 'bg-blue-500' },
+    { name: 'Google Drive', category: 'Storage', color: 'bg-yellow-500' },
+    { name: 'Notion', category: 'Productivity', color: 'bg-gray-800' }
   ];
 
   return (
-    <div className="min-h-screen relative">
-      {/* Gradients */}
+    <>
+      {/* Background gradients - Mix Home + Products */}
       <ScrollGradient 
-        colorStart="rgba(56, 189, 248, 0.25)" 
-        colorEnd="rgba(139, 92, 246, 0.3)"    
-        intensity={1.5} 
+        colorStart="rgba(79, 70, 229, 0.3)"
+        colorEnd="rgba(139, 92, 246, 0.3)"
       />
       <ScrollGradient 
-        colorStart="rgba(16, 185, 129, 0.2)" 
-        colorEnd="rgba(192, 132, 252, 0.25)" 
+        colorStart="rgba(45, 212, 191, 0.25)"
+        colorEnd="rgba(16, 185, 129, 0.2)"
         reverse={true} 
         className="opacity-80" 
       />
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 px-4 max-w-7xl mx-auto">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 0.7 }}
-          variants={fadeInUp}
-          className="text-center mb-16"
-        >
-          <div className="inline-block mb-4 px-4 py-1 rounded-full bg-gradient-to-r from-cyan-500/10 to-violet-500/10 border border-cyan-500/20">
-            <span className="text-sm font-medium bg-gradient-to-r from-cyan-500 to-violet-500 bg-clip-text text-transparent">
-              AI Automation • Business Efficiency • 24/7 Operations
-            </span>
-          </div>
-          
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            <span className="block mb-2">AI Agents</span>
-            <span className="bg-gradient-to-r from-cyan-500 to-violet-500 bg-clip-text text-transparent inline-block">
-              L'intelligenza artificiale che agisce per te
-            </span>
-          </h1>
-          
-          <p className="text-xl text-foreground/80 max-w-3xl mx-auto mb-8">
-            Sistemi autonomi e intelligenti che lavorano silenziosamente per ottimizzare 
-            i tuoi processi aziendali, 24 ore su 24, 7 giorni su 7.
-          </p>
-          
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              to="/contact"
-              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-cyan-500 to-violet-500 text-primary-foreground rounded-lg hover:translate-y-[-2px] transition-all shadow-lg hover:shadow-violet-500/20"
-            >
-              Scopri le Soluzioni <ArrowRight className="ml-2 w-5 h-5" />
-            </Link>
-            
-
-          </div>
-          
-          {/* Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-            <motion.div variants={fadeInUp} transition={{ delay: 0.3 }} className="p-6 glass rounded-xl border border-cyan-500/20">
-              <p className="text-4xl font-bold bg-gradient-to-r from-cyan-500 to-sky-400 bg-clip-text text-transparent mb-2">85%</p>
-              <p className="text-foreground/70">Riduzione dei compiti ripetitivi</p>
-            </motion.div>
-            
-            <motion.div variants={fadeInUp} transition={{ delay: 0.4 }} className="p-6 glass rounded-xl border border-violet-500/20">
-              <p className="text-4xl font-bold bg-gradient-to-r from-violet-500 to-purple-400 bg-clip-text text-transparent mb-2">24/7</p>
-              <p className="text-foreground/70">Operatività continua</p>
-            </motion.div>
-            
-            <motion.div variants={fadeInUp} transition={{ delay: 0.5 }} className="p-6 glass rounded-xl border border-emerald-500/20">
-              <p className="text-4xl font-bold bg-gradient-to-r from-emerald-500 to-green-400 bg-clip-text text-transparent mb-2">+140%</p>
-              <p className="text-foreground/70">ROI medio nel primo anno</p>
-            </motion.div>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* What are AI Agents section */}
-      <section className="py-16 px-4 max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
-          <ScrollAnimation animation="slideLeft" delay={0.2}>
-            <div className="glass p-8 rounded-2xl relative overflow-hidden">
-              <div className="absolute -top-20 -left-20 w-64 h-64 rounded-full bg-cyan-500/20 filter blur-3xl"></div>
-              <div className="absolute -bottom-20 -right-20 w-64 h-64 rounded-full bg-violet-500/20 filter blur-3xl"></div>
+      <div className="min-h-screen pt-28 pb-16">
+        
+        {/* Hero Section - Stile Home con effetto typing */}
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-1 pb-16">
+          <div className="container mx-auto px-4 md:px-6 lg:px-12 z-10">
+            <div className="max-w-4xl mx-auto text-center">
               
-              <div className="relative z-10">
-                <h2 className="text-3xl font-bold mb-6">Cosa sono gli Agenti AI?</h2>
-                <p className="text-foreground/80 mb-6 leading-relaxed">
-                  Gli Agenti AI sono sistemi di intelligenza artificiale avanzati progettati per operare 
-                  autonomamente nell'ambiente digitale, composti da tre elementi fondamentali:
-                </p>
-                <ul className="space-y-4">
-                  <li className="flex items-start">
-                    <Brain className="w-6 h-6 text-cyan-400 mt-1 mr-3 flex-shrink-0" />
-                    <div>
-                      <h3 className="font-bold mb-1">Modello LLM</h3>
-                      <p className="text-foreground/70">Il nucleo cognitivo dell'agente, basato su modelli di linguaggio avanzati.</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <Layers className="w-6 h-6 text-purple-400 mt-1 mr-3 flex-shrink-0" />
-                    <div>
-                      <h3 className="font-bold mb-1">Memoria</h3>
-                      <p className="text-foreground/70">Permette all'agente di conservare informazioni e contesto tra le interazioni.</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <Workflow className="w-6 h-6 text-emerald-400 mt-1 mr-3 flex-shrink-0" />
-                    <div>
-                      <h3 className="font-bold mb-1">Tools</h3>
-                      <p className="text-foreground/70">Estendono le capacità dell'agente per interagire con sistemi esterni.</p>
-                    </div>
-                  </li>
-                </ul>
+              {/* Badge sopra il titolo - Stile Products */}
+              <div className="inline-block px-3 md:px-4 py-1 rounded-full glass border border-white/10 text-xs md:text-sm font-medium mb-3 md:mb-4">
+                <span className="text-green-500">
+                  Intelligenza Artificiale Autonoma
+                </span>
               </div>
-            </div>
-          </ScrollAnimation>
-
-          <ScrollAnimation animation="slideRight" delay={0.4}>
-            <div className="relative">
-              <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-cyan-500/20 filter blur-3xl"></div>
-              <div className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full bg-violet-500/20 filter blur-3xl"></div>
               
-              <div className="relative z-10">
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="glass p-6 rounded-2xl hover:shadow-lg transition-all border border-transparent">
-                    <Bot className="w-12 h-12 mb-4 text-cyan-400" />
-                    <h3 className="text-xl font-bold mb-2">Autonomi</h3>
-                    <p className="text-foreground/70">Operano indipendentemente, prendendo decisioni in base a obiettivi predefiniti</p>
-                  </div>
-                  
-                  <div className="glass p-6 rounded-2xl hover:shadow-lg transition-all border border-transparent">
-                    <Workflow className="w-12 h-12 mb-4 text-violet-400" />
-                    <h3 className="text-xl font-bold mb-2">Adattivi</h3>
-                    <p className="text-foreground/70">Imparano e migliorano nel tempo in base ai risultati</p>
-                  </div>
-                  
-                  <div className="glass p-6 rounded-2xl hover:shadow-lg transition-all border border-transparent">
-                    <Zap className="w-12 h-12 mb-4 text-emerald-400" />
-                    <h3 className="text-xl font-bold mb-2">Efficienti</h3>
-                    <p className="text-foreground/70">Operano 24/7 senza interruzioni</p>
-                  </div>
-                  
-                  <div className="glass p-6 rounded-2xl hover:shadow-lg transition-all border border-transparent">
-                    <RefreshCw className="w-12 h-12 mb-4 text-amber-400" />
-                    <h3 className="text-xl font-bold mb-2">Integrabili</h3>
-                    <p className="text-foreground/70">Si connettono con i tuoi sistemi esistenti</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ScrollAnimation>
-        </div>
-
-        {/* Why AI Agents are revolutionary */}
-        <ScrollAnimation animation="slideUp" delay={0.2}>
-          <div className="glass p-8 md:p-12 rounded-2xl mb-20 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 to-violet-500"></div>
-            <div className="absolute -bottom-20 -right-20 w-64 h-64 rounded-full bg-violet-500/20 filter blur-3xl"></div>
-            
-            <div className="relative z-10">
-              <h2 className="text-3xl font-bold mb-6 text-center">Perché sono una Rivoluzione</h2>
-              <p className="text-foreground/80 mb-8 max-w-3xl mx-auto text-center">
-                Gli Agenti AI rappresentano un salto evolutivo nell'automazione aziendale, andando oltre i tradizionali strumenti.
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 md:mb-8 leading-tight">
+                <span className="block text-primary font-semibold">Agenti AI che trasformano</span>
+                <motion.span 
+                  className="block font-semibold text-accent"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                >
+                  {/* Effetto typing - Stile Home */}
+                  <motion.span
+                    initial={{ width: 0 }}
+                    animate={{ width: "auto" }}
+                    transition={{ 
+                      duration: 2.5, 
+                      delay: 1,
+                      ease: "easeOut"
+                    }}
+                    className="inline-block overflow-hidden whitespace-nowrap"
+                  >
+                    il tuo business.
+                  </motion.span>
+                </motion.span>
+              </h1>
+              
+              <p className="text-base md:text-lg text-secondary mb-8 md:mb-10 leading-relaxed max-w-2xl mx-auto font-normal">
+                Sistemi di intelligenza artificiale autonomi che operano 24/7, gestiscono clienti in modo intelligente 
+                e si integrano perfettamente con tutti i tuoi strumenti esistenti.
               </p>
               
-              <div className="grid md:grid-cols-3 gap-6">
-                <div className="p-6 bg-cyan-500/10 rounded-xl border border-cyan-500/20 hover:border-cyan-500/40 transition-all">
-                  <h3 className="text-xl font-bold mb-3">Automazione del Ragionamento</h3>
-                  <p className="text-foreground/70">Prendono decisioni in base al contesto e ai dati, simulando il ragionamento umano.</p>
-                </div>
+              {/* Bottoni - Stile Home */}
+              <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center">
+                <Link 
+                  to="/contact" 
+                  className="glass px-6 py-3 rounded-xl font-semibold text-sm text-accent bg-accent/30 border-accent/40 hover:bg-accent/40 hover:border-accent/60 hover:-translate-y-1 transition-all duration-300 inline-flex items-center group"
+                >
+                  Richiedi Demo
+                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
                 
-                <div className="p-6 bg-violet-500/10 rounded-xl border border-violet-500/20 hover:border-violet-500/40 transition-all">
-                  <h3 className="text-xl font-bold mb-3">Operano in Autonomia</h3>
-                  <p className="text-foreground/70">Lavorano 24/7 senza supervisione, gestendo flussi di lavoro completi autonomamente.</p>
-                </div>
-                
-                <div className="p-6 bg-emerald-500/10 rounded-xl border border-emerald-500/20 hover:border-emerald-500/40 transition-all">
-                  <h3 className="text-xl font-bold mb-3">Apprendimento Continuo</h3>
-                  <p className="text-foreground/70">Migliorano costantemente, imparando dalle interazioni passate.</p>
-                </div>
+                <Link 
+                  to="/products" 
+                  className="glass px-6 py-3 rounded-xl font-semibold text-sm text-primary bg-glass-secondary border-secondary hover:bg-glass-hover hover:border-primary hover:-translate-y-1 transition-all duration-300"
+                >
+                  Esplora Soluzioni
+                </Link>
               </div>
+              
             </div>
           </div>
-        </ScrollAnimation>
-      </section>
+        </section>
 
-      {/* Applications Section - NEW */}
-      <section className="py-16 px-4 max-w-7xl mx-auto">
-        <ScrollAnimation animation="slideUp" delay={0.2}>
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Applicazioni Pratiche</h2>
-            <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-              Gli Agenti AI trasformano radicalmente diversi settori aziendali
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {applications.map((app, index) => (
-              <ScrollAnimation key={index} animation="fadeIn" delay={0.2 + index * 0.1}>
-                <div className="glass p-6 rounded-xl h-full flex flex-col border border-foreground/5 hover:border-cyan-500/20 transition-all hover:shadow-lg">
-                  <div className="flex items-center mb-4">
-                    <div className="p-3 rounded-lg bg-foreground/5">
-                      {app.icon}
+        {/* Sezione Valore - Layout Home con puntini animati */}
+        <section className="py-16 md:py-24 relative overflow-hidden">
+          <div className="container mx-auto px-6 md:px-8 lg:px-16 relative z-10">
+            
+            {/* Titolo principale - Stile Home */}
+            <ScrollAnimation animation="fadeIn" className="text-center mb-12 md:mb-16">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-6 md:mb-8 relative inline-block">
+                <span className="block text-primary">Tipologie di Agenti AI</span>
+              </h2>
+              <p className="text-base md:text-lg lg:text-xl text-secondary max-w-3xl mx-auto">
+                Ogni agente è specializzato per specifiche funzioni aziendali, combinando intelligenza artificiale 
+                avanzata con integrazione nativa nei tuoi processi esistenti.
+              </p>
+            </ScrollAnimation>
+
+            {/* Layout innovativo con linee di connessione - Stile Home */}
+            <div className="max-w-6xl mx-auto">
+              
+              {/* Categoria: Agenti Commerciali */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="mb-16 md:mb-20"
+              >
+                <div className="flex items-center mb-8">
+                  <div className="w-12 h-12 rounded-2xl glass border border-white/10 flex items-center justify-center mr-4">
+                    <TrendingUp className="w-6 h-6 text-cyan-400" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-medium text-cyan-500 mb-1">VENDITE</div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-white">Agenti Commerciali</h3>
+                  </div>
+                  <div className="flex-1 ml-8 h-px bg-gradient-to-r from-white/20 to-transparent"></div>
+                </div>
+                
+                <div className="grid md:grid-cols-2 gap-6 pl-16">
+                  <div className="group glass p-6 rounded-xl border border-white/10 hover:border-cyan-500/30 hover:bg-white/5 transition-all duration-300">
+                    <h4 className="text-lg font-bold mb-2 text-white group-hover:text-cyan-500 transition-colors">Lead Qualification</h4>
+                    <p className="text-gray-400 text-sm mb-4">Qualifica automaticamente i lead attraverso conversazioni intelligenti e scoring predittivo</p>
+                    <div className="flex items-center text-sm text-cyan-500">
+                      <CheckCircle className="mr-2 w-4 h-4" />
+                      <span>+75% qualità lead</span>
                     </div>
-                    <h3 className="text-xl font-bold ml-4">{app.title}</h3>
                   </div>
                   
-                  <ul className="space-y-3 mt-2 flex-grow">
-                    {app.benefits.map((benefit, idx) => (
-                      <li key={idx} className="flex items-start">
-                        <Check className="w-5 h-5 text-emerald-500 mt-0.5 mr-2 flex-shrink-0" />
-                        <span className="text-foreground/70">{benefit}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="group glass p-6 rounded-xl border border-white/10 hover:border-cyan-500/30 hover:bg-white/5 transition-all duration-300">
+                    <h4 className="text-lg font-bold mb-2 text-white group-hover:text-cyan-500 transition-colors">Pipeline Management</h4>
+                    <p className="text-gray-400 text-sm mb-4">Gestisce automaticamente la pipeline di vendita con follow-up intelligenti e tempistiche ottimali</p>
+                    <div className="flex items-center text-sm text-cyan-500">
+                      <CheckCircle className="mr-2 w-4 h-4" />
+                      <span>+40% conversioni</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Categoria: Agenti Supporto */}
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="mb-16 md:mb-20"
+              >
+                <div className="flex items-center mb-8 flex-row-reverse">
+                  <div className="w-12 h-12 rounded-2xl glass border border-white/10 flex items-center justify-center ml-4">
+                    <Users className="w-6 h-6 text-emerald-400" />
+                  </div>
+                  <div className="text-right">
+                    <div className="text-sm font-medium text-emerald-500 mb-1">SUPPORTO</div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-white">Agenti Customer Care</h3>
+                  </div>
+                  <div className="flex-1 mr-8 h-px bg-gradient-to-l from-white/20 to-transparent"></div>
+                </div>
+                
+                <div className="grid md:grid-cols-2 gap-6 pr-16">
+                  <div className="group glass p-6 rounded-xl border border-white/10 hover:border-emerald-500/30 hover:bg-white/5 transition-all duration-300">
+                    <h4 className="text-lg font-bold mb-2 text-white group-hover:text-emerald-500 transition-colors">Assistenza 24/7</h4>
+                    <p className="text-gray-400 text-sm mb-4">Supporto clienti continuo con comprensione del contesto e risoluzione autonoma dei problemi</p>
+                    <div className="flex items-center text-sm text-emerald-500">
+                      <CheckCircle className="mr-2 w-4 h-4" />
+                      <span>-60% ticket supporto</span>
+                    </div>
+                  </div>
                   
-                  <div className="mt-6 pt-4 border-t border-foreground/10">
-                    <Link
-                      to={`/solutions/${app.title.toLowerCase().replace(/\s+/g, '-')}`}
-                      className="inline-flex items-center text-sm text-cyan-500 hover:text-cyan-600 transition-colors"
+                  <div className="group glass p-6 rounded-xl border border-white/10 hover:border-emerald-500/30 hover:bg-white/5 transition-all duration-300">
+                    <h4 className="text-lg font-bold mb-2 text-white group-hover:text-emerald-500 transition-colors">Escalation Intelligente</h4>
+                    <p className="text-gray-400 text-sm mb-4">Identifica automaticamente quando coinvolgere un operatore umano per casi complessi</p>
+                    <div className="flex items-center text-sm text-emerald-500">
+                      <CheckCircle className="mr-2 w-4 h-4" />
+                      <span>+85% soddisfazione</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Categoria: Agenti Analisi */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="mb-16 md:mb-20"
+              >
+                <div className="flex items-center mb-8">
+                  <div className="w-12 h-12 rounded-2xl glass border border-white/10 flex items-center justify-center mr-4">
+                    <BarChart className="w-6 h-6 text-violet-400" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-medium text-violet-500 mb-1">ANALISI</div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-white">Agenti Business Intelligence</h3>
+                  </div>
+                  <div className="flex-1 ml-8 h-px bg-gradient-to-r from-white/20 to-transparent"></div>
+                </div>
+                
+                <div className="grid md:grid-cols-2 gap-6 pl-16">
+                  <div className="group glass p-6 rounded-xl border border-white/10 hover:border-violet-500/30 hover:bg-white/5 transition-all duration-300">
+                    <h4 className="text-lg font-bold mb-2 text-white group-hover:text-violet-500 transition-colors">Analisi Predittiva</h4>
+                    <p className="text-gray-400 text-sm mb-4">Genera insights e previsioni basate su pattern nei dati aziendali storici e in tempo reale</p>
+                    <div className="flex items-center text-sm text-violet-500">
+                      <CheckCircle className="mr-2 w-4 h-4" />
+                      <span>Decisioni data-driven</span>
+                    </div>
+                  </div>
+                  
+                  <div className="group glass p-6 rounded-xl border border-white/10 hover:border-violet-500/30 hover:bg-white/5 transition-all duration-300">
+                    <h4 className="text-lg font-bold mb-2 text-white group-hover:text-violet-500 transition-colors">Report Automatici</h4>
+                    <p className="text-gray-400 text-sm mb-4">Creazione automatica di report personalizzati con insights e raccomandazioni strategiche</p>
+                    <div className="flex items-center text-sm text-violet-500">
+                      <CheckCircle className="mr-2 w-4 h-4" />
+                      <span>Risparmio 20h/settimana</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Benefits Section - Stile SoftwarePMI */}
+        <section className="py-20 relative">
+          <div className="container mx-auto px-4 md:px-6 lg:px-12">
+            <ScrollAnimation animation="fadeIn">
+              <div className="grid md:grid-cols-2 gap-10 items-center">
+                <div>
+                  <h2 className="text-2xl md:text-3xl font-bold mb-6 text-white">Perché gli Agenti AI sono Rivoluzionari</h2>
+                  <p className="text-foreground/70 mb-6">
+                    I nostri Agenti AI rappresentano un salto evolutivo nell'automazione aziendale. Non sono semplici chatbot, 
+                    ma sistemi intelligenti che comprendono il contesto, prendono decisioni e agiscono autonomamente.
+                  </p>
+                  
+                  <div className="space-y-3">
+                    {benefits.map((benefit, index) => (
+                      <div key={index} className="flex items-start">
+                        <CheckCircle className="w-5 h-5 text-green-500 mt-1 mr-3 flex-shrink-0" />
+                        <span className="text-white">{benefit}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                <div>
+                  <motion.div 
+                    className="bg-background/60 p-6 rounded-xl border border-white/10 backdrop-blur-md shadow-lg shadow-black/10 hover:bg-green-500/5 transition-all mb-6"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.2 }}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                  >
+                    <h3 className="flex items-center font-bold mb-3 text-white">
+                      <Brain className="w-6 h-6 text-green-500 mr-2" />
+                      Intelligenza Artificiale Avanzata
+                    </h3>
+                    <p className="text-foreground/70">
+                      Basati su GPT-4o, Claude AI e modelli proprietari addestrati sui tuoi dati specifici. 
+                      Comprendono contesto, intent e sfumature delle conversazioni umane.
+                    </p>
+                  </motion.div>
+                  
+                  <motion.div 
+                    className="bg-background/60 p-6 rounded-xl border border-white/10 backdrop-blur-md shadow-lg shadow-black/10 hover:bg-green-500/5 transition-all mb-6"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.2 }}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    style={{ transitionDelay: '0.1s' }}
+                  >
+                    <h3 className="flex items-center font-bold mb-3 text-white">
+                      <Shield className="w-6 h-6 text-green-500 mr-2" />
+                      Sicurezza Enterprise
+                    </h3>
+                    <p className="text-foreground/70">
+                      Protocolli di sicurezza bancari, crittografia end-to-end e conformità GDPR. 
+                      I tuoi dati rimangono sempre protetti e sotto il tuo controllo.
+                    </p>
+                  </motion.div>
+                  
+                  <motion.div 
+                    className="bg-background/60 p-6 rounded-xl border border-white/10 backdrop-blur-md shadow-lg shadow-black/10 hover:bg-green-500/5 transition-all"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.2 }}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    style={{ transitionDelay: '0.2s' }}
+                  >
+                    <h3 className="flex items-center font-bold mb-3 text-white">
+                      <Workflow className="w-6 h-6 text-green-500 mr-2" />
+                      Integrazione Nativa
+                    </h3>
+                    <p className="text-foreground/70">
+                      Si collegano istantaneamente con CRM, email, calendar, chat e qualsiasi sistema aziendale. 
+                      Setup rapido senza interruzioni operative.
+                    </p>
+                  </motion.div>
+                </div>
+              </div>
+            </ScrollAnimation>
+          </div>
+        </section>
+
+        {/* Integrazione Strumenti - Sezione evidenziata stile Products */}
+        <section className="py-20 container mx-auto px-4 md:px-6 lg:px-12">
+          <ScrollAnimation animation="fadeIn">
+            <div className="text-center mb-12">
+              <div className="inline-block px-3 md:px-4 py-1 rounded-full glass border border-white/10 text-xs md:text-sm font-medium mb-3 md:mb-4">
+                <span className="text-emerald-500">
+                  Connessione Universale
+                </span>
+              </div>
+              <h3 className="text-2xl md:text-3xl font-semibold text-white mb-4">
+                Integrazione con i Tuoi Strumenti Esistenti
+                <span className="block text-gray-400 text-lg">Nessuna interruzione, massima compatibilità</span>
+              </h3>
+            </div>
+          </ScrollAnimation>
+
+          {/* Grid di integrazioni con categorizzazione */}
+          <ScrollAnimation animation="slideUp" delay={0.1}>
+            <div className="max-w-4xl mx-auto">
+              {/* CRM */}
+              <div className="mb-8">
+                <h4 className="text-lg font-semibold text-white mb-4 flex items-center">
+                  <div className="w-3 h-3 rounded-full bg-red-500 mr-3"></div>
+                  CRM & Sales
+                </h4>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  <div className="glass p-4 rounded-lg hover:shadow-lg transition-all border border-transparent hover:border-red-500/20 text-center">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/salesforce/salesforce-original.svg" alt="Salesforce" className="w-8 h-8 mx-auto mb-2 opacity-70 hover:opacity-100 transition-opacity" />
+                    <div className="text-sm font-semibold">Salesforce</div>
+                  </div>
+                  <div className="glass p-4 rounded-lg hover:shadow-lg transition-all border border-transparent hover:border-red-500/20 text-center">
+                    <img src="https://www.hubspot.com/hubfs/HubSpot_Logos/HubSpot-Inversed-Favicon.png" alt="HubSpot" className="w-8 h-8 mx-auto mb-2 opacity-70 hover:opacity-100 transition-opacity" />
+                    <div className="text-sm font-semibold">HubSpot</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Communication */}
+              <div className="mb-8">
+                <h4 className="text-lg font-semibold text-white mb-4 flex items-center">
+                  <div className="w-3 h-3 rounded-full bg-blue-500 mr-3"></div>
+                  Comunicazione
+                </h4>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  <div className="glass p-4 rounded-lg hover:shadow-lg transition-all border border-transparent hover:border-blue-500/20 text-center">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg" alt="Slack" className="w-8 h-8 mx-auto mb-2 opacity-70 hover:opacity-100 transition-opacity" />
+                    <div className="text-sm font-semibold">Slack</div>
+                  </div>
+                  <div className="glass p-4 rounded-lg hover:shadow-lg transition-all border border-transparent hover:border-blue-500/20 text-center">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" className="w-8 h-8 mx-auto mb-2 opacity-70 hover:opacity-100 transition-opacity" />
+                    <div className="text-sm font-semibold">Telegram</div>
+                  </div>
+                  <div className="glass p-4 rounded-lg hover:shadow-lg transition-all border border-transparent hover:border-blue-500/20 text-center">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" className="w-8 h-8 mx-auto mb-2 opacity-70 hover:opacity-100 transition-opacity" />
+                    <div className="text-sm font-semibold">WhatsApp</div>
+                  </div>
+                  <div className="glass p-4 rounded-lg hover:shadow-lg transition-all border border-transparent hover:border-blue-500/20 text-center">
+                    <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico" alt="Gmail" className="w-8 h-8 mx-auto mb-2 opacity-70 hover:opacity-100 transition-opacity" />
+                    <div className="text-sm font-semibold">Gmail</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Automation & Productivity */}
+              <div className="mb-8">
+                <h4 className="text-lg font-semibold text-white mb-4 flex items-center">
+                  <div className="w-3 h-3 rounded-full bg-purple-500 mr-3"></div>
+                  Automazione & Produttività
+                </h4>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  <div className="glass p-4 rounded-lg hover:shadow-lg transition-all border border-transparent hover:border-purple-500/20 text-center">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/trello/trello-plain.svg" alt="Trello" className="w-8 h-8 mx-auto mb-2 opacity-70 hover:opacity-100 transition-opacity" />
+                    <div className="text-sm font-semibold">Trello</div>
+                  </div>
+                  <div className="glass p-4 rounded-lg hover:shadow-lg transition-all border border-transparent hover:border-purple-500/20 text-center">
+                    <img src="https://cdn.worldvectorlogo.com/logos/monday-com.svg" alt="Monday.com" className="w-8 h-8 mx-auto mb-2 opacity-70 hover:opacity-100 transition-opacity" />
+                    <div className="text-sm font-semibold">Monday.com</div>
+                  </div>
+                  <div className="glass p-4 rounded-lg hover:shadow-lg transition-all border border-transparent hover:border-purple-500/20 text-center">
+                    <img src="https://cdn.worldvectorlogo.com/logos/zapier.svg" alt="Zapier" className="w-8 h-8 mx-auto mb-2 opacity-70 hover:opacity-100 transition-opacity" />
+                    <div className="text-sm font-semibold">Zapier</div>
+                  </div>
+                  <div className="glass p-4 rounded-lg hover:shadow-lg transition-all border border-transparent hover:border-purple-500/20 text-center">
+                    <img src="https://images.ctfassets.net/spoqsaf9291f/5lRS4JEkZa5ParRHb2dXDL/2ab00ebd9eb8c8624b0ceab30a3e8a6d/make-com-logo.svg" alt="Make.com" className="w-8 h-8 mx-auto mb-2 opacity-70 hover:opacity-100 transition-opacity" />
+                    <div className="text-sm font-semibold">Make.com</div>
+                  </div>
+                  <div className="glass p-4 rounded-lg hover:shadow-lg transition-all border border-transparent hover:border-purple-500/20 text-center">
+                    <img src="https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png" alt="Google Drive" className="w-8 h-8 mx-auto mb-2 opacity-70 hover:opacity-100 transition-opacity" />
+                    <div className="text-sm font-semibold">Google Drive</div>
+                  </div>
+                  <div className="glass p-4 rounded-lg hover:shadow-lg transition-all border border-transparent hover:border-purple-500/20 text-center">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" alt="Notion" className="w-8 h-8 mx-auto mb-2 opacity-70 hover:opacity-100 transition-opacity" />
+                    <div className="text-sm font-semibold">Notion</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="text-center mt-8 p-4 glass rounded-lg border border-white/10">
+                <p className="text-foreground/70 text-sm">
+                  + Integrazione personalizzata con qualsiasi API, database o sistema aziendale esistente
+                </p>
+              </div>
+            </div>
+          </ScrollAnimation>
+        </section>
+
+        {/* CTA Finale - Stile SoftwarePMI */}
+        <section className="py-22 md:py-32 mt-20 relative overflow-hidden">
+          <div className="container mx-auto px-4 md:px-6 lg:px-12 relative z-10">
+            <ScrollAnimation animation="slideUp">
+              <div className="max-w-3xl mx-auto text-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="mb-8"
+                >
+                  <h2 className="text-2xl sm:text-2xl md:text-4xl font-semibold mb-6 md:mb-8">
+                    <span className="block text-primary">Pronto a <span className="text-accent">Automatizzare</span> il Tuo Business?</span>
+                  </h2>
+                
+                  <p className="text-lg md:text-xl text-foreground/80 max-w-xl mx-auto leading-relaxed mb-8">
+                    Contattaci per una demo personalizzata e scopri come i nostri Agenti AI possono trasformare 
+                    la tua operatività, aumentare l'efficienza e far crescere il fatturato.
+                  </p>
+                  
+                  <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center">
+                    <Link 
+                      to="/contact" 
+                      className="border border-accent/40 px-6 py-3 rounded-xl font-semibold text-sm text-accent bg-accent/30 hover:bg-accent/40 hover:border-accent/60 hover:-translate-y-1 transition-all duration-300 inline-flex items-center group"
                     >
-                      Scopri di più <ArrowUpRight className="ml-1 w-4 h-4" />
+                      Demo Gratuita
+                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                    
+                    <Link 
+                      to="/products" 
+                      className="border border-white/20 px-6 py-3 rounded-xl font-semibold text-sm text-primary bg-white/5 hover:bg-white/10 hover:border-primary hover:-translate-y-1 transition-all duration-300"
+                    >
+                      Esplora Catalogo
                     </Link>
                   </div>
-                </div>
-              </ScrollAnimation>
-            ))}
-          </div>
-        </ScrollAnimation>
-        
-        {/* Testimonial */}
-        <ScrollAnimation animation="fadeIn" delay={0.3}>
-          <div className="glass p-8 rounded-2xl relative overflow-hidden">
-            <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-violet-500/20 filter blur-3xl"></div>
-            
-            <div className="relative z-10">
-              <div className="flex flex-col md:flex-row gap-8 items-center">
-                <div className="md:w-1/4 flex justify-center">
-                  <div className="w-24 h-24 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 flex items-center justify-center text-white text-3xl font-bold">
-                    TC
-                  </div>
-                </div>
-                
-                <div className="md:w-3/4">
-                  <div className="mb-4">
-                    <svg width="120" height="20" viewBox="0 0 120 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      {[...Array(5)].map((_, i) => (
-                        <path key={i} d="M10 1L13 7L19 8L14.5 13L16 19L10 16L4 19L5.5 13L1 8L7 7L10 1Z" fill="#eab308" transform={`translate(${i * 24}, 0)`} />
-                      ))}
-                    </svg>
-                  </div>
-                  
-                  <blockquote className="text-lg text-foreground/80 italic mb-4">
-                    "Gli Agenti AI hanno trasformato il nostro business, automatizzando processi che richiedevano ore di lavoro manuale. 
-                    La qualifica dei lead è migliorata del 70% e il team commerciale può ora concentrarsi sulla chiusura delle trattative."
-                  </blockquote>
-                  
-                  <div>
-                    <p className="font-bold">Marco Bianchi</p>
-                    <p className="text-foreground/60 text-sm">CEO, TechCorp Italia</p>
-                  </div>
-                </div>
+                </motion.div>
               </div>
-            </div>
+            </ScrollAnimation>
           </div>
-        </ScrollAnimation>
-      </section>
+        </section>
 
-      {/* How we create AI Agents */}
-      <section className="py-16 px-4 max-w-7xl mx-auto">
-        <div className="mb-16">
-          <ScrollAnimation animation="slideUp" delay={0.2}>
-            <div className="text-center mb-10">
-              <h2 className="text-3xl font-bold mb-4">Come Creiamo i tuoi Agenti AI</h2>
-              <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-                Utilizziamo piattaforme all'avanguardia per sviluppare agenti AI personalizzati
-              </p>
-            </div>
-          </ScrollAnimation>
-          
-          <div className="grid md:grid-cols-4 gap-6 mb-10">
-            {[
-              { name: 'LLM Models', icon: <Brain className="w-8 h-8 text-cyan-400" />, description: "GPT-4, Claude, Llama-3" },
-              { name: 'Automation', icon: <Workflow className="w-8 h-8 text-violet-400" />, description: "Make.com, n8n, Zapier" },
-              { name: 'Database', icon: <Database className="w-8 h-8 text-emerald-400" />, description: "Vector DB, SQL, NoSQL" },
-              { name: 'Security', icon: <Shield className="w-8 h-8 text-amber-400" />, description: "End-to-end encryption" }
-            ].map((tech, index) => (
-              <ScrollAnimation key={index} animation={index % 2 === 0 ? "slideLeft" : "slideRight"} delay={0.2 + index * 0.1}>
-                <div className="glass p-5 rounded-xl text-center hover:shadow-lg transition-all hover:border border-foreground/10">
-                  <div className="flex justify-center mb-3">{tech.icon}</div>
-                  <h3 className="font-bold mb-1">{tech.name}</h3>
-                  <p className="text-foreground/70 text-sm">{tech.description}</p>
-                </div>
-              </ScrollAnimation>
-            ))}
-          </div>
-          
-          <ScrollAnimation animation="slideUp" delay={0.5}>
-            <div className="p-6 bg-gradient-to-r from-cyan-500/10 to-violet-500/10 rounded-2xl">
-              <h3 className="text-xl font-bold mb-3">Integrazione con i tuoi strumenti</h3>
-              <p className="text-foreground/80 mb-4">I nostri agenti AI si integrano con gli strumenti che già utilizzi:</p>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {['HubSpot 🔴', 'Trello 🔵', 'Slack 🟣', 'Discord 🟣', 'Telegram 🔵', 'WhatsApp 🟢', 'Gmail 🔴', 'Google Drive 🟡'].map((tool, index) => (
-                  <div key={index} className="bg-background/30 p-3 rounded-lg hover:bg-background/50 transition-colors">
-                    {tool}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </ScrollAnimation>
-        </div>
-      </section>
-
-      {/* Features Section - NEW */}
-      <section className="py-16 px-4 max-w-7xl mx-auto">
-        <ScrollAnimation animation="slideUp" delay={0.2}>
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold mb-4">Funzionalità Principali</h2>
-            <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-              Le caratteristiche che rendono gli Agenti AI una soluzione unica
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            {[
-              {
-                title: "Apprendimento Contestuale",
-                description: "L'agente sviluppa una comprensione profonda del tuo business, adattandosi al tuo specifico contesto operativo.",
-                icon: <Brain className="w-6 h-6 text-cyan-400" />
-              },
-              {
-                title: "Multi-piattaforma",
-                description: "Opera su diverse piattaforme e canali simultaneamente, garantendo un'esperienza coerente ovunque.",
-                icon: <Layers className="w-6 h-6 text-violet-400" />
-              },
-              {
-                title: "Monitoraggio Continuo",
-                description: "Dashboard avanzate per monitorare le performance e ottimizzare il funzionamento dell'agente nel tempo.",
-                icon: <TrendingUp className="w-6 h-6 text-emerald-400" />
-              },
-              {
-                title: "Scalabilità Illimitata",
-                description: "Gestisce volumi crescenti di interazioni senza degradare le performance o richiedere risorse aggiuntive.",
-                icon: <Award className="w-6 h-6 text-amber-400" />
-              }
-            ].map((feature, index) => (
-              <div key={index} className="glass p-6 rounded-xl hover:shadow-lg transition-all border border-foreground/5 hover:border-cyan-500/20">
-                <div className="flex items-start">
-                  <div className="p-2 rounded-lg bg-foreground/5 mr-4">
-                    {feature.icon}
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
-                    <p className="text-foreground/70">{feature.description}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </ScrollAnimation>
-      </section>
-
-     
-
-      {/* CTA Section */}
-      <section className="py-16 px-4 max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          className="glass p-8 rounded-2xl text-center relative overflow-hidden"
-        >
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 via-violet-500 to-emerald-500"></div>
-          <div className="absolute -bottom-24 -right-24 w-80 h-80 rounded-full bg-violet-500/20 filter blur-3xl"></div>
-          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-cyan-500/20 filter blur-3xl"></div>
-          
-          <div className="relative z-10">
-            <h2 className="text-3xl font-bold mb-4">Pronto a Trasformare il Tuo Business con l'AI?</h2>
-            <p className="text-foreground/80 mb-6 max-w-2xl mx-auto">
-              Contattaci oggi per una consulenza gratuita e scopri come gli Agenti AI possono 
-              automatizzare i processi del tuo business, risparmiando tempo e risorse.
-            </p>
-            
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link
-                to="/contact"
-                className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-cyan-500 to-violet-500 text-primary-foreground rounded-lg hover:translate-y-[-2px] transition-all shadow-lg"
-              >
-                Inizia Ora <ArrowRight className="ml-2 w-5 h-5" />
-              </Link>
-              
-              <Link
-                to="/solutions"
-                className="inline-flex items-center px-8 py-3 bg-background border border-cyan-500/30 rounded-lg hover:bg-cyan-500/5 transition-all"
-              >
-                Esplora le Soluzioni <ArrowUpRight className="ml-2 w-5 h-5" />
-              </Link>
-            </div>
-          </div>
-        </motion.div>
-      </section>
-    </div>
+      </div>
+    </>
   );
 };
 

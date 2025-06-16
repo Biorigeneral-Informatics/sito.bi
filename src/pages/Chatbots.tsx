@@ -347,7 +347,8 @@ const Chatbots = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1 }}
-                className="text-4xl md:text-6xl font-bold mb-8 leading-tight text-white"
+                className="text-4xl md:text-6xl font-semibold mb-8 leading-tight text-white"
+                style={{ fontFamily: 'var(--font-sans)' }}
               >
                 <motion.span
                   initial={{ opacity: 0, y: 20 }}
@@ -361,7 +362,8 @@ const Chatbots = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
-                  className="block mt-4 text-2xl md:text-3xl font-normal text-foreground/80"
+                  className="block mt-4 text-2xl md:text-3xl font-medium text-foreground/80"
+                  style={{ fontFamily: 'var(--font-sans)' }}
                 >
                   Assistenti virtuali intelligenti per la tua azienda
                 </motion.span>
@@ -378,8 +380,9 @@ const Chatbots = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.7 }}
-                className="text-lg md:text-xl text-foreground/80 max-w-xl mb-12"
-              >
+                className="text-lg md:text-xl text-foreground/80 max-w-xl mb-12 font-normal"
+                style={{ fontFamily: 'var(--font-sans)' }}   
+                           >
                 Soluzioni AI avanzate che integrano natural language processing per 
                 creare assistenti virtuali che comprendono contesto e offrono risposte personalizzate in tempo reale.
               </motion.p>
@@ -392,18 +395,15 @@ const Chatbots = () => {
               >
                 <Link
                   to="/contact"
-                  className="px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white text-lg font-medium rounded-lg shadow-lg hover:shadow-green-500/20 transition-all duration-300 hover:-translate-y-1 flex items-center group"
+              className="glass px-6 py-3 rounded-xl font-semibold text-sm text-accent bg-accent/30 border-accent/40 hover:bg-accent/40 hover:border-accent/60 hover:-translate-y-1 transition-all duration-300 inline-flex items-center group"
                 >
                   <span>Richiedi una Demo</span>
-                  <div className="relative ml-2 w-6 h-6 rounded-full bg-white/20 flex items-center justify-center overflow-hidden group-hover:bg-white/30 transition-colors">
-                    <ArrowRight className="w-4 h-4 text-white relative z-10 transition-transform group-hover:translate-x-5 duration-300" />
-                    <ArrowRight className="w-4 h-4 text-white absolute -left-5 transition-transform group-hover:translate-x-5 duration-300" />
-                  </div>
+                 
                 </Link>
                 
                 <Link
                   to="/products"
-                  className="px-8 py-4 border border-green-500/30 text-foreground hover:bg-green-500/10 rounded-lg transition-all hover:-translate-y-1"
+              className="glass px-6 py-3 rounded-xl font-semibold text-sm text-primary bg-glass-secondary border-secondary hover:bg-glass-hover hover:border-primary hover:-translate-y-1 transition-all duration-300"
                 >
                   Esplora Soluzioni
                 </Link>
@@ -432,9 +432,9 @@ const Chatbots = () => {
                     </span>
                   </div>
                   <div className="ml-auto flex space-x-2">
-                    <div className="w-3 h-3 rounded-full bg-red-500/70"></div>
-                    <div className="w-3 h-3 rounded-full bg-yellow-500/70"></div>
-                    <div className="w-3 h-3 rounded-full bg-green-500/70"></div>
+                    <div className="w-3 h-3 rounded-full bg-gray-500/70"></div>
+                    <div className="w-3 h-3 rounded-full bg-gray-500/70"></div>
+                    <div className="w-3 h-3 rounded-full bg-gray-500/70"></div>
                   </div>
                 </div>
                 
@@ -728,7 +728,7 @@ const Chatbots = () => {
 <div className="flex justify-center mb-8 md:mb-16 relative">
   <div className="bg-background/30 backdrop-blur-sm rounded-full p-1.5 border border-green-500/20 shadow-lg shadow-green-500/5 flex flex-wrap justify-center">
     {[
-      { name: 'E-commerce', icon: <ShoppingCart className="w-4 h-4 md:w-5 md:h-5" /> },
+      { name: 'Customer Support', icon: <ShoppingCart className="w-4 h-4 md:w-5 md:h-5" /> },
       { name: 'Sanità', icon: <HeartPulse className="w-4 h-4 md:w-5 md:h-5" /> },
       { name: 'Finanza', icon: <LineChart className="w-4 h-4 md:w-5 md:h-5" /> },
       { name: 'Turismo', icon: <Plane className="w-4 h-4 md:w-5 md:h-5" /> },
@@ -759,7 +759,7 @@ const Chatbots = () => {
 
     {/* Content area - Mobile friendly approach */}
     <div className="md:relative md:min-h-[600px]">
-      {/* E-commerce */}
+      {/* Customer Support */}
       <div 
         className={`transition-all duration-500 ${
           categoryIndex === 0 
@@ -767,12 +767,12 @@ const Chatbots = () => {
             : 'md:absolute md:inset-0 opacity-0 translate-x-full pointer-events-none hidden md:block'
         }`}
       >
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-10 items-start md:items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 items-start md:items-center">
           <div className="md:col-span-3 order-2 md:order-1">
             <div className="inline-block px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 mb-4">
               <span className="text-sm font-medium text-green-400 flex items-center">
                 <ShoppingCart className="w-4 h-4 mr-2" />
-                E-commerce
+                Customer Support
               </span>
             </div>
             <h3 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-green-400 to-teal-400 bg-clip-text text-transparent">
@@ -834,74 +834,6 @@ const Chatbots = () => {
             </div>
           </div>
           
-          <div className="md:col-span-2 order-1 md:order-2 mb-8 md:mb-0">
-            <div className="bg-gradient-to-br from-background/30 to-green-500/5 backdrop-blur-sm rounded-xl border border-green-500/20 shadow-lg p-4 md:p-6 relative">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-green-500/10 to-transparent rounded-bl-[100px] opacity-50"></div>
-              
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-green-400/20 to-emerald-400/20 flex items-center justify-center mr-4">
-                  <ShoppingCart className="w-6 h-6 text-green-400" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-xl">E-commerce AI Assistant</h4>
-                  <p className="text-sm text-foreground/70">Conversazioni che convertono</p>
-                </div>
-              </div>
-              
-              <div className="mb-6 space-y-4">
-                <div className="flex items-start">
-                  <div className="w-8 h-8 rounded-full bg-green-500/20 flex-shrink-0 mr-3 flex items-center justify-center">
-                    <User className="w-4 h-4 text-green-200" />
-                  </div>
-                  <div className="bg-background/50 border border-green-500/10 rounded-2xl rounded-tl-none p-3 text-sm max-w-[85%]">
-                    Vorrei trovare un paio di scarpe da running adatte a terreni misti e impermeabili.
-                  </div>
-                </div>
-                
-                <div className="flex items-start justify-end">
-                  <div className="bg-gradient-to-r from-green-500/70 to-emerald-500/70 rounded-2xl rounded-tr-none p-3 text-sm text-white max-w-[85%]">
-                    Ho trovato alcune opzioni perfette per terreni misti con tecnologia impermeabile. Preferisci un modello leggero o con maggiore supporto e stabilità?
-                  </div>
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-green-400 to-emerald-400 flex-shrink-0 ml-3 flex items-center justify-center">
-                    <Bot className="w-4 h-4 text-white" />
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="w-8 h-8 rounded-full bg-green-500/20 flex-shrink-0 mr-3 flex items-center justify-center">
-                    <User className="w-4 h-4 text-green-200" />
-                  </div>
-                  <div className="bg-background/50 border border-green-500/10 rounded-2xl rounded-tl-none p-3 text-sm max-w-[85%]">
-                    Cerco più stabilità, ho avuto problemi alle caviglie in passato.
-                  </div>
-                </div>
-                
-                <div className="flex items-start justify-end">
-                  <div className="bg-gradient-to-r from-green-500/70 to-emerald-500/70 rounded-2xl rounded-tr-none p-3 text-sm text-white max-w-[85%]">
-                    Perfetto, ecco tre modelli con ottimo supporto alla caviglia e stabilità laterale. Inoltre, tutti hanno tecnologia Gore-Tex per l'impermeabilità.
-                  </div>
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-green-400 to-emerald-400 flex-shrink-0 ml-3 flex items-center justify-center">
-                    <Bot className="w-4 h-4 text-white" />
-                  </div>
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-3 gap-3 border-t border-green-500/10 pt-4">
-                <div className="text-center">
-                  <div className="text-xl md:text-2xl font-bold text-green-400">+38%</div>
-                  <div className="text-xs text-foreground/60">conversione</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-xl md:text-2xl font-bold text-green-400">-42%</div>
-                  <div className="text-xs text-foreground/60">abbandoni</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-xl md:text-2xl font-bold text-green-400">+25%</div>
-                  <div className="text-xs text-foreground/60">ordine medio</div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -913,7 +845,7 @@ const Chatbots = () => {
             : 'md:absolute md:inset-0 opacity-0 translate-x-full pointer-events-none hidden md:block'
         }`}
       >
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-10 items-start md:items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 items-start md:items-center">
           <div className="md:col-span-3 order-2 md:order-1">
             <div className="inline-block px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 mb-4">
               <span className="text-sm font-medium text-teal-400 flex items-center">
@@ -978,75 +910,6 @@ const Chatbots = () => {
               </div>
             </div>
           </div>
-          
-          <div className="md:col-span-2 order-1 md:order-2 mb-8 md:mb-0">
-            <div className="bg-gradient-to-br from-background/30 to-teal-500/5 backdrop-blur-sm rounded-xl border border-teal-500/20 shadow-lg p-4 md:p-6 relative">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-teal-500/10 to-transparent rounded-bl-[100px] opacity-50"></div>
-              
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-teal-400/20 to-green-400/20 flex items-center justify-center mr-4">
-                  <HeartPulse className="w-6 h-6 text-teal-400" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-xl">HealthCare Assistant</h4>
-                  <p className="text-sm text-foreground/70">Supporto continuativo al paziente</p>
-                </div>
-              </div>
-              
-              <div className="mb-6 space-y-4">
-                <div className="flex items-start">
-                  <div className="w-8 h-8 rounded-full bg-teal-500/20 flex-shrink-0 mr-3 flex items-center justify-center">
-                    <User className="w-4 h-4 text-teal-200" />
-                  </div>
-                  <div className="bg-background/50 border border-teal-500/10 rounded-2xl rounded-tl-none p-3 text-sm max-w-[85%]">
-                    Vorrei prenotare una visita di controllo con il Dott. Rossi per la prossima settimana.
-                  </div>
-                </div>
-                
-                <div className="flex items-start justify-end">
-                  <div className="bg-gradient-to-r from-teal-500/70 to-green-500/70 rounded-2xl rounded-tr-none p-3 text-sm text-white max-w-[85%]">
-                    Ho controllato l'agenda del Dott. Rossi e ha disponibilità martedì alle 10:30, mercoledì alle 15:00 o venerdì alle 9:15. Quale preferisci?
-                  </div>
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-teal-400 to-green-400 flex-shrink-0 ml-3 flex items-center justify-center">
-                    <Bot className="w-4 h-4 text-white" />
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="w-8 h-8 rounded-full bg-teal-500/20 flex-shrink-0 mr-3 flex items-center justify-center">
-                    <User className="w-4 h-4 text-teal-200" />
-                  </div>
-                  <div className="bg-background/50 border border-teal-500/10 rounded-2xl rounded-tl-none p-3 text-sm max-w-[85%]">
-                    Preferisco venerdì alle 9:15, grazie.
-                  </div>
-                </div>
-                
-                <div className="flex items-start justify-end">
-                  <div className="bg-gradient-to-r from-teal-500/70 to-green-500/70 rounded-2xl rounded-tr-none p-3 text-sm text-white max-w-[85%]">
-                    Perfetto! Ho prenotato la visita per venerdì alle 9:15. Riceverai un promemoria 24 ore prima. Posso fare altro per te?
-                  </div>
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-teal-400 to-green-400 flex-shrink-0 ml-3 flex items-center justify-center">
-                    <Bot className="w-4 h-4 text-white" />
-                  </div>
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-3 gap-3 border-t border-teal-500/10 pt-4">
-                <div className="text-center">
-                  <div className="text-xl md:text-2xl font-bold text-teal-400">+45%</div>
-                  <div className="text-xs text-foreground/60">aderenza terapie</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-xl md:text-2xl font-bold text-teal-400">-30%</div>
-                  <div className="text-xs text-foreground/60">appuntamenti mancati</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-xl md:text-2xl font-bold text-teal-400">+60%</div>
-                  <div className="text-xs text-foreground/60">soddisfazione</div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -1058,7 +921,7 @@ const Chatbots = () => {
             : 'md:absolute md:inset-0 opacity-0 translate-x-full pointer-events-none hidden md:block'
         }`}
       >
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-10 items-start md:items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 items-start md:items-center">
           <div className="md:col-span-3 order-2 md:order-1">
             <div className="inline-block px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 mb-4">
               <span className="text-sm font-medium text-green-400 flex items-center">
@@ -1123,75 +986,6 @@ const Chatbots = () => {
               </div>
             </div>
           </div>
-          
-          <div className="md:col-span-2 order-1 md:order-2 mb-8 md:mb-0">
-            <div className="bg-gradient-to-br from-background/30 to-green-500/5 backdrop-blur-sm rounded-xl border border-green-500/20 shadow-lg p-4 md:p-6 relative">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-green-500/10 to-transparent rounded-bl-[100px] opacity-50"></div>
-              
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-green-400/20 to-emerald-400/20 flex items-center justify-center mr-4">
-                  <LineChart className="w-6 h-6 text-green-400" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-xl">Finance Assistant</h4>
-                  <p className="text-sm text-foreground/70">Consulente finanziario personale</p>
-                </div>
-              </div>
-              
-              <div className="mb-6 space-y-4">
-                <div className="flex items-start">
-                  <div className="w-8 h-8 rounded-full bg-green-500/20 flex-shrink-0 mr-3 flex items-center justify-center">
-                    <User className="w-4 h-4 text-green-200" />
-                  </div>
-                  <div className="bg-background/50 border border-green-500/10 rounded-2xl rounded-tl-none p-3 text-sm max-w-[85%]">
-                    Quanto ho speso in ristoranti questo mese? E come si confronta con il mese scorso?
-                  </div>
-                </div>
-                
-                <div className="flex items-start justify-end">
-                  <div className="bg-gradient-to-r from-green-500/70 to-emerald-500/70 rounded-2xl rounded-tr-none p-3 text-sm text-white max-w-[85%]">
-                    Questo mese hai speso €320 in ristoranti, il 15% in meno rispetto al mese scorso (€376). Stai rispettando il tuo budget mensile di €350 per questa categoria!
-                  </div>
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-green-400 to-emerald-400 flex-shrink-0 ml-3 flex items-center justify-center">
-                    <Bot className="w-4 h-4 text-white" />
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="w-8 h-8 rounded-full bg-green-500/20 flex-shrink-0 mr-3 flex items-center justify-center">
-                    <User className="w-4 h-4 text-green-200" />
-                  </div>
-                  <div className="bg-background/50 border border-green-500/10 rounded-2xl rounded-tl-none p-3 text-sm max-w-[85%]">
-                    Ottimo! Posso trasferire €200 al mio conto risparmio?
-                  </div>
-                </div>
-                
-                <div className="flex items-start justify-end">
-                  <div className="bg-gradient-to-r from-green-500/70 to-emerald-500/70 rounded-2xl rounded-tr-none p-3 text-sm text-white max-w-[85%]">
-                    Certamente! Ho preparato un trasferimento di €200 dal conto corrente al tuo conto risparmio. Vuoi procedere ora o programmare il trasferimento per una data specifica?
-                  </div>
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-green-400 to-emerald-400 flex-shrink-0 ml-3 flex items-center justify-center">
-                    <Bot className="w-4 h-4 text-white" />
-                  </div>
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-3 gap-3 border-t border-green-500/10 pt-4">
-                <div className="text-center">
-                  <div className="text-xl md:text-2xl font-bold text-green-400">+28%</div>
-                  <div className="text-xs text-foreground/60">risparmio</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-xl md:text-2xl font-bold text-green-400">-35%</div>
-                  <div className="text-xs text-foreground/60">chiamate supporto</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-xl md:text-2xl font-bold text-green-400">+55%</div>
-                  <div className="text-xs text-foreground/60">soddisfazione</div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -1203,7 +997,7 @@ const Chatbots = () => {
             : 'md:absolute md:inset-0 opacity-0 translate-x-full pointer-events-none hidden md:block'
         }`}
       >
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-10 items-start md:items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 items-start md:items-center">
           <div className="md:col-span-3 order-2 md:order-1">
             <div className="inline-block px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 mb-4">
               <span className="text-sm font-medium text-teal-400 flex items-center">
@@ -1268,75 +1062,6 @@ const Chatbots = () => {
               </div>
             </div>
           </div>
-          
-          <div className="md:col-span-2 order-1 md:order-2 mb-8 md:mb-0">
-            <div className="bg-gradient-to-br from-background/30 to-teal-500/5 backdrop-blur-sm rounded-xl border border-teal-500/20 shadow-lg p-4 md:p-6 relative">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-teal-500/10 to-transparent rounded-bl-[100px] opacity-50"></div>
-              
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-teal-400/20 to-emerald-400/20 flex items-center justify-center mr-4">
-                  <Plane className="w-6 h-6 text-teal-400" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-xl">Travel Assistant</h4>
-                  <p className="text-sm text-foreground/70">Il tuo compagno di viaggio digitale</p>
-                </div>
-              </div>
-              
-              <div className="mb-6 space-y-4">
-                <div className="flex items-start">
-                  <div className="w-8 h-8 rounded-full bg-teal-500/20 flex-shrink-0 mr-3 flex items-center justify-center">
-                    <User className="w-4 h-4 text-teal-200" />
-                  </div>
-                  <div className="bg-background/50 border border-teal-500/10 rounded-2xl rounded-tl-none p-3 text-sm max-w-[85%]">
-                    Sto pianificando un weekend a Roma. Puoi suggerirmi cosa vedere in 2 giorni?
-                  </div>
-                </div>
-                
-                <div className="flex items-start justify-end">
-                  <div className="bg-gradient-to-r from-teal-500/70 to-emerald-500/70 rounded-2xl rounded-tr-none p-3 text-sm text-white max-w-[85%]">
-                    Per un weekend a Roma, ecco un itinerario di 2 giorni: Giorno 1: Colosseo e Foro Romano al mattino, pranzo a Trastevere, pomeriggio ai Musei Vaticani. Giorno 2: Fontana di Trevi, Pantheon, Piazza Navona e Villa Borghese. Preferisci arte o archeologia?
-                  </div>
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-teal-400 to-emerald-400 flex-shrink-0 ml-3 flex items-center justify-center">
-                    <Bot className="w-4 h-4 text-white" />
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="w-8 h-8 rounded-full bg-teal-500/20 flex-shrink-0 mr-3 flex items-center justify-center">
-                    <User className="w-4 h-4 text-teal-200" />
-                  </div>
-                  <div className="bg-background/50 border border-teal-500/10 rounded-2xl rounded-tl-none p-3 text-sm max-w-[85%]">
-                    Mi piace l'arte! Puoi consigliarmi un hotel in centro?
-                  </div>
-                </div>
-                
-                <div className="flex items-start justify-end">
-                  <div className="bg-gradient-to-r from-teal-500/70 to-emerald-500/70 rounded-2xl rounded-tr-none p-3 text-sm text-white max-w-[85%]">
-                    Ecco 3 hotel perfetti per gli amanti dell'arte: Hotel Artemide (4★), vicino alle Terme di Diocleziano; Hotel Raphael (5★), con collezione di Picasso; The Fifteen Keys (boutique), vicino alla Galleria Nazionale d'Arte Moderna. Vuoi vedere disponibilità?
-                  </div>
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-teal-400 to-emerald-400 flex-shrink-0 ml-3 flex items-center justify-center">
-                    <Bot className="w-4 h-4 text-white" />
-                  </div>
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-3 gap-3 border-t border-teal-500/10 pt-4">
-                <div className="text-center">
-                  <div className="text-xl md:text-2xl font-bold text-teal-400">+40%</div>
-                  <div className="text-xs text-foreground/60">prenotazioni</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-xl md:text-2xl font-bold text-teal-400">-25%</div>
-                  <div className="text-xs text-foreground/60">tempo di ricerca</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-xl md:text-2xl font-bold text-teal-400">+65%</div>
-                  <div className="text-xs text-foreground/60">personalizzazione</div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -1348,7 +1073,7 @@ const Chatbots = () => {
       : 'md:absolute md:inset-0 opacity-0 translate-x-full pointer-events-none hidden md:block'
   }`}
 >
-  <div className="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-10 items-start md:items-center">
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 items-start md:items-center">
     <div className="md:col-span-3 order-2 md:order-1">
       <div className="inline-block px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-4">
         <span className="text-sm font-medium text-emerald-400 flex items-center">
@@ -1413,79 +1138,6 @@ const Chatbots = () => {
         </div>
       </div>
     </div>
-    
-    <div className="md:col-span-2 order-1 md:order-2 mb-8 md:mb-0">
-      <div className="bg-gradient-to-br from-background/30 to-emerald-500/5 backdrop-blur-sm rounded-xl border border-emerald-500/20 shadow-lg p-4 md:p-6 relative">
-        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-emerald-500/10 to-transparent rounded-bl-[100px] opacity-50"></div>
-        
-        <div className="flex items-center mb-6">
-          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-400/20 to-green-400/20 flex items-center justify-center mr-4">
-            <GraduationCap className="w-6 h-6 text-emerald-400" />
-          </div>
-          <div>
-            <h4 className="font-bold text-xl">EduBot Assistant</h4>
-            <p className="text-sm text-foreground/70">Il tuo tutor personale 24/7</p>
-          </div>
-        </div>
-        
-        <div className="mb-6 space-y-4">
-          <div className="flex items-start">
-            <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex-shrink-0 mr-3 flex items-center justify-center">
-              <User className="w-4 h-4 text-emerald-200" />
-            </div>
-            <div className="bg-background/50 border border-emerald-500/10 rounded-2xl rounded-tl-none p-3 text-sm max-w-[85%]">
-              Sto studiando le equazioni di secondo grado ma ho difficoltà con la formula risolutiva.
-            </div>
-          </div>
-          
-          <div className="flex items-start justify-end">
-            <div className="bg-gradient-to-r from-emerald-500/70 to-green-500/70 rounded-2xl rounded-tr-none p-3 text-sm text-white max-w-[85%]">
-              Per le equazioni ax² + bx + c = 0, puoi usare la formula x = (-b ± √(b² - 4ac)) / 2a. Il discriminante b² - 4ac determina quante soluzioni hai. Vediamo un esempio insieme?
-            </div>
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-green-400 flex-shrink-0 ml-3 flex items-center justify-center">
-              <Bot className="w-4 h-4 text-white" />
-            </div>
-          </div>
-          
-          <div className="flex items-start">
-            <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex-shrink-0 mr-3 flex items-center justify-center">
-              <User className="w-4 h-4 text-emerald-200" />
-            </div>
-            <div className="bg-background/50 border border-emerald-500/10 rounded-2xl rounded-tl-none p-3 text-sm max-w-[85%]">
-              Sì, come risolvo x² - 5x + 6 = 0?
-            </div>
-          </div>
-          
-          <div className="flex items-start justify-end">
-            <div className="bg-gradient-to-r from-emerald-500/70 to-green-500/70 rounded-2xl rounded-tr-none p-3 text-sm text-white max-w-[85%]">
-              Qui a=1, b=-5, c=6. Calcoliamo:
-              1) b² - 4ac = (-5)² - 4(1)(6) = 25 - 24 = 1
-              2) √(b² - 4ac) = √1 = 1
-              3) x = (5 ± 1)/2 = 3 o 2
-              Verifichiamo: 3²-5(3)+6=0 e 2²-5(2)+6=0
-            </div>
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-green-400 flex-shrink-0 ml-3 flex items-center justify-center">
-              <Bot className="w-4 h-4 text-white" />
-            </div>
-          </div>
-        </div>
-        
-        <div className="grid grid-cols-3 gap-3 border-t border-emerald-500/10 pt-4">
-          <div className="text-center">
-            <div className="text-xl md:text-2xl font-bold text-emerald-400">+32%</div>
-            <div className="text-xs text-foreground/60">voti medi</div>
-          </div>
-          <div className="text-center">
-            <div className="text-xl md:text-2xl font-bold text-emerald-400">+85%</div>
-            <div className="text-xs text-foreground/60">coinvolgimento</div>
-          </div>
-          <div className="text-center">
-            <div className="text-xl md:text-2xl font-bold text-emerald-400">+45%</div>
-            <div className="text-xs text-foreground/60">autoefficacia</div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
   
@@ -1494,7 +1146,7 @@ const Chatbots = () => {
 </section>
 
 {/* Benefits Section - Completely Redesigned */}
-<section className="py-14 relative overflow-visible z-0">
+<section className="py-4 relative overflow-visible z-0">
   <div className="absolute inset-0 overflow-hidden">
     <div className="absolute inset-0 bg-gradient-to-b from-background via-green-900/5 to-background"></div>
     <div className="absolute top-1/3 left-1/4 w-96 h-96 rounded-full bg-green-500/5 filter blur-3xl"></div>

@@ -272,14 +272,22 @@ const Products = () => {
                     </div>
                   </div>
 
-                  {/* Immagine */}
+                  {/* Riquadro "In Arrivo" - Sostituisce l'immagine */}
                   <div className="flex justify-center mb-8">
-                    <div className="w-full max-w-md">
-                      <img 
-                        src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop&crop=center" 
-                        alt="AI CRM Dashboard Analytics"
-                        className="w-full h-400 object-cover rounded-xl opacity-70 border border-blue-600"
-                      />
+                    {/* Top gradient border verde */}
+                      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-violet-400 via-violet-300 to-black-400"></div>
+                    <div className="w-full max-w-md  from-green-900/20 to-green-800/20 border border-green-600/40 rounded-xl p-8 text-center backdrop-blur-sm">   
+                      <div className="mb-4">
+                        <span className="inline-block px-4 py-2 bg-green-600/20 border border-green-500/30 rounded-full text-green-400 text-sm font-medium">
+                          In Arrivo
+                        </span>
+                      </div>
+                      <h4 className="text-white text-lg font-semibold mb-3">
+                        Sei interessato al prodotto?
+                      </h4>
+                      <p className="text-gray-300 text-sm">
+                        Contattaci per ulteriori informazioni sulle tempistiche
+                      </p>
                     </div>
                   </div>
                   
@@ -346,14 +354,22 @@ const Products = () => {
                     </div>
                   </div>
 
-                  {/* Immagine */}
+                  {/* Riquadro "In Arrivo" - Sostituisce l'immagine */}
                   <div className="flex justify-center mb-8">
-                    <div className="w-full max-w-md">
-                      <img 
-                        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop&crop=center" 
-                        alt="Excel Lead Processing Interface"
-                        className="w-full h-400 object-cover rounded-xl opacity-70 border border-green-600"
-                      />
+                  {/* Top gradient border verde */}
+                      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-violet-400 via-violet-300 to-black-400"></div>
+                    <div className="w-full max-w-md  from-green-900/20 to-green-800/20 border border-green-600/40 rounded-xl p-8 text-center backdrop-blur-sm">
+                      <div className="mb-4">
+                        <span className="inline-block px-4 py-2 bg-green-600/20 border border-green-500/30 rounded-full text-green-400 text-sm font-medium">
+                          In Arrivo
+                        </span>
+                      </div>
+                      <h4 className="text-white text-lg font-semibold mb-3">
+                        Sei interessato al prodotto?
+                      </h4>
+                      <p className="text-gray-300 text-sm">
+                        Contattaci per ulteriori informazioni sulle tempistiche
+                      </p>
                     </div>
                   </div>
                   
@@ -420,14 +436,22 @@ const Products = () => {
                     </div>
                   </div>
 
-                  {/* Immagine */}
+                  {/* Riquadro "In Arrivo" - Sostituisce l'immagine */}
                   <div className="flex justify-center mb-8">
-                    <div className="w-full max-w-md">
-                      <img 
-                        src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=250&fit=crop&crop=center" 
-                        alt="Healthcare AI Assistant Interface"
-                        className="w-full h-400 object-cover rounded-xl opacity-70 border border-red-600"
-                      />
+                    {/* Top gradient border verde */}
+                      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-violet-400 via-violet-300 to-black-400"></div>
+                    <div className="w-full max-w-md  from-green-900/20 to-green-800/20 border border-green-600/40 rounded-xl p-8 text-center backdrop-blur-sm">
+                      <div className="mb-4">
+                        <span className="inline-block px-4 py-2 bg-green-600/20 border border-green-500/30 rounded-full text-green-400 text-sm font-medium">
+                          In Arrivo
+                        </span>
+                      </div>
+                      <h4 className="text-white text-lg font-semibold mb-3">
+                        Sei interessato al prodotto?
+                      </h4>
+                      <p className="text-gray-300 text-sm">
+                        Contattaci per ulteriori informazioni sulle tempistiche
+                      </p>
                     </div>
                   </div>
                   

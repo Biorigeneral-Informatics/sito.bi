@@ -22,20 +22,6 @@ const AIAgents = () => {
     "Scalabilità illimitata senza costi aggiuntivi"
   ];
 
-  const integrationTools = [
-    { name: 'HubSpot', category: 'CRM', color: 'bg-red-500' },
-    { name: 'Salesforce', category: 'CRM', color: 'bg-blue-500' },
-    { name: 'Slack', category: 'Communication', color: 'bg-purple-500' },
-    { name: 'Telegram', category: 'Messaging', color: 'bg-blue-400' },
-    { name: 'WhatsApp', category: 'Messaging', color: 'bg-green-500' },
-    { name: 'Gmail', category: 'Email', color: 'bg-red-600' },
-    { name: 'Trello', category: 'Project Mgmt', color: 'bg-blue-600' },
-    { name: 'Monday.com', category: 'Project Mgmt', color: 'bg-purple-600' },
-    { name: 'Zapier', category: 'Automation', color: 'bg-orange-500' },
-    { name: 'Make.com', category: 'Automation', color: 'bg-blue-500' },
-    { name: 'Google Drive', category: 'Storage', color: 'bg-yellow-500' },
-    { name: 'Notion', category: 'Productivity', color: 'bg-gray-800' }
-  ];
 
   return (
     <>
@@ -51,7 +37,7 @@ const AIAgents = () => {
         className="opacity-80" 
       />
 
-      <div className="min-h-screen pt-28 pb-16">
+      <div className="min-h-screen pt-18 pb-16">
         
         {/* Hero Section - Stile Home con effetto typing */}
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-1 pb-16">

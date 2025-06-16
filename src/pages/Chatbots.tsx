@@ -13,32 +13,22 @@ import {
   Bot,
   Clock,
   Send,
-  LineChart,
-  HeartPulse,
   BookOpen,
-  Headphones,
-  Waypoints,
-  Star,
-  Globe,
   GraduationCap,
-  Plane,
   ShoppingCart,
   Calendar,
   Heart,
   TrendingUp,
   Check,
-  PieChart,
   UserPlus,
   User,
   BarChart2,
   RefreshCw,
-  MapPin,
-  Shield,
-  HelpCircle,
-  Bell,
-  Activity,
-  Search,
-  LifeBuoy
+  Layers,
+  Target,
+  PlayCircle,
+  Phone,
+  AlertCircle
 } from 'lucide-react';
 import ScrollAnimation from '../components/ScrollAnimation';
 import ScrollGradient from '../components/ScrollGradient';
@@ -699,16 +689,8 @@ const Chatbots = () => {
 
 
 
-{/* Application Areas Section - Interactive category selector - Mobile Responsive */}
-<section className="py-20 md:py-40 relative overflow-visible z-20">
-  {/* Animated gradient background */}
-  <div className="absolute inset-0">
-    <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full bg-gradient-to-br from-green-500/10 to-transparent opacity-40 blur-3xl"></div>
-    <div className="absolute bottom-0 right-1/4 w-96 h-96 rounded-full bg-gradient-to-tl from-teal-500/10 to-transparent opacity-40 blur-3xl"></div>
-    
-    {/* Subtle grid pattern */}
-    <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-  </div>
+{/* Use Cases Section */}
+<section className="py-8 md:py-20 relative z-10">
   
   <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
     <div className="text-center mb-8 md:mb-16">
@@ -717,10 +699,10 @@ const Chatbots = () => {
           Aree di Applicazione
         </span>
       </div>
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text">Soluzioni per Ogni Settore</h2>
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text">Casi d'uso</h2>
       <p className="text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto">
         Le nostre tecnologie di intelligenza artificiale conversazionale si adattano 
-        perfettamente a diversi settori, offrendo soluzioni specifiche per ogni esigenza
+        perfettamente a diversi casi d'uso, offrendo soluzioni specifiche per ogni esigenza
       </p>
     </div>
 
@@ -729,9 +711,9 @@ const Chatbots = () => {
   <div className="bg-background/30 backdrop-blur-sm rounded-full p-1.5 border border-green-500/20 shadow-lg shadow-green-500/5 flex flex-wrap justify-center">
     {[
       { name: 'Customer Support', icon: <ShoppingCart className="w-4 h-4 md:w-5 md:h-5" /> },
-      { name: 'Sanità', icon: <HeartPulse className="w-4 h-4 md:w-5 md:h-5" /> },
-      { name: 'Finanza', icon: <LineChart className="w-4 h-4 md:w-5 md:h-5" /> },
-      { name: 'Turismo', icon: <Plane className="w-4 h-4 md:w-5 md:h-5" /> },
+      { name: 'Programmazione', icon: <Calendar className="w-4 h-4 md:w-5 md:h-5" /> },
+      { name: 'Vendite', icon: <TrendingUp className="w-4 h-4 md:w-5 md:h-5" /> },
+      { name: 'Formazione', icon: <BookOpen className="w-4 h-4 md:w-5 md:h-5" /> },
       { name: 'Educazione', icon: <GraduationCap className="w-4 h-4 md:w-5 md:h-5" /> }
     ].map((category, index) => (
       <button
@@ -776,68 +758,65 @@ const Chatbots = () => {
               </span>
             </div>
             <h3 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-green-400 to-teal-400 bg-clip-text text-transparent">
-              Trasforma l'Esperienza d'Acquisto
+              Assistenza Clienti 24/7
             </h3>
             <p className="text-base md:text-lg text-foreground/80 mb-6 md:mb-8">
-              I nostri chatbot AI potenziano l'esperienza di shopping online con assistenza 
-              personalizzata 24/7, consigli sui prodotti e supporto immediato in ogni fase del 
-              percorso d'acquisto.
+              Gestisci un'ampia gamma di richieste dei clienti 24 ore su 24, riducendo i tempi di attesa e migliorando la soddisfazione del cliente. Gli agenti possono risolvere problemi, elaborare resi e persino proporre prodotti aggiuntivi, mantenendo sempre una voce coerente del brand.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
               <div className="bg-gradient-to-br from-background to-green-500/5 rounded-xl p-4 md:p-5 border border-green-500/20">
                 <div className="flex items-center mb-3">
                   <div className="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center mr-3">
+                    <Clock className="w-4 h-4 text-green-400" />
+                  </div>
+                  <h4 className="font-semibold">Supporto continuo</h4>
+                </div>
+                <p className="text-sm text-foreground/70 pl-11">
+                  Assistenza 24/7 senza interruzioni per ridurre i tempi di attesa
+                </p>
+              </div>
+              
+              <div className="bg-gradient-to-br from-background to-green-500/5 rounded-xl p-4 md:p-5 border border-green-500/20">
+                <div className="flex items-center mb-3">
+                  <div className="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center mr-3">
                     <Users className="w-4 h-4 text-green-400" />
                   </div>
-                  <h4 className="font-semibold">Assistenza personalizzata</h4>
+                  <h4 className="font-semibold">Risoluzione problemi</h4>
                 </div>
                 <p className="text-sm text-foreground/70 pl-11">
-                  Raccomandazioni di prodotti basate su preferenze e storico acquisti
+                  Troubleshooting automatico e gestione resi con voce del brand consistente
                 </p>
               </div>
               
               <div className="bg-gradient-to-br from-background to-green-500/5 rounded-xl p-4 md:p-5 border border-green-500/20">
                 <div className="flex items-center mb-3">
                   <div className="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center mr-3">
-                    <LifeBuoy className="w-4 h-4 text-green-400" />
+                    <TrendingUp className="w-4 h-4 text-green-400" />
                   </div>
-                  <h4 className="font-semibold">Supporto post-vendita</h4>
+                  <h4 className="font-semibold">Upselling intelligente</h4>
                 </div>
                 <p className="text-sm text-foreground/70 pl-11">
-                  Risposte immediate per resi, rimborsi e stato degli ordini
+                  Proposte di prodotti aggiuntivi basate sul profilo e preferenze del cliente
                 </p>
               </div>
               
               <div className="bg-gradient-to-br from-background to-green-500/5 rounded-xl p-4 md:p-5 border border-green-500/20">
                 <div className="flex items-center mb-3">
                   <div className="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center mr-3">
-                    <ShoppingCart className="w-4 h-4 text-green-400" />
+                    <MessageSquare className="w-4 h-4 text-green-400" />
                   </div>
-                  <h4 className="font-semibold">Carrelli abbandonati</h4>
+                  <h4 className="font-semibold">Voce del brand</h4>
                 </div>
                 <p className="text-sm text-foreground/70 pl-11">
-                  Riduzione significativa con interazioni contestuali proattive
-                </p>
-              </div>
-              
-              <div className="bg-gradient-to-br from-background to-green-500/5 rounded-xl p-4 md:p-5 border border-green-500/20">
-                <div className="flex items-center mb-3">
-                  <div className="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center mr-3">
-                    <Search className="w-4 h-4 text-green-400" />
-                  </div>
-                  <h4 className="font-semibold">Ricerca prodotti</h4>
-                </div>
-                <p className="text-sm text-foreground/70 pl-11">
-                  Navigazione del catalogo naturale e conversazionale
+                  Comunicazione coerente che riflette i valori e il tono della tua azienda
                 </p>
               </div>
             </div>
           </div>
-          
         </div>
       </div>
 
-      {/* Sanità - reimplementing similar mobile improvements */}
+      {/* Programmazione (Scheduling) */}
       <div 
         className={`transition-all duration-500 ${
           categoryIndex === 1 
@@ -849,63 +828,62 @@ const Chatbots = () => {
           <div className="md:col-span-3 order-2 md:order-1">
             <div className="inline-block px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 mb-4">
               <span className="text-sm font-medium text-teal-400 flex items-center">
-                <HeartPulse className="w-4 h-4 mr-2" />
-                Sanità
+                <Calendar className="w-4 h-4 mr-2" />
+                Programmazione
               </span>
             </div>
             <h3 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-teal-400 to-green-400 bg-clip-text text-transparent">
-              Assistenza Sanitaria Potenziata
+              Gestione Appuntamenti Intelligente
             </h3>
             <p className="text-base md:text-lg text-foreground/80 mb-6 md:mb-8">
-              Supporto continuo per pazienti e operatori sanitari con informazioni affidabili, 
-              gestione appuntamenti e monitoraggio sintomi in un'interfaccia conversazionale intuitiva.
+              Semplifica la prenotazione e gestione degli appuntamenti, dalla sanità ai servizi personali. I clienti possono facilmente programmare, riprogrammare o cancellare appuntamenti attraverso conversazioni naturali, riducendo le mancate presentazioni e migliorando l'efficienza operativa.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
               <div className="bg-gradient-to-br from-background to-teal-500/5 rounded-xl p-4 md:p-5 border border-teal-500/20">
                 <div className="flex items-center mb-3">
                   <div className="w-8 h-8 rounded-full bg-teal-500/10 flex items-center justify-center mr-3">
-                    <Activity className="w-4 h-4 text-teal-400" />
-                  </div>
-                  <h4 className="font-semibold">Monitoraggio remoto</h4>
-                </div>
-                <p className="text-sm text-foreground/70 pl-11">
-                  Check-in regolari e follow-up per gestione delle condizioni croniche
-                </p>
-              </div>
-              
-              <div className="bg-gradient-to-br from-background to-teal-500/5 rounded-xl p-4 md:p-5 border border-teal-500/20">
-                <div className="flex items-center mb-3">
-                  <div className="w-8 h-8 rounded-full bg-teal-500/10 flex items-center justify-center mr-3">
                     <Calendar className="w-4 h-4 text-teal-400" />
                   </div>
-                  <h4 className="font-semibold">Gestione appuntamenti</h4>
+                  <h4 className="font-semibold">Prenotazione facilitata</h4>
                 </div>
                 <p className="text-sm text-foreground/70 pl-11">
-                  Prenotazione, modifica e promemoria automatizzati per ridurre i no-show
+                  Interfaccia conversazionale intuitiva per prenotazioni rapide e semplici
                 </p>
               </div>
               
               <div className="bg-gradient-to-br from-background to-teal-500/5 rounded-xl p-4 md:p-5 border border-teal-500/20">
                 <div className="flex items-center mb-3">
                   <div className="w-8 h-8 rounded-full bg-teal-500/10 flex items-center justify-center mr-3">
-                    <HelpCircle className="w-4 h-4 text-teal-400" />
+                    <RefreshCw className="w-4 h-4 text-teal-400" />
                   </div>
-                  <h4 className="font-semibold">FAQ mediche</h4>
+                  <h4 className="font-semibold">Gestione flessibile</h4>
                 </div>
                 <p className="text-sm text-foreground/70 pl-11">
-                  Informazioni verificate su procedure, preparazione esami e post-operatorio
+                  Riprogrammazione e cancellazioni immediate con notifiche automatiche
                 </p>
               </div>
               
               <div className="bg-gradient-to-br from-background to-teal-500/5 rounded-xl p-4 md:p-5 border border-teal-500/20">
                 <div className="flex items-center mb-3">
                   <div className="w-8 h-8 rounded-full bg-teal-500/10 flex items-center justify-center mr-3">
-                    <Bell className="w-4 h-4 text-teal-400" />
+                    <AlertCircle className="w-4 h-4 text-teal-400" />
                   </div>
-                  <h4 className="font-semibold">Promemoria terapie</h4>
+                  <h4 className="font-semibold">Riduzione no-show</h4>
                 </div>
                 <p className="text-sm text-foreground/70 pl-11">
-                  Notifiche personalizzate per migliorare l'aderenza ai trattamenti
+                  Promemoria automatici e conferme per minimizzare le mancate presentazioni
+                </p>
+              </div>
+              
+              <div className="bg-gradient-to-br from-background to-teal-500/5 rounded-xl p-4 md:p-5 border border-teal-500/20">
+                <div className="flex items-center mb-3">
+                  <div className="w-8 h-8 rounded-full bg-teal-500/10 flex items-center justify-center mr-3">
+                    <BarChart2 className="w-4 h-4 text-teal-400" />
+                  </div>
+                  <h4 className="font-semibold">Efficienza operativa</h4>
+                </div>
+                <p className="text-sm text-foreground/70 pl-11">
+                  Ottimizzazione automatica dei calendari e gestione delle disponibilità
                 </p>
               </div>
             </div>
@@ -913,7 +891,7 @@ const Chatbots = () => {
         </div>
       </div>
 
-      {/* Finanza - mobile-first approach */}
+      {/* Vendite (Outbound Sales) */}
       <div 
         className={`transition-all duration-500 ${
           categoryIndex === 2 
@@ -923,65 +901,64 @@ const Chatbots = () => {
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 items-start md:items-center">
           <div className="md:col-span-3 order-2 md:order-1">
-            <div className="inline-block px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 mb-4">
-              <span className="text-sm font-medium text-green-400 flex items-center">
-                <LineChart className="w-4 h-4 mr-2" />
-                Servizi Finanziari
+            <div className="inline-block px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 mb-4">
+              <span className="text-sm font-medium text-blue-400 flex items-center">
+                <TrendingUp className="w-4 h-4 mr-2" />
+                Vendite
               </span>
             </div>
-            <h3 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
-              Soluzioni Bancarie Intelligenti
+            <h3 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">
+              Vendite Outbound Personalizzate
             </h3>
             <p className="text-base md:text-lg text-foreground/80 mb-6 md:mb-8">
-              Assistenti virtuali per consulenza finanziaria, gestione conti, verifica transazioni e supporto 
-              operazioni bancarie con sicurezza avanzata e disponibilità 24/7.
+              Conduci chiamate a freddo personalizzate su larga scala, qualificando i lead e fissando appuntamenti per il tuo team. Gli agenti possono adattare il loro approccio in base alle risposte dei clienti, garantendo maggiore coinvolgimento e tassi di conversione più elevati.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-              <div className="bg-gradient-to-br from-background to-green-500/5 rounded-xl p-4 md:p-5 border border-green-500/20">
+              <div className="bg-gradient-to-br from-background to-blue-500/5 rounded-xl p-4 md:p-5 border border-blue-500/20">
                 <div className="flex items-center mb-3">
-                  <div className="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center mr-3">
-                    <Shield className="w-4 h-4 text-green-400" />
+                  <div className="w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center mr-3">
+                    <Phone className="w-4 h-4 text-blue-400" />
                   </div>
-                  <h4 className="font-semibold">Sicurezza avanzata</h4>
+                  <h4 className="font-semibold">Cold calling scalabile</h4>
                 </div>
                 <p className="text-sm text-foreground/70 pl-11">
-                  Autenticazione biometrica e verifica identità multi-fattore integrata
+                  Chiamate personalizzate su larga scala con approcci adattivi per ogni prospect
                 </p>
               </div>
               
-              <div className="bg-gradient-to-br from-background to-green-500/5 rounded-xl p-4 md:p-5 border border-green-500/20">
+              <div className="bg-gradient-to-br from-background to-blue-500/5 rounded-xl p-4 md:p-5 border border-blue-500/20">
                 <div className="flex items-center mb-3">
-                  <div className="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center mr-3">
-                    <BarChart2 className="w-4 h-4 text-green-400" />
+                  <div className="w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center mr-3">
+                    <Target className="w-4 h-4 text-blue-400" />
                   </div>
-                  <h4 className="font-semibold">Analisi finanziaria</h4>
+                  <h4 className="font-semibold">Qualificazione lead</h4>
                 </div>
                 <p className="text-sm text-foreground/70 pl-11">
-                  Report personalizzati e suggerimenti basati sulle abitudini di spesa
+                  Identificazione automatica dei prospect qualificati per il follow-up umano
                 </p>
               </div>
               
-              <div className="bg-gradient-to-br from-background to-green-500/5 rounded-xl p-4 md:p-5 border border-green-500/20">
+              <div className="bg-gradient-to-br from-background to-blue-500/5 rounded-xl p-4 md:p-5 border border-blue-500/20">
                 <div className="flex items-center mb-3">
-                  <div className="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center mr-3">
-                    <RefreshCw className="w-4 h-4 text-green-400" />
+                  <div className="w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center mr-3">
+                    <Zap className="w-4 h-4 text-blue-400" />
                   </div>
-                  <h4 className="font-semibold">Trasferimenti istantanei</h4>
+                  <h4 className="font-semibold">Adattamento dinamico</h4>
                 </div>
                 <p className="text-sm text-foreground/70 pl-11">
-                  Operazioni bancarie semplici e sicure attraverso interfaccia conversazionale
+                  Pitch che si adatta in tempo reale alle risposte e al comportamento del cliente
                 </p>
               </div>
               
-              <div className="bg-gradient-to-br from-background to-green-500/5 rounded-xl p-4 md:p-5 border border-green-500/20">
+              <div className="bg-gradient-to-br from-background to-blue-500/5 rounded-xl p-4 md:p-5 border border-blue-500/20">
                 <div className="flex items-center mb-3">
-                  <div className="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center mr-3">
-                    <PieChart className="w-4 h-4 text-green-400" />
+                  <div className="w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center mr-3">
+                    <TrendingUp className="w-4 h-4 text-blue-400" />
                   </div>
-                  <h4 className="font-semibold">Gestione investimenti</h4>
+                  <h4 className="font-semibold">Conversioni elevate</h4>
                 </div>
                 <p className="text-sm text-foreground/70 pl-11">
-                  Monitoraggio portfolio e consigli di ottimizzazione basati su AI
+                  Maggiore coinvolgimento e tassi di conversione grazie alla personalizzazione
                 </p>
               </div>
             </div>
@@ -989,7 +966,7 @@ const Chatbots = () => {
         </div>
       </div>
 
-      {/* Turismo - mobile-first approach */}
+      {/* Formazione (Learning & Development) */}
       <div 
         className={`transition-all duration-500 ${
           categoryIndex === 3 
@@ -999,65 +976,64 @@ const Chatbots = () => {
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 items-start md:items-center">
           <div className="md:col-span-3 order-2 md:order-1">
-            <div className="inline-block px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 mb-4">
-              <span className="text-sm font-medium text-teal-400 flex items-center">
-                <Plane className="w-4 h-4 mr-2" />
-                Turismo
+            <div className="inline-block px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 mb-4">
+              <span className="text-sm font-medium text-purple-400 flex items-center">
+                <BookOpen className="w-4 h-4 mr-2" />
+                Formazione
               </span>
             </div>
-            <h3 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-teal-400 to-green-400 bg-clip-text text-transparent">
-              Viaggi ed Esperienze Personalizzate
+            <h3 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-purple-400 to-green-400 bg-clip-text text-transparent">
+              Formazione e Sviluppo Personalizzati
             </h3>
             <p className="text-base md:text-lg text-foreground/80 mb-6 md:mb-8">
-              Assistenti AI per pianificazione viaggi, prenotazioni istantanee, itinerari personalizzati e supporto 
-              multilingue per esperienze turistiche senza stress.
+              Crea esperienze di formazione personalizzate che si adattano al ritmo e al ruolo di ogni dipendente. Pratica scenari del mondo reale come chiamate di vendita, conversazioni difficili e procedure di conformità attraverso simulazioni vocali interattive. Fornisci feedback istantaneo, monitora la progressione delle competenze e garantisci qualità di formazione costante nei team globali.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-              <div className="bg-gradient-to-br from-background to-teal-500/5 rounded-xl p-4 md:p-5 border border-teal-500/20">
+              <div className="bg-gradient-to-br from-background to-purple-500/5 rounded-xl p-4 md:p-5 border border-purple-500/20">
                 <div className="flex items-center mb-3">
-                  <div className="w-8 h-8 rounded-full bg-teal-500/10 flex items-center justify-center mr-3">
-                    <MapPin className="w-4 h-4 text-teal-400" />
+                  <div className="w-8 h-8 rounded-full bg-purple-500/10 flex items-center justify-center mr-3">
+                    <User className="w-4 h-4 text-purple-400" />
                   </div>
-                  <h4 className="font-semibold">Itinerari personalizzati</h4>
+                  <h4 className="font-semibold">Formazione personalizzata</h4>
                 </div>
                 <p className="text-sm text-foreground/70 pl-11">
-                  Pianificazione basata su preferenze, budget e stile di viaggio personale
+                  Esperienze adattive basate sul ritmo e ruolo specifico di ogni dipendente
                 </p>
               </div>
               
-              <div className="bg-gradient-to-br from-background to-teal-500/5 rounded-xl p-4 md:p-5 border border-teal-500/20">
+              <div className="bg-gradient-to-br from-background to-purple-500/5 rounded-xl p-4 md:p-5 border border-purple-500/20">
                 <div className="flex items-center mb-3">
-                  <div className="w-8 h-8 rounded-full bg-teal-500/10 flex items-center justify-center mr-3">
-                    <Globe className="w-4 h-4 text-teal-400" />
+                  <div className="w-8 h-8 rounded-full bg-purple-500/10 flex items-center justify-center mr-3">
+                    <PlayCircle className="w-4 h-4 text-purple-400" />
                   </div>
-                  <h4 className="font-semibold">Supporto multilingue</h4>
+                  <h4 className="font-semibold">Simulazioni realistiche</h4>
                 </div>
                 <p className="text-sm text-foreground/70 pl-11">
-                  Assistenza in più di 30 lingue per viaggiatori internazionali
+                  Scenari di vendita, conversazioni difficili e procedure di conformità
                 </p>
               </div>
               
-              <div className="bg-gradient-to-br from-background to-teal-500/5 rounded-xl p-4 md:p-5 border border-teal-500/20">
+              <div className="bg-gradient-to-br from-background to-purple-500/5 rounded-xl p-4 md:p-5 border border-purple-500/20">
                 <div className="flex items-center mb-3">
-                  <div className="w-8 h-8 rounded-full bg-teal-500/10 flex items-center justify-center mr-3">
-                    <Calendar className="w-4 h-4 text-teal-400" />
+                  <div className="w-8 h-8 rounded-full bg-purple-500/10 flex items-center justify-center mr-3">
+                    <MessageCircle className="w-4 h-4 text-purple-400" />
                   </div>
-                  <h4 className="font-semibold">Prenotazioni istantanee</h4>
+                  <h4 className="font-semibold">Feedback istantaneo</h4>
                 </div>
                 <p className="text-sm text-foreground/70 pl-11">
-                  Ricerca e prenotazione di voli, hotel e attività in un'unica conversazione
+                  Valutazioni immediate e suggerimenti per il miglioramento continuo
                 </p>
               </div>
               
-              <div className="bg-gradient-to-br from-background to-teal-500/5 rounded-xl p-4 md:p-5 border border-teal-500/20">
+              <div className="bg-gradient-to-br from-background to-purple-500/5 rounded-xl p-4 md:p-5 border border-purple-500/20">
                 <div className="flex items-center mb-3">
-                  <div className="w-8 h-8 rounded-full bg-teal-500/10 flex items-center justify-center mr-3">
-                    <Headphones className="w-4 h-4 text-teal-400" />
+                  <div className="w-8 h-8 rounded-full bg-purple-500/10 flex items-center justify-center mr-3">
+                    <TrendingUp className="w-4 h-4 text-purple-400" />
                   </div>
-                  <h4 className="font-semibold">Assistenza in viaggio</h4>
+                  <h4 className="font-semibold">Monitoraggio progressi</h4>
                 </div>
                 <p className="text-sm text-foreground/70 pl-11">
-                  Supporto 24/7 per modifiche dell'ultimo minuto e situazioni impreviste
+                  Tracciamento delle competenze e miglioramento delle performance nel tempo
                 </p>
               </div>
             </div>
@@ -1065,84 +1041,82 @@ const Chatbots = () => {
         </div>
       </div>
 
-{/* Educazione - mobile-first approach */}
-<div 
-  className={`transition-all duration-500 ${
-    categoryIndex === 4 
-      ? 'opacity-100 translate-x-0' 
-      : 'md:absolute md:inset-0 opacity-0 translate-x-full pointer-events-none hidden md:block'
-  }`}
->
-  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 items-start md:items-center">
-    <div className="md:col-span-3 order-2 md:order-1">
-      <div className="inline-block px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-4">
-        <span className="text-sm font-medium text-emerald-400 flex items-center">
-          <GraduationCap className="w-4 h-4 mr-2" />
-          Educazione
-        </span>
-      </div>
-      <h3 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-emerald-400 to-green-400 bg-clip-text text-transparent">
-        Apprendimento Assistito da AI
-      </h3>
-      <p className="text-base md:text-lg text-foreground/80 mb-6 md:mb-8">
-        Tutor virtuali personalizzati, assistenza compiti, preparazione esami e 
-        strumenti didattici interattivi per studenti di tutte le età e livelli.
-      </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-        <div className="bg-gradient-to-br from-background to-emerald-500/5 rounded-xl p-4 md:p-5 border border-emerald-500/20">
-          <div className="flex items-center mb-3">
-            <div className="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center mr-3">
-              <BookOpen className="w-4 h-4 text-emerald-400" />
+      {/* Educazione */}
+      <div 
+        className={`transition-all duration-500 ${
+          categoryIndex === 4 
+            ? 'opacity-100 translate-x-0' 
+            : 'md:absolute md:inset-0 opacity-0 translate-x-full pointer-events-none hidden md:block'
+        }`}
+      >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 items-start md:items-center">
+          <div className="md:col-span-3 order-2 md:order-1">
+            <div className="inline-block px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-4">
+              <span className="text-sm font-medium text-emerald-400 flex items-center">
+                <GraduationCap className="w-4 h-4 mr-2" />
+                Educazione
+              </span>
             </div>
-            <h4 className="font-semibold">Tutor personalizzato</h4>
-          </div>
-          <p className="text-sm text-foreground/70 pl-11">
-            Supporto adattivo basato sullo stile di apprendimento e livello dello studente
-          </p>
-        </div>
-        
-        <div className="bg-gradient-to-br from-background to-emerald-500/5 rounded-xl p-4 md:p-5 border border-emerald-500/20">
-          <div className="flex items-center mb-3">
-            <div className="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center mr-3">
-              <Waypoints className="w-4 h-4 text-emerald-400" />
+            <h3 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-emerald-400 to-green-400 bg-clip-text text-transparent">
+              Apprendimento Personalizzato
+            </h3>
+            <p className="text-base md:text-lg text-foreground/80 mb-6 md:mb-8">
+              Fornisci esperienze di apprendimento personalizzate, offrendo spiegazioni, quiz e lezioni adattive basate sul progresso dello studente. Supporta varie materie e stili di apprendimento, rendendo l'educazione più accessibile e coinvolgente.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+              <div className="bg-gradient-to-br from-background to-emerald-500/5 rounded-xl p-4 md:p-5 border border-emerald-500/20">
+                <div className="flex items-center mb-3">
+                  <div className="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center mr-3">
+                    <BookOpen className="w-4 h-4 text-emerald-400" />
+                  </div>
+                  <h4 className="font-semibold">Tutor personalizzato</h4>
+                </div>
+                <p className="text-sm text-foreground/70 pl-11">
+                  Supporto adattivo basato sullo stile di apprendimento e livello dello studente
+                </p>
+              </div>
+              
+              <div className="bg-gradient-to-br from-background to-emerald-500/5 rounded-xl p-4 md:p-5 border border-emerald-500/20">
+                <div className="flex items-center mb-3">
+                  <div className="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center mr-3">
+                    <CheckCircle className="w-4 h-4 text-emerald-400" />
+                  </div>
+                  <h4 className="font-semibold">Quiz interattivi</h4>
+                </div>
+                <p className="text-sm text-foreground/70 pl-11">
+                  Valutazioni dinamiche che si adattano al livello di comprensione
+                </p>
+              </div>
+              
+              <div className="bg-gradient-to-br from-background to-emerald-500/5 rounded-xl p-4 md:p-5 border border-emerald-500/20">
+                <div className="flex items-center mb-3">
+                  <div className="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center mr-3">
+                    <Layers className="w-4 h-4 text-emerald-400" />
+                  </div>
+                  <h4 className="font-semibold">Materie multiple</h4>
+                </div>
+                <p className="text-sm text-foreground/70 pl-11">
+                  Supporto per diverse discipline accademiche e stili di apprendimento
+                </p>
+              </div>
+              
+              <div className="bg-gradient-to-br from-background to-emerald-500/5 rounded-xl p-4 md:p-5 border border-emerald-500/20">
+                <div className="flex items-center mb-3">
+                  <div className="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center mr-3">
+                    <TrendingUp className="w-4 h-4 text-emerald-400" />
+                  </div>
+                  <h4 className="font-semibold">Progressi tracciati</h4>
+                </div>
+                <p className="text-sm text-foreground/70 pl-11">
+                  Monitoraggio del miglioramento e identificazione aree di crescita
+                </p>
+              </div>
             </div>
-            <h4 className="font-semibold">Piani di studio</h4>
           </div>
-          <p className="text-sm text-foreground/70 pl-11">
-            Percorsi didattici ottimizzati con obiettivi e traguardi personalizzati
-          </p>
-        </div>
-        
-        <div className="bg-gradient-to-br from-background to-emerald-500/5 rounded-xl p-4 md:p-5 border border-emerald-500/20">
-          <div className="flex items-center mb-3">
-            <div className="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center mr-3">
-              <Star className="w-4 h-4 text-emerald-400" />
-            </div>
-            <h4 className="font-semibold">Preparazione esami</h4>
-          </div>
-          <p className="text-sm text-foreground/70 pl-11">
-            Simulazioni, quiz interattivi e feedback istantaneo per migliorare i risultati
-          </p>
-        </div>
-        
-        <div className="bg-gradient-to-br from-background to-emerald-500/5 rounded-xl p-4 md:p-5 border border-emerald-500/20">
-          <div className="flex items-center mb-3">
-            <div className="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center mr-3">
-              <TrendingUp className="w-4 h-4 text-emerald-400" />
-            </div>
-            <h4 className="font-semibold">Analisi progressi</h4>
-          </div>
-          <p className="text-sm text-foreground/70 pl-11">
-            Monitoraggio apprendimento e identificazione aree di miglioramento
-          </p>
         </div>
       </div>
     </div>
   </div>
-</div>
-  
-      </div>
-    </div>
 </section>
 
 {/* Benefits Section - Completely Redesigned */}

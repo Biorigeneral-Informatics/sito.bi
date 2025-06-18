@@ -44,6 +44,7 @@ const GrowthPlans = () => {
         "Social media Ads",
         "1 Software gestionale aziendale personalizzato",
         "Consulenza 1 giorno a settimana",
+        "5 Automazioni Make, N8n e Zapier gestite"
       ],
       price: "da €1.500/mese",
       popular: false
@@ -66,6 +67,8 @@ const GrowthPlans = () => {
         "Social ChatBots",
         "Accesso gratuito illimitato al nostro catalogo prodotti",
         "Piani di formazione AI per il tuo Team",
+        "Automazioni e agenti illimitati"
+
       ],
       price: "da €3.000/mese",
       popular: true
@@ -80,7 +83,7 @@ const GrowthPlans = () => {
         "Sviluppo Full-Stack a 360 gradi",
         "SaaS e Paas avanzati",
         "Integrazione completa nei sistemi aziendali",
-        "Automazioni Make, N8n e Zapier illimitate gestite"
+        "Automazioni Make, N8n e Zapier illimitate gestite con integrazioni avanzate nei sistemi aziendali"
       ],
       price: "da €6.000/mese",
       popular: false
@@ -176,10 +179,10 @@ const GrowthPlans = () => {
           maxSupport: true
         },
         {
-          name: 'Automazioni gestite',
-          pmi: false,
-          highGrowth: false,
-          maxSupport: 'Make, N8n, Zapier illimitate'
+          name: 'Automazioni e Agenti',
+          pmi: '5 al mese',
+          highGrowth: 'Illimitate',
+          maxSupport: 'Illimitate'
         }
       ]
     },

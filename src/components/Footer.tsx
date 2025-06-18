@@ -1,6 +1,6 @@
 // src/components/Footer.tsx - Updated with white text
 import { Link } from 'react-router-dom';
-import { Mail, MapPin, Linkedin, Twitter, Github, Instagram } from 'lucide-react';
+import { Mail, MapPin, Linkedin, Github, Youtube } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -16,18 +16,17 @@ const Footer = () => {
               Innovazione tecnologica e soluzioni software all'avanguardia per le PMI italiane.
             </p>
             <div className="flex space-x-4 mt-4">
-              <a href="#" className="text-white/70 hover:text-primary transition">
+              <a href="https://www.linkedin.com/company/biorigeneral-informatics/?viewAsMember=true" className="text-white/70 hover:text-primary transition">
                 <Linkedin size={20} />
               </a>
-              <a href="#" className="text-white/70 hover:text-primary transition">
-                <Twitter size={20} />
-              </a>
-              <a href="#" className="text-white/70 hover:text-primary transition">
+              
+              <a href="https://github.com/Biorigeneral-Informatics" className="text-white/70 hover:text-primary transition">
                 <Github size={20} />
               </a>
-              <a href="#" className="text-white/70 hover:text-primary transition">
-                <Instagram size={20} />
+              <a href="https://www.youtube.com/@federicozizi_ai" className="text-white/70 hover:text-primary transition">
+                <Youtube size={20} />
               </a>
+              
             </div>
           </div>
           
@@ -65,11 +64,7 @@ const Footer = () => {
                   Chi Siamo
                 </Link>
               </li>
-              <li>
-                <Link to="/careers" className="text-white/80 hover:text-primary transition">
-                  Lavora con Noi
-                </Link>
-              </li>
+              
               <li>
                 <Link to="/PrivacyPolicy" className="text-white/80 hover:text-primary transition">
                   Privacy Policy

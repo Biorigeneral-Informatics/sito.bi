@@ -1,10 +1,10 @@
 // src/pages/Home.tsx - Versione migliorata e ottimizzata per mobile
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Users, BrainCircuit, Code, Workflow, TrendingUp, Bot } from 'lucide-react';
+import { ArrowRight, Users, BrainCircuit, Code, Workflow, TrendingUp, Bot, MessageSquare, Youtube } from 'lucide-react';
 import ScrollAnimation from '../components/ScrollAnimation';
 import ScrollGradient from '../components/ScrollGradient';
-import ThemeToggle from '../components/ThemeToggle';
+/* import ThemeToggle from '../components/ThemeToggle'; */
 import SEO from '../components/SEO';
 import { getSEOData } from '../config/seoData';
 
@@ -32,7 +32,7 @@ const Home = () => {
       />
 
       {/* Hero Section - Centrato e minimal */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-16">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28 pb-16">
         <div className="container mx-auto px-4 md:px-6 lg:px-12 z-10">
           <div className="max-w-4xl mx-auto text-center">
             
@@ -44,7 +44,12 @@ const Home = () => {
             </div>
             */}
 
-            
+            {/* Badge sopra il titolo */}
+        <div className="inline-block px-3 md:px-4 py-1 rounded-full glass border border-white/10 text-xs md:text-sm font-medium mb-3 md:mb-4">
+          <span className="text-green-500">
+            Innovazione Tecnologica • Strumenti all'avanguardia
+          </span>
+        </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 md:mb-8 leading-tight">
             <span className="block text-primary font-semibold">Oltre il codice,</span>
             <motion.span 
@@ -69,9 +74,10 @@ const Home = () => {
             </motion.span>
           </h1>
             
-            <p className="text-base md:text-lg text-secondary mb-8 md:mb-10 leading-relaxed max-w-2xl mx-auto font-normal">
-            AI Agency e Software Engineering. Soluzioni digitali innovative per il tuo business.
-          </p>
+            <p className="text-base md:text-lg text-secondary mb-8 md:mb-8 leading-relaxed max-w-2xl mx-auto font-normal">
+            Integriamo strumenti e metodologie innovative che ci posizionano ben oltre 
+            le tradizionali soluzioni software presenti nel panorama italiano.
+           </p>
             
            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center">
             <Link 
@@ -88,6 +94,180 @@ const Home = () => {
               Esplora Soluzioni
             </Link>
           </div>
+
+          {/* Slider per i loghi che si fonde con lo sfondo */}
+    <ScrollAnimation animation="fadeIn" delay={0.3}>
+      <div className="relative overflow-hidden py-8 md:py-12">
+        {/* Sfumature laterali per effetto fade */}
+        <div className="absolute left-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-r from-background to-transparent z-10"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-l from-background to-transparent z-10"></div>
+        
+        {/* Container dello slider - SERIE UNICA */}
+        <div className="flex animate-scroll space-x-12 md:space-x-16">
+          <div className="flex space-x-12 md:space-x-16 items-center min-w-fit">
+            
+            {/* OpenAI */}
+            <div className="flex-shrink-0 w-24 md:w-32 h-12 md:h-16 flex items-center justify-center relative group">
+              <img 
+                src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" 
+                alt="OpenAI" 
+                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              />
+              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
+                OpenAI
+              </div>
+            </div>
+            
+            {/* React */}
+            <div className="flex-shrink-0 w-24 md:w-32 h-12 md:h-16 flex items-center justify-center relative group">
+              <img 
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" 
+                alt="React" 
+                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              />
+              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
+                React
+              </div>
+            </div>
+            
+            {/* Python */}
+            <div className="flex-shrink-0 w-24 md:w-32 h-12 md:h-16 flex items-center justify-center relative group">
+              <img 
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" 
+                alt="Python" 
+                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              />
+              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
+                Python
+              </div>
+            </div>
+            
+            {/* Node.js */}
+            <div className="flex-shrink-0 w-24 md:w-32 h-12 md:h-16 flex items-center justify-center relative group">
+              <img 
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" 
+                alt="Node.js" 
+                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              />
+              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
+                Node.js
+              </div>
+            </div>
+            
+            {/* TypeScript */}
+            <div className="flex-shrink-0 w-24 md:w-32 h-12 md:h-16 flex items-center justify-center relative group">
+              <img 
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" 
+                alt="TypeScript" 
+                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              />
+              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
+                TypeScript
+              </div>
+            </div>
+            
+            {/* PostgreSQL */}
+            <div className="flex-shrink-0 w-24 md:w-32 h-12 md:h-16 flex items-center justify-center relative group">
+              <img 
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" 
+                alt="PostgreSQL" 
+                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              />
+              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
+                PostgreSQL
+              </div>
+            </div>
+            
+            {/* Docker */}
+            <div className="flex-shrink-0 w-24 md:w-32 h-12 md:h-16 flex items-center justify-center relative group">
+              <img 
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" 
+                alt="Docker" 
+                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              />
+              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
+                Docker
+              </div>
+            </div>
+            
+            {/* Next.js */}
+            <div className="flex-shrink-0 w-24 md:w-32 h-12 md:h-16 flex items-center justify-center relative group">
+              <img 
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" 
+                alt="Next.js" 
+                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              />
+              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
+                Next.js
+              </div>
+            </div>
+            
+            {/* MongoDB */}
+            <div className="flex-shrink-0 w-24 md:w-32 h-12 md:h-16 flex items-center justify-center relative group">
+              <img 
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" 
+                alt="MongoDB" 
+                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              />
+              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
+                MongoDB
+              </div>
+            </div>
+            
+            {/* AWS */}
+            <div className="flex-shrink-0 w-24 md:w-32 h-12 md:h-16 flex items-center justify-center relative group">
+              <img 
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" 
+                alt="AWS" 
+                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              />
+              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
+                AWS
+              </div>
+            </div>
+            
+            {/* Git */}
+            <div className="flex-shrink-0 w-24 md:w-32 h-12 md:h-16 flex items-center justify-center relative group">
+              <img 
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" 
+                alt="Git" 
+                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              />
+              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
+                Git
+              </div>
+            </div>
+            
+            {/* Tailwind CSS */}
+            <div className="flex-shrink-0 w-24 md:w-32 h-12 md:h-16 flex items-center justify-center relative group">
+              <img 
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" 
+                alt="Tailwind CSS" 
+                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              />
+              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
+                Tailwind CSS
+              </div>
+            </div>
+            
+            {/* Figma */}
+            <div className="flex-shrink-0 w-24 md:w-32 h-12 md:h-16 flex items-center justify-center relative group">
+              <img 
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" 
+                alt="Figma" 
+                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              />
+              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
+                Figma
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+        
+      </div>
+    </ScrollAnimation>
             
           </div>
         </div>
@@ -270,10 +450,16 @@ const Home = () => {
 
     </div>
 
+{/* Testo descrittivo sotto lo slider */}
+        <div className="text-center mt-20 md:mt-22">
+          <p className="text-sm md:text-base text-foreground/60">
+          Siamo pronti a valutare le tue esigenze e proporti la soluzione di integrazione più adatta al tuo business.
+          </p>
+        </div>
   </div>
 </section>
       
-      {/* Competenze all'avanguardia - Solo titolo, descrizione e slider */}
+      {/* Community - Rimandi ed elemento */}
 <section className="py-8 md:py-12 pt-6 md:pt-8 relative overflow-hidden">
   <div className="container mx-auto px-4 md:px-6 lg:px-12 relative z-10">
     <ScrollAnimation animation="slideUp">
@@ -281,201 +467,74 @@ const Home = () => {
         {/* Badge sopra il titolo */}
         <div className="inline-block px-3 md:px-4 py-1 rounded-full glass border border-white/10 text-xs md:text-sm font-medium mb-3 md:mb-4">
           <span className="text-green-500">
-            Innovazione Tecnologica • Strumenti All'
+            Community & Collaborazione
           </span>
         </div>
         
         <div>
         {/* Titolo con esattamente lo stesso stile di "Valore, competenza e innovazione" */}
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-6 mt-4 md:mb-6 relative inline-block">
-        <span className="block text-primary">Competenze all'avanguardia</span>
+        <span className="block text-primary">Unisciti alla Community</span>
       </h2>
         </div>
         <p className="text-base sm:text-lg md:text-xl text-foreground/80 text-gray-400 max-w-3xl mx-auto leading-relaxed">
-          Integriamo strumenti e metodologie innovative che ci posizionano ben oltre 
-          le tradizionali soluzioni software presenti nel panorama italiano.
+          Più che una semplice piattaforma di supporto, la nostra community è un ecosistema dedicato a valorizzare e accompagnare con cura i nostri utenti più appassionati.
         </p>
       </div>
     </ScrollAnimation>
     
-     {/* Slider per i loghi che si fonde con lo sfondo */}
-    <ScrollAnimation animation="fadeIn" delay={0.3}>
-      <div className="relative overflow-hidden py-8 md:py-12">
-        {/* Sfumature laterali per effetto fade */}
-        <div className="absolute left-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-r from-background to-transparent z-10"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-l from-background to-transparent z-10"></div>
-        
-        {/* Container dello slider - SERIE UNICA */}
-        <div className="flex animate-scroll space-x-12 md:space-x-16">
-          <div className="flex space-x-12 md:space-x-16 items-center min-w-fit">
-            
-            {/* OpenAI */}
-            <div className="flex-shrink-0 w-24 md:w-32 h-12 md:h-16 flex items-center justify-center relative group">
-              <img 
-                src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" 
-                alt="OpenAI" 
-                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
-              />
-              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
-                OpenAI
-              </div>
-            </div>
-            
-            {/* React */}
-            <div className="flex-shrink-0 w-24 md:w-32 h-12 md:h-16 flex items-center justify-center relative group">
-              <img 
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" 
-                alt="React" 
-                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
-              />
-              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
-                React
-              </div>
-            </div>
-            
-            {/* Python */}
-            <div className="flex-shrink-0 w-24 md:w-32 h-12 md:h-16 flex items-center justify-center relative group">
-              <img 
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" 
-                alt="Python" 
-                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
-              />
-              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
-                Python
-              </div>
-            </div>
-            
-            {/* Node.js */}
-            <div className="flex-shrink-0 w-24 md:w-32 h-12 md:h-16 flex items-center justify-center relative group">
-              <img 
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" 
-                alt="Node.js" 
-                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
-              />
-              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
-                Node.js
-              </div>
-            </div>
-            
-            {/* TypeScript */}
-            <div className="flex-shrink-0 w-24 md:w-32 h-12 md:h-16 flex items-center justify-center relative group">
-              <img 
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" 
-                alt="TypeScript" 
-                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
-              />
-              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
-                TypeScript
-              </div>
-            </div>
-            
-            {/* PostgreSQL */}
-            <div className="flex-shrink-0 w-24 md:w-32 h-12 md:h-16 flex items-center justify-center relative group">
-              <img 
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" 
-                alt="PostgreSQL" 
-                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
-              />
-              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
-                PostgreSQL
-              </div>
-            </div>
-            
-            {/* Docker */}
-            <div className="flex-shrink-0 w-24 md:w-32 h-12 md:h-16 flex items-center justify-center relative group">
-              <img 
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" 
-                alt="Docker" 
-                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
-              />
-              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
-                Docker
-              </div>
-            </div>
-            
-            {/* Next.js */}
-            <div className="flex-shrink-0 w-24 md:w-32 h-12 md:h-16 flex items-center justify-center relative group">
-              <img 
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" 
-                alt="Next.js" 
-                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
-              />
-              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
-                Next.js
-              </div>
-            </div>
-            
-            {/* MongoDB */}
-            <div className="flex-shrink-0 w-24 md:w-32 h-12 md:h-16 flex items-center justify-center relative group">
-              <img 
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" 
-                alt="MongoDB" 
-                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
-              />
-              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
-                MongoDB
-              </div>
-            </div>
-            
-            {/* AWS */}
-            <div className="flex-shrink-0 w-24 md:w-32 h-12 md:h-16 flex items-center justify-center relative group">
-              <img 
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" 
-                alt="AWS" 
-                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
-              />
-              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
-                AWS
-              </div>
-            </div>
-            
-            {/* Git */}
-            <div className="flex-shrink-0 w-24 md:w-32 h-12 md:h-16 flex items-center justify-center relative group">
-              <img 
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" 
-                alt="Git" 
-                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
-              />
-              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
-                Git
-              </div>
-            </div>
-            
-            {/* Tailwind CSS */}
-            <div className="flex-shrink-0 w-24 md:w-32 h-12 md:h-16 flex items-center justify-center relative group">
-              <img 
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" 
-                alt="Tailwind CSS" 
-                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
-              />
-              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
-                Tailwind CSS
-              </div>
-            </div>
-            
-            {/* Figma */}
-            <div className="flex-shrink-0 w-24 md:w-32 h-12 md:h-16 flex items-center justify-center relative group">
-              <img 
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" 
-                alt="Figma" 
-                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
-              />
-              <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
-                Figma
-              </div>
-            </div>
-            
-          </div>
-        </div>
-        
-        {/* Testo descrittivo sotto lo slider */}
-        <div className="text-center mt-20 md:mt-22">
-          <p className="text-sm md:text-base text-foreground/60">
-          Siamo pronti a valutare le tue esigenze e proporti la soluzione di integrazione più adatta al tuo business.
-          </p>
+     {/* Elemento 3 - Floating Community Cards (PICCOLO - 2 colonne) */}
+<ScrollAnimation animation="slideUp" delay={0.3} className="md:col-span-2 relative">
+  
+  {/* Container principale senza background fisso */}
+<div className="relative w-full h-full p-6 min-h-[320px] md:min-h-[280px]">
+    
+    {/* YouTube Card Fluttuante */}
+<div className="absolute top-4 left-1/2 transform -translate-x-1/2 rotate-0 md:top-16 md:left-12 md:translate-x-0 md:rotate-3 w-60 h-24 border border-gray-500/30 rounded-xl shadow-lg hover:rotate-6 hover:scale-110 transition-all duration-500  group z-20">
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-800/10 to-gray-700/5 rounded-xl"></div>
+      <div className="relative h-full flex flex-col items-center justify-center p-4">
+        <Youtube className="w-10 h-10 text-gray-400 mb-2 group-hover:scale-125 transition-transform duration-300" />
+        <span className="text-sm font-bold text-white text-center leading-tight">Youtube</span>
+        <div className="absolute top-1 right-1 w-2 h-2 bg-green-400 rounded-full animate-ping"></div>
+      </div>
+    </div>
+    
+    {/* Discord Card Fluttuante */}
+<div className="absolute top-32 left-1/2 transform -translate-x-1/2 rotate-0 md:top-20 md:right-12 md:left-auto md:translate-x-0 md:-rotate-2 w-60 h-24 border border-gray-500/30 rounded-xl shadow-lg hover:-rotate-5 hover:scale-110 transition-all duration-500 group z-10">
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-800/10 to-gray-700/5 rounded-xl"></div>
+      <div className="relative h-full flex flex-col items-center justify-center p-4">
+        <MessageSquare className="w-10 h-10 text-gray-400 mb-2 group-hover:scale-125 transition-transform duration-300" />
+        <span className="text-sm font-bold text-white text-center leading-tight">Discord</span>
+        <div className="absolute top-1 right-1 w-2 h-2 bg-green-400 rounded-full animate-ping"></div>
+      </div>
+    </div>
+    
+    {/* Community Card Centrale */}
+<div className="absolute top-60 left-1/2 transform -translate-x-1/2 md:top-6 w-60 h-20 border border-gray-500/30 rounded-xl shadow-lg hover:scale-105 transition-all duration-500 group z-30">
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-800/10 to-gray-700/5 rounded-xl"></div>
+      <div className="relative h-full flex items-center justify-center p-4">
+        <Users className="w-8 h-8 text-gray-400 mr-3 group-hover:scale-110 transition-transform duration-300" />
+        <div className="text-center">
+          <div className="text-sm font-bold text-white">Patreon</div>
+           <div className="absolute top-1 right-1 w-2 h-2 bg-green-400 rounded-full animate-ping"></div>
+
         </div>
       </div>
-    </ScrollAnimation>
+    </div>
+    
+  
+    
+    {/* Linee di connessione sottili che appaiono al hover */}
+    <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-0 hover:opacity-30 transition-opacity duration-700">
+      <line x1="64" y1="40" x2="96" y2="72" stroke="#6366f1" strokeWidth="1" strokeDasharray="2,2" className="animate-pulse opacity-40" />
+      <line x1="96" y1="72" x2="72" y2="120" stroke="#8b5cf6" strokeWidth="1" strokeDasharray="2,2" className="animate-pulse opacity-40" />
+      <line x1="32" y1="60" x2="72" y2="120" stroke="#a855f7" strokeWidth="1" strokeDasharray="2,2" className="animate-pulse opacity-40" />
+    </svg>
+    
+  </div>
+  
+</ScrollAnimation>
+     
   </div>
 </section>
 

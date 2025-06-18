@@ -242,7 +242,6 @@ const Products = () => {
                     il processo di vendita. Qualifica automaticamente i lead con precisione chirurgica, prevede le conversioni 
                     con accuratezza del 92% e ottimizza l'intera pipeline commerciale. Integra fonti dati multiple e fornisce 
                     insights predittivi che aumentano le conversioni del 45%.
-                    <span className='block pt-4'> A partire da <span className="text-sm font-bold text-blue-500">€297/mese</span> </span>
                   </p>
                  
 
@@ -324,7 +323,6 @@ const Products = () => {
                     Arricchisce automaticamente i dati dei contatti con informazioni validate in tempo reale, calcola score di 
                     qualificazione personalizzabili e integra tutto con i tuoi sistemi CRM esistenti. Processa oltre 10.000 contatti 
                     all'ora con accuratezza dell'85%, migliorando la qualità dei lead del 70%.
-                    <span className='block pt-4'> A partire da <span className="text-sm font-bold text-green-500">€147/mese</span> </span>
                   </p>
                  
 
@@ -406,7 +404,6 @@ const Products = () => {
                     Gestisce automaticamente prenotazioni, triaging intelligente e supporto decisionale clinico. Integrato con sistemi 
                     ospedalieri esistenti, riduce i tempi di attesa del 60% e migliora l'accuratezza diagnostica. Supporta protocolli 
                     sanitari europei con crittografia medicale certificata ISO 27001.
-                    <span className='block pt-4'> A partire da <span className="text-sm font-bold text-red-500">€497/mese</span> </span>
                   </p>
                  
 

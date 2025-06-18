@@ -161,8 +161,8 @@ const Products = () => {
                     Il primo assistente virtuale italiano che rivoluziona la gestione delle comunicazioni aziendali attraverso Telegram. 
                     Integrato con workflow N8n avanzati, automatizza conversazioni complesse, gestisce appuntamenti intelligenti 
                     e si integra perfettamente con tutti i tuoi sistemi esistenti. Disponibile 24/7, riduce dell'80% il carico 
-                    di lavoro manuale e migliora drasticamente l'efficienza operativa.  
-                   <span className='block pt-4'> A parire da <span className="text-sm font-bold text-violet-500">€147/mese</span> </span>
+                    di lavoro manuale e migliora drasticamente l'efficienza operativa. La personalizzazione dell'assistente comporterà costi aggiuntivi.
+                   <span className='block pt-4'> A parire da <span className="text-sm font-bold text-violet-500">€200/mese</span> </span>
                   </p>
                  
 

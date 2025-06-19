@@ -17,6 +17,268 @@
 </head>
   <body>
     <div id="root"></div>
+    <!-- IMPORTANTE: Inserisci questo script PRIMA di qualsiasi altro script in index.html -->
+<script>
+  // 🔒 BLOCCO PREVENTIVO COOKIE - GDPR COMPLIANT
+  // Questo script DEVE essere il primo a caricarsi per bloccare tutto
+  
+  (function() {
+    'use strict';
+    
+    console.log('🔒 Sistema di blocco preventivo cookie attivato');
+    
+    // Verifica se c'è già consenso
+    function hasConsent() {
+      try {
+        const consent = localStorage.getItem('cookieConsent');
+        return consent !== null;
+      } catch {
+        return false;
+      }
+    }
+    
+    // Ottieni preferenze salvate
+    function getPreferences() {
+      try {
+        const consent = localStorage.getItem('cookieConsent');
+        return consent ? JSON.parse(consent) : null;
+      } catch {
+        return null;
+      }
+    }
+    
+    // Se non c'è consenso, blocca tutto
+    if (!hasConsent()) {
+      console.log('🚫 Nessun consenso trovato - Attivazione blocco preventivo');
+      
+      // 1. BLOCCO GOOGLE ANALYTICS
+      window['ga-disable-G-XXXXXXXXXX'] = true; // Sostituisci con il tuo GA ID
+      
+      // Sostituisci dataLayer con versione che non fa nulla
+      window.dataLayer = window.dataLayer || [];
+      const originalPush = window.dataLayer.push;
+      window.dataLayer.push = function() {
+        console.log('🚫 dataLayer.push bloccato - consenso non dato');
+        return;
+      };
+      
+      // Sostituisci gtag con versione che non fa nulla
+      window.gtag = function() {
+        console.log('🚫 gtag bloccato - consenso non dato');
+      };
+      
+      // 2. BLOCCO SCRIPT DI TERZE PARTI
+      const originalCreateElement = document.createElement;
+      document.createElement = function(tagName) {
+        const element = originalCreateElement.call(document, tagName);
+        
+        if (tagName.toLowerCase() === 'script') {
+          const originalSetAttribute = element.setAttribute;
+          element.setAttribute = function(name, value) {
+            if (name === 'src' && shouldBlockScript(value)) {
+              console.log('🚫 Script bloccato:', value);
+              return; // Non impostare src, bloccando il caricamento
+            }
+            return originalSetAttribute.call(this, name, value);
+          };
+          
+          // Blocca anche assegnazione diretta a .src
+          Object.defineProperty(element, 'src', {
+            set: function(value) {
+              if (shouldBlockScript(value)) {
+                console.log('🚫 Script .src bloccato:', value);
+                return;
+              }
+              Object.defineProperty(this, 'src', {
+                value: value,
+                configurable: true,
+                writable: true
+              });
+            },
+            get: function() {
+              return this.getAttribute('src');
+            },
+            configurable: true
+          });
+        }
+        
+        return element;
+      };
+      
+      // 3. BLOCCO APPENDCHILD E INSERTBEFORE
+      const originalAppendChild = Node.prototype.appendChild;
+      const originalInsertBefore = Node.prototype.insertBefore;
+      
+      Node.prototype.appendChild = function(child) {
+        if (shouldBlockElement(child)) {
+          console.log('🚫 Elemento bloccato in appendChild:', child.src || child.outerHTML);
+          return child; // Restituisci l'elemento ma non aggiungerlo al DOM
+        }
+        return originalAppendChild.call(this, child);
+      };
+      
+      Node.prototype.insertBefore = function(newNode, referenceNode) {
+        if (shouldBlockElement(newNode)) {
+          console.log('🚫 Elemento bloccato in insertBefore:', newNode.src || newNode.outerHTML);
+          return newNode;
+        }
+        return originalInsertBefore.call(this, newNode, referenceNode);
+      };
+      
+      // 4. BLOCCO IFRAME DI TERZE PARTI
+      const originalCreateElementNS = document.createElementNS;
+      document.createElementNS = function(namespace, tagName) {
+        const element = originalCreateElementNS.call(document, namespace, tagName);
+        if (tagName.toLowerCase() === 'iframe') {
+          const originalSetAttribute = element.setAttribute;
+          element.setAttribute = function(name, value) {
+            if (name === 'src' && shouldBlockIframe(value)) {
+              console.log('🚫 Iframe bloccato:', value);
+              return;
+            }
+            return originalSetAttribute.call(this, name, value);
+          };
+        }
+        return element;
+      };
+      
+    } else {
+      // C'è consenso, applica le preferenze
+      console.log('✅ Consenso trovato - Applicazione preferenze');
+      const prefs = getPreferences();
+      if (prefs) {
+        applyConsentPreferences(prefs);
+      }
+    }
+    
+    // Funzione per determinare se bloccare uno script
+    function shouldBlockScript(src) {
+      if (!src) return false;
+      
+      const blockedDomains = [
+        'googletagmanager.com',
+        'google-analytics.com',
+        'doubleclick.net',
+        'googlesyndication.com',
+        'facebook.com',
+        'connect.facebook.net',
+        'twitter.com',
+        'platform.twitter.com',
+        'linkedin.com',
+        'snap.licdn.com',
+        'hotjar.com',
+        'crazyegg.com',
+        'mouseflow.com',
+        'fullstory.com',
+        'logrocket.com',
+        'clarity.ms',
+        'youtube.com',
+        'ytimg.com',
+        'tiktok.com',
+        'pinterest.com',
+        'instagram.com'
+      ];
+      
+      return blockedDomains.some(domain => src.toLowerCase().includes(domain));
+    }
+    
+    // Funzione per determinare se bloccare un elemento
+    function shouldBlockElement(element) {
+      if (!element || !element.tagName) return false;
+      
+      if (element.tagName.toLowerCase() === 'script' && element.src) {
+        return shouldBlockScript(element.src);
+      }
+      
+      if (element.tagName.toLowerCase() === 'iframe' && element.src) {
+        return shouldBlockIframe(element.src);
+      }
+      
+      return false;
+    }
+    
+    // Funzione per determinare se bloccare un iframe
+    function shouldBlockIframe(src) {
+      if (!src) return false;
+      
+      const blockedIframeDomains = [
+        'youtube.com',
+        'youtube-nocookie.com',
+        'vimeo.com',
+        'facebook.com',
+        'twitter.com',
+        'instagram.com',
+        'tiktok.com'
+      ];
+      
+      return blockedIframeDomains.some(domain => src.toLowerCase().includes(domain));
+    }
+    
+    // Applica preferenze quando c'è consenso
+    function applyConsentPreferences(prefs) {
+      console.log('🔄 Applicazione preferenze:', prefs);
+      
+      if (prefs.analytics) {
+        console.log('✅ Analytics consentiti - Riabilitazione Google Analytics');
+        
+        // Riabilita Google Analytics
+        delete window['ga-disable-G-XXXXXXXXXX']; // Sostituisci con il tuo GA ID
+        
+        // Ripristina dataLayer
+        if (window.dataLayer && window.dataLayer.push) {
+          window.dataLayer.push = Array.prototype.push;
+        }
+        
+        // Carica Google Analytics
+        loadGoogleAnalytics();
+      }
+      
+      if (prefs.functional) {
+        console.log('✅ Cookie funzionali consentiti');
+        // Qui puoi caricare widget di chat, mappe, etc.
+      }
+    }
+    
+    // Carica Google Analytics quando consentito
+    function loadGoogleAnalytics() {
+      const GA_ID = 'G-XXXXXXXXXX'; // Sostituisci con il tuo GA ID
+      
+      // Carica lo script
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+      
+      // Bypassa il nostro sistema di blocco per questo script autorizzato
+      const originalAppendChild = Node.prototype.appendChild;
+      originalAppendChild.call(document.head, script);
+      
+      // Inizializza GA
+      script.onload = function() {
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          window.dataLayer.push(arguments);
+        }
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', GA_ID, {
+          anonymize_ip: true,
+          cookie_flags: 'SameSite=None;Secure'
+        });
+        
+        console.log('✅ Google Analytics caricato con consenso');
+      };
+    }
+    
+    // Listener per quando l'utente dà il consenso
+    window.addEventListener('cookieConsentGiven', function(event) {
+      console.log('🔔 Consenso ricevuto:', event.detail);
+      applyConsentPreferences(event.detail);
+    });
+    
+    console.log('🔒 Sistema di blocco preventivo inizializzato');
+    
+  })();
+</script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -1,22 +1,19 @@
-// src/components/CookieBanner.tsx - Versione GDPR Compliant
+// src/components/CookieBanner.tsx - Versione Integrata con Blocco Preventivo
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Cookie, X, Settings, ChevronDown, ChevronUp } from 'lucide-react';
+import { Cookie, X, Settings, ChevronDown, ChevronUp, Shield, BarChart, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-// Interfaccia per le preferenze cookie
 interface CookiePreferences {
   necessary: boolean;
   analytics: boolean;
   functional: boolean;
 }
 
-// Cookie Manager con BLOCCO PREVENTIVO
+// Cookie Manager Semplificato - Si integra con il blocco preventivo
 class CookieManager {
   private static instance: CookieManager;
   private preferences: CookiePreferences | null = null;
-  private scriptsLoaded = new Set<string>();
-  private blockedScripts: string[] = []; // Script bloccati inizialmente
   
   static getInstance(): CookieManager {
     if (!CookieManager.instance) {
@@ -25,110 +22,10 @@ class CookieManager {
     return CookieManager.instance;
   }
 
-  constructor() {
-    // BLOCCO PREVENTIVO: Blocca tutto all'avvio
-    this.preventiveBlock();
-    this.loadPreferences();
-  }
-
-  // 🔒 BLOCCO PREVENTIVO - Impedisce caricamento script di terze parti
-  private preventiveBlock() {
-    // 1. Blocca Google Analytics prima che si carichi
-    this.blockGoogleAnalytics();
-    
-    // 2. Blocca altri script di terze parti
-    this.blockThirdPartyScripts();
-    
-    // 3. Monitora tentativi di caricamento script
-    this.monitorScriptLoading();
-  }
-
-  // Blocca Google Analytics preventivamente
-  private blockGoogleAnalytics() {
-    // Impedisci caricamento gtag
-    (window as any)['ga-disable-G-XXXXXXXXXX'] = true;
-    
-    // Blocca dataLayer
-    if (!(window as any).dataLayer) {
-      (window as any).dataLayer = [];
-    }
-    
-    // Sovrascrivi gtag per non fare nulla se chiamato
-    (window as any).gtag = function() {
-      console.log('🚫 Google Analytics bloccato - consenso non dato');
-    };
-  }
-
-  // Blocca script di terze parti
-  private blockThirdPartyScripts() {
-    const originalAppendChild = Document.prototype.appendChild;
-    const originalInsertBefore = Document.prototype.insertBefore;
-    const self = this;
-
-    // Sovrascrivi appendChild per bloccare script
-    Document.prototype.appendChild = function(newChild: any) {
-      if (self.shouldBlockScript(newChild)) {
-        console.log('🚫 Script bloccato:', newChild.src);
-        self.blockedScripts.push(newChild.src);
-        return newChild;
-      }
-      return originalAppendChild.call(this, newChild);
-    };
-
-    // Sovrascrivi insertBefore per bloccare script
-    Document.prototype.insertBefore = function(newChild: any, referenceChild: any) {
-      if (self.shouldBlockScript(newChild)) {
-        console.log('🚫 Script bloccato:', newChild.src);
-        self.blockedScripts.push(newChild.src);
-        return newChild;
-      }
-      return originalInsertBefore.call(this, newChild, referenceChild);
-    };
-  }
-
-  // Determina se uno script deve essere bloccato
-  private shouldBlockScript(element: any): boolean {
-    if (element.tagName === 'SCRIPT' && element.src) {
-      const src = element.src.toLowerCase();
-      
-      // Lista di domini/script da bloccare se non c'è consenso
-      const blockedDomains = [
-        'googletagmanager.com',
-        'google-analytics.com',
-        'doubleclick.net',
-        'facebook.com',
-        'connect.facebook.net',
-        'twitter.com',
-        'platform.twitter.com',
-        // Aggiungi altri domini di tracciamento
-      ];
-
-      return blockedDomains.some(domain => src.includes(domain)) && !this.hasAnalyticsConsent();
-    }
-    return false;
-  }
-
-  // Monitora tentativi di caricamento script
-  private monitorScriptLoading() {
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        mutation.addedNodes.forEach((node: any) => {
-          if (node.tagName === 'SCRIPT' && this.shouldBlockScript(node)) {
-            node.remove();
-            console.log('🚫 Script rimosso dopo inserimento:', node.src);
-          }
-        });
-      });
-    });
-
-    observer.observe(document.head, { childList: true, subtree: true });
-    observer.observe(document.body, { childList: true, subtree: true });
-  }
-
   // Carica preferenze da localStorage
   loadPreferences(): CookiePreferences | null {
     try {
-      const saved = localStorage.getItem('cookie-preferences');
+      const saved = localStorage.getItem('cookieConsent');
       if (saved) {
         this.preferences = JSON.parse(saved);
         return this.preferences;
@@ -139,167 +36,25 @@ class CookieManager {
     return null;
   }
 
-  // Salva preferenze e applica le impostazioni
+  // Salva preferenze e notifica il sistema di blocco
   setPreferences(prefs: CookiePreferences) {
     this.preferences = prefs;
-    localStorage.setItem('cookie-preferences', JSON.stringify(prefs));
+    localStorage.setItem('cookieConsent', JSON.stringify(prefs));
     
-    // Applica le preferenze IMMEDIATAMENTE
-    this.applyPreferences(prefs);
-  }
-
-  // 🎯 LOGICA CORRETTA: Carica solo SE c'è consenso
-  private applyPreferences(prefs: CookiePreferences) {
-    console.log('🔄 Applicazione preferenze cookie:', prefs);
-
-    // 1. COOKIE ANALYTICS - Carica SOLO se consentito
-    if (prefs.analytics && !this.scriptsLoaded.has('analytics')) {
-      this.enableAnalytics();
-      this.scriptsLoaded.add('analytics');
-    } else if (!prefs.analytics) {
-      this.disableAnalytics();
-      this.scriptsLoaded.delete('analytics');
-    }
-
-    // 2. COOKIE FUNZIONALI - Carica SOLO se consentito
-    if (prefs.functional && !this.scriptsLoaded.has('functional')) {
-      this.enableFunctionalCookies();
-      this.scriptsLoaded.add('functional');
-    } else if (!prefs.functional) {
-      this.disableFunctionalCookies();
-      this.scriptsLoaded.delete('functional');
-    }
-
-    // 3. COOKIE NECESSARI (sempre attivi)
-    this.loadNecessaryCookies();
-  }
-
-  // ✅ Abilita Google Analytics (solo dopo consenso)
-  private enableAnalytics() {
-    console.log('✅ Abilitazione Google Analytics...');
-    
-    const GA_ID = 'G-XXXXXXXXXX'; // Sostituisci con il tuo ID
-    
-    // Rimuovi il blocco
-    delete (window as any)['ga-disable-' + GA_ID];
-    
-    // Carica lo script
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
-    document.head.appendChild(script);
-
-    // Inizializza
-    script.onload = () => {
-      (window as any).dataLayer = (window as any).dataLayer || [];
-      function gtag(...args: any[]) {
-        (window as any).dataLayer.push(args);
-      }
-      
-      gtag('js', new Date());
-      gtag('config', GA_ID, {
-        anonymize_ip: true, // Anonimizza IP per GDPR
-        cookie_expires: 365 * 24 * 60 * 60 // Scadenza cookie
-      });
-      
-      (window as any).gtag = gtag;
-      console.log('✅ Google Analytics attivato');
-    };
-  }
-
-  // 🚫 Disabilita Google Analytics
-  private disableAnalytics() {
-    console.log('🚫 Disabilitazione Google Analytics...');
-    
-    const GA_ID = 'G-XXXXXXXXXX';
-    
-    // Blocca GA
-    (window as any)['ga-disable-' + GA_ID] = true;
-    
-    // Rimuovi script esistenti
-    const scripts = document.querySelectorAll('script[src*="googletagmanager"]');
-    scripts.forEach(script => script.remove());
-    
-    // Reset gtag
-    (window as any).gtag = function() {
-      console.log('🚫 Google Analytics disabilitato');
-    };
-    
-    // Rimuovi cookie GA
-    this.deleteCookiesByPattern('_ga');
-    this.deleteCookiesByPattern('_gid');
-    this.deleteCookiesByPattern('_gat');
-  }
-
-  // ✅ Abilita cookie funzionali
-  private enableFunctionalCookies() {
-    console.log('✅ Abilitazione cookie funzionali...');
-    
-    // Carica widget di chat, preferenze tema, etc.
-    // Solo se l'utente ha dato il consenso
-    
-    // Esempio: Widget di chat
-    this.loadChatWidget();
-    
-    // Esempio: Salvataggio preferenze UI
-    this.enableUIPreferences();
-  }
-
-  // 🚫 Disabilita cookie funzionali
-  private disableFunctionalCookies() {
-    console.log('🚫 Disabilitazione cookie funzionali...');
-    
-    // Rimuovi widget di chat
-    const chatWidget = document.querySelector('#chat-widget');
-    if (chatWidget) {
-      chatWidget.remove();
-    }
-    
-    // Rimuovi cookie funzionali
-    this.deleteCookiesByPattern('user_prefs');
-    this.deleteCookiesByPattern('chat_');
-    this.deleteCookiesByPattern('ui_');
-  }
-
-  // Carica widget di chat (esempio)
-  private loadChatWidget() {
-    // Esempio di caricamento widget solo dopo consenso
-    const chatDiv = document.createElement('div');
-    chatDiv.id = 'chat-widget';
-    chatDiv.innerHTML = '<p>Chat widget caricato (consenso funzionali dato)</p>';
-    document.body.appendChild(chatDiv);
-  }
-
-  // Abilita salvataggio preferenze UI
-  private enableUIPreferences() {
-    // Ora può salvare tema, lingua, etc.
-    const theme = localStorage.getItem('theme') || 'light';
-    document.documentElement.classList.toggle('dark', theme === 'dark');
-  }
-
-  // Cookie necessari (sempre attivi)
-  private loadNecessaryCookies() {
-    // Cookie per sicurezza, autenticazione, carrello
-    // Questi sono sempre permessi dalla legge GDPR
-    console.log('ℹ️ Cookie necessari sempre attivi');
-  }
-
-  // Elimina cookie per pattern
-  private deleteCookiesByPattern(pattern: string) {
-    const cookies = document.cookie.split(';');
-    
-    cookies.forEach(cookie => {
-      const [name] = cookie.trim().split('=');
-      if (name.includes(pattern)) {
-        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
-        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=.${window.location.hostname}`;
-      }
+    // Notifica il sistema di blocco preventivo
+    const event = new CustomEvent('cookieConsentGiven', {
+      detail: prefs
     });
+    window.dispatchEvent(event);
+    
+    console.log('💾 Preferenze salvate e sistema notificato:', prefs);
   }
 
-  // Verifica consenso analytics
-  private hasAnalyticsConsent(): boolean {
-    return this.preferences?.analytics === true;
+  // Rimuovi consenso (per testing)
+  clearConsent() {
+    this.preferences = null;
+    localStorage.removeItem('cookieConsent');
+    console.log('🗑️ Consenso rimosso - refresh per test');
   }
 
   // Verifica se il consenso è già stato dato
@@ -318,29 +73,29 @@ const CookieBanner = () => {
   const [showPreferences, setShowPreferences] = useState(false);
   const [preferences, setPreferences] = useState<CookiePreferences>({
     necessary: true,
-    analytics: false,    // ❌ DEFAULT FALSE
-    functional: false,   // ❌ DEFAULT FALSE
+    analytics: false,    // ❌ DEFAULT FALSE (opt-in obbligatorio)
+    functional: false,   // ❌ DEFAULT FALSE (opt-in obbligatorio)
   });
 
   const cookieManager = CookieManager.getInstance();
 
-  // ⚠️ LOGICA CORRETTA: Mostra banner se non c'è consenso
+  // Verifica consenso all'avvio
   useEffect(() => {
     const savedPreferences = cookieManager.loadPreferences();
     
     if (!savedPreferences) {
       // 🚨 NESSUN CONSENSO = MOSTRA BANNER
+      console.log('🚨 Nessun consenso - Banner visibile');
       const timer = setTimeout(() => setIsVisible(true), 1000);
       return () => clearTimeout(timer);
     } else {
-      // Consenso già dato, applica preferenze
+      // Consenso già presente
+      console.log('✅ Consenso esistente trovato:', savedPreferences);
       setPreferences(savedPreferences);
-      // NON chiamare cookieManager.setPreferences() qui
-      // perché le preferenze sono già applicate dal costruttore
     }
   }, []);
 
-  // ❌ OPT-IN: L'utente deve scegliere attivamente
+  // ✅ ACCETTA TUTTI (opt-in attivo)
   const acceptAll = () => {
     const allAccepted = {
       necessary: true,
@@ -350,9 +105,11 @@ const CookieBanner = () => {
     setPreferences(allAccepted);
     cookieManager.setPreferences(allAccepted);
     setIsVisible(false);
+    
+    console.log('✅ Tutti i cookie accettati');
   };
 
-  // ✅ RIFIUTA: Solo cookie necessari
+  // ❌ SOLO NECESSARI (rifiuto tutto tranne essenziali)
   const rejectNonEssential = () => {
     const onlyNecessary = {
       necessary: true,
@@ -362,12 +119,16 @@ const CookieBanner = () => {
     setPreferences(onlyNecessary);
     cookieManager.setPreferences(onlyNecessary);
     setIsVisible(false);
+    
+    console.log('❌ Solo cookie necessari accettati');
   };
 
   // 💾 Salva preferenze personalizzate
   const savePreferences = () => {
     cookieManager.setPreferences(preferences);
     setIsVisible(false);
+    
+    console.log('💾 Preferenze personalizzate salvate:', preferences);
   };
 
   // Gestione cambio preferenze
@@ -378,6 +139,12 @@ const CookieBanner = () => {
       ...prev,
       [key]: !prev[key]
     }));
+  };
+
+  // 🧪 Funzione di test per sviluppatori
+  const clearConsentForTesting = () => {
+    cookieManager.clearConsent();
+    alert('Consenso rimosso. Ricarica la pagina per testare il banner.');
   };
 
   // Animazioni
@@ -393,7 +160,22 @@ const CookieBanner = () => {
     exit: { height: 0, opacity: 0, transition: { duration: 0.3 } }
   };
 
-  if (!isVisible) return null;
+  // Non mostrare se non è visibile
+  if (!isVisible) {
+    // Pulsante debug solo in development
+    if (import.meta.env.DEV) {
+      return (
+        <button
+          onClick={clearConsentForTesting}
+          className="fixed bottom-4 right-4 z-50 px-3 py-2 bg-red-500 text-white text-xs rounded opacity-50 hover:opacity-100"
+          title="Test: Rimuovi consenso cookie"
+        >
+          🧪 Reset Cookie
+        </button>
+      );
+    }
+    return null;
+  }
 
   return (
     <AnimatePresence>
@@ -404,16 +186,22 @@ const CookieBanner = () => {
         animate="visible"
         exit="exit"
       >
-        <div className="glass backdrop-blur-lg bg-background/70 rounded-xl shadow-2xl border border-indigo-500/20 overflow-hidden">
-          {/* Barra colorata */}
-          <div className="h-1 w-full bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500"></div>
+        <div className="glass backdrop-blur-lg bg-background/90 rounded-xl shadow-2xl border border-indigo-500/20 overflow-hidden">
+          {/* Barra di stato GDPR */}
+          <div className="h-1 w-full bg-gradient-to-r from-red-500 via-yellow-500 to-green-500"></div>
+          <div className="px-4 py-2 bg-red-500/10 border-b border-red-500/20">
+            <p className="text-sm text-red-400 flex items-center">
+              <Shield className="w-4 h-4 mr-2" />
+              🔒 <strong>BLOCCO ATTIVO:</strong> Nessun cookie di tracciamento caricato
+            </p>
+          </div>
           
           <div className="p-6">
             {/* Header */}
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center">
                 <Cookie className="w-6 h-6 text-indigo-400 mr-2" />
-                <h3 className="font-bold text-xl">🍪 Consenso Cookie</h3>
+                <h3 className="font-bold text-xl">🍪 Consenso Cookie GDPR</h3>
               </div>
               <button 
                 onClick={rejectNonEssential}
@@ -424,11 +212,17 @@ const CookieBanner = () => {
               </button>
             </div>
             
-            {/* Descrizione */}
+            {/* Descrizione con stato del blocco */}
             <div className="mb-6">
+              <div className="p-3 bg-green-500/10 border border-green-500/20 rounded-lg mb-4">
+                <p className="text-green-400 text-sm font-medium">
+                  ✅ <strong>GDPR Compliant:</strong> I cookie di tracciamento sono bloccati preventivamente. 
+                  Nessun dato viene raccolto senza il tuo consenso esplicito.
+                </p>
+              </div>
+              
               <p className="text-foreground/80 mb-3">
-                <strong>⚠️ Questo sito rispetta il GDPR:</strong> nessun cookie di tracciamento viene caricato senza il tuo consenso esplicito. 
-                Scegli quali cookie accettare.
+                Questo sito utilizza cookie per migliorare la tua esperienza. Scegli quali categorie accettare:
               </p>
               <p className="text-foreground/70 text-sm">
                 Per maggiori dettagli, consulta la nostra{' '}
@@ -440,21 +234,21 @@ const CookieBanner = () => {
             <div className="flex flex-wrap gap-3 mb-4">
               <button
                 onClick={acceptAll}
-                className="px-5 py-2 bg-gradient-to-r from-indigo-500 to-violet-500 text-white rounded-lg hover:shadow-lg hover:shadow-indigo-500/20 transition-all hover:-translate-y-0.5 font-medium"
+                className="px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-lg hover:shadow-lg hover:shadow-green-500/20 transition-all hover:-translate-y-0.5 font-medium flex items-center"
               >
-                ✅ Accetta tutti
+                ✅ Accetta Tutti
               </button>
               
               <button
                 onClick={rejectNonEssential}
-                className="px-5 py-2 border border-red-500/20 text-red-400 rounded-lg hover:bg-red-500/10 transition-all hover:-translate-y-0.5"
+                className="px-6 py-3 border border-red-500/30 text-red-400 rounded-lg hover:bg-red-500/10 transition-all hover:-translate-y-0.5 flex items-center"
               >
-                ❌ Solo necessari
+                ❌ Solo Necessari
               </button>
               
               <button
                 onClick={() => setShowPreferences(!showPreferences)}
-                className="px-5 py-2 border border-indigo-500/20 rounded-lg hover:bg-indigo-500/10 transition-all hover:-translate-y-0.5 flex items-center"
+                className="px-6 py-3 border border-indigo-500/20 rounded-lg hover:bg-indigo-500/10 transition-all hover:-translate-y-0.5 flex items-center"
               >
                 <Settings className="w-4 h-4 mr-2" />
                 Personalizza
@@ -462,7 +256,7 @@ const CookieBanner = () => {
               </button>
             </div>
 
-            {/* Pannello preferenze */}
+            {/* Pannello preferenze dettagliate */}
             <AnimatePresence>
               {showPreferences && (
                 <motion.div
@@ -470,66 +264,99 @@ const CookieBanner = () => {
                   initial="hidden"
                   animate="visible"
                   exit="exit"
-                  className="border-t border-indigo-500/20 pt-4"
+                  className="border-t border-indigo-500/20 pt-6"
                 >
-                  <h4 className="font-semibold mb-4 text-indigo-400">Personalizza le tue preferenze:</h4>
+                  <h4 className="font-semibold mb-4 text-indigo-400">🔧 Personalizza le tue preferenze:</h4>
                   
                   <div className="space-y-4">
                     {/* Cookie necessari */}
-                    <div className="flex items-center justify-between p-3 rounded-lg bg-green-500/5 border border-green-500/20">
-                      <div>
-                        <h5 className="font-medium text-green-400">🔒 Cookie necessari</h5>
-                        <p className="text-sm text-foreground/70">Essenziali per il funzionamento del sito</p>
+                    <div className="flex items-center justify-between p-4 rounded-lg bg-green-500/5 border border-green-500/20">
+                      <div className="flex items-start">
+                        <Shield className="w-5 h-5 text-green-400 mr-3 mt-1 flex-shrink-0" />
+                        <div>
+                          <h5 className="font-medium text-green-400 mb-1">🔒 Cookie Necessari</h5>
+                          <p className="text-sm text-foreground/70">
+                            Essenziali per sicurezza, autenticazione e funzionamento base del sito. 
+                            <strong>Non possono essere disattivati.</strong>
+                          </p>
+                          <p className="text-xs text-green-400 mt-1">Sempre attivi per legge</p>
+                        </div>
                       </div>
-                      <div className="w-10 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                      <div className="w-12 h-6 bg-green-500 rounded-full flex items-center justify-center">
                         <div className="w-4 h-4 bg-white rounded-full"></div>
                       </div>
                     </div>
 
                     {/* Cookie analytics */}
-                    <div className="flex items-center justify-between p-3 rounded-lg bg-background/50 border border-indigo-500/20">
-                      <div>
-                        <h5 className="font-medium">📊 Cookie analitici</h5>
-                        <p className="text-sm text-foreground/70">Google Analytics per statistiche anonime</p>
+                    <div className="flex items-center justify-between p-4 rounded-lg bg-background/50 border border-indigo-500/20">
+                      <div className="flex items-start">
+                        <BarChart className="w-5 h-5 text-indigo-400 mr-3 mt-1 flex-shrink-0" />
+                        <div>
+                          <h5 className="font-medium mb-1">📊 Cookie Analitici</h5>
+                          <p className="text-sm text-foreground/70 mb-1">
+                            Google Analytics per statistiche anonime e miglioramento del sito.
+                          </p>
+                          <p className="text-xs text-indigo-400">
+                            🔒 <strong>Bloccati preventivamente</strong> - Si attivano solo con consenso
+                          </p>
+                        </div>
                       </div>
                       <button
                         onClick={() => handlePreferenceChange('analytics')}
-                        className={`w-10 h-6 rounded-full transition-colors ${
+                        className={`w-12 h-6 rounded-full transition-colors ${
                           preferences.analytics ? 'bg-indigo-500' : 'bg-gray-300'
                         }`}
                       >
                         <div className={`w-4 h-4 bg-white rounded-full transition-transform ${
-                          preferences.analytics ? 'translate-x-5' : 'translate-x-1'
+                          preferences.analytics ? 'translate-x-6' : 'translate-x-1'
                         }`}></div>
                       </button>
                     </div>
 
                     {/* Cookie funzionali */}
-                    <div className="flex items-center justify-between p-3 rounded-lg bg-background/50 border border-indigo-500/20">
-                      <div>
-                        <h5 className="font-medium">⚙️ Cookie funzionali</h5>
-                        <p className="text-sm text-foreground/70">Chat, preferenze tema e personalizzazione</p>
+                    <div className="flex items-center justify-between p-4 rounded-lg bg-background/50 border border-indigo-500/20">
+                      <div className="flex items-start">
+                        <Zap className="w-5 h-5 text-violet-400 mr-3 mt-1 flex-shrink-0" />
+                        <div>
+                          <h5 className="font-medium mb-1">⚙️ Cookie Funzionali</h5>
+                          <p className="text-sm text-foreground/70 mb-1">
+                            Chat widget, mappe, video incorporati e preferenze personalizzate.
+                          </p>
+                          <p className="text-xs text-violet-400">
+                            🔒 <strong>Bloccati preventivamente</strong> - Si attivano solo con consenso
+                          </p>
+                        </div>
                       </div>
                       <button
                         onClick={() => handlePreferenceChange('functional')}
-                        className={`w-10 h-6 rounded-full transition-colors ${
-                          preferences.functional ? 'bg-indigo-500' : 'bg-gray-300'
+                        className={`w-12 h-6 rounded-full transition-colors ${
+                          preferences.functional ? 'bg-violet-500' : 'bg-gray-300'
                         }`}
                       >
                         <div className={`w-4 h-4 bg-white rounded-full transition-transform ${
-                          preferences.functional ? 'translate-x-5' : 'translate-x-1'
+                          preferences.functional ? 'translate-x-6' : 'translate-x-1'
                         }`}></div>
                       </button>
                     </div>
+                  </div>
+
+                  {/* Informazioni tecniche */}
+                  <div className="mt-6 p-3 bg-indigo-500/5 border border-indigo-500/20 rounded-lg">
+                    <h6 className="text-sm font-medium text-indigo-400 mb-2">ℹ️ Come funziona il blocco:</h6>
+                    <ul className="text-xs text-foreground/70 space-y-1">
+                      <li>• <strong>Prima del consenso:</strong> Tutti gli script di tracciamento sono bloccati</li>
+                      <li>• <strong>Dopo il consenso:</strong> Solo i cookie autorizzati vengono caricati</li>
+                      <li>• <strong>Puoi modificare:</strong> Le preferenze in qualsiasi momento</li>
+                    </ul>
                   </div>
 
                   {/* Pulsante salva personalizzazioni */}
                   <div className="mt-6 flex justify-end">
                     <button
                       onClick={savePreferences}
-                      className="px-6 py-2 bg-gradient-to-r from-indigo-500 to-violet-500 text-white rounded-lg hover:shadow-lg hover:shadow-indigo-500/20 transition-all hover:-translate-y-0.5 font-medium"
+                      className="px-6 py-3 bg-gradient-to-r from-indigo-500 to-violet-500 text-white rounded-lg hover:shadow-lg hover:shadow-indigo-500/20 transition-all hover:-translate-y-0.5 font-medium flex items-center"
                     >
-                      💾 Salva preferenze
+                      💾 Salva Preferenze
                     </button>
                   </div>
                 </motion.div>

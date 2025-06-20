@@ -1,4 +1,4 @@
-// src/components/CookieBanner.tsx - Versione Integrata con Blocco Preventivo
+// src/components/CookieBanner.tsx - Versione Mobile Ottimizzata
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Cookie, X, Settings, ChevronDown, ChevronUp, Shield, BarChart, Zap } from 'lucide-react';
@@ -10,10 +10,118 @@ interface CookiePreferences {
   functional: boolean;
 }
 
-// Cookie Manager Semplificato - Si integra con il blocco preventivo
+// Servizio Google Sheets
+class GoogleSheetsService {
+  private static instance: GoogleSheetsService;
+  private sheetId: string;
+  private apiKey: string;
+  
+  private constructor() {
+    this.sheetId = import.meta.env.VITE_GOOGLE_SHEETS_ID;
+    this.apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
+    
+    if (!this.sheetId || !this.apiKey) {
+      console.warn('⚠️ Google Sheets non configurato. Controlla le variabili d\'ambiente.');
+    }
+  }
+  
+  static getInstance(): GoogleSheetsService {
+    if (!GoogleSheetsService.instance) {
+      GoogleSheetsService.instance = new GoogleSheetsService();
+    }
+    return GoogleSheetsService.instance;
+  }
+  
+  async recordConsent(preferences: CookiePreferences): Promise<boolean> {
+    if (!this.sheetId || !this.apiKey) {
+      console.warn('Google Sheets non configurato, salvataggio solo locale');
+      return false;
+    }
+    
+    try {
+      const now = new Date();
+      const timestamp = now.toLocaleString('it-IT', {
+        timeZone: 'Europe/Rome',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+      
+      const consentData = [
+        timestamp,
+        preferences.analytics ? 'Sì' : 'No',
+        preferences.functional ? 'Sì' : 'No',
+        navigator.userAgent,
+        window.location.href,
+        this.getSessionId(),
+        'nascosto',
+        this.getBrowserInfo()
+      ];
+      
+      const response = await fetch(
+        `https://sheets.googleapis.com/v4/spreadsheets/${this.sheetId}/values/A:H:append?valueInputOption=RAW&key=${this.apiKey}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            values: [consentData]
+          }),
+        }
+      );
+      
+      if (response.ok) {
+        const result = await response.json();
+        console.log('✅ Consenso salvato in Google Sheets:', result);
+        return true;
+      } else {
+        const error = await response.text();
+        console.error('❌ Errore Google Sheets:', error);
+        return false;
+      }
+      
+    } catch (error) {
+      console.error('❌ Errore salvataggio Google Sheets:', error);
+      return false;
+    }
+  }
+  
+  private getSessionId(): string {
+    let sessionId = sessionStorage.getItem('cookie_session_id');
+    if (!sessionId) {
+      sessionId = 'sess_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+      sessionStorage.setItem('cookie_session_id', sessionId);
+    }
+    return sessionId;
+  }
+  
+  private getBrowserInfo(): string {
+    const info = {
+      language: navigator.language,
+      platform: navigator.platform,
+      cookieEnabled: navigator.cookieEnabled,
+      onLine: navigator.onLine,
+      screen: `${screen.width}x${screen.height}`,
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+    };
+    
+    return JSON.stringify(info);
+  }
+}
+
+// Cookie Manager
 class CookieManager {
   private static instance: CookieManager;
   private preferences: CookiePreferences | null = null;
+  private googleSheets: GoogleSheetsService;
+  
+  private constructor() {
+    this.googleSheets = GoogleSheetsService.getInstance();
+  }
   
   static getInstance(): CookieManager {
     if (!CookieManager.instance) {
@@ -22,7 +130,6 @@ class CookieManager {
     return CookieManager.instance;
   }
 
-  // Carica preferenze da localStorage
   loadPreferences(): CookiePreferences | null {
     try {
       const saved = localStorage.getItem('cookieConsent');
@@ -36,10 +143,18 @@ class CookieManager {
     return null;
   }
 
-  // Salva preferenze e notifica il sistema di blocco
-  setPreferences(prefs: CookiePreferences) {
+  async setPreferences(prefs: CookiePreferences): Promise<void> {
     this.preferences = prefs;
     localStorage.setItem('cookieConsent', JSON.stringify(prefs));
+    
+    // Salva in Google Sheets
+    this.googleSheets.recordConsent(prefs).then(success => {
+      if (success) {
+        console.log('📊 Consenso salvato in Google Sheets');
+      } else {
+        console.log('⚠️ Consenso salvato solo localmente');
+      }
+    });
     
     // Notifica il sistema di blocco preventivo
     const event = new CustomEvent('cookieConsentGiven', {
@@ -50,90 +165,92 @@ class CookieManager {
     console.log('💾 Preferenze salvate e sistema notificato:', prefs);
   }
 
-  // Rimuovi consenso (per testing)
-  clearConsent() {
+  clearConsent(): void {
     this.preferences = null;
     localStorage.removeItem('cookieConsent');
+    sessionStorage.removeItem('cookie_session_id');
     console.log('🗑️ Consenso rimosso - refresh per test');
   }
 
-  // Verifica se il consenso è già stato dato
   hasConsent(): boolean {
     return this.preferences !== null;
   }
 
-  // Ottieni le preferenze correnti
   getPreferences(): CookiePreferences | null {
     return this.preferences;
   }
 }
 
+// Componente Cookie Banner Ottimizzato Mobile
 const CookieBanner = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showPreferences, setShowPreferences] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [preferences, setPreferences] = useState<CookiePreferences>({
     necessary: true,
-    analytics: false,    // ❌ DEFAULT FALSE (opt-in obbligatorio)
-    functional: false,   // ❌ DEFAULT FALSE (opt-in obbligatorio)
+    analytics: false,
+    functional: false,
   });
 
   const cookieManager = CookieManager.getInstance();
+
+  // Detect mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Verifica consenso all'avvio
   useEffect(() => {
     const savedPreferences = cookieManager.loadPreferences();
     
     if (!savedPreferences) {
-      // 🚨 NESSUN CONSENSO = MOSTRA BANNER
       console.log('🚨 Nessun consenso - Banner visibile');
       const timer = setTimeout(() => setIsVisible(true), 1000);
       return () => clearTimeout(timer);
     } else {
-      // Consenso già presente
       console.log('✅ Consenso esistente trovato:', savedPreferences);
       setPreferences(savedPreferences);
     }
   }, []);
 
-  // ✅ ACCETTA TUTTI (opt-in attivo)
-  const acceptAll = () => {
+  const acceptAll = async () => {
     const allAccepted = {
       necessary: true,
       analytics: true,
       functional: true,
     };
     setPreferences(allAccepted);
-    cookieManager.setPreferences(allAccepted);
+    await cookieManager.setPreferences(allAccepted);
     setIsVisible(false);
-    
     console.log('✅ Tutti i cookie accettati');
   };
 
-  // ❌ SOLO NECESSARI (rifiuto tutto tranne essenziali)
-  const rejectNonEssential = () => {
+  const rejectNonEssential = async () => {
     const onlyNecessary = {
       necessary: true,
       analytics: false,
       functional: false,
     };
     setPreferences(onlyNecessary);
-    cookieManager.setPreferences(onlyNecessary);
+    await cookieManager.setPreferences(onlyNecessary);
     setIsVisible(false);
-    
     console.log('❌ Solo cookie necessari accettati');
   };
 
-  // 💾 Salva preferenze personalizzate
-  const savePreferences = () => {
-    cookieManager.setPreferences(preferences);
+  const savePreferences = async () => {
+    await cookieManager.setPreferences(preferences);
     setIsVisible(false);
-    
     console.log('💾 Preferenze personalizzate salvate:', preferences);
   };
 
-  // Gestione cambio preferenze
   const handlePreferenceChange = (key: keyof CookiePreferences) => {
-    if (key === 'necessary') return; // Cookie necessari sempre attivi
+    if (key === 'necessary') return;
     
     setPreferences(prev => ({
       ...prev,
@@ -141,36 +258,53 @@ const CookieBanner = () => {
     }));
   };
 
-  // 🧪 Funzione di test per sviluppatori
   const clearConsentForTesting = () => {
     cookieManager.clearConsent();
     alert('Consenso rimosso. Ricarica la pagina per testare il banner.');
   };
 
-  // Animazioni
+  // Animazioni ottimizzate per mobile
   const bannerVariants = {
-    hidden: { y: 100, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { type: 'spring', bounce: 0.3, duration: 0.7 } },
-    exit: { y: 100, opacity: 0, transition: { duration: 0.3 } }
+    hidden: { y: '100%', opacity: 0 },
+    visible: { 
+      y: 0, 
+      opacity: 1, 
+      transition: { 
+        type: 'spring', 
+        bounce: 0.1, 
+        duration: 0.4 
+      } 
+    },
+    exit: { 
+      y: '100%', 
+      opacity: 0, 
+      transition: { duration: 0.2 } 
+    }
   };
 
   const preferencesPanelVariants = {
     hidden: { height: 0, opacity: 0 },
-    visible: { height: 'auto', opacity: 1, transition: { duration: 0.4 } },
-    exit: { height: 0, opacity: 0, transition: { duration: 0.3 } }
+    visible: { 
+      height: 'auto', 
+      opacity: 1, 
+      transition: { duration: 0.2 } 
+    },
+    exit: { 
+      height: 0, 
+      opacity: 0, 
+      transition: { duration: 0.15 } 
+    }
   };
 
-  // Non mostrare se non è visibile
   if (!isVisible) {
-    // Pulsante debug solo in development
     if (import.meta.env.DEV) {
       return (
         <button
           onClick={clearConsentForTesting}
-          className="fixed bottom-4 right-4 z-50 px-3 py-2 bg-red-500 text-white text-xs rounded opacity-50 hover:opacity-100"
+          className="fixed bottom-4 right-4 z-50 w-8 h-8 bg-red-500 text-white text-xs rounded-full opacity-50 hover:opacity-100 flex items-center justify-center"
           title="Test: Rimuovi consenso cookie"
         >
-          🧪 Reset Cookie
+          🧪
         </button>
       );
     }
@@ -180,83 +314,126 @@ const CookieBanner = () => {
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed bottom-4 left-4 right-4 z-50 max-w-6xl mx-auto"
+        className={`fixed z-50 ${
+          isMobile 
+            ? 'inset-x-0 bottom-0' 
+            : 'bottom-4 left-4 right-4 max-w-4xl mx-auto'
+        }`}
         variants={bannerVariants}
         initial="hidden"
         animate="visible"
         exit="exit"
       >
-        <div className="glass backdrop-blur-lg bg-background/90 rounded-xl shadow-2xl border border-indigo-500/20 overflow-hidden">
-          {/* Barra di stato GDPR */}
-          <div className="h-1 w-full bg-gradient-to-r from-red-500 via-yellow-500 to-green-500"></div>
-          <div className="px-4 py-2 bg-red-500/10 border-b border-red-500/20">
-            <p className="text-sm text-red-400 flex items-center">
-              <Shield className="w-4 h-4 mr-2" />
-              🔒 <strong>BLOCCO ATTIVO:</strong> Nessun cookie di tracciamento caricato
-            </p>
-          </div>
+        <div className={`glass backdrop-blur-lg bg-background/95 shadow-2xl border-indigo-500/20 overflow-hidden ${
+          isMobile 
+            ? 'border-t rounded-t-2xl' 
+            : 'border rounded-xl'
+        }`}>
           
-          <div className="p-6">
-            {/* Header */}
-            <div className="flex justify-between items-center mb-4">
-              <div className="flex items-center">
-                <Cookie className="w-6 h-6 text-indigo-400 mr-2" />
-                <h3 className="font-bold text-xl">🍪 Consenso Cookie GDPR</h3>
-              </div>
-              <button 
-                onClick={rejectNonEssential}
-                className="p-1 rounded-full hover:bg-gray-500/10 transition-colors"
-                aria-label="Rifiuta cookie non essenziali"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
+          {/* Barra di stato compatta */}
+          <div className="h-0.5 w-full bg-gradient-to-r from-red-500 via-yellow-500 to-green-500"></div>
+          
+          {/* Contenuto principale */}
+          <div className={`${isMobile ? 'p-4' : 'p-6'}`}>
             
-            {/* Descrizione con stato del blocco */}
-            <div className="mb-6">
-              <div className="p-3 bg-green-500/10 border border-green-500/20 rounded-lg mb-4">
-                <p className="text-green-400 text-sm font-medium">
-                  ✅ <strong>GDPR Compliant:</strong> I cookie di tracciamento sono bloccati preventivamente. 
-                  Nessun dato viene raccolto senza il tuo consenso esplicito.
-                </p>
+            {/* Header compatto */}
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center">
+                <Cookie className={`text-indigo-400 mr-2 ${isMobile ? 'w-4 h-4' : 'w-5 h-5'}`} />
+                <h3 className={`font-bold text-indigo-400 ${isMobile ? 'text-sm' : 'text-lg'}`}>
+                  🍪 Cookie GDPR
+                </h3>
               </div>
               
-              <p className="text-foreground/80 mb-3">
-                Questo sito utilizza cookie per migliorare la tua esperienza. Scegli quali categorie accettare:
-              </p>
-              <p className="text-foreground/70 text-sm">
-                Per maggiori dettagli, consulta la nostra{' '}
-                <Link to="/PrivacyPolicy" className="text-indigo-400 hover:underline">Privacy Policy</Link>.
-              </p>
+              {/* Status badge mobile */}
+              {isMobile && (
+                <div className="flex items-center text-xs text-green-400 bg-green-500/10 px-2 py-1 rounded-full">
+                  <Shield className="w-3 h-3 mr-1" />
+                  Bloccati
+                </div>
+              )}
+              
+              {!isMobile && (
+                <button 
+                  onClick={rejectNonEssential}
+                  className="p-1 rounded-full hover:bg-gray-500/10 transition-colors"
+                  aria-label="Rifiuta cookie non essenziali"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
             </div>
             
-            {/* Pulsanti principali */}
-            <div className="flex flex-wrap gap-3 mb-4">
+            {/* Messaggio principale compatto */}
+            <div className="mb-4">
+              <p className={`text-foreground/80 mb-2 ${isMobile ? 'text-sm' : 'text-base'}`}>
+                {isMobile 
+                  ? 'Utilizziamo cookie per migliorare la tua esperienza.'
+                  : 'Utilizziamo cookie per migliorare la tua esperienza. I cookie di tracciamento sono bloccati preventivamente.'
+                }
+              </p>
+              
+              {/* Status per desktop */}
+              {!isMobile && (
+                <div className="flex items-center text-xs text-green-400 bg-green-500/10 px-2 py-1 rounded mb-2">
+                  <Shield className="w-3 h-3 mr-1" />
+                  GDPR Compliant - Tracciamento bloccato
+                </div>
+              )}
+              
+              <p className={`text-foreground/70 ${isMobile ? 'text-xs' : 'text-sm'}`}>
+                {isMobile ? (
+                  <>Dettagli nella <Link to="/PrivacyPolicy" className="text-indigo-400 underline">Privacy Policy</Link></>
+                ) : (
+                  <>Per maggiori dettagli, consulta la nostra <Link to="/PrivacyPolicy" className="text-indigo-400 hover:underline">Privacy Policy</Link>.</>
+                )}
+              </p>
+            </div>
+
+            {/* Pulsanti azione - Layout diverso per mobile */}
+            <div className={`flex gap-2 mb-3 ${isMobile ? 'flex-col' : 'flex-row flex-wrap'}`}>
               <button
                 onClick={acceptAll}
-                className="px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-lg hover:shadow-lg hover:shadow-green-500/20 transition-all hover:-translate-y-0.5 font-medium flex items-center"
+                className={`bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-lg hover:shadow-lg transition-all font-medium ${
+                  isMobile 
+                    ? 'w-full py-3 text-sm' 
+                    : 'flex-1 px-6 py-3 hover:-translate-y-0.5'
+                }`}
               >
                 ✅ Accetta Tutti
               </button>
               
-              <button
-                onClick={rejectNonEssential}
-                className="px-6 py-3 border border-red-500/30 text-red-400 rounded-lg hover:bg-red-500/10 transition-all hover:-translate-y-0.5 flex items-center"
-              >
-                ❌ Solo Necessari
-              </button>
-              
-              <button
-                onClick={() => setShowPreferences(!showPreferences)}
-                className="px-6 py-3 border border-indigo-500/20 rounded-lg hover:bg-indigo-500/10 transition-all hover:-translate-y-0.5 flex items-center"
-              >
-                <Settings className="w-4 h-4 mr-2" />
-                Personalizza
-                {showPreferences ? <ChevronUp className="w-4 h-4 ml-2" /> : <ChevronDown className="w-4 h-4 ml-2" />}
-              </button>
+              <div className={`flex gap-2 ${isMobile ? 'w-full' : 'flex-1'}`}>
+                <button
+                  onClick={rejectNonEssential}
+                  className={`bg-gray-500/20 text-foreground rounded-lg hover:bg-gray-500/30 transition-colors font-medium ${
+                    isMobile 
+                      ? 'flex-1 py-3 text-sm' 
+                      : 'px-6 py-3 hover:-translate-y-0.5'
+                  }`}
+                >
+                  {isMobile ? '❌ Solo Necessari' : '❌ Solo Necessari'}
+                </button>
+                
+                <button
+                  onClick={() => setShowPreferences(!showPreferences)}
+                  className={`border border-indigo-500/20 rounded-lg hover:bg-indigo-500/10 transition-all flex items-center justify-center ${
+                    isMobile 
+                      ? 'px-3 py-3 text-sm' 
+                      : 'px-4 py-3 hover:-translate-y-0.5'
+                  }`}
+                >
+                  <Settings className={`${isMobile ? 'w-4 h-4' : 'w-4 h-4 mr-1'}`} />
+                  {!isMobile && 'Personalizza'}
+                  {showPreferences ? 
+                    <ChevronUp className={`${isMobile ? 'w-3 h-3 ml-1' : 'w-4 h-4 ml-2'}`} /> : 
+                    <ChevronDown className={`${isMobile ? 'w-3 h-3 ml-1' : 'w-4 h-4 ml-2'}`} />
+                  }
+                </button>
+              </div>
             </div>
 
-            {/* Pannello preferenze dettagliate */}
+            {/* Pannello preferenze compatto */}
             <AnimatePresence>
               {showPreferences && (
                 <motion.div
@@ -264,97 +441,98 @@ const CookieBanner = () => {
                   initial="hidden"
                   animate="visible"
                   exit="exit"
-                  className="border-t border-indigo-500/20 pt-6"
+                  className="border-t border-indigo-500/20 pt-3"
                 >
-                  <h4 className="font-semibold mb-4 text-indigo-400">🔧 Personalizza le tue preferenze:</h4>
+                  <h4 className={`font-semibold mb-3 text-indigo-400 ${isMobile ? 'text-sm' : 'text-base'}`}>
+                    🔧 Personalizza preferenze:
+                  </h4>
                   
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     {/* Cookie necessari */}
-                    <div className="flex items-center justify-between p-4 rounded-lg bg-green-500/5 border border-green-500/20">
-                      <div className="flex items-start">
-                        <Shield className="w-5 h-5 text-green-400 mr-3 mt-1 flex-shrink-0" />
+                    <div className={`flex items-center justify-between rounded-lg bg-green-500/5 border border-green-500/20 ${
+                      isMobile ? 'p-2' : 'p-3'
+                    }`}>
+                      <div className="flex items-center">
+                        <Shield className={`text-green-400 mr-2 ${isMobile ? 'w-3 h-3' : 'w-4 h-4'}`} />
                         <div>
-                          <h5 className="font-medium text-green-400 mb-1">🔒 Cookie Necessari</h5>
-                          <p className="text-sm text-foreground/70">
-                            Essenziali per sicurezza, autenticazione e funzionamento base del sito. 
-                            <strong>Non possono essere disattivati.</strong>
-                          </p>
-                          <p className="text-xs text-green-400 mt-1">Sempre attivi per legge</p>
+                          <h5 className={`font-medium ${isMobile ? 'text-xs' : 'text-sm'}`}>🔒 Necessari</h5>
+                          {!isMobile && <p className="text-xs text-foreground/70">Sempre attivi</p>}
                         </div>
                       </div>
-                      <div className="w-12 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                        <div className="w-4 h-4 bg-white rounded-full"></div>
+                      <div className={`bg-green-500 rounded-full flex items-center justify-center ${
+                        isMobile ? 'w-6 h-3' : 'w-8 h-4'
+                      }`}>
+                        <div className={`bg-white rounded-full ${isMobile ? 'w-2 h-2' : 'w-3 h-3'}`}></div>
                       </div>
                     </div>
 
                     {/* Cookie analytics */}
-                    <div className="flex items-center justify-between p-4 rounded-lg bg-background/50 border border-indigo-500/20">
-                      <div className="flex items-start">
-                        <BarChart className="w-5 h-5 text-indigo-400 mr-3 mt-1 flex-shrink-0" />
+                    <div className={`flex items-center justify-between rounded-lg bg-background/50 border border-indigo-500/20 ${
+                      isMobile ? 'p-2' : 'p-3'
+                    }`}>
+                      <div className="flex items-center">
+                        <BarChart className={`text-indigo-400 mr-2 ${isMobile ? 'w-3 h-3' : 'w-4 h-4'}`} />
                         <div>
-                          <h5 className="font-medium mb-1">📊 Cookie Analitici</h5>
-                          <p className="text-sm text-foreground/70 mb-1">
-                            Google Analytics per statistiche anonime e miglioramento del sito.
-                          </p>
-                          <p className="text-xs text-indigo-400">
-                            🔒 <strong>Bloccati preventivamente</strong> - Si attivano solo con consenso
-                          </p>
+                          <h5 className={`font-medium ${isMobile ? 'text-xs' : 'text-sm'}`}>📊 Analitici</h5>
+                          {!isMobile && <p className="text-xs text-foreground/70">Google Analytics</p>}
                         </div>
                       </div>
                       <button
                         onClick={() => handlePreferenceChange('analytics')}
-                        className={`w-12 h-6 rounded-full transition-colors ${
+                        className={`rounded-full transition-colors ${
                           preferences.analytics ? 'bg-indigo-500' : 'bg-gray-300'
-                        }`}
+                        } ${isMobile ? 'w-6 h-3' : 'w-8 h-4'}`}
                       >
-                        <div className={`w-4 h-4 bg-white rounded-full transition-transform ${
-                          preferences.analytics ? 'translate-x-6' : 'translate-x-1'
-                        }`}></div>
+                        <div className={`bg-white rounded-full transition-transform ${
+                          preferences.analytics 
+                            ? (isMobile ? 'translate-x-3' : 'translate-x-4') 
+                            : 'translate-x-0.5'
+                        } ${isMobile ? 'w-2 h-2' : 'w-3 h-3'}`}></div>
                       </button>
                     </div>
 
                     {/* Cookie funzionali */}
-                    <div className="flex items-center justify-between p-4 rounded-lg bg-background/50 border border-indigo-500/20">
-                      <div className="flex items-start">
-                        <Zap className="w-5 h-5 text-violet-400 mr-3 mt-1 flex-shrink-0" />
+                    <div className={`flex items-center justify-between rounded-lg bg-background/50 border border-indigo-500/20 ${
+                      isMobile ? 'p-2' : 'p-3'
+                    }`}>
+                      <div className="flex items-center">
+                        <Zap className={`text-violet-400 mr-2 ${isMobile ? 'w-3 h-3' : 'w-4 h-4'}`} />
                         <div>
-                          <h5 className="font-medium mb-1">⚙️ Cookie Funzionali</h5>
-                          <p className="text-sm text-foreground/70 mb-1">
-                            Chat widget, mappe, video incorporati e preferenze personalizzate.
-                          </p>
-                          <p className="text-xs text-violet-400">
-                            🔒 <strong>Bloccati preventivamente</strong> - Si attivano solo con consenso
-                          </p>
+                          <h5 className={`font-medium ${isMobile ? 'text-xs' : 'text-sm'}`}>⚙️ Funzionali</h5>
+                          {!isMobile && <p className="text-xs text-foreground/70">Chat, mappe</p>}
                         </div>
                       </div>
                       <button
                         onClick={() => handlePreferenceChange('functional')}
-                        className={`w-12 h-6 rounded-full transition-colors ${
+                        className={`rounded-full transition-colors ${
                           preferences.functional ? 'bg-violet-500' : 'bg-gray-300'
-                        }`}
+                        } ${isMobile ? 'w-6 h-3' : 'w-8 h-4'}`}
                       >
-                        <div className={`w-4 h-4 bg-white rounded-full transition-transform ${
-                          preferences.functional ? 'translate-x-6' : 'translate-x-1'
-                        }`}></div>
+                        <div className={`bg-white rounded-full transition-transform ${
+                          preferences.functional 
+                            ? (isMobile ? 'translate-x-3' : 'translate-x-4') 
+                            : 'translate-x-0.5'
+                        } ${isMobile ? 'w-2 h-2' : 'w-3 h-3'}`}></div>
                       </button>
                     </div>
                   </div>
 
-                  {/* Informazioni tecniche */}
-                  <div className="mt-6 p-3 bg-indigo-500/5 border border-indigo-500/20 rounded-lg">
-                    <h6 className="text-sm font-medium text-indigo-400 mb-2">ℹ️ Come funziona il blocco:</h6>
-                    <ul className="text-xs text-foreground/70 space-y-1">
-                      <li>• <strong>Prima del consenso:</strong> Tutti gli script di tracciamento sono bloccati</li>
-                      <li>• <strong>Dopo il consenso:</strong> Solo i cookie autorizzati vengono caricati</li>
-                      <li>• <strong>Puoi modificare:</strong> Le preferenze in qualsiasi momento</li>
-                    </ul>
-                  </div>
+                  {/* Info tecniche compatte */}
+                  {!isMobile && (
+                    <div className="mt-3 p-2 bg-indigo-500/5 border border-indigo-500/20 rounded-lg">
+                      <p className="text-xs text-indigo-400 font-medium">
+                        ℹ️ I cookie di tracciamento sono bloccati preventivamente e si attivano solo con consenso
+                      </p>
+                    </div>
+                  )}
 
-                  {/* Pulsante salva personalizzazioni */}
-                  <div className="mt-6 flex justify-end">
+                  {/* Pulsante salva */}
+                  <div className="mt-3">
                     <button
                       onClick={savePreferences}
-                      className="px-6 py-3 bg-gradient-to-r from-indigo-500 to-violet-500 text-white rounded-lg hover:shadow-lg hover:shadow-indigo-500/20 transition-all hover:-translate-y-0.5 font-medium flex items-center"
+                      className={`w-full bg-gradient-to-r from-indigo-500 to-violet-500 text-white rounded-lg hover:shadow-lg transition-all font-medium ${
+                        isMobile ? 'py-3 text-sm' : 'py-3 text-sm'
+                      }`}
                     >
                       💾 Salva Preferenze
                     </button>

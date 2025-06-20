@@ -1,4 +1,4 @@
-// src/components/Navbar.tsx - Static Version
+// src/components/Navbar.tsx - Versione corretta con sottomenu mobile completo
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, ChevronUp, Code, Users, Bot, MessageSquare, TrendingUp, Mail } from 'lucide-react';
@@ -45,12 +45,14 @@ const Navbar = () => {
     { href: '/contact', label: 'Contatti' },
   ];
 
+  // Lista completa dei servizi come nel desktop
   const servicesLinks = [
-    { href: '/software-pmi', label: 'Software PMI' },
-    { href: '/ai-agents', label: 'Agenti AI' },
-    { href: '/chatbots', label: 'Chatbot AI' },
-    { href: '/growth-plans', label: 'Piani di Crescita' },
-    { href: '/developers', label: 'Sviluppatori' },
+    { href: '/software-pmi', label: 'Software PMI', icon: Code },
+    { href: '/developers', label: 'Sviluppatori', icon: Users },
+    { href: '/ai-agents', label: 'Agenti AI', icon: Bot },
+    { href: '/chatbots', label: 'Chatbot AI', icon: MessageSquare },
+    { href: '/growth-plans', label: 'Piani di Crescita', icon: TrendingUp },
+    { href: '/contact', label: 'Consulenza', icon: Mail },
   ];
 
   const isServicePage = servicesLinks.some(link => location.pathname === link.href);
@@ -87,7 +89,7 @@ const Navbar = () => {
                     )}
                   </button>
                   
-                  {/* Sottomenu semplificato */}
+                  {/* Sottomenu Desktop */}
                   {servicesOpen && (
                     <div 
                       className="absolute right-0 mt-8 w-[600px] backdrop-blur-xl bg-background rounded-xl p-6 shadow-2xl border border-white/40"
@@ -129,17 +131,14 @@ const Navbar = () => {
                             <div className="w-10 h-10 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
                               <Users className="w-4 h-4 text-gray-400" />
                             </div>
-                            <span className="font-medium text-sm">Team Sviluppo</span>
+                            <span className="font-medium text-sm">Sviluppatori</span>
                           </Link>
                         </div>
                         
-                        {/* Separatore colonna 1-2 */}
-                        <div className="absolute left-1/3 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent"></div>
-                        
-                        {/* Colonna 2 - Intelligenza Artificiale */}
+                        {/* Colonna 2 - AI */}
                         <div className="space-y-2">
                           <div className="px-2 mb-3">
-                            <span className="text-xs font-medium text-accent uppercase tracking-wide">AI</span>
+                            <span className="text-xs font-medium text-accent uppercase tracking-wide">Intelligenza Artificiale</span>
                           </div>
                           
                           <Link
@@ -167,13 +166,10 @@ const Navbar = () => {
                           </Link>
                         </div>
                         
-                        {/* Separatore colonna 2-3 */}
-                        <div className="absolute left-2/3 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent"></div>
-                        
-                        {/* Colonna 3 - Strategia */}
+                        {/* Colonna 3 - Business */}
                         <div className="space-y-2">
                           <div className="px-2 mb-3">
-                            <span className="text-xs font-medium text-accent uppercase tracking-wide">Strategia</span>
+                            <span className="text-xs font-medium text-accent uppercase tracking-wide">Business</span>
                           </div>
                           
                           <Link
@@ -203,8 +199,6 @@ const Navbar = () => {
                       </div>
                     </div>
                   )}
-
-                  {/* Indicatore pagina corrente per sezione Servizi - ora gestito da CSS */}
                 </div>
               ) : (
                 <Link
@@ -251,20 +245,30 @@ const Navbar = () => {
                     )}
                   </button>
                   
-                  {/* Sottomenu Servizi Mobile */}
+                  {/* Sottomenu Servizi Mobile - CORRETTO con tutte le pagine */}
                   {servicesOpen && (
-                    <div className="pl-4">
-                      {servicesLinks.map((serviceLink) => (
-                        <Link
-                          key={serviceLink.href}
-                          to={serviceLink.href}
-                          className={`block py-2 px-3 rounded-lg text-white hover:text-accent ${
-                            location.pathname === serviceLink.href ? 'bg-primary/10 text-accent' : ''
-                          }`}
-                        >
-                          {serviceLink.label}
-                        </Link>
-                      ))}
+                    <div className="pl-4 space-y-1">
+                      {servicesLinks.map((serviceLink) => {
+                        const IconComponent = serviceLink.icon;
+                        return (
+                          <Link
+                            key={serviceLink.href}
+                            to={serviceLink.href}
+                            className={`flex items-center py-2 px-3 rounded-lg text-white hover:text-accent transition-colors ${
+                              location.pathname === serviceLink.href ? 'bg-primary/20 text-accent' : ''
+                            }`}
+                            onClick={() => {
+                              setIsOpen(false);
+                              setServicesOpen(false);
+                            }}
+                          >
+                            <div className="w-8 h-8 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
+                              <IconComponent className="w-4 h-4 text-gray-400" />
+                            </div>
+                            <span className="font-medium text-sm">{serviceLink.label}</span>
+                          </Link>
+                        );
+                      })}
                     </div>
                   )}
                 </div>
@@ -277,6 +281,7 @@ const Navbar = () => {
                       ? 'bg-primary/20 text-accent' 
                       : ''
                   }`}
+                  onClick={() => setIsOpen(false)}
                 >
                   {link.label}
                 </Link>

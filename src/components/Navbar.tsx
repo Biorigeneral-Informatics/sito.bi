@@ -301,13 +301,13 @@ const Navbar = () => {
                        
                         
                         {/* Categorie di servizi */}
-                        <div className="p-3 space-y-4">
+                        <div className="p-3 space-y-2">
                           {servicesCategories.map((category, categoryIndex) => (
-                            <div key={categoryIndex} className="space-y-2">
+                            <div key={categoryIndex} className="space-y-0.5">
                              
                               
                               {/* Servizi della categoria */}
-                              <div className="space-y-1">
+                              <div className="space-y-0.5">
                                 {category.services.map((service) => {
                                   const IconComponent = service.icon;
                                   return (

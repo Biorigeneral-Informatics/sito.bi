@@ -7,6 +7,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const servicesRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
@@ -21,6 +22,7 @@ const Navbar = () => {
 
   useEffect(() => {
     setServicesOpen(false);
+    setMobileServicesOpen(false);
     setIsOpen(false);
   }, [location]);
 
@@ -45,17 +47,33 @@ const Navbar = () => {
     { href: '/contact', label: 'Contatti' },
   ];
 
-  // Lista completa dei servizi come nel desktop
-  const servicesLinks = [
-    { href: '/software-pmi', label: 'Software PMI', icon: Code },
-    { href: '/developers', label: 'Sviluppatori', icon: Users },
-    { href: '/ai-agents', label: 'Agenti AI', icon: Bot },
-    { href: '/chatbots', label: 'Chatbot AI', icon: MessageSquare },
-    { href: '/growth-plans', label: 'Piani di Crescita', icon: TrendingUp },
-    { href: '/contact', label: 'Consulenza', icon: Mail },
+  // Struttura servizi organizzata per categorie come nel desktop
+  const servicesCategories = [
+    {
+      title: 'Sviluppo',
+      services: [
+        { href: '/software-pmi', label: 'Software PMI', icon: Code, description: 'Soluzioni software per PMI' },
+        { href: '/developers', label: 'Sviluppatori', icon: Users, description: 'Team di sviluppo' },
+      ]
+    },
+    {
+      title: 'Intelligenza Artificiale',
+      services: [
+        { href: '/ai-agents', label: 'Agenti AI', icon: Bot, description: 'Agenti intelligenti' },
+        { href: '/chatbots', label: 'Chatbot AI', icon: MessageSquare, description: 'Assistenti virtuali' },
+      ]
+    },
+    {
+      title: 'Consulenza',
+      services: [
+        { href: '/growth-plans', label: 'Piani di Crescita', icon: TrendingUp, description: 'Strategia aziendale' },
+        { href: '/contact', label: 'Consulenza', icon: Mail, description: 'Supporto personalizzato' },
+      ]
+    }
   ];
 
-  const isServicePage = servicesLinks.some(link => location.pathname === link.href);
+  const allServicesLinks = servicesCategories.flatMap(category => category.services);
+  const isServicePage = allServicesLinks.some(link => location.pathname === link.href);
 
   return (
     <nav className="fixed w-full z-50">
@@ -113,29 +131,37 @@ const Navbar = () => {
                           <Link
                             to="/software-pmi"
                             className={`flex items-center px-3 py-2 rounded-lg text-white transition-colors ${
-                              location.pathname === '/software-pmi' ? 'bg-primary/20 text-accent' : ''
+                              location.pathname === '/software-pmi' ?
+                                'bg-primary/20 text-accent' : 'hover:bg-white/10'
                             }`}
                           >
-                            <div className="w-10 h-10 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
+                            <div className="w-8 h-8 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3">
                               <Code className="w-4 h-4 text-gray-400" />
                             </div>
-                            <span className="font-medium text-sm">Software PMI</span>
+                            <div>
+                              <p className="font-medium text-sm">Software PMI</p>
+                              <p className="text-xs text-gray-400">Soluzioni software per PMI</p>
+                            </div>
                           </Link>
                           
                           <Link
                             to="/developers"
                             className={`flex items-center px-3 py-2 rounded-lg text-white transition-colors ${
-                              location.pathname === '/developers' ? 'bg-primary/20 text-accent' : ''
+                              location.pathname === '/developers' ?
+                                'bg-primary/20 text-accent' : 'hover:bg-white/10'
                             }`}
                           >
-                            <div className="w-10 h-10 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
+                            <div className="w-8 h-8 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3">
                               <Users className="w-4 h-4 text-gray-400" />
                             </div>
-                            <span className="font-medium text-sm">Sviluppatori</span>
+                            <div>
+                              <p className="font-medium text-sm">Sviluppatori</p>
+                              <p className="text-xs text-gray-400">Team di sviluppo</p>
+                            </div>
                           </Link>
                         </div>
                         
-                        {/* Colonna 2 - AI */}
+                        {/* Colonna 2 - Intelligenza Artificiale */}
                         <div className="space-y-2">
                           <div className="px-2 mb-3">
                             <span className="text-xs font-medium text-accent uppercase tracking-wide">Intelligenza Artificiale</span>
@@ -144,56 +170,72 @@ const Navbar = () => {
                           <Link
                             to="/ai-agents"
                             className={`flex items-center px-3 py-2 rounded-lg text-white transition-colors ${
-                              location.pathname === '/ai-agents' ? 'bg-primary/20 text-accent' : ''
+                              location.pathname === '/ai-agents' ?
+                                'bg-primary/20 text-accent' : 'hover:bg-white/10'
                             }`}
                           >
-                            <div className="w-10 h-10 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
+                            <div className="w-8 h-8 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3">
                               <Bot className="w-4 h-4 text-gray-400" />
                             </div>
-                            <span className="font-medium text-sm">Agenti AI</span>
+                            <div>
+                              <p className="font-medium text-sm">Agenti AI</p>
+                              <p className="text-xs text-gray-400">Agenti intelligenti</p>
+                            </div>
                           </Link>
                           
                           <Link
                             to="/chatbots"
                             className={`flex items-center px-3 py-2 rounded-lg text-white transition-colors ${
-                              location.pathname === '/chatbots' ? 'bg-primary/20 text-accent' : ''
+                              location.pathname === '/chatbots' ?
+                                'bg-primary/20 text-accent' : 'hover:bg-white/10'
                             }`}
                           >
-                            <div className="w-10 h-10 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
+                            <div className="w-8 h-8 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3">
                               <MessageSquare className="w-4 h-4 text-gray-400" />
                             </div>
-                            <span className="font-medium text-sm">Chatbot AI</span>
+                            <div>
+                              <p className="font-medium text-sm">Chatbot AI</p>
+                              <p className="text-xs text-gray-400">Assistenti virtuali</p>
+                            </div>
                           </Link>
                         </div>
                         
-                        {/* Colonna 3 - Business */}
+                        {/* Colonna 3 - Consulenza */}
                         <div className="space-y-2">
                           <div className="px-2 mb-3">
-                            <span className="text-xs font-medium text-accent uppercase tracking-wide">Business</span>
+                            <span className="text-xs font-medium text-accent uppercase tracking-wide">Consulenza</span>
                           </div>
                           
                           <Link
                             to="/growth-plans"
                             className={`flex items-center px-3 py-2 rounded-lg text-white transition-colors ${
-                              location.pathname === '/growth-plans' ? 'bg-primary/20 text-accent' : ''
+                              location.pathname === '/growth-plans' ?
+                                'bg-primary/20 text-accent' : 'hover:bg-white/10'
                             }`}
                           >
-                            <div className="w-10 h-10 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
+                            <div className="w-8 h-8 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3">
                               <TrendingUp className="w-4 h-4 text-gray-400" />
                             </div>
-                            <span className="font-medium text-sm">Piani di Crescita</span>
+                            <div>
+                              <p className="font-medium text-sm">Piani di Crescita</p>
+                              <p className="text-xs text-gray-400">Strategia aziendale</p>
+                            </div>
                           </Link>
                           
                           <Link
                             to="/contact"
                             className={`flex items-center px-3 py-2 rounded-lg text-white transition-colors ${
-                              location.pathname === '/contact' ? 'bg-primary/20 text-accent' : ''
+                              location.pathname === '/contact' ?
+                                'bg-primary/20 text-accent' : 'hover:bg-white/10'
                             }`}
                           >
-                            <div className="w-10 h-10 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
+                            <div className="w-8 h-8 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3">
                               <Mail className="w-4 h-4 text-gray-400" />
                             </div>
-                            <span className="font-medium text-sm">Consulenza</span>
+                            <div>
+                              <p className="font-medium text-sm">Consulenza</p>
+                              <p className="text-xs text-gray-400">Supporto personalizzato</p>
+                            </div>
                           </Link>
                         </div>
                       </div>
@@ -226,67 +268,95 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="glass md:hidden mx-4 mt-2 p-4 rounded-xl backdrop-blur-md">
-          <div className="flex flex-col space-y-2">
-            {mainLinks.map((link) => 
-              link.hasSubmenu ? (
-                <div key={link.label} className="space-y-1">
-                  <button
-                    onClick={() => setServicesOpen(!servicesOpen)}
-                    className={`w-full flex justify-between items-center py-2 px-3 rounded-lg text-white hover:text-accent ${
-                      isServicePage ? 'bg-primary/20 text-accent' : ''
+        <div className="fixed inset-0 top-20 md:hidden z-40">
+          {/* Overlay per chiudere il menu toccando fuori */}
+          <div 
+            className="absolute inset-0 bg-black/20 backdrop-blur-sm"
+            onClick={() => setIsOpen(false)}
+          />
+          
+          {/* Menu scrollabile */}
+          <div className="relative mx-4 mt-2 max-h-[calc(100vh-6rem)] overflow-y-auto overscroll-contain glass backdrop-blur-md bg-background/95 border border-white/20 shadow-2xl rounded-xl">
+            <div className="p-4 space-y-2">
+              {mainLinks.map((link) => 
+                link.hasSubmenu ? (
+                  <div key={link.label} className="space-y-1">
+                    <button
+                      onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                      className={`w-full flex justify-between items-center py-3 px-4 rounded-lg text-white hover:text-accent transition-colors ${
+                        isServicePage ? 'bg-primary/20 text-accent' : 'hover:bg-white/10'
+                      }`}
+                    >
+                      <span className="font-medium">{link.label}</span>
+                      {mobileServicesOpen ? (
+                        <ChevronUp className="h-4 w-4" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4" />
+                      )}
+                    </button>
+                    
+                    {/* Sottomenu Servizi Mobile */}
+                    {mobileServicesOpen && (
+                      <div className="bg-background/50 rounded-lg border border-white/20 overflow-hidden">
+                       
+                        
+                        {/* Categorie di servizi */}
+                        <div className="p-3 space-y-4">
+                          {servicesCategories.map((category, categoryIndex) => (
+                            <div key={categoryIndex} className="space-y-2">
+                             
+                              
+                              {/* Servizi della categoria */}
+                              <div className="space-y-1">
+                                {category.services.map((service) => {
+                                  const IconComponent = service.icon;
+                                  return (
+                                    <Link
+                                      key={service.href}
+                                      to={service.href}
+                                      className={`flex items-center py-3 px-3 rounded-lg text-white transition-colors ${
+                                        location.pathname === service.href 
+                                          ? 'bg-primary/20 text-accent' 
+                                          : 'hover:bg-white/10 active:bg-white/20'
+                                      }`}
+                                      onClick={() => {
+                                        setIsOpen(false);
+                                        setMobileServicesOpen(false);
+                                      }}
+                                    >
+                                      <div className="w-8 h-8 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
+                                        <IconComponent className="w-4 h-4 text-gray-400" />
+                                      </div>
+                                      <div className="flex-1 min-w-0">
+                                        <p className="font-medium text-sm truncate">{service.label}</p>
+                                        <p className="text-xs text-gray-400 truncate">{service.description}</p>
+                                      </div>
+                                    </Link>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    key={link.href}
+                    to={link.href}
+                    className={`block py-3 px-4 rounded-lg text-white hover:text-accent transition-colors font-medium ${
+                      location.pathname === link.href 
+                        ? 'bg-primary/20 text-accent' 
+                        : 'hover:bg-white/10'
                     }`}
+                    onClick={() => setIsOpen(false)}
                   >
                     {link.label}
-                    {servicesOpen ? (
-                      <ChevronUp className="h-4 w-4" />
-                    ) : (
-                      <ChevronDown className="h-4 w-4" />
-                    )}
-                  </button>
-                  
-                  {/* Sottomenu Servizi Mobile - CORRETTO con tutte le pagine */}
-                  {servicesOpen && (
-                    <div className="pl-4 space-y-1">
-                      {servicesLinks.map((serviceLink) => {
-                        const IconComponent = serviceLink.icon;
-                        return (
-                          <Link
-                            key={serviceLink.href}
-                            to={serviceLink.href}
-                            className={`flex items-center py-2 px-3 rounded-lg text-white hover:text-accent transition-colors ${
-                              location.pathname === serviceLink.href ? 'bg-primary/20 text-accent' : ''
-                            }`}
-                            onClick={() => {
-                              setIsOpen(false);
-                              setServicesOpen(false);
-                            }}
-                          >
-                            <div className="w-8 h-8 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
-                              <IconComponent className="w-4 h-4 text-gray-400" />
-                            </div>
-                            <span className="font-medium text-sm">{serviceLink.label}</span>
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <Link
-                  key={link.href}
-                  to={link.href}
-                  className={`block py-2 px-3 rounded-lg text-white hover:text-accent ${
-                    location.pathname === link.href 
-                      ? 'bg-primary/20 text-accent' 
-                      : ''
-                  }`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              )
-            )}
+                  </Link>
+                )
+              )}
+            </div>
           </div>
         </div>
       )}

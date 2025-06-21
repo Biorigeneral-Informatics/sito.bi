@@ -1,126 +1,31 @@
-// src/components/CookieBanner.tsx - Versione Mobile Ottimizzata
+// src/components/CookieBanner.tsx - VERSIONE COMPLETA CON SUPABASE
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Cookie, X, Settings, ChevronDown, ChevronUp, Shield, BarChart, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { 
+  Cookie, X, Shield, BarChart, Settings, 
+  Smartphone, Calendar, Heart, Target 
+} from 'lucide-react';
 
-interface CookiePreferences {
+// 🆕 Import del servizio Supabase
+import { SupabaseCookieService } from '../services/SupabaseCookieService';
+
+export interface CookiePreferences {
   necessary: boolean;
   analytics: boolean;
   functional: boolean;
+  marketing: boolean;
 }
 
-// Servizio Google Sheets
-class GoogleSheetsService {
-  private static instance: GoogleSheetsService;
-  private sheetId: string;
-  private apiKey: string;
-  
-  private constructor() {
-    this.sheetId = import.meta.env.VITE_GOOGLE_SHEETS_ID;
-    this.apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
-    
-    if (!this.sheetId || !this.apiKey) {
-      console.warn('⚠️ Google Sheets non configurato. Controlla le variabili d\'ambiente.');
-    }
-  }
-  
-  static getInstance(): GoogleSheetsService {
-    if (!GoogleSheetsService.instance) {
-      GoogleSheetsService.instance = new GoogleSheetsService();
-    }
-    return GoogleSheetsService.instance;
-  }
-  
-  async recordConsent(preferences: CookiePreferences): Promise<boolean> {
-    if (!this.sheetId || !this.apiKey) {
-      console.warn('Google Sheets non configurato, salvataggio solo locale');
-      return false;
-    }
-    
-    try {
-      const now = new Date();
-      const timestamp = now.toLocaleString('it-IT', {
-        timeZone: 'Europe/Rome',
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-      });
-      
-      const consentData = [
-        timestamp,
-        preferences.analytics ? 'Sì' : 'No',
-        preferences.functional ? 'Sì' : 'No',
-        navigator.userAgent,
-        window.location.href,
-        this.getSessionId(),
-        'nascosto',
-        this.getBrowserInfo()
-      ];
-      
-      const response = await fetch(
-        `https://sheets.googleapis.com/v4/spreadsheets/${this.sheetId}/values/A:H:append?valueInputOption=RAW&key=${this.apiKey}`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            values: [consentData]
-          }),
-        }
-      );
-      
-      if (response.ok) {
-        const result = await response.json();
-        console.log('✅ Consenso salvato in Google Sheets:', result);
-        return true;
-      } else {
-        const error = await response.text();
-        console.error('❌ Errore Google Sheets:', error);
-        return false;
-      }
-      
-    } catch (error) {
-      console.error('❌ Errore salvataggio Google Sheets:', error);
-      return false;
-    }
-  }
-  
-  private getSessionId(): string {
-    let sessionId = sessionStorage.getItem('cookie_session_id');
-    if (!sessionId) {
-      sessionId = 'sess_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
-      sessionStorage.setItem('cookie_session_id', sessionId);
-    }
-    return sessionId;
-  }
-  
-  private getBrowserInfo(): string {
-    const info = {
-      language: navigator.language,
-      platform: navigator.platform,
-      cookieEnabled: navigator.cookieEnabled,
-      onLine: navigator.onLine,
-      screen: `${screen.width}x${screen.height}`,
-      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
-    };
-    
-    return JSON.stringify(info);
-  }
-}
-
-// Cookie Manager
-class CookieManager {
-  private static instance: CookieManager;
+// 🔄 COOKIE MANAGER AGGIORNATO PER SUPABASE
+export class CookieManager {
+  private static instance: CookieManager | null = null;
   private preferences: CookiePreferences | null = null;
-  private googleSheets: GoogleSheetsService;
-  
+  private supabaseService: SupabaseCookieService;
+
   private constructor() {
-    this.googleSheets = GoogleSheetsService.getInstance();
+    // 🆕 Usa Supabase invece di Google Sheets
+    this.supabaseService = SupabaseCookieService.getInstance();
   }
   
   static getInstance(): CookieManager {
@@ -147,10 +52,10 @@ class CookieManager {
     this.preferences = prefs;
     localStorage.setItem('cookieConsent', JSON.stringify(prefs));
     
-    // Salva in Google Sheets
-    this.googleSheets.recordConsent(prefs).then(success => {
+    // 🆕 Salva in Supabase invece di Google Sheets
+    this.supabaseService.recordConsent(prefs).then(success => {
       if (success) {
-        console.log('📊 Consenso salvato in Google Sheets');
+        console.log('📊 Consenso salvato in Supabase');
       } else {
         console.log('⚠️ Consenso salvato solo localmente');
       }
@@ -169,6 +74,12 @@ class CookieManager {
     this.preferences = null;
     localStorage.removeItem('cookieConsent');
     sessionStorage.removeItem('cookie_session_id');
+    
+    // 🧪 Per sviluppo: rimuovi anche session Supabase
+    if (import.meta.env.DEV) {
+      this.supabaseService.clearSession();
+    }
+    
     console.log('🗑️ Consenso rimosso - refresh per test');
   }
 
@@ -181,7 +92,7 @@ class CookieManager {
   }
 }
 
-// Componente Cookie Banner Ottimizzato Mobile
+// 🍪 COMPONENTE COOKIE BANNER
 const CookieBanner = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showPreferences, setShowPreferences] = useState(false);
@@ -190,77 +101,71 @@ const CookieBanner = () => {
     necessary: true,
     analytics: false,
     functional: false,
+    marketing: false
   });
 
   const cookieManager = CookieManager.getInstance();
 
-  // Detect mobile
   useEffect(() => {
-    const checkMobile = () => {
+    const checkScreenSize = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+
+    // Carica preferenze esistenti
+    const savedPreferences = cookieManager.loadPreferences();
+    if (savedPreferences) {
+      setPreferences(savedPreferences);
+    } else {
+      // Mostra il banner solo se non ci sono preferenze salvate
+      setIsVisible(true);
+    }
+
+    return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
-  // Verifica consenso all'avvio
-  useEffect(() => {
-    const savedPreferences = cookieManager.loadPreferences();
-    
-    if (!savedPreferences) {
-      console.log('🚨 Nessun consenso - Banner visibile');
-      const timer = setTimeout(() => setIsVisible(true), 1000);
-      return () => clearTimeout(timer);
-    } else {
-      console.log('✅ Consenso esistente trovato:', savedPreferences);
-      setPreferences(savedPreferences);
-    }
-  }, []);
+  const handlePreferenceChange = (type: keyof Omit<CookiePreferences, 'necessary'>) => {
+    setPreferences(prev => ({
+      ...prev,
+      [type]: !prev[type]
+    }));
+  };
 
   const acceptAll = async () => {
     const allAccepted = {
       necessary: true,
       analytics: true,
       functional: true,
+      marketing: true
     };
     setPreferences(allAccepted);
     await cookieManager.setPreferences(allAccepted);
     setIsVisible(false);
-    console.log('✅ Tutti i cookie accettati');
+  };
+
+  const acceptCurrent = async () => {
+    await cookieManager.setPreferences(preferences);
+    setIsVisible(false);
   };
 
   const rejectNonEssential = async () => {
-    const onlyNecessary = {
+    const essentialOnly = {
       necessary: true,
       analytics: false,
       functional: false,
+      marketing: false
     };
-    setPreferences(onlyNecessary);
-    await cookieManager.setPreferences(onlyNecessary);
+    setPreferences(essentialOnly);
+    await cookieManager.setPreferences(essentialOnly);
     setIsVisible(false);
-    console.log('❌ Solo cookie necessari accettati');
-  };
-
-  const savePreferences = async () => {
-    await cookieManager.setPreferences(preferences);
-    setIsVisible(false);
-    console.log('💾 Preferenze personalizzate salvate:', preferences);
-  };
-
-  const handlePreferenceChange = (key: keyof CookiePreferences) => {
-    if (key === 'necessary') return;
-    
-    setPreferences(prev => ({
-      ...prev,
-      [key]: !prev[key]
-    }));
   };
 
   const clearConsentForTesting = () => {
     cookieManager.clearConsent();
-    alert('Consenso rimosso. Ricarica la pagina per testare il banner.');
+    setIsVisible(true);
+    alert('Consenso rimosso! Ricarica la pagina per testare il banner.');
   };
 
   // Animazioni ottimizzate per mobile
@@ -396,44 +301,38 @@ const CookieBanner = () => {
                 onClick={acceptAll}
                 className={`bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-lg hover:shadow-lg transition-all font-medium ${
                   isMobile 
-                    ? 'w-full py-3 text-sm' 
-                    : 'flex-1 px-6 py-3 hover:-translate-y-0.5'
+                    ? 'px-4 py-2 text-sm' 
+                    : 'px-4 py-2 text-sm'
                 }`}
               >
-                ✅ Accetta Tutti
+                ✅ Accetta tutto
               </button>
               
-              <div className={`flex gap-2 ${isMobile ? 'w-full' : 'flex-1'}`}>
-                <button
-                  onClick={rejectNonEssential}
-                  className={`bg-gray-500/20 text-foreground rounded-lg hover:bg-gray-500/30 transition-colors font-medium ${
-                    isMobile 
-                      ? 'flex-1 py-3 text-sm' 
-                      : 'px-6 py-3 hover:-translate-y-0.5'
-                  }`}
-                >
-                  {isMobile ? '❌ Solo Necessari' : '❌ Solo Necessari'}
-                </button>
-                
-                <button
-                  onClick={() => setShowPreferences(!showPreferences)}
-                  className={`border border-indigo-500/20 rounded-lg hover:bg-indigo-500/10 transition-all flex items-center justify-center ${
-                    isMobile 
-                      ? 'px-3 py-3 text-sm' 
-                      : 'px-4 py-3 hover:-translate-y-0.5'
-                  }`}
-                >
-                  <Settings className={`${isMobile ? 'w-4 h-4' : 'w-4 h-4 mr-1'}`} />
-                  {!isMobile && 'Personalizza'}
-                  {showPreferences ? 
-                    <ChevronUp className={`${isMobile ? 'w-3 h-3 ml-1' : 'w-4 h-4 ml-2'}`} /> : 
-                    <ChevronDown className={`${isMobile ? 'w-3 h-3 ml-1' : 'w-4 h-4 ml-2'}`} />
-                  }
-                </button>
-              </div>
+              <button
+                onClick={rejectNonEssential}
+                className={`bg-gradient-to-r from-gray-600 to-gray-700 text-white rounded-lg hover:shadow-lg transition-all font-medium ${
+                  isMobile 
+                    ? 'px-4 py-2 text-sm' 
+                    : 'px-4 py-2 text-sm'
+                }`}
+              >
+                ❌ Solo necessari
+              </button>
+              
+              <button
+                onClick={() => setShowPreferences(!showPreferences)}
+                className={`bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-lg hover:shadow-lg transition-all font-medium flex items-center justify-center ${
+                  isMobile 
+                    ? 'px-4 py-2 text-sm' 
+                    : 'px-4 py-2 text-sm'
+                }`}
+              >
+                <Settings className={`mr-1 ${isMobile ? 'w-3 h-3' : 'w-4 h-4'}`} />
+                Personalizza
+              </button>
             </div>
 
-            {/* Pannello preferenze compatto */}
+            {/* Panel preferenze dettagliate */}
             <AnimatePresence>
               {showPreferences && (
                 <motion.div
@@ -443,7 +342,7 @@ const CookieBanner = () => {
                   exit="exit"
                   className="border-t border-indigo-500/20 pt-3"
                 >
-                  <h4 className={`font-semibold mb-3 text-indigo-400 ${isMobile ? 'text-sm' : 'text-base'}`}>
+                  <h4 className={`font-medium mb-3 ${isMobile ? 'text-sm' : 'text-base'}`}>
                     🔧 Personalizza preferenze:
                   </h4>
                   
@@ -496,16 +395,16 @@ const CookieBanner = () => {
                       isMobile ? 'p-2' : 'p-3'
                     }`}>
                       <div className="flex items-center">
-                        <Zap className={`text-violet-400 mr-2 ${isMobile ? 'w-3 h-3' : 'w-4 h-4'}`} />
+                        <Smartphone className={`text-indigo-400 mr-2 ${isMobile ? 'w-3 h-3' : 'w-4 h-4'}`} />
                         <div>
                           <h5 className={`font-medium ${isMobile ? 'text-xs' : 'text-sm'}`}>⚙️ Funzionali</h5>
-                          {!isMobile && <p className="text-xs text-foreground/70">Chat, mappe</p>}
+                          {!isMobile && <p className="text-xs text-foreground/70">Calendly, preferenze</p>}
                         </div>
                       </div>
                       <button
                         onClick={() => handlePreferenceChange('functional')}
                         className={`rounded-full transition-colors ${
-                          preferences.functional ? 'bg-violet-500' : 'bg-gray-300'
+                          preferences.functional ? 'bg-indigo-500' : 'bg-gray-300'
                         } ${isMobile ? 'w-6 h-3' : 'w-8 h-4'}`}
                       >
                         <div className={`bg-white rounded-full transition-transform ${
@@ -515,26 +414,42 @@ const CookieBanner = () => {
                         } ${isMobile ? 'w-2 h-2' : 'w-3 h-3'}`}></div>
                       </button>
                     </div>
+
+                    {/* Cookie marketing */}
+                    <div className={`flex items-center justify-between rounded-lg bg-background/50 border border-indigo-500/20 ${
+                      isMobile ? 'p-2' : 'p-3'
+                    }`}>
+                      <div className="flex items-center">
+                        <Target className={`text-indigo-400 mr-2 ${isMobile ? 'w-3 h-3' : 'w-4 h-4'}`} />
+                        <div>
+                          <h5 className={`font-medium ${isMobile ? 'text-xs' : 'text-sm'}`}>🎯 Marketing</h5>
+                          {!isMobile && <p className="text-xs text-foreground/70">Pubblicità personalizzata</p>}
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => handlePreferenceChange('marketing')}
+                        className={`rounded-full transition-colors ${
+                          preferences.marketing ? 'bg-indigo-500' : 'bg-gray-300'
+                        } ${isMobile ? 'w-6 h-3' : 'w-8 h-4'}`}
+                      >
+                        <div className={`bg-white rounded-full transition-transform ${
+                          preferences.marketing 
+                            ? (isMobile ? 'translate-x-3' : 'translate-x-4') 
+                            : 'translate-x-0.5'
+                        } ${isMobile ? 'w-2 h-2' : 'w-3 h-3'}`}></div>
+                      </button>
+                    </div>
                   </div>
 
-                  {/* Info tecniche compatte */}
-                  {!isMobile && (
-                    <div className="mt-3 p-2 bg-indigo-500/5 border border-indigo-500/20 rounded-lg">
-                      <p className="text-xs text-indigo-400 font-medium">
-                        ℹ️ I cookie di tracciamento sono bloccati preventivamente e si attivano solo con consenso
-                      </p>
-                    </div>
-                  )}
-
-                  {/* Pulsante salva */}
-                  <div className="mt-3">
+                  {/* Pulsante salva preferenze personalizzate */}
+                  <div className="mt-3 pt-3 border-t border-indigo-500/10">
                     <button
-                      onClick={savePreferences}
-                      className={`w-full bg-gradient-to-r from-indigo-500 to-violet-500 text-white rounded-lg hover:shadow-lg transition-all font-medium ${
-                        isMobile ? 'py-3 text-sm' : 'py-3 text-sm'
+                      onClick={acceptCurrent}
+                      className={`w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-lg hover:shadow-lg transition-all font-medium ${
+                        isMobile ? 'py-2 text-sm' : 'py-2 text-sm'
                       }`}
                     >
-                      💾 Salva Preferenze
+                      💾 Salva preferenze personalizzate
                     </button>
                   </div>
                 </motion.div>

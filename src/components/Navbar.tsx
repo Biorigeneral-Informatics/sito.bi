@@ -1,4 +1,4 @@
-// src/components/Navbar.tsx - Versione corretta con sottomenu mobile completo
+// src/components/Navbar.tsx - Versione corretta con sottomenu mobile ottimizzato
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, ChevronUp, Code, Users, Bot, MessageSquare, TrendingUp, Mail } from 'lucide-react';
@@ -268,7 +268,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="fixed inset-0 top-20 md:hidden z-40">
+        <div className="fixed inset-0 top-24 md:hidden z-40">
           {/* Overlay per chiudere il menu toccando fuori */}
           <div 
             className="absolute inset-0 bg-black/20 backdrop-blur-sm"
@@ -277,13 +277,13 @@ const Navbar = () => {
           
           {/* Menu scrollabile */}
           <div className="relative mx-4 mt-2 max-h-[calc(100vh-6rem)] overflow-y-auto overscroll-contain glass backdrop-blur-md bg-background/95 border border-white/20 shadow-2xl rounded-xl">
-            <div className="p-4 space-y-2">
+            <div className="p-3 space-y-1">
               {mainLinks.map((link) => 
                 link.hasSubmenu ? (
-                  <div key={link.label} className="space-y-1">
+                  <div key={link.label} className="space-y-0.5">
                     <button
                       onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                      className={`w-full flex justify-between items-center py-3 px-4 rounded-lg text-white hover:text-accent transition-colors ${
+                      className={`w-full flex justify-between items-center py-2 px-3 rounded-lg text-white hover:text-accent transition-colors ${
                         isServicePage ? 'bg-primary/20 text-accent' : 'hover:bg-white/10'
                       }`}
                     >
@@ -298,14 +298,10 @@ const Navbar = () => {
                     {/* Sottomenu Servizi Mobile */}
                     {mobileServicesOpen && (
                       <div className="bg-background/50 rounded-lg border border-white/20 overflow-hidden">
-                       
-                        
                         {/* Categorie di servizi */}
-                        <div className="p-3 space-y-2">
+                        <div className="p-2 space-y-1">
                           {servicesCategories.map((category, categoryIndex) => (
                             <div key={categoryIndex} className="space-y-0.5">
-                             
-                              
                               {/* Servizi della categoria */}
                               <div className="space-y-0.5">
                                 {category.services.map((service) => {
@@ -314,23 +310,18 @@ const Navbar = () => {
                                     <Link
                                       key={service.href}
                                       to={service.href}
-                                      className={`flex items-center py-3 px-3 rounded-lg text-white transition-colors ${
+                                      className={`flex items-center py-2 px-2 rounded-lg text-white transition-colors ${
                                         location.pathname === service.href 
                                           ? 'bg-primary/20 text-accent' 
-                                          : 'hover:bg-white/10 active:bg-white/20'
+                                          : 'hover:bg-white/10'
                                       }`}
                                       onClick={() => {
                                         setIsOpen(false);
                                         setMobileServicesOpen(false);
                                       }}
                                     >
-                                      <div className="w-8 h-8 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
-                                        <IconComponent className="w-4 h-4 text-gray-400" />
-                                      </div>
-                                      <div className="flex-1 min-w-0">
-                                        <p className="font-medium text-sm truncate">{service.label}</p>
-                                        <p className="text-xs text-gray-400 truncate">{service.description}</p>
-                                      </div>
+                                      <IconComponent className="h-4 w-4 mr-2" />
+                                      <span className="font-medium text-sm">{service.label}</span>
                                     </Link>
                                   );
                                 })}
@@ -345,14 +336,14 @@ const Navbar = () => {
                   <Link
                     key={link.href}
                     to={link.href}
-                    className={`block py-3 px-4 rounded-lg text-white hover:text-accent transition-colors font-medium ${
+                    className={`block py-2 px-3 rounded-lg text-white transition-colors ${
                       location.pathname === link.href 
                         ? 'bg-primary/20 text-accent' 
                         : 'hover:bg-white/10'
                     }`}
                     onClick={() => setIsOpen(false)}
                   >
-                    {link.label}
+                    <span className="font-medium">{link.label}</span>
                   </Link>
                 )
               )}
@@ -362,6 +353,6 @@ const Navbar = () => {
       )}
     </nav>
   );
-}
+};
 
 export default Navbar;

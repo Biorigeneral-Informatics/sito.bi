@@ -19,12 +19,12 @@ const AIAgents = () => {
 
 
   const benefits = [
-    "Operatività 24/7 senza interruzioni o pause",
-    "Riduzione 85% errori umani e inconsistenze",
-    "Integrazione nativa con tutti i sistemi esistenti",
-    "Apprendimento continuo e ottimizzazione automatica",
-    "ROI positivo entro 3 mesi dall'implementazione",
-    "Scalabilità illimitata senza costi aggiuntivi"
+    "Supporto reale e massima trasparenza",
+    "Setup della piatatforma n8n con credenziali personalizzate",
+    "Team giovane e dinamico, in linea con le ultime tecnologie",
+    "Compatibili con la maggior parte delle app aziendali più note",
+    "Accedi a sconti fino al 50% sui servizi di BI",
+    "Scalabilità illimitata con i nostri frontend in Electron",
   ];
 
 
@@ -88,8 +88,7 @@ const AIAgents = () => {
               </h1>
               
               <p className="text-base md:text-lg text-secondary mb-8 md:mb-10 leading-relaxed max-w-2xl mx-auto font-normal">
-                Sistemi di intelligenza artificiale autonomi che operano 24/7, gestiscono clienti in modo intelligente 
-                e si integrano perfettamente con tutti i tuoi strumenti esistenti.
+                Sofware di intelligenza artificiale autonomi operativi 24/7 e che compiono operazioni intelligenti su sistemi aziendali reali.
               </p>
               
               {/* Bottoni - Stile Home */}
@@ -121,11 +120,11 @@ const AIAgents = () => {
             {/* Titolo principale - Stile Home */}
             <ScrollAnimation animation="fadeIn" className="text-center mb-12 md:mb-16">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-6 md:mb-8 relative inline-block">
-                <span className="block text-primary">Tipologie di Agenti AI</span>
+                <span className="block text-primary">Creare il tuo agente AI</span>
               </h2>
               <p className="text-base md:text-lg lg:text-xl text-secondary max-w-3xl mx-auto">
-                Ogni agente è specializzato per specifiche funzioni aziendali, combinando intelligenza artificiale 
-                avanzata con integrazione nativa nei tuoi processi esistenti.
+                Un agente AI è un sistema autonomo di intelligenza artificiale che esegue operazioni automatizzate 
+                sui sistemi aziendali attraverso algoritmi di machine learning e integrazioni con API esistenti.
               </p>
             </ScrollAnimation>
 
@@ -145,28 +144,28 @@ const AIAgents = () => {
                     <TrendingUp className="w-6 h-6 text-cyan-400" />
                   </div>
                   <div>
-                    <div className="text-sm font-medium text-cyan-500 mb-1">VENDITE</div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-white">Agenti Commerciali</h3>
+                    <div className="text-sm font-medium text-cyan-500 mb-1">RESPONSIVE</div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-white">User Interface</h3>
                   </div>
                   <div className="flex-1 ml-8 h-px bg-gradient-to-r from-white/20 to-transparent"></div>
                 </div>
                 
                 <div className="grid md:grid-cols-2 gap-6 pl-16">
                   <div className="group glass p-6 rounded-xl border border-white/10 hover:border-cyan-500/30 hover:bg-white/5 transition-all duration-300">
-                    <h4 className="text-lg font-bold mb-2 text-white group-hover:text-cyan-500 transition-colors">Lead Qualification</h4>
-                    <p className="text-gray-400 text-sm mb-4">Qualifica automaticamente i lead attraverso conversazioni intelligenti e scoring predittivo</p>
+                    <h4 className="text-lg font-bold mb-2 text-white group-hover:text-cyan-500 transition-colors">UI già pronte</h4>
+                    <p className="text-gray-400 text-sm mb-4">Interamente integrabili in strumenti di terze parti come Telegram, Whatsapp e Claude Desktop per una UI plug and play.</p>
                     <div className="flex items-center text-sm text-cyan-500">
                       <CheckCircle className="mr-2 w-4 h-4" />
-                      <span>+75% qualità lead</span>
+                      <span>+40% risparmio denaro</span>
                     </div>
                   </div>
                   
                   <div className="group glass p-6 rounded-xl border border-white/10 hover:border-cyan-500/30 hover:bg-white/5 transition-all duration-300">
-                    <h4 className="text-lg font-bold mb-2 text-white group-hover:text-cyan-500 transition-colors">Pipeline Management</h4>
-                    <p className="text-gray-400 text-sm mb-4">Gestisce automaticamente la pipeline di vendita con follow-up intelligenti e tempistiche ottimali</p>
+                    <h4 className="text-lg font-bold mb-2 text-white group-hover:text-cyan-500 transition-colors">Interfacce custom</h4>
+                    <p className="text-gray-400 text-sm mb-4">Per chi cerca la massima personalizzazione, sviluppiamo front-end personalizzati perfettamente integrabili e scalbili.</p>
                     <div className="flex items-center text-sm text-cyan-500">
                       <CheckCircle className="mr-2 w-4 h-4" />
-                      <span>+40% conversioni</span>
+                      <span>100% customizzabili</span>
                     </div>
                   </div>
                 </div>
@@ -185,28 +184,28 @@ const AIAgents = () => {
                     <Users className="w-6 h-6 text-emerald-400" />
                   </div>
                   <div className="text-right">
-                    <div className="text-sm font-medium text-emerald-500 mb-1">SUPPORTO</div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-white">Agenti Customer Care</h3>
+                    <div className="text-sm font-medium text-emerald-500 mb-1">SCALABILI</div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-white">Backend Avanzati</h3>
                   </div>
                   <div className="flex-1 mr-8 h-px bg-gradient-to-l from-white/20 to-transparent"></div>
                 </div>
                 
                 <div className="grid md:grid-cols-2 gap-6 pr-16">
                   <div className="group glass p-6 rounded-xl border border-white/10 hover:border-emerald-500/30 hover:bg-white/5 transition-all duration-300">
-                    <h4 className="text-lg font-bold mb-2 text-white group-hover:text-emerald-500 transition-colors">Assistenza 24/7</h4>
-                    <p className="text-gray-400 text-sm mb-4">Supporto clienti continuo con comprensione del contesto e risoluzione autonoma dei problemi</p>
+                    <h4 className="text-lg font-bold mb-2 text-white group-hover:text-emerald-500 transition-colors">Architettura Distribuita</h4>
+                    <p className="text-gray-400 text-sm mb-4">Per chi cerca il meglio, progettiamo architetture di ultima generazione, sfruttando MCP e RAG.</p>
                     <div className="flex items-center text-sm text-emerald-500">
                       <CheckCircle className="mr-2 w-4 h-4" />
-                      <span>-60% ticket supporto</span>
+                      <span>20-70% risparmio complessità computazionale</span>
                     </div>
                   </div>
                   
                   <div className="group glass p-6 rounded-xl border border-white/10 hover:border-emerald-500/30 hover:bg-white/5 transition-all duration-300">
-                    <h4 className="text-lg font-bold mb-2 text-white group-hover:text-emerald-500 transition-colors">Escalation Intelligente</h4>
-                    <p className="text-gray-400 text-sm mb-4">Identifica automaticamente quando coinvolgere un operatore umano per casi complessi</p>
+                    <h4 className="text-lg font-bold mb-2 text-white group-hover:text-emerald-500 transition-colors">Sistemi multi agente</h4>
+                    <p className="text-gray-400 text-sm mb-4">Creiamo sistemi composti da più agenti specializzati in compiti precisi e che massimizzano il problem solving rispetto alle semplici automazioni.</p>
                     <div className="flex items-center text-sm text-emerald-500">
                       <CheckCircle className="mr-2 w-4 h-4" />
-                      <span>+85% soddisfazione</span>
+                      <span>+200% intelligenza adattiva del sitema</span>
                     </div>
                   </div>
                 </div>
@@ -225,16 +224,16 @@ const AIAgents = () => {
                     <BarChart className="w-6 h-6 text-violet-400" />
                   </div>
                   <div>
-                    <div className="text-sm font-medium text-violet-500 mb-1">ANALISI</div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-white">Agenti Business Intelligence</h3>
+                    <div className="text-sm font-medium text-violet-500 mb-1">BACKEND ESISTENTI</div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-white">Ultra Integrabili</h3>
                   </div>
                   <div className="flex-1 ml-8 h-px bg-gradient-to-r from-white/20 to-transparent"></div>
                 </div>
                 
                 <div className="grid md:grid-cols-2 gap-6 pl-16">
                   <div className="group glass p-6 rounded-xl border border-white/10 hover:border-violet-500/30 hover:bg-white/5 transition-all duration-300">
-                    <h4 className="text-lg font-bold mb-2 text-white group-hover:text-violet-500 transition-colors">Analisi Predittiva</h4>
-                    <p className="text-gray-400 text-sm mb-4">Genera insights e previsioni basate su pattern nei dati aziendali storici e in tempo reale</p>
+                    <h4 className="text-lg font-bold mb-2 text-white group-hover:text-violet-500 transition-colors">Integrazioni non invasive</h4>
+                    <p className="text-gray-400 text-sm mb-4">I nostri agenti AI si integrano seamlessly nei processi aziendali esistenti, operando silenziosamente nei workflow di backend per ottimizzare operazioni critiche spesso invisibili ma ad alto impatto economico. </p>
                     <div className="flex items-center text-sm text-violet-500">
                       <CheckCircle className="mr-2 w-4 h-4" />
                       <span>Decisioni data-driven</span>
@@ -242,8 +241,8 @@ const AIAgents = () => {
                   </div>
                   
                   <div className="group glass p-6 rounded-xl border border-white/10 hover:border-violet-500/30 hover:bg-white/5 transition-all duration-300">
-                    <h4 className="text-lg font-bold mb-2 text-white group-hover:text-violet-500 transition-colors">Report Automatici</h4>
-                    <p className="text-gray-400 text-sm mb-4">Creazione automatica di report personalizzati con insights e raccomandazioni strategiche</p>
+                    <h4 className="text-lg font-bold mb-2 text-white group-hover:text-violet-500 transition-colors">Advanced Reasoning</h4>
+                    <p className="text-gray-400 text-sm mb-4">Basati su modelli di ragionamento avanzati che consentono comprensione di cause-effetto nei processi e gestione probabilistica delle decisioni.</p>
                     <div className="flex items-center text-sm text-violet-500">
                       <CheckCircle className="mr-2 w-4 h-4" />
                       <span>Risparmio 20h/settimana</span>
@@ -261,10 +260,9 @@ const AIAgents = () => {
             <ScrollAnimation animation="fadeIn">
               <div className="grid md:grid-cols-2 gap-10 items-center">
                 <div>
-                  <h2 className="text-2xl md:text-3xl font-bold mb-6 text-white">Perché gli Agenti AI sono Rivoluzionari</h2>
+                  <h2 className="text-2xl md:text-3xl font-bold mb-6 text-white">Perché siamo noi quello che cerchi?</h2>
                   <p className="text-foreground/70 mb-6">
-                    I nostri Agenti AI rappresentano un salto evolutivo nell'automazione aziendale. Non sono semplici chatbot, 
-                    ma sistemi intelligenti che comprendono il contesto, prendono decisioni e agiscono autonomamente.
+                    I nostri Agenti AI rappresentano un salto evolutivo significativo per le aziende che voglio migliorare l'automazione aziendale ed affacciarsi al futuro dell'intelligenza artificiale.
                   </p>
                   
                   <div className="space-y-3">
@@ -288,11 +286,11 @@ const AIAgents = () => {
                   >
                     <h3 className="flex items-center font-bold mb-3 text-white">
                       <Brain className="w-6 h-6 text-green-500 mr-2" />
-                      Intelligenza Artificiale Avanzata
+                      Focus su assett digitali AI
                     </h3>
                     <p className="text-foreground/70">
-                      Basati su GPT-4o, Claude AI e modelli proprietari addestrati sui tuoi dati specifici. 
-                      Comprendono contesto, intent e sfumature delle conversazioni umane.
+                      Se sei interessato al mondo AI e vuoi essere parte di questa rivoluzione, noi siamo
+                      la prima AI agency realmente focalizzata nel argomento.
                     </p>
                   </motion.div>
                   
@@ -310,8 +308,7 @@ const AIAgents = () => {
                       Sicurezza Enterprise
                     </h3>
                     <p className="text-foreground/70">
-                      Protocolli di sicurezza bancari, crittografia end-to-end e conformità GDPR. 
-                      I tuoi dati rimangono sempre protetti e sotto il tuo controllo.
+                      Creiamo infrastrutture sicure ed utilizziamo strumenti per garantire la sicurezza dello spazio di lavoro. Utilizziamo servizi di VPS con accesso alla gestione dei server tramite chiave SSH.
                     </p>
                   </motion.div>
                   
@@ -326,11 +323,10 @@ const AIAgents = () => {
                   >
                     <h3 className="flex items-center font-bold mb-3 text-white">
                       <Workflow className="w-6 h-6 text-green-500 mr-2" />
-                      Integrazione Nativa
+                      Integrazione e Automazione
                     </h3>
                     <p className="text-foreground/70">
-                      Si collegano istantaneamente con CRM, email, calendar, chat e qualsiasi sistema aziendale. 
-                      Setup rapido senza interruzioni operative.
+                      I nostri agenti AI istantaneamente con CRM, email, calendar, chat e qualsiasi app di terzi accessibile tramite API ben documentata. 
                     </p>
                   </motion.div>
                 </div>

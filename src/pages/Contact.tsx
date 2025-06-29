@@ -166,7 +166,7 @@ const Contact = () => {
                   href="mailto:info@biorigeneral.com" 
                   className="text-gray-400 hover:text-green-500 transition-colors"
                 >
-                  info@biorigeneral.com
+                  info@biorigeneralinformatics.com
                 </a>
               </div>
             </div>

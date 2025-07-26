@@ -67,7 +67,7 @@ const Footer = () => {
               
               <li>
                 <Link to="/PrivacyPolicy" className="text-white/80 hover:text-primary transition">
-                  Privacy Policy
+                  Privacy e Cookie Policy
                 </Link>
               </li>
               <li>

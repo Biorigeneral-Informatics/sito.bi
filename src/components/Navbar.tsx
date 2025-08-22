@@ -1,7 +1,7 @@
 // src/components/Navbar.tsx - Versione corretta con sottomenu mobile ottimizzato
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, ChevronUp, Code, Users, Bot, MessageSquare, TrendingUp, Mail } from 'lucide-react';
+import { Menu, X, ChevronDown, ChevronUp, Code, Users, Bot, MessageSquare, TrendingUp, Mail, Shield } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -67,6 +67,7 @@ const Navbar = () => {
       title: 'Consulenza',
       services: [
         { href: '/growth-plans', label: 'Piani di Crescita', icon: TrendingUp, description: 'Strategia aziendale' },
+        { href: '/assistenti-ai-locale', label: 'Assistenti AI in Locale', icon: Shield, description: 'AI locale sicura' }, 
         { href: '/contact', label: 'Consulenza', icon: Mail, description: 'Supporto personalizzato' },
       ]
     }
@@ -219,6 +220,22 @@ const Navbar = () => {
                             <div>
                               <p className="font-medium text-sm">Piani di Crescita</p>
                               <p className="text-xs text-gray-400">Strategia aziendale</p>
+                            </div>
+                          </Link>
+
+                          <Link
+                            to="/assistenti-ai-locale"
+                            className={`flex items-center px-3 py-2 rounded-lg text-white transition-colors ${
+                              location.pathname === '/assistenti-ai-locale' ?
+                                'bg-primary/20 text-accent' : 'hover:bg-white/10'
+                            }`}
+                          >
+                            <div className="w-8 h-8 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3">
+                              <Shield className="w-4 h-4 text-gray-400" />
+                            </div>
+                            <div>
+                              <p className="font-medium text-sm">Assistenti AI in Locale</p>
+                              <p className="text-xs text-gray-400">AI locale sicura</p>
                             </div>
                           </Link>
                           

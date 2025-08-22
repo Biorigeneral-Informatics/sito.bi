@@ -56,6 +56,13 @@ export const SEO_DATA = {
     keywords: "piani crescita, marketing digitale, SEO, Google Ads, consulenza aziendale",
     url: "/growth-plans"
   },
+
+  assistentiAILocale: {
+    title: "Assistenti AI in Locale - Privacy e Sicurezza Totale",
+    description: "Soluzioni AI completamente locali per aziende e professionisti. Nessun dato inviato a provider esterni. Preventivi da €110.",
+    keywords: "AI locale, assistenti AI, privacy, sicurezza, ChatGPT locale, AI aziendale",
+    url: "/assistenti-ai-locale"
+  },
   
   contact: {
     title: "Contatti - Richiedi Consulenza Gratuita",

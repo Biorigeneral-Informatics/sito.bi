@@ -18,6 +18,8 @@ import AnimatedBackground from './components/AnimatedBackground';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import CookieBanner from './components/CookieBanner';
 import { ThemeProvider } from './hooks/useTheme';
+import AssistentiAILocale from './pages/AssistentiAILocale'
+
 
 localStorage.removeItem('preloaderShown');
 
@@ -56,6 +58,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/TerminiCondizioni" element={<TerminiCondizioni />} />
             <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
+            <Route path="/assistenti-ai-locale" element={<AssistentiAILocale />} />
             
             {/* Percorsi secondari */}
             
@@ -67,6 +70,7 @@ function App() {
             <Route path="/services/developers" element={<Navigate to="/developers" replace />} />
             <Route path="/services" element={<Navigate to="/software-pmi" replace />} />
             <Route path="/services/community" element={<Navigate to="/community" replace />} />
+            <Route path="/services/assistenti-ai-locale" element={<Navigate to="/assistenti-ai-locale" replace />} />
             
             {/* Fallback per percorsi non trovati */}
             <Route path="*" element={<Navigate to="/" replace />} />

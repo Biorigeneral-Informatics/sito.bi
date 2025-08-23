@@ -2,9 +2,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
   Shield, 
- 
   CheckCircle, 
-  ArrowRight,
   Play,
   VideoIcon,
   Phone,
@@ -174,23 +172,44 @@ const AssistentiAILocale = () => {
               </div>
               
               
-              {/* Bottoni CTA */}
-<div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
- <Link 
-   to="/contact" 
-   className="glass px-8 py-4 rounded-2xl font-semibold text-base text-accent bg-gradient-to-r from-accent/20 to-green-500/20 border border-accent/30 hover:text-white hover:from-accent/70 hover:to-green-500/70 hover:border-accent/90 hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent/30 transition-all duration-500 inline-flex items-center group backdrop-blur-2xl"
- >
-   Inizia la Tua Indipendenza AI Ora
-   <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
- </Link>
- 
- <Link 
-   to="#supporto" 
-   className="glass px-8 py-4 rounded-2xl font-semibold text-base text-purple-400 bg-gradient-to-r from-purple-500/20 to-blue-500/20 border border-purple-400/30 hover:text-white hover:from-purple-500/70 hover:to-blue-500/70 hover:border-purple-400/90 hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-500 backdrop-blur-2xl"
- >
-   Esplora Tutti i Modelli Premium
- </Link>
-</div>
+              {/* BOTTONI CTA MIGLIORATI - HERO SECTION */}
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center max-w-5xl mx-auto">
+              
+              {/* Bottone Primario - Chiamata principale */}
+              <Link 
+                to="/contact" 
+                className="group relative w-full sm:w-auto sm:flex-1 max-w-sm"
+              >
+                {/* Effetto glow di sfondo ridotto */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-yellow-300 via-yellow-400 to-amber-400 rounded-2xl blur opacity-25 group-hover:opacity-45 transition-all duration-500"></div>
+                
+                {/* Bottone principale */}
+                <div className="relative bg-gradient-to-r from-yellow-400 via-yellow-500 to-amber-400 text-white px-6 sm:px-8 py-4 sm:py-5 rounded-2xl font-semibold text-base sm:text-lg shadow-xl hover:shadow-yellow-400/25 transition-all duration-500 hover:-translate-y-2 hover:scale-105 backdrop-blur-sm border border-yellow-300/40">
+                  <div className="flex items-center justify-center">
+                    <span className="text-center">Inizia la Tua Indipendenza AI</span>
+                  </div>
+                </div>
+              </Link>
+              
+              {/* Bottone Secondario */}
+              <Link 
+                to="#supporto" 
+                className="group relative w-full sm:w-auto sm:flex-1 max-w-sm"
+              >
+                {/* Effetto glow di sfondo ridotto */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl blur opacity-20 group-hover:opacity-35 transition-all duration-500"></div>
+                
+                {/* Bottone secondario */}
+                <div className="relative bg-gradient-to-r from-blue-600/20 to-indigo-600/20 text-blue-300 border-2 border-blue-500/60 px-6 sm:px-8 py-4 rounded-xl font-semibold text-base backdrop-blur-xl hover:bg-blue-500/20 hover:text-white hover:border-blue-400/80 transition-all duration-500 hover:-translate-y-1">
+                  <div className="flex items-center justify-center">
+                    <span className="text-center">Esplora tutti i Modelli Premium</span>
+                  </div>
+
+                </div>
+              </Link>
+              
+              </div>
+
             </div>
           </div>
         </section>
@@ -340,7 +359,7 @@ const AssistentiAILocale = () => {
           </div>
         </section>
 
-        {/* SEZIONE 4 - Prezzi e Target - MIGLIORATA */}
+        {/* SEZIONE 4 - Prezzi e Target - BOTTONI MIGLIORATI */}
         <section className="py-16 md:py-24 relative">
           <div className="container mx-auto px-4 md:px-6 lg:px-12">
             <ScrollAnimation animation="fadeIn">
@@ -355,51 +374,60 @@ const AssistentiAILocale = () => {
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
                 
-                {/* PROFESSIONISTI - Bordo Grigio */}
-<motion.div 
-  className="relative group"
-  initial={{ opacity: 0, x: -30 }}
-  whileInView={{ opacity: 1, x: 0 }}
-  viewport={{ once: true }}
-  transition={{ duration: 0.6 }}
->
-  <div className="absolute inset-0 bg-gradient-to-br from-gray-500/10 via-transparent to-transparent rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-  <div className="relative glass p-8 rounded-2xl border-2 border-gray-500/40 hover:border-gray-500/60 transition-all duration-500 bg-gradient-to-br from-gray-500/5 to-transparent backdrop-blur-xl">
-    <div className="flex items-center mb-6">
-      <div className="flex items-center justify-center w-12 h-12 bg-gray-500/20 rounded-xl mr-4">
-        <User className="w-6 h-6 text-gray-500" />
-      </div>
-      <div>
-        <h3 className="text-2xl font-bold text-white">Everyday</h3>
-        <p className="text-gray-500 font-semibold">€110 • Pagamento Unico</p>
-      </div>
-    </div>
-    
-    <p className="text-secondary mb-6 leading-relaxed">
-      Perfetto per professionisti che vogliono mantenere private le proprie informazioni riservate. 
-      <strong> Smetti di alimentare i database di OpenAI</strong> con i tuoi dati sensibili.
-    </p>
+                {/* PROFESSIONISTI - Design Migliorato */}
+                <motion.div 
+                  className="relative group"
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/15 via-transparent to-transparent rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="relative glass p-8 rounded-2xl border-2 border-blue-500/40 hover:border-blue-400/60 transition-all duration-500 bg-gradient-to-br from-blue-500/5 to-transparent backdrop-blur-xl">
+                    <div className="flex items-center mb-6">
+                      <div className="flex items-center justify-center w-12 h-12 bg-blue-500/20 rounded-xl mr-4">
+                        <User className="w-6 h-6 text-blue-400" />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-bold text-white">Everyday</h3>
+                        <p className="text-blue-400 font-semibold">€110 • Pagamento Unico</p>
+                      </div>
+                    </div>
+                    
+                    <p className="text-secondary mb-6 leading-relaxed">
+                      Perfetto per professionisti che vogliono mantenere private le proprie informazioni riservate. 
+                      <strong> Smetti di alimentare i database di OpenAI</strong> con i tuoi dati sensibili.
+                    </p>
 
-    <div className="space-y-3 mb-6">
-      {benefits.slice(0, 4).map((benefit, index) => (
-        <div key={index} className="flex items-center text-sm">
-          <CheckCircle className="w-4 h-4 text-gray-500 mr-2 flex-shrink-0" />
-          <span className="text-secondary">{benefit}</span>
-        </div>
-      ))}
-    </div>
+                    <div className="space-y-3 mb-8">
+                      {benefits.slice(0, 4).map((benefit, index) => (
+                        <div key={index} className="flex items-center text-sm">
+                          <CheckCircle className="w-4 h-4 text-blue-400 mr-3 flex-shrink-0" />
+                          <span className="text-secondary">{benefit}</span>
+                        </div>
+                      ))}
+                    </div>
 
-    <Link
-      to="/contact"
-      className="w-full inline-flex items-center justify-center px-6 py-3 bg-gray-500/20 text-gray-500 border border-gray-500/30 rounded-lg hover:bg-gray-500/30 hover:border-gray-500/60 transition-all duration-300 group"
-    >
-      Proteggi i Tuoi Dati Ora
-      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-    </Link>
-  </div>
-</motion.div>
+                    {/* BOTTONE MIGLIORATO - Everyday */}
+                    <Link
+                      to="/contact"
+                      className="group relative w-full block"
+                    >
+                      {/* Effetto glow ridotto */}
+                      <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl blur opacity-25 group-hover:opacity-45 transition-all duration-500"></div>
+                      
+                      {/* Bottone principale */}
+                      <div className="relative w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-4 rounded-xl font-bold text-center hover:from-blue-600 hover:to-blue-700 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                        <div className="flex items-center justify-center gap-2">
+                          <span>🔒 Proteggi i Tuoi Dati Ora</span>
+                        </div>
+                        
+                      </div>
+                    </Link>
+                  </div>
+                </motion.div>
 
-                {/* AZIENDE - Bordo Oro */}
+                {/* AZIENDE - Design Premium Migliorato */}
                 <motion.div 
                   className="relative group"
                   initial={{ opacity: 0, x: 30 }}
@@ -407,15 +435,15 @@ const AssistentiAILocale = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
                 >
-                  {/* Badge "Più Richiesto" */}
-                  <div className="absolute -top-3 left-6 z-20">
-                    <span className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
-                      Più Richiesto
-                    </span>
+                  {/* Badge "Più Richiesto" MIGLIORATO */}
+                  <div className="absolute -top-4 left-6 z-20">
+                    <div className="bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 text-black px-4 py-2 rounded-full text-sm font-bold shadow-2xl animate-pulse">
+                      ⭐ PIÙ RICHIESTO
+                    </div>
                   </div>
 
-                  <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/10 via-transparent to-transparent rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="relative glass p-8 rounded-2xl border-2 border-yellow-500/50 hover:border-yellow-500/70 transition-all duration-500 bg-gradient-to-br from-yellow-500/5 to-transparent backdrop-blur-xl">
+                  <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/15 via-orange-500/10 to-transparent rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="relative glass p-8 rounded-2xl border-2 border-yellow-500/50 hover:border-yellow-400/70 transition-all duration-500 bg-gradient-to-br from-yellow-500/5 to-transparent backdrop-blur-xl">
                     <div className="flex items-center mb-6">
                       <div className="flex items-center justify-center w-12 h-12 bg-yellow-500/20 rounded-xl mr-4">
                         <Building className="w-6 h-6 text-yellow-500" />
@@ -431,20 +459,30 @@ const AssistentiAILocale = () => {
                       <strong> Massima riservatezza garantita.</strong>
                     </p>
 
-                    <div className="space-y-3 mb-6">
+                    <div className="space-y-3 mb-8">
                       {benefits.map((benefit, index) => (
                         <div key={index} className="flex items-center text-sm">
-                          <CheckCircle className="w-4 h-4 text-yellow-500 mr-2 flex-shrink-0" />
+                          <CheckCircle className="w-4 h-4 text-yellow-500 mr-3 flex-shrink-0" />
                           <span className="text-secondary">{benefit}</span>
                         </div>
                       ))}
                     </div>
 
+                    {/* BOTTONE MIGLIORATO - Advanced */}
                     <Link
                       to="/contact"
-                      className="w-full inline-flex items-center justify-center px-6 py-3 bg-yellow-500/20 text-yellow-500 hover:text-white border border-yellow-500/30 rounded-lg hover:bg-yellow-500/30 hover:border-yellow-500/60 transition-all duration-300 group"                    >
-                      Richiedi Analisi Personalizzata
-                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      className="group relative w-full block"
+                    >
+                      {/* Effetto glow premium ridotto */}
+                      <div className="absolute -inset-0.5 bg-gradient-to-r from-yellow-400 via-orange-400 to-yellow-400 rounded-xl blur opacity-30 group-hover:opacity-50 transition-all duration-500"></div>
+                      
+                      {/* Bottone premium */}
+                      <div className="relative w-full bg-gradient-to-r from-yellow-500 via-orange-500 to-yellow-500 text-white px-6 py-4 rounded-xl font-bold text-center hover:from-yellow-400 hover:via-orange-400 hover:to-yellow-400 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:scale-105">
+                        <div className="flex items-center justify-center gap-2">
+                          <span>👑 Richiedi Analisi Personalizzata</span>
+                        </div>
+                        
+                      </div>
                     </Link>
                   </div>
                 </motion.div>
@@ -576,7 +614,7 @@ const AssistentiAILocale = () => {
           </div>
         </section>
 
-        {/* CTA Finale con Gradient */}
+        {/* CTA FINALE - BOTTONI MIGLIORATI */}
         <section className="py-16 md:py-24 relative overflow-hidden">
           {/* Gradient circolare verde centrato per la sezione finale */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -591,32 +629,57 @@ const AssistentiAILocale = () => {
           
           <div className="container mx-auto px-4 md:px-6 lg:px-12 relative z-10">
             <ScrollAnimation animation="slideUp">
-              <div className="max-w-3xl mx-auto text-center">
+              <div className="max-w-4xl mx-auto text-center">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6 md:mb-8">
                   <span className="block text-primary">Riprendi il controllo</span>
                   <span className="block text-accent">dei tuoi dati riservati</span>
                 </h2>
               
-                <p className="text-lg md:text-xl text-secondary max-w-xl mx-auto leading-relaxed mb-8">
+                <p className="text-lg md:text-xl text-secondary max-w-xl mx-auto leading-relaxed mb-10">
                   Unisciti a migliaia di professionisti che hanno già scelto l'indipendenza dai giganti tech. 
                   La tua privacy non ha prezzo, ma la nostra soluzione è accessibile.
                 </p>
 
-                <div className="flex flex-col gap-3 sm:gap-4 sm:flex-row justify-center items-center max-w-lg sm:max-w-none mx-auto">
+                {/* BOTTONI CTA FINALI MIGLIORATI */}
+                <div className="flex flex-col gap-6 justify-center items-center max-w-md mx-auto">
+                  
+                  {/* Bottone Primario Finale */}
                   <Link
                     to="/contact"
-                    className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 bg-accent text-black rounded-xl hover:bg-green-500 hover:text-white transition-all duration-300 font-semibold shadow-lg hover:shadow-xl hover:-translate-y-1 text-sm sm:text-base"
+                    className="group relative w-full"
                   >
-                    <span className="text-center flex-1 sm:flex-none">Proteggi i Tuoi Dati Ora</span>
-                    <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                    {/* Effetto glow animato ridotto */}
+                    <div className="absolute -inset-1 bg-gradient-to-r from-emerald-400 via-green-400 to-teal-400 rounded-2xl blur opacity-40 group-hover:opacity-60 transition-all duration-500"></div>
+                    
+                    {/* Bottone principale */}
+                    <div className="relative w-full bg-gradient-to-r from-emerald-500 to-green-500 text-white px-8 py-6 rounded-2xl font-bold text-lg hover:from-emerald-400 hover:to-green-400 transition-all duration-300 hover:-translate-y-2 hover:scale-105 shadow-xl">
+                      <div className="flex items-center justify-center gap-3">
+                        <span> Proteggi i Tuoi Dati Ora</span>
+                      </div>
+                      <div className="text-sm font-normal mt-1 opacity-90">
+                        Installazione immediata  • Supporto garantito
+                      </div>
+                    </div>
                   </Link>
                   
-                  <Link
-                    to="/ai-agents"
-                    className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 glass border border-accent/30 text-accent rounded-xl hover:bg-accent/10 hover:border-accent/60 transition-all duration-300 hover:-translate-y-1 text-sm sm:text-base"
-                  >
-                    <span className="text-center">Scopri Altri Servizi AI</span>
-                  </Link>
+                  {/* Bottone Secondario */}
+              <Link 
+                to="#supporto" 
+                className="group relative w-full sm:w-auto sm:flex-1 max-w-sm"
+              >
+                {/* Effetto glow di sfondo ridotto */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl blur opacity-20 group-hover:opacity-35 transition-all duration-500"></div>
+                
+                {/* Bottone secondario */}
+                <div className="relative bg-gradient-to-r from-blue-600/20 to-indigo-600/20 text-blue-300 border-2 border-blue-500/60 px-6 sm:px-8 py-4 rounded-xl font-semibold text-base backdrop-blur-xl hover:bg-blue-500/20 hover:text-white hover:border-blue-400/80 transition-all duration-500 hover:-translate-y-1">
+                  <div className="flex items-center justify-center">
+                    <span className="text-center">Scopri Altri Servizi AI Premium</span>
+                  </div>
+
+                </div>
+              </Link>
+                  
+                  
                 </div>
               </div>
             </ScrollAnimation>

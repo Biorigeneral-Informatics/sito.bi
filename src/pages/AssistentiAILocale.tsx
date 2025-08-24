@@ -65,7 +65,7 @@ const AssistentiAILocale = () => {
     "50 + modelli AI avanzati gratuiti",
     "Funzionamento offline completo",
     "Consulenza professionale di 2 settimane inclusa + guida pdf ad Ollama",
-    "Ottimo anche per utilizzi quotidiani, anche in ambito lavorativo",
+    "Ottimo per utilizzi quotidiani",
   ];
 
     const benefitsadvanced = [
@@ -74,7 +74,7 @@ const AssistentiAILocale = () => {
     "Scegli tu il tuo modello open source preferito (Gemma, GPT, Mistral, Llama 3.1, Qwen2.5, CodeLlama e molti altri)",
     "Funzionamento offline completo",
     "Interfaccia Utente personalizzata in base alle tue esigenze",
-    "Perfettamente scalabile ed integrabile Windows e Mac",
+    "Perfettamente scalabile ed integrabile con Windows e Mac",
     "Perfetto per utilizzi aziendali",
     "Piani di manutenzione con diversi livelli di supporto (pagamento a parte)"
   ];
@@ -102,8 +102,8 @@ const AssistentiAILocale = () => {
 
       <div className="min-h-screen pt-18 pb-16">
         
-        {/* SEZIONE 1 - Hero Section con Gradient */}
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-40 pb-16">
+        {/* SEZIONE 1 - Hero Section con Gradient - MIGLIORATA PER MOBILE */}
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 sm:pt-40 pb-16">
           {/* Gradient circolare verde centrato per la hero section */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div 
@@ -125,94 +125,99 @@ const AssistentiAILocale = () => {
                 </span>
               </div>
               
-              {/* Titolo principale */}
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 md:mb-8 leading-tight font-semibold">
-                <span className="block text-primary">Smetti di regalare i tuoi dati</span>
-                <motion.span 
-                  className="block font-semibold text-accent mt-4"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.5 }}
-                >
-                  sensibili a ChatGPT
-                </motion.span>
+              {/* Titolo principale - ADATTATO PER MOBILE */}
+              <h1 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 md:mb-8 leading-tight font-semibold">
+                {/* Versione Mobile */}
+                <span className="block sm:hidden">
+                  <span className="block text-primary">Smetti di regalare</span>
+                  <span className="block text-primary">i tuoi dati sensibili</span>
+                  <motion.span 
+                    className="block font-semibold text-accent mt-2"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
+                  >
+                    a ChatGPT
+                  </motion.span>
+                </span>
+                
+                {/* Versione Desktop (originale) */}
+                <span className="hidden sm:block">
+                  <span className="block text-primary">Smetti di regalare i tuoi dati</span>
+                  <motion.span 
+                    className="block font-semibold text-accent mt-4"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
+                  >
+                    sensibili a ChatGPT
+                  </motion.span>
+                </span>
               </h1>
               
-              <p className="text-base md:text-lg text-secondary mb-8 md:mb-10 leading-relaxed max-w-3xl mx-auto font-normal">
+              <p className="text-sm sm:text-base md:text-lg text-secondary mb-6 sm:mb-8 md:mb-10 leading-relaxed max-w-3xl mx-auto font-normal px-2 sm:px-0">
                 <strong>Distinguiti dalla massa</strong> con una soluzione AI completamente privata. Accesso gratuito a oltre 50 modelli premium, pagamento unico e controllo totale sui tuoi dati riservati.
               </p>
 
-               {/* Tre elementi motivazionali senza descrizione */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 max-w-5xl mx-auto">
+               {/* Tre elementi motivazionali - BORDI MIGLIORATI */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8 max-w-5xl mx-auto px-2 sm:px-0">
                 {motivazioni.map((item, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
-                    className="glass p-4 rounded-xl border border-white/10 hover:border-accent/30 transition-all duration-300"
+                    className={`glass p-3 sm:p-4 rounded-xl border-2 transition-all duration-300 hover:-translate-y-1 ${
+                      index === 0 ? 'border-violet-400/60 hover:border-violet-400/80 hover:shadow-violet-400/20' :
+                      index === 1 ? 'border-yellow-400/60 hover:border-yellow-400/80 hover:shadow-yellow-400/20' :
+                      'border-cyan-400/60 hover:border-cyan-400/80 hover:shadow-cyan-400/20'
+                    } hover:shadow-lg`}
                   >
-                    <item.icon className="w-6 h-6 text-violet-500 mx-auto mb-2" />
-                    <h3 className="text-sm font-semibold text-white text-center">{item.title}</h3>
+                    <item.icon className={`w-5 sm:w-6 h-5 sm:h-6 mx-auto mb-2 ${
+                      index === 0 ? 'text-violet-400' :
+                      index === 1 ? 'text-yellow-400' :
+                      'text-cyan-400'
+                    }`} />
+                    <h3 className="text-xs sm:text-sm font-semibold text-white text-center leading-tight">{item.title}</h3>
                   </motion.div>
                 ))}
               </div>
 
               {/* Video esempio spostato più su */}
-              <div className="mb-8">
-                <div className="glass p-6 rounded-xl border border-white/10 max-w-3xl mx-auto">
-                  <div className="flex items-center justify-center mb-4">
-                    <VideoIcon className="w-8 h-8 text-accent mr-3" />
-                    <h3 className="text-lg font-semibold text-white">Guarda la configurazione completa di Ollama</h3>
+              <div className="mb-6 sm:mb-8 px-2 sm:px-0">
+                <div className="glass p-4 sm:p-6 rounded-xl border border-white/10 max-w-3xl mx-auto">
+                  <div className="flex items-center justify-center mb-3 sm:mb-4">
+                    <VideoIcon className="w-6 sm:w-8 h-6 sm:h-8 text-accent mr-2 sm:mr-3" />
+                    <h3 className="text-base sm:text-lg font-semibold text-white text-center">Guarda la configurazione completa di Ollama</h3>
                   </div>
                   <div className="bg-black/50 rounded-lg aspect-video flex items-center justify-center border border-white/10">
-                    <button className="flex items-center justify-center w-16 h-16 bg-accent/20 rounded-full border border-accent/30 hover:bg-accent/30 transition-all duration-300">
-                      <Play className="w-6 h-6 text-accent ml-1" />
+                    <button className="flex items-center justify-center w-12 sm:w-16 h-12 sm:h-16 bg-accent/20 rounded-full border border-accent/30 hover:bg-accent/30 transition-all duration-300">
+                      <Play className="w-5 sm:w-6 h-5 sm:h-6 text-accent ml-1" />
                     </button>
                   </div>
-                  <p className="text-xs text-secondary mt-3 text-center">
+                  <p className="text-xs text-secondary mt-2 sm:mt-3 text-center px-2">
                     Installazione guidata di Ollama: da zero alla tua AI privata con 50+ modelli in 10 minuti
                   </p>
                 </div>
               </div>
               
               
-              {/* BOTTONI CTA MIGLIORATI - HERO SECTION */}
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center max-w-5xl mx-auto">
-              
-              {/* Bottone Primario - Chiamata principale */}
-              <Link 
-                to="/contact" 
-                className="group relative w-full sm:w-auto sm:flex-1 max-w-sm"
-              >
-                {/* Effetto glow di sfondo ridotto */}
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-yellow-300 via-yellow-400 to-amber-400 rounded-2xl blur opacity-25 group-hover:opacity-45 transition-all duration-500"></div>
-                
-                {/* Bottone principale */}
-                <div className="relative bg-gradient-to-r from-yellow-400 via-yellow-500 to-amber-400 text-white px-6 sm:px-8 py-4 sm:py-5 rounded-2xl font-semibold text-base sm:text-lg shadow-xl hover:shadow-yellow-400/25 transition-all duration-500 hover:-translate-y-2 hover:scale-105 backdrop-blur-sm border border-yellow-300/40">
-                  <div className="flex items-center justify-center">
-                    <span className="text-center">Richiedi consulto GRATUITO</span>
+              {/* BOTTONE CTA PRINCIPALE - HERO SECTION */}
+              <div className="flex justify-center max-w-md mx-auto px-2 sm:px-0">
+                <Link 
+                  to="/contact" 
+                  className="group relative w-full"
+                >
+                  {/* Effetto glow di sfondo ridotto */}
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-yellow-300 via-yellow-400 to-amber-400 rounded-2xl blur opacity-25 group-hover:opacity-45 transition-all duration-500"></div>
+                  
+                  {/* Bottone principale */}
+                  <div className="relative bg-gradient-to-r from-yellow-400 via-yellow-500 to-amber-400 text-white px-6 sm:px-8 py-4 sm:py-5 rounded-2xl font-semibold text-sm sm:text-base md:text-lg shadow-xl hover:shadow-yellow-400/25 transition-all duration-500 hover:-translate-y-2 hover:scale-105 backdrop-blur-sm border border-yellow-300/40">
+                    <div className="flex items-center justify-center">
+                      <span className="text-center">Richiedi consulto GRATUITO</span>
+                    </div>
                   </div>
-                </div>
-              </Link>
-              
-              {/* Bottone Secondario */}
-              <Link 
-                to="#supporto" 
-                className="group relative w-full sm:w-auto sm:flex-1 max-w-sm"
-              >
-                {/* Effetto glow di sfondo ridotto */}
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl blur opacity-20 group-hover:opacity-35 transition-all duration-500"></div>
-                
-                {/* Bottone secondario */}
-                <div className="relative bg-gradient-to-r from-blue-600/20 to-indigo-600/20 text-blue-300 border-2 border-blue-500/60 px-6 sm:px-8 py-4 rounded-xl font-semibold text-base backdrop-blur-xl hover:bg-blue-500/20 hover:text-white hover:border-blue-400/80 transition-all duration-500 hover:-translate-y-1">
-                  <div className="flex items-center justify-center">
-                    <span className="text-center">Esplora tutti i Modelli Premium</span>
-                  </div>
-
-                </div>
-              </Link>
-              
+                </Link>
               </div>
 
             </div>
@@ -304,7 +309,7 @@ const AssistentiAILocale = () => {
                     </div>
                     
                     <p className="text-secondary mb-6 leading-relaxed">
-                      Perfetto per l'uso quotidiano di coloro che vogliono spendere poco, mantenere private le proprie informazioni ma avere il consulto di professionisti. 
+                      Perfetto per l'uso quotidiano di coloro che vogliono spendere poco, mantenere private le proprie informazioni e avere il consulto di professionisti. 
                       <strong> Smetti di alimentare i database di OpenAI</strong> con i tuoi dati sensibili.
                     </p>
 
@@ -413,7 +418,7 @@ const AssistentiAILocale = () => {
                     Come funziona il supporto post servizio?
                   </h3>
                   <p className="text-lg text-secondary max-w-2xl mx-auto">
-                    Offriamo assitenza e supporto totalmente gratuito durante il epriodo di configurazione e sviluppo.
+                    Offriamo assitenza e supporto totale durante tutto il periodo di configurazione e sviluppo.
                   </p>
                 </motion.div>
 
@@ -437,10 +442,10 @@ const AssistentiAILocale = () => {
                         </div>
                       </div>
                       <h4 className="text-xl font-semibold text-white mb-2 group-hover:text-accent transition-colors">
-                        Durata supporto
+                        Supporto Mail
                       </h4>
                       <p className="text-secondary text-sm max-w-48 leading-relaxed group-hover:text-white/80 transition-colors">
-                        Per il piano "everyday" esclusivamente per le prime 2 settimane post installazione. Acquista un ticket per ulteriore supporto.
+                        2 settimane di assistenza mail completa inclusa nel piano Everyday. Configurazione e ottimizzazione della tua AI locale senza costi aggiuntivi.
                       </p>
                     </div>
                   </motion.div>
@@ -467,10 +472,10 @@ const AssistentiAILocale = () => {
                         </div>
                       </div>
                       <h4 className="text-xl font-semibold text-white mb-2 group-hover:text-accent transition-colors">
-                        Ticket extra
+                        Supporto Ticket
                       </h4>
                       <p className="text-secondary text-sm max-w-48 leading-relaxed group-hover:text-white/80 transition-colors">
-                        Puoi acquistare un ticket per la risoluzione di uno specifico problema. Per il piano "everyday", di solito non servono.
+                        Ticket singoli per assistenza specializzata oltre il periodo incluso. Risoluzione rapida di problemi specifici con sessioni video personalizzate.
                       </p>
                     </div>
                   </motion.div>
@@ -497,10 +502,10 @@ const AssistentiAILocale = () => {
                         </div>
                       </div>
                       <h4 className="text-xl font-semibold text-white mb-2 group-hover:text-accent transition-colors">
-                        Manutenzione
+                        Piano Manutenzione
                       </h4>
                       <p className="text-secondary text-sm max-w-48 leading-relaxed group-hover:text-white/80 transition-colors">
-                        Per piani advanced è consigliabile l'acquisto di un piano di manutenzione per garantire aggiornamenti e supporto continuo.
+                        Per installazioni Advanced: aggiornamenti continui, backup automatici e supporto prioritario. Mantieni la tua AI sempre all'avanguardia.
                       </p>
                     </div>
                   </motion.div>
@@ -523,7 +528,7 @@ const AssistentiAILocale = () => {
           </div>
         </section>
 
-        {/* CTA FINALE - BOTTONI MIGLIORATI */}
+        {/* CTA FINALE - BOTTONE MIGLIORATO (Rimosso effetto scale) */}
         <section className="py-16 md:py-24 relative overflow-hidden">
           {/* Gradient circolare verde centrato per la sezione finale */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -546,44 +551,30 @@ const AssistentiAILocale = () => {
               
                 <p className="text-lg md:text-xl text-secondary max-w-xl mx-auto leading-relaxed mb-10">
                   Unisciti a migliaia di professionisti che hanno già scelto l'indipendenza dai giganti tech. 
-                  La tua privacy non ha prezzo, ma la nostra soluzione è accessibile.
+                  Utilizza la potenza dell'AI proteggendo i tuoi dati personali.
                 </p>
 
-                {/* BOTTONI CTA FINALI MIGLIORATI */}
-                <div className="flex flex-col gap-6 justify-center items-center max-w-md mx-auto">
-                  
-                  {/* Bottone Primario Finale */}
+                {/* BOTTONE CTA FINALE MIGLIORATO - Dimensioni ridotte e senza scale */}
+                <div className="flex justify-center max-w-sm mx-auto">
                   <Link
                     to="/contact"
                     className="group relative w-full"
                   >
                     {/* Effetto glow animato ridotto */}
-                    <div className="absolute -inset-1 bg-gradient-to-r from-emerald-400 via-green-400 to-teal-400 rounded-2xl blur opacity-40 group-hover:opacity-60 transition-all duration-500"></div>
+                    <div className="absolute -inset-1 bg-gradient-to-r from-emerald-400 via-green-400 to-teal-400 rounded-xl blur opacity-40 group-hover:opacity-60 transition-all duration-500"></div>
                     
-                    {/* Bottone principale */}
-                    <div className="relative w-full bg-gradient-to-r from-emerald-500 to-green-500 text-white px-8 py-6 rounded-2xl font-bold text-lg hover:from-emerald-400 hover:to-green-400 transition-all duration-300 hover:-translate-y-2 hover:scale-105 shadow-xl">
-                      <div className="flex items-center justify-center gap-3">
-                        <span> Invia ora una email e scopri di più</span>
+                    {/* Bottone principale - RIMOSSO SCALE E DIMENSIONI RIDOTTE */}
+                    <div className="relative w-full bg-gradient-to-r from-emerald-500 to-green-500 text-white px-6 py-4 rounded-xl font-semibold text-base hover:from-emerald-400 hover:to-green-400 transition-all duration-300 hover:-translate-y-1 shadow-lg">
+                      <div className="flex items-center justify-center gap-2">
+                        <span>Invia ora una email e scopri di più</span>
                       </div>
                       <div className="text-sm font-normal mt-1 opacity-90">
-                        Installazione immediata  • Supporto garantito
+                        Installazione immediata • Supporto garantito
                       </div>
                     </div>
                   </Link>
-                  
-                  {/* Bottone Secondario */}
-              <Link 
-                to="#supporto" 
-                className="group relative w-full sm:w-auto sm:flex-1 max-w-sm"
-              >
-                {/* Effetto glow di sfondo ridotto */}
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl blur opacity-20 group-hover:opacity-35 transition-all duration-500"></div>
-                
-
-              </Link>
-                  
-                  
                 </div>
+                
               </div>
             </ScrollAnimation>
           </div>

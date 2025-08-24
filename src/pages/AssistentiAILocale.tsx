@@ -65,8 +65,7 @@ const AssistentiAILocale = () => {
     "50 + modelli AI avanzati gratuiti",
     "Funzionamento offline completo",
     "Consulenza professionale di 2 settimane inclusa + guida pdf ad Ollama",
-    "Preventivo personalizzato e manutenzione a parte",
-    "Ottimo anche per utilizzi aziendali quotidiani",
+    "Ottimo anche per utilizzi quotidiani, anche in ambito lavorativo",
   ];
 
     const benefitsadvanced = [
@@ -305,7 +304,7 @@ const AssistentiAILocale = () => {
                     </div>
                     
                     <p className="text-secondary mb-6 leading-relaxed">
-                      Perfetto per per l'uso quotidiano di coloro che vogliono spendere poco, mantenere private le proprie informazioni ma avere il consulto di professionisti. 
+                      Perfetto per l'uso quotidiano di coloro che vogliono spendere poco, mantenere private le proprie informazioni ma avere il consulto di professionisti. 
                       <strong> Smetti di alimentare i database di OpenAI</strong> con i tuoi dati sensibili.
                     </p>
 

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { 
   Shield, 
   CheckCircle, 
-  Play,
   VideoIcon,
   Mail,
   TrendingUp,
@@ -190,11 +189,18 @@ const AssistentiAILocale = () => {
                     <VideoIcon className="w-6 sm:w-8 h-6 sm:h-8 text-accent mr-2 sm:mr-3" />
                     <h3 className="text-base sm:text-lg font-semibold text-white text-center">Guarda la configurazione completa di Ollama</h3>
                   </div>
-                  <div className="bg-black/50 rounded-lg aspect-video flex items-center justify-center border border-white/10">
-                    <button className="flex items-center justify-center w-12 sm:w-16 h-12 sm:h-16 bg-accent/20 rounded-full border border-accent/30 hover:bg-accent/30 transition-all duration-300">
-                      <Play className="w-5 sm:w-6 h-5 sm:h-6 text-accent ml-1" />
-                    </button>
+
+                  <div className="relative rounded-lg overflow-hidden aspect-video border border-white/10">
+                    <iframe
+                      src="https://streamable.com/e/dc4ll8"
+                      title="Configurazione completa di Ollama"
+                      className="w-full h-full"
+                      frameBorder="0"
+                      allow="autoplay; fullscreen"
+                      allowFullScreen
+                    ></iframe>
                   </div>
+
                   <p className="text-xs text-secondary mt-2 sm:mt-3 text-center px-2">
                     Installazione guidata di Ollama: da zero alla tua AI privata con 50+ modelli in 10 minuti
                   </p>

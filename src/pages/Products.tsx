@@ -44,6 +44,7 @@ const Products = () => {
       id: 'ai-assistants',
       name: 'Agenti e Chatbot AI',
       description: 'Assistenti virtuali intelligenti per automatizzare le comunicazioni e supportare i processi aziendali',
+      
       products: [
         {
           id: 1,
@@ -73,27 +74,27 @@ const Products = () => {
         },
         {
           id: 2,
-          name: 'Healthcare Assistant',
-          description: 'Assistente AI specializzato per il settore sanitario con compliance GDPR',
-          longDescription: 'Assistente AI specializzato per il settore sanitario, progettato con rigorosa compliance GDPR e standard medicali. Gestisce automaticamente prenotazioni, triaging intelligente e supporto decisionale clinico. Integrato con sistemi ospedalieri esistenti, riduce i tempi di attesa del 60% e migliora l\'accuratezza diagnostica.',
-          icon: <Heart className="w-8 h-8" />,
-          tags: ['Healthcare', 'GDPR', 'Triaging', 'ISO 27001'],
-          price: 'Preventivo personalizzato',
+          name: 'Generatore immagini AI',
+          description: 'Assistente AI specializzato per la generazione di immagini creative e professionali',
+          longDescription: 'Assistente AI avanzato per la generazione di immagini creative, loghi, contenuti visivi e materiale marketing. Utilizza modelli di intelligenza artificiale all\'avanguardia per creare contenuti visivi personalizzati in pochi secondi. Perfetto per agenzie, designer e aziende che necessitano di contenuti visivi rapidi e di qualità professionale.',
+          icon: <Bot className="w-8 h-8" />,
+          tags: ['AI Art', 'Design', 'Marketing', 'Creative'],
+          price: 'Da €/mese',
           status: 'coming-soon',
           featured: false,
           features: [
-            'Compliance GDPR completa per settore sanitario',
-            'Triaging intelligente con algoritmi clinici',
-            'Supporto decisionale clinico certificato',
-            'Crittografia medicale ISO 27001',
-            'Integrazione con sistemi ospedalieri',
-            'Monitoraggio qualità e audit trail'
+              'Generazione immagini HD in stili multipli',
+              'Creazione loghi e brand identity automatica',
+              'Template personalizzabili per social media',
+              'Modelli AI addestrati su contenuti commerciali',
+              'Esportazione in formati multipli (PNG, SVG, PDF)',
+              'Integrazione con strumenti di design esistenti'
           ],
           benefits: [
-            'Riduzione 60% dei tempi di attesa',
-            'Miglioramento accuratezza diagnostica',
-            'Conformità normative sanitarie europee',
-            'Ottimizzazione workflow clinici'
+            'Riduzione 80% dei tempi di creazione contenuti',
+            'Costi di design ridotti fino al 70%',
+            'Qualità professionale garantita',
+            'Personalizzazione illimitata per il brand'
           ]
         },
         {
@@ -103,8 +104,8 @@ const Products = () => {
         longDescription: 'Assistente vocale enterprise che trasforma il customer service attraverso AI conversazionale avanzata. Supporta oltre 30 lingue, integrazione telefonica completa e analytics delle chiamate in tempo reale.',
         icon: <MessageSquare className="w-8 h-8" />,
         tags: ['Voice AI', 'Call Center', 'Multilingue', 'Analytics'],
-        price: 'da €400/mese',
-        status: 'available',
+        price: 'da €/mese',
+        status: 'coming-soon',
         featured: false,
         features: [
           'Riconoscimento vocale in oltre 30 lingue',
@@ -130,14 +131,14 @@ const Products = () => {
       products: [
         {
           id: 3,
-          name: 'SmartFlow Automation',
+          name: 'Lead Generation System: Google Maps + Email Scraper',
           description: 'Piattaforma di automazione per processi aziendali complessi',
           longDescription: 'Piattaforma di automazione avanzata che trasforma i processi aziendali complessi in workflow intelligenti. Con oltre 250 connettori precostruiti e integrazione AI nativa, automatizza qualsiasi processo dall\'onboarding clienti alla gestione inventario. Interface drag-and-drop intuitiva e monitoraggio real-time per controllo completo.',
           icon: <Workflow className="w-8 h-8" />,
           tags: ['Workflow', 'Automation', 'Integrations', 'AI'],
-          price: 'da €300/mese',
+          price: 'da €60/mese',
           status: 'available',
-          featured: false,
+          featured: true,
           features: [
             'Oltre 250 connettori precostruiti per app popolari',
             'Editor workflow drag-and-drop visuale',
@@ -160,8 +161,8 @@ const Products = () => {
         longDescription: 'Piattaforma AI per automazione completa dei documenti aziendali. OCR avanzato, classificazione automatica, estrazione dati e workflow di approvazione intelligenti per digitalizzare completamente i processi documentali.',
         icon: <Database className="w-8 h-8" />,
         tags: ['OCR', 'Document Management', 'Classification', 'Workflow'],
-        price: 'da €180/mese',
-        status: 'available',
+        price: 'da €/mese',
+        status: 'coming-soon',
         featured: false,
         features: [
           'OCR avanzato con accuratezza del 99.5%',
@@ -185,9 +186,9 @@ const Products = () => {
         longDescription: 'Bot commerciale avanzato che automatizza il processo di vendita dalla lead generation alla qualification. Integrazione CRM nativa, scoring predittivo e follow-up personalizzati per massimizzare le conversioni.',
         icon: <Bot className="w-8 h-8" />,
         tags: ['Sales', 'Lead Generation', 'CRM', 'Automation'],
-        price: 'da €350/mese',
-        status: 'available',
-        featured: true,
+        price: 'da €/mese',
+        status: 'coming-soon',
+        featured: false,
         features: [
           'Lead generation automatizzata multi-canale',
           'Qualification intelligente con AI scoring',
@@ -206,20 +207,20 @@ const Products = () => {
       ]
     },
     {
-      id: 'analytics',
+      id: 'software',
       name: 'Software',
       description: 'Strumenti avanzati di analisi dati e business intelligence',
       products: [
         {
           id: 4,
-          name: 'DataVault Analytics',
+          name: 'Classificatore rifiuti',
           description: 'Suite di analytics avanzata con dashboard personalizzabili',
           longDescription: 'Suite completa di business intelligence che trasforma i dati aziendali in insights azionabili. Utilizza machine learning avanzato per previsioni accurate, dashboard interattive personalizzabili e report automatici. Integrazione nativa con tutti i principali database e sistemi aziendali per una vista unificata del business.',
           icon: <Database className="w-8 h-8" />,
           tags: ['Analytics', 'Dashboard', 'Machine Learning', 'Reports'],
-          price: 'da €250/mese',
+          price: 'Richiedi Preventivo',
           status: 'available',
-          featured: false,
+          featured: true,
           features: [
             'Dashboard interattive completamente personalizzabili',
             'Machine learning per insights predittivi',
@@ -237,13 +238,13 @@ const Products = () => {
         },
         {
         id: 8,
-        name: 'PredictiveAI Insights',
+        name: 'Gestionale Tricologia',
         description: 'Piattaforma di machine learning per forecasting e analisi predittiva aziendale',
         longDescription: 'Suite completa di machine learning per analisi predittive aziendali. Forecasting vendite, previsioni demand planning, analisi churn e ottimizzazione pricing con algoritmi proprietari e interpretabilità completa.',
         icon: <TrendingUp className="w-8 h-8" />,
         tags: ['Machine Learning', 'Forecasting', 'Predictive', 'AI'],
-        price: 'da €450/mese',
-        status: 'available',
+        price: 'da €/mese',
+        status: 'coming-soon',
         featured: false,
         features: [
           'Forecasting vendite con accuratezza 95%+',
@@ -259,31 +260,6 @@ const Products = () => {
           'Aumento revenue del 15% via pricing',
           'Retention clienti +30%'
         ]
-      },
-      {
-        id: 9,
-        name: 'ComplianceAI Monitor',
-        description: 'Sistema di monitoraggio compliance automatizzato con AI per normative e audit',
-        longDescription: 'Piattaforma AI per monitoraggio compliance continuo e automatizzato. Traccia cambiamenti normativi, verifica conformità processi aziendali e genera report audit-ready per tutte le principali normative europee.',
-        icon: <Shield className="w-8 h-8" />,
-        tags: ['Compliance', 'Monitoring', 'GDPR', 'Audit'],
-        price: 'da €280/mese',
-        status: 'coming-soon',
-        featured: false,
-        features: [
-          'Monitoraggio normative in tempo reale',
-          'Verifica compliance processi automatica',
-          'Report audit-ready automatici',
-          'Alert proattivi su non conformità',
-          'Knowledge base normativa aggiornata',
-          'Integration con sistemi qualità'
-        ],
-        benefits: [
-          'Riduzione rischio sanzioni del 95%',
-          'Riduzione costi audit del 50%',
-          'Compliance proattiva automatica',
-          'Documentazione sempre aggiornata'
-        ]
       }
       ]
     }
@@ -296,6 +272,8 @@ const Products = () => {
       categoryName: category.name
     }))
   );
+
+  
 
   // Filtra i prodotti in base alla ricerca
   const filteredCategories = productCategories.map(category => ({
@@ -382,7 +360,7 @@ const Products = () => {
                         {selectedProductData.featured && (
                           <div className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
                             <Star className="w-3 h-3" />
-                            Featured
+                            Popolare
                           </div>
                         )}
                         <span className={`text-sm font-medium px-3 py-1 rounded-full ${
@@ -538,6 +516,8 @@ const Products = () => {
     );
   }
 
+  
+
   return (
     <>
     <SEO 
@@ -571,7 +551,7 @@ const Products = () => {
             >
               {/* Badge sopra il titolo */}
               <div className="inline-block px-3 md:px-4 py-1 rounded-full glass border border-white/10 text-xs md:text-sm font-medium mb-3 md:mb-4">
-                <span className="text-green-500">
+                <span className="text-violet-500">
                   Innovazione e Automazione
                 </span>
               </div>
@@ -630,6 +610,7 @@ const Products = () => {
                     <p className="text-gray-400 text-lg max-w-3xl">{category.description}</p>
                   </div>
                   
+                  
                   {/* Grid Prodotti */}
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {category.products.map((product, productIndex) => (
@@ -641,24 +622,41 @@ const Products = () => {
                         transition={{ duration: 0.5, delay: productIndex * 0.1 }}
                         className="group relative"
                       >
-                        {/* Card del prodotto */}
+                        {/* Card del prodotto con elementi decorativi */}
                         <div 
-                          className={`glass p-6 rounded-2xl border border-white/10 hover:border-accent/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl h-full flex flex-col relative overflow-hidden ${
+                          className={`backdrop-blur-xl bg-gradient-to-br from-white/10 via-white/5 to-white/3 p-6 rounded-2xl border border-white/20 hover:border-accent/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent/20 h-full flex flex-col relative overflow-hidden ${
                             product.status === 'available' ? 'cursor-pointer' : 'cursor-default'
                           }`}
                           onClick={() => product.status === 'available' ? openProductDetail(product.id) : undefined}
                         >
                           
+                          {/* Linea gradiente superiore */}
+                          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-violet-400 via-violet-400 to-violet-500 opacity-60 group-hover:opacity-100 transition-opacity"></div>
+                          
+                          {/* Forme decorative */}
+                          <div className="absolute -right-16 -bottom-16 w-32 h-32 rounded-full border border-accent/20 opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
+                          <div className="absolute right-4 top-4 w-16 h-16 rounded-full border-2 border-white/10 opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+                          <div className="absolute right-8 top-8 w-8 h-8 rounded-full bg-accent/10 group-hover:bg-accent/20 transition-colors duration-500"></div>
+                          
+                          {/* Pattern di linee decorative */}
+                          <div className="absolute top-12 left-4 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
+                            <svg width="40" height="40" viewBox="0 0 40 40" className="text-accent">
+                              <line x1="5" y1="10" x2="35" y2="10" stroke="currentColor" strokeWidth="1" strokeDasharray="2,2" />
+                              <line x1="5" y1="20" x2="25" y2="20" stroke="currentColor" strokeWidth="1" strokeDasharray="2,2" />
+                              <line x1="5" y1="30" x2="30" y2="30" stroke="currentColor" strokeWidth="1" strokeDasharray="2,2" />
+                            </svg>
+                          </div>
+
                           {/* Badge Featured */}
                           {product.featured && (
-                            <div className="absolute top-4 right-4 bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
+                            <div className="absolute top-4 right-4 bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1 z-20">
                               <Star className="w-3 h-3" />
-                              Featured
+                              Popolare
                             </div>
                           )}
 
-                          {/* Badge Status */}
-                          <div className="absolute top-4 left-4">
+                          {/* Badge Status con posizione aggiornata per evitare sovrapposizioni */}
+                          <div className="absolute top-4 left-4 z-20">
                             <span className={`text-xs font-medium px-2 py-1 rounded-full ${
                               product.status === 'available' 
                                 ? 'bg-green-600/20 border border-green-500/30 text-green-400'
@@ -668,51 +666,54 @@ const Products = () => {
                             </span>
                           </div>
 
-                          {/* Gradient decorativo */}
-                          <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+                          {/* Gradient decorativo migliorato */}
+                          <div className="absolute inset-0 bg-gradient-to-br from-accent/15 via-violet-500/10 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+                          
+                          {/* Effetto shimmer al hover */}
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
 
                           {/* Contenuto principale */}
                           <div className="relative z-10 flex flex-col h-full">
                             
-                            {/* Header con icona */}
+                            {/* Header con icona migliorato */}
                             <div className="flex items-center mb-4 mt-8">
-                              <div className="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center mr-4 text-accent group-hover:bg-accent/30 transition-colors">
+                              <div className="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center mr-4 text-accent group-hover:bg-accent/30 transition-all duration-300 group-hover:scale-110">
                                 {product.icon}
                               </div>
                               <div>
-                                <h3 className="text-lg font-bold text-white group-hover:text-accent transition-colors">{product.name}</h3>
+                                <h3 className="text-lg font-bold text-white group-hover:text-white transition-colors duration-300">{product.name}</h3>
                               </div>
                             </div>
 
                             {/* Descrizione */}
-                            <p className="text-gray-400 text-sm mb-4 leading-relaxed flex-grow">
+                            <p className="text-gray-400 text-sm mb-4 leading-relaxed flex-grow group-hover:text-gray-300 transition-colors duration-300">
                               {product.description}
                             </p>
 
-                            {/* Tags */}
+                            {/* Tags con stile migliorato */}
                             <div className="flex flex-wrap gap-1 mb-4">
                               {product.tags.slice(0, 3).map((tag, tagIndex) => (
-                                <span key={tagIndex} className="text-xs px-2 py-1 bg-white/10 text-gray-300 rounded border border-white/20">
+                                <span key={tagIndex} className="text-xs px-2 py-1 bg-white/10 text-gray-300 rounded border border-white/20 group-hover:border-accent/30 group-hover:bg-accent/10 transition-all duration-300">
                                   {tag}
                                 </span>
                               ))}
                               {product.tags.length > 3 && (
-                                <span className="text-xs px-2 py-1 bg-accent/20 text-accent rounded border border-accent/30">
+                                <span className="text-xs px-2 py-1 bg-accent/20 text-accent rounded border border-accent/30 group-hover:bg-accent/30 transition-all duration-300">
                                   +{product.tags.length - 3}
                                 </span>
                               )}
                             </div>
 
-                            {/* Footer con prezzo e azione */}
-                            <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                            {/* Footer con prezzo e azione migliorato */}
+                            <div className="flex items-center justify-between pt-4 border-t border-white/10 group-hover:border-accent/20 transition-colors duration-300">
                               <div>
-                                <span className="text-accent font-semibold text-sm">{product.price}</span>
+                                <span className="text-accent font-semibold text-sm group-hover:text-accent/90">{product.price}</span>
                               </div>
                               <div className="flex items-center gap-2">
                                 {product.status === 'available' ? (
                                   <div className="flex items-center text-accent hover:text-accent/80 text-sm font-medium group/btn">
                                     Scopri di più
-                                    <ArrowRight className="w-4 h-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
+                                    <ArrowRight className="w-4 h-4 ml-1 group-hover/btn:translate-x-1 group-hover:translate-x-2 transition-transform duration-300" />
                                   </div>
                                 ) : (
                                   <div className="flex items-center text-orange-400 text-sm font-medium cursor-default">
@@ -723,6 +724,9 @@ const Products = () => {
                               </div>
                             </div>
                           </div>
+                          
+                          {/* Glow effect al bottom */}
+                          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                         </div>
                       </motion.div>
                     ))}
@@ -785,23 +789,23 @@ const Products = () => {
             <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-5">
               {[
                 {
-                  q: "Quale soluzione è più adatta per l'automazione dei processi aziendali?",
-                  a: "SegretarioAI Telegram è ideale per automatizzare la comunicazione e gestione appuntamenti, mentre SmartFlow Automation ottimizza l'intero processo aziendale. Entrambi operano 24/7 e si integrano perfettamente con i tuoi workflow esistenti.",
+                  q: "Come funzionano le vostre soluzioni AI?",
+                  a: "Le nostre soluzioni utilizzano intelligenza artificiale avanzata per automatizzare processi aziendali complessi. Ogni prodotto è progettato per integrarsi facilmente con i sistemi esistenti e fornire risultati immediati attraverso interfacce intuitive e workflow intelligenti.",
                   icon: <BrainCircuit className="w-5 h-5" />
                 },
                 {
-                  q: "Posso personalizzare le funzionalità delle soluzioni?",
-                  a: "Assolutamente sì. Tutte le nostre soluzioni sono completamente personalizzabili in base alle esigenze specifiche della tua azienda. Offriamo configurazione su misura, dashboard personalizzate e workflow adattabili, senza compromettere le performance o la semplicità d'uso.",
+                  q: "Posso personalizzare i prodotti per le mie esigenze specifiche?",
+                  a: "Assolutamente sì. Tutte le nostre soluzioni sono completamente personalizzabili. Offriamo configurazioni su misura, adattamento dei workflow alle tue procedure aziendali e interfacce personalizzate per garantire che ogni strumento si adatti perfettamente al tuo modo di lavorare.",
                   icon: <Workflow className="w-5 h-5" />
                 },
                 {
-                  q: "Come funziona DataVault Analytics?",
-                  a: "DataVault Analytics trasforma i tuoi dati aziendali in insights azionabili utilizzando machine learning avanzato. Offre dashboard personalizzabili, report automatici e integrazione con oltre 50 fonti dati per una vista unificata del business.",
+                  q: "Che tipo di supporto offrite durante l'implementazione?",
+                  a: "Forniamo supporto completo dalla configurazione iniziale fino al go-live. Il nostro team di esperti ti guida attraverso ogni fase dell'implementazione, offre formazione personalizzata e rimane disponibile per assistenza tecnica e ottimizzazioni continue.",
                   icon: <Database className="w-5 h-5" />
                 },
                 {
-                  q: "Quanto tempo richiede l'implementazione delle soluzioni?",
-                  a: "Le nostre soluzioni vengono implementate in 2-4 settimane, un tempo significativamente inferiore rispetto ai 3-6 mesi richiesti dai metodi tradizionali. Questo è possibile grazie al nostro approccio AI-first, alle integrazioni precostituite e a un team di esperti dedicati che ti guida in ogni fase del processo.",
+                  q: "Quanto tempo richiede tipicamente l'implementazione?",
+                  a: "I tempi di implementazione variano in base alla complessità della soluzione e alle specifiche esigenze aziendali. Grazie al nostro approccio modulare e alle integrazioni precostituite, la maggior parte dei progetti viene completata in tempi significativamente ridotti rispetto ai metodi tradizionali.",
                   icon: <Clock className="w-5 h-5" />
                 }
               ].map((faq, index) => (
@@ -841,23 +845,23 @@ const Products = () => {
               <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-5 mt-5">
                 {[
                   {
-                    q: "Come si integra SmartFlow Automation con i sistemi esistenti?",
-                    a: "SmartFlow offre oltre 250 connettori precostruiti per le app più popolari e API custom per integrazioni specifiche. Il processo di integrazione è gestito dal nostro team tecnico, che configura connessioni sicure e ottimizzate per garantire flussi di dati seamless.",
+                    q: "Le soluzioni si integrano con i sistemi esistenti?",
+                    a: "Sì, tutti i nostri prodotti sono progettati per integrarsi facilmente con i sistemi aziendali più comuni. Offriamo connettori precostruiti per le piattaforme più diffuse e API personalizzate per esigenze specifiche di integrazione.",
                     icon: <Cable className="w-5 h-5" />
                   },
                   {
-                    q: "Quali garanzie offrite per Healthcare Assistant?",
-                    a: "Healthcare Assistant rispetta tutti gli standard sanitari internazionali, implementa crittografia medicale certificata ISO 27001 e garantisce conformità completa a GDPR e normative sanitarie europee. Offriamo supporto specializzato per il settore medicale 24/7.",
+                    q: "Che livello di formazione è necessario per utilizzare i prodotti?",
+                    a: "Le nostre soluzioni sono progettate per essere intuitive e facili da usare. Forniamo materiale di formazione completo, sessioni di training personalizzate e documentazione dettagliata per garantire che il tuo team possa utilizzare efficacemente ogni funzionalità.",
                     icon: <Heart className="w-5 h-5" />
                   },
                   {
-                    q: "Come garantite la sicurezza dei dati?",
-                    a: "Implementiamo crittografia end-to-end a 256 bit, autenticazione multi-fattore e controlli granulari degli accessi. Tutti i dati sono archiviati in data center certificati ISO 27001, con backup continui e conformità completa a GDPR.",
+                    q: "Come viene garantita la sicurezza e privacy dei dati?",
+                    a: "Implementiamo i più alti standard di sicurezza con crittografia avanzata, controlli di accesso granulari e conformità alle normative sulla privacy. Tutti i dati sono protetti secondo gli standard internazionali e le migliori pratiche del settore.",
                     icon: <Shield className="w-5 h-5" />
                   },
                   {
-                    q: "È possibile iniziare con una soluzione e aggiungerne altre?",
-                    a: "Assolutamente. La nostra piattaforma è modulare e scalabile, progettata per crescere con la tua azienda. Puoi iniziare con la soluzione che risponde alle tue esigenze più urgenti e aggiungerne altre quando necessario.",
+                    q: "È possibile combinare più soluzioni insieme?",
+                    a: "Certamente. La nostra architettura modulare permette di combinare diversi prodotti per creare un ecosistema integrato. Puoi iniziare con una soluzione e aggiungerne altre nel tempo, mantenendo sempre coerenza e sinergia tra tutti gli strumenti.",
                     icon: <GitBranch className="w-5 h-5" />
                   }
                 ].map((faq, index) => (

@@ -9,7 +9,7 @@ export const SEO_DATA = {
   },
   
   products: {
-    title: "Prodotti AI per Aziende - BioriTalk, BioriAgent, PromptElite",
+    title: "Prodotti AI per Aziende",
     description: "Scopri i nostri prodotti AI: BioriTalk per assistenti conversazionali, BioriAgent per automazione e PromptElite per ottimizzazione prompt.",
     keywords: "prodotti AI, BioriTalk, BioriAgent, PromptElite, assistenti virtuali, automazione",
     url: "/products"
@@ -77,6 +77,6 @@ export const getSEOData = (page: keyof typeof SEO_DATA) => {
   const data = SEO_DATA[page];
   return {
     ...data,
-    canonicalUrl: `https://tuodominio.com${data.url}` // Sostituisci con il tuo dominio
+    canonicalUrl: `https://www.biorigeneralinformatics.com/${data.url}` // Sostituisci con il tuo dominio
   };
 };

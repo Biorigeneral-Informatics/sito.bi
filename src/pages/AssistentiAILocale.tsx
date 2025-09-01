@@ -187,12 +187,12 @@ const AssistentiAILocale = () => {
                 <div className="glass p-4 sm:p-6 rounded-xl border border-white/10 max-w-3xl mx-auto">
                   <div className="flex items-center justify-center mb-3 sm:mb-4">
                     <VideoIcon className="w-6 sm:w-8 h-6 sm:h-8 text-accent mr-2 sm:mr-3" />
-                    <h3 className="text-base sm:text-lg font-semibold text-white text-center">Guarda la configurazione completa di Ollama</h3>
+                    <h3 className="text-base sm:text-lg font-semibold text-white text-center">Scopri di più sugli assistenti AI in Locale</h3>
                   </div>
 
                   <div className="relative rounded-lg overflow-hidden aspect-video border border-white/10">
                     <iframe
-                      src="https://streamable.com/e/dc4ll8"
+                      src="https://player.vimeo.com/video/1114948453"
                       title="Configurazione completa di Ollama"
                       className="w-full h-full"
                       frameBorder="0"

@@ -1,6 +1,6 @@
 // src/pages/Community.tsx
 import { useRef, useEffect, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll } from 'framer-motion';
 import { 
   MessageSquare, 
   ArrowRight,
@@ -31,22 +31,12 @@ import ScrollGradient from '../components/ScrollGradient';
 
 const Community = () => {
   const heroRef = useRef<HTMLDivElement>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [, setMousePosition] = useState({ x: 0, y: 0 });
   
   // Scroll-linked animations
-  const { scrollYProgress } = useScroll();
-  const bgOpacity = useTransform(scrollYProgress, [0, 0.2], [0.8, 0]);
+  useScroll();
   
   // Generate particle data once at initialization
-  const particlesData = useRef([...Array(20)].map(() => ({
-    width: 3 + Math.random() * 6,
-    height: 3 + Math.random() * 6,
-    top: Math.random() * 100,
-    left: Math.random() * 100,
-    duration: 30 + Math.random() * 40,
-    delay: Math.random() * 15,
-    opacity: 0.3 + Math.random() * 0.4
-  }))).current;
   
   // Track mouse for subtle hero section effects
   useEffect(() => {

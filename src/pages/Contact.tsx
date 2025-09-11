@@ -5,6 +5,8 @@ import { useState, useRef, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 import SEO from '../components/SEO';
 import { getSEOData } from '../config/seoData';
+import { Link } from 'react-router-dom';
+
 
 const seoData = getSEOData('contact'); 
 
@@ -319,7 +321,7 @@ const Contact = () => {
                   name="service"
                   value={formState.service}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg backdrop-blur-md bg-white/5 border border-white/10 focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500/30 transition-all text-white"
+                  className="w-full px-4 py-3 rounded-lg backdrop-blur-md bg-white/5 border border-white/10 focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500/30 transition-all text-white [&>option]:bg-gray-800 [&>option]:text-white"
                 >
                   <option value="Informazioni generali">Informazioni generali</option>
                   <option value="AI Agents">AI Agents</option>
@@ -369,8 +371,8 @@ const Contact = () => {
               </button>
               
               <p className="text-xs text-gray-400">
-                I tuoi dati saranno trattati secondo la nostra <a href="/privacy-policy" className="text-green-500 hover:underline">Privacy Policy</a>.
-              </p>
+                I tuoi dati saranno trattati secondo la nostra <Link to="/PrivacyPolicy" className="text-green-500 hover:underline">Privacy Policy</Link>.
+            </p>
             </form>
           )}
         </motion.div>

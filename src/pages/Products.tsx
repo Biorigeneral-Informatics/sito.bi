@@ -1,6 +1,7 @@
-// src/pages/Products.tsx - Versione migliorata con marketing enhancement
+// src/pages/Products.tsx - Versione con URL slug personalizzati
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import {
   BrainCircuit, 
@@ -24,6 +25,8 @@ import {
 } from 'lucide-react';
 
 const Products = () => {
+  const { productSlug } = useParams();
+  const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [showAllFaqs, setShowAllFaqs] = useState(false);
@@ -44,6 +47,7 @@ const Products = () => {
       products: [
         {
           id: 1,
+          slug: 'segretario-ai-telegram',
           name: 'SegretarioAI Telegram',
           description: 'Il tuo assistente virtuale su Telegram integrabile con più di 10000 app',
           longDescription: 'Il primo assistente virtuale italiano che rivoluziona la gestione delle comunicazioni aziendali attraverso Telegram. Integrato con workflow N8n avanzati, automatizza conversazioni complesse, gestisce appuntamenti intelligenti e si integra perfettamente con tutti i tuoi sistemi esistenti. Disponibile 24/7, riduce dell\'80% il carico di lavoro manuale e migliora drasticamente l\'efficienza operativa.',
@@ -55,7 +59,7 @@ const Products = () => {
           forever: false,
           subscription: true,
           customSetup: true,
-          discount: null, // Nuovo campo per gestire gli sconti
+          discount: null,
           image: 'https://i.imgur.com/BJRduao.jpeg',
           features: [
             'Gestione conversazioni intelligente con modello AI a scelta',
@@ -73,6 +77,7 @@ const Products = () => {
         },
         {
           id: 7,
+          slug: 'dm-chatbot-instagram',
           name: 'DM ChatBot Instagram',
           description: 'Un assistente virtuale che gestisce i DM Instagram in modo autonomo',
           longDescription: 'Assistente virtuale AI che trasforma i DM Instagram in un canale di vendita automatizzato. Risponde istantaneamente alle richieste ed è totalmente personalizzabile per rispecchiare il tono del brand, oltre che integrabile con oltre 10000 app, inclusi CRM e applicazioni custom a codice',
@@ -100,6 +105,7 @@ const Products = () => {
         },
         {
           id: 9,
+          slug: 'dm-chatbot-whatsapp',
           name: 'DM ChatBot Whatsapp',
           description: 'Un assistente virtuale che gestisce i tuoi contatti su whatsapp in modo autonomo',
           longDescription: 'Un assistente AI perfetto per gestire conversazioni o ordinazioni tramite la piattaforma Whatsapp. Addestramento personalizzato per rispecchiare il tono del brand, oltre che integrabile con oltre 10000 app, inclusi CRM e applicazioni custom a codice',
@@ -126,6 +132,7 @@ const Products = () => {
         },
         {
           id: 5,
+          slug: 'voicebot-enterprise',
           name: 'VoiceBot Enterprise',
           description: 'Assistente vocale avanzato per call center e customer service con riconoscimento vocale multilingue',
           longDescription: 'Assistente vocale enterprise che trasforma il customer service attraverso AI conversazionale avanzata. Supporta oltre 30 lingue, integrazione telefonica completa e analytics delle chiamate in tempo reale.',
@@ -162,19 +169,20 @@ const Products = () => {
       products: [
         {
           id: 2,
+          slug: 'wordpress-autoblog-ai',
           name: 'Wordpress AutoBlog AI',
           description: 'Un generatore AI di post wordpress già pronti in bozza per la pubblicazione, accessibile tramite una tua UI personale',
           longDescription: 'Scopri il nostro generatore AI di post per WordPress, alimentato da GPT-4. Automatizza la creazione di contenuti di alta qualità mantenendo il controllo della pubblicazione. Accedi alla tua interfaccia personalizzabile dalla quale gestire tutto il processo.',
           icon: <Bot className="w-8 h-8" />,
           tags: ['AI Blog', 'Wordpress Blog', 'Marketing', 'Post Wordpress'],
           price: '€4000',
-          originalPrice: '€5000', // Prezzo originale per mostrare lo sconto
+          originalPrice: '€5000',
           status: 'available',
           featured: true,
           forever: true,
           subscription: false,
           customSetup: false,
-          discount: { percentage: 20, label: 'Offerta Lancio' }, // Nuovo campo sconto
+          discount: { percentage: 20, label: 'Offerta Lancio' },
           features: [
             'Generazione automatica di 3+ di articoli Wordpress per volta',
             'Interfaccia dedicata per gestione generazione',
@@ -194,6 +202,7 @@ const Products = () => {
         },
         {
           id: 3,
+          slug: 'lead-generation-google-maps',
           name: 'Lead Generation System: Google Maps + Email Scraper',
           description: 'Automazione per processi aziendali complessi',
           longDescription: 'Soluzione automatizzata che estrae lead qualificati direttamente da Google Maps, trasformando ricerche geografiche in database commerciali completi. Recupera automaticamente nomi aziende, indirizzi, telefoni ed email verificate da siti web e directory. Targeting per area geografica e settore, eliminazione duplicati intelligente ed export multi-formato. Interface intuitiva e risultati immediati per venditori B2B, agenzie marketing e startup.',
@@ -222,6 +231,7 @@ const Products = () => {
         },
         {
           id: 6,
+          slug: 'ai-stock-manager',
           name: 'AI StockManager',
           description: 'Workflow intelligente per la gestione dell\'inventario e degli ordini di rifornimento',
           longDescription: 'Soluzione di gestione dell\'inventario intelligente, pensata per Hotel e Ristoranti per gestire ordini di rifornimento, ma adattabile facilmente ad altri contesti. Basata su un sistema di ordinazione di nuovi prodotti tramite un\' account gmail, dotato di riconoscimento degli ordini automatico grazie alla potenza di GPT e calcolo automatico del prodotto migliore in inventario.',
@@ -259,6 +269,7 @@ const Products = () => {
       products: [
         {
           id: 4,
+          slug: 'classificatore-rifiuti',
           name: 'Classificatore rifiuti',
           description: 'Micro gestionale per la classificazione dei rifiuti',
           longDescription: 'Micro gestionale per la classificazione rifiuti, in Electron e con database sostanze sul tuo pc progettato per semplificare il processo di assegnazione delle caratteristiche di pericolo HP',
@@ -290,6 +301,7 @@ const Products = () => {
         },
         {
           id: 8,
+          slug: 'gestionale-tricologia',
           name: 'Gestionale Tricologia',
           description: 'Piattaforma di machine learning per forecasting e analisi predittiva aziendale',
           longDescription: 'Suite completa di machine learning per analisi predittive aziendali. Forecasting vendite, previsioni demand planning, analisi churn e ottimizzazione pricing con algoritmi proprietari e interpretabilità completa.',
@@ -322,7 +334,6 @@ const Products = () => {
   ];
 
   // Ottieni tutti i prodotti per la ricerca
-  // Forza la presenza della proprietà image su tutti i prodotti (anche se null)
   const allProducts = productCategories.flatMap(category => 
     category.products.map(product => ({
       ...product,
@@ -330,6 +341,21 @@ const Products = () => {
       image: 'image' in product ? product.image : null
     }))
   );
+
+  // Gestione slug dall'URL
+  useEffect(() => {
+    if (productSlug) {
+      const product = allProducts.find(p => p.slug === productSlug);
+      if (product) {
+        setSelectedProduct(product.id);
+      } else {
+        // Se lo slug non esiste, torna alla lista
+        navigate('/products');
+      }
+    } else {
+      setSelectedProduct(null);
+    }
+  }, [productSlug]);
 
   // Filtra i prodotti in base alla ricerca
   const filteredCategories = productCategories.map(category => ({
@@ -346,13 +372,16 @@ const Products = () => {
 
   // Funzione per aprire il dettaglio prodotto
   const openProductDetail = (productId: number) => {
-    setSelectedProduct(productId);
+    const product = allProducts.find(p => p.id === productId);
+    if (product && product.slug) {
+      navigate(`/products/${product.slug}`);
+    }
     window.scrollTo(0, 0);
   };
 
   // Funzione per tornare alla lista
   const closeProductDetail = () => {
-    setSelectedProduct(null);
+    navigate('/products');
     window.scrollTo(0, 0);
   };
 
@@ -390,8 +419,29 @@ const Products = () => {
             <div className="container mx-auto px-4 md:px-6 lg:px-12">
               <div className="max-w-6xl mx-auto">
                 
-                {/* Hero del prodotto - SENZA etichetta sconto in alto */}
+                {/* Hero del prodotto */}
                 <div className="relative backdrop-blur-xl bg-gradient-to-br from-white/10 via-white/5 to-white/3 p-8 lg:p-12 rounded-2xl border border-white/10 mb-8">
+
+                  {/* Badge Sconto in alto a destra - Solo se c'è uno sconto attivo */}
+                  {selectedProductData.discount && (
+                    <div className="absolute top-6 right-6 z-30">
+                      <div className="relative">
+                        {/* Glow rosso/arancio */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-orange-500 rounded-full blur-lg opacity-60 animate-pulse"></div>
+                        
+                        {/* Badge principale */}
+                        <div 
+                          className="relative text-white px-5 py-2.5 rounded-full flex items-center gap-2 shadow-xl font-black text-sm uppercase tracking-wide"
+                          style={{
+                            background: 'linear-gradient(135deg, #ef4444, #f97316, #fb923c)',
+                          }}
+                        >
+                          <Sparkles className="w-4 h-4" />
+                          <span>🔥 SCONTO -{selectedProductData.discount.percentage}%</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
 
                   <div className="grid lg:grid-cols-2 gap-12 items-center">
                     
@@ -403,7 +453,6 @@ const Products = () => {
                           <div className="relative">
                             {/* Glow dorato */}
                             <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full blur-lg opacity-50 animate-pulse"></div>
-                            
                             {/* Badge principale */}
                             <div className="relative bg-gradient-to-r from-yellow-400 via-yellow-500 to-orange-500 text-black px-5 py-2.5 rounded-full flex items-center gap-2 shadow-lg">
                               <Award className="w-5 h-5" />
@@ -466,14 +515,22 @@ const Products = () => {
 
                       {/* Callout "Compra una volta, tuo per sempre" per prodotti Forever */}
                       {selectedProductData.forever && (
-                        <div className="mb-6 p-4 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/30 rounded-xl">
+                        <div 
+                          className="mb-6 p-4 rounded-xl border-2"
+                          style={{
+                            background: 'linear-gradient(to right, #d705f7, #ff6b00)',
+                            borderColor: '#d705f7'
+                          }}
+                        >
                           <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                              <Sparkles className="w-5 h-5 text-emerald-400" />
+                            <div className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center">
+                              <Sparkles className="w-5 h-5" style={{ color: '#d705f7' }} />
                             </div>
                             <div>
-                              <p className="text-emerald-400 font-bold text-lg">Compra una volta, tuo per sempre.</p>
-                              <p className="text-emerald-300/70 text-sm">Nessun canone mensile, nessun costo ricorrente</p>
+                              <p className="text-white font-bold text-lg drop-shadow-lg">
+                                Compra una volta, tuo per sempre.
+                              </p>
+                              <p className="text-white/95 text-sm font-medium">Nessun canone mensile, nessun costo ricorrente</p>
                             </div>
                           </div>
                         </div>
@@ -677,28 +734,6 @@ const Products = () => {
 
         {/* Marketplace Section */}
         <section className="py-20 container mx-auto px-4 md:px-6 lg:px-12">
-          
-          {/* Header con ricerca */}
-          <div className="text-center mb-16">
-            <h3 className="text-2xl md:text-3xl font-semibold text-white mb-4">
-              Esplora i nostri prodotti AI
-              <span className="block text-gray-400">progettati per trasformare il tuo business</span>
-            </h3>
-            
-            {/* Barra di ricerca */}
-            <div className="max-w-md mx-auto mt-8">
-              <div className="relative">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 z-10 pointer-events-none" />
-                <input
-                  type="text"
-                  placeholder="Cerca prodotti, funzionalità, tag..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 backdrop-blur-xl bg-gradient-to-br from-white/10 via-white/5 to-white/3 rounded-xl border border-white/10 text-white placeholder-gray-400 focus:border-[#3ECF8E]/50 focus:outline-none transition-colors"
-                />
-              </div>
-            </div>
-          </div>
 
           {/* Categorie e Prodotti */}
           <div className="max-w-5xl mx-auto">
@@ -733,8 +768,6 @@ const Products = () => {
                         onClick={() => product.status === 'available' ? openProductDetail(product.id) : undefined}
                       >
                         
-                        {/* Etichetta Sconto rimossa dall'alto - ora va in basso */}
-
                         {/* Linea gradiente superiore */}
                         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-violet-400 via-violet-400 to-violet-500 opacity-60 group-hover:opacity-100 transition-opacity"></div>
 

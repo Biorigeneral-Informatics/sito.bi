@@ -49,6 +49,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />
+            <Route path="/products/:productSlug" element={<Products />} />
             
             {/* Percorsi principali */}
             <Route path="/software-pmi" element={<SoftwarePMI />} />

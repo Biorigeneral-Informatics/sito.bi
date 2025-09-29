@@ -709,3 +709,9 @@
 .animate-scroll {
   animation: scroll 45s linear infinite;
 }
+
+select option {
+  background-color: #343434 !important;
+  color: white !important;
+  border-radius: 20px;
+}

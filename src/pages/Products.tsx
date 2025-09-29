@@ -133,26 +133,25 @@ const Products = () => {
         {
           id: 3,
           name: 'Lead Generation System: Google Maps + Email Scraper',
-          description: 'Piattaforma di automazione per processi aziendali complessi',
-          longDescription: 'Piattaforma di automazione avanzata che trasforma i processi aziendali complessi in workflow intelligenti. Con oltre 250 connettori precostruiti e integrazione AI nativa, automatizza qualsiasi processo dall\'onboarding clienti alla gestione inventario. Interface drag-and-drop intuitiva e monitoraggio real-time per controllo completo.',
+          description: 'Automazione per processi aziendali complessi',
+          longDescription: 'Soluzione automatizzata che estrae lead qualificati direttamente da Google Maps, trasformando ricerche geografiche in database commerciali completi. Recupera automaticamente nomi aziende, indirizzi, telefoni ed email verificate da siti web e directory. Targeting per area geografica e settore, eliminazione duplicati intelligente ed export multi-formato. Interface intuitiva e risultati immediati per venditori B2B, agenzie marketing e startup.',
           icon: <Workflow className="w-8 h-8" />,
           tags: ['Workflow', 'Automation', 'Integrations', 'AI'],
           price: 'da €/mese',
           status: 'coming-soon',
           featured: true,
           features: [
-            'Oltre 250 connettori precostruiti per app popolari',
-            'Editor workflow drag-and-drop visuale',
-            'Trigger intelligenti basati su AI',
-            'Monitoraggio real-time e analytics',
-            'Gestione errori automatica con retry logic',
-            'API custom per integrazioni specifiche'
+            'Ricerca geografica avanzata con targeting per città e raggio chilometrico',
+            'Estrazione automatica di email da siti web e directory online',
+            'Filtri intelligenti per categoria business e parole chiave personalizzate',
+            'Eliminazione duplicati automatica e verifica validità email',
+            'Export multi-formato (Excel, CSV) e integrazione CRM',
           ],
           benefits: [
-            'Automazione fino al 90% dei processi manuali',
-            'Riduzione errori umani del 95%',
-            'Aumento produttività team del 70%',
-            'ROI medio del 300% nel primo anno'
+            'Riduzione del 90% del tempo di ricerca manuale dei contatti',
+            'Tasso di email valide del 60-80% con verifica automatica',
+            'Scalabilità illimitata per crescita business senza limiti geografici',
+            'Oltre 200 lead qualificati per sessione automatizzata'
           ]
         },
         {
@@ -411,17 +410,12 @@ const Products = () => {
                           <>
                             <Link
                               to="/contact"
-                              className="bg-gradient-to-r from-accent to-accent/80 text-white px-8 py-4 rounded-xl font-semibold hover:from-accent/90 hover:to-accent/70 transition-all duration-300 hover:-translate-y-1 shadow-lg inline-flex items-center justify-center group"
+                              className="bg-gradient-to-r from-accent to-accent/80 text-white px-12 py-4 rounded-xl font-semibold hover:from-accent/90 hover:to-accent/70 transition-all duration-300 hover:-translate-y-1 shadow-lg inline-flex items-center justify-center group"
                             >
-                              Richiedi Demo Gratuita
+                              Contattaci
                               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                             </Link>
-                            <Link
-                              to="/contact"
-                              className="glass border border-white/20 text-white px-8 py-4 rounded-xl font-semibold hover:border-accent/50 transition-all duration-300 hover:-translate-y-1 inline-flex items-center justify-center"
-                            >
-                              Contatta Vendite
-                            </Link>
+                            
                           </>
                         ) : (
                           <button className="glass border border-orange-500/30 text-orange-400 px-8 py-4 rounded-xl font-semibold cursor-default inline-flex items-center justify-center">

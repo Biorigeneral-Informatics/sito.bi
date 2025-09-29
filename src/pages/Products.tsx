@@ -55,7 +55,10 @@ const Products = () => {
           tags: ['Telegram', 'N8n', 'Workflow', 'Appuntamenti'],
           price: '€110/mese',
           status: 'available',
-          featured: true,
+          featured: false,
+          forever: false,        // NUOVO: per prodotti una tantum
+          subscription: true,   // NUOVO: per abbonamenti
+          customSetup: true,   // NUOVO: per setup personalizzato disponibile
           image: 'https://i.imgur.com/BJRduao.jpeg',
           features: [
             'Gestione conversazioni intelligente con modello AI a scelta',
@@ -72,32 +75,56 @@ const Products = () => {
           ]
         },
         {
-          id: 2,
-          name: 'Wordpress AutoBlog AI',
-          description: 'Un generatore AI di post wordpress già pronti in bozza per la pubblicazione, accessibile tramite una tua UI personale',
-          longDescription: 'Scopri il nostro generatore AI di post per WordPress, alimentato da GPT-4. Automatizza la creazione di contenuti di alta qualità mantenendo il controllo della pubblicazione. Accedi alla tua interfaccia personalizzabile dalla quale gestire tutto il processo.',
+          id: 7,
+          name: 'DM ChatBot Instagram',
+          description: 'Un assistente virtuale che gestisce i DM Instagram in modo autonomo',
+          longDescription: 'Assistente virtuale AI che trasforma i DM Instagram in un canale di vendita automatizzato. Risponde istantaneamente alle richieste ed è toalmente personalizzabile per rispecchiare il tono del brand, oltre che integrabile con oltre 10000 app, inclusi CRM e applicazioni custom a codice',
           icon: <Bot className="w-8 h-8" />,
-          tags: ['AI Blog', 'Wordpress Blog', 'Marketing', 'Post Wordpress'],
-          price: '€2400 una tantum',
-          status: 'available',
-          featured: true,
+          tags: ['Sales', 'Instagram', 'Meta', 'ChatBot'],
+          price: 'da €/mese',
+          status: 'coming-soon',
+          featured: false,
+          forever: false,        // NUOVO: per prodotti una tantum
+          subscription: false,   // NUOVO: per abbonamenti
+          customSetup: false,   // NUOVO: per setup personalizzato disponibile
           features: [
-              'Generazione automatica di 3+ di articoli Wordpress per volta',
-              'Interfaccia dedicata per gestione generazione',
-              'Gestione semplificata delle URL autorevoli',
-              'Blacklist per URL non desiderate',
-              'Generazione automatica di immagini con DALL-E 3',
-              'Su richiesta, disponibile versione premium con autogenerazione delle query di ricerca'
+            'ChatBot AI avanzato con modello AI a scelta',
+            'CRM bidirezionale integrabile (costo a parte)',
+            'Addestramento specializzato sul tuo settore e tone of voice personalizzato',
+            'Memoria conversazionale per interazioni più naturali',
+            'Tutta la potenza di n8n per integrazioni con 10000+ app',
           ],
           benefits: [
-            'SetUp della tua UI personale a codice',
-            'Setup della tua VPS dedicata (per sempre tua)',
-            'Riduzione 80% dei tempi di creazione contenuti',
-            'Controllo totale sugli articoli pubblicati',
-            '1 prompt per 3+ post già pronti su wordpress',
-            'Gestione semplificata dei link corretti'
+            'Aumento lead qualificati',
+            'Offri un\'esperienza cliente professionale',
+            'Risparmia tempo con risposte automatiche'
           ]
-        },
+      },
+      {
+          id: 7,
+          name: 'DM ChatBot Whatsapp',
+          description: 'Un assistente virtuale che gestisce i tuoi contatti su whatsapp in modo autonomo',
+          longDescription: ' Un assistente AI perfetto per gestire conversazioni o ordinazioni tramite la piattaforma Whatsapp. Addestramento personalizzato per rispecchiare il tono del brand, oltre che integrabile con oltre 10000 app, inclusi CRM e applicazioni custom a codice',
+          icon: <Bot className="w-8 h-8" />,
+          tags: ['Sales', 'Instagram', 'Meta', 'ChatBot'],
+          price: 'da €/mese',
+          status: 'coming-soon',
+          featured: false,
+          forever: false,        // NUOVO: per prodotti una tantum
+          subscription: false,   // NUOVO: per abbonamenti
+          customSetup: false,   // NUOVO: per setup personalizzato disponibile
+          features: [
+            'ChatBot AI avanzato con modello AI a scelta',
+            'CRM bidirezionale integrabile (costo a parte)',
+            'Addestramento specializzato sul tuo settore e tone of voice personalizzato',
+            'Memoria conversazionale per interazioni più naturali',
+          ],
+          benefits: [
+            'Aumento lead qualificati',
+            'Offri un\'esperienza cliente professionale',
+            'Risparmia tempo con risposte automatiche'
+          ]
+      },
         {
         id: 5,
         name: 'VoiceBot Enterprise',
@@ -108,6 +135,9 @@ const Products = () => {
         price: 'da €/mese',
         status: 'coming-soon',
         featured: false,
+        forever: false,        // NUOVO: per prodotti una tantum
+        subscription: false,   // NUOVO: per abbonamenti
+        customSetup: false,   // NUOVO: per setup personalizzato disponibile
         features: [
           'Riconoscimento vocale in oltre 30 lingue',
           'Integrazione telefonica completa (SIP/VoIP)',
@@ -130,6 +160,36 @@ const Products = () => {
       name: 'Automazioni',
       description: 'Soluzioni per automatizzare processi aziendali e ottimizzare i flussi di lavoro',
       products: [
+         {
+          id: 2,
+          name: 'Wordpress AutoBlog AI',
+          description: 'Un generatore AI di post wordpress già pronti in bozza per la pubblicazione, accessibile tramite una tua UI personale',
+          longDescription: 'Scopri il nostro generatore AI di post per WordPress, alimentato da GPT-4. Automatizza la creazione di contenuti di alta qualità mantenendo il controllo della pubblicazione. Accedi alla tua interfaccia personalizzabile dalla quale gestire tutto il processo.',
+          icon: <Bot className="w-8 h-8" />,
+          tags: ['AI Blog', 'Wordpress Blog', 'Marketing', 'Post Wordpress'],
+          price: '€4000 una tantum',
+          status: 'available',
+          featured: true,
+          forever: true,        // NUOVO: per prodotti una tantum
+          subscription: false,   // NUOVO: per abbonamenti
+          customSetup: false,   // NUOVO: per setup personalizzato disponibile
+          features: [
+              'Generazione automatica di 3+ di articoli Wordpress per volta',
+              'Interfaccia dedicata per gestione generazione',
+              'Gestione semplificata delle URL autorevoli',
+              'Blacklist per URL non desiderate',
+              'Generazione automatica di immagini con DALL-E 3',
+              'Su richiesta, disponibile versione premium con autogenerazione delle query di ricerca'
+          ],
+          benefits: [
+            'SetUp della tua UI personale a codice',
+            'Setup della tua VPS dedicata (per sempre tua)',
+            'Riduzione 80% dei tempi di creazione contenuti',
+            'Controllo totale sugli articoli pubblicati',
+            '1 prompt per 3+ post già pronti su wordpress',
+            'Gestione semplificata dei link corretti'
+          ]
+        },
         {
           id: 3,
           name: 'Lead Generation System: Google Maps + Email Scraper',
@@ -139,7 +199,10 @@ const Products = () => {
           tags: ['Workflow', 'Automation', 'Integrations', 'AI'],
           price: 'da €/mese',
           status: 'coming-soon',
-          featured: true,
+          featured: false,
+          forever: false,        // NUOVO: per prodotti una tantum
+          subscription: false,   // NUOVO: per abbonamenti
+          customSetup: false,   // NUOVO: per setup personalizzato disponibile
           features: [
             'Ricerca geografica avanzata con targeting per città e raggio chilometrico',
             'Estrazione automatica di email da siti web e directory online',
@@ -157,51 +220,30 @@ const Products = () => {
         {
         id: 6,
         name: 'AI StcokManager',
-        description: 'Workflow intelligente per la gestione dell\'inventario',
+        description: 'Workflow intelligente per la gestione dell\'inventario e degli ordini di rifornimento',
         longDescription: 'Soluzione di gestione dell\'inventario intelligente, pensata per Hotel e Ristoranti per gestire ordini di rifornimento, ma adattabile facilmente ad altri contesti. Basata su un sistema di ordinazione di nuovi prodotti tramite un\' account gmail, dotato di riconoscimento degli ordini automatico grazie alla potenza di GPT e calcolo automatico del prodotto migliore in inventario.',
         icon: <Database className="w-8 h-8" />,
         tags: ['Stock Management', 'Orders', 'Google Sheets', 'Workflow'],
-        price: '€3400 una tantum',
+        price: '€1700 una tantum',
         status: 'available',
         featured: false,
+        forever: true,        // NUOVO: per prodotti una tantum
+        subscription: false,   // NUOVO: per abbonamenti
+        customSetup: true,   // NUOVO: per setup personalizzato disponibile
         features: [
           'Ricezione ordini nuovi prodotti tramite account gmail',
           'Riconoscimento AI dei prodotti ordinati',
           'Estrazione dati strutturati via AI',
           'Generazione PDF per ordini a fornitori e magazzinieri',
           'Calcolo automatico del prodotto con prezzo migliore in inventario',
-          'UI Google Sheets'
+          'UI Google Sheets',
+          'Per ogni nuova integrazione c\'è un costo di setup una tantum'
         ],
         benefits: [
           'Automatizza la gestione dei nuovi ordini di rifornimento',
           'Integrabile con altri sistemi e gestionali esistenti',
           'Riconoscimento AI dei prodotti ordinati',
           'Facile da usare con UI Google Sheets e Gmail'
-        ]
-      },
-      {
-        id: 7,
-        name: 'SalesBot Pro',
-        description: 'Bot di vendita intelligente per lead generation e qualification automatizzata',
-        longDescription: 'Bot commerciale avanzato che automatizza il processo di vendita dalla lead generation alla qualification. Integrazione CRM nativa, scoring predittivo e follow-up personalizzati per massimizzare le conversioni.',
-        icon: <Bot className="w-8 h-8" />,
-        tags: ['Sales', 'Lead Generation', 'CRM', 'Automation'],
-        price: 'da €/mese',
-        status: 'coming-soon',
-        featured: false,
-        features: [
-          'Lead generation automatizzata multi-canale',
-          'Qualification intelligente con AI scoring',
-          'Integrazione CRM bidirezionale',
-          'Follow-up personalizzati automatici',
-          'A/B testing conversazioni',
-          'Analytics e reporting avanzati'
-        ],
-        benefits: [
-          'Aumento lead qualificati del 200%',
-          'Riduzione costo per lead del 60%',
-          'Miglioramento conversion rate del 45%',
-          'Accelerazione sales cycle del 30%'
         ]
       }
       ]
@@ -220,7 +262,10 @@ const Products = () => {
           tags: ['Analytics', 'Dashboard', 'Waste Analysis', 'Reports'],
           price: '€7000 una tantum',
           status: 'available',
-          featured: true,
+          featured: false,
+          forever: true,        // NUOVO: per prodotti una tantum
+          subscription: false,   // NUOVO: per abbonamenti
+          customSetup: false,   // NUOVO: per setup personalizzato disponibile
           features: [
             'Dashboard per gestione delle sostanze',
             'Database facile da gestire localmente sul tuo pc (SQLite)',
@@ -248,6 +293,9 @@ const Products = () => {
         price: 'da €/mese',
         status: 'coming-soon',
         featured: false,
+        forever: false,        // NUOVO: per prodotti una tantum
+        subscription: false,   // NUOVO: per abbonamenti
+        customSetup: false,   // NUOVO: per setup personalizzato disponibile
         features: [
           'Forecasting vendite con accuratezza 95%+',
           'Analisi churn e retention predittiva',
@@ -358,12 +406,27 @@ const Products = () => {
                     {/* Contenuto sinistra */}
                     <div>
                       {/* Badge e Status */}
-                      <div className="flex items-center gap-4 mb-6">
+                      <div className="flex flex-wrap items-center gap-2 mb-6">
                         {selectedProductData.featured && (
-                          <div className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+                          <span className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
                             <Star className="w-3 h-3" />
                             Popolare
-                          </div>
+                          </span>
+                        )}
+                        {selectedProductData.forever && (
+                          <span className="bg-slate-600/20 border border-slate-500/30 text-slate-300 text-xs font-bold px-3 py-1 rounded-full">
+                            Forever
+                          </span>
+                        )}
+                        {selectedProductData.subscription && (
+                          <span className="bg-cyan-600/20 border border-cyan-500/30 text-cyan-400 text-xs font-bold px-3 py-1 rounded-full">
+                            Abbonamento
+                          </span>
+                        )}
+                        {selectedProductData.customSetup && (
+                          <span className="bg-violet-600/20 border border-violet-500/30 text-violet-400 text-xs font-bold px-3 py-1 rounded-full">
+                            Setup Personalizzato
+                          </span>
                         )}
                         <span className={`text-sm font-medium px-3 py-1 rounded-full ${
                           selectedProductData.status === 'available' 
@@ -565,6 +628,45 @@ const Products = () => {
           </div>
         </section>
 
+        {/* Legenda Badge */}
+        <section className="py-8 container mx-auto px-4 md:px-6 lg:px-12">
+          <ScrollAnimation animation="fadeIn">
+            <div className="max-w-4xl mx-auto glass p-6 rounded-xl border border-white/10">
+              <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Legenda Prodotti</h3>
+              <div className="flex flex-wrap gap-4">
+                <div className="flex items-center gap-2">
+                  <span className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+                    <Star className="w-3 h-3" />
+                    Popolare
+                  </span>
+                  <span className="text-sm text-gray-400">Più richiesto</span>
+                </div>
+                
+                <div className="flex items-center gap-2">
+                  <span className="bg-slate-600/20 border border-slate-500/30 text-slate-300 text-xs font-bold px-3 py-1 rounded-full">
+                    Forever
+                  </span>
+                  <span className="text-sm text-gray-400">Acquisto una tantum</span>
+                </div>
+                
+                <div className="flex items-center gap-2">
+                  <span className="bg-cyan-600/20 border border-cyan-500/30 text-cyan-400 text-xs font-bold px-3 py-1 rounded-full">
+                    Abbonamento
+                  </span>
+                  <span className="text-sm text-gray-400">Canone mensile</span>
+                </div>
+                
+                <div className="flex items-center gap-2">
+                  <span className="bg-violet-600/20 border border-violet-500/30 text-violet-400 text-xs font-bold px-3 py-1 rounded-full">
+                    Setup Personalizzato
+                  </span>
+                  <span className="text-sm text-gray-400">Configurazione su misura disponibile</span>
+                </div>
+              </div>
+            </div>
+          </ScrollAnimation>
+        </section>
+
         {/* Marketplace Section */}
         <section className="py-20 container mx-auto px-4 md:px-6 lg:px-12">
           
@@ -644,13 +746,30 @@ const Products = () => {
                             </svg>
                           </div>
 
-                          {/* Badge Featured */}
+                        {/* Badge multipli - Featured, Forever, Subscription, Custom Setup */}
+                        <div className="absolute top-4 right-4 flex flex-wrap gap-1 justify-end z-20 max-w-[60%]">
                           {product.featured && (
-                            <div className="absolute top-4 right-4 bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1 z-20">
+                            <span className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
                               <Star className="w-3 h-3" />
                               Popolare
-                            </div>
+                            </span>
                           )}
+                          {product.forever && (
+                            <span className="bg-slate-600/20 border border-slate-500/30 text-slate-300 text-xs font-bold px-3 py-1 rounded-full">
+                              Forever
+                            </span>
+                          )}
+                          {product.subscription && (
+                            <span className="bg-cyan-600/20 border border-cyan-500/30 text-cyan-400 text-xs font-bold px-2 py-1 rounded-full">
+                              Abbonamento
+                            </span>
+                          )}
+                          {product.customSetup && (
+                            <span className="bg-violet-600/20 border border-violet-500/30 text-violet-400 text-xs font-bold px-2 py-1 rounded-full">
+                              Setup
+                            </span>
+                          )}
+                        </div>
 
                           {/* Badge Status con posizione aggiornata per evitare sovrapposizioni */}
                           <div className="absolute top-4 left-4 z-20">

@@ -49,52 +49,53 @@ const Products = () => {
         {
           id: 1,
           name: 'SegretarioAI Telegram',
-          description: 'Assistente virtuale avanzato per Telegram con workflow N8n integrati',
+          description: 'Il tuo assistente virtuale su Telegram integrabile con più di 10000 app',
           longDescription: 'Il primo assistente virtuale italiano che rivoluziona la gestione delle comunicazioni aziendali attraverso Telegram. Integrato con workflow N8n avanzati, automatizza conversazioni complesse, gestisce appuntamenti intelligenti e si integra perfettamente con tutti i tuoi sistemi esistenti. Disponibile 24/7, riduce dell\'80% il carico di lavoro manuale e migliora drasticamente l\'efficienza operativa.',
           icon: <MessageSquare className="w-8 h-8" />,
           tags: ['Telegram', 'N8n', 'Workflow', 'Appuntamenti'],
-          price: 'da €200/mese',
+          price: '€110/mese',
           status: 'available',
           featured: true,
           image: 'https://i.imgur.com/BJRduao.jpeg',
           features: [
-            'Gestione conversazioni intelligente con NLP avanzato',
-            'Workflow N8n integrati per automazioni complesse',
-            'Sistema di appuntamenti automatico con calendar sync',
-            'Disponibilità 24/7 con supporto multilingue',
-            'Integrazione con CRM e sistemi aziendali',
-            'Dashboard analytics per monitoraggio performance'
+            'Gestione conversazioni intelligente con modello AI a scelta',
+            'Totalmente customizzabile con integrazioni a piacere',
+            'Per ogni nuova integrazione c\'è un costo di setup una tantum',
+            'Sistema basato su MCP',
+            'Integrabilità con CRM e sistemi aziendali',
           ],
           benefits: [
-            'Riduzione 80% del carico di lavoro manuale',
-            'Miglioramento customer satisfaction del 45%',
-            'Automazione completa del customer service',
-            'ROI positivo già dal primo mese'
+            'Hai il tuo Agente AI sempre attivo su Telegram',
+            'Scegli tu cosa integrare',
+            'Google Calendar e Gmail integrati senza costi aggiuntivi',
+            'Tutta la comodità della UI Telegram'
           ]
         },
         {
           id: 2,
-          name: 'Generatore immagini AI',
-          description: 'Assistente AI specializzato per la generazione di immagini creative e professionali',
-          longDescription: 'Assistente AI avanzato per la generazione di immagini creative, loghi, contenuti visivi e materiale marketing. Utilizza modelli di intelligenza artificiale all\'avanguardia per creare contenuti visivi personalizzati in pochi secondi. Perfetto per agenzie, designer e aziende che necessitano di contenuti visivi rapidi e di qualità professionale.',
+          name: 'Wordpress AutoBlog AI',
+          description: 'Un generatore AI di post wordpress già pronti in bozza per la pubblicazione, accessibile tramite una tua UI personale',
+          longDescription: 'Scopri il nostro generatore AI di post per WordPress, alimentato da GPT-4. Automatizza la creazione di contenuti di alta qualità mantenendo il controllo della pubblicazione. Accedi alla tua interfaccia personalizzabile dalla quale gestire tutto il processo.',
           icon: <Bot className="w-8 h-8" />,
-          tags: ['AI Art', 'Design', 'Marketing', 'Creative'],
-          price: 'Da €/mese',
-          status: 'coming-soon',
-          featured: false,
+          tags: ['AI Blog', 'Wordpress Blog', 'Marketing', 'Post Wordpress'],
+          price: '€2400 una tantum',
+          status: 'available',
+          featured: true,
           features: [
-              'Generazione immagini HD in stili multipli',
-              'Creazione loghi e brand identity automatica',
-              'Template personalizzabili per social media',
-              'Modelli AI addestrati su contenuti commerciali',
-              'Esportazione in formati multipli (PNG, SVG, PDF)',
-              'Integrazione con strumenti di design esistenti'
+              'Generazione automatica di 3+ di articoli Wordpress per volta',
+              'Interfaccia dedicata per gestione generazione',
+              'Gestione semplificata delle URL autorevoli',
+              'Blacklist per URL non desiderate',
+              'Generazione automatica di immagini con DALL-E 3',
+              'Su richiesta, disponibile versione premium con autogenerazione delle query di ricerca'
           ],
           benefits: [
+            'SetUp della tua UI personale a codice',
+            'Setup della tua VPS dedicata (per sempre tua)',
             'Riduzione 80% dei tempi di creazione contenuti',
-            'Costi di design ridotti fino al 70%',
-            'Qualità professionale garantita',
-            'Personalizzazione illimitata per il brand'
+            'Controllo totale sugli articoli pubblicati',
+            '1 prompt per 3+ post già pronti su wordpress',
+            'Gestione semplificata dei link corretti'
           ]
         },
         {
@@ -136,8 +137,8 @@ const Products = () => {
           longDescription: 'Piattaforma di automazione avanzata che trasforma i processi aziendali complessi in workflow intelligenti. Con oltre 250 connettori precostruiti e integrazione AI nativa, automatizza qualsiasi processo dall\'onboarding clienti alla gestione inventario. Interface drag-and-drop intuitiva e monitoraggio real-time per controllo completo.',
           icon: <Workflow className="w-8 h-8" />,
           tags: ['Workflow', 'Automation', 'Integrations', 'AI'],
-          price: 'da €60/mese',
-          status: 'available',
+          price: 'da €/mese',
+          status: 'coming-soon',
           featured: true,
           features: [
             'Oltre 250 connettori precostruiti per app popolari',
@@ -156,27 +157,27 @@ const Products = () => {
         },
         {
         id: 6,
-        name: 'DocumentFlow AI',
-        description: 'Automazione intelligente per gestione documenti con OCR e classificazione automatica',
-        longDescription: 'Piattaforma AI per automazione completa dei documenti aziendali. OCR avanzato, classificazione automatica, estrazione dati e workflow di approvazione intelligenti per digitalizzare completamente i processi documentali.',
+        name: 'AI StcokManager',
+        description: 'Workflow intelligente per la gestione dell\'inventario',
+        longDescription: 'Soluzione di gestione dell\'inventario intelligente, pensata per Hotel e Ristoranti per gestire ordini di rifornimento, ma adattabile facilmente ad altri contesti. Basata su un sistema di ordinazione di nuovi prodotti tramite un\' account gmail, dotato di riconoscimento degli ordini automatico grazie alla potenza di GPT e calcolo automatico del prodotto migliore in inventario.',
         icon: <Database className="w-8 h-8" />,
-        tags: ['OCR', 'Document Management', 'Classification', 'Workflow'],
-        price: 'da €/mese',
-        status: 'coming-soon',
+        tags: ['Stock Management', 'Orders', 'Google Sheets', 'Workflow'],
+        price: '€3400 una tantum',
+        status: 'available',
         featured: false,
         features: [
-          'OCR avanzato con accuratezza del 99.5%',
-          'Classificazione automatica documenti',
+          'Ricezione ordini nuovi prodotti tramite account gmail',
+          'Riconoscimento AI dei prodotti ordinati',
           'Estrazione dati strutturati via AI',
-          'Workflow di approvazione configurabili',
-          'Integrazione sistemi gestionali',
-          'Audit trail completo e compliance'
+          'Generazione PDF per ordini a fornitori e magazzinieri',
+          'Calcolo automatico del prodotto con prezzo migliore in inventario',
+          'UI Google Sheets'
         ],
         benefits: [
-          'Riduzione 90% del tempo di elaborazione',
-          'Eliminazione errori manuali',
-          'Conformità normative automatica',
-          'ROI del 400% nel primo anno'
+          'Automatizza la gestione dei nuovi ordini di rifornimento',
+          'Integrabile con altri sistemi e gestionali esistenti',
+          'Riconoscimento AI dei prodotti ordinati',
+          'Facile da usare con UI Google Sheets e Gmail'
         ]
       },
       {
@@ -214,25 +215,27 @@ const Products = () => {
         {
           id: 4,
           name: 'Classificatore rifiuti',
-          description: 'Suite di analytics avanzata con dashboard personalizzabili',
-          longDescription: 'Suite completa di business intelligence che trasforma i dati aziendali in insights azionabili. Utilizza machine learning avanzato per previsioni accurate, dashboard interattive personalizzabili e report automatici. Integrazione nativa con tutti i principali database e sistemi aziendali per una vista unificata del business.',
+          description: 'Micro gestionale per la classificazione dei rifiuti',
+          longDescription: 'Micro gestonale per la classificazione rifiuti, in Electron e con database sostanze sul tuo pc progettato per semplificare il processo di assegnazione delle caratteristiche di pericolo HP',
           icon: <Database className="w-8 h-8" />,
-          tags: ['Analytics', 'Dashboard', 'Machine Learning', 'Reports'],
-          price: 'Richiedi Preventivo',
+          tags: ['Analytics', 'Dashboard', 'Waste Analysis', 'Reports'],
+          price: '€7000 una tantum',
           status: 'available',
           featured: true,
           features: [
-            'Dashboard interattive completamente personalizzabili',
-            'Machine learning per insights predittivi',
-            'Report automatici programmabili',
-            'Integrazione con 50+ fonti dati',
-            'Visualizzazioni avanzate e drill-down',
-            'Alerting intelligente per KPI critici'
+            'Dashboard per gestione delle sostanze',
+            'Database facile da gestire localmente sul tuo pc (SQLite)',
+            'Importazione del campione con un semplice file excel',
+            'File ECHA per sostanze armonizzate importabile',
+            'GEnerazione report word per ogni classificazione',
+            'Assegnazione sali per gestione dei metalli',
+            'Eseguibile su Windows e MacOS',
+            'Alerting intelligente'
           ],
           benefits: [
-            'Decisioni data-driven 5x più veloci',
-            'Identificazione opportunità nascoste',
-            'Riduzione costi operativi del 25%',
+            'Calcoli di classificazione precisi con più di 4K righe di codice python',
+            'Dashboard semplice ed intuitiva',
+            'Classificazione in blocco di tutto il campione con1 click',
             'Miglioramento forecasting accuracy del 40%'
           ]
         },

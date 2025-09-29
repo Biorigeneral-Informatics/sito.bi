@@ -1,7 +1,7 @@
-// src/pages/Products.tsx - Versione marketplace con dettagli prodotto
-import { useState, useRef, useEffect } from 'react';
+// src/pages/Products.tsx - Versione marketplace con dettagli prodotto e routing
+import { useRef, useEffect, useState } from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import {
   BrainCircuit, 
   Shield, ChevronRight, 
@@ -28,10 +28,11 @@ import { getSEOData } from '../config/seoData';
 const seoData = getSEOData('products'); 
 
 const Products = () => {
+  const { productSlug } = useParams<{ productSlug?: string }>();
+  const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [showAllFaqs, setShowAllFaqs] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<number | null>(null);
 
   // Scroll to top on page load
   useEffect(() => {
@@ -48,6 +49,7 @@ const Products = () => {
       products: [
         {
           id: 1,
+          slug: 'segretario-ai-telegram',
           name: 'SegretarioAI Telegram',
           description: 'Il tuo assistente virtuale su Telegram integrabile con più di 10000 app',
           longDescription: 'Il primo assistente virtuale italiano che rivoluziona la gestione delle comunicazioni aziendali attraverso Telegram. Integrato con workflow N8n avanzati, automatizza conversazioni complesse, gestisce appuntamenti intelligenti e si integra perfettamente con tutti i tuoi sistemi esistenti. Disponibile 24/7, riduce dell\'80% il carico di lavoro manuale e migliora drasticamente l\'efficienza operativa.',
@@ -56,9 +58,9 @@ const Products = () => {
           price: '€110/mese',
           status: 'available',
           featured: false,
-          forever: false,        // NUOVO: per prodotti una tantum
-          subscription: true,   // NUOVO: per abbonamenti
-          customSetup: true,   // NUOVO: per setup personalizzato disponibile
+          forever: false,
+          subscription: true,
+          customSetup: true,
           image: 'https://i.imgur.com/BJRduao.jpeg',
           features: [
             'Gestione conversazioni intelligente con modello AI a scelta',
@@ -76,6 +78,7 @@ const Products = () => {
         },
         {
           id: 7,
+          slug: 'dm-chatbot-instagram',
           name: 'DM ChatBot Instagram',
           description: 'Un assistente virtuale che gestisce i DM Instagram in modo autonomo',
           longDescription: 'Assistente virtuale AI che trasforma i DM Instagram in un canale di vendita automatizzato. Risponde istantaneamente alle richieste ed è toalmente personalizzabile per rispecchiare il tono del brand, oltre che integrabile con oltre 10000 app, inclusi CRM e applicazioni custom a codice',
@@ -84,9 +87,9 @@ const Products = () => {
           price: 'da €/mese',
           status: 'coming-soon',
           featured: false,
-          forever: false,        // NUOVO: per prodotti una tantum
-          subscription: false,   // NUOVO: per abbonamenti
-          customSetup: false,   // NUOVO: per setup personalizzato disponibile
+          forever: false,
+          subscription: false,
+          customSetup: false,
           features: [
             'ChatBot AI avanzato con modello AI a scelta',
             'CRM bidirezionale integrabile (costo a parte)',
@@ -101,7 +104,8 @@ const Products = () => {
           ]
       },
       {
-          id: 7,
+          id: 8,
+          slug: 'dm-chatbot-whatsapp',
           name: 'DM ChatBot Whatsapp',
           description: 'Un assistente virtuale che gestisce i tuoi contatti su whatsapp in modo autonomo',
           longDescription: ' Un assistente AI perfetto per gestire conversazioni o ordinazioni tramite la piattaforma Whatsapp. Addestramento personalizzato per rispecchiare il tono del brand, oltre che integrabile con oltre 10000 app, inclusi CRM e applicazioni custom a codice',
@@ -110,9 +114,9 @@ const Products = () => {
           price: 'da €/mese',
           status: 'coming-soon',
           featured: false,
-          forever: false,        // NUOVO: per prodotti una tantum
-          subscription: false,   // NUOVO: per abbonamenti
-          customSetup: false,   // NUOVO: per setup personalizzato disponibile
+          forever: false,
+          subscription: false,
+          customSetup: false,
           features: [
             'ChatBot AI avanzato con modello AI a scelta',
             'CRM bidirezionale integrabile (costo a parte)',
@@ -127,6 +131,7 @@ const Products = () => {
       },
         {
         id: 5,
+        slug: 'voicebot-enterprise',
         name: 'VoiceBot Enterprise',
         description: 'Assistente vocale avanzato per call center e customer service con riconoscimento vocale multilingue',
         longDescription: 'Assistente vocale enterprise che trasforma il customer service attraverso AI conversazionale avanzata. Supporta oltre 30 lingue, integrazione telefonica completa e analytics delle chiamate in tempo reale.',
@@ -135,9 +140,9 @@ const Products = () => {
         price: 'da €/mese',
         status: 'coming-soon',
         featured: false,
-        forever: false,        // NUOVO: per prodotti una tantum
-        subscription: false,   // NUOVO: per abbonamenti
-        customSetup: false,   // NUOVO: per setup personalizzato disponibile
+        forever: false,
+        subscription: false,
+        customSetup: false,
         features: [
           'Riconoscimento vocale in oltre 30 lingue',
           'Integrazione telefonica completa (SIP/VoIP)',
@@ -162,6 +167,7 @@ const Products = () => {
       products: [
          {
           id: 2,
+          slug: 'wordpress-autoblog-ai',
           name: 'Wordpress AutoBlog AI',
           description: 'Un generatore AI di post wordpress già pronti in bozza per la pubblicazione, accessibile tramite una tua UI personale',
           longDescription: 'Scopri il nostro generatore AI di post per WordPress, alimentato da GPT-4. Automatizza la creazione di contenuti di alta qualità mantenendo il controllo della pubblicazione. Accedi alla tua interfaccia personalizzabile dalla quale gestire tutto il processo.',
@@ -170,9 +176,9 @@ const Products = () => {
           price: '€4000 una tantum',
           status: 'available',
           featured: true,
-          forever: true,        // NUOVO: per prodotti una tantum
-          subscription: false,   // NUOVO: per abbonamenti
-          customSetup: false,   // NUOVO: per setup personalizzato disponibile
+          forever: true,
+          subscription: false,
+          customSetup: false,
           features: [
               'Generazione automatica di 3+ di articoli Wordpress per volta',
               'Interfaccia dedicata per gestione generazione',
@@ -192,6 +198,7 @@ const Products = () => {
         },
         {
           id: 3,
+          slug: 'lead-generation-system',
           name: 'Lead Generation System: Google Maps + Email Scraper',
           description: 'Automazione per processi aziendali complessi',
           longDescription: 'Soluzione automatizzata che estrae lead qualificati direttamente da Google Maps, trasformando ricerche geografiche in database commerciali completi. Recupera automaticamente nomi aziende, indirizzi, telefoni ed email verificate da siti web e directory. Targeting per area geografica e settore, eliminazione duplicati intelligente ed export multi-formato. Interface intuitiva e risultati immediati per venditori B2B, agenzie marketing e startup.',
@@ -200,9 +207,9 @@ const Products = () => {
           price: 'da €/mese',
           status: 'coming-soon',
           featured: false,
-          forever: false,        // NUOVO: per prodotti una tantum
-          subscription: false,   // NUOVO: per abbonamenti
-          customSetup: false,   // NUOVO: per setup personalizzato disponibile
+          forever: false,
+          subscription: false,
+          customSetup: false,
           features: [
             'Ricerca geografica avanzata con targeting per città e raggio chilometrico',
             'Estrazione automatica di email da siti web e directory online',
@@ -219,6 +226,7 @@ const Products = () => {
         },
         {
         id: 6,
+        slug: 'ai-stock-manager',
         name: 'AI StcokManager',
         description: 'Workflow intelligente per la gestione dell\'inventario e degli ordini di rifornimento',
         longDescription: 'Soluzione di gestione dell\'inventario intelligente, pensata per Hotel e Ristoranti per gestire ordini di rifornimento, ma adattabile facilmente ad altri contesti. Basata su un sistema di ordinazione di nuovi prodotti tramite un\' account gmail, dotato di riconoscimento degli ordini automatico grazie alla potenza di GPT e calcolo automatico del prodotto migliore in inventario.',
@@ -227,9 +235,9 @@ const Products = () => {
         price: '€1700 una tantum',
         status: 'available',
         featured: false,
-        forever: true,        // NUOVO: per prodotti una tantum
-        subscription: false,   // NUOVO: per abbonamenti
-        customSetup: true,   // NUOVO: per setup personalizzato disponibile
+        forever: true,
+        subscription: false,
+        customSetup: true,
         features: [
           'Ricezione ordini nuovi prodotti tramite account gmail',
           'Riconoscimento AI dei prodotti ordinati',
@@ -255,6 +263,7 @@ const Products = () => {
       products: [
         {
           id: 4,
+          slug: 'classificatore-rifiuti',
           name: 'Classificatore rifiuti',
           description: 'Micro gestionale per la classificazione dei rifiuti',
           longDescription: 'Micro gestonale per la classificazione rifiuti, in Electron e con database sostanze sul tuo pc progettato per semplificare il processo di assegnazione delle caratteristiche di pericolo HP',
@@ -263,9 +272,9 @@ const Products = () => {
           price: '€7000 una tantum',
           status: 'available',
           featured: false,
-          forever: true,        // NUOVO: per prodotti una tantum
-          subscription: false,   // NUOVO: per abbonamenti
-          customSetup: false,   // NUOVO: per setup personalizzato disponibile
+          forever: true,
+          subscription: false,
+          customSetup: false,
           features: [
             'Dashboard per gestione delle sostanze',
             'Database facile da gestire localmente sul tuo pc (SQLite)',
@@ -284,7 +293,8 @@ const Products = () => {
           ]
         },
         {
-        id: 8,
+        id: 9,
+        slug: 'gestionale-tricologia',
         name: 'Gestionale Tricologia',
         description: 'Piattaforma di machine learning per forecasting e analisi predittiva aziendale',
         longDescription: 'Suite completa di machine learning per analisi predittive aziendali. Forecasting vendite, previsioni demand planning, analisi churn e ottimizzazione pricing con algoritmi proprietari e interpretabilità completa.',
@@ -293,9 +303,9 @@ const Products = () => {
         price: 'da €/mese',
         status: 'coming-soon',
         featured: false,
-        forever: false,        // NUOVO: per prodotti una tantum
-        subscription: false,   // NUOVO: per abbonamenti
-        customSetup: false,   // NUOVO: per setup personalizzato disponibile
+        forever: false,
+        subscription: false,
+        customSetup: false,
         features: [
           'Forecasting vendite con accuratezza 95%+',
           'Analisi churn e retention predittiva',
@@ -323,7 +333,17 @@ const Products = () => {
     }))
   );
 
-  
+  // Ottieni il prodotto selezionato tramite slug dall'URL
+  const selectedProductData = productSlug
+    ? allProducts.find(p => p.slug === productSlug)
+    : null;
+
+  // Redirect se lo slug non esiste
+  useEffect(() => {
+    if (productSlug && !selectedProductData) {
+      navigate('/products', { replace: true });
+    }
+  }, [productSlug, selectedProductData, navigate]);
 
   // Filtra i prodotti in base alla ricerca
   const filteredCategories = productCategories.map(category => ({
@@ -338,33 +358,15 @@ const Products = () => {
     })
   })).filter(category => category.products.length > 0);
 
-  // Funzione per aprire il dettaglio prodotto
-  const openProductDetail = (productId: number) => {
-    setSelectedProduct(productId);
-    // Scroll to top quando si apre il dettaglio
-    window.scrollTo(0, 0);
-  };
-
-  // Funzione per tornare alla lista
-  const closeProductDetail = () => {
-    setSelectedProduct(null);
-    window.scrollTo(0, 0);
-  };
-
-  // Ottieni il prodotto selezionato
-  const selectedProductData = selectedProduct 
-    ? allProducts.find(p => p.id === selectedProduct)
-    : null;
-
-  // Se è selezionato un prodotto, mostra la vista dettaglio
-  if (selectedProduct && selectedProductData) {
+  // Se è selezionato un prodotto tramite URL, mostra la vista dettaglio
+  if (productSlug && selectedProductData) {
     return (
       <>
         <SEO 
           title={`${selectedProductData.name} - ${seoData.title}`}
           description={selectedProductData.description}
           keywords={`${selectedProductData.tags.join(', ')}, ${seoData.keywords}`}
-          canonicalUrl={`${seoData.canonicalUrl}#${selectedProductData.id}`}
+          canonicalUrl={`${seoData.canonicalUrl}/${selectedProductData.slug}`}
         />
         
         {/* Background gradients */}
@@ -384,13 +386,13 @@ const Products = () => {
           {/* Header con bottone indietro */}
           <section className="pt-8 pb-8">
             <div className="container mx-auto px-4 md:px-6 lg:px-12">
-              <button
-                onClick={closeProductDetail}
+              <Link
+                to="/products"
                 className="flex items-center text-accent hover:text-accent/80 font-medium mb-8 group transition-colors"
               >
                 <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
                 Torna ai prodotti
-              </button>
+              </Link>
             </div>
           </section>
 
@@ -723,10 +725,7 @@ const Products = () => {
                       >
                         {/* Card del prodotto con elementi decorativi */}
                         <div 
-                          className={`backdrop-blur-xl bg-gradient-to-br from-white/10 via-white/5 to-white/3 p-6 rounded-2xl border border-white/20 hover:border-accent/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent/20 h-full flex flex-col relative overflow-hidden ${
-                            product.status === 'available' ? 'cursor-pointer' : 'cursor-default'
-                          }`}
-                          onClick={() => product.status === 'available' ? openProductDetail(product.id) : undefined}
+                          className="backdrop-blur-xl bg-gradient-to-br from-white/10 via-white/5 to-white/3 p-6 rounded-2xl border border-white/20 hover:border-accent/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent/20 h-full flex flex-col relative overflow-hidden"
                         >
                           
                           {/* Linea gradiente superiore */}
@@ -827,10 +826,13 @@ const Products = () => {
                               </div>
                               <div className="flex items-center gap-2">
                                 {product.status === 'available' ? (
-                                  <div className="flex items-center text-accent hover:text-accent/80 text-sm font-medium group/btn">
+                                  <Link
+                                    to={`/products/${product.slug}`}
+                                    className="flex items-center text-accent hover:text-accent/80 text-sm font-medium group/btn"
+                                  >
                                     Scopri di più
                                     <ArrowRight className="w-4 h-4 ml-1 group-hover/btn:translate-x-1 group-hover:translate-x-2 transition-transform duration-300" />
-                                  </div>
+                                  </Link>
                                 ) : (
                                   <div className="flex items-center text-orange-400 text-sm font-medium cursor-default">
                                     <Clock className="w-4 h-4 mr-1" />

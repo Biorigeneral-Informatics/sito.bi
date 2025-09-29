@@ -849,7 +849,7 @@ const Products = () => {
                                 <div className="space-y-1">
                                   <div className="flex items-center gap-2 mb-1">
                                     <div className="bg-gradient-to-r from-red-500 to-orange-500 text-white text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wide">
-                                      🔥 Offerta Speciale
+                                      Offerta Speciale
                                     </div>
                                   </div>
                                   <div className="flex items-center gap-2">

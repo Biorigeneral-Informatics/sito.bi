@@ -19,6 +19,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import CookieBanner from './components/CookieBanner';
 import { ThemeProvider } from './hooks/useTheme';
 import AssistentiAILocale from './pages/AssistentiAILocale'
+import AutoTranslate from './components/LanguageSelector';
 
 
 localStorage.removeItem('preloaderShown');
@@ -42,6 +43,7 @@ function App() {
       <ScrollToTop />
       <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
         <AnimatedBackground />
+        <AutoTranslate />
         <Navbar />
         <main>
           <Routes>

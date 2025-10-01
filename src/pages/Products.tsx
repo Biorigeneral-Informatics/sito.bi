@@ -83,13 +83,14 @@ const Products = () => {
           longDescription: 'Assistente virtuale AI che trasforma i DM Instagram in un canale di vendita automatizzato. Risponde istantaneamente alle richieste ed è totalmente personalizzabile per rispecchiare il tono del brand, oltre che integrabile con oltre 10000 app, inclusi CRM e applicazioni custom a codice',
           icon: <Bot className="w-8 h-8" />,
           tags: ['Sales', 'Instagram', 'Meta', 'ChatBot'],
-          price: 'da €/mese',
+          price: '€600',
+          originalPrice: '€800',
           status: 'available',
-          featured: false,
+          featured: true,
           forever: false,
           subscription: false,
-          customSetup: false,
-          discount: null,
+          customSetup: true,
+          discount: { percentage: 35, label: 'Promo Ottobre' },
           features: [
             'ChatBot AI avanzato con modello AI a scelta',
             'CRM bidirezionale integrabile (costo a parte)',
@@ -111,13 +112,14 @@ const Products = () => {
           longDescription: 'Un assistente AI perfetto per gestire conversazioni o ordinazioni tramite la piattaforma Whatsapp. Addestramento personalizzato per rispecchiare il tono del brand, oltre che integrabile con oltre 10000 app, inclusi CRM e applicazioni custom a codice',
           icon: <Bot className="w-8 h-8" />,
           tags: ['Sales', 'Whatsapp', 'Meta', 'ChatBot'],
-          price: 'da €/mese',
+          price: '€1000',
+          originalPrice: '€1200',
           status: 'available',
-          featured: false,
+          featured: true,
           forever: false,
           subscription: false,
-          customSetup: false,
-          discount: null,
+          customSetup: true,
+          discount: { percentage: 20, label: 'Promo Ottobre' },
           features: [
             'ChatBot AI avanzato con modello AI a scelta',
             'CRM bidirezionale integrabile (costo a parte)',
@@ -423,12 +425,11 @@ const Products = () => {
                 <div className="relative backdrop-blur-xl bg-gradient-to-br from-white/10 via-white/5 to-white/3 p-8 lg:p-12 rounded-2xl border border-white/10 mb-8">
 
                   {/* Badge Sconto in alto a destra - Solo se c'è uno sconto attivo */}
-                  {selectedProductData.discount && (
+                  {selectedProductData.discount && typeof selectedProductData.discount === 'object' && 'percentage' in selectedProductData.discount && (
                     <div className="absolute top-6 right-6 z-30">
                       <div className="relative">
                         {/* Glow rosso/arancio */}
                         <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-orange-500 rounded-full blur-lg opacity-60 animate-pulse"></div>
-                        
                         {/* Badge principale */}
                         <div 
                           className="relative text-white px-5 py-2.5 rounded-full flex items-center gap-2 shadow-xl font-black text-sm uppercase tracking-wide"
@@ -501,9 +502,9 @@ const Products = () => {
                           
                           {/* Prezzo con sconto */}
                           <div className="flex items-center gap-3">
-                            {selectedProductData.discount && selectedProductData.originalPrice ? (
+                            {selectedProductData.discount && typeof selectedProductData.discount === 'object' && 'percentage' in selectedProductData.discount && 'originalPrice' in selectedProductData ? (
                               <>
-                                <span className="text-gray-500 line-through text-lg">{selectedProductData.originalPrice}</span>
+                                <span className="text-gray-500 line-through text-lg">{(selectedProductData as any).originalPrice}</span>
                                 <span className="text-[#3ECF8E] font-bold text-2xl">{selectedProductData.price}</span>
                               </>
                             ) : (
@@ -726,7 +727,7 @@ const Products = () => {
                 <span className="bg-violet-600/20 border border-violet-500/30 text-violet-400 text-xs font-bold px-3 py-1 rounded-full">
                   Setup Personalizzato
                 </span>
-                <span className="text-sm text-gray-400">Configurazione su misura disponibile</span>
+                <span className="text-sm text-gray-400">Si può personalizzare pagando una quota in più a parte</span>
               </div>
             </div>
           </div>
@@ -844,7 +845,7 @@ const Products = () => {
                             
                             {/* Sezione Sinistra: Prezzo o Offerta Speciale */}
                             <div className="flex-1">
-                              {product.discount && product.originalPrice ? (
+                              {product.discount && typeof product.discount === 'object' && 'percentage' in product.discount && 'originalPrice' in product ? (
                                 // OFFERTA SPECIALE - Sostituisce il prezzo
                                 <div className="space-y-1">
                                   <div className="flex items-center gap-2 mb-1">
@@ -853,7 +854,7 @@ const Products = () => {
                                     </div>
                                   </div>
                                   <div className="flex items-center gap-2">
-                                    <span className="text-gray-500 line-through text-sm">{product.originalPrice}</span>
+                                    <span className="text-gray-500 line-through text-sm">{(product as any).originalPrice}</span>
                                     <span className="text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500">
                                       {product.price}
                                     </span>

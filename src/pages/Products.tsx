@@ -19,7 +19,6 @@ import {
   Bot,
   Database,
   CheckCircle,
-  TrendingUp,
   Award,
   Sparkles
 } from 'lucide-react';
@@ -260,75 +259,6 @@ const Products = () => {
             'Integrabile con altri sistemi e gestionali esistenti',
             'Riconoscimento AI dei prodotti ordinati',
             'Facile da usare con UI Google Sheets e Gmail'
-          ]
-        }
-      ]
-    },
-    {
-      id: 'software',
-      name: 'Software',
-      description: 'Strumenti avanzati di analisi dati e business intelligence',
-      products: [
-        {
-          id: 4,
-          slug: 'classificatore-rifiuti',
-          name: 'Classificatore rifiuti',
-          description: 'Micro gestionale per la classificazione dei rifiuti',
-          longDescription: 'Micro gestionale per la classificazione rifiuti, in Electron e con database sostanze sul tuo pc progettato per semplificare il processo di assegnazione delle caratteristiche di pericolo HP',
-          icon: <Database className="w-8 h-8" />,
-          tags: ['Analytics', 'Dashboard', 'Waste Analysis', 'Reports'],
-          price: '€7000',
-          status: 'available',
-          featured: false,
-          forever: true,
-          subscription: false,
-          customSetup: false,
-          discount: null,
-          features: [
-            'Dashboard per gestione delle sostanze',
-            'Database facile da gestire localmente sul tuo pc (SQLite)',
-            'Importazione del campione con un semplice file excel',
-            'File ECHA per sostanze armonizzate importabile',
-            'Generazione report word per ogni classificazione',
-            'Assegnazione sali per gestione dei metalli',
-            'Eseguibile su Windows e MacOS',
-            'Alerting intelligente'
-          ],
-          benefits: [
-            'Calcoli di classificazione precisi con più di 4K righe di codice python',
-            'Dashboard semplice ed intuitiva',
-            'Classificazione in blocco di tutto il campione con 1 click',
-            'Miglioramento forecasting accuracy del 40%'
-          ]
-        },
-        {
-          id: 8,
-          slug: 'gestionale-tricologia',
-          name: 'Gestionale Tricologia',
-          description: 'Piattaforma di machine learning per forecasting e analisi predittiva aziendale',
-          longDescription: 'Suite completa di machine learning per analisi predittive aziendali. Forecasting vendite, previsioni demand planning, analisi churn e ottimizzazione pricing con algoritmi proprietari e interpretabilità completa.',
-          icon: <TrendingUp className="w-8 h-8" />,
-          tags: ['Machine Learning', 'Forecasting', 'Predictive', 'AI'],
-          price: 'da €/mese',
-          status: 'coming-soon',
-          featured: false,
-          forever: false,
-          subscription: false,
-          customSetup: false,
-          discount: null,
-          features: [
-            'Forecasting vendite con accuratezza 95%+',
-            'Analisi churn e retention predittiva',
-            'Ottimizzazione pricing dinamica',
-            'Demand planning intelligente',
-            'Interpretabilità modelli AI completa',
-            'Integration con sistemi ERP/CRM'
-          ],
-          benefits: [
-            'Miglioramento forecast accuracy del 40%',
-            'Riduzione inventory costs del 25%',
-            'Aumento revenue del 15% via pricing',
-            'Retention clienti +30%'
           ]
         }
       ]

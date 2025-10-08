@@ -87,7 +87,7 @@ const Products = () => {
           status: 'available',
           featured: true,
           forever: false,
-          subscription: false,
+          subscription: true,
           customSetup: true,
           discount: { percentage: 50, label: 'Promo Ottobre' },
           features: [
@@ -127,7 +127,7 @@ const Products = () => {
           status: 'available',
           featured: true,
           forever: false,
-          subscription: false,
+          subscription: true,
           customSetup: true,
           discount: { percentage: 20, label: 'Promo Ottobre' },
           features: [

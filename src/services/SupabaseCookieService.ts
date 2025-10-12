@@ -1,4 +1,4 @@
-// src/services/SupabaseCookieService.ts
+// src/services/SupabaseCookieService.ts - GDPR COMPLIANT CON IP ANONIMIZZATO
 export interface CookiePreferences {
   necessary: boolean;
   analytics: boolean;
@@ -9,7 +9,7 @@ export interface CookiePreferences {
 export class SupabaseCookieService {
   private static instance: SupabaseCookieService | null = null;
   
-  // 🔑 Credenziali Supabase dalle variabili d'ambiente (CORRETTO)
+  // 🔑 Credenziali Supabase dalle variabili d'ambiente
   private readonly SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
   private readonly SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
@@ -37,12 +37,38 @@ export class SupabaseCookieService {
     return sessionId;
   }
 
-  // 🌐 Ottieni informazioni IP (opzionale)
+  // 🆕 ANONIMIZZA IP (GDPR COMPLIANCE)
+  private anonymizeIP(ip: string): string {
+    if (!ip) return 'unknown';
+    
+    // IPv4: rimuovi ultimo ottetto (es. 192.168.1.100 → 192.168.1.0)
+    if (ip.includes('.') && !ip.includes(':')) {
+      const parts = ip.split('.');
+      if (parts.length === 4) {
+        return `${parts[0]}.${parts[1]}.${parts[2]}.0`;
+      }
+    }
+    
+    // IPv6: mantieni solo primi 48 bit (es. 2001:db8:abcd:0012::1 → 2001:db8:abcd::)
+    if (ip.includes(':')) {
+      const segments = ip.split(':').slice(0, 3);
+      return `${segments.join(':')}::`;
+    }
+    
+    return 'unknown';
+  }
+
+  // 🌐 Ottieni e anonimizza IP (GDPR COMPLIANCE)
   private async getClientIP(): Promise<string | null> {
     try {
       const response = await fetch('https://api.ipify.org?format=json');
       const data = await response.json();
-      return data.ip;
+      
+      // 🆕 ANONIMIZZA IP PRIMA DI RITORNARLO
+      const anonymizedIP = this.anonymizeIP(data.ip);
+      console.log('🔒 IP anonimizzato per GDPR compliance');
+      
+      return anonymizedIP;
     } catch (error) {
       console.log('⚠️ Impossibile ottenere IP:', error);
       return null;
@@ -58,11 +84,11 @@ export class SupabaseCookieService {
       }
 
       const sessionId = this.getSessionId();
-      const clientIP = await this.getClientIP();
+      const clientIP = await this.getClientIP(); // IP già anonimizzato
       
       const consentData = {
         session_id: sessionId,
-        ip_address: clientIP,
+        ip_address: clientIP, // 🔒 IP anonimizzato (GDPR compliant)
         user_agent: navigator.userAgent,
         page_url: window.location.href,
         referrer: document.referrer || '',

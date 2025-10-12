@@ -25,7 +25,7 @@ const translations: Translations = {
   it: {
     title: "Privacy e Cookie Policy",
     subtitle: "Come proteggiamo i tuoi dati personali e utilizziamo i cookie durante la tua esperienza con i nostri servizi.",
-    lastUpdate: "Ultimo aggiornamento: 15 gennaio 2025",
+    lastUpdate: "Ultimo aggiornamento: 12 ottobre 2025",
     switchLanguage: "Switch to English",
     
     // Sezione 1 - Informazioni Generali
@@ -107,11 +107,11 @@ const translations: Translations = {
     essentialCookies: "Cookie essenziali",
     essentialCookiesText: "Necessari per il funzionamento del sito web e non possono essere disabilitati.",
     analyticsCookies: "Cookie analitici",
-    analyticsCookiesText: "Ci aiutano a comprendere come i visitatori interagiscono con il sito web.",
+    analyticsCookiesText: "Ci aiutano a comprendere come i visitatori interagiscono con il sito web. Durata: 24 mesi (Google Analytics).",
     functionalCookies: "Cookie funzionali", 
-    functionalCookiesText: "Consentono funzionalità avanzate e personalizzazione.",
+    functionalCookiesText: "Consentono funzionalità avanzate e personalizzazione. Durata: 12 mesi (preferenze tema, Calendly).",
     marketingCookies: "Cookie di marketing",
-    marketingCookiesText: "Utilizzati per tracciare i visitatori sui siti web per mostrare annunci pertinenti e coinvolgenti.",
+    marketingCookiesText: "Utilizzati per tracciare i visitatori sui siti web per mostrare annunci pertinenti e coinvolgenti. Durata: 90 giorni.",
     cookieManagementTitle: "Gestione dei cookie",
     cookieManagementText: "Puoi gestire le tue preferenze sui cookie attraverso il banner dei cookie presente sul nostro sito. Puoi anche modificare le impostazioni del tuo browser per bloccare o eliminare i cookie, ma questo potrebbe influire sulla funzionalità del sito.",
     
@@ -144,7 +144,7 @@ const translations: Translations = {
     retentionCriteriaTitle: "Criteri di conservazione",
     retentionCriteriaText: "I nostri periodi di conservazione si basano su diversi fattori, tra cui la natura dei dati, la finalità per cui sono stati raccolti, e i requisiti legali applicabili. Quando i dati non sono più necessari, procediamo alla loro cancellazione sicura o anonimizzazione.",
     retentionPeriodsTitle: "Periodi di conservazione tipici",
-    retentionPeriods: "Dati di account: per la durata dell'account attivo più 2 anni • Dati di comunicazione: 3 anni dalla data dell'ultima comunicazione • Dati di fatturazione: 10 anni per conformità fiscale • Dati di marketing: fino alla revoca del consenso",
+    retentionPeriods: "Dati di account: per la durata dell'account attivo più 2 anni • Dati di comunicazione: 3 anni dalla data dell'ultima comunicazione • Dati di fatturazione: 10 anni per conformità fiscale • Dati di marketing: fino alla revoca del consenso • Consensi cookie: 24 mesi dalla raccolta, dopodiché vengono eliminati automaticamente",
     
     // Sezione 9 - Sicurezza dei Dati
     section9Title: "Sicurezza dei Dati",
@@ -207,7 +207,7 @@ const translations: Translations = {
   en: {
     title: "Privacy & Cookie Policy",
     subtitle: "How we protect your personal data and use cookies during your experience with our services.",
-    lastUpdate: "Last updated: January 15, 2025",
+    lastUpdate: "Last updated: October 12, 2025",
     switchLanguage: "Cambia in Italiano",
     
     // Section 1 - General Information
@@ -289,11 +289,11 @@ const translations: Translations = {
     essentialCookies: "Essential cookies",
     essentialCookiesText: "Necessary for the website to function and cannot be disabled.",
     analyticsCookies: "Analytics cookies",
-    analyticsCookiesText: "Help us understand how visitors interact with the website.",
+    analyticsCookiesText: "Help us understand how visitors interact with the website. Duration: 24 months (Google Analytics).",
     functionalCookies: "Functional cookies",
-    functionalCookiesText: "Enable advanced functionality and personalization.",
+    functionalCookiesText: "Enable advanced functionality and personalization. Duration: 12 months (theme preferences, Calendly).",
     marketingCookies: "Marketing cookies",
-    marketingCookiesText: "Used to track visitors across websites to display relevant and engaging ads.",
+    marketingCookiesText: "Used to track visitors across websites to display relevant and engaging ads. Duration: 90 days.",
     cookieManagementTitle: "Cookie management",
     cookieManagementText: "You can manage your cookie preferences through the cookie banner on our site. You can also change your browser settings to block or delete cookies, but this may affect the functionality of the site.",
     
@@ -326,7 +326,7 @@ const translations: Translations = {
     retentionCriteriaTitle: "Retention criteria",
     retentionCriteriaText: "Our retention periods are based on several factors, including the nature of the data, the purpose for which it was collected, and applicable legal requirements. When data is no longer needed, we proceed with its secure deletion or anonymization.",
     retentionPeriodsTitle: "Typical retention periods",
-    retentionPeriods: "Account data: for the duration of the active account plus 2 years • Communication data: 3 years from the date of last communication • Billing data: 10 years for tax compliance • Marketing data: until consent is withdrawn",
+    retentionPeriods: "Account data: for the duration of the active account plus 2 years • Communication data: 3 years from the date of last communication • Billing data: 10 years for tax compliance • Marketing data: until consent is withdrawn • Cookie consents: 24 months from collection, after which they are automatically deleted",
     
     // Section 9 - Data Security
     section9Title: "Data Security",

@@ -152,36 +152,7 @@ const Products = () => {
             'Risparmia tempo con risposte automatiche'
           ]
         },
-        {
-          id: 5,
-          slug: 'voicebot-enterprise',
-          name: 'VoiceBot Enterprise',
-          description: 'Assistente vocale avanzato per call center e customer service con riconoscimento vocale multilingue',
-          longDescription: 'Assistente vocale enterprise che trasforma il customer service attraverso AI conversazionale avanzata. Supporta oltre 30 lingue, integrazione telefonica completa e analytics delle chiamate in tempo reale.',
-          icon: <MessageSquare className="w-8 h-8" />,
-          tags: ['Voice AI', 'Call Center', 'Multilingue', 'Analytics'],
-          price: 'da €/mese',
-          status: 'coming-soon',
-          featured: false,
-          forever: false,
-          subscription: false,
-          customSetup: false,
-          discount: null,
-          features: [
-            'Riconoscimento vocale in oltre 30 lingue',
-            'Integrazione telefonica completa (SIP/VoIP)',
-            'Analytics conversazionali real-time',
-            'Sentiment analysis durante le chiamate',
-            'Escalation automatica agli operatori',
-            'Dashboard manageriale completa'
-          ],
-          benefits: [
-            'Riduzione costi call center del 50%',
-            'Miglioramento CSAT del 35%',
-            'Disponibilità 24/7 senza pause',
-            'Gestione picchi di chiamate automatica'
-          ]
-        }
+        
       ]
     },
     {
@@ -432,13 +403,7 @@ const Products = () => {
                             Setup Personalizzato
                           </span>
                         )}
-                        <span className={`text-sm font-medium px-3 py-1 rounded-full ${
-                          selectedProductData.status === 'available' 
-                            ? 'bg-green-600/20 border border-green-500/30 text-green-400'
-                            : 'bg-orange-600/20 border border-orange-500/30 text-orange-400'
-                        }`}>
-                          {selectedProductData.status === 'available' ? 'Disponibile' : 'In Arrivo'}
-                        </span>
+                        
                       </div>
 
                       {/* Header con icona */}
@@ -723,41 +688,32 @@ const Products = () => {
                         {/* Linea gradiente superiore */}
                         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-violet-400 via-violet-400 to-violet-500 opacity-60 group-hover:opacity-100 transition-opacity"></div>
 
-                        {/* Badge multipli */}
-                        <div className="absolute top-4 right-4 flex flex-wrap gap-1 justify-end z-20 max-w-[60%]">
+                        {/* Badge multipli - RIPOSIZIONATI ORIZZONTALMENTE */}
+                        <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-20 max-w-[calc(100%-1.5rem)]">
                           {product.featured && (
-                            <span className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
+                            <span className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1 w-fit">
                               <Star className="w-3 h-3" />
                               Popolare
                             </span>
                           )}
                           {product.forever && (
-                            <span className="bg-slate-600/20 border border-slate-500/30 text-slate-300 text-xs font-bold px-3 py-1 rounded-full">
+                            <span className="bg-slate-600/20 border border-slate-500/30 text-slate-300 text-xs font-bold px-2.5 py-1 rounded-full w-fit">
                               Forever
                             </span>
                           )}
                           {product.subscription && (
-                            <span className="bg-cyan-600/20 border border-cyan-500/30 text-cyan-400 text-xs font-bold px-2 py-1 rounded-full">
+                            <span className="bg-cyan-600/20 border border-cyan-500/30 text-cyan-400 text-xs font-bold px-2.5 py-1 rounded-full w-fit">
                               Abbonamento
                             </span>
                           )}
                           {product.customSetup && (
-                            <span className="bg-violet-600/20 border border-violet-500/30 text-violet-400 text-xs font-bold px-2 py-1 rounded-full">
+                            <span className="bg-violet-600/20 border border-violet-500/30 text-violet-400 text-xs font-bold px-2.5 py-1 rounded-full w-fit">
                               Setup
                             </span>
                           )}
                         </div>
 
-                        {/* Badge Status */}
-                        <div className="absolute top-4 left-4 z-20">
-                          <span className={`text-xs font-medium px-2 py-1 rounded-full ${
-                            product.status === 'available' 
-                              ? 'bg-green-600/20 border border-green-500/30 text-green-400'
-                              : 'bg-orange-600/20 border border-orange-500/30 text-orange-400'
-                          }`}>
-                            {product.status === 'available' ? 'Disponibile' : 'In Arrivo'}
-                          </span>
-                        </div>
+                        
 
                         {/* Contenuto principale */}
                         <div className="relative z-10 flex flex-col h-full">
@@ -794,8 +750,8 @@ const Products = () => {
                           {/* Footer con prezzo O offerta speciale */}
                           <div className="flex items-center justify-between pt-4 border-t border-white/10 group-hover:border-[#3ECF8E]/20 transition-colors duration-300">
                             
-                            {/* Sezione Sinistra: Prezzo o Offerta Speciale */}
-                            <div className="flex-1">
+                            {/* Sezione Sinistra: Prezzo o Offerta Speciale - FIX: items-center per allineamento */}
+                            <div className="flex-1 flex items-center">
                               {product.discount && typeof product.discount === 'object' && 'percentage' in product.discount && 'originalPrice' in product ? (
                                 // OFFERTA SPECIALE - Sostituisce il prezzo
                                 <div className="space-y-1">
@@ -806,7 +762,7 @@ const Products = () => {
                                   </div>
                                   <div className="flex items-center gap-2">
                                     <span className="text-gray-500 line-through text-sm">{(product as any).originalPrice}</span>
-                                    <span className="text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500">
+                                    <span className="text-base font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500">
                                       {product.price}
                                     </span>
                                   </div>
@@ -819,16 +775,16 @@ const Products = () => {
                               )}
                             </div>
 
-                            {/* Sezione Destra: Pulsante Scopri di più */}
-                            <div className="flex items-center gap-2">
+                            {/* Sezione Destra: Pulsante Scopri di più - FIX: dimensioni fisse */}
+                            <div className="flex-shrink-0">
                               {product.status === 'available' ? (
-                                <div className="px-4 py-2 rounded-lg bg-gradient-to-r from-violet-500 to-purple-600 text-white text-sm font-bold shadow-lg hover:shadow-xl hover:from-violet-600 hover:to-purple-700 transition-all duration-300 flex items-center group/btn">
+                                <div className="h-10 px-4 rounded-lg bg-gradient-to-r from-violet-500 to-purple-600 text-white text-sm font-bold shadow-lg hover:shadow-xl hover:from-violet-600 hover:to-purple-700 transition-all duration-300 flex items-center justify-center group/btn whitespace-nowrap">
                                   Scopri di più
                                   <ArrowRight className="w-4 h-4 ml-1 group-hover/btn:translate-x-1 transition-transform duration-300" />
                                 </div>
                               ) : (
-                                <div className="flex items-center text-orange-400 text-sm font-medium cursor-default">
-                                  <Clock className="w-4 h-4 mr-1" />
+                                <div className="h-10 flex items-center text-orange-400 text-sm font-medium cursor-default whitespace-nowrap">
+                                  <Clock className="w-4 h-4 mr-1 flex-shrink-0" />
                                   Prossimamente
                                 </div>
                               )}

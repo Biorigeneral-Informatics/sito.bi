@@ -84,21 +84,30 @@ export class SupabaseCookieService {
       }
 
       const sessionId = this.getSessionId();
-      const clientIP = await this.getClientIP(); // IP già anonimizzato
+      const clientIP = await this.getClientIP();
       
+      // ✅ FIX: Assicurati che i boolean siano esplicitamente true/false
       const consentData = {
         session_id: sessionId,
-        ip_address: clientIP, // 🔒 IP anonimizzato (GDPR compliant)
+        ip_address: clientIP,
         user_agent: navigator.userAgent,
         page_url: window.location.href,
         referrer: document.referrer || '',
-        necessary: preferences.necessary,
-        analytics: preferences.analytics,
-        functional: preferences.functional,
-        marketing: preferences.marketing,
+        necessary: Boolean(preferences.necessary),      
+        analytics: Boolean(preferences.analytics),      
+        functional: Boolean(preferences.functional),    
+        marketing: Boolean(preferences.marketing),      
         consent_data: preferences,
         timestamp: new Date().toISOString()
       };
+
+      console.log('📤 Invio consenso a Supabase...', consentData);
+      console.log('🔍 Debug preferenze:', {
+        necessary: preferences.necessary,
+        analytics: preferences.analytics,
+        functional: preferences.functional,
+        marketing: preferences.marketing
+      });
 
       console.log('📤 Invio consenso a Supabase...', consentData);
 

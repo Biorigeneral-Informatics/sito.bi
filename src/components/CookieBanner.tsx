@@ -275,8 +275,8 @@ const CookieBanner = () => {
           <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white animate-pulse"></span>
         </motion.button>
         
-        {/* Bottone test solo in dev */}
-        {import.meta.env.DEV && (
+       {/* Bottone test solo in dev COMMENTATO PER ORA*/}
+        {/* {import.meta.env.DEV && (
           <button
             onClick={clearConsentForTesting}
             className="fixed bottom-6 left-6 z-50 w-12 h-12 bg-red-500 text-white text-xs rounded-full opacity-50 hover:opacity-100 flex items-center justify-center shadow-lg"
@@ -284,7 +284,7 @@ const CookieBanner = () => {
           >
             🧪
           </button>
-        )}
+        )} */}
       </>
     );
   }

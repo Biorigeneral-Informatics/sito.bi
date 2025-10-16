@@ -20,6 +20,7 @@ import CookieBanner from './components/CookieBanner';
 import { ThemeProvider } from './hooks/useTheme';
 import AssistentiAILocale from './pages/AssistentiAILocale'
 import AutoTranslate from './components/LanguageSelector';
+import NotificationToast from './components/NotificationToast';
 
 
 localStorage.removeItem('preloaderShown');
@@ -78,6 +79,16 @@ function App() {
             {/* Fallback per percorsi non trovati */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+
+            <NotificationToast 
+              message="Scopri le ultime offerte nella sezione"
+              type="info"
+              link={{
+                text: "Prodotti!",
+                url: "https://www.biorigeneralinformatics.com/products"
+              }}
+            />
+
         </main>
         <Footer />
         <CookieBanner /> {/* Aggiungi qui il componente CookieBanner */}

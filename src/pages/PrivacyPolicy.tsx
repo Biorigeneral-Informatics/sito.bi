@@ -25,7 +25,7 @@ const translations: Translations = {
   it: {
     title: "Privacy e Cookie Policy",
     subtitle: "Come proteggiamo i tuoi dati personali e utilizziamo i cookie durante la tua esperienza con i nostri servizi.",
-    lastUpdate: "Ultimo aggiornamento: 12 ottobre 2025",
+    lastUpdate: "Ultimo aggiornamento: 16 ottobre 2025",
     switchLanguage: "Switch to English",
     
     // Sezione 1 - Informazioni Generali
@@ -47,6 +47,14 @@ const translations: Translations = {
     contactInfoTitle: "Informazioni di contatto",
     contactInfoText: "Per qualsiasi domanda relativa al trattamento dei tuoi dati personali o per esercitare i tuoi diritti, puoi contattarci utilizzando le informazioni di contatto fornite.",
     
+    // Sezione 2.1 - DPO (NUOVA SEZIONE)
+    section21Title: "Responsabile della Protezione dei Dati (DPO)",
+    section21Number: "Sezione 2.1",
+    section21P1: "Biorigeneral Informatics, in qualità di piccola-media impresa che non effettua trattamenti su larga scala di dati sensibili né monitoraggio sistematico degli interessati su larga scala, non è tenuta alla nomina obbligatoria del Data Protection Officer (DPO) ai sensi dell'art. 37 del GDPR.",
+    section21P2: "Per qualsiasi questione relativa alla protezione dei dati personali, potete contattare direttamente il Titolare del trattamento utilizzando i contatti forniti nella Sezione 2.",
+    noDpoNote: "Nota sulla conformità",
+    noDpoNoteText: "La nostra organizzazione ha valutato attentamente i requisiti dell'art. 37 GDPR e ha determinato che non sussiste l'obbligo di nomina del DPO. Tuttavia, il Titolare del trattamento garantisce la piena conformità al GDPR attraverso procedure interne e consulenza legale specializzata.",
+
     // Sezione 3 - Dati che Raccogliamo
     section3Title: "Dati che Raccogliamo",
     section3Number: "Sezione 3",
@@ -61,7 +69,14 @@ const translations: Translations = {
     communicationDataText: "Registriamo le comunicazioni che hai con noi, incluse email, chat di supporto e altre forme di corrispondenza per fornire assistenza e migliorare i nostri servizi.",
     specialCategoriesTitle: "Categorie particolari di dati",
     specialCategoriesText: "Non raccogliamo deliberatamente categorie particolari di dati personali (come informazioni su salute, orientamento sessuale, opinioni politiche, credenze religiose o filosofiche) a meno che non sia strettamente necessario per fornire un servizio specifico richiesto dall'utente e con esplicito consenso.",
-    
+    // Natura del conferimento (NUOVO)
+    dataConfermentTitle: "Natura del conferimento dei dati",
+    mandatoryDataTitle: "Dati obbligatori",
+    mandatoryDataText: "I dati necessari per l'esecuzione del contratto e per l'adempimento degli obblighi di legge (nome, cognome, email, indirizzo, dati di fatturazione) sono obbligatori. Il rifiuto di fornire questi dati comporta l'impossibilità di erogare i nostri servizi e di stipulare o eseguire il contratto.",
+    optionalDataTitle: "Dati facoltativi",
+    optionalDataText: "I dati richiesti per finalità di marketing, profilazione e newsletter sono facoltativi. Il rifiuto di fornire questi dati o la revoca del consenso non pregiudica l'erogazione dei servizi richiesti.",
+
+
     // Sezione 4 - Come Utilizziamo i Tuoi Dati
     section4Title: "Come Utilizziamo i Tuoi Dati",
     section4Number: "Sezione 4",
@@ -86,16 +101,19 @@ const translations: Translations = {
     makeMethod: "Utilizziamo Make per il processamento dei dati e workflow produttivi ad uso interno",
     zohoMethod: "Utilizziamo Zoho per gestire le email che riceviamo ed i contatti",
     specificPurposesTitle: "Gli scopi specifici per cui trattiamo i tuoi dati personali includono:",
-    purpose1: "Fornitura e gestione dei Servizi richiesti, inclusa l'amministrazione del tuo account",
-    purpose2: "Elaborazione e completamento dei pagamenti, fatturazione e invio di comunicazioni relative",
-    purpose3: "Assistenza clienti e risposta alle tue richieste, domande o reclami",
-    purpose4: "Miglioramento e personalizzazione dei nostri Servizi in base alle tue preferenze e comportamenti",
-    purpose5: "Invio di comunicazioni necessarie relative al servizio (aggiornamenti, avvisi di sicurezza, ecc.)",
-    purpose6: "Previo tuo consenso, invio di newsletter e comunicazioni di marketing su novità, offerte e servizi",
-    purpose7: "Analisi dell'uso del sito web per ottimizzare la funzionalità e migliorare l'esperienza utente",
-    purpose8: "Individuazione e prevenzione di frodi, abusi e minacce alla sicurezza",
-    purpose9: "Adempimento di obblighi di legge, contabili, fiscali e normativi",
+    purpose1: "Fornitura e gestione dei Servizi richiesti, inclusa l'amministrazione del tuo account - BASE GIURIDICA: Esecuzione del contratto (art. 6.1.b GDPR)",
+    purpose2: "Elaborazione e completamento dei pagamenti, fatturazione e invio di comunicazioni relative - BASE GIURIDICA: Esecuzione del contratto (art. 6.1.b GDPR)",
+    purpose3: "Assistenza clienti e risposta alle tue richieste, domande o reclami - BASE GIURIDICA: Esecuzione del contratto (art. 6.1.b GDPR)",
+    purpose4: "Miglioramento e personalizzazione dei nostri Servizi in base alle tue preferenze e comportamenti - BASE GIURIDICA: Legittimo interesse (art. 6.1.f GDPR)",
+    purpose5: "Invio di comunicazioni necessarie relative al servizio (aggiornamenti, avvisi di sicurezza, ecc.) - BASE GIURIDICA: Esecuzione del contratto (art. 6.1.b GDPR)",
+    purpose6: "Previo tuo consenso esplicito, invio di newsletter e comunicazioni di marketing su novità, offerte e servizi - BASE GIURIDICA: Consenso (art. 6.1.a GDPR)",
+    purpose7: "Analisi dell'uso del sito web per ottimizzare la funzionalità e migliorare l'esperienza utente (Google Analytics) - BASE GIURIDICA: Legittimo interesse (art. 6.1.f GDPR)",
+    purpose8: "Individuazione e prevenzione di frodi, abusi e minacce alla sicurezza - BASE GIURIDICA: Legittimo interesse (art. 6.1.f GDPR)",
+    purpose9: "Adempimento di obblighi di legge, contabili, fiscali e normativi - BASE GIURIDICA: Obbligo legale (art. 6.1.c GDPR)",
 
+    // Decisioni automatizzate (NUOVO)
+    automatedDecisionsTitle: "Decisioni automatizzate e profilazione",
+    automatedDecisionsText: "Biorigeneral Informatics NON effettua processi decisionali basati esclusivamente su trattamenti automatizzati (compresa la profilazione) che producano effetti giuridici che ti riguardano o che incidano significativamente sulla tua persona ai sensi dell'art. 22 GDPR.",
 
     // Sezione 5 - Cookie Policy
     section5Title: "Cookie Policy",
@@ -120,7 +138,14 @@ const translations: Translations = {
     section6Number: "Sezione 6",
     section6P1: "Non vendiamo, non affittiamo né divulghiamo in altro modo i tuoi dati personali a terzi per scopi commerciali. Tuttavia, potremmo condividere i tuoi dati nelle seguenti circostanze:",
     providersTitle: "Fornitori di servizi",
-    providersText: "Condividiamo i dati con fornitori di servizi fidati che ci assistono nell'erogazione dei nostri servizi, come servizi di hosting, elaborazione dei pagamenti, analisi dei dati e supporto clienti.",
+    providersText: "Condividiamo i dati con i seguenti fornitori di servizi (Responsabili del Trattamento) che ci assistono nell'erogazione dei nostri servizi:",
+    specificProvidersTitle: "Fornitori di servizi specifici",
+    provider1: "Hosting e infrastruttura: Vercel Inc. (USA)",
+    provider2: "Servizi email e CRM: Zoho Corporation (USA/India)",
+    provider3: "Analytics: Google LLC - Google Analytics (USA)",
+    provider4: "Gestione appuntamenti: Calendly LLC (USA)",
+    provider5: "Automazione workflow: Make (Integromat) (USA/UE)",
+    providersNote: "Tutti i fornitori sono vincolati contrattualmente al rispetto del GDPR e agiscono esclusivamente su nostra istruzione come Responsabili del Trattamento ai sensi dell'art. 28 GDPR.",
     legalRequirementsTitle: "Requisiti legali",
     legalRequirementsText: "Potremmo divulgare i tuoi dati se richiesto dalla legge, da un'autorità giudiziaria o per proteggere i nostri diritti, la proprietà o la sicurezza dei nostri utenti.",
     businessTransferTitle: "Trasferimento aziendale",
@@ -130,13 +155,13 @@ const translations: Translations = {
     dataProtectionNote: "Ogni condivisione di dati avviene nel rispetto delle leggi sulla protezione dei dati e con adeguate misure di sicurezza.",
     
     // Sezione 7 - Trasferimenti Internazionali
-    section7Title: "Trasferimenti Internazionali di Dati",
-    section7Number: "Sezione 7",
-    section7P1: "I tuoi dati personali potrebbero essere archiviati ed elaborati in qualsiasi paese in cui abbiamo strutture o in cui impieghiamo fornitori di servizi. Ciò significa che potremmo trasferire i tuoi dati a giurisdizioni al di fuori dello Spazio Economico Europeo (SEE) o del tuo paese di residenza.",
-    section7P2: "Quando trasferiamo dati personali al di fuori del SEE, adottiamo misure appropriate per garantire che i tuoi dati ricevano un livello di protezione adeguato, in conformità con il GDPR e altre leggi applicabili sulla protezione dei dati.",
+    section7P1: "I tuoi dati personali potrebbero essere trasferiti verso i seguenti paesi terzi al di fuori dello Spazio Economico Europeo (SEE):",
+    countriesTitle: "Paesi di destinazione",
+    countriesText: "• Stati Uniti d'America: per l'utilizzo di Google Analytics, Vercel (hosting), Calendly, Make e Zoho",
+    section7P2: "Per tutti i trasferimenti verso paesi terzi, adottiamo le seguenti misure appropriate per garantire che i tuoi dati ricevano un livello di protezione adeguato, in conformità con il GDPR:",
     safeguardsTitle: "Misure di protezione",
-    safeguardsText: "Utilizziamo clausole contrattuali standard approvate dalla Commissione Europea, decisioni di adeguatezza e altre misure di protezione riconosciute per garantire la sicurezza dei tuoi dati durante i trasferimenti internazionali.",
-    
+    safeguardsText: "• Data Privacy Framework USA-UE (per i fornitori certificati)\n• Clausole Contrattuali Standard (SCC) approvate dalla Commissione Europea\n• Decisioni di adeguatezza della Commissione Europea quando disponibili\n\nPer tutti i trasferimenti verso paesi terzi senza decisione di adeguatezza, adottiamo le misure di salvaguardia previste dagli artt. 46 e 49 del GDPR. Puoi richiedere copia delle garanzie adottate contattandoci.",
+
     // Sezione 8 - Conservazione dei Dati
     section8Title: "Conservazione dei Dati",
     section8Number: "Sezione 8",
@@ -144,8 +169,8 @@ const translations: Translations = {
     retentionCriteriaTitle: "Criteri di conservazione",
     retentionCriteriaText: "I nostri periodi di conservazione si basano su diversi fattori, tra cui la natura dei dati, la finalità per cui sono stati raccolti, e i requisiti legali applicabili. Quando i dati non sono più necessari, procediamo alla loro cancellazione sicura o anonimizzazione.",
     retentionPeriodsTitle: "Periodi di conservazione tipici",
-    retentionPeriods: "Dati di account: per la durata dell'account attivo più 2 anni • Dati di comunicazione: 3 anni dalla data dell'ultima comunicazione • Dati di fatturazione: 10 anni per conformità fiscale • Dati di marketing: fino alla revoca del consenso • Consensi cookie: 24 mesi dalla raccolta, dopodiché vengono eliminati automaticamente",
-    
+    retentionPeriods: "• Dati di account: durata dell'account attivo + 2 anni\n• Dati di fatturazione: 10 anni (obbligo fiscale D.P.R. 633/1972)\n• Dati di comunicazione: 3 anni dall'ultima comunicazione\n• Dati di marketing: fino alla revoca del consenso\n• Consensi cookie: 24 mesi dalla raccolta\n• Dati tecnici di navigazione (log): 6 mesi\n• Dati raccolti tramite Calendly: 24 mesi dall'ultimo appuntamento\n• Dati raccolti tramite Make: durata del workflow + 12 mesi\n• Dati in Zoho: durata della relazione commerciale + 2 anni",
+
     // Sezione 9 - Sicurezza dei Dati
     section9Title: "Sicurezza dei Dati",
     section9Number: "Sezione 9",
@@ -171,7 +196,7 @@ const translations: Translations = {
     restrictionRight: "Limitazione: Richiedere la limitazione del trattamento dei tuoi dati",
     portabilityRight: "Portabilità: Ricevere i tuoi dati in un formato strutturato e leggibile",
     objectionRight: "Opposizione: Opporti al trattamento dei tuoi dati per motivi legittimi",
-    withdrawRight: "Revoca del consenso: Revocare il consenso precedentemente fornito",
+    withdrawRight: "Revoca del consenso: Revocare il consenso in qualsiasi momento per i trattamenti basati sul consenso (art. 6.1.a e art. 9.2.a GDPR), senza pregiudicare la liceità del trattamento basata sul consenso prestato prima della revoca. Per revocare il consenso al marketing, puoi utilizzare il link 'unsubscribe' presente in ogni email o contattarci direttamente",
     automatedTitle: "Decisioni automatizzate",
     automatedText: "Hai il diritto di non essere soggetto a decisioni basate esclusivamente su trattamenti automatizzati, inclusa la profilazione, che producano effetti legali che ti riguardano o che incidano significativamente sulla tua persona.",
     exerciseRightsNote: "Per esercitare questi diritti, contattaci utilizzando le informazioni fornite nella sezione \"Come Contattarci\". Risponderemo alla tua richiesta entro 30 giorni.",
@@ -207,7 +232,7 @@ const translations: Translations = {
   en: {
     title: "Privacy & Cookie Policy",
     subtitle: "How we protect your personal data and use cookies during your experience with our services.",
-    lastUpdate: "Last updated: October 12, 2025",
+    lastUpdate: "Last updated: October 16, 2025",
     switchLanguage: "Cambia in Italiano",
     
     // Section 1 - General Information
@@ -229,6 +254,14 @@ const translations: Translations = {
     contactInfoTitle: "Contact information",
     contactInfoText: "For any questions regarding the processing of your personal data or to exercise your rights, you can contact us using the contact information provided.",
     
+    // Section 2.1 - DPO (NEW SECTION)
+    section21Title: "Data Protection Officer (DPO)",
+    section21Number: "Section 2.1",
+    section21P1: "Biorigeneral Informatics, as a small-medium enterprise that does not carry out large-scale processing of sensitive data nor systematic monitoring of data subjects on a large scale, is not required to appoint a Data Protection Officer (DPO) under Article 37 of the GDPR.",
+    section21P2: "For any questions regarding the protection of personal data, you can contact the Data Controller directly using the contact information provided in Section 2.",
+    noDpoNote: "Compliance Note",
+    noDpoNoteText: "Our organization has carefully assessed the requirements of Article 37 GDPR and determined that there is no obligation to appoint a DPO. However, the Data Controller ensures full GDPR compliance through internal procedures and specialized legal advice.",
+
     // Section 3 - Data We Collect
     section3Title: "Data We Collect",
     section3Number: "Section 3",
@@ -243,7 +276,14 @@ const translations: Translations = {
     communicationDataText: "We record communications you have with us, including emails, support chats and other forms of correspondence to provide assistance and improve our services.",
     specialCategoriesTitle: "Special categories of data",
     specialCategoriesText: "We do not deliberately collect special categories of personal data (such as information about health, sexual orientation, political opinions, religious or philosophical beliefs) unless strictly necessary to provide a specific service requested by the user and with explicit consent.",
-    
+    // Nature of data provision (NEW)
+    dataConfermentTitle: "Nature of data provision",
+    mandatoryDataTitle: "Mandatory data",
+    mandatoryDataText: "Data necessary for contract performance and compliance with legal obligations (name, surname, email, address, billing data) are mandatory. Refusal to provide this data makes it impossible to provide our services and to enter into or execute the contract.",
+    optionalDataTitle: "Optional data",
+    optionalDataText: "Data requested for marketing, profiling and newsletter purposes are optional. Refusal to provide this data or withdrawal of consent does not affect the provision of requested services.",
+
+
     // Section 4 - How We Use Your Data
     section4Title: "How We Use Your Data",
     section4Number: "Section 4",
@@ -268,16 +308,19 @@ const translations: Translations = {
     makeMethod: "We use Make for data processing and internal production workflows",
     zohoMethod: "We use Zoho to manage emails we receive and contacts",
     specificPurposesTitle: "The specific purposes for which we process your personal data include:",
-    purpose1: "Provision and management of requested Services, including administration of your account",
-    purpose2: "Processing and completion of payments, billing and sending related communications",
-    purpose3: "Customer support and response to your requests, questions or complaints",
-    purpose4: "Improvement and personalization of our Services based on your preferences and behaviors",
-    purpose5: "Sending necessary service-related communications (updates, security notices, etc.)",
-    purpose6: "With your prior consent, sending newsletters and marketing communications about news, offers and services",
-    purpose7: "Analysis of website usage to optimize functionality and improve user experience",
-    purpose8: "Detection and prevention of fraud, abuse and security threats",
-    purpose9: "Compliance with legal, accounting, tax and regulatory obligations",
+    purpose1: "Provision and management of requested Services, including administration of your account - LEGAL BASIS: Contract performance (art. 6.1.b GDPR)",
+    purpose2: "Processing and completion of payments, billing and sending related communications - LEGAL BASIS: Contract performance (art. 6.1.b GDPR)",
+    purpose3: "Customer support and response to your requests, questions or complaints - LEGAL BASIS: Contract performance (art. 6.1.b GDPR)",
+    purpose4: "Improvement and personalization of our Services based on your preferences and behaviors - LEGAL BASIS: Legitimate interest (art. 6.1.f GDPR)",
+    purpose5: "Sending necessary service-related communications (updates, security notices, etc.) - LEGAL BASIS: Contract performance (art. 6.1.b GDPR)",
+    purpose6: "With your explicit prior consent, sending newsletters and marketing communications about news, offers and services - LEGAL BASIS: Consent (art. 6.1.a GDPR)",
+    purpose7: "Analysis of website usage to optimize functionality and improve user experience (Google Analytics) - LEGAL BASIS: Legitimate interest (art. 6.1.f GDPR)",
+    purpose8: "Detection and prevention of fraud, abuse and security threats - LEGAL BASIS: Legitimate interest (art. 6.1.f GDPR)",
+    purpose9: "Compliance with legal, accounting, tax and regulatory obligations - LEGAL BASIS: Legal obligation (art. 6.1.c GDPR)",
 
+    // Automated decisions (NEW)
+    automatedDecisionsTitle: "Automated decisions and profiling",
+    automatedDecisionsText: "Biorigeneral Informatics does NOT carry out decision-making processes based solely on automated processing (including profiling) that produce legal effects concerning you or similarly significantly affect you under Article 22 GDPR.",
 
     // Section 5 - Cookie Policy
     section5Title: "Cookie Policy",
@@ -302,7 +345,16 @@ const translations: Translations = {
     section6Number: "Section 6",
     section6P1: "We do not sell, rent or otherwise disclose your personal data to third parties for commercial purposes. However, we may share your data in the following circumstances:",
     providersTitle: "Service providers",
-    providersText: "We share data with trusted service providers who assist us in delivering our services, such as hosting services, payment processing, data analytics and customer support.",
+    providersText: "We share data with the following service providers (Data Processors) who assist us in delivering our services:",
+    // Add these new fields:
+    specificProvidersTitle: "Specific service providers",
+    provider1: "Hosting and infrastructure: Vercel Inc. (USA)",
+    provider2: "Email services and CRM: Zoho Corporation (USA/India)",
+    provider3: "Analytics: Google LLC - Google Analytics (USA)",
+    provider4: "Appointment management: Calendly LLC (USA)",
+    provider5: "Workflow automation: Make (Integromat) (USA/EU)",
+    providersNote: "All providers are contractually bound to comply with GDPR and act exclusively on our instructions as Data Processors pursuant to Article 28 GDPR.",
+
     legalRequirementsTitle: "Legal requirements",
     legalRequirementsText: "We may disclose your data if required by law, by a judicial authority or to protect our rights, property or the safety of our users.",
     businessTransferTitle: "Business transfer",
@@ -314,10 +366,12 @@ const translations: Translations = {
     // Section 7 - International Data Transfers
     section7Title: "International Data Transfers",
     section7Number: "Section 7",
-    section7P1: "Your personal data may be stored and processed in any country where we have facilities or where we employ service providers. This means we may transfer your data to jurisdictions outside the European Economic Area (EEA) or your country of residence.",
-    section7P2: "When we transfer personal data outside the EEA, we take appropriate measures to ensure that your data receives an adequate level of protection, in accordance with GDPR and other applicable data protection laws.",
+    section7P1: "Your personal data may be transferred to the following third countries outside the European Economic Area (EEA):",
+    countriesTitle: "Destination countries",
+    countriesText: "• United States of America: for the use of Google Analytics, Vercel (hosting), Calendly, Make and Zoho",
+    section7P2: "For all transfers to third countries, we adopt the following appropriate measures to ensure that your data receives an adequate level of protection, in accordance with GDPR:",
     safeguardsTitle: "Safeguards",
-    safeguardsText: "We use standard contractual clauses approved by the European Commission, adequacy decisions and other recognized safeguards to ensure the security of your data during international transfers.",
+    safeguardsText: "• EU-US Data Privacy Framework (for certified providers)\n• Standard Contractual Clauses (SCC) approved by the European Commission\n• European Commission adequacy decisions when available\n\nFor all transfers to third countries without an adequacy decision, we adopt the safeguards provided by Articles 46 and 49 GDPR. You can request a copy of the safeguards adopted by contacting us.",    
     
     // Section 8 - Data Retention
     section8Title: "Data Retention",
@@ -326,7 +380,7 @@ const translations: Translations = {
     retentionCriteriaTitle: "Retention criteria",
     retentionCriteriaText: "Our retention periods are based on several factors, including the nature of the data, the purpose for which it was collected, and applicable legal requirements. When data is no longer needed, we proceed with its secure deletion or anonymization.",
     retentionPeriodsTitle: "Typical retention periods",
-    retentionPeriods: "Account data: for the duration of the active account plus 2 years • Communication data: 3 years from the date of last communication • Billing data: 10 years for tax compliance • Marketing data: until consent is withdrawn • Cookie consents: 24 months from collection, after which they are automatically deleted",
+    retentionPeriods: "• Account data: duration of active account + 2 years\n• Billing data: 10 years (tax obligation)\n• Communication data: 3 years from last communication\n• Marketing data: until consent is withdrawn\n• Cookie consents: 24 months from collection\n• Technical navigation data (logs): 6 months\n• Data collected via Calendly: 24 months from last appointment\n• Data collected via Make: workflow duration + 12 months\n• Data in Zoho: duration of business relationship + 2 years",
     
     // Section 9 - Data Security
     section9Title: "Data Security",
@@ -353,7 +407,7 @@ const translations: Translations = {
     restrictionRight: "Restriction: Request restriction of processing of your data",
     portabilityRight: "Portability: Receive your data in a structured and readable format",
     objectionRight: "Objection: Object to the processing of your data for legitimate reasons",
-    withdrawRight: "Withdrawal of consent: Withdraw previously given consent",
+    withdrawRight: "Withdrawal of consent: Withdraw consent at any time for processing based on consent (art. 6.1.a and art. 9.2.a GDPR), without prejudice to the lawfulness of processing based on consent given before withdrawal. To withdraw marketing consent, you can use the 'unsubscribe' link in every email or contact us directly",
     automatedTitle: "Automated decisions",
     automatedText: "You have the right not to be subject to decisions based solely on automated processing, including profiling, which produce legal effects concerning you or similarly significantly affect you.",
     exerciseRightsNote: "To exercise these rights, contact us using the information provided in the \"How to Contact Us\" section. We will respond to your request within 30 days.",

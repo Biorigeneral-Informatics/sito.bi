@@ -80,6 +80,7 @@ function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
 
+            {/* NotificationToast temporaneamente disabilitato
             <NotificationToast 
               message="Scopri le ultime offerte nella sezione"
               type="info"
@@ -88,6 +89,7 @@ function App() {
                 url: "https://www.biorigeneralinformatics.com/products"
               }}
             />
+            */}
 
         </main>
         <Footer />

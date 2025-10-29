@@ -52,8 +52,8 @@ const Products = () => {
           longDescription: 'Il primo assistente virtuale italiano che rivoluziona la gestione delle comunicazioni aziendali attraverso Telegram. Integrato con workflow N8n avanzati, automatizza conversazioni complesse, gestisce appuntamenti intelligenti e si integra perfettamente con tutti i tuoi sistemi esistenti. Disponibile 24/7, riduce dell\'80% il carico di lavoro manuale e migliora drasticamente l\'efficienza operativa.',
           icon: <MessageSquare className="w-8 h-8" />,
           tags: ['Telegram', 'N8n', 'Workflow', 'Appuntamenti'],
-          price: '€110/mese',
-          status: 'available',
+          price: '',
+          status: 'coming-soon',
           featured: false,
           forever: false,
           subscription: true,
@@ -82,14 +82,13 @@ const Products = () => {
           longDescription: 'Assistente virtuale AI che trasforma i DM Instagram in un canale di vendita automatizzato. Risponde istantaneamente alle richieste ed è totalmente personalizzabile per rispecchiare il tono del brand, oltre che integrabile con oltre 10000 app, inclusi CRM e applicazioni custom a codice',
           icon: <Bot className="w-8 h-8" />,
           tags: ['Sales', 'Instagram', 'Meta', 'ChatBot'],
-          price: '€149/mese',
-          originalPrice: '€300',
-          status: 'available',
+          price: '',
+          status: 'coming-soon',
           featured: true,
           forever: false,
           subscription: true,
           customSetup: true,
-          discount: { percentage: 50, label: 'Promo Ottobre' },
+          discount: null,
           features: [
             'Integrazione diretta con Meta API per Instagram DM',
               'Workflow n8n completo (AI Agent + RAG + memoria conversazionale)',
@@ -122,14 +121,13 @@ const Products = () => {
           longDescription: 'Un assistente AI perfetto per gestire conversazioni o ordinazioni tramite la piattaforma Whatsapp. Addestramento personalizzato per rispecchiare il tono del brand, oltre che integrabile con oltre 10000 app, inclusi CRM e applicazioni custom a codice',
           icon: <Bot className="w-8 h-8" />,
           tags: ['Sales', 'Whatsapp', 'Meta', 'ChatBot'],
-          price: '€400/mese',
-          originalPrice: '€500',
-          status: 'available',
+          price: '',
+          status: 'coming-soon',
           featured: true,
           forever: false,
           subscription: true,
           customSetup: true,
-          discount: { percentage: 20, label: 'Promo Ottobre' },
+          discount: null,
           features: [
             'Integrazione tramite Meta Cloud API per WhatsApp Business',
               'Workflow AI centralizzato (stessa architettura n8n con RAG e memoria)',
@@ -168,14 +166,14 @@ const Products = () => {
           longDescription: 'Scopri il nostro generatore AI di post per WordPress, alimentato da GPT-4. Automatizza la creazione di contenuti di alta qualità mantenendo il controllo della pubblicazione. Accedi alla tua interfaccia personalizzabile dalla quale gestire tutto il processo.',
           icon: <Bot className="w-8 h-8" />,
           tags: ['AI Blog', 'Wordpress Blog', 'Marketing', 'Post Wordpress'],
-          price: '€4000',
-          originalPrice: '€5000',
-          status: 'available',
+          price: '',
+          originalPrice: '',
+          status: 'coming soon',
           featured: true,
           forever: true,
           subscription: false,
           customSetup: false,
-          discount: { percentage: 20, label: 'Offerta Lancio' },
+          discount: null,
           features: [
             'Generazione automatica di 3+ di articoli Wordpress per volta',
             'Interfaccia dedicata per gestione generazione',
@@ -201,7 +199,7 @@ const Products = () => {
           longDescription: 'Soluzione automatizzata che estrae lead qualificati direttamente da Google Maps, trasformando ricerche geografiche in database commerciali completi. Recupera automaticamente nomi aziende, indirizzi, telefoni ed email verificate da siti web e directory. Targeting per area geografica e settore, eliminazione duplicati intelligente ed export multi-formato. Interface intuitiva e risultati immediati per venditori B2B, agenzie marketing e startup.',
           icon: <Workflow className="w-8 h-8" />,
           tags: ['Workflow', 'Automation', 'Integrations', 'AI'],
-          price: 'da €/mese',
+          price: '',
           status: 'coming-soon',
           featured: false,
           forever: false,
@@ -230,8 +228,8 @@ const Products = () => {
           longDescription: 'Soluzione di gestione dell\'inventario intelligente, pensata per Hotel e Ristoranti per gestire ordini di rifornimento, ma adattabile facilmente ad altri contesti. Basata su un sistema di ordinazione di nuovi prodotti tramite un\' account gmail, dotato di riconoscimento degli ordini automatico grazie alla potenza di GPT e calcolo automatico del prodotto migliore in inventario.',
           icon: <Database className="w-8 h-8" />,
           tags: ['Stock Management', 'Orders', 'Google Sheets', 'Workflow'],
-          price: '€1700',
-          status: 'available',
+          price: '',
+          status: 'coming-soon',
           featured: false,
           forever: true,
           subscription: false,
@@ -347,24 +345,7 @@ const Products = () => {
                 <div className="relative backdrop-blur-xl bg-gradient-to-br from-white/10 via-white/5 to-white/3 p-8 lg:p-12 rounded-2xl border border-white/10 mb-8">
 
                   {/* Badge Sconto in alto a destra - Solo se c'è uno sconto attivo */}
-                  {selectedProductData.discount && typeof selectedProductData.discount === 'object' && 'percentage' in selectedProductData.discount && (
-                    <div className="absolute top-6 right-6 z-30">
-                      <div className="relative">
-                        {/* Glow rosso/arancio */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-orange-500 rounded-full blur-lg opacity-60 animate-pulse"></div>
-                        {/* Badge principale */}
-                        <div 
-                          className="relative text-white px-5 py-2.5 rounded-full flex items-center gap-2 shadow-xl font-black text-sm uppercase tracking-wide"
-                          style={{
-                            background: 'linear-gradient(135deg, #ef4444, #f97316, #fb923c)',
-                          }}
-                        >
-                          <Sparkles className="w-4 h-4" />
-                          <span>🔥 SCONTO -{selectedProductData.discount.percentage}%</span>
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                  {/* Rimosso il badge sconto */}
 
                   <div className="grid lg:grid-cols-2 gap-12 items-center">
                     
@@ -418,14 +399,7 @@ const Products = () => {
                           
                           {/* Prezzo con sconto */}
                           <div className="flex items-center gap-3">
-                            {selectedProductData.discount && typeof selectedProductData.discount === 'object' && 'percentage' in selectedProductData.discount && 'originalPrice' in selectedProductData ? (
-                              <>
-                                <span className="text-gray-500 line-through text-lg">{(selectedProductData as any).originalPrice}</span>
-                                <span className="text-[#3ECF8E] font-bold text-2xl">{selectedProductData.price}</span>
-                              </>
-                            ) : (
-                              <span className="text-[#3ECF8E] font-semibold text-xl">{selectedProductData.price}</span>
-                            )}
+                            <span className="text-[#3ECF8E] font-semibold text-xl">{selectedProductData.price}</span>
                           </div>
                         </div>
                       </div>

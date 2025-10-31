@@ -25,6 +25,7 @@ const Contact = () => {
     firstName: '',
     lastName: '',
     email: '',
+    phone: '',
     message: '',
     service: 'Informazioni generali',
     submitted: false,
@@ -95,6 +96,7 @@ const Contact = () => {
           firstName: '',
           lastName: '',
           email: '',
+          phone: '',
           message: '',
           service: 'Informazioni generali'
         }));
@@ -311,6 +313,22 @@ const Contact = () => {
                   placeholder="inserisci@tuaemail.com"
                 />
               </div>
+
+              <div className="space-y-2">
+              <label htmlFor="phone" className="block text-sm font-medium text-white">
+                Telefono <span className="text-gray-400 text-xs">(facoltativo)</span>
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={formState.phone}
+                onChange={handleChange}
+                className="w-full px-4 py-3 rounded-lg backdrop-blur-md bg-white/5 border border-white/10 focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500/30 transition-all text-white placeholder-gray-400"
+                placeholder="Es. +39 333 1234567"
+              />
+            </div>
+
               
               <div className="space-y-2">
                 <label htmlFor="service" className="block text-sm font-medium text-white">

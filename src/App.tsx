@@ -20,7 +20,7 @@ import CookieBanner from './components/CookieBanner';
 import { ThemeProvider } from './hooks/useTheme';
 import AssistentiAILocale from './pages/AssistentiAILocale'
 import AutoTranslate from './components/LanguageSelector';
-import NotificationToast from './components/NotificationToast';
+// import NotificationToast from './components/NotificationToast';
 
 
 localStorage.removeItem('preloaderShown');

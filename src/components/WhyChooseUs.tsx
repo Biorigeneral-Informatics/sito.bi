@@ -86,7 +86,8 @@ const WhyChooseUs: React.FC = () => {
               Le Ragioni della Nostra Eccellenza
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Scopri cosa ci rende la scelta ideale per trasformare le tue sfide tecnologiche in opportunità di crescita.
+              Siamo un team di sviluppatori moderni, appassionati di innovazione e dediti a creare soluzioni software di eccellenza. La nostra missione è trasformare le tue idee in prodotti digitali concreti, mantenendo sempre il focus su qualità, performance e scalabilità.
+                Dalla consulenza strategica allo sviluppo custom, dai chatbot intelligenti alle integrazioni complesse: puntiamo a diventare il tuo partner tecnologico di fiducia, capace di evolvere insieme alle tue esigenze.
             </p>
           </div>
         </ScrollAnimation>

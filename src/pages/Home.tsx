@@ -284,173 +284,88 @@ const Home = () => {
       
       <YouTubeCommunity />
 
-{/* Sezione Servizi - Design innovativo senza card */}
+{/* Sezione Servizi - Design narrativo e minimale */}
 <section className="py-16 md:py-24 relative overflow-hidden">
   <div className="container mx-auto px-4 md:px-6 lg:px-12 relative z-10">
+    {/* Servizi Button List */}
     <ScrollAnimation animation="slideUp">
-      <div className="text-center mb-12 md:mb-20">
-        <div className="inline-block px-3 md:px-4 py-1 rounded-full glass border border-white/10 text-xs md:text-sm font-medium mb-3 md:mb-4">
-          <span className="text-green-500">
-            Soluzioni & Expertise
-          </span>
-        </div>
-        <div>
-        <h2 className="text-4xl sm:text-4xl md:text-5xl font-semibold mb-6 md:mb-8 relative inline-block">
-        <span className="block text-primary">I Nostri Servizi</span>
-      </h2>
-       </div>
-        <p className="text-base md:text-lg lg:text-xl text-gray-400 max-w-3xl mx-auto">
-          Trasformiamo la tua visione in realtà con un portfolio completo di servizi digitali innovativi.
-        </p>
-      </div>
-    </ScrollAnimation>
-    
-    {/* Layout innovativo con linee di connessione */}
-    <div className="max-w-6xl mx-auto">
-      
-      {/* Categoria: Sviluppo Software */}
-      <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="mb-16 md:mb-20"
-      >
-        <div className="flex items-center mb-8">
-          <div className="w-12 h-12 rounded-2xl glass border border-white/10 flex items-center justify-center mr-4">
-            <Code className="w-6 h-6 text-gray-400" />
-          </div>
-          <div>
-            <div className="text-sm font-medium text-violet-500 mb-1">SVILUPPO</div>
-            <h3 className="text-2xl md:text-3xl font-bold text-white">Software & Applicazioni</h3>
-          </div>
-          <div className="flex-1 ml-8 h-px bg-gradient-to-r from-white/20 to-transparent"></div>
-        </div>
+      <div className="max-w-4xl mx-auto">
+        <h3 className="text-2xl md:text-3xl font-bold text-center mb-10 text-white">
+          Esplora i Nostri Servizi
+        </h3>
         
-        <div className="grid md:grid-cols-2 gap-6 pl-16">
+        <div className="grid md:grid-cols-2 gap-4">
           <Link 
             to="/software-pmi"
-            className="group block glass p-6 rounded-xl border border-white/10 hover:border-violet-500/30 hover:bg-white/5 transition-all duration-300"
+            className="group glass p-4 rounded-xl border border-white/10 hover:border-violet-500/50 hover:bg-white/5 transition-all duration-300 flex items-center justify-between"
           >
-            <h4 className="text-lg font-bold mb-2 text-white group-hover:text-violet-500 transition-colors">Software PMI</h4>
-            <p className="text-gray-400 text-sm mb-4">Soluzioni ERP, CRM e applicazioni gestionali per piccole e medie imprese</p>
-            <div className="flex items-center text-sm text-violet-500 opacity-0 group-hover:opacity-100 transition-opacity">
-              <span>Scopri di più</span>
-              <ArrowRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <div className="flex items-center gap-3">
+              <Code className="w-5 h-5 text-violet-500 flex-shrink-0" />
+              <span className="font-semibold text-white group-hover:text-violet-400 transition-colors">Software PMI</span>
             </div>
+            <ArrowRight className="w-4 h-4 text-violet-500 group-hover:translate-x-1 transition-transform" />
           </Link>
-          
+
           <Link 
             to="/developers"
-            className="group block glass p-6 rounded-xl border border-white/10 hover:border-violet-500/30 hover:bg-white/5 transition-all duration-300"
+            className="group glass p-4 rounded-xl border border-white/10 hover:border-violet-500/50 hover:bg-white/5 transition-all duration-300 flex items-center justify-between"
           >
-            <h4 className="text-lg font-bold mb-2 text-white group-hover:text-violet-500 transition-colors">Team di Sviluppo</h4>
-            <p className="text-gray-400 text-sm mb-4">Sviluppatori esperti integrati nei tuoi progetti per accelerare la crescita</p>
-            <div className="flex items-center text-sm text-violet-500 opacity-0 group-hover:opacity-100 transition-opacity">
-              <span>Scopri di più</span>
-              <ArrowRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <div className="flex items-center gap-3">
+              <Code className="w-5 h-5 text-violet-500 flex-shrink-0" />
+              <span className="font-semibold text-white group-hover:text-violet-400 transition-colors">Team di Sviluppo</span>
             </div>
+            <ArrowRight className="w-4 h-4 text-violet-500 group-hover:translate-x-1 transition-transform" />
           </Link>
-        </div>
-      </motion.div>
 
-      {/* Categoria: Intelligenza Artificiale */}
-      <motion.div
-        initial={{ opacity: 0, x: 50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="mb-16 md:mb-20"
-      >
-        <div className="flex items-center mb-8 flex-row-reverse">
-          <div className="w-12 h-12 rounded-2xl glass border border-white/10 flex items-center justify-center ml-4">
-          
-            <Bot className="w-6 h-6 text-gray-400" />
-          </div>
-          <div className="text-right">
-            <div className="text-sm font-medium text-violet-500 mb-1">INTELLIGENZA ARTIFICIALE</div>
-            <h3 className="text-2xl md:text-3xl font-bold">AI & Automazione</h3>
-          </div>
-          <div className="flex-1 mr-8 h-px bg-gradient-to-l from-violet-500/30 to-transparent"></div>
-        </div>
-        
-        <div className="grid md:grid-cols-2 gap-6 pr-16">
           <Link 
             to="/ai-agents"
-            className="group block glass p-6 rounded-xl border border-white/10 hover:violet-green-500/30 hover:bg-white/5 transition-all duration-300"
+            className="group glass p-4 rounded-xl border border-white/10 hover:border-violet-500/50 hover:bg-white/5 transition-all duration-300 flex items-center justify-between"
           >
-            <h4 className="text-lg font-bold mb-2 group-hover:text-violet-500 transition-colors">Agenti AI</h4>
-            <p className="text-gray-400 text-sm mb-4">Agenti intelligenti personalizzati per automatizzare processi complessi</p>
-            <div className="flex items-center text-sm text-violet-500 opacity-0 group-hover:opacity-100 transition-opacity">
-              <span>Scopri di più</span>
-              <ArrowRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <div className="flex items-center gap-3">
+              <Bot className="w-5 h-5 text-violet-500 flex-shrink-0" />
+              <span className="font-semibold text-white group-hover:text-violet-400 transition-colors">Agenti AI</span>
             </div>
+            <ArrowRight className="w-4 h-4 text-violet-500 group-hover:translate-x-1 transition-transform" />
           </Link>
-          
+
           <Link 
             to="/chatbots"
-            className="group block glass p-6 rounded-xl border border-white/10 hover:border-violet-500/30 hover:bg-white/5 transition-all duration-300"
+            className="group glass p-4 rounded-xl border border-white/10 hover:border-violet-500/50 hover:bg-white/5 transition-all duration-300 flex items-center justify-between"
           >
-            <h4 className="text-lg font-bold mb-2 group-hover:text-violet-500 transition-colors">Chatbot AI</h4>
-            <p className="text-gray-400 text-sm mb-4">Assistenti conversazionali intelligenti per customer service e vendite</p>
-            <div className="flex items-center text-sm text-violet-500 opacity-0 group-hover:opacity-100 transition-opacity">
-              <span>Scopri di più</span>
-              <ArrowRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <div className="flex items-center gap-3">
+              <Bot className="w-5 h-5 text-violet-500 flex-shrink-0" />
+              <span className="font-semibold text-white group-hover:text-violet-400 transition-colors">Chatbot AI</span>
             </div>
+            <ArrowRight className="w-4 h-4 text-violet-500 group-hover:translate-x-1 transition-transform" />
           </Link>
-        </div>
-      </motion.div>
 
-      {/* Categoria: Strategia & Crescita */}
-      <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.4 }}
-        className="mb-16 md:mb-20"
-      >
-        <div className="flex items-center mb-8">
-          <div className="w-12 h-12 rounded-2xl glass border border-white/10 flex items-center justify-center mr-4">
-            <TrendingUp className="w-6 h-6 text-gray-400" />
-          </div>
-          <div>
-            <div className="text-sm font-medium text-violet-500 mb-1">STRATEGIA</div>
-            <h3 className="text-2xl md:text-3xl font-bold text-white">Crescita & Consulenza</h3>
-          </div>
-          <div className="flex-1 ml-8 h-px bg-gradient-to-r from-white/20 to-transparent"></div>
-        </div>
-        
-        <div className="grid md:grid-cols-2 gap-6 pl-16">
           <Link 
             to="/growth-plans"
-            className="group block glass p-6 rounded-xl border border-white/10 hover:border-violet-500/30 hover:bg-white/5 transition-all duration-300"
+            className="group glass p-4 rounded-xl border border-white/10 hover:border-violet-500/50 hover:bg-white/5 transition-all duration-300 flex items-center justify-between"
           >
-            <h4 className="text-lg font-bold mb-2 text-white group-hover:text-violet-500 transition-colors">Piani di Crescita</h4>
-            <p className="text-gray-400 text-sm mb-4">Strategie su misura per scalare il tuo business con tecnologie innovative</p>
-            <div className="flex items-center text-sm text-violet-500 opacity-0 group-hover:opacity-100 transition-opacity">
-              <span>Scopri di più</span>
-              <ArrowRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <div className="flex items-center gap-3">
+              <TrendingUp className="w-5 h-5 text-violet-500 flex-shrink-0" />
+              <span className="font-semibold text-white group-hover:text-violet-400 transition-colors">Piani di Crescita</span>
             </div>
+            <ArrowRight className="w-4 h-4 text-violet-500 group-hover:translate-x-1 transition-transform" />
           </Link>
-          
+
           <Link 
             to="/products"
-            className="group block glass p-6 rounded-xl border border-white/10 hover:border-violet-500/30 hover:bg-white/5 transition-all duration-300"
+            className="group glass p-4 rounded-xl border border-white/10 hover:border-violet-500/50 hover:bg-white/5 transition-all duration-300 flex items-center justify-between"
           >
-            <h4 className="text-lg font-bold mb-2 text-white group-hover:text-violet-500 transition-colors">Prodotti & Soluzioni</h4>
-            <p className="text-gray-400 text-sm mb-4">Catalogo completo di strumenti e prodotti digitali pronti all'uso</p>
-            <div className="flex items-center text-sm text-violet-500 opacity-0 group-hover:opacity-100 transition-opacity">
-              <span>Scopri di più</span>
-              <ArrowRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <div className="flex items-center gap-3">
+              <TrendingUp className="w-5 h-5 text-violet-500 flex-shrink-0" />
+              <span className="font-semibold text-white group-hover:text-violet-400 transition-colors">Prodotti & Soluzioni</span>
             </div>
+            <ArrowRight className="w-4 h-4 text-violet-500 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
-      </motion.div>
-
-      
-    </div>
+      </div>
+    </ScrollAnimation>
   </div>
 </section>
+
 
 {/* CTA Finale - Testi originali con design minimal */}
 <section className="py-20 md:py-12 relative overflow-hidden">

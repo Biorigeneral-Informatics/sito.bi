@@ -1,14 +1,19 @@
 // src/pages/Home.tsx - Versione migliorata e ottimizzata per mobile
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Users, BrainCircuit, Code, Workflow, TrendingUp, Bot, MessageSquare, Youtube } from 'lucide-react';
+import { ArrowRight, Code, TrendingUp, Bot } from 'lucide-react';
 import ScrollAnimation from '../components/ScrollAnimation';
+import Testimonials from '../components/Testimonials';
+import YouTubeCommunity from '../components/YouTubeCommunity';
+import WhyChooseUs from '../components/WhyChooseUs';
 import ScrollGradient from '../components/ScrollGradient';
 /* import ThemeToggle from '../components/ThemeToggle'; */
 import SEO from '../components/SEO';
 import { getSEOData } from '../config/seoData';
 
 const seoData = getSEOData('home'); 
+
+// Testimonials moved to `src/components/Testimonials.tsx`
 
 const Home = () => {
   return (
@@ -273,270 +278,11 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Sezione Valore, competenze, innovazione - Layout pulito con puntini animati */}
-<section className="py-16 md:py-24 relative overflow-hidden">
-  <div className="container mx-auto px-6 md:px-8 lg:px-16 relative z-10">
-    
-    {/* Titolo principale con stesso font del titolo hero */}
-    <ScrollAnimation animation="fadeIn" className="text-center mb-12 md:mb-16">
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-6 md:mb-8 relative inline-block">
-        <span className="block text-primary">Valore, competenze e innovazione</span>
-      </h2>
-      <p className="text-base sm:text-lg md:text-xl text-foreground/80  text-gray-400 max-w-3xl mx-auto leading-relaxed">
-        La sinergia tra esperienza nell'AI, competenze tecniche avanzate e visione innovativa, 
-        per trasformare le sfide digitali in opportunità di crescita
-      </p>
-    </ScrollAnimation>
-
-    {/* Mosaico di 5 riquadri */}
-    <div className="grid grid-cols-1 md:grid-cols-8 gap-6 ml-10 mr-10 relative">
+      <WhyChooseUs />
       
-      {/* PRIMA RIGA */}
+      <Testimonials />
       
-      {/* Riquadro 1 - Integrazione AI evoluta (GRANDE - 5 colonne) */}
-      <ScrollAnimation animation="slideUp" delay={0.1} className="md:col-span-5 relative">
-        <div className="bg-gradient-to-br from-background/70 to-emerald-500/8 backdrop-blur-lg border border-emerald-500/25 rounded-2xl shadow-xl p-6 md:p-8 relative overflow-hidden hover:scale-[1.02] transition-all duration-500 group h-full">
-          {/* Top gradient border verde */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-green-400 via-teal-400 to-emerald-400"></div>
-          
-          {/* Gradient interno verde */}
-          <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/12 via-green-500/8 to-teal-500/6 opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
-          <div className="absolute inset-0 bg-gradient-to-tl from-white/8 via-transparent to-emerald-300/6 opacity-50 group-hover:opacity-70 transition-opacity duration-500"></div>
-          
-          {/* Rete di connessioni animate */}
-          <div className="absolute inset-0 opacity-30">
-            <div className="absolute top-12 right-12 w-1 h-1 bg-emerald-300 rounded-full animate-ping"></div>
-            <div className="absolute bottom-8 left-16 w-1.5 h-1.5 bg-emerald-500 rounded-full animate-bounce"></div>
-            <div className="absolute bottom-16 right-8 w-1 h-1 bg-emerald-200 rounded-full animate-pulse"></div>
-          </div>
-          
-          <div className="relative z-10">
-            <div className="flex items-center mb-6">
-              <BrainCircuit className="w-5 h-5 text-white mr-3" />
-              <h3 className="text-lg font-semibold text-white">Integrazione AI evoluta</h3>
-            </div>
-            
-            <p className="text-white/90 leading-relaxed">
-              Mentre la maggior parte delle aziende italiane non sfrutta ancora l'AI, noi integriamo <span className="text-white font-medium">modelli linguistici avanzati</span> in ogni soluzione per automatizzare <span className="text-white font-medium">processi complessi</span> e migliorare l'efficienza operativa.
-            </p>
-          </div>
-        </div>
-      </ScrollAnimation>
-
-      {/* Riquadro 2 - Automazione intelligente (MEDIO - 3 colonne) */}
-      <ScrollAnimation animation="slideUp" delay={0.2} className="md:col-span-3 relative">
-        <div className="bg-gradient-to-br from-background/70 to-teal-500/8 backdrop-blur-lg border border-teal-500/25 rounded-2xl shadow-xl p-6 md:p-8 relative overflow-hidden hover:scale-[1.02] transition-all duration-500 group h-full">
-          {/* Top gradient border verde */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-green-400 via-teal-400 to-emerald-400"></div>
-          
-          {/* Gradient interno verde */}
-          <div className="absolute inset-0 bg-gradient-to-br from-teal-500/12 via-emerald-500/8 to-green-500/6 opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
-          <div className="absolute inset-0 bg-gradient-to-tr from-white/8 via-transparent to-teal-300/6 opacity-50 group-hover:opacity-70 transition-opacity duration-500"></div>
-          
-          {/* Rete di connessioni animate */}
-          <div className="absolute inset-0 opacity-30">
-            <div className="absolute top-14 right-10 w-1 h-1 bg-teal-300 rounded-full animate-ping"></div>
-            <div className="absolute bottom-10 left-12 w-1.5 h-1.5 bg-teal-500 rounded-full animate-bounce"></div>
-            <div className="absolute bottom-18 right-6 w-1 h-1 bg-teal-200 rounded-full animate-pulse"></div>
-          </div>
-          
-          <div className="relative z-10">
-            <div className="flex items-center mb-6">
-              <Workflow className="w-5 h-5 text-white mr-3" />
-              <h3 className="text-lg font-semibold text-white">Automazione intelligente</h3>
-            </div>
-            
-            <p className="text-white/90 leading-relaxed">
-              Combinazione avanzata di strumenti come <span className="text-white font-medium">N8n e Make</span> con AI per creare <span className="text-white font-medium">flussi di lavoro autonomi</span> che riducono i costi operativi.
-            </p>
-          </div>
-        </div>
-      </ScrollAnimation>
-
-      {/* SECONDA RIGA */}
-      
-      {/* Riquadro 3 - Competenze all'avanguardia (PICCOLO - 2 colonne) */}
-      <ScrollAnimation animation="slideUp" delay={0.3} className="md:col-span-2 relative">
-        <div className="bg-gradient-to-br from-background/70 to-green-500/8 backdrop-blur-lg border border-green-500/25 rounded-2xl shadow-xl p-6 md:p-8 relative overflow-hidden hover:scale-[1.02] transition-all duration-500 group h-full">
-          {/* Top gradient border verde */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-green-400 via-teal-400 to-emerald-400"></div>
-          
-          {/* Gradient interno verde */}
-          <div className="absolute inset-0 bg-gradient-to-br from-green-500/12 via-teal-500/8 to-emerald-500/6 opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
-          <div className="absolute inset-0 bg-gradient-to-tr from-white/8 via-transparent to-green-300/6 opacity-50 group-hover:opacity-70 transition-opacity duration-500"></div>
-          
-          {/* Rete di connessioni animate */}
-          <div className="absolute inset-0 opacity-30">
-            <div className="absolute top-5 left-10 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-            <div className="absolute top-16 right-8 w-1 h-1 bg-green-300 rounded-full animate-ping"></div>
-            <div className="absolute bottom-12 left-8 w-1.5 h-1.5 bg-green-500 rounded-full animate-bounce"></div>
-            <div className="absolute bottom-6 right-12 w-1 h-1 bg-green-200 rounded-full animate-pulse"></div>
-          </div>
-          
-          <div className="relative z-10">
-            <div className="flex items-center mb-6">
-              <Code className="w-5 h-5 text-white mr-3" />
-              <h3 className="text-lg font-semibold text-white">Competenze all'avanguardia</h3>
-            </div>
-            
-            <p className="text-white/90 leading-relaxed">
-              <span className="text-white font-medium">Metodologie pionieristiche</span> e strumenti innovativi che ci posizionano oltre le <span className="text-white font-medium">soluzioni tradizionali</span> del panorama italiano.
-            </p>
-          </div>
-        </div>
-      </ScrollAnimation>
-
-      {/* Riquadro 4 - Performance e Scalabilità (PICCOLO - 2 colonne) */}
-      <ScrollAnimation animation="slideUp" delay={0.4} className="md:col-span-2 relative">
-        <div className="bg-gradient-to-br from-background/70 to-teal-600/8 backdrop-blur-lg border border-teal-600/25 rounded-2xl shadow-xl p-6 md:p-8 relative overflow-hidden hover:scale-[1.02] transition-all duration-500 group h-full">
-          {/* Top gradient border verde */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-green-400 via-teal-400 to-emerald-400"></div>
-          
-          {/* Gradient interno verde */}
-          <div className="absolute inset-0 bg-gradient-to-br from-teal-600/12 via-green-600/8 to-emerald-600/6 opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
-          <div className="absolute inset-0 bg-gradient-to-tr from-white/8 via-transparent to-teal-400/6 opacity-50 group-hover:opacity-70 transition-opacity duration-500"></div>
-          
-          {/* Rete di connessioni animate */}
-          <div className="absolute inset-0 opacity-30">
-            <div className="absolute top-7 left-12 w-2 h-2 bg-teal-400 rounded-full animate-pulse"></div>
-            <div className="absolute top-16 right-6 w-1 h-1 bg-teal-300 rounded-full animate-ping"></div>
-            <div className="absolute bottom-14 left-6 w-1.5 h-1.5 bg-teal-500 rounded-full animate-bounce"></div>
-            <div className="absolute bottom-8 right-14 w-1 h-1 bg-teal-200 rounded-full animate-pulse"></div>
-          </div>
-          
-          <div className="relative z-10">
-            <div className="flex items-center mb-6">
-              <TrendingUp className="w-5 h-5 text-white mr-3" />
-              <h3 className="text-lg font-semibold text-white">Performance e Scalabilità</h3>
-            </div>
-            
-            <p className="text-white/90 leading-relaxed">
-              <span className="text-white font-medium">Architetture cloud-native</span> e ottimizzazioni avanzate garantiscono <span className="text-white font-medium">prestazioni superiori</span> e scalabilità dinamica senza compromessi.
-            </p>
-          </div>
-        </div>
-      </ScrollAnimation>
-
-      {/* Riquadro 5 - Giovani Talenti e Innovazione (GRANDE - 4 colonne) */}
-      <ScrollAnimation animation="slideUp" delay={0.5} className="md:col-span-4 relative">
-        <div className="bg-gradient-to-br from-background/70 to-emerald-600/8 backdrop-blur-lg border border-emerald-600/25 rounded-2xl shadow-xl p-6 md:p-8 relative overflow-hidden hover:scale-[1.02] transition-all duration-500 group h-full">
-          {/* Top gradient border verde */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-green-400 via-teal-400 to-emerald-400"></div>
-          
-          {/* Gradient interno verde */}
-          <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/12 via-green-600/8 to-teal-600/6 opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
-          <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-emerald-400/6 opacity-50 group-hover:opacity-70 transition-opacity duration-500"></div>
-          
-          {/* Rete di connessioni animate */}
-          <div className="absolute inset-0 opacity-30">
-            <div className="absolute top-6 left-8 w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
-            <div className="absolute top-12 right-12 w-1 h-1 bg-emerald-300 rounded-full animate-ping"></div>
-            <div className="absolute bottom-8 left-16 w-1.5 h-1.5 bg-emerald-500 rounded-full animate-bounce"></div>
-            <div className="absolute bottom-16 right-8 w-1 h-1 bg-emerald-200 rounded-full animate-pulse"></div>
-          </div>
-          
-          <div className="relative z-10">
-            <div className="flex items-center mb-6">
-              <Users className="w-5 h-5 text-white mr-3" />
-              <h3 className="text-lg font-semibold text-white">Giovani Talenti e Innovazione</h3>
-            </div>
-            
-            <p className="text-white/90 leading-relaxed">
-              L'integrazione di <span className="text-white font-medium">giovani talenti</span> porta energie fresche e <span className="text-white font-medium">approcci innovativi</span>, combinando competenze tecniche all'avanguardia con una <span className="text-white font-medium">visione disruptive</span> per affrontare ogni sfida con creatività e pragmatismo.
-            </p>
-          </div>
-        </div>
-      </ScrollAnimation>
-
-    </div>
-
-{/* Testo descrittivo sotto lo slider */}
-        <div className="text-center mt-20 md:mt-22">
-          <p className="text-sm md:text-base text-foreground/60">
-          Siamo pronti a valutare le tue esigenze e proporti la soluzione di integrazione più adatta al tuo business.
-          </p>
-        </div>
-  </div>
-</section>
-      
-      {/* Community - Rimandi ed elemento */}
-<section className="py-8 md:py-12 pt-6 md:pt-8 relative overflow-hidden">
-  <div className="container mx-auto px-4 md:px-6 lg:px-12 relative z-10">
-    <ScrollAnimation animation="slideUp">
-      <div className="text-center mb-12 md:mb-20">
-        {/* Badge sopra il titolo */}
-        <div className="inline-block px-3 md:px-4 py-1 rounded-full glass border border-white/10 text-xs md:text-sm font-medium mb-3 md:mb-4">
-          <span className="text-green-500">
-            Community & Collaborazione
-          </span>
-        </div>
-        
-        <div>
-        {/* Titolo con esattamente lo stesso stile di "Valore, competenza e innovazione" */}
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-6 mt-4 md:mb-6 relative inline-block">
-        <span className="block text-primary">Unisciti alla Community</span>
-      </h2>
-        </div>
-        <p className="text-base sm:text-lg md:text-xl text-foreground/80 text-gray-400 max-w-3xl mx-auto leading-relaxed">
-          Più che una semplice piattaforma di supporto, la nostra community è un ecosistema dedicato a valorizzare e accompagnare con cura i nostri utenti più appassionati.
-        </p>
-      </div>
-    </ScrollAnimation>
-    
-     {/* Elemento 3 - Floating Community Cards (PICCOLO - 2 colonne) */}
-<ScrollAnimation animation="slideUp" delay={0.3} className="md:col-span-2 relative">
-  
-  {/* Container principale senza background fisso */}
-<div className="relative w-full h-full p-6 min-h-[320px] md:min-h-[280px]">
-    
-    {/* YouTube Card Fluttuante */}
-<div className="absolute top-4 left-1/2 transform -translate-x-1/2 rotate-0 md:top-16 md:left-12 md:translate-x-0 md:rotate-3 w-60 h-24 border border-gray-500/30 rounded-xl shadow-lg hover:rotate-6 hover:scale-110 transition-all duration-500  group z-20">
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-800/10 to-gray-700/5 rounded-xl"></div>
-      <div className="relative h-full flex flex-col items-center justify-center p-4">
-        <Youtube className="w-10 h-10 text-gray-400 mb-2 group-hover:scale-125 transition-transform duration-300" />
-        <span className="text-sm font-bold text-white text-center leading-tight">Youtube</span>
-        <div className="absolute top-1 right-1 w-2 h-2 bg-green-400 rounded-full animate-ping"></div>
-      </div>
-    </div>
-    
-    {/* Discord Card Fluttuante */}
-<div className="absolute top-32 left-1/2 transform -translate-x-1/2 rotate-0 md:top-20 md:right-12 md:left-auto md:translate-x-0 md:-rotate-2 w-60 h-24 border border-gray-500/30 rounded-xl shadow-lg hover:-rotate-5 hover:scale-110 transition-all duration-500 group z-10">
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-800/10 to-gray-700/5 rounded-xl"></div>
-      <div className="relative h-full flex flex-col items-center justify-center p-4">
-        <MessageSquare className="w-10 h-10 text-gray-400 mb-2 group-hover:scale-125 transition-transform duration-300" />
-        <span className="text-sm font-bold text-white text-center leading-tight">Discord</span>
-        <div className="absolute top-1 right-1 w-2 h-2 bg-green-400 rounded-full animate-ping"></div>
-      </div>
-    </div>
-    
-    {/* Community Card Centrale */}
-<div className="absolute top-60 left-1/2 transform -translate-x-1/2 md:top-6 w-60 h-20 border border-gray-500/30 rounded-xl shadow-lg hover:scale-105 transition-all duration-500 group z-30">
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-800/10 to-gray-700/5 rounded-xl"></div>
-      <div className="relative h-full flex items-center justify-center p-4">
-        <Users className="w-8 h-8 text-gray-400 mr-3 group-hover:scale-110 transition-transform duration-300" />
-        <div className="text-center">
-          <div className="text-sm font-bold text-white">Patreon</div>
-           <div className="absolute top-1 right-1 w-2 h-2 bg-green-400 rounded-full animate-ping"></div>
-
-        </div>
-      </div>
-    </div>
-    
-  
-    
-    {/* Linee di connessione sottili che appaiono al hover */}
-    <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-0 hover:opacity-30 transition-opacity duration-700">
-      <line x1="64" y1="40" x2="96" y2="72" stroke="#6366f1" strokeWidth="1" strokeDasharray="2,2" className="animate-pulse opacity-40" />
-      <line x1="96" y1="72" x2="72" y2="120" stroke="#8b5cf6" strokeWidth="1" strokeDasharray="2,2" className="animate-pulse opacity-40" />
-      <line x1="32" y1="60" x2="72" y2="120" stroke="#a855f7" strokeWidth="1" strokeDasharray="2,2" className="animate-pulse opacity-40" />
-    </svg>
-    
-  </div>
-  
-</ScrollAnimation>
-     
-  </div>
-</section>
+      <YouTubeCommunity />
 
 {/* Sezione Servizi - Design innovativo senza card */}
 <section className="py-16 md:py-24 relative overflow-hidden">

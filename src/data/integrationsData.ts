@@ -472,12 +472,12 @@ export const integrationCategories = [
 
 export const faqs = [
     {
-        question: "Quanto tempo richiede l'integrazione di un agente AI?",
-        answer: "I tempi variano in base alla complessità. Per integrazioni standard (es. Slack, Gmail, Trello) il setup richiede dai 15 ai 60 minuti. Per integrazioni CRM complesse o database custom, il processo può richiedere da 2 a 5 ore per la configurazione e il testing completo."
+        question: "Quanto tempo richiede lo sviluppo di un agente AI?",
+        answer: "I tempi variano in base alla complessità. Per agenti standard il setup richiede anche poche ore. Per integrazioni CRM complesse o database custom, sistemi di agenti avanzati possono richiedere più tempo, fino a diverse settimane."
     },
     {
         question: "È necessario modificare il codice dei miei sistemi esistenti?",
-        answer: "Nella maggior parte dei casi, NO. I nostri agenti utilizzano API standard, webhook e protocolli sicuri già presenti nei tuoi strumenti. Operiamo come un livello di 'intelligenza sovrapposta' che non richiede refactoring del tuo backend."
+        answer: "Dipende dai casi. I nostri agenti utilizzano API standard, webhook e protocolli sicuri solitamente già presenti nei tuoi strumenti. Tuttavia i nostri tecnici, se necessario, ti aiuterannoa d intervenire nel modo migliore."
     },
     {
         question: "Come viene garantita la sicurezza dei dati aziendali?",
@@ -485,11 +485,11 @@ export const faqs = [
     },
     {
         question: "Posso integrare un software proprietario o legacy?",
-        answer: "Assolutamente sì. Se il tuo software ha un'API, possiamo integrarlo. Se non ha API, possiamo sviluppare connettori custom o utilizzare tecnologie RPA (Robotic Process Automation) per interagire con l'interfaccia utente in modo sicuro."
+        answer: "Assolutamente sì. Se il tuo software ha un'API, possiamo integrarlo. Se non ha API, possiamo valutare se è possibile sviluppare connettori custom o utilizzare tecnologie RPA (Robotic Process Automation) per interagire con l'interfaccia utente in modo sicuro."
     },
     {
         question: "Cosa succede se un'API cambia o si rompe?",
-        answer: "I nostri agenti sono dotati di sistemi di 'self-healing'. Rilevano errori di connessione, tentano il ripristino automatico e notificano immediatamente gli amministratori. Monitoriamo proattivamente le modifiche alle API dei partner per aggiornare i connettori prima che si verifichino problemi."
+        answer: "I nostri agenti sono dotati di sistemi di 'self-healing'. Rilevano errori di connessione, tentano il ripristino automatico e notificano immediatamente gli amministratori. Monitoriamo proattivamente i nostri sistemi per garantire la massima affidabilità, in abse al piano di manutenzione."
     },
     {
         question: "Posso limitare ciò che l'agente può vedere o fare?",

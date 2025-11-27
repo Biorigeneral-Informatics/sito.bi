@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -12,22 +12,7 @@ import { getSEOData } from '../config/seoData';
 import { integrationsData, integrationCategories, faqs } from '../data/integrationsData';
 import IntegrationCard from '../components/IntegrationCard';
 import VideoShowcase from '../components/VideoShowcase';
-
-// ... (existing imports)
-
-// Inside component return:
-{/* Hero Section - Stile Home con effetto typing */ }
-<section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-1 pb-16">
-  {/* ... existing hero content ... */}
-</section>
-
-{/* Video Showcase Section */ }
-<VideoShowcase
-  videoId="_qkF0gn8YNo"
-  startTime={328}
-  title="Sviluppo Agenti AI Avanzati"
-  description="Guarda come i nostri ingegneri progettano agenti capaci di ragionamento complesso. Un esempio reale di implementazione che mostra la logica e la potenza dei nostri sistemi."
-/>
+import AccordionFAQ from '../components/AccordionFAQ';
 
 const seoData = getSEOData('aiAgents');
 
@@ -129,6 +114,16 @@ const AIAgents = () => {
             </div>
           </div>
         </section>
+
+        {/* Video Showcase - sostituito: parte da 11:32 (692s) */}
+        <VideoShowcase
+          videoId="bRJFhCgVAzU"
+          startTime={815}
+          title="Sviluppo Agenti AI Avanzati"
+          description="Guarda come i nostri ingegneri progettano agenti capaci di ragionamento complesso. Un esempio reale di implementazione che mostra la logica e la potenza dei nostri sistemi."
+        />
+
+        {/* Removed duplicate demo video per request: kept only the first VideoShowcase above */}
 
         {/* Sezione Valore */}
         <section className="py-16 md:py-24 relative overflow-hidden">

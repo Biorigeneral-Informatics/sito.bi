@@ -34,7 +34,6 @@ interface Project {
 }
 
 const Portfolio = () => {
-  const [expandedProject, setExpandedProject] = useState<number | null>(null);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
@@ -400,13 +399,6 @@ const Portfolio = () => {
                             {project.title}
                           </h3>
                         </div>
-                        <span className={`px-3 py-1 rounded-lg text-xs font-semibold whitespace-nowrap flex-shrink-0 ${
-                          project.status === 'completed' 
-                            ? 'bg-green-500/20 text-green-400 border border-green-500/30'
-                            : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
-                        }`}>
-                          {project.status === 'completed' ? '✓ Completato' : '⚙️ In Progresso'}
-                        </span>
                       </div>
 
                       {/* Description */}
@@ -414,20 +406,18 @@ const Portfolio = () => {
                         {project.description}
                       </p>
 
-                      {/* Expandable Long Description */}
-                      {expandedProject === project.id && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="mb-6 p-4 bg-white/5 rounded-xl border border-white/10"
-                        >
-                          <p className="text-gray-300 leading-relaxed">
-                            {project.longDescription}
-                          </p>
-                        </motion.div>
-                      )}
+                      {/* Long Description - Always Visible */}
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        whileInView={{ opacity: 1, height: 'auto' }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.3 }}
+                        className="mb-6 p-4 bg-white/5 rounded-xl border border-white/10"
+                      >
+                        <p className="text-gray-300 leading-relaxed">
+                          {project.longDescription}
+                        </p>
+                      </motion.div>
 
                       {/* Skills Tags */}
                       <div className="flex flex-wrap gap-2 mb-6">
@@ -444,15 +434,15 @@ const Portfolio = () => {
                       {/* Gallery Thumbnails */}
                       {project.images && project.images.length > 0 && (
                         <div className="pt-6 border-t border-white/10">
-                          <p className="text-xs text-gray-400 uppercase tracking-wider mb-3 font-semibold">Galleria del progetto</p>
-                          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                          <p className="text-xs text-gray-400 uppercase tracking-wider mb-4 font-semibold">Galleria del progetto</p>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                             {project.images.map((image, imgIndex) => (
                               <motion.button
                                 key={imgIndex}
-                                whileHover={{ scale: 1.05 }}
+                                whileHover={{ scale: 1.03 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => setSelectedImage(image)}
-                                className="relative h-24 rounded-lg overflow-hidden border border-white/20 hover:border-[#3ECF8E]/50 transition-all duration-300 group/img"
+                                className="relative h-40 rounded-lg overflow-hidden border border-white/20 hover:border-[#3ECF8E]/50 transition-all duration-300 group/img"
                               >
                                 <img 
                                   src={image}
@@ -461,7 +451,7 @@ const Portfolio = () => {
                                 />
                                 <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/30 transition-colors duration-300 flex items-center justify-center">
                                   <div className="text-white opacity-0 group-hover/img:opacity-100 transition-opacity duration-300">
-                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
                                     </svg>
                                   </div>
@@ -471,16 +461,6 @@ const Portfolio = () => {
                           </div>
                         </div>
                       )}
-
-                      {/* Expand/Collapse Toggle */}
-                      <div className="mt-6 pt-6 border-t border-white/10 text-center">
-                        <button
-                          onClick={() => setExpandedProject(expandedProject === project.id ? null : project.id)}
-                          className="text-sm text-gray-400 hover:text-[#3ECF8E] transition-colors duration-300 font-medium"
-                        >
-                          {expandedProject === project.id ? '▲ Riduci dettagli' : '▼ Mostra dettagli completi'}
-                        </button>
-                      </div>
                     </div>
                   </div>
                 </motion.div>
@@ -497,7 +477,7 @@ const Portfolio = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={() => setSelectedImage(null)}
-            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
+            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
@@ -505,21 +485,24 @@ const Portfolio = () => {
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative max-w-4xl w-full max-h-screen flex items-center justify-center"
+              className="relative w-full max-w-5xl max-h-[90vh]"
             >
-              <img 
-                src={selectedImage}
-                alt="Immagine in evidenza"
-                className="max-w-full max-h-screen object-contain rounded-xl"
-              />
+              {/* Close Button */}
               <button
                 onClick={() => setSelectedImage(null)}
-                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/60 hover:bg-black/80 flex items-center justify-center text-white transition-all duration-300 group"
+                className="absolute -top-12 right-0 w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-all duration-300 group z-10"
               >
                 <svg className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
+
+              {/* Image */}
+              <img 
+                src={selectedImage}
+                alt="Immagine in evidenza"
+                className="w-full h-auto max-h-[85vh] object-contain rounded-xl"
+              />
             </motion.div>
           </motion.div>
         )}

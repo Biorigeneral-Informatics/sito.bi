@@ -41,7 +41,7 @@ const Navbar = () => {
 
   const mainLinks = [
     { href: '/', label: 'Home' },
-    { href: '/products', label: 'Prodotti' },
+    { href: '/portfolio', label: 'Portfolio' },
     { href: '#', label: 'Servizi', hasSubmenu: true },
     { href: '/community', label: 'Community' },
     { href: '/contact', label: 'Contatti' },

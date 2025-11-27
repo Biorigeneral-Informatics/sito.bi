@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Products from './pages/Products';
+import Portfolio from './pages/Portfolio';
 import SoftwarePMI from './pages/SoftwarePMI';
 import AIAgents from './pages/AIAgents';
 import Chatbots from './pages/Chatbots';
@@ -51,6 +52,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />
             <Route path="/products/:productSlug" element={<Products />} />
+            <Route path="/portfolio" element={<Portfolio />} />
             
             {/* Percorsi principali */}
             <Route path="/software-pmi" element={<SoftwarePMI />} />

@@ -12,6 +12,7 @@ import {
   Zap,
 } from 'lucide-react';
 import ScrollAnimation from '../components/ScrollAnimation';
+import Testimonials from '../components/Testimonials';
 import ScrollGradient from '../components/ScrollGradient';
 import SEO from '../components/SEO';
 import { getSEOData } from '../config/seoData';
@@ -278,6 +279,9 @@ const AssistentiAILocale = () => {
 
           </div>
         </section>
+
+        {/* Testimonials */}
+        <Testimonials />
 
         {/* SEZIONE 4 - Prezzi e Target - BOTTONI MIGLIORATI */}
         <section className="py-16 md:py-24 relative">

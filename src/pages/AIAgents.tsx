@@ -12,6 +12,7 @@ import { getSEOData } from '../config/seoData';
 import { integrationsData, integrationCategories, faqs } from '../data/integrationsData';
 import IntegrationCard from '../components/IntegrationCard';
 import VideoShowcase from '../components/VideoShowcase';
+import Testimonials from '../components/Testimonials';
 import AccordionFAQ from '../components/AccordionFAQ';
 
 const seoData = getSEOData('aiAgents');
@@ -122,6 +123,159 @@ const AIAgents = () => {
           title="Sviluppo Agenti AI Avanzati"
           description="Guarda come i nostri ingegneri progettano agenti capaci di ragionamento complesso. Un esempio reale di implementazione che mostra la logica e la potenza dei nostri sistemi."
         />
+
+        {/* Testimonials */}
+        <Testimonials />
+
+        {/* Integrazione Strumenti - SEZIONE OTTIMIZZATA */}
+        <section className="py-20 container mx-auto px-4 md:px-6 lg:px-12">
+          <ScrollAnimation animation="fadeIn">
+            <div className="text-center mb-16">
+              <div className="inline-block px-3 md:px-4 py-1 rounded-full glass border border-white/10 text-xs md:text-sm font-medium mb-3 md:mb-4">
+                <span className="text-emerald-500">
+                  Ecosistema Connesso
+                </span>
+              </div>
+              <h3 className="text-3xl md:text-4xl font-semibold text-white mb-6">
+                Integrazione con i Tuoi Strumenti Esistenti
+              </h3>
+              <p className="text-secondary text-lg max-w-2xl mx-auto">
+                I nostri agenti non sono isole. Si integrano profondamente nel tuo stack tecnologico esistente,
+                potenziando gli strumenti che già usi senza costringerti a cambiarli.
+              </p>
+            </div>
+          </ScrollAnimation>
+
+          {/* Category Tabs */}
+          <ScrollAnimation animation="fadeIn" delay={0.1}>
+            <div className="flex flex-wrap justify-center gap-3 mb-12">
+              {integrationCategories.map((category) => {
+                const Icon = category.icon;
+                const isActive = activeCategory === category.id;
+                return (
+                  <button
+                    key={category.id}
+                    onClick={() => setActiveCategory(category.id)}
+                    className={`flex items-center px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border ${isActive
+                      ? `${category.bg} text-white border-transparent shadow-lg`
+                      : 'bg-white/5 text-gray-400 border-white/10 hover:bg-white/10 hover:text-white'
+                      }`}
+                  >
+                    <Icon className={`w-4 h-4 mr-2 ${isActive ? 'text-white' : category.color}`} />
+                    {category.label}
+                  </button>
+                );
+              })}
+            </div>
+          </ScrollAnimation>
+
+          {/* Integrations Grid */}
+          <div className="min-h-[400px]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeCategory}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6 max-w-6xl mx-auto"
+              >
+                {integrationsData
+                  .filter(item => item.category === activeCategory)
+                  .map((integration) => {
+                    const categoryColor = integrationCategories.find(c => c.id === integration.category)?.color || 'text-blue-500';
+                    return (
+                      <IntegrationCard
+                        key={integration.id}
+                        integration={integration}
+                        isExpanded={expandedIntegration === integration.id}
+                        onToggle={() => toggleIntegration(integration.id)}
+                        colorClass={categoryColor}
+                      />
+                    );
+                  })}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Compatibility Matrix */}
+          <div className="mt-24 max-w-5xl mx-auto">
+            <ScrollAnimation animation="slideUp">
+              <h4 className="text-2xl font-bold text-white mb-8 text-center">Matrice di Compatibilità & Sicurezza</h4>
+              <div className="glass rounded-xl overflow-hidden border border-white/10 overflow-x-auto">
+                <table className="w-full text-left text-sm text-gray-400">
+                  <thead className="bg-white/5 text-white uppercase text-xs font-semibold">
+                    <tr>
+                      <th className="px-6 py-4">Funzionalità</th>
+                      <th className="px-6 py-4 text-center">Standard API</th>
+                      <th className="px-6 py-4 text-center">Custom Webhook</th>
+                      <th className="px-6 py-4 text-center">Database Diretto</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-white/5">
+                    <tr className="hover:bg-white/5 transition-colors">
+                      <td className="px-6 py-4 font-medium text-white">Lettura Dati Real-time</td>
+                      <td className="px-6 py-4 text-center"><Check className="w-5 h-5 text-emerald-500 mx-auto" /></td>
+                      <td className="px-6 py-4 text-center"><Check className="w-5 h-5 text-emerald-500 mx-auto" /></td>
+                      <td className="px-6 py-4 text-center"><Check className="w-5 h-5 text-emerald-500 mx-auto" /></td>
+                    </tr>
+                    <tr className="hover:bg-white/5 transition-colors">
+                      <td className="px-6 py-4 font-medium text-white">Scrittura/Modifica Dati</td>
+                      <td className="px-6 py-4 text-center"><Check className="w-5 h-5 text-emerald-500 mx-auto" /></td>
+                      <td className="px-6 py-4 text-center"><Check className="w-5 h-5 text-emerald-500 mx-auto" /></td>
+                      <td className="px-6 py-4 text-center"><Check className="w-5 h-5 text-emerald-500 mx-auto" /></td>
+                    </tr>
+                    <tr className="hover:bg-white/5 transition-colors">
+                      <td className="px-6 py-4 font-medium text-white">Trigger Eventi</td>
+                      <td className="px-6 py-4 text-center"><Check className="w-5 h-5 text-emerald-500 mx-auto" /></td>
+                      <td className="px-6 py-4 text-center"><Check className="w-5 h-5 text-emerald-500 mx-auto" /></td>
+                      <td className="px-6 py-4 text-center"><div className="w-5 h-5 mx-auto text-yellow-500 font-bold">-</div></td>
+                    </tr>
+                    <tr className="hover:bg-white/5 transition-colors">
+                      <td className="px-6 py-4 font-medium text-white">Sicurezza End-to-End</td>
+                      <td className="px-6 py-4 text-center"><Shield className="w-5 h-5 text-emerald-500 mx-auto" /></td>
+                      <td className="px-6 py-4 text-center"><Shield className="w-5 h-5 text-emerald-500 mx-auto" /></td>
+                      <td className="px-6 py-4 text-center"><Shield className="w-5 h-5 text-emerald-500 mx-auto" /></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </ScrollAnimation>
+          </div>
+
+          {/* FAQ Section */}
+          <div className="mt-24 max-w-3xl mx-auto">
+            <ScrollAnimation animation="fadeIn">
+              <h4 className="text-2xl font-bold text-white mb-8 text-center">Domande Frequenti sull'Integrazione</h4>
+              <AccordionFAQ items={faqs} />
+            </ScrollAnimation>
+          </div>
+
+          {/* Custom Integration CTA */}
+          <div className="mt-20">
+            <ScrollAnimation animation="scale">
+              <div className="glass p-8 md:p-12 rounded-2xl border border-white/10 text-center relative overflow-hidden group">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent opacity-50"></div>
+
+                <h4 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                  Non trovi il tuo strumento?
+                </h4>
+                <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
+                  Nessun problema. Il nostro team di ingegneri sviluppa connettori personalizzati per software proprietari,
+                  legacy system o strumenti di nicchia. Se ha un'interfaccia digitale, possiamo integrarlo.
+                </p>
+
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center px-8 py-4 rounded-xl bg-white text-black font-bold hover:bg-gray-200 transition-all transform hover:-translate-y-1 shadow-lg shadow-white/10"
+                >
+                  Richiedi Integrazione Custom
+                  <ChevronRight className="ml-2 w-5 h-5" />
+                </Link>
+              </div>
+            </ScrollAnimation>
+          </div>
+        </section>
 
         {/* Removed duplicate demo video per request: kept only the first VideoShowcase above */}
 
@@ -340,156 +494,6 @@ const AIAgents = () => {
                     </p>
                   </motion.div>
                 </div>
-              </div>
-            </ScrollAnimation>
-          </div>
-        </section>
-
-        {/* Integrazione Strumenti - SEZIONE OTTIMIZZATA */}
-        <section className="py-20 container mx-auto px-4 md:px-6 lg:px-12">
-          <ScrollAnimation animation="fadeIn">
-            <div className="text-center mb-16">
-              <div className="inline-block px-3 md:px-4 py-1 rounded-full glass border border-white/10 text-xs md:text-sm font-medium mb-3 md:mb-4">
-                <span className="text-emerald-500">
-                  Ecosistema Connesso
-                </span>
-              </div>
-              <h3 className="text-3xl md:text-4xl font-semibold text-white mb-6">
-                Integrazione con i Tuoi Strumenti Esistenti
-              </h3>
-              <p className="text-secondary text-lg max-w-2xl mx-auto">
-                I nostri agenti non sono isole. Si integrano profondamente nel tuo stack tecnologico esistente,
-                potenziando gli strumenti che già usi senza costringerti a cambiarli.
-              </p>
-            </div>
-          </ScrollAnimation>
-
-          {/* Category Tabs */}
-          <ScrollAnimation animation="fadeIn" delay={0.1}>
-            <div className="flex flex-wrap justify-center gap-3 mb-12">
-              {integrationCategories.map((category) => {
-                const Icon = category.icon;
-                const isActive = activeCategory === category.id;
-                return (
-                  <button
-                    key={category.id}
-                    onClick={() => setActiveCategory(category.id)}
-                    className={`flex items-center px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border ${isActive
-                      ? `${category.bg} text-white border-transparent shadow-lg`
-                      : 'bg-white/5 text-gray-400 border-white/10 hover:bg-white/10 hover:text-white'
-                      }`}
-                  >
-                    <Icon className={`w-4 h-4 mr-2 ${isActive ? 'text-white' : category.color}`} />
-                    {category.label}
-                  </button>
-                );
-              })}
-            </div>
-          </ScrollAnimation>
-
-          {/* Integrations Grid */}
-          <div className="min-h-[400px]">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeCategory}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6 max-w-6xl mx-auto"
-              >
-                {integrationsData
-                  .filter(item => item.category === activeCategory)
-                  .map((integration) => {
-                    const categoryColor = integrationCategories.find(c => c.id === integration.category)?.color || 'text-blue-500';
-                    return (
-                      <IntegrationCard
-                        key={integration.id}
-                        integration={integration}
-                        isExpanded={expandedIntegration === integration.id}
-                        onToggle={() => toggleIntegration(integration.id)}
-                        colorClass={categoryColor}
-                      />
-                    );
-                  })}
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* Compatibility Matrix */}
-          <div className="mt-24 max-w-5xl mx-auto">
-            <ScrollAnimation animation="slideUp">
-              <h4 className="text-2xl font-bold text-white mb-8 text-center">Matrice di Compatibilità & Sicurezza</h4>
-              <div className="glass rounded-xl overflow-hidden border border-white/10 overflow-x-auto">
-                <table className="w-full text-left text-sm text-gray-400">
-                  <thead className="bg-white/5 text-white uppercase text-xs font-semibold">
-                    <tr>
-                      <th className="px-6 py-4">Funzionalità</th>
-                      <th className="px-6 py-4 text-center">Standard API</th>
-                      <th className="px-6 py-4 text-center">Custom Webhook</th>
-                      <th className="px-6 py-4 text-center">Database Diretto</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-white/5">
-                    <tr className="hover:bg-white/5 transition-colors">
-                      <td className="px-6 py-4 font-medium text-white">Lettura Dati Real-time</td>
-                      <td className="px-6 py-4 text-center"><Check className="w-5 h-5 text-emerald-500 mx-auto" /></td>
-                      <td className="px-6 py-4 text-center"><Check className="w-5 h-5 text-emerald-500 mx-auto" /></td>
-                      <td className="px-6 py-4 text-center"><Check className="w-5 h-5 text-emerald-500 mx-auto" /></td>
-                    </tr>
-                    <tr className="hover:bg-white/5 transition-colors">
-                      <td className="px-6 py-4 font-medium text-white">Scrittura/Modifica Dati</td>
-                      <td className="px-6 py-4 text-center"><Check className="w-5 h-5 text-emerald-500 mx-auto" /></td>
-                      <td className="px-6 py-4 text-center"><Check className="w-5 h-5 text-emerald-500 mx-auto" /></td>
-                      <td className="px-6 py-4 text-center"><Check className="w-5 h-5 text-emerald-500 mx-auto" /></td>
-                    </tr>
-                    <tr className="hover:bg-white/5 transition-colors">
-                      <td className="px-6 py-4 font-medium text-white">Trigger Eventi</td>
-                      <td className="px-6 py-4 text-center"><Check className="w-5 h-5 text-emerald-500 mx-auto" /></td>
-                      <td className="px-6 py-4 text-center"><Check className="w-5 h-5 text-emerald-500 mx-auto" /></td>
-                      <td className="px-6 py-4 text-center"><div className="w-5 h-5 mx-auto text-yellow-500 font-bold">-</div></td>
-                    </tr>
-                    <tr className="hover:bg-white/5 transition-colors">
-                      <td className="px-6 py-4 font-medium text-white">Sicurezza End-to-End</td>
-                      <td className="px-6 py-4 text-center"><Shield className="w-5 h-5 text-emerald-500 mx-auto" /></td>
-                      <td className="px-6 py-4 text-center"><Shield className="w-5 h-5 text-emerald-500 mx-auto" /></td>
-                      <td className="px-6 py-4 text-center"><Shield className="w-5 h-5 text-emerald-500 mx-auto" /></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </ScrollAnimation>
-          </div>
-
-          {/* FAQ Section */}
-          <div className="mt-24 max-w-3xl mx-auto">
-            <ScrollAnimation animation="fadeIn">
-              <h4 className="text-2xl font-bold text-white mb-8 text-center">Domande Frequenti sull'Integrazione</h4>
-              <AccordionFAQ items={faqs} />
-            </ScrollAnimation>
-          </div>
-
-          {/* Custom Integration CTA */}
-          <div className="mt-20">
-            <ScrollAnimation animation="scale">
-              <div className="glass p-8 md:p-12 rounded-2xl border border-white/10 text-center relative overflow-hidden group">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent opacity-50"></div>
-
-                <h4 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                  Non trovi il tuo strumento?
-                </h4>
-                <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
-                  Nessun problema. Il nostro team di ingegneri sviluppa connettori personalizzati per software proprietari,
-                  legacy system o strumenti di nicchia. Se ha un'interfaccia digitale, possiamo integrarlo.
-                </p>
-
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center px-8 py-4 rounded-xl bg-white text-black font-bold hover:bg-gray-200 transition-all transform hover:-translate-y-1 shadow-lg shadow-white/10"
-                >
-                  Richiedi Integrazione Custom
-                  <ChevronRight className="ml-2 w-5 h-5" />
-                </Link>
               </div>
             </ScrollAnimation>
           </div>

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Code, TrendingUp, Bot } from 'lucide-react';
 import ScrollAnimation from '../components/ScrollAnimation';
 import Testimonials from '../components/Testimonials';
+import ProjectsSlider from '../components/ProjectsSlider';
 import YouTubeCommunity from '../components/YouTubeCommunity';
 import WhyChooseUs from '../components/WhyChooseUs';
 import ScrollGradient from '../components/ScrollGradient';
@@ -281,6 +282,8 @@ const Home = () => {
       <WhyChooseUs />
       
       <Testimonials />
+      
+      <ProjectsSlider />
       
       <YouTubeCommunity />
 

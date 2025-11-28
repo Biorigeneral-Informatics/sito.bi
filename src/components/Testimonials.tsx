@@ -6,6 +6,7 @@ interface Testimonial {
   name: string;
   role: string;
   avatar: string;
+  initials: string;
   text: string;
   rating: number;
   delay: number;
@@ -17,14 +18,24 @@ const FilledStar = (props: any) => (
   </svg>
 );
 
+// Componente avatar con iniziali
+const AvatarWithInitials = ({ initials }: { initials: string }) => {
+  const colors = ['from-blue-500 to-cyan-500', 'from-purple-500 to-pink-500', 'from-green-500 to-emerald-500', 'from-orange-500 to-red-500', 'from-indigo-500 to-purple-500'];
+  const colorIndex = initials.charCodeAt(0) % colors.length;
+  
+  return (
+    <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${colors[colorIndex]} flex items-center justify-center flex-shrink-0 shadow-md`}>
+      <span className="text-white font-bold text-sm">{initials}</span>
+    </div>
+  );
+};
+
 // Componente singola testimonianza memoizzata
 const TestimonialCard = React.memo(({ testimonial }: { testimonial: Testimonial }) => (
   <ScrollAnimation animation="slideUp" delay={testimonial.delay}>
     <div className="glass p-6 rounded-2xl border border-white/10 shadow-lg hover:scale-[1.02] transition-transform duration-300 h-full flex flex-col">
       <div className="flex items-center gap-3 mb-4">
-        <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
-          <img src={testimonial.avatar} alt={testimonial.name} className="w-full h-full object-cover" loading="lazy" />
-        </div>
+        <AvatarWithInitials initials={testimonial.initials} />
         <div>
           <div className="font-semibold text-white">{testimonial.name}</div>
           <div className="text-xs text-foreground/60">{testimonial.role}</div>
@@ -50,110 +61,82 @@ TestimonialCard.displayName = 'TestimonialCard';
 const Testimonials: React.FC = () => {
   const testimonials: Testimonial[] = useMemo(() => [
     {
-      id: 1,
-      name: "Luca B.",
-      role: "CTO, Startup Innovativa",
-      avatar: "https://i.pravatar.cc/150?img=32",
-      text: "Il loro approccio ci ha permesso di lanciare un agente AI che ha ridotto i tempi operativi del 40%. Comunicazione chiara e risultati concreti.",
-      rating: 5,
-      delay: 0.1,
-    },
-    {
-      id: 2,
-      name: "Giulia R.",
-      role: "Responsabile Marketing",
-      avatar: "https://i.pravatar.cc/150?img=12",
-      text: "Campagne ottimizzate dall'AI che hanno incrementato le conversioni del 60%. Team proattivo e idea-driven.",
-      rating: 5,
-      delay: 0.15,
-    },
-    {
-      id: 3,
-      name: "Marco S.",
-      role: "Operations Manager",
-      avatar: "https://i.pravatar.cc/150?img=5",
-      text: "Automazioni che hanno eliminato attività ripetitive e liberato 20 ore/settimana per ogni agente. Altamente raccomandati.",
-      rating: 5,
-      delay: 0.2,
-    },
-    {
       id: 4,
-      name: "Silvia M.",
-      role: "CEO, Retail",
-      avatar: "https://i.pravatar.cc/150?img=18",
-      text: "Consulenza strategica e implementazione rapida: il progetto è stato live in meno di un mese con ROI evidente.",
+      name: "Riccardo Dell' Orletta",
+      role: "Founder, DarkWave Sup",
+      avatar: "",
+      initials: "RD",
+      text: "Cercavo una piccola automazione per la mia attività di noleggio SUP a Pineto, e devo riconoscere che ho trovato due ragazzi esperti e abili nel captare la richiesta e strutturare l'automazione. COMPLIMENTI a questa REALTA'! Grazie Federico e Alessandro. Professionalità e cordialità unica!",
       rating: 5,
       delay: 0.25,
     },
     {
-      id: 5,
-      name: "Alessandro V.",
-      role: "Head of Product",
-      avatar: "https://i.pravatar.cc/150?img=3",
-      text: "Soluzione impeccabile, integrazione rapida e impatto immediato sul flusso di lavoro.",
+      id: 2,
+      name: "Dr. Donato Zizi",
+      role: "Direttore Sanitario, Bioclinic",
+      avatar: "",
+      initials: "DZ",
+      text: "Federico e Alessandro hanno dato vita a questa realtà in totale autonomia e ora gestiscono tutto il nostro ecosistema di innovazione digitale. Abbiamo aumentato la produttività del 40%.",
       rating: 5,
-      delay: 0.3,
+      delay: 0.15,
     },
     {
       id: 6,
-      name: "Daniela P.",
-      role: "Head of Sales",
-      avatar: "https://i.pravatar.cc/150?img=7",
-      text: "Il progetto ha superato le aspettative: ROI visibile e team molto competente.",
+      name: "Alessandro Binotti",
+      role: "SEA Manager, Laboratorio",
+      avatar: "",
+      initials: "AB",
+      text: "Abbiamo sviluppato un software per la classificazione rifiuti insieme, hanno fatto un ottimo lavoro nel identificare i calcoli complessi necessari.",
       rating: 5,
       delay: 0.35,
     },
     {
-      id: 7,
-      name: "Federico L.",
-      role: "CTO, E-commerce",
-      avatar: "https://i.pravatar.cc/150?img=9",
-      text: "Architettura solida e risultati misurabili. Consigliati per progetti su larga scala.",
-      rating: 5,
-      delay: 0.4,
-    },
-    {
       id: 8,
-      name: "Elena N.",
-      role: "Product Manager",
-      avatar: "https://i.pravatar.cc/150?img=21",
-      text: "Collaborazione fluida e implementazione precisa, tutto consegnato nei tempi previsti.",
+      name: "Alessandro Gobbi",
+      role: "SEO Specialist, Freelance",
+      avatar: "",
+      initials: "AG",
+      text: "Federico mi ha trasmesso grandi entusiasmo e competenza nell'ambito dell'integrazione di AI negli ecosistemi aziendali, voglia di condividere e di fornire valore alle aziende tramite il proprio lavoro.",
       rating: 5,
       delay: 0.45,
     },
     {
       id: 9,
-      name: "Giovanni R.",
-      role: "COO",
-      avatar: "https://i.pravatar.cc/150?img=27",
-      text: "Processi ottimizzati e supporto continuativo: partner affidabile per la nostra crescita.",
+      name: "Giovanni Marchetti",
+      role: "Responsabile IT, Manifattura",
+      avatar: "",
+      initials: "GM",
+      text: "Abbiamo sviluppato diversi software con loro ed offrono un supporto serio e veloce. Inoltre, mi piace molto il concetto di manutenzione per interventi.",
       rating: 5,
       delay: 0.5,
     },
-    {
-      id: 10,
-      name: "Martina F.",
-      role: "Head of Support",
-      avatar: "https://i.pravatar.cc/150?img=30",
-      text: "Supporto eccellente e consegna rapida: l'esperienza utente è migliorata notevolmente.",
+        {
+      id: 1,
+      name: "Luca Salini",
+      role: "Avvocato, Freelance",
+      avatar: "",
+      initials: "LS",
+      text: "DA poco tempo ho iniziato un percorso di consulenza con loro e devo dire che sono molto soddisfatto. Hanno un approccio pratico e moderno, con focus su risultati concreti.",
       rating: 5,
-      delay: 0.55,
+      delay: 0.1,
     },
     {
       id: 11,
-      name: "Paolo D.",
-      role: "Founder",
-      avatar: "https://i.pravatar.cc/150?img=45",
-      text: "Soluzione end-to-end: ottima esecuzione e grande attenzione ai dettagli.",
+      name: "Paolo Ferraro",
+      role: "Founder, Startup Innovation",
+      avatar: "",
+      initials: "PF",
+      text: "Ragazzi in gamba, che comprendonod avvero le esigenze delle aziende, con un approccio pratico e moderno. Bravi.",
       rating: 5,
       delay: 0.6,
     },
     {
       id: 12,
-      name: "Cristina G.",
-      role: "Digital Strategist",
-      avatar: "https://i.pravatar.cc/150?img=49",
-      text: "Creatività e precisione nella strategia digitale: risultati tangibili in poche settimane.",
+      name: "Cristina Lombardi",
+      role: "Marketer",
+      avatar: "",
+      initials: "CL",
+      text: "Hanno creato per la nostra realtà un sistema di agenti ai per gestire lead più intelligentemente. Mi piace l'approccio pratico, bravi.",
       rating: 5,
       delay: 0.65,
     },
@@ -163,10 +146,10 @@ const Testimonials: React.FC = () => {
       <div className="container mx-auto px-6 md:px-8 lg:px-16 relative z-10">
         <ScrollAnimation animation="fadeIn" className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-4 md:mb-6 relative inline-block">
-            <span className="block text-primary">Recensioni</span>
+            <span className="block text-primary">Cosa dicono di noi</span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-foreground/80 text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Le parole dei nostri clienti: esperienze dirette, impatto reale e risultati misurabili.
+            Le parole dei nostri clienti: esperienze dirette e impatto sulla loro realtà aziendale.
           </p>
         </ScrollAnimation>
 

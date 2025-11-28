@@ -508,7 +508,7 @@ const Portfolio = () => {
                   <div className="backdrop-blur-xl bg-gradient-to-br from-white/10 via-white/5 to-white/3 rounded-2xl border border-white/20 hover:border-[#3ECF8E]/50 transition-all duration-500 overflow-hidden">
                     
                     {/* Main Cover Image */}
-                    <div className="relative h-80 overflow-hidden cursor-pointer" onClick={(e) => {
+                    <div className="relative h-40 md:h-80 overflow-hidden cursor-pointer" onClick={(e) => {
                       e.stopPropagation();
                       setSelectedImage(project.image);
                     }}>

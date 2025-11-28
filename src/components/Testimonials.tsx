@@ -116,7 +116,7 @@ const Testimonials: React.FC = () => {
       role: "Avvocato, Freelance",
       avatar: "",
       initials: "LS",
-      text: "DA poco tempo ho iniziato un percorso di consulenza con loro e devo dire che sono molto soddisfatto. Hanno un approccio pratico e moderno, con focus su risultati concreti.",
+      text: "Professionale, competente, chiaro nelle spiegazioni, puntuale negli aggiornamenti, attento ad ogni dettaglio anche nell'ambito della sicurezza e della manutenzione e dell'assistenza. Inoltre massima disponibilità ed affidabilità con pronta reperibilità in ogni momento.",
       rating: 5,
       delay: 0.1,
     },

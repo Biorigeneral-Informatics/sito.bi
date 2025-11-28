@@ -150,7 +150,7 @@ const WhyChooseUs: React.FC = () => {
         <ScrollAnimation animation="slideUp" delay={0.5}>
           <div className="mt-20 md:mt-28 text-center">
             <div className="inline-block glass p-8 md:p-12 rounded-2xl border border-white/10 max-w-2xl">
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
                 Pronto a trasformare la tua visione?
               </h3>
               <p className="text-gray-600 dark:text-gray-400 mb-6 text-lg">

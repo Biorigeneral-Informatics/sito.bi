@@ -35,14 +35,14 @@ interface Project {
 
 const getIconAndColor = (category: string) => {
   const categoryConfig: { [key: string]: { icon: React.ReactNode; color: string; bgColor: string; borderColor: string; hoverBg: string } } = {
-    'Frontend Development': {
+    'Vibe Coding Competente': {
       icon: <Code2 className="w-5 h-5" />,
       color: 'text-cyan-400',
       bgColor: 'bg-cyan-500/20',
       borderColor: 'border-cyan-500/30',
       hoverBg: 'hover:bg-cyan-500/30'
     },
-    'AI & Machine Learning': {
+    'AI & API integration': {
       icon: <Brain className="w-5 h-5" />,
       color: 'text-purple-400',
       bgColor: 'bg-purple-500/20',
@@ -63,7 +63,7 @@ const getIconAndColor = (category: string) => {
       borderColor: 'border-amber-500/30',
       hoverBg: 'hover:bg-amber-500/30'
     },
-    'Mobile Development': {
+    'Digitalizzazione Strategica': {
       icon: <Smartphone className="w-5 h-5" />,
       color: 'text-pink-400',
       bgColor: 'bg-pink-500/20',
@@ -91,39 +91,39 @@ const Portfolio = () => {
   // Skills data - Focus dell'azienda
   const skillsData: Skill[] = [
     {
-      category: 'Frontend Development',
+      category: 'Vibe Coding Competente',
       description: 'Interfacce web moderne e responsive',
-      level: 'Avanzato',
+      level: '  PRO',
       items: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Next.js']
     },
     {
-      category: 'AI & Machine Learning',
+      category: 'AI & API integration',
       description: 'Soluzioni intelligenti e automazioni',
-      level: 'Specializzato',
+      level: 'MAX',
       items: ['AI Agents', 'Chatbot', 'LLM Integration', 'RAG', 'OpenAI', 'Gemini']
     },
     {
       category: 'Backend & Database',
       description: 'Architetture scalabili e sicure',
-      level: 'Avanzato',
+      level: 'PRO',
       items: ['Node.js', 'PostgreSQL', 'Supabase', 'Firebase', 'REST APIs', 'GraphQL']
     },
     {
       category: 'Workflow Automation',
       description: 'Automazione di processi aziendali',
-      level: 'Specializzato',
+      level: 'MAX',
       items: ['N8n', 'Make.com', 'Zapier', 'Custom Workflows', 'Integration', 'API Development']
     },
     {
-      category: 'Mobile Development',
+      category: 'Digitalizzazione Strategica',
       description: 'App native e cross-platform',
-      level: 'Professionista',
+      level: 'PRO',
       items: ['React Native', 'Flutter', 'iOS', 'Android', 'Expo']
     },
     {
       category: 'DevOps & Cloud',
       description: 'Hosting, deployment e infrastrutture',
-      level: 'Avanzato',
+      level: 'PRO',
       items: ['Vercel', 'AWS', 'Docker', 'CI/CD', 'Git', 'Linux']
     },
   ];
@@ -378,15 +378,14 @@ const Portfolio = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-center mb-16"
+              className="text-center mb-8"
             >
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-6">
-                <span className="block text-white">Le nostre</span>
-                <span className="block text-[#3ECF8E]">aree di specializzazione.</span>
+              <div className="inline-block px-4 py-2 rounded-lg backdrop-blur-xl bg-gradient-to-br from-[#3ECF8E]/15 via-[#3ECF8E]/5 to-transparent border border-[#3ECF8E]/30 mb-3">
+                <h3 className="text-sm font-bold text-[#3ECF8E] uppercase tracking-wider">Le nostre competenze</h3>
+              </div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-montserrat font-light tracking-tight text-white">
+                Prima di mostrarti i progetti, ecco in cosa siamo specializzati.
               </h2>
-              <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-                Abbiamo sviluppato competenze profonde in diverse aree tecnologiche per offrire soluzioni complete e innovative.
-              </p>
             </motion.div>
 
             {/* Skills Table */}

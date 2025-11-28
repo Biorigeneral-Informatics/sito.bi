@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { ChevronLeft, ChevronRight, Play, X } from 'lucide-react';
 import ScrollAnimation from './ScrollAnimation';
 
@@ -9,11 +9,44 @@ interface Video {
   url: string;
 }
 
+// Memoizzazione del componente video card
+const VideoCard = React.memo(({ video, index, isCenter, onSelect }: {
+  video: Video;
+  index: number;
+  isCenter: boolean;
+  onSelect: (video: Video) => void;
+}) => (
+  <button
+    onClick={() => onSelect(video)}
+    className={`group relative overflow-hidden rounded-2xl shadow-lg transition-all duration-300 transform cursor-pointer ${
+      isCenter ? 'md:scale-105 md:shadow-2xl' : 'hover:scale-105'
+    }`}
+    aria-label={`Play video: ${video.title}`}
+  >
+    <img
+      src={video.thumbnail}
+      alt={video.title}
+      className="w-full h-48 md:h-56 object-cover group-hover:scale-110 transition-transform duration-300"
+      loading="lazy"
+    />
+    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-300 flex items-center justify-center">
+      <div className="bg-red-600 rounded-full p-4 transform group-hover:scale-125 transition-transform duration-300">
+        <Play size={32} className="text-white fill-white" />
+      </div>
+    </div>
+    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/50 to-transparent p-4">
+      <p className="text-white font-semibold text-sm">{video.title}</p>
+    </div>
+  </button>
+));
+
+VideoCard.displayName = 'VideoCard';
+
 const YouTubeCommunity: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
 
-  const videos: Video[] = [
+  const videos: Video[] = useMemo(() => [
     {
       id: 'FF1uI7xdNzQ',
       title: 'Video Tutorial 1',
@@ -50,23 +83,23 @@ const YouTubeCommunity: React.FC = () => {
       thumbnail: 'https://img.youtube.com/vi/AIxtpTsp2Yc/hqdefault.jpg',
       url: 'https://www.youtube.com/watch?v=AIxtpTsp2Yc&t=156s',
     },
-  ];
+  ], []);
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % videos.length);
-  };
+  }, [videos.length]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev - 1 + videos.length) % videos.length);
-  };
+  }, [videos.length]);
 
-  const getVisibleVideos = () => {
+  const visibleVideos = useMemo(() => {
     const visible = [];
     for (let i = 0; i < 3; i++) {
       visible.push(videos[(currentSlide + i) % videos.length]);
     }
     return visible;
-  };
+  }, [currentSlide, videos]);
 
   return (
     <section className="relative py-20 overflow-hidden">
@@ -85,15 +118,16 @@ const YouTubeCommunity: React.FC = () => {
               </div>
             </div>
 
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-8">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
               Unisciti alla Nostra Community
             </h2>
 
             {/* Description */}
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Scopri come i nostri sviluppatori moderni condividono tutorial, best practices e
-              strategie di crescita su un canale in costante sviluppo. Dal code snippets alle
-              guide complete, siamo qui per elevarti al prossimo livello della programmazione.
+              Entra a far parte della nostra community e scopri il modello AI Agency con Federico,
+              co-founder e full stack developer di Biorigeneral Informatics. Guarda i nostri video tutorial
+              su YouTube per apprendere come integriamo l'intelligenza artificiale nei nostri progetti
+              di sviluppo software e consulenza specializzata.
             </p>
           </div>
         </ScrollAnimation>
@@ -114,33 +148,14 @@ const YouTubeCommunity: React.FC = () => {
               {/* Videos grid */}
               <div className="w-full px-16">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {getVisibleVideos().map((video, index) => (
-                    <button
+                  {visibleVideos.map((video, index) => (
+                    <VideoCard
                       key={video.id}
-                      onClick={() => setSelectedVideo(video)}
-                      className={`group relative overflow-hidden rounded-2xl shadow-lg transition-all duration-300 transform cursor-pointer ${
-                        index === 1 ? 'md:scale-105 md:shadow-2xl' : 'hover:scale-105'
-                      }`}
-                    >
-                      {/* Thumbnail */}
-                      <img
-                        src={video.thumbnail}
-                        alt={video.title}
-                        className="w-full h-48 md:h-56 object-cover group-hover:scale-110 transition-transform duration-300"
-                      />
-
-                      {/* Overlay */}
-                      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-300 flex items-center justify-center">
-                        <div className="bg-red-600 rounded-full p-4 transform group-hover:scale-125 transition-transform duration-300">
-                          <Play size={32} className="text-white fill-white" />
-                        </div>
-                      </div>
-
-                      {/* Title */}
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/50 to-transparent p-4">
-                        <p className="text-white font-semibold text-sm">{video.title}</p>
-                      </div>
-                    </button>
+                      video={video}
+                      index={index}
+                      isCenter={index === 1}
+                      onSelect={setSelectedVideo}
+                    />
                   ))}
                 </div>
               </div>

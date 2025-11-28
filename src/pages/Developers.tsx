@@ -191,7 +191,7 @@ const Developers = () => {
                     </div>
                     
                     <div className="mb-6">
-                      <h4 className="flex items-center text-primary font-medium mb-3">
+                      <h4 className="flex items-center text-white font-medium mb-3">
                         <Star className="mr-2 h-5 w-5 text-accent" />
                         Competenze principali
                       </h4>
@@ -215,7 +215,7 @@ const Developers = () => {
                   <div className="h-1 bg-accent"></div>
                   <div className="p-8">
                     <div className="text-center mb-6">
-                      <h3 className="text-2xl font-bold text-primary">Federico</h3>
+                      <h3 className="text-2xl font-bold text-white">Federico</h3>
                       <p className="text-accent">Founder & Senior Advisor</p>
                     </div>
                     
@@ -233,7 +233,7 @@ const Developers = () => {
                     
 
                     <div className="mb-6">
-                      <h4 className="flex items-center text-primary font-medium mb-3">
+                      <h4 className="flex items-center text-white font-medium mb-3">
                         <Briefcase className="mr-2 h-5 w-5 text-accent" />
                         Formazione
                       </h4>
@@ -246,7 +246,7 @@ const Developers = () => {
                    
                     
                     <div className="mb-6">
-                      <h4 className="flex items-center text-primary font-medium mb-3">
+                      <h4 className="flex items-center text-white font-medium mb-3">
                         <Star className="mr-2 h-5 w-5 text-accent" />
                         Competenze principali
                       </h4>
@@ -447,7 +447,7 @@ const Developers = () => {
             <ScrollAnimation animation="fadeIn">
               <div className="text-center mb-16">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6">
-                  <span className="text-primary">Ambiti di</span> <span className="text-accent">specializzazione</span>
+                  <span className="text-white">Ambiti di</span> <span className="text-accent">specializzazione</span>
                 </h2>
                 <p className="text-lg text-secondary max-w-2xl mx-auto">
                   I nostri developer possiedono competenze avanzate in diverse aree tecnologiche.
@@ -483,7 +483,7 @@ const Developers = () => {
                       <div className="p-3 rounded-xl bg-accent/20 text-accent group-hover:bg-accent/30 transition-colors mr-4">
                         {area.icon}
                       </div>
-                      <h3 className="text-xl font-semibold text-primary">{area.title}</h3>
+                      <h3 className="text-xl font-semibold text-white">{area.title}</h3>
                     </div>
                     
                     <p className="text-secondary mb-6 leading-relaxed">{area.desc}</p>

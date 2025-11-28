@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Users, Zap, Code, Rocket, Handshake } from 'lucide-react';
 import ScrollAnimation from './ScrollAnimation';
@@ -12,7 +12,7 @@ interface Reason {
 }
 
 const WhyChooseUs: React.FC = () => {
-  const reasons: Reason[] = [
+  const reasons: Reason[] = useMemo(() => [
     {
       id: 1,
       icon: <Users size={32} />,
@@ -48,27 +48,26 @@ const WhyChooseUs: React.FC = () => {
       description: 'Integrazione diretta della nostra expertise nella tua azienda con supporto continuativo',
       color: 'from-indigo-500 to-purple-500',
     },
-  ];
+  ], []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
+        staggerChildren: 0.1,
+        delayChildren: 0.05,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, x: -50 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
-      x: 0,
+      y: 0,
       transition: {
-        duration: 0.6,
-        ease: 'easeOut',
+        duration: 0.4,
       },
     },
   };
@@ -82,7 +81,7 @@ const WhyChooseUs: React.FC = () => {
             <div className="inline-block px-3 md:px-4 py-1 rounded-full glass border border-white/10 text-xs md:text-sm font-medium mb-3 md:mb-4">
               <span className="text-green-500">Perché Sceglierci</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Le Ragioni della Nostra Eccellenza
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
@@ -97,7 +96,7 @@ const WhyChooseUs: React.FC = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
+          viewport={{ once: true, margin: '-50px' }}
           className="relative"
         >
           {/* Vertical line */}
@@ -108,10 +107,10 @@ const WhyChooseUs: React.FC = () => {
               <motion.div
                 key={reason.id}
                 variants={itemVariants}
-                className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 items-center`}
+                className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 items-center justify-center md:items-stretch`}
               >
                 {/* Content */}
-                <div className="flex-1">
+                <div className="flex-1 w-full md:w-auto">
                   <div className="glass p-6 md:p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300 h-full">
                     <div className="flex items-start gap-4 mb-4">
                       <div
@@ -120,7 +119,7 @@ const WhyChooseUs: React.FC = () => {
                         {reason.icon}
                       </div>
                       <div>
-                        <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white">
+                        <h3 className="text-xl md:text-2xl font-bold text-white">
                           {reason.title}
                         </h3>
                       </div>
@@ -132,13 +131,12 @@ const WhyChooseUs: React.FC = () => {
                 </div>
 
                 {/* Center circle */}
-                <div className="flex-shrink-0 relative z-10 md:mb-0">
-                  <motion.div
-                    whileHover={{ scale: 1.2 }}
-                    className={`w-12 h-12 rounded-full bg-gradient-to-br ${reason.color} flex items-center justify-center shadow-xl`}
+                <div className="flex-shrink-0 relative z-10 flex md:block items-center justify-center">
+                  <div
+                    className={`w-12 h-12 rounded-full bg-gradient-to-br ${reason.color} flex items-center justify-center shadow-xl transition-transform hover:scale-110 duration-300`}
                   >
                     <div className="w-4 h-4 bg-white rounded-full" />
-                  </motion.div>
+                  </div>
                 </div>
 
                 {/* Spacer */}

@@ -1,7 +1,7 @@
 // src/pages/Portfolio.tsx
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Code2 } from 'lucide-react';
+import { ArrowRight, Code2, Cpu, Brain, Database, Zap, Smartphone, Cloud } from 'lucide-react';
 import SEO from '../components/SEO';
 import { getSEOData } from '../config/seoData';
 
@@ -32,6 +32,54 @@ interface Project {
   status: 'completed' | 'in-progress';
   featured?: boolean;
 }
+
+const getIconAndColor = (category: string) => {
+  const categoryConfig: { [key: string]: { icon: React.ReactNode; color: string; bgColor: string; borderColor: string; hoverBg: string } } = {
+    'Frontend Development': {
+      icon: <Code2 className="w-5 h-5" />,
+      color: 'text-cyan-400',
+      bgColor: 'bg-cyan-500/20',
+      borderColor: 'border-cyan-500/30',
+      hoverBg: 'hover:bg-cyan-500/30'
+    },
+    'AI & Machine Learning': {
+      icon: <Brain className="w-5 h-5" />,
+      color: 'text-purple-400',
+      bgColor: 'bg-purple-500/20',
+      borderColor: 'border-purple-500/30',
+      hoverBg: 'hover:bg-purple-500/30'
+    },
+    'Backend & Database': {
+      icon: <Database className="w-5 h-5" />,
+      color: 'text-blue-400',
+      bgColor: 'bg-blue-500/20',
+      borderColor: 'border-blue-500/30',
+      hoverBg: 'hover:bg-blue-500/30'
+    },
+    'Workflow Automation': {
+      icon: <Zap className="w-5 h-5" />,
+      color: 'text-amber-400',
+      bgColor: 'bg-amber-500/20',
+      borderColor: 'border-amber-500/30',
+      hoverBg: 'hover:bg-amber-500/30'
+    },
+    'Mobile Development': {
+      icon: <Smartphone className="w-5 h-5" />,
+      color: 'text-pink-400',
+      bgColor: 'bg-pink-500/20',
+      borderColor: 'border-pink-500/30',
+      hoverBg: 'hover:bg-pink-500/30'
+    },
+    'DevOps & Cloud': {
+      icon: <Cloud className="w-5 h-5" />,
+      color: 'text-green-400',
+      bgColor: 'bg-green-500/20',
+      borderColor: 'border-green-500/30',
+      hoverBg: 'hover:bg-green-500/30'
+    }
+  };
+  return categoryConfig[category] || { icon: <Cpu className="w-5 h-5" />, color: 'text-gray-400', bgColor: 'bg-gray-500/20', borderColor: 'border-gray-500/30', hoverBg: 'hover:bg-gray-500/30' };
+};
 
 const Portfolio = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -87,11 +135,11 @@ const Portfolio = () => {
       title: 'Biorigeneral Informatics - AI Agency',
       description: 'Agenzia orientata allo sviluppo di asset digitali intelligenti basati sull\'uso produttivo dell\'intelligenza artificiale.',
       longDescription: 'Co-fondatore di un\'agenzia specializzata in sviluppo software e automazioni intelligenti. Focalizzata su progettazione di agenti AI, automazioni avanzate con n8n, consulenza per integrazione AI in aziende B2B, prototipazione rapida, ottimizzazione di flussi di lavoro e soluzioni per il settore Health Care.',
-      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800',
+      image: 'https://i.ibb.co/jkhP2G9f/about-us-coworking1.jpg',
       images: [
-        'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400',
-        'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400',
-        'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400',
+        'https://i.ibb.co/nMmVPRQR/bi2.png',
+        'https://i.ibb.co/nMZJP2GC/bi3.png',
+        'https://i.ibb.co/2YLGbfv1/bi4.png',
       ],
       skills: ['AI Agents', 'n8n', 'Software Development', 'Business Consulting', 'Healthcare Tech'],
       status: 'completed',
@@ -102,11 +150,11 @@ const Portfolio = () => {
       title: 'YouTube Content Creator',
       description: 'Gestione e sviluppo di un canale YouTube con migliaia di iscritti, creando contenuti divulgativi, tecnici e creativi.',
       longDescription: 'Sviluppo di strategie di content marketing, gestione dell\'engagement, analisi delle performance e ottimizzazione dei contenuti, costruzione di community e personal branding digitale. Curata personalmente scripting, registrazione, editing e strategie di crescita organica.',
-      image: 'https://images.unsplash.com/photo-1611339555312-e607c90352fd?w=800',
+      image: 'https://i.ibb.co/TqPQ7Zh0/yt1.png',
       images: [
-        'https://images.unsplash.com/photo-1611339555312-e607c90352fd?w=400',
-        'https://images.unsplash.com/photo-1516321318423-f06e85e504b3?w=400',
-        'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400',
+        'https://i.ibb.co/3YvPhCr1/yt2.png',
+        'https://i.ibb.co/2YkKd4BS/yt3.png',
+        'https://i.ibb.co/bR71wCt7/yt4.png',
       ],
       skills: ['Content Marketing', 'YouTube', 'Community Building', 'Personal Branding', 'Video Editing'],
       status: 'completed',
@@ -117,11 +165,11 @@ const Portfolio = () => {
       title: 'Bioclinic - Consulente Digitale e Full Stack Developer',
       description: 'Supporto completo alla digitalizzazione della struttura sanitaria Bioclinic, evoluzione tecnologica dell\'azienda.',
       longDescription: 'Progettazione, sviluppo e manutenzione del gestionale interno per il personale sanitario, supporto al reparto IT, gestione e aggiornamento del sito web istituzionale, introduzione di strumenti digitali per l\'operatività. Approccio metodico con elevata affidabilità nel settore healthcare regolamentato.',
-      image: 'https://images.unsplash.com/photo-1576091160550-112173f7f869?w=800',
+      image: 'https://i.ibb.co/3mdyYgPK/bioclinic1.png',
       images: [
-        'https://images.unsplash.com/photo-1576091160550-112173f7f869?w=400',
-        'https://images.unsplash.com/photo-1579154204601-01d8cffedc19?w=400',
-        'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400',
+        'https://i.ibb.co/Kc84Z3VH/bioclinic2.png',
+        'https://i.ibb.co/qMtgLDKG/bioclinic4.png',
+        'https://i.ibb.co/wrhqbcFB/bioclinic5.png',
       ],
       skills: ['Full Stack Development', 'Healthcare Systems', 'Web Development', 'Database Management', 'IT Support'],
       status: 'completed',
@@ -132,11 +180,11 @@ const Portfolio = () => {
       title: 'Gestionale per Classificazione Rifiuti',
       description: 'Gestionale specializzato per la classificazione dei rifiuti, destinato a un settore altamente verticale e regolamentato.',
       longDescription: 'Raccolta requisiti intensiva con esperti del settore, modellazione dei flussi e delle logiche normative, sviluppo del backend e delle strutture dati, implementazione dell\'interfaccia operativa, testing e ottimizzazione. Traduzione di processi tecnici complessi in strumenti digitali semplici, affidabili ed efficaci.',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800',
+      image: 'https://i.ibb.co/C58jtr9B/sea1.png',
       images: [
-        'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400',
-        'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400',
-        'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400',
+        'https://i.ibb.co/W4Q77jC6/sea4.png',
+        'https://i.ibb.co/N6hmDFTY/sea2.png',
+        'https://i.ibb.co/WNFCHmyp/sea3.png',
       ],
       skills: ['Database Design', 'Backend Development', 'UI/UX', 'Regulatory Compliance', 'Testing'],
       status: 'completed',
@@ -147,17 +195,17 @@ const Portfolio = () => {
       title: 'Automazioni e Agenti AI con n8n',
       description: 'Sviluppo di automazioni e sistemi intelligenti per diversi contesti aziendali basati su n8n.',
       longDescription: 'Realizzazione di chatbot avanzati e sistemi conversazionali, agenti AI complessi con memoria, funzioni e decision making, workflow automativi per processi interni, integrazioni API con servizi esterni, e webapp con backend interamente gestito in n8n. Esperienza dalla prototipazione rapida alla produzione scalabile.',
-      image: 'https://images.unsplash.com/photo-1677442d019cecf8b7fef2c1f938f39d6db80da7?w=800',
+      image: 'https://i.ibb.co/jPRynD4p/autom1.png',
       images: [
-        'https://images.unsplash.com/photo-1677442d019cecf8b7fef2c1f938f39d6db80da7?w=400',
-        'https://images.unsplash.com/photo-1556656793-08538906a9f8?w=400',
-        'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400',
+        'https://i.ibb.co/tMLpPQXM/autom2.png',
+        'https://i.ibb.co/CZ0nMWF/autom3.png',
+        'https://i.ibb.co/fYDNw48S/autom4.png',
       ],
       skills: ['n8n', 'AI/ML', 'Chatbots', 'API Integration', 'Workflow Automation'],
       status: 'completed',
       featured: true,
     },
-    {
+    /*{
       id: 6,
       title: 'Piattaforma Gestionale Medico - FHIR',
       description: 'Piattaforma gestionale per la gestione delle cartelle cliniche basata su standard FHIR.',
@@ -171,17 +219,17 @@ const Portfolio = () => {
       skills: ['FHIR Standard', 'Healthcare IT', 'Backend Development', 'Data Security', 'Medical Systems'],
       status: 'completed',
       featured: false,
-    },
+    },*/
     {
       id: 7,
       title: 'WP AutoBlog - Web App Multi-Tenant',
       description: 'Web app multi-tenant per la gestione automatizzata di contenuti WordPress con login sicuro.',
       longDescription: 'Sviluppo di un\'applicazione SaaS con login sicuro e database isolati per ogni tenant, progettazione dell\'architettura dati multi-tenant, implementazione di autenticazione e ambienti separati per gli utenti, creazione di workflow automatizzati per la pubblicazione dei contenuti, gestione delle integrazioni con le API di WordPress, sviluppo di frontend e backend dell\'applicazione.',
-      image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800',
+      image: 'https://i.ibb.co/ZRXgG1bG/wp1.png',
       images: [
-        'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400',
-        'https://images.unsplash.com/photo-1516321318423-f06e85e504b3?w=400',
-        'https://images.unsplash.com/photo-1455849318169-8214ec3bfe5e?w=400',
+        'https://i.ibb.co/nqyGTYpf/wp2.png',
+        'https://i.ibb.co/LdKYh4J8/wp3.png',
+        'https://i.ibb.co/21d7xR61/wp4.png',
       ],
       skills: ['React', 'WordPress API', 'Multi-Tenant Architecture', 'SaaS', 'Backend Development'],
       status: 'completed',
@@ -192,11 +240,11 @@ const Portfolio = () => {
       title: 'Sistema di Prenotazione Eventi',
       description: 'Sistema automatizzato di prenotazione eventi con backend n8n e frontend React/Tailwind.',
       longDescription: 'Realizzazione dell\'intero workflow di prenotazione in n8n, creazione dell\'interfaccia frontend in React e Tailwind CSS, integrazione con Google Sheets tramite sincronizzazione real-time, implementazione di validazioni, notifiche e interazioni utente, garanzia di un\'esperienza fluida tra backend e frontend. Dimostra l\'integrazione di strumenti di automazione con tecnologie frontend moderne.',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800',
+      image: 'https://i.ibb.co/whwwbrbn/eventmanager1.png',
       images: [
-        'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400',
-        'https://images.unsplash.com/photo-1559056199-641a0ac8b3f7?w=400',
-        'https://images.unsplash.com/photo-1590080876000-cd6ba6a24745?w=400',
+        'https://i.ibb.co/yBM7P0WW/eventmanager2.png',
+        'https://i.ibb.co/8n2xbWrn/eventmanager3.png',
+        'https://i.ibb.co/SD7Jp77k/eventmanager4.png',
       ],
       skills: ['n8n', 'React', 'Tailwind CSS', 'Google Sheets API', 'Event Management'],
       status: 'completed',
@@ -207,11 +255,11 @@ const Portfolio = () => {
       title: 'Chatbot WhatsApp - Bioclinic',
       description: 'Chatbot WhatsApp per automatizzare il customer care di Bioclinic.',
       longDescription: 'Sviluppo di un chatbot per automatizzare il customer care, migliorando i tempi di risposta e riducendo il carico operativo. Progettazione dei flussi conversazionali, implementazione della logica di messaggistica via API, integrazione del chatbot con i sistemi interni, gestione delle risposte automatiche e recupero informazioni, garanzia di usabilità e affidabilità in un contesto sanitario. La soluzione ha ottimizzato significativamente la comunicazione con i pazienti.',
-      image: 'https://images.unsplash.com/photo-1611692035589-3d6e59c5259e?w=800',
+      image: 'https://i.ibb.co/Df9kxJXm/wa1.png',
       images: [
-        'https://images.unsplash.com/photo-1611692035589-3d6e59c5259e?w=400',
-        'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400',
-        'https://images.unsplash.com/photo-1597444302219-add64541d25e?w=400',
+        'https://i.ibb.co/qYJLffQy/wa2.png',
+        'https://i.ibb.co/zVGJKNs7/wa3.png',
+        'https://i.ibb.co/gMFqXLTR/wa4.png',
       ],
       skills: ['WhatsApp API', 'Chatbot', 'Healthcare', 'Customer Support', 'Messaging Systems'],
       status: 'completed',
@@ -222,11 +270,11 @@ const Portfolio = () => {
       title: 'Sistema Gestione Registro Soci - Country Life',
       description: 'Automatizzazione del sistema di gestione dei soci per l\'associazione Country Life.',
       longDescription: 'Trasformazione di un processo manuale in un workflow digitale completo. Progettazione della logica di registrazioni e rinnovi, implementazione di aggiornamenti automatici dei dati, notifiche automatiche agli utenti, organizzazione strutturata dei database dei soci, ottimizzazione del processo per ridurre il lavoro amministrativo. Risultato: un sistema solido, scalabile e a bassa manutenzione.',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800',
+      image: 'https://i.ibb.co/0RYJxsfT/cl1.png',
       images: [
-        'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400',
-        'https://images.unsplash.com/photo-1516321318423-f06e85e504b3?w=400',
-        'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400',
+        'https://i.ibb.co/W4FHrzkL/cl2.png',
+        'https://i.ibb.co/N6d0vrFf/cl3.png',
+        'https://i.ibb.co/wZGjFfSD/cl4.png',
       ],
       skills: ['Workflow Automation', 'Database Design', 'n8n', 'User Management', 'Notifications'],
       status: 'completed',
@@ -237,17 +285,17 @@ const Portfolio = () => {
       title: 'Sistema Prenotazione Eventi - DarkWave Sup Pineto',
       description: 'Consulenza specializzata per automatizzare il sistema di prenotazione eventi.',
       longDescription: 'Analisi approfondita del sistema di booking esistente, identificazione dei punti critici e processi da automatizzare, progettazione di flussi operativi più efficienti, implementazione di procedure automatizzate per la gestione delle richieste e disponibilità, ottimizzazione del flusso di comunicazione tra staff e clienti, consulenza strategica per ridurre tempi di risposta e attività ripetitive. Risultato: sistema più rapido, affidabile e sostenibile nel tempo.',
-      image: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=800',
+      image: 'https://i.ibb.co/HTxZzdPg/sup1.png',
       images: [
-        'https://images.unsplash.com/photo-1557821552-17105176677c?w=400',
-        'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400',
-        'https://images.unsplash.com/photo-1563013544-824ae1c83920?w=400',
+        'https://i.ibb.co/gL107H3q/sup2.png',
+        'https://i.ibb.co/mPdMYnk/sup3.png',
+        'https://i.ibb.co/gMz4tZ3C/sup4.png',
       ],
       skills: ['Business Consulting', 'Workflow Optimization', 'Automation', 'Event Management', 'Process Design'],
       status: 'completed',
       featured: false,
     },
-    {
+    /*{
       id: 12,
       title: 'E-Commerce Vendita Corsi Online',
       description: 'Piattaforma e-commerce dedicata alla vendita di corsi digitali con accesso sicuro.',
@@ -261,7 +309,7 @@ const Portfolio = () => {
       skills: ['E-Commerce', 'React', 'Payment Gateway', 'Course Management', 'Full Stack Development'],
       status: 'in-progress',
       featured: true,
-    },
+    },*/
   ];
 
   return (
@@ -367,57 +415,61 @@ const Portfolio = () => {
                 </div>
 
                 {/* Table Rows */}
-                {skillsData.map((skill, index) => (
-                  <motion.div
-                    key={skill.category}
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.05 }}
-                    className="grid grid-cols-1 md:grid-cols-4 gap-4 p-6 md:p-8 border-b border-white/10 last:border-b-0 hover:bg-white/5 transition-colors duration-300 group"
-                  >
-                    {/* Categoria */}
-                    <div className="col-span-1">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-[#3ECF8E]/20 flex items-center justify-center text-[#3ECF8E] group-hover:bg-[#3ECF8E]/30 transition-all duration-300">
-                          <Code2 className="w-5 h-5" />
+                {skillsData.map((skill, index) => {
+                  const { icon, color, bgColor, borderColor, hoverBg } = getIconAndColor(skill.category);
+                  
+                  return (
+                    <motion.div
+                      key={skill.category}
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: index * 0.05 }}
+                      className={`grid grid-cols-1 md:grid-cols-4 gap-4 p-6 md:p-8 border-b border-white/10 last:border-b-0 transition-colors duration-300 group bg-gradient-to-r ${bgColor.replace('bg-', 'from-').replace('/20', '/5')} to-transparent hover:${bgColor.replace('/20', '/10')} ${hoverBg}`}
+                    >
+                      {/* Categoria */}
+                      <div className="col-span-1">
+                        <div className="flex items-center gap-3">
+                          <div className={`w-10 h-10 rounded-lg ${bgColor} flex items-center justify-center ${color} group-hover:${bgColor.replace('/20', '/30')} transition-all duration-300`}>
+                            {icon}
+                          </div>
+                          <span className="font-semibold text-white text-sm md:text-base">{skill.category}</span>
                         </div>
-                        <span className="font-semibold text-white text-sm md:text-base">{skill.category}</span>
                       </div>
-                    </div>
 
-                    {/* Descrizione (nascosto su mobile) */}
-                    <div className="col-span-1 hidden md:block">
-                      <span className="text-gray-400 text-sm line-clamp-2">{skill.description}</span>
-                    </div>
-
-                    {/* Livello */}
-                    <div className="col-span-1">
-                      <span className="inline-block px-3 py-1 rounded-full bg-[#3ECF8E]/20 border border-[#3ECF8E]/30 text-[#3ECF8E] text-xs font-semibold">
-                        {skill.level}
-                      </span>
-                    </div>
-
-                    {/* Tecnologie */}
-                    <div className="col-span-1">
-                      <div className="flex flex-wrap gap-1.5">
-                        {skill.items.slice(0, 3).map((item, itemIndex) => (
-                          <span 
-                            key={itemIndex}
-                            className="px-2 py-1 text-xs rounded bg-white/10 text-gray-300 border border-white/20 group-hover:border-[#3ECF8E]/30 group-hover:bg-[#3ECF8E]/10 transition-all duration-300 whitespace-nowrap"
-                          >
-                            {item}
-                          </span>
-                        ))}
-                        {skill.items.length > 3 && (
-                          <span className="px-2 py-1 text-xs rounded bg-[#3ECF8E]/20 text-[#3ECF8E] border border-[#3ECF8E]/30 font-semibold">
-                            +{skill.items.length - 3}
-                          </span>
-                        )}
+                      {/* Descrizione (nascosto su mobile) */}
+                      <div className="col-span-1 hidden md:block">
+                        <span className="text-gray-400 text-sm line-clamp-2">{skill.description}</span>
                       </div>
-                    </div>
-                  </motion.div>
-                ))}
+
+                      {/* Livello */}
+                      <div className="col-span-1">
+                        <span className={`inline-block px-3 py-1 rounded-full ${bgColor} border ${borderColor} ${color} text-xs font-semibold`}>
+                          {skill.level}
+                        </span>
+                      </div>
+
+                      {/* Tecnologie */}
+                      <div className="col-span-1">
+                        <div className="flex flex-wrap gap-1.5">
+                          {skill.items.slice(0, 3).map((item, itemIndex) => (
+                            <span 
+                              key={itemIndex}
+                              className={`px-2 py-1 text-xs rounded ${bgColor} ${color} border ${borderColor} group-hover:${bgColor.replace('/20', '/30')} transition-all duration-300 whitespace-nowrap`}
+                            >
+                              {item}
+                            </span>
+                          ))}
+                          {skill.items.length > 3 && (
+                            <span className={`px-2 py-1 text-xs rounded ${bgColor} ${color} border ${borderColor} font-semibold`}>
+                              +{skill.items.length - 3}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
             </motion.div>
           </div>

@@ -123,7 +123,7 @@ const YouTubeCommunity: React.FC = () => {
             </h2>
 
             {/* Description */}
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg text-white max-w-3xl mx-auto leading-relaxed">
               Entra a far parte della nostra community e scopri il modello AI Agency con Federico,
               co-founder e full stack developer di Biorigeneral Informatics. Guarda i nostri video tutorial
               su YouTube per apprendere come integriamo l'intelligenza artificiale nei nostri progetti

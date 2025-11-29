@@ -148,7 +148,7 @@ const Testimonials: React.FC = () => {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-4 md:mb-6 relative inline-block">
             <span className="block text-primary">Cosa dicono di noi</span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-foreground/80 text-gray-400 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-white max-w-3xl mx-auto leading-relaxed">
             Le parole dei nostri clienti: esperienze dirette e impatto sulla loro realtà aziendale.
           </p>
         </ScrollAnimation>

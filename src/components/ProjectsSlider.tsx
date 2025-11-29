@@ -1,7 +1,7 @@
 // src/components/ProjectsSlider.tsx
 import { useState, useEffect, useRef, useMemo, useCallback, memo } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 
 interface Project {
   id: number;
@@ -172,13 +172,9 @@ const PROJECTS_DATA: Project[] = [
 ];
 
 // Memoized Project Card Component
-const ProjectCard = memo(({ project, index, onImageClick }: { project: Project; index: number; onImageClick: (image: string) => void }) => (
+const ProjectCard = memo(({ project, onImageClick }: { project: Project; onImageClick: (image: string) => void }) => (
   <motion.div
-    key={project.id}
-    initial={{ opacity: 0, x: 50 }}
-    whileInView={{ opacity: 1, x: 0 }}
-    viewport={{ once: true, margin: '0px 100px' }}
-    transition={{ duration: 0.4, delay: index * 0.03 }}
+    initial={{ opacity: 1, x: 0 }}
     className="flex-shrink-0 w-full sm:w-96 group"
   >
     <div className="backdrop-blur-xl bg-gradient-to-br from-white/10 via-white/5 to-white/3 rounded-2xl border border-white/20 hover:border-[#3ECF8E]/50 transition-all duration-500 overflow-hidden h-full flex flex-col">
@@ -210,7 +206,7 @@ const ProjectCard = memo(({ project, index, onImageClick }: { project: Project; 
         </h3>
 
         {/* Description */}
-        <p className="text-gray-400 text-sm mb-4 leading-relaxed line-clamp-3">
+        <p className="text-white text-sm mb-4 leading-relaxed line-clamp-3">
           {project.description}
         </p>
 
@@ -239,9 +235,7 @@ const ProjectCard = memo(({ project, index, onImageClick }: { project: Project; 
           className="inline-flex items-center gap-2 text-[#3ECF8E] font-semibold text-sm hover:text-[#3ECF8E]/80 transition-colors duration-300 group/link"
         >
           Scopri di più
-          <svg className="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
+          <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-300" />
         </a>
       </div>
     </div>
@@ -270,7 +264,7 @@ const ProjectsSlider = () => {
           element.scrollBy({ left: 420, behavior: 'smooth' });
         }
       }
-    }, 2000);
+    }, 2200);
 
     return () => clearInterval(interval);
   }, [isAutoScroll]);
@@ -314,7 +308,7 @@ const ProjectsSlider = () => {
               <span className="block text-white">Scopri i Nostri</span>
               <span className="block text-[#3ECF8E]">Progetti Recenti</span>
             </h2>
-            <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+            <p className="text-white text-lg max-w-2xl mx-auto">
               Una selezione dei nostri progetti più significativi che dimostrano le nostre capacità e il nostro impegno verso l'eccellenza.
             </p>
           </motion.div>
@@ -344,17 +338,14 @@ const ProjectsSlider = () => {
             {/* Scrollable Container */}
             <div className="overflow-x-auto scrollbar-none" ref={sliderRef} onMouseEnter={() => setIsAutoScroll(false)} onMouseLeave={() => setIsAutoScroll(true)}>
               <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4 }}
+                initial={{ opacity: 1 }}
                 className="flex gap-6 pb-4"
                 style={{
                   scrollBehavior: 'smooth',
                 }}
               >
-                {projects.map((project, index) => (
-                  <ProjectCard key={project.id} project={project} index={index} onImageClick={handleImageClick} />
+                {projects.map((project) => (
+                  <ProjectCard key={project.id} project={project} onImageClick={handleImageClick} />
                 ))}
               </motion.div>
             </div>

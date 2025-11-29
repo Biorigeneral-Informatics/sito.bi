@@ -124,7 +124,7 @@ const WhyChooseUs: React.FC = () => {
                         </h3>
                       </div>
                     </div>
-                    <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg leading-relaxed">
+                    <p className="text-white text-base md:text-lg leading-relaxed">
                       {reason.description}
                     </p>
                   </div>
@@ -153,7 +153,7 @@ const WhyChooseUs: React.FC = () => {
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
                 Pronto a trasformare la tua visione?
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-6 text-lg">
+              <p className="text-white mb-6 text-lg">
                 Contattaci oggi stesso e scopri come possiamo portare la tua azienda al prossimo livello.
               </p>
               <a

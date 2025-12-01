@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useCallback } from 'react';
-import { ChevronLeft, ChevronRight, Play, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play, X, Youtube } from 'lucide-react';
 import ScrollAnimation from './ScrollAnimation';
 
 interface Video {
@@ -108,18 +108,21 @@ const YouTubeCommunity: React.FC = () => {
           {/* Header with subscriber count */}
           <div className="text-center mb-16">
             {/* Subscriber count highlight */}
-            <div className="flex justify-center mb-6">
+            <div className="flex justify-center mb-8">
               <div className="relative inline-block">
-                <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-orange-500 rounded-3xl blur-2xl opacity-30" />
-                <div className="relative bg-gradient-to-r from-red-500 to-orange-500 px-8 py-4 rounded-3xl shadow-2xl">
-                  <p className="text-4xl md:text-5xl font-black text-white">1.5K+</p>
-                  <p className="text-sm md:text-base text-red-100 font-semibold mt-1">Iscritti</p>
+                <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-500 rounded-3xl blur-3xl opacity-15" />
+                <div className="relative bg-gradient-to-r from-red-600 to-red-500 px-6 py-4 rounded-3xl shadow-2xl flex items-center gap-3 border border-red-400">
+                  <Youtube className="w-16 h-16 text-white flex-shrink-0" />
+                  <div>
+                    <p className="text-2xl md:text-3xl font-black text-white">1.5K+</p>
+                    <p className="text-sm md:text-base text-white font-semibold mt-1">Iscritti</p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
-              Unisciti alla Nostra Community
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-8 relative inline-block">
+              <span className="block text-white">Unisciti alla Nostra Community</span>
             </h2>
 
             {/* Description */}
@@ -193,7 +196,7 @@ const YouTubeCommunity: React.FC = () => {
               href="https://www.youtube.com/@biorigeneral-informatics"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-red-500 to-orange-500 text-white font-bold rounded-full hover:shadow-2xl transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-red-600 hover:bg-red-700 !text-white font-bold rounded-full hover:shadow-2xl transition-all duration-300 hover:scale-105"
             >
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />

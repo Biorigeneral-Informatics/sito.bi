@@ -79,10 +79,10 @@ const WhyChooseUs: React.FC = () => {
           {/* Header */}
           <div className="text-center mb-16 md:mb-20">
             <div className="inline-block px-3 md:px-4 py-1 rounded-full glass border border-white/10 text-xs md:text-sm font-medium mb-3 md:mb-4">
-              <span className="text-green-500">Perché Sceglierci</span>
+              <span className="text-green-500">La Nostra Visione</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Le Ragioni della Nostra Eccellenza
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-6">
+              <span className="block text-primary">Perché scegliere noi</span>
             </h2>
             <p className="text-lg text-white max-w-2xl mx-auto">
               Siamo un team di sviluppatori moderni, appassionati di innovazione e dediti a creare soluzioni software di eccellenza. La nostra missione è trasformare le tue idee in prodotti digitali concreti, mantenendo sempre il focus su qualità, performance e scalabilità.

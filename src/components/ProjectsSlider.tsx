@@ -1,7 +1,7 @@
 // src/components/ProjectsSlider.tsx
 import { useState, useEffect, useRef, useMemo, useCallback, memo } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowRight, Eye } from 'lucide-react';
 
 interface Project {
   id: number;
@@ -190,8 +190,9 @@ const ProjectCard = memo(({ project, onImageClick }: { project: Project; onImage
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         {project.featured && (
           <div className="absolute top-4 right-4">
-            <span className="px-3 py-1 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-black text-xs font-bold uppercase tracking-wide">
-              ✨ Featured
+            <span className="px-3 py-1.5 rounded-full bg-[#3ECF8E] text-black text-xs font-bold uppercase tracking-wide flex items-center gap-1.5">
+              <Eye className="w-3.5 h-3.5" />
+              Più visto
             </span>
           </div>
         )}
@@ -248,44 +249,56 @@ const ProjectsSlider = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
   const [isAutoScroll, setIsAutoScroll] = useState(true);
+  const projects = useMemo(() => PROJECTS_DATA, []);
+  const projectWidth = 444; // 420px + 24px gap
+  const autoScrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Auto-scroll effect
+  // Natural scroll - stops at the end
   useEffect(() => {
     if (!isAutoScroll || !sliderRef.current) return;
 
-    const interval = setInterval(() => {
-      if (sliderRef.current) {
-        const element = sliderRef.current;
-        const maxScroll = element.scrollWidth - element.clientWidth;
-        
-        if (element.scrollLeft >= maxScroll - 10) {
-          element.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-          element.scrollBy({ left: 420, behavior: 'smooth' });
-        }
-      }
-    }, 2200);
-
-    return () => clearInterval(interval);
-  }, [isAutoScroll]);
-
-  // Memoized handleScroll function
-  const handleScroll = useCallback((direction: 'left' | 'right') => {
-    setIsAutoScroll(false);
-    if (sliderRef.current) {
-      const scrollAmount = 400;
-      if (direction === 'left') {
-        sliderRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-      } else {
-        sliderRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-      }
-    }
+    const element = sliderRef.current;
     
-    setTimeout(() => setIsAutoScroll(true), 8000);
-  }, []);
+    const autoScroll = () => {
+      const maxScroll = element.scrollWidth - element.clientWidth;
+      const canScroll = element.scrollLeft < maxScroll;
+      
+      if (canScroll) {
+        element.scrollBy({ left: projectWidth, behavior: 'smooth' });
+      }
+    };
 
-  // Memoized projects list
-  const projects = useMemo(() => PROJECTS_DATA, []);
+    const interval = setInterval(autoScroll, 2200);
+
+    return () => {
+      clearInterval(interval);
+      if (autoScrollTimeoutRef.current) clearTimeout(autoScrollTimeoutRef.current);
+    };
+  }, [isAutoScroll, projectWidth]);
+
+  // Handle smooth arrow scroll
+  const handleScroll = useCallback(
+    (direction: 'left' | 'right') => {
+      setIsAutoScroll(false);
+      if (!sliderRef.current) return;
+
+      const element = sliderRef.current;
+      const containerWidth = element.clientWidth;
+      const currentScroll = element.scrollLeft;
+      const maxScroll = element.scrollWidth - containerWidth;
+
+      if (direction === 'right') {
+        const newScroll = Math.min(currentScroll + projectWidth, maxScroll);
+        element.scrollTo({ left: newScroll, behavior: 'smooth' });
+      } else {
+        const newScroll = Math.max(currentScroll - projectWidth, 0);
+        element.scrollTo({ left: newScroll, behavior: 'smooth' });
+      }
+
+      setTimeout(() => setIsAutoScroll(true), 8000);
+    },
+    [projectWidth]
+  );
 
   // Memoized onImageClick handler
   const handleImageClick = useCallback((image: string) => {
@@ -318,7 +331,7 @@ const ProjectsSlider = () => {
             {/* Left Arrow Button */}
             <button
               onClick={() => handleScroll('left')}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-gradient-to-r from-[#3ECF8E]/80 to-[#3ECF8E]/60 hover:from-[#3ECF8E] hover:to-[#3ECF8E]/80 transition-all duration-300 flex items-center justify-center text-white shadow-lg opacity-0 group-hover:opacity-100 hover:-translate-x-1 -translate-x-2"
+              className="absolute left-0 top-1/3 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-gradient-to-r from-[#3ECF8E]/80 to-[#3ECF8E]/60 hover:from-[#3ECF8E] hover:to-[#3ECF8E]/80 transition-all duration-300 flex items-center justify-center text-white shadow-lg opacity-0 group-hover:opacity-100 hover:-translate-x-1 -translate-x-2"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
@@ -326,7 +339,7 @@ const ProjectsSlider = () => {
             {/* Right Arrow Button */}
             <button
               onClick={() => handleScroll('right')}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-gradient-to-r from-[#3ECF8E]/80 to-[#3ECF8E]/60 hover:from-[#3ECF8E] hover:to-[#3ECF8E]/80 transition-all duration-300 flex items-center justify-center text-white shadow-lg opacity-0 group-hover:opacity-100 hover:translate-x-1 translate-x-2"
+              className="absolute right-0 top-1/3 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-gradient-to-r from-[#3ECF8E]/80 to-[#3ECF8E]/60 hover:from-[#3ECF8E] hover:to-[#3ECF8E]/80 transition-all duration-300 flex items-center justify-center text-white shadow-lg opacity-0 group-hover:opacity-100 hover:translate-x-1 translate-x-2"
             >
               <ChevronRight className="w-6 h-6" />
             </button>
@@ -344,8 +357,9 @@ const ProjectsSlider = () => {
                   scrollBehavior: 'smooth',
                 }}
               >
+                {/* Projects */}
                 {projects.map((project) => (
-                  <ProjectCard key={project.id} project={project} onImageClick={handleImageClick} />
+                  <ProjectCard key={`project-${project.id}`} project={project} onImageClick={handleImageClick} />
                 ))}
               </motion.div>
             </div>

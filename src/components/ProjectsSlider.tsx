@@ -175,7 +175,7 @@ const PROJECTS_DATA: Project[] = [
 const ProjectCard = memo(({ project, onImageClick }: { project: Project; onImageClick: (image: string) => void }) => (
   <motion.div
     initial={{ opacity: 1, x: 0 }}
-    className="flex-shrink-0 w-full sm:w-96 group"
+    className="flex-shrink-0 w-full sm:w-80 md:w-96 snap-center group"
   >
     <div className="backdrop-blur-xl bg-gradient-to-br from-white/10 via-white/5 to-white/3 rounded-2xl border border-white/20 hover:border-[#3ECF8E]/50 transition-all duration-500 overflow-hidden h-full flex flex-col">
       
@@ -250,7 +250,8 @@ const ProjectsSlider = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [isAutoScroll, setIsAutoScroll] = useState(true);
   const projects = useMemo(() => PROJECTS_DATA, []);
-  const projectWidth = 444; // 420px + 24px gap
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const projectWidth = isMobile ? 344 : 444; // Mobile: 320px + 24px gap, Desktop: 420px + 24px gap
   const autoScrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Natural scroll - stops at the end
@@ -276,7 +277,7 @@ const ProjectsSlider = () => {
     };
   }, [isAutoScroll, projectWidth]);
 
-  // Handle smooth arrow scroll
+  // Handle smooth arrow scroll with snap behavior
   const handleScroll = useCallback(
     (direction: 'left' | 'right') => {
       setIsAutoScroll(false);
@@ -349,7 +350,7 @@ const ProjectsSlider = () => {
             <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-black/40 to-transparent z-20 pointer-events-none rounded-r-2xl"></div>
 
             {/* Scrollable Container */}
-            <div className="overflow-x-auto scrollbar-none" ref={sliderRef} onMouseEnter={() => setIsAutoScroll(false)} onMouseLeave={() => setIsAutoScroll(true)}>
+            <div className="overflow-x-auto scrollbar-none snap-x snap-mandatory" ref={sliderRef} onMouseEnter={() => setIsAutoScroll(false)} onMouseLeave={() => setIsAutoScroll(true)}>
               <motion.div
                 initial={{ opacity: 1 }}
                 className="flex gap-6 pb-4"

@@ -34,9 +34,6 @@ const VideoCard = React.memo(({ video, index, isCenter, onSelect }: {
         <Play size={32} className="text-white fill-white" />
       </div>
     </div>
-    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/50 to-transparent p-4">
-      <p className="text-white font-semibold text-sm">{video.title}</p>
-    </div>
   </button>
 ));
 
@@ -94,8 +91,11 @@ const YouTubeCommunity: React.FC = () => {
   }, [videos.length]);
 
   const visibleVideos = useMemo(() => {
+    // Su mobile mostra solo 1 video, su desktop 3
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    const count = isMobile ? 1 : 3;
     const visible = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < count; i++) {
       visible.push(videos[(currentSlide + i) % videos.length]);
     }
     return visible;
@@ -148,7 +148,7 @@ const YouTubeCommunity: React.FC = () => {
                 <ChevronLeft size={24} />
               </button>
 
-              {/* Videos grid */}
+              {/* Videos grid - responsive: 1 colonna su mobile, 3 su desktop */}
               <div className="w-full px-16">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {visibleVideos.map((video, index) => (

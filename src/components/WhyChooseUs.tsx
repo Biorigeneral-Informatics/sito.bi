@@ -99,48 +99,84 @@ const WhyChooseUs: React.FC = () => {
           viewport={{ once: true, margin: '-50px' }}
           className="relative"
         >
-          {/* Vertical line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-purple-500/50 via-blue-500/50 to-cyan-500/50 rounded-full hidden md:block" />
+          {/* Vertical line - Su mobile a sinistra, su desktop centrata */}
+          <div className="absolute left-6 md:left-1/2 transform md:-translate-x-1/2 w-1 h-full bg-gradient-to-b from-purple-500/50 via-blue-500/50 to-cyan-500/50 rounded-full" />
 
+          {/* Timeline Container */}
           <div className="space-y-8 md:space-y-12">
             {reasons.map((reason, index) => (
               <motion.div
                 key={reason.id}
                 variants={itemVariants}
-                className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 items-center justify-center md:items-stretch`}
+                className={`flex flex-col md:flex-row gap-6 md:gap-8 items-stretch ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} md:items-center md:justify-center`}
               >
-                {/* Content */}
-                <div className="flex-1 w-full md:w-auto">
-                  <div className="glass p-6 md:p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300 h-full">
-                    <div className="flex items-start gap-4 mb-4">
-                      <div
-                        className={`flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br ${reason.color} flex items-center justify-center text-white shadow-lg`}
-                      >
-                        {reason.icon}
-                      </div>
-                      <div>
-                        <h3 className="text-xl md:text-2xl font-bold text-white">
-                          {reason.title}
-                        </h3>
-                      </div>
+                {/* Mobile layout: linea a sinistra con circle e card a destra */}
+                <div className="flex gap-6 flex-1 md:hidden">
+                  {/* Circle per mobile */}
+                  <div className="flex-shrink-0 relative z-10 flex items-start justify-center pt-1">
+                    <div
+                      className={`w-12 h-12 rounded-full bg-gradient-to-br ${reason.color} flex items-center justify-center shadow-xl`}
+                    >
+                      <div className="w-4 h-4 bg-white rounded-full" />
                     </div>
-                    <p className="text-white text-base md:text-lg leading-relaxed">
-                      {reason.description}
-                    </p>
+                  </div>
+                  {/* Content Card per mobile */}
+                  <div className="flex-1">
+                    <div className="glass p-6 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300 h-full">
+                      <div className="flex items-start gap-4 mb-4">
+                        <div
+                          className={`flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br ${reason.color} flex items-center justify-center text-white shadow-lg`}
+                        >
+                          {reason.icon}
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-bold text-white">
+                            {reason.title}
+                          </h3>
+                        </div>
+                      </div>
+                      <p className="text-white text-base leading-relaxed">
+                        {reason.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                {/* Center circle */}
-                <div className="flex-shrink-0 relative z-10 flex md:block items-center justify-center">
-                  <div
-                    className={`w-12 h-12 rounded-full bg-gradient-to-br ${reason.color} flex items-center justify-center shadow-xl transition-transform hover:scale-110 duration-300`}
-                  >
-                    <div className="w-4 h-4 bg-white rounded-full" />
+                {/* Desktop layout: alternato con circle al centro */}
+                <div className="hidden md:flex flex-col md:flex-row gap-6 md:gap-8 items-stretch w-full md:items-center md:justify-center">
+                  {/* Content Card */}
+                  <div className="flex-1 w-full md:w-auto">
+                    <div className="glass p-6 md:p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300 h-full">
+                      <div className="flex items-start gap-4 mb-4">
+                        <div
+                          className={`flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br ${reason.color} flex items-center justify-center text-white shadow-lg`}
+                        >
+                          {reason.icon}
+                        </div>
+                        <div>
+                          <h3 className="text-xl md:text-2xl font-bold text-white">
+                            {reason.title}
+                          </h3>
+                        </div>
+                      </div>
+                      <p className="text-white text-base md:text-lg leading-relaxed">
+                        {reason.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
 
-                {/* Spacer */}
-                <div className="hidden md:block flex-1" />
+                  {/* Center circle per desktop */}
+                  <div className="flex-shrink-0 relative z-10 flex items-center justify-center">
+                    <div
+                      className={`w-12 h-12 rounded-full bg-gradient-to-br ${reason.color} flex items-center justify-center shadow-xl transition-transform hover:scale-110 duration-300`}
+                    >
+                      <div className="w-4 h-4 bg-white rounded-full" />
+                    </div>
+                  </div>
+
+                  {/* Spacer */}
+                  <div className="flex-1" />
+                </div>
               </motion.div>
             ))}
           </div>

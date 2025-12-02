@@ -4,6 +4,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
+import About from './pages/About';
 import Products from './pages/Products';
 import Portfolio from './pages/Portfolio';
 import SoftwarePMI from './pages/SoftwarePMI';
@@ -50,6 +51,7 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
             <Route path="/products" element={<Products />} />
             <Route path="/products/:productSlug" element={<Products />} />
             <Route path="/portfolio" element={<Portfolio />} />

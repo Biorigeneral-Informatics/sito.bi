@@ -136,8 +136,8 @@ const Navbar = () => {
                                 'bg-primary/20 text-accent' : 'hover:bg-white/10'
                             }`}
                           >
-                            <div className="w-8 h-8 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3">
-                              <Code className="w-4 h-4 text-gray-400" />
+                            <div className="w-8 h-8 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
+                              <Code className="w-4 h-4 text-gray-400 flex-shrink-0" />
                             </div>
                             <div>
                               <p className="font-medium text-sm">Software PMI</p>
@@ -152,8 +152,8 @@ const Navbar = () => {
                                 'bg-primary/20 text-accent' : 'hover:bg-white/10'
                             }`}
                           >
-                            <div className="w-8 h-8 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3">
-                              <Users className="w-4 h-4 text-gray-400" />
+                            <div className="w-8 h-8 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
+                              <Users className="w-4 h-4 text-gray-400 flex-shrink-0" />
                             </div>
                             <div>
                               <p className="font-medium text-sm">Sviluppatori</p>
@@ -175,8 +175,8 @@ const Navbar = () => {
                                 'bg-primary/20 text-accent' : 'hover:bg-white/10'
                             }`}
                           >
-                            <div className="w-8 h-8 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3">
-                              <Bot className="w-4 h-4 text-gray-400" />
+                            <div className="w-8 h-8 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
+                              <Bot className="w-4 h-4 text-gray-400 flex-shrink-0" />
                             </div>
                             <div>
                               <p className="font-medium text-sm">Agenti AI</p>
@@ -191,8 +191,8 @@ const Navbar = () => {
                                 'bg-primary/20 text-accent' : 'hover:bg-white/10'
                             }`}
                           >
-                            <div className="w-8 h-8 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3">
-                              <MessageSquare className="w-4 h-4 text-gray-400" />
+                            <div className="w-8 h-8 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
+                              <MessageSquare className="w-4 h-4 text-gray-400 flex-shrink-0" />
                             </div>
                             <div>
                               <p className="font-medium text-sm">Chatbot AI</p>
@@ -214,8 +214,8 @@ const Navbar = () => {
                                 'bg-primary/20 text-accent' : 'hover:bg-white/10'
                             }`}
                           >
-                            <div className="w-8 h-8 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3">
-                              <TrendingUp className="w-4 h-4 text-gray-400" />
+                            <div className="w-8 h-8 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
+                              <TrendingUp className="w-4 h-4 text-gray-400 flex-shrink-0" />
                             </div>
                             <div>
                               <p className="font-medium text-sm">Piani di Crescita</p>
@@ -230,8 +230,8 @@ const Navbar = () => {
                                 'bg-primary/20 text-accent' : 'hover:bg-white/10'
                             }`}
                           >
-                            <div className="w-8 h-8 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3">
-                              <Shield className="w-4 h-4 text-gray-400" />
+                            <div className="w-8 h-8 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
+                              <Shield className="w-4 h-4 text-gray-400 flex-shrink-0" />
                             </div>
                             <div>
                               <p className="font-medium text-sm">Assistenti AI in Locale</p>
@@ -246,8 +246,8 @@ const Navbar = () => {
                                 'bg-primary/20 text-accent' : 'hover:bg-white/10'
                             }`}
                           >
-                            <div className="w-8 h-8 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3">
-                              <Mail className="w-4 h-4 text-gray-400" />
+                            <div className="w-8 h-8 rounded-lg border border-gray-500/50 bg-background flex items-center justify-center mr-3 flex-shrink-0">
+                              <Mail className="w-4 h-4 text-gray-400 flex-shrink-0" />
                             </div>
                             <div>
                               <p className="font-medium text-sm">Consulenza</p>

@@ -143,39 +143,79 @@ const WhyChooseUs: React.FC = () => {
                 </div>
 
                 {/* Desktop layout: alternato con circle al centro */}
-                <div className="hidden md:flex flex-col md:flex-row gap-6 md:gap-8 items-stretch w-full md:items-center md:justify-center">
-                  {/* Content Card */}
-                  <div className="flex-1 w-full md:w-auto">
-                    <div className="glass p-6 md:p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300 h-full">
-                      <div className="flex items-start gap-4 mb-4">
-                        <div
-                          className={`flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br ${reason.color} flex items-center justify-center text-white shadow-lg`}
-                        >
-                          {reason.icon}
-                        </div>
-                        <div>
-                          <h3 className="text-xl md:text-2xl font-bold text-white">
-                            {reason.title}
-                          </h3>
+                <div className="hidden md:flex gap-6 md:gap-8 items-center w-full justify-center">
+                  {/* Conditional rendering per alternare posizione */}
+                  {index % 2 === 0 ? (
+                    <>
+                      {/* Card a sinistra per elementi pari */}
+                      <div className="flex-1 w-1/2">
+                        <div className="glass p-6 md:p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300 h-full">
+                          <div className="flex items-start gap-4 mb-4">
+                            <div
+                              className={`flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br ${reason.color} flex items-center justify-center text-white shadow-lg`}
+                            >
+                              {reason.icon}
+                            </div>
+                            <div>
+                              <h3 className="text-xl md:text-2xl font-bold text-white">
+                                {reason.title}
+                              </h3>
+                            </div>
+                          </div>
+                          <p className="text-white text-base md:text-lg leading-relaxed">
+                            {reason.description}
+                          </p>
                         </div>
                       </div>
-                      <p className="text-white text-base md:text-lg leading-relaxed">
-                        {reason.description}
-                      </p>
-                    </div>
-                  </div>
 
-                  {/* Center circle per desktop */}
-                  <div className="flex-shrink-0 relative z-10 flex items-center justify-center">
-                    <div
-                      className={`w-12 h-12 rounded-full bg-gradient-to-br ${reason.color} flex items-center justify-center shadow-xl transition-transform hover:scale-110 duration-300`}
-                    >
-                      <div className="w-4 h-4 bg-white rounded-full" />
-                    </div>
-                  </div>
+                      {/* Center circle */}
+                      <div className="flex-shrink-0 relative z-10 flex items-center justify-center">
+                        <div
+                          className={`w-12 h-12 rounded-full bg-gradient-to-br ${reason.color} flex items-center justify-center shadow-xl transition-transform hover:scale-110 duration-300`}
+                        >
+                          <div className="w-4 h-4 bg-white rounded-full" />
+                        </div>
+                      </div>
 
-                  {/* Spacer */}
-                  <div className="flex-1" />
+                      {/* Empty space a destra */}
+                      <div className="flex-1 w-1/2" />
+                    </>
+                  ) : (
+                    <>
+                      {/* Empty space a sinistra */}
+                      <div className="flex-1 w-1/2" />
+
+                      {/* Center circle */}
+                      <div className="flex-shrink-0 relative z-10 flex items-center justify-center">
+                        <div
+                          className={`w-12 h-12 rounded-full bg-gradient-to-br ${reason.color} flex items-center justify-center shadow-xl transition-transform hover:scale-110 duration-300`}
+                        >
+                          <div className="w-4 h-4 bg-white rounded-full" />
+                        </div>
+                      </div>
+
+                      {/* Card a destra per elementi dispari */}
+                      <div className="flex-1 w-1/2">
+                        <div className="glass p-6 md:p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300 h-full">
+                          <div className="flex items-start gap-4 mb-4">
+                            <div
+                              className={`flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br ${reason.color} flex items-center justify-center text-white shadow-lg`}
+                            >
+                              {reason.icon}
+                            </div>
+                            <div>
+                              <h3 className="text-xl md:text-2xl font-bold text-white">
+                                {reason.title}
+                              </h3>
+                            </div>
+                          </div>
+                          <p className="text-white text-base md:text-lg leading-relaxed">
+                            {reason.description}
+                          </p>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
               </motion.div>
             ))}

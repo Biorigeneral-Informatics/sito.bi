@@ -1,4 +1,4 @@
-// src/pages/GrowthPlans.tsx - Versione con piani originali e tabella corretta
+// src/pages/GrowthPlans.tsx - Versione con timeline, selezione utenti/aziende e tabella aggiornata
 import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -9,6 +9,8 @@ import {
   Headphones,
   Star,
   Globe,
+  ArrowRight,
+  Users,
 } from 'lucide-react';
 import ScrollAnimation from '../components/ScrollAnimation';
 import ScrollGradient from '../components/ScrollGradient';
@@ -28,196 +30,175 @@ const GrowthPlans = () => {
     window.scrollTo(0, 0);
   }, []);
 
- 
-
-  // Piani originali mantenuti
-  const growthPlans = [
+  // Timeline del metodo di crescita
+  const timelineSteps = [
     {
-      title: "Piano PMI",
-      description: "Ideale per aziende agli inizi che vogliono costruire basi solide per la crescita digitale",
-      features: [
-        "Siti web illimitati",
-        "Google Ads pacchetto Starter",
-        "SEO di base",
-        "Gestione del Blog",
-        "CRM gestito",
-        "Social media Ads",
-        "1 Software gestionale aziendale personalizzato",
-        "Consulenza 1 giorno a settimana",
-        "5 Automazioni Make, N8n e Zapier gestite"
-      ],
-      price: "da €1.500/mese",
-      popular: false
+      number: 1,
+      title: "Analisi Strategica",
+      description: "Comprendiamo la vostra situazione attuale, obiettivi e sfide specifiche del vostro settore"
     },
     {
-      title: "Piano High Growth",
-      description: "Per PMI in fase di espansione che necessitano di scalare i loro sistemi e processi",
-      features: [
-        "Siti web illimitati",
-        "Google Ads pacchetto PRO",
-        "SEO avanzata",
-        "Gestione del Blog",
-        "CRM gestito",
-        "Social media Ads",
-        "1 Software gestionale aziendale personalizzato",
-        "Consulenza strategica full time",
-        "e-commerce aziendale",
-        "Whatsapp Marketing",
-        "Youtube Content Marketing",
-        "Social ChatBots",
-        "Accesso gratuito illimitato al nostro catalogo prodotti",
-        "Piani di formazione AI per il tuo Team",
-        "Automazioni e agenti illimitati"
-
-      ],
-      price: "da €3.000/mese",
-      popular: true
+      number: 2,
+      title: "Progettazione AI",
+      description: "Disegniamo una strategia personalizzata integrando IA e automazioni su misura"
     },
     {
-      title: "Piano Max Support",
-      description: "Soluzione completa per aziende consolidate che cercano innovazione e vantaggio competitivo",
-      features: [
-        "Tutto dei piani precedenti",
-        "Software Illimitati",
-        "Servizi di data Analysis avanzati in R studio o Python",
-        "Sviluppo Full-Stack a 360 gradi",
-        "SaaS e Paas avanzati",
-        "Integrazione completa nei sistemi aziendali",
-        "Automazioni Make, N8n e Zapier illimitate gestite con integrazioni avanzate nei sistemi aziendali"
-      ],
-      price: "da €6.000/mese",
-      popular: false
+      number: 3,
+      title: "Implementazione",
+      description: "Realizziamo i sistemi, software e automazioni seguendo best practices"
+    },
+    {
+      number: 4,
+      title: "Ottimizzazione Continua",
+      description: "Monitoraggio costante e miglioramenti iterativi per massimizzare ROI"
+    },
+    {
+      number: 5,
+      title: "Crescita Sostenibile",
+      description: "La vostra azienda/persona cresce velocemente e sostenibilmente nel lungo termine"
     }
   ];
 
-  // Dati per la tabella di confronto basati sui piani originali
+
+  // Dati per la tabella di confronto tra GrowthPlans utenti e aziende
   const comparisonFeatures = [
     {
-      category: 'Digital Marketing',
+      category: 'Coaching e Formazione',
       features: [
         {
-          name: 'Siti web illimitati',
-          pmi: true,
-          highGrowth: true,
-          maxSupport: true
+          name: 'Coaching Personalizzato',
+          users: 'Sessioni settimanali 1-on-1',
+          companies: 'Coaching team strategico'
         },
         {
-          name: 'Google Ads',
-          pmi: 'Pacchetto Starter',
-          highGrowth: 'Pacchetto PRO',
-          maxSupport: 'Pacchetto PRO'
+          name: 'Formazione AI e Automazioni',
+          users: 'Percorsi individuali',
+          companies: 'Piani di formazione team'
         },
         {
-          name: 'SEO',
-          pmi: 'Di base',
-          highGrowth: 'Avanzata',
-          maxSupport: 'Avanzata'
+          name: 'Accesso ai Corsi',
+          users: 'Illimitato',
+          companies: 'Illimitato per team'
         },
         {
-          name: 'Gestione del Blog',
-          pmi: true,
-          highGrowth: true,
-          maxSupport: true
+          name: 'Mentoring',
+          users: true,
+          companies: true
+        }
+      ]
+    },
+    {
+      category: 'Strumenti e Automazioni',
+      features: [
+        {
+          name: 'Automazioni e Agenti AI',
+          users: 'Fino a 20 al mese',
+          companies: 'Illimitate'
+        },
+        {
+          name: 'CRM Gestito',
+          users: false,
+          companies: true
+        },
+        {
+          name: 'Software Personalizzati',
+          users: false,
+          companies: '1+ illimitati'
+        },
+        {
+          name: 'Integrazione Sistemi Aziendali',
+          users: false,
+          companies: 'Completa'
+        },
+        {
+          name: 'API e Webhook Avanzati',
+          users: false,
+          companies: true
+        }
+      ]
+    },
+    {
+      category: 'Digital Marketing e Produzione',
+      features: [
+        {
+          name: 'Siti Web Personalizzati',
+          users: false,
+          companies: true
+        },
+        {
+          name: 'E-commerce',
+          users: false,
+          companies: true
         },
         {
           name: 'Social Media Ads',
-          pmi: true,
-          highGrowth: true,
-          maxSupport: true
+          users: false,
+          companies: true
         },
         {
-          name: 'WhatsApp Marketing',
-          pmi: false,
-          highGrowth: true,
-          maxSupport: true
+          name: 'Google Ads Gestito',
+          users: false,
+          companies: 'PRO'
         },
         {
-          name: 'YouTube Content Marketing',
-          pmi: false,
-          highGrowth: true,
-          maxSupport: true
+          name: 'SEO e Content Marketing',
+          users: false,
+          companies: 'Avanzato'
+        },
+        {
+          name: 'Video Content Creation',
+          users: false,
+          companies: true
         }
       ]
     },
     {
-      category: 'Software e Sistemi',
+      category: 'Supporto e Consulenza',
       features: [
         {
-          name: 'CRM gestito',
-          pmi: true,
-          highGrowth: true,
-          maxSupport: true
+          name: 'Supporto Tecnico',
+          users: 'Email e Chat',
+          companies: 'Prioritario 24/7'
         },
         {
-          name: 'Software gestionale aziendale',
-          pmi: '1 personalizzato',
-          highGrowth: '1 personalizzato',
-          maxSupport: 'Illimitati'
+          name: 'Consulenza Strategica',
+          users: 'Mensile',
+          companies: 'Full-time'
         },
         {
-          name: 'e-commerce aziendale',
-          pmi: false,
-          highGrowth: true,
-          maxSupport: true
+          name: 'Riunioni di Revisione',
+          users: 'Mensili',
+          companies: 'Settimanali'
         },
         {
-          name: 'Social ChatBots',
-          pmi: false,
-          highGrowth: true,
-          maxSupport: true
-        },
-        {
-          name: 'Sviluppo Full-Stack',
-          pmi: false,
-          highGrowth: false,
-          maxSupport: 'A 360 gradi'
-        },
-        {
-          name: 'SaaS e PaaS avanzati',
-          pmi: false,
-          highGrowth: false,
-          maxSupport: true
-        },
-        {
-          name: 'Automazioni e Agenti',
-          pmi: '5 al mese',
-          highGrowth: 'Illimitate',
-          maxSupport: 'Illimitate'
+          name: 'Analisi e Reporting',
+          users: 'Mensile',
+          companies: 'Settimanale'
         }
       ]
     },
     {
-      category: 'Supporto e Servizi',
+      category: 'Analytics e Ottimizzazione',
       features: [
         {
-          name: 'Consulenza',
-          pmi: '1 giorno/settimana',
-          highGrowth: 'Strategica full time',
-          maxSupport: 'Strategica full time'
+          name: 'Dashboard Personalizzate',
+          users: true,
+          companies: true
         },
         {
-          name: 'Accesso catalogo prodotti',
-          pmi: false,
-          highGrowth: 'Gratuito illimitato',
-          maxSupport: 'Gratuito illimitato'
+          name: 'Data Analysis Avanzata',
+          users: false,
+          companies: 'R Studio e Python'
         },
         {
-          name: 'Formazione AI Team',
-          pmi: false,
-          highGrowth: true,
-          maxSupport: true
+          name: 'A/B Testing e Optimizzazione',
+          users: 'Base',
+          companies: 'Avanzato'
         },
         {
-          name: 'Data Analysis avanzati',
-          pmi: false,
-          highGrowth: false,
-          maxSupport: 'R Studio e Python'
-        },
-        {
-          name: 'Integrazione sistemi aziendali',
-          pmi: false,
-          highGrowth: false,
-          maxSupport: 'Completa'
+          name: 'ROI Tracking Dettagliato',
+          users: true,
+          companies: true
         }
       ]
     }
@@ -298,90 +279,205 @@ const GrowthPlans = () => {
           </div>
         </section>
 
-        {/* Piani - Nuovo design ispirato alla Home */}
+        {/* Timeline del Metodo di Crescita */}
         <section className="py-16 md:py-24 relative">
           <div className="container mx-auto px-4 md:px-6 lg:px-12 relative z-10">
-            
-            
-            {/* Griglia piani */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16">
-              
-              {growthPlans.map((plan, index) => (
+            <ScrollAnimation animation="fadeIn" className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-6 text-primary">
+                Il Nostro Metodo di Crescita
+              </h2>
+              <p className="text-base md:text-lg text-secondary max-w-2xl mx-auto">
+                Un percorso strutturato che utilizza l'intelligenza artificiale e le automazioni per accelerare la crescita sostenibile.
+              </p>
+            </ScrollAnimation>
+
+            <div className="space-y-8 md:space-y-10">
+              {timelineSteps.map((step, index) => (
                 <ScrollAnimation 
-                  key={index} 
+                  key={step.number} 
                   animation="slideUp" 
                   delay={index * 0.1}
-                  className="h-full"
+                  className={`flex gap-4 md:gap-8 items-start md:items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
                 >
-                  <div className={`relative h-full glass rounded-2xl p-6 lg:p-8 border transition-all duration-300 hover:scale-105 hover:shadow-xl ${
-                    plan.popular ? 'border-accent' : 'border-white/10 hover:border-accent/50'
-                  }`}>
-                    
-                    {/* Badge popolare */}
-                    {plan.popular && (
-                      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                        <div className="bg-accent text-primary-foreground px-4 py-1 rounded-full text-sm font-semibold flex items-center gap-1">
-                          <Star className="w-4 h-4" />
-                          Piano più popolare
-                        </div>
-                      </div>
-                    )}
-                    
-                    <div className="flex flex-col h-full">
-                      {/* Header del piano */}
-                      <div className="mb-6">
-                        <h3 className="text-2xl font-bold mb-2">{plan.title}</h3>
-                        <p className="text-foreground/70 mb-4">{plan.description}</p>
-                        <div className="text-3xl font-bold text-accent">{plan.price}</div>
-                      </div>
-                       <div className="absolute top-4 right-4 w-64 h-64 rounded-full bg-green-800/10 filter blur-3xl"></div>
-                        <div className="absolute bottom-4 left-4 w-64 h-64 rounded-full bg-green-800/10 filter blur-3xl"></div>
-                      {/* Lista features */}
-                      <div className="flex-grow">
-                        <h4 className="font-semibold mb-4 text-foreground/90">Include:</h4>
-                        <ul className="space-y-3">
-                          {plan.features.map((feature, i) => (
-                            <li key={i} className="flex items-start">
-                              <CheckCircle className="w-5 h-5 text-green-400 mr-3 flex-shrink-0 mt-0.5" />
-                              <span className="text-foreground/80">{feature}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      
-                      {/* CTA Button */}
-                      <div className="mt-8">
-                        <Link
-                          to="/contact"
-                          className={`w-full py-3 px-6 rounded-xl text-center block transition-all duration-300 font-semibold ${
-                            plan.popular 
-                              ? 'bg-accent text-primary-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl hover:-translate-y-1' 
-                              : 'glass border border-accent/30 text-accent hover:bg-accent/10 hover:border-accent/60 hover:-translate-y-1'
-                          }`}
-                        >
-                          Richiedi Preventivo
-                        </Link>
-                      </div>
+                  {/* Numero e cerchio */}
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-accent/20 border-2 border-accent flex items-center justify-center flex-shrink-0">
+                      <span className="text-lg md:text-xl font-bold text-accent">{step.number}</span>
                     </div>
+                  </div>
+
+                  {/* Contenuto */}
+                  <div className="flex-1 glass rounded-lg p-4 md:p-6 border border-white/10 hover:border-accent/50 transition-all duration-300">
+                    <h3 className="text-base md:text-lg font-bold text-primary mb-2">{step.title}</h3>
+                    <p className="text-foreground/80 text-sm md:text-base">{step.description}</p>
                   </div>
                 </ScrollAnimation>
               ))}
             </div>
+          </div>
+        </section>
 
-            {/* Nota informativa */}
-            <div className="text-center text-foreground/70">
-              <p>Tutti i piani includono consulenza strategica, implementazione e supporto tecnico.</p>
-              <p className="mt-2">
-                Hai esigenze specifiche? {' '}
-                <Link to="/contact" className="text-accent hover:text-accent/80 underline">
-                  Contattaci per un piano personalizzato
-                </Link>
+        {/* Selezione GrowthPlans - Utenti vs Aziende */}
+        <section className="py-16 md:py-24 relative">
+          <div className="container mx-auto px-4 md:px-6 lg:px-12 relative z-10">
+            <ScrollAnimation animation="fadeIn" className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-6 text-primary">
+                Scegli il Tuo Percorso di Crescita
+              </h2>
+              <p className="text-base md:text-lg text-secondary max-w-2xl mx-auto">
+                Growth Plans su misura per individui e per aziende. Scopri quale percorso è perfetto per te.
               </p>
+            </ScrollAnimation>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+              {/* Growth Plans per Utenti */}
+              <ScrollAnimation animation="slideUp" delay={0.1} className="h-full">
+                <div className="relative h-full rounded-2xl overflow-hidden group">
+                  {/* Blur blobs static */}
+                  <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-blue-500/15 filter blur-3xl"></div>
+                  <div className="absolute -bottom-20 -left-20 w-96 h-96 rounded-full bg-purple-500/10 filter blur-3xl"></div>
+                  
+                  {/* Card content */}
+                  <div className="relative z-10 glass rounded-2xl p-8 lg:p-10 border border-white/10 transition-all duration-300 h-full flex flex-col backdrop-blur-xl">
+                    {/* Icon header */}
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-14 h-14 rounded-xl bg-blue-500/20 border border-blue-500/30 flex items-center justify-center transition-all duration-300">
+                        <Users className="w-7 h-7 text-blue-400" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-primary">Growth Plans<br/>per Utenti</h3>
+                    </div>
+                    
+                    {/* Description */}
+                    <div className="mb-6">
+                      <p className="text-foreground/80 text-sm mb-2 font-medium">
+                        Percorsi di crescita personale con focus su coaching individuale
+                      </p>
+                      <p className="text-foreground/60 text-xs">
+                        Ideale per: Professionisti, freelance, consulenti, imprenditori individuali
+                      </p>
+                    </div>
+
+                    {/* Features */}
+                    <div className="flex-grow">
+                      <div className="space-y-3">
+                        <div className="flex items-start gap-3">
+                          <div className="w-5 h-5 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <CheckCircle className="w-3 h-3 text-blue-400" />
+                          </div>
+                          <span className="text-foreground/80 text-sm">Coaching personalizzato 1-on-1</span>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <div className="w-5 h-5 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <CheckCircle className="w-3 h-3 text-blue-400" />
+                          </div>
+                          <span className="text-foreground/80 text-sm">Formazione avanzata su IA e automazioni</span>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <div className="w-5 h-5 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <CheckCircle className="w-3 h-3 text-blue-400" />
+                          </div>
+                          <span className="text-foreground/80 text-sm">Automazioni AI personalizzate</span>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <div className="w-5 h-5 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <CheckCircle className="w-3 h-3 text-blue-400" />
+                          </div>
+                          <span className="text-foreground/80 text-sm">Supporto mentoring continuo</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Button */}
+                    <a
+                      href="/growth-plans-users"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: 'white' }}
+                      className="w-full mt-8 py-3 px-6 rounded-lg text-center transition-all duration-300 font-semibold bg-blue-500 hover:bg-blue-600 shadow-lg hover:shadow-2xl hover:shadow-blue-500/50 hover:-translate-y-1 flex items-center justify-center gap-2"
+                    >
+                      Scopri di più
+                      <ArrowRight className="w-4 h-4 transition-transform duration-300" />
+                    </a>
+                  </div>
+                </div>
+              </ScrollAnimation>
+
+              {/* Growth Plans per Aziende */}
+              <ScrollAnimation animation="slideUp" delay={0.2} className="h-full">
+                <div className="relative h-full rounded-2xl overflow-hidden group">
+                  {/* Blur blobs static */}
+                  <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-emerald-500/15 filter blur-3xl"></div>
+                  <div className="absolute -bottom-20 -left-20 w-96 h-96 rounded-full bg-green-500/10 filter blur-3xl"></div>
+                  
+                  {/* Card content */}
+                  <div className="relative z-10 glass rounded-2xl p-8 lg:p-10 border border-white/10 transition-all duration-300 h-full flex flex-col backdrop-blur-xl">
+                    {/* Icon header */}
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-14 h-14 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center transition-all duration-300">
+                        <Globe className="w-7 h-7 text-emerald-400" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-primary">Growth Plans<br/>per Aziende</h3>
+                    </div>
+                    
+                    {/* Description */}
+                    <div className="mb-6">
+                      <p className="text-foreground/80 text-sm mb-2 font-medium">
+                        Soluzione completa di trasformazione digitale e automazione aziendale
+                      </p>
+                      <p className="text-foreground/60 text-xs">
+                        Ideale per: PMI, startup, aziende in crescita, imprese consolidate
+                      </p>
+                    </div>
+
+                    {/* Features */}
+                    <div className="flex-grow">
+                      <div className="space-y-3">
+                        <div className="flex items-start gap-3">
+                          <div className="w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <CheckCircle className="w-3 h-3 text-emerald-400" />
+                          </div>
+                          <span className="text-foreground/80 text-sm">Digitalizzazione completa della struttura</span>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <div className="w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <CheckCircle className="w-3 h-3 text-emerald-400" />
+                          </div>
+                          <span className="text-foreground/80 text-sm">Sviluppo software e sistemi gestionali</span>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <div className="w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <CheckCircle className="w-3 h-3 text-emerald-400" />
+                          </div>
+                          <span className="text-foreground/80 text-sm">Strategie di marketing digitale avanzate</span>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <div className="w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <CheckCircle className="w-3 h-3 text-emerald-400" />
+                          </div>
+                          <span className="text-foreground/80 text-sm">Automazioni e agenti AI illimitati</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Button */}
+                    <a
+                      href="/growth-plans-companies"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: 'white' }}
+                      className="w-full mt-8 py-3 px-6 rounded-lg text-center transition-all duration-300 font-semibold bg-emerald-500 hover:bg-emerald-600 shadow-lg hover:shadow-2xl hover:shadow-emerald-500/50 hover:-translate-y-1 flex items-center justify-center gap-2"
+                    >
+                      Scopri di più
+                      <ArrowRight className="w-4 h-4 transition-transform duration-300" />
+                    </a>
+                  </div>
+                </div>
+              </ScrollAnimation>
             </div>
           </div>
         </section>
 
-        {/* Pricing Breakdown - Tabella senza container con colonne separate */}
+        {/* Pricing Breakdown - Tabella di confronto utenti vs aziende */}
         <section className="py-16 md:py-24 relative">
           <div className="container mx-auto px-4 md:px-6 lg:px-12 relative z-10">
             
@@ -390,7 +486,7 @@ const GrowthPlans = () => {
                 Confronto Dettagliato
               </h2>
               <p className="text-base md:text-lg text-secondary max-w-2xl mx-auto">
-                Scopri tutte le funzionalità incluse in ogni piano per scegliere quello più adatto alle tue esigenze.
+                Scopri tutte le funzionalità incluse nei Growth Plans per utenti e aziende per scegliere quello più adatto alle tue esigenze.
               </p>
             </ScrollAnimation>
 
@@ -404,31 +500,30 @@ const GrowthPlans = () => {
                         Funzionalità
                       </th>
                       <th className="text-center py-6 px-6 font-semibold text-lg border-r border-white/10">
-                        Piano PMI
+                        Growth Plans Utenti
                       </th>
                       <th className="text-center py-6 px-6 font-semibold text-lg border-r border-white/10 relative">
                         <div className="flex items-center justify-center gap-2">
-                          Piano High Growth
+                          Growth Plans Aziende
                           <Star className="w-4 h-4 text-accent" />
                         </div>
-                      </th>
-                      <th className="text-center py-6 px-6 font-semibold text-lg">
-                        Piano Max Support
                       </th>
                     </tr>
                   </thead>
                   
                   {/* Body tabella */}
                   <tbody>
-                    {comparisonFeatures.map((category,) => (
+                    {comparisonFeatures.map((category) => (
                       <React.Fragment key={category.category}>
                         {/* Categoria header */}
                         <tr className="bg-white/5">
-                          <td colSpan={4} className="py-4 px-6 border-b border-white/10">
+                          <td colSpan={3} className="py-4 px-6 border-b border-white/10">
                             <div className="font-semibold text-accent text-lg flex items-center gap-2">
-                              {category.category === 'Digital Marketing' && <Globe className="w-5 h-5" />}
-                              {category.category === 'Software e Sistemi' && <Settings className="w-5 h-5" />}
-                              {category.category === 'Supporto e Servizi' && <Headphones className="w-5 h-5" />}
+                              {category.category === 'Coaching e Formazione' && <Headphones className="w-5 h-5" />}
+                              {category.category === 'Strumenti e Automazioni' && <Settings className="w-5 h-5" />}
+                              {category.category === 'Digital Marketing e Produzione' && <Globe className="w-5 h-5" />}
+                              {category.category === 'Supporto e Consulenza' && <Headphones className="w-5 h-5" />}
+                              {category.category === 'Analytics e Ottimizzazione' && <Settings className="w-5 h-5" />}
                               {category.category}
                             </div>
                           </td>
@@ -441,42 +536,29 @@ const GrowthPlans = () => {
                               {feature.name}
                             </td>
                             
-                            {/* Colonna Piano PMI */}
+                            {/* Colonna Growth Plans Utenti */}
                             <td className="py-4 px-6 text-center border-r border-white/10">
-                              {typeof feature.pmi === 'boolean' ? (
-                                feature.pmi ? (
+                              {typeof feature.users === 'boolean' ? (
+                                feature.users ? (
                                   <CheckCircle className="w-5 h-5 text-green-400 mx-auto" />
                                 ) : (
                                   <X className="w-5 h-5 text-red-400 mx-auto" />
                                 )
                               ) : (
-                                <span className="text-foreground/70 text-sm">{feature.pmi}</span>
+                                <span className="text-foreground/70 text-sm">{feature.users}</span>
                               )}
                             </td>
                             
-                            {/* Colonna Piano High Growth */}
-                            <td className="py-4 px-6 text-center border-r border-white/10">
-                              {typeof feature.highGrowth === 'boolean' ? (
-                                feature.highGrowth ? (
-                                  <CheckCircle className="w-5 h-5 text-green-400 mx-auto" />
-                                ) : (
-                                  <X className="w-5 h-5 text-red-400 mx-auto" />
-                                )
-                              ) : (
-                                <span className="text-foreground/70 text-sm">{feature.highGrowth}</span>
-                              )}
-                            </td>
-                            
-                            {/* Colonna Piano Max Support */}
+                            {/* Colonna Growth Plans Aziende */}
                             <td className="py-4 px-6 text-center">
-                              {typeof feature.maxSupport === 'boolean' ? (
-                                feature.maxSupport ? (
+                              {typeof feature.companies === 'boolean' ? (
+                                feature.companies ? (
                                   <CheckCircle className="w-5 h-5 text-green-400 mx-auto" />
                                 ) : (
                                   <X className="w-5 h-5 text-red-400 mx-auto" />
                                 )
                               ) : (
-                                <span className="text-foreground/70 text-sm">{feature.maxSupport}</span>
+                                <span className="text-foreground/70 text-sm">{feature.companies}</span>
                               )}
                             </td>
                           </tr>

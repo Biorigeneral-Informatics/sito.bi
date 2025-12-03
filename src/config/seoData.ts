@@ -57,6 +57,20 @@ export const SEO_DATA = {
     url: "/growth-plans"
   },
 
+  growthPlansUsers: {
+    title: "Growth Plans per Utenti - Coaching Personalizzato",
+    description: "Percorsi di crescita personale con coaching intensivo per professionisti e freelancer. Automazioni AI, formazione e mentoring 1-on-1.",
+    keywords: "coaching personalizzato, growth plans utenti, mentoring freelancer, automazioni AI",
+    url: "/growth-plans-users"
+  },
+
+  growthPlansCompanies: {
+    title: "Growth Plans per Aziende - Trasformazione Digitale",
+    description: "Soluzioni complete di trasformazione digitale per PMI e aziende. Software personalizzato, automazioni, digital marketing e supporto strategico.",
+    keywords: "trasformazione digitale, growth plans aziende, digitalizzazione PMI, software personalizzato",
+    url: "/growth-plans-companies"
+  },
+
   assistentiAILocale: {
     title: "Assistenti AI in Locale - Privacy e Sicurezza Totale",
     description: "Soluzioni AI completamente locali per aziende e professionisti. Nessun dato inviato a provider esterni. Preventivi da €110.",

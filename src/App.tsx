@@ -1,4 +1,3 @@
-// src/App.tsx
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { useEffect } from 'react';
@@ -11,6 +10,8 @@ import SoftwarePMI from './pages/SoftwarePMI';
 import AIAgents from './pages/AIAgents';
 import Chatbots from './pages/Chatbots';
 import GrowthPlans from './pages/GrowthPlans';
+import GrowthPlansUsers from './pages/GrowthPlansUsers';
+import GrowthPlansCompanies from './pages/GrowthPlansCompanies';
 import Developers from './pages/Developers';
 import Community from './pages/Community';
 import TerminiCondizioni from './pages/TerminiCondizioni';
@@ -22,7 +23,6 @@ import CookieBanner from './components/CookieBanner';
 import { ThemeProvider } from './hooks/useTheme';
 import AssistentiAILocale from './pages/AssistentiAILocale'
 import AutoTranslate from './components/LanguageSelector';
-// import NotificationToast from './components/NotificationToast';
 
 
 localStorage.removeItem('preloaderShown');
@@ -56,11 +56,12 @@ function App() {
             <Route path="/products/:productSlug" element={<Products />} />
             <Route path="/portfolio" element={<Portfolio />} />
             
-            {/* Percorsi principali */}
             <Route path="/software-pmi" element={<SoftwarePMI />} />
             <Route path="/ai-agents" element={<AIAgents />} />
             <Route path="/chatbots" element={<Chatbots />} />
             <Route path="/growth-plans" element={<GrowthPlans />} />
+            <Route path="/growth-plans-users" element={<GrowthPlansUsers />} />
+            <Route path="/growth-plans-companies" element={<GrowthPlansCompanies />} />
             <Route path="/developers" element={<Developers />} />
             <Route path="/community" element={<Community />} />
             <Route path="/contact" element={<Contact />} />

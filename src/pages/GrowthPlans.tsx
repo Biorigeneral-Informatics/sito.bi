@@ -34,28 +34,28 @@ const GrowthPlans = () => {
   const timelineSteps = [
     {
       number: 1,
-      title: "Analisi Strategica",
-      description: "Comprendiamo la vostra situazione attuale, obiettivi e sfide specifiche del vostro settore"
+      title: "Scoperta e Diagnosi",
+      description: "Analizziam il vostro stato attuale, competenze chiave e opportunità di crescita"
     },
     {
       number: 2,
-      title: "Progettazione AI",
-      description: "Disegniamo una strategia personalizzata integrando IA e automazioni su misura"
+      title: "Formazione Personalizzata",
+      description: "Percorsi di apprendimento strutturati su IA, automazioni e strategie digitali"
     },
     {
       number: 3,
-      title: "Implementazione",
-      description: "Realizziamo i sistemi, software e automazioni seguendo best practices"
+      title: "Implementazione Pratica",
+      description: "Mettiamo in pratica le competenze acquisite con progetti reali e supporto continuativo"
     },
     {
       number: 4,
-      title: "Ottimizzazione Continua",
-      description: "Monitoraggio costante e miglioramenti iterativi per massimizzare ROI"
+      title: "Monitoraggio e Ottimizzazione",
+      description: "Valutiamo i risultati e raffinizziamo le strategie per massimizzare l'impatto"
     },
     {
       number: 5,
-      title: "Crescita Sostenibile",
-      description: "La vostra azienda/persona cresce velocemente e sostenibilmente nel lungo termine"
+      title: "Crescita Autonoma",
+      description: "Siete pronti a crescere indipendentemente, con i nuovi strumenti e competenze acquisiti"
     }
   ];
 
@@ -291,29 +291,35 @@ const GrowthPlans = () => {
               </p>
             </ScrollAnimation>
 
-            <div className="space-y-8 md:space-y-10">
-              {timelineSteps.map((step, index) => (
-                <ScrollAnimation 
-                  key={step.number} 
-                  animation="slideUp" 
-                  delay={index * 0.1}
-                  className={`flex gap-4 md:gap-8 items-start md:items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
-                >
-                  {/* Numero e cerchio */}
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-accent/20 border-2 border-accent flex items-center justify-center flex-shrink-0">
-                      <span className="text-lg md:text-xl font-bold text-accent">{step.number}</span>
+            <ScrollAnimation animation="slideUp" delay={0.1} className="max-w-3xl mx-auto">
+              <div className="space-y-4">
+                {timelineSteps.map((step, index) => (
+                  <motion.div
+                    key={step.number}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    className="flex items-start gap-4 p-4 rounded-lg hover:bg-white/5 transition-all duration-300"
+                  >
+                    {/* Checkmark luminoso verde */}
+                    <div className="flex-shrink-0 pt-1">
+                      <div className="w-6 h-6 rounded-full bg-gradient-to-r from-emerald-400 to-green-400 flex items-center justify-center shadow-lg shadow-emerald-500/50">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Contenuto */}
-                  <div className="flex-1 glass rounded-lg p-4 md:p-6 border border-white/10 hover:border-accent/50 transition-all duration-300">
-                    <h3 className="text-base md:text-lg font-bold text-primary mb-2">{step.title}</h3>
-                    <p className="text-foreground/80 text-sm md:text-base">{step.description}</p>
-                  </div>
-                </ScrollAnimation>
-              ))}
-            </div>
+                    {/* Testo */}
+                    <div className="flex-1">
+                      <h3 className="text-base md:text-lg font-bold text-white mb-1">{step.title}</h3>
+                      <p className="text-foreground/70 text-sm md:text-base">{step.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </ScrollAnimation>
           </div>
         </section>
 
@@ -389,13 +395,10 @@ const GrowthPlans = () => {
 
                     {/* Button */}
                     <a
-                      href="/growth-plans-users"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ color: 'white' }}
-                      className="w-full mt-8 py-3 px-6 rounded-lg text-center transition-all duration-300 font-semibold bg-blue-500 hover:bg-blue-600 shadow-lg hover:shadow-2xl hover:shadow-blue-500/50 hover:-translate-y-1 flex items-center justify-center gap-2"
+                      href="/contact"
+                      className="w-full mt-8 py-3 px-6 rounded-lg text-center transition-all duration-300 font-semibold bg-blue-500 hover:bg-blue-600 shadow-lg hover:shadow-2xl hover:shadow-blue-500/50 hover:-translate-y-1 flex items-center justify-center gap-2 text-white"
                     >
-                      Scopri di più
+                      Contattaci per iniziare
                       <ArrowRight className="w-4 h-4 transition-transform duration-300" />
                     </a>
                   </div>
@@ -461,114 +464,16 @@ const GrowthPlans = () => {
 
                     {/* Button */}
                     <a
-                      href="/growth-plans-companies"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ color: 'white' }}
-                      className="w-full mt-8 py-3 px-6 rounded-lg text-center transition-all duration-300 font-semibold bg-emerald-500 hover:bg-emerald-600 shadow-lg hover:shadow-2xl hover:shadow-emerald-500/50 hover:-translate-y-1 flex items-center justify-center gap-2"
+                      href="/contact"
+                      className="w-full mt-8 py-3 px-6 rounded-lg text-center transition-all duration-300 font-semibold bg-emerald-500 hover:bg-emerald-600 shadow-lg hover:shadow-2xl hover:shadow-emerald-500/50 hover:-translate-y-1 flex items-center justify-center gap-2 text-white"
                     >
-                      Scopri di più
+                      Contattaci per iniziare
                       <ArrowRight className="w-4 h-4 transition-transform duration-300" />
                     </a>
                   </div>
                 </div>
               </ScrollAnimation>
             </div>
-          </div>
-        </section>
-
-        {/* Pricing Breakdown - Tabella di confronto utenti vs aziende */}
-        <section className="py-16 md:py-24 relative">
-          <div className="container mx-auto px-4 md:px-6 lg:px-12 relative z-10">
-            
-            <ScrollAnimation animation="fadeIn" className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-6 text-primary">
-                Confronto Dettagliato
-              </h2>
-              <p className="text-base md:text-lg text-secondary max-w-2xl mx-auto">
-                Scopri tutte le funzionalità incluse nei Growth Plans per utenti e aziende per scegliere quello più adatto alle tue esigenze.
-              </p>
-            </ScrollAnimation>
-
-            <ScrollAnimation animation="slideUp" delay={0.2}>
-              <div className="overflow-x-auto">
-                <table className="w-full min-w-[800px] bg-transparent">
-                  {/* Header tabella */}
-                  <thead>
-                    <tr className="border-b-2 border-white/20">
-                      <th className="text-left py-6 px-6 font-semibold text-lg border-r border-white/10">
-                        Funzionalità
-                      </th>
-                      <th className="text-center py-6 px-6 font-semibold text-lg border-r border-white/10">
-                        Growth Plans Utenti
-                      </th>
-                      <th className="text-center py-6 px-6 font-semibold text-lg border-r border-white/10 relative">
-                        <div className="flex items-center justify-center gap-2">
-                          Growth Plans Aziende
-                          <Star className="w-4 h-4 text-accent" />
-                        </div>
-                      </th>
-                    </tr>
-                  </thead>
-                  
-                  {/* Body tabella */}
-                  <tbody>
-                    {comparisonFeatures.map((category) => (
-                      <React.Fragment key={category.category}>
-                        {/* Categoria header */}
-                        <tr className="bg-white/5">
-                          <td colSpan={3} className="py-4 px-6 border-b border-white/10">
-                            <div className="font-semibold text-accent text-lg flex items-center gap-2">
-                              {category.category === 'Coaching e Formazione' && <Headphones className="w-5 h-5" />}
-                              {category.category === 'Strumenti e Automazioni' && <Settings className="w-5 h-5" />}
-                              {category.category === 'Digital Marketing e Produzione' && <Globe className="w-5 h-5" />}
-                              {category.category === 'Supporto e Consulenza' && <Headphones className="w-5 h-5" />}
-                              {category.category === 'Analytics e Ottimizzazione' && <Settings className="w-5 h-5" />}
-                              {category.category}
-                            </div>
-                          </td>
-                        </tr>
-                        
-                        {/* Features della categoria */}
-                        {category.features.map((feature, featureIndex) => (
-                          <tr key={featureIndex} className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                            <td className="py-4 px-6 text-foreground/80 border-r border-white/10">
-                              {feature.name}
-                            </td>
-                            
-                            {/* Colonna Growth Plans Utenti */}
-                            <td className="py-4 px-6 text-center border-r border-white/10">
-                              {typeof feature.users === 'boolean' ? (
-                                feature.users ? (
-                                  <CheckCircle className="w-5 h-5 text-green-400 mx-auto" />
-                                ) : (
-                                  <X className="w-5 h-5 text-red-400 mx-auto" />
-                                )
-                              ) : (
-                                <span className="text-foreground/70 text-sm">{feature.users}</span>
-                              )}
-                            </td>
-                            
-                            {/* Colonna Growth Plans Aziende */}
-                            <td className="py-4 px-6 text-center">
-                              {typeof feature.companies === 'boolean' ? (
-                                feature.companies ? (
-                                  <CheckCircle className="w-5 h-5 text-green-400 mx-auto" />
-                                ) : (
-                                  <X className="w-5 h-5 text-red-400 mx-auto" />
-                                )
-                              ) : (
-                                <span className="text-foreground/70 text-sm">{feature.companies}</span>
-                              )}
-                            </td>
-                          </tr>
-                        ))}
-                      </React.Fragment>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </ScrollAnimation>
           </div>
         </section>
 
@@ -622,10 +527,10 @@ const GrowthPlans = () => {
             </Link>
             
             <Link
-              to="/products"
+              to="/portfolio"
               className="glass px-8 py-4 rounded-xl font-semibold text-lg text-primary bg-glass-secondary border-secondary hover:bg-glass-hover hover:border-primary hover:-translate-y-1 transition-all duration-300 inline-flex items-center justify-center min-w-[280px]"
             >
-              Esplora Prodotti
+              Esplora Portfolio
             </Link>
           </div>
 

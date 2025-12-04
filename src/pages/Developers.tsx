@@ -169,7 +169,7 @@ const Developers = () => {
                     
                     <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden bg-accent/10 border-2 border-accent/30 group-hover:border-accent/50 transition-all duration-300">
                       <img 
-                        src="https://i.ibb.co/0jd4p6tB/IMG-3443.jpg" 
+                        src="https://media.licdn.com/dms/image/v2/D4D03AQEdgn-i04G8AA/profile-displayphoto-shrink_100_100/B4DZYbF1JoHsAc-/0/1744211235758?e=1766620800&v=beta&t=lCpNp4h87v58ITRez3xdQsGMHToh67xHxwRHQTTla2s" 
                         alt="Alessandro" 
                         className="w-full h-full object-cover"
                       />

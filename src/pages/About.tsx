@@ -23,7 +23,7 @@ const About = () => {
       name: 'Alessandro',
       role: 'Co-founder & Full Stack Developer',
       description: 'Eccellenza tecnica e architettura software. Alessandro trasforma le visioni in realtà costruendo sistemi scalabili, performanti e innovativi che risolvono le sfide più complesse dei nostri clienti.',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop',
+      image: 'https://media.licdn.com/dms/image/v2/D4D03AQEdgn-i04G8AA/profile-displayphoto-shrink_100_100/B4DZYbF1JoHsAc-/0/1744211235758?e=1766620800&v=beta&t=lCpNp4h87v58ITRez3xdQsGMHToh67xHxwRHQTTla2s',
       email: 'alessandro@biorigeneral.com',
       linkedin: 'https://linkedin.com/in/alessandro',
       github: 'https://github.com/alessandro',

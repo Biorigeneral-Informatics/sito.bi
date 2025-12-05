@@ -10,8 +10,8 @@ const About = () => {
   const teamMembers = [
     {
       name: 'Federico',
-      role: 'Co-founder & AI Strategist',
-      description: 'Visione strategica e leadership tecnologica. Federico guida la trasformazione digitale e l\'adozione dell\'IA in Biorigeneral, definendo il roadmap futuro e le innovazioni che rendono unici i nostri prodotti.',
+      role: 'Co-founder & CTO',
+      description: 'Visione strategica e leadership tecnologica. Federico guida la trasformazione digitale e l\'adozione dell\'IA in Biorigeneral, definendo il roadmap futuro e le strategie di crescita.',
       image: 'https://i.ibb.co/xqRrdJJK/1744716119181.jpg',
       email: 'federico@biorigeneral.com',
       linkedin: 'https://linkedin.com/in/federico',
@@ -33,7 +33,7 @@ const About = () => {
     {
       name: 'Davide Bottino',
       role: 'Marketing & Growth Strategist',
-      description: 'Esperto di crescita e posizionamento. Amplifica la voce di Biorigeneral nel mercato.',
+      description: 'Davide è il nostro consulente esterno, nonché esperto di crescita e posizionamento, con oltre 20 anni di esperienza nel B2B e nel marketing digitale.',
       image: 'https://i.ibb.co/Zp7kMhPg/davide.jpg',
       email: 'davide@biorigeneral.com',
       linkedin: 'https://linkedin.com/in/davide',
@@ -42,7 +42,7 @@ const About = () => {
     {
       name: 'Mimma Centorame',
       role: 'Operations & Administration',
-      description: 'Garantisce efficienza operativa. Mantiene i processi fluidi e l\'organizzazione solida.',
+      description: 'Oltre 30 anni di esperienza nella gestione operativa e amministrativa, egli assicura che le operazioni quotidiane di Biorigeneral siano efficienti.',
       image: 'https://i.ibb.co/wFNRH77y/foto-profilo-quadrato-mimma-1024x1024.jpg',
       email: 'mimma@biorigeneral.com',
       linkedin: 'https://linkedin.com/in/mimma',

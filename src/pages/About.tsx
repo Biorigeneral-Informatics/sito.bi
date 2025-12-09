@@ -9,24 +9,22 @@ import SEO from '../components/SEO';
 const About = () => {
   const teamMembers = [
     {
-      name: 'Federico',
+      name: 'Federico Zizi',
       role: 'Co-founder & CTO',
       description: 'Visione strategica e leadership tecnologica. Federico guida la trasformazione digitale e l\'adozione dell\'IA in Biorigeneral, definendo il roadmap futuro e le strategie di crescita.',
       image: 'https://i.ibb.co/xqRrdJJK/1744716119181.jpg',
       email: 'federico@biorigeneral.com',
-      linkedin: 'https://linkedin.com/in/federico',
-      github: 'https://github.com/federico',
+      linkedin: 'https://www.linkedin.com/in/federico-zizi-55942230a/',
       featured: true,
       color: 'from-blue-500 to-cyan-500',
     },
     {
-      name: 'Alessandro',
+      name: 'Alessandro Miri',
       role: 'Co-founder & Full Stack Developer',
       description: 'Eccellenza tecnica e architettura software. Alessandro trasforma le visioni in realtà costruendo sistemi scalabili, performanti e innovativi che risolvono le sfide più complesse dei nostri clienti.',
-      image: 'https://media.licdn.com/dms/image/v2/D4D03AQEdgn-i04G8AA/profile-displayphoto-shrink_100_100/B4DZYbF1JoHsAc-/0/1744211235758?e=1766620800&v=beta&t=lCpNp4h87v58ITRez3xdQsGMHToh67xHxwRHQTTla2s',
+      image: 'https://i.ibb.co/gMjvPb4Z/ale1-Copia.png',
       email: 'alessandro@biorigeneral.com',
-      linkedin: 'https://linkedin.com/in/alessandro',
-      github: 'https://github.com/alessandro',
+      linkedin: 'https://www.linkedin.com/in/alessandro-miri-18569a35b/',
       featured: true,
       color: 'from-purple-500 to-pink-500',
     },
@@ -36,7 +34,7 @@ const About = () => {
       description: 'Davide è il nostro consulente esterno, nonché esperto di crescita e posizionamento, con oltre 20 anni di esperienza nel B2B e nel marketing digitale.',
       image: 'https://i.ibb.co/Zp7kMhPg/davide.jpg',
       email: 'davide@biorigeneral.com',
-      linkedin: 'https://linkedin.com/in/davide',
+      linkedin: 'https://www.linkedin.com/in/davidebottino/',
       color: 'from-orange-500 to-red-500',
     },
     {
@@ -45,7 +43,7 @@ const About = () => {
       description: 'Oltre 30 anni di esperienza nella gestione operativa e amministrativa, egli assicura che le operazioni quotidiane di Biorigeneral siano efficienti.',
       image: 'https://i.ibb.co/wFNRH77y/foto-profilo-quadrato-mimma-1024x1024.jpg',
       email: 'mimma@biorigeneral.com',
-      linkedin: 'https://linkedin.com/in/mimma',
+      linkedin: null,
       color: 'from-green-500 to-emerald-500',
     },
   ];
@@ -288,7 +286,7 @@ const About = () => {
                         <img
                           src={member.image}
                           alt={member.name}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          className={`w-full h-full object-cover ${member.name === 'Alessandro Miri' ? 'object-top' : ''} group-hover:scale-105 transition-transform duration-300`}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                       </div>
@@ -307,15 +305,13 @@ const About = () => {
                       {/* Social Links */}
                       <div className="flex gap-2 pt-4 border-t border-white/5">
                         {member.email && (
-                          <a
-                            href={`mailto:${member.email}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                          <Link
+                            to="/contact"
                             className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-white/60 hover:bg-white/20 hover:text-white transition-all text-sm"
-                            title="Email"
+                            title="Contatti"
                           >
                             ✉
-                          </a>
+                          </Link>
                         )}
                         {member.linkedin && (
                           <a
@@ -326,17 +322,6 @@ const About = () => {
                             title="LinkedIn"
                           >
                             in
-                          </a>
-                        )}
-                        {member.github && (
-                          <a
-                            href={member.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-white/60 hover:bg-white/20 hover:text-white transition-all text-xs"
-                            title="GitHub"
-                          >
-                            ⚡
                           </a>
                         )}
                       </div>
@@ -391,15 +376,13 @@ const About = () => {
                       {/* Social Links */}
                       <div className="flex gap-2 pt-4 border-t border-white/5">
                         {member.email && (
-                          <a
-                            href={`mailto:${member.email}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                          <Link
+                            to="/contact"
                             className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-white/60 hover:bg-white/20 hover:text-white transition-all text-sm"
-                            title="Email"
+                            title="Contatti"
                           >
                             ✉
-                          </a>
+                          </Link>
                         )}
                         {member.linkedin && (
                           <a

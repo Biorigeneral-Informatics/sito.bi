@@ -1,0 +1,25 @@
+# robots.txt for Biorigeneral Informatics
+
+# Allow all bots to crawl the site
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /.env
+Disallow: /node_modules
+Disallow: /dist
+
+# Specific rules for common search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Specify the sitemap location
+Sitemap: https://biorigeneralinformatics.com/sitemap.xml
+
+# Crawl delay (optional - adjust if needed)
+Crawl-delay: 1

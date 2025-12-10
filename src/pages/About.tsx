@@ -12,7 +12,7 @@ const About = () => {
       name: 'Federico Zizi',
       role: 'Co-founder & CTO',
       description: 'Visione strategica e leadership tecnologica. Federico guida la trasformazione digitale e l\'adozione dell\'IA in Biorigeneral, definendo il roadmap futuro e le strategie di crescita.',
-      image: 'https://i.ibb.co/xqRrdJJK/1744716119181.jpg',
+      image: 'https://i.ibb.co/sdMyxPCj/fede-1.jpg',
       email: 'federico@biorigeneral.com',
       linkedin: 'https://www.linkedin.com/in/federico-zizi-55942230a/',
       featured: true,
@@ -36,6 +36,15 @@ const About = () => {
       email: 'davide@biorigeneral.com',
       linkedin: 'https://www.linkedin.com/in/davidebottino/',
       color: 'from-orange-500 to-red-500',
+    },
+    {
+      name: 'Donato Zizi',
+      role: 'Titolare e Senior Advisor',
+      description: 'Imprenditore e medico con oltre 30 anni di esperienza nel settore healthcare. Fornisce supporto alle decisioni strategiche di Biorigeneral, guidando la visione a lungo termine dell\'azienda.',
+      image: 'https://i.ibb.co/nMMyxkVz/ziziuk.jpg',
+      email: 'donato@biorigeneral.com',
+      linkedin: null,
+      color: 'from-indigo-500 to-purple-500',
     },
     {
       name: 'Mimma Centorame',
@@ -286,7 +295,7 @@ const About = () => {
                         <img
                           src={member.image}
                           alt={member.name}
-                          className={`w-full h-full object-cover ${member.name === 'Alessandro Miri' ? 'object-top' : ''} group-hover:scale-105 transition-transform duration-300`}
+                          className={`w-full h-full object-cover ${member.name === 'Alessandro Miri' ? 'object-top' : member.name === 'Federico Zizi' ? 'object-[center_25%]' : ''} group-hover:scale-105 transition-transform duration-300`}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                       </div>
@@ -340,7 +349,7 @@ const About = () => {
               </h3>
             </div>
             
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {teamMembers.slice(2).map((member, index) => (
                 <motion.div
                   key={index}
@@ -357,7 +366,7 @@ const About = () => {
                         <img
                           src={member.image}
                           alt={member.name}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          className={`w-full h-full object-cover ${member.name === 'Donato Zizi' ? 'scale-150 object-center' : ''} group-hover:scale-105 transition-transform duration-300`}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                       </div>

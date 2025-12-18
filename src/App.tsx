@@ -13,7 +13,6 @@ import GrowthPlans from './pages/GrowthPlans';
 import GrowthPlansUsers from './pages/GrowthPlansUsers';
 import GrowthPlansCompanies from './pages/GrowthPlansCompanies';
 import Developers from './pages/Developers';
-import Community from './pages/Community';
 import TerminiCondizioni from './pages/TerminiCondizioni';
 import Contact from './pages/Contact';
 import Footer from './components/Footer';
@@ -63,7 +62,6 @@ function App() {
             <Route path="/growth-plans-users" element={<GrowthPlansUsers />} />
             <Route path="/growth-plans-companies" element={<GrowthPlansCompanies />} />
             <Route path="/developers" element={<Developers />} />
-            <Route path="/community" element={<Community />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/TerminiCondizioni" element={<TerminiCondizioni />} />
             <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
@@ -78,7 +76,6 @@ function App() {
             <Route path="/services/growth-plans" element={<Navigate to="/growth-plans" replace />} />
             <Route path="/services/developers" element={<Navigate to="/developers" replace />} />
             <Route path="/services" element={<Navigate to="/software-pmi" replace />} />
-            <Route path="/services/community" element={<Navigate to="/community" replace />} />
             <Route path="/services/assistenti-ai-locale" element={<Navigate to="/assistenti-ai-locale" replace />} />
             
             {/* Fallback per percorsi non trovati */}

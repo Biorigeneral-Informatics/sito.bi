@@ -71,13 +71,6 @@ export const SEO_DATA = {
     url: "/growth-plans-companies"
   },
 
-  assistentiAILocale: {
-    title: "Assistenti AI in Locale - Privacy e Sicurezza Totale",
-    description: "Soluzioni AI completamente locali per aziende e professionisti. Nessun dato inviato a provider esterni. Preventivi da €110.",
-    keywords: "AI locale, assistenti AI, privacy, sicurezza, ChatGPT locale, AI aziendale",
-    url: "/assistenti-ai-locale"
-  },
-  
   contact: {
     title: "Contatti - Richiedi Consulenza Gratuita",
     description: "Contatta Biorigeneral Informatics per una consulenza gratuita. Via Tiburtina 912, Roma. Sviluppiamo la soluzione digitale per la tua azienda.",

@@ -210,7 +210,7 @@ const AIAgents = () => {
 
                 <div className="glass p-8 md:p-10 rounded-xl border border-white/10 mb-10">
                   <p className="text-base md:text-lg text-secondary leading-relaxed">
-                    Abbiamo progettato un AI Agent completo e intelligente, capace di operare autonomamente sulle primcipali aree di un ecosistema digitale aziendale: Sales, Customer Care e Lead Management.
+                    Abbiamo progettato un AI Agent completo e intelligente, capace di operare autonomamente sulle ncipali aree di un ecosistema digitale aziendale: Sales, Customer Care e Lead Management.
                   </p>
                 </div>
 

@@ -6,7 +6,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Products from './pages/Products';
 import Portfolio from './pages/Portfolio';
-import SoftwarePMI from './pages/SoftwarePMI';
+import Software from './pages/Software';
 import AIAgents from './pages/AIAgents';
 import Chatbots from './pages/Chatbots';
 import GrowthPlans from './pages/GrowthPlans';
@@ -55,7 +55,7 @@ function App() {
             <Route path="/products/:productSlug" element={<Products />} />
             <Route path="/portfolio" element={<Portfolio />} />
             
-            <Route path="/software-pmi" element={<SoftwarePMI />} />
+            <Route path="/software-pmi" element={<Software />} />
             <Route path="/ai-agents" element={<AIAgents />} />
             <Route path="/chatbots" element={<Chatbots />} />
             <Route path="/growth-plans" element={<GrowthPlans />} />

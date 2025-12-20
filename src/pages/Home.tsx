@@ -304,7 +304,7 @@ const Home = () => {
           >
             <div className="flex items-center gap-3">
               <Code className="w-5 h-5 text-violet-500 flex-shrink-0" />
-              <span className="font-semibold text-white group-hover:text-violet-400 transition-colors">Software PMI</span>
+              <span className="font-semibold text-white group-hover:text-violet-400 transition-colors">Software</span>
             </div>
             <ArrowRight className="w-4 h-4 text-violet-500 group-hover:translate-x-1 transition-transform" />
           </Link>

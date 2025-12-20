@@ -232,7 +232,7 @@ const AIAgents = () => {
                       </li>
                       <li className="flex items-start">
                         <span className="text-accent mr-4 font-bold text-xl">✓</span>
-                        <span className="text-base md:text-lg">Telefono</span>
+                        <span className="text-base md:text-lg">Chiamate (Voce)</span>
                       </li>
                     </ul>
                   </div>

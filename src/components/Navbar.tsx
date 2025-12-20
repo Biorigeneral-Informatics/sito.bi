@@ -52,7 +52,7 @@ const Navbar = () => {
     {
       title: 'Sviluppo',
       services: [
-        { href: '/software-pmi', label: 'Software PMI', icon: Code, description: 'Soluzioni software per PMI' },
+        { href: '/software-pmi', label: 'Software', icon: Code, description: 'Soluzioni software' },
         { href: '/developers', label: 'Sviluppatori', icon: Users, description: 'Team di sviluppo' },
       ]
     },
@@ -139,8 +139,8 @@ const Navbar = () => {
                               <Code className="w-4 h-4 text-gray-400 flex-shrink-0" />
                             </div>
                             <div>
-                              <p className="font-medium text-sm">Software PMI</p>
-                              <p className="text-xs text-gray-400">Soluzioni software per PMI</p>
+                              <p className="font-medium text-sm">Software</p>
+                              <p className="text-xs text-gray-400">Soluzioni software</p>
                             </div>
                           </Link>
                           

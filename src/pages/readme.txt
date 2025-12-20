@@ -11,7 +11,7 @@ Ogni pagina è associata a una route specifica definita in App.tsx.
 - AIAgents.tsx: Pagina dedicata ai servizi di intelligenza artificiale con caratteristiche e demo.
 - Chatbots.tsx: Pagina specifica per i servizi di chatbot e assistenti virtuali.
 - Developers.tsx: Pagina che presenta i team di sviluppo disponibili e le loro competenze.
-- SoftwarePMI.tsx: Pagina dedicata alle soluzioni software per piccole e medie imprese.
+- Software.tsx: Pagina dedicata alle soluzioni software per piccole e medie imprese.
 - GrowthPlans.tsx: Pagina per i piani di crescita aziendale con pricing e offerte.
 - Contact.tsx: Pagina con modulo di contatto, mappa e informazioni di contatto.
 

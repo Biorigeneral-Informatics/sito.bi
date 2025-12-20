@@ -75,7 +75,7 @@ const StructuredData = ({ type}: StructuredDataProps) => {
                 "@type": "Offer",
                 "itemOffered": {
                   "@type": "Service",
-                  "name": "Sviluppo Software PMI"
+                  "name": "Sviluppo Software"
                 }
               },
               {

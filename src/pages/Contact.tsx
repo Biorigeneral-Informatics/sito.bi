@@ -344,7 +344,7 @@ const Contact = () => {
                   <option value="Informazioni generali">Informazioni generali</option>
                   <option value="AI Agents">AI Agents</option>
                   <option value="Chatbot AI">Chatbot AI</option>
-                  <option value="Software PMI">Software PMI</option>
+                      <option value="Software">Software</option>
                   <option value="Team di sviluppo">Team di sviluppo</option>
                   <option value="Piani di crescita">Piani di crescita</option>
                   <option value="Altro">Altro</option>

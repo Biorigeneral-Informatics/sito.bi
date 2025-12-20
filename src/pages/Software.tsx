@@ -1,4 +1,4 @@
-// src/pages/SoftwarePMI.tsx
+// src/pages/Software.tsx
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Code, GitBranch, Database, Laptop, Cloud, Shield, Zap, CheckCircle, BarChart, ArrowRight, Workflow,Bot,  } from 'lucide-react';
@@ -7,9 +7,9 @@ import ScrollGradient from '../components/ScrollGradient';
 import SEO from '../components/SEO';
 import { getSEOData } from '../config/seoData';
 
-const seoData = getSEOData('softwarePMI'); // cambia 'nomePagina'
+const seoData = getSEOData('softwarePMI'); // mantiene la chiave seo esistente
 
-const SoftwarePMI = () => {
+const Software = () => {
   const solutionTypes = [
     {
       title: "Software Locali",
@@ -330,4 +330,4 @@ const SoftwarePMI = () => {
   );
 };
 
-export default SoftwarePMI;
+export default Software;

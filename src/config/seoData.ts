@@ -44,9 +44,9 @@ export const SEO_DATA = {
   },
   
   softwarePMI: {
-    title: "Software Personalizzati per PMI",
-    description: "Soluzioni software su misura per PMI. Sviluppo rapido con AI, integrazione sistemi esistenti e supporto continuo. Alternativa alle grandi agenzie.",
-    keywords: "software PMI, soluzioni personalizzate, sviluppo rapido, integrazione sistemi",
+    title: "Software Personalizzati",
+    description: "Soluzioni software su misura per aziende. Sviluppo rapido con AI, integrazione sistemi esistenti e supporto continuo.",
+    keywords: "software personalizzato, soluzioni personalizzate, sviluppo rapido, integrazione sistemi",
     url: "/software-pmi"
   },
   
